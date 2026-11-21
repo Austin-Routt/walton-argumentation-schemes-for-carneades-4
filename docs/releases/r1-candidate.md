@@ -12,7 +12,7 @@ The 143-record library adds 23 explicit source variants and repairs participant/
 
 ## Source and executable gates
 
-**128/143 records are independently approved within declared scope**: 119 book-origin and 9 inherited. 35 original holds are closed; 15 inherited rows remain held (13 transcription-checked, 2 mapped). All book-origin records being approved does not certify every inherited record assigned to a compendium entry. The stable all-record gate deliberately refuses the fifteen current holds.
+**140/143 records are approved within declared scope**: 119 book-origin and 21 inherited. The closure review approved 128; under the owner's decision D20 (2026-11-21) the twelve inherited records held only for their older cited works were approved against their compendium entries, without a claim about those works (`docs/reviews/d20-approvals.md`). Three records with no compendium entry remain held (`practical_reasoning1`, `practical_reasoning2`, `exeption_to_rule`), so the stable all-record gate still refuses; this release is the preview R1.
 
 The integrated candidate also repairs PR16 F2 (fresh-variable issue bindings), adopts its corrected cancellation fixture, and independently renews entry 33.4 after the omission-specific likelihood correction. Earlier 9,959-check acceptance is preserved as historical evidence only.
 

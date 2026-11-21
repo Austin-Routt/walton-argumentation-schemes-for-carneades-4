@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-21 — approvals against the compendium (decision D20)
+
+See `docs/reviews/d20-approvals.md`.
+
+* The owner decided D20: the compendium is the source of record. The twelve inherited records held only for the older works they cite were compared with their entries by the implementer and approved, with each reading declared; the cited originals are recorded as not compared. 140 of 143 records are approved, and every represented entry has an approved record.
+* `sunk_costs` is filed under entry 24, the argument from waste, whose premises and two questions it states; entry 25's precommitment form is `sunk_costs_precommitment`.
+* Still held: `practical_reasoning2` and `exeption_to_rule` (no entry; originals listed with DOIs or ISBNs) and `practical_reasoning1` (the owner's choice between a qualified AS1 record and an AS2 model).
+* The owner decided that the upstream patches and the memorandum are not sent (D22). `PLAN.md` records both decisions.
+
 ## 2026-11-21 — implementer's second response (engine 4.3.1+walton.5, library 0.3.0)
 
 See `docs/reviews/implementer-second-response.md`. Based on the closure candidate `fcccbba`; supersedes pull request #17.

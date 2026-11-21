@@ -592,7 +592,7 @@ argument_schemes:
   - id: sunk_costs
     meta:
       title: Argument from Sunk Costs
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 25, p. 326. Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation, 16, 2002, p. 489"
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 24, p. 326. Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation, 16, 2002, p. 489"
     variables: [A,C]
     conclusions:
       - should_be_performed(A)
