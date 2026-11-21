@@ -11,15 +11,15 @@ The owner decisions are settled: add explicit finite part/whole and source-alter
 | Item | Current state |
 |---|---|
 | Records | 143: 119 book-origin and 24 inherited |
-| Independent approvals | 128: 119 book-origin and 9 inherited |
-| Holds | 15 inherited: 13 transcription-checked and 2 mapped |
-| Original 50 holds | 35 closed; 15 retained with exact next actions |
+| Independent approvals | 140: 119 book-origin and 21 inherited (128 at the closure review; 12 inherited records approved against the compendium under D20 on 2026-11-21) |
+| Holds | 3 inherited records with no compendium entry: `practical_reasoning1` (transcription-checked; AS2 scope), `practical_reasoning2` and `exeption_to_rule` (mapped; originals to compare) |
+| Original 50 holds | 47 closed (35 by the closure review, 12 under D20); 3 retained with exact next actions |
 | Additions | 23 variants, all independently accepted within declared scope |
 | Compendium mapping | 137 records under 109 entries; 6 upstream-only |
-| Entry approval coverage | 103 entries have at least one approved record; 2, 3, 26, 29, 33.1 and 33.2 retain inherited-source holds |
+| Entry approval coverage | every one of the 109 represented entries has an approved record |
 | Registered inventory | 9,989 distinct checks (9,979 at the closure candidate `fcccbba`, ten added by the implementer's second response), plus separate Python/native/unit/vet/race gates |
 | Validator | 0 errors; 11 warnings: 6 unused inherited templates and 5 dependency-cycle groups |
-| Stable gate L | Open; every one of the 143 rows must reach example-passed |
+| Stable gate L | Open; 3 of 143 rows are not at example-passed |
 
 The current complete register and every original-hold outcome are `docs/reviews/closure-current-register.json` and its readable companion. The exact test inventory is `tools/vv/expected_checks.txt`. Historical reports retain their original counts and do not describe current status.
 
@@ -75,9 +75,9 @@ The register of decisions that tools, contracts, ledger notes and reviews cite a
 | D17: variants | one variant per record, declared in the ledger; 10.2 gets a part premise | agree, and implement the omitted branches | 9.2 has four records, 10.2 three; the positive 10.2 branch needs an explicit sufficiency warrant | agree; the sufficiency premise is a stricter reading than the print, declared |
 | D18: participants | as printed; exceptions name enough participants | preserve identities a conclusion needs even when elliptical | identities added where instances could leak (e.g. 19, 28, 30, 31.1, 45, 54, 58, 59.1) | agree with the closure's form |
 | D19: polarity | "should not" = ¬should_do; "less plausible" = argument for the negation | reject as general equivalences; local binary issues allowed | ethos and anti-model use qualitative or restraint statements (`ethos_less_plausible`, `should_refrain`) | agree with the closure: an ad hominem lowers plausibility, it does not prove the contrary |
-| D20: source of record | the compendium; older originals not a condition of the stable release | reject as discharging original-source obligations | not adopted: 13 inherited records stay held for originals | **owner's decision**; either is honest if the ledger states the scope |
-| D21: legacy records | three records legacy, outside the stable count; checker to learn it | reject a retrospective narrowing of the gate | not adopted: they stay held; the checker has no legacy class | **owner's decision**, together with D20 |
-| D22: outside contacts | send only when the owner says so | agree | nothing sent | agree |
+| D20: source of record | the compendium; older originals not a condition of the stable release | reject as discharging original-source obligations | **adopted by the owner, 2026-11-21**: 12 inherited records approved against their entries; the cited originals are recorded as not compared (`docs/reviews/d20-approvals.md`) | agree |
+| D21: legacy records | three records legacy, outside the stable count; checker to learn it | reject a retrospective narrowing of the gate | not adopted: the three records stay held; two wait for their originals (DOIs in `docs/reviews/d20-approvals.md`), `practical_reasoning1` for the owner's choice between a qualified AS1 record and an AS2 model | **owner**, for `practical_reasoning1` only |
+| D22: outside contacts | send only when the owner says so | agree | **owner, 2026-11-21: not to be sent**; independent research follows once the gaps are closed | agree |
 | D23: 33.3 and 33.4 | likelihood adequate for the argument | agree; 33.4's omission has its own statement | adopted: `consequence_likelihood_adequate`, `omission_consequence_likelihood_adequate` | agree |
 
 ## Source stages and stable gate L
@@ -91,7 +91,7 @@ python3 tools/check_source_approvals.py --repo .
 python3 tools/check_source_approvals.py --repo . --require-stable
 ```
 
-The first must pass; the second must refuse the fifteen current holds. This is the intended complete-library gate, not an executable failure waiver or a silent scope reduction. All 143 records are still required for full 1.0.0.
+The first must pass; the second must refuse the three current holds. This is the intended complete-library gate, not an executable failure waiver or a silent scope reduction. All 143 records are still required for full 1.0.0.
 
 ## Remaining sequence
 
@@ -102,21 +102,21 @@ The first must pass; the second must refuse the fifteen current holds. This is t
 3. Produce source archive, Git bundle, cumulative repository patch and separately named patched engine sources. Verify clean application and resulting tree equality. Root `carneades-4.zip` and `GoCHR.zip` remain unchanged original provenance inputs with `sources.lock`; they alone do not install patches.
 4. Publish only the exact accepted candidate using `docs/releases/r1-candidate.md`. Without authenticated GitHub write access, deliver the tested artifacts and exact commands. A local bundle/tag or prepared command is not a completed remote release.
 
-### B. Thirteen original-source obligations
+### B. Original-source comparisons (D20)
 
-Obtain the actual cited 1995 pages, 1997 expert-opinion pages, correct slippery-slope edition/pages, relevant 2008 witness passage, 2015 instrumental-reasoning passage and attributable 2019 correspondence. The current register identifies every affected record and exact comparison. Relevant 2002/2006 indexed text and the 2003 article have already resolved some access claims; they are not blanket substitutes for other originals. Preserve any original-form differences even when the compendium adaptation is approved.
+Under D20 (owner, 2026-11-21) the twelve inherited records filed under compendium entries are approved against those entries; the older works they cite are recorded as not compared, and comparing them is research, not a release condition. Two records have no entry and stay held until their originals are compared: `practical_reasoning2` (Walton 2015, *Goal-Based Reasoning for Argumentation*, doi:10.1017/CBO9781316340554) and `exeption_to_rule` (Walton 1995, *A Pragmatic Theory of Fallacy*, p. 148, which has no DOI, and the 2019 correspondence behind its name). Its citation is the reference printed for entry 57, argument from precedent, but its form, applying the ratio of a similar case, is not 57's. The sources, with DOIs where they have one, are listed in `docs/reviews/d20-approvals.md`.
 
-### C. Two available-source model/adaptation holds
+### C. One model hold
 
-Keep `practical_reasoning1` as qualified AS1 in the preview outside full source approval. A full AS2 implementation is a separate finite-model extension with agents, component/joint actions, states, admissible transitions, changed goals, transition-relative values, preferences, all 17 CQ dispositions and source reference cases. Adding five absent flat exception names is insufficient. That larger model is explicitly deferred beyond this preview, not waiting for another owner choice.
+`practical_reasoning1` follows AS1 of Atkinson and Bench-Capon (2007, doi:10.1016/j.artint.2007.04.009), which is at hand: all 17 questions have a disposition, but CQ5-9 and 11 only through inherited stronger exceptions and CQ12, 14, 15 and 17 through none. The owner chooses between approving it as a qualified AS1 record, with those differences declared, and a separate AS2 model (agents, joint actions, states, transitions, values); until then it is held.
 
-Keep `sunk_costs` as a qualified legacy quantity/feasibility/future-loss composite. Its source is accessible; it is not the article's printed p.489 precommitment form. Use the approved `sunk_costs_precommitment` for that form. Complete source certification of the composite's selected practical-question policy remains a named interpretation obligation, not a source-access claim.
+`sunk_costs` is closed: it is the argument from waste of entry 24 with the costs stated, approved under D20; the article's p. 489 form is `sunk_costs_precommitment`.
 
-### D. StableR2 and outside contacts
+### D. Stable R2
 
-After those fifteen rows are resolved, independently review all semantic migrations and rerun stable gate L and both clean toolchains before releasing 1.0.0. No completion date is inferred for unavailable evidence.
+After those three rows are resolved, independently review all semantic migrations and rerun stable gate L and both clean toolchains before releasing 1.0.0. No completion date is inferred for unavailable evidence.
 
-Source-root-specific upstream patches and reproductions are prepared and mechanically verified. Maintainers still decide compatibility and adoption of downstream policy. The source-question memorandum is prepared. Outside messages remain unsent without explicit owner authorization; upstream acceptance is not required for local preview validation.
+The upstream patches and the source memorandum prepared by the reviews are not to be sent (owner, 2026-11-21, D22).
 
 ## Review completion
 

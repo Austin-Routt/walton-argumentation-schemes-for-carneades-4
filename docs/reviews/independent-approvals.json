@@ -2237,6 +2237,235 @@
         "end_and_means_reverse/closure-distinct-contexts",
         "end_and_means_reverse/closure-absence-is-not-rejection"
       ]
+    },
+    {
+      "record": "correlation_to_cause",
+      "fingerprint": "sha256:923abb2d93a91eef7342540ec9e40c248f881f7b8d60a8580e09167d80f53310",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: correlation_to_cause",
+        "tools/vv/source_ledger.yml: correlation_to_cause",
+        "docs/reviews/record-dispositions.json: correlation_to_cause"
+      ],
+      "examples": [
+        "correlation_to_cause/book"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "established_rule",
+      "fingerprint": "sha256:7e92ca04be746c6594975eff0e38ec54d1be6835a438004068078a26b1f9d566",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: established_rule",
+        "tools/vv/source_ledger.yml: established_rule",
+        "docs/reviews/record-dispositions.json: established_rule"
+      ],
+      "examples": [
+        "established_rule/book",
+        "established_rule/independent-conflicting_or_overriding_rule-same-application",
+        "established_rule/independent-conflicting_or_overriding_rule-wrong-conclusion",
+        "established_rule/independent-conflicting_or_overriding_rule-wrong-rule",
+        "established_rule/independent-rule_exception_or_excuse-same-application",
+        "established_rule/independent-rule_exception_or_excuse-wrong-conclusion",
+        "established_rule/independent-rule_exception_or_excuse-wrong-rule"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "ethotic1",
+      "fingerprint": "sha256:32b5c08cadb5923c9f4f86398cb7153047fd23566a038a7ac560ec6c59da26c7",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: ethotic1",
+        "tools/vv/source_ledger.yml: ethotic1",
+        "docs/reviews/record-dispositions.json: ethotic1"
+      ],
+      "examples": [
+        "ethotic1/book"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "ethotic2",
+      "fingerprint": "sha256:35fe18b45c6d100e0566cff9b0f4f830419390631721da7ef13a3696057768fe",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: ethotic2",
+        "tools/vv/source_ledger.yml: ethotic2",
+        "docs/reviews/record-dispositions.json: ethotic2"
+      ],
+      "examples": [
+        "ethotic2/book",
+        "ethotic2/closure-reduced-not-false",
+        "ethotic2/closure-same-proposition-independent-evidence"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "expert_opinion",
+      "fingerprint": "sha256:c14ea49c7d8360f9493c3ce40bfa25df0d2470e846493b70aa46128259d00a12",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: expert_opinion",
+        "tools/vv/source_ledger.yml: expert_opinion",
+        "docs/reviews/record-dispositions.json: expert_opinion"
+      ],
+      "examples": [
+        "expert_opinion/adverse-credibility-questioned",
+        "expert_opinion/book",
+        "expert_opinion/credibility-questioned-and-shown"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "ignorance",
+      "fingerprint": "sha256:acecbeced8b4b8f592f26e10aff30d2b46b6a8348268cb194928a27bc6ebf45a",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: ignorance",
+        "tools/vv/source_ledger.yml: ignorance",
+        "docs/reviews/record-dispositions.json: ignorance"
+      ],
+      "examples": [
+        "ignorance",
+        "ignorance/book",
+        "ignorance/conclusion-is-alternative_cognitive-premise",
+        "ignorance/undercut-and-no-alternative"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "negative_consequences",
+      "fingerprint": "sha256:9e1886f9a4387f0b6cf9a4743fa506b6e8d0948ac4a4be38be8ded4622ee1c5f",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: negative_consequences",
+        "tools/vv/source_ledger.yml: negative_consequences",
+        "docs/reviews/record-dispositions.json: negative_consequences"
+      ],
+      "examples": [
+        "negative_consequences/book",
+        "negative_consequences/independent-likelihood-backed",
+        "negative_consequences/independent-likelihood-questioned",
+        "negative_consequences/independent-wrong-action-questioned",
+        "negative_consequences/independent-wrong-outcome-questioned"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "positive_consequences",
+      "fingerprint": "sha256:655c2072e1f45a85723fb030ae6af957668e512b72899ba0965d00fb24c8aaf8",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: positive_consequences",
+        "tools/vv/source_ledger.yml: positive_consequences",
+        "docs/reviews/record-dispositions.json: positive_consequences"
+      ],
+      "examples": [
+        "positive_consequences/book",
+        "positive_consequences/independent-likelihood-backed",
+        "positive_consequences/independent-likelihood-questioned",
+        "positive_consequences/independent-wrong-action-questioned",
+        "positive_consequences/independent-wrong-outcome-questioned"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "slippery_slope_base_case",
+      "fingerprint": "sha256:4caef9a012fd2ec98b3f0ad6f8afa163dfa60f82b4874f71bdfc2104c8a1db11",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: slippery_slope_base_case",
+        "tools/vv/source_ledger.yml: slippery_slope_base_case",
+        "docs/reviews/record-dispositions.json: slippery_slope_base_case"
+      ],
+      "examples": [
+        "slippery_slope_base_case/book"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "slippery_slope_inductive_step",
+      "fingerprint": "sha256:3d60b3ef3951daf556a52431779f89b3ac20fefa0072d6a96b31b04b84cce739",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: slippery_slope_inductive_step",
+        "tools/vv/source_ledger.yml: slippery_slope_inductive_step",
+        "docs/reviews/record-dispositions.json: slippery_slope_inductive_step"
+      ],
+      "examples": [
+        "slippery_slope_inductive_step/book"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "sunk_costs",
+      "fingerprint": "sha256:36bb83ffbabea0dcfe5193024b1e2c9eefc4ea1c889a3051b189b4201800b1b6",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: sunk_costs",
+        "tools/vv/source_ledger.yml: sunk_costs",
+        "docs/reviews/record-dispositions.json: sunk_costs"
+      ],
+      "examples": [
+        "sunk_costs/book"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "witness_testimony",
+      "fingerprint": "sha256:3dea3b196ed5011b7ea3366551b9a917e8190729e0a4af55759207ddb97c77f0",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: witness_testimony",
+        "tools/vv/source_ledger.yml: witness_testimony",
+        "docs/reviews/record-dispositions.json: witness_testimony"
+      ],
+      "examples": [
+        "witness_testimony/book",
+        "witness_testimony/closure-account-specific-bias",
+        "witness_testimony/closure-generic-bias-is-not-all-accounts",
+        "witness_testimony/closure-other-witness-bias",
+        "witness_testimony/domain-shared-with-position_to_know"
+      ],
+      "review": {
+        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }

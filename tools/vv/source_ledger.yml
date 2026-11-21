@@ -303,14 +303,16 @@ compendium:
   questions: 2
   schemes:
   - waste
+  - sunk_costs
+  note: 'waste is the compendium''s form; sunk_costs, taken over from Carneades, states the same argument with the costs C
+    sunk into A and their being too high to waste, and maps the two printed questions (filed here from entry 25 on 2026-11-21:
+    entry 25 prints the precommitment form, which is sunk_costs_precommitment)'
 - entry: '25'
   page: 326
   questions: 0
   schemes:
-  - sunk_costs
   - sunk_costs_precommitment
-  note: sunk_costs is taken over from Carneades, in its own formulation; sunk_costs_precommitment, added in 5.5, is the compendium's,
-    which is also the form the cited article prints on p. 489
+  note: the compendium's form, which is also the form the cited article prints on p. 489
 - entry: '26'
   page: 327
   questions: 3
@@ -3211,7 +3213,7 @@ records:
   entry: '29'
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: premise
@@ -3225,12 +3227,18 @@ records:
   note: ' Independent source review 2026-11-21: qualified. Original cited 1995 work not independently read. Preserve the explanatory-theory
     policy qualification and require an application to justify causal evidence.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Compare the cited 1995 source; retain an explicit explanatory-theory policy and require causal evidence, with a
-      case distinguishing correlation alone from a justified causal application. Evidence: docs/reviews/record-dispositions.json:
-      correlation_to_cause'
+    decision: approved
+    note: 'Premise, default and exception follow p. 328 and CQ1-3 on p. 329. CQ2, whether the correlation is more than a coincidence,
+      is the default that a theory explains how the first event causes the second: questioning it removes the argument unless
+      the theory is supported. Approved against compendium entry 29 under decision D20, taken by the owner on 2026-11-21:
+      the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy,
+      The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.) was not compared; that comparison is recorded
+      when the work is at hand and is not a condition of approval. Reviewer: the implementer, who did not write this record
+      (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1995 source;
+      retain an explicit explanatory-theory policy and require causal evidence, with a case distinguishing correlation alone
+      from a justified causal application. Evidence: docs/reviews/record-dispositions.json: correlation_to_cause'
 - record: credible_source
   origin: upstream
   cites: Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016,
@@ -3304,7 +3312,7 @@ records:
   entry: '55.1'
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 147.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: premise
@@ -3330,18 +3338,26 @@ records:
     page: 343
     claim: interpretation
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Retain the repaired scoped book questions; compare the original 1995 source and distinguish the inherited rule/conclusion
-      form from the compendium actor/action form with explicit coverage claims. Evidence: docs/reviews/record-dispositions.json:
+    decision: approved
+    note: 'Carneades'' rule-application form of entry 55.1 (p. 343): a rule R with conclusion C, applicable, valid by default,
+      defeated by a conflicting or overriding rule (CQ2) or an exception or excuse (CQ3), both scoped to R and C. CQ1 is the
+      premise that R has conclusion C. The actor-and-action form of the print is established_rule_actor. Declared wording
+      difference: the inherited template of applicable/1 says "Argument", not "Rule" (D5). Approved against compendium entry
+      55.1 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the
+      record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London,
+      1995, p. 147.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
+      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      Earlier hold: Retain the repaired scoped book questions; compare the original 1995 source and distinguish the inherited
+      rule/conclusion form from the compendium actor/action form with explicit coverage claims. Evidence: docs/reviews/record-dispositions.json:
       established_rule'
 - record: ethotic1
   origin: upstream
   entry: '41'
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: premise
@@ -3357,17 +3373,24 @@ records:
     qualifications. A stable claim of exact compendium coverage needs a distinct graded formulation or an explicitly accepted
     argument-weight policy.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Compare the cited 1995 source and decide explicitly whether bare-proposition support is the accepted strength policy;
+    decision: approved
+    note: 'The positive branch of entry 41 (p. 336). "Should be accepted as more plausible" is read as a defeasible argument
+      for the statement, weighed in its issue under the proof standard (CQ3, standard), as for 1 and 2. CQ1 premise, CQ2 default.
+      The qualitative form is ethotic_positive_compendium. Approved against compendium entry 41 under decision D20, taken
+      by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton,
+      A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.) was not compared;
+      that comparison is recorded when the work is at hand and is not a condition of approval. Reviewer: the implementer,
+      who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold:
+      Compare the cited 1995 source and decide explicitly whether bare-proposition support is the accepted strength policy;
       otherwise add a graded-plausibility variant and examples. Evidence: docs/reviews/record-dispositions.json: ethotic1'
 - record: ethotic2
   origin: upstream
   entry: '41'
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: premise
@@ -3385,12 +3408,18 @@ records:
     explicit and no longer concludes the negation of the assertion. Second check, by the implementer (a different system from
     the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: The compendium correction is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md;
+    decision: approved
+    note: 'The negative branch of entry 41 (p. 336), as corrected in the closure review: the conclusion lowers the plausibility
+      of the assertion and does not assert its negation. CQ1 premise, CQ2 default, CQ3 standard. Approved against compendium
+      entry 41 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work
+      the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London,
+      1995, p. 152.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
+      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      Earlier hold: The compendium correction is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md;
       the unavailable separately cited original remains held. This correction does not certify the original record as fully
-      source-checked.
+      source-checked.'
   changes:
   - plan: closure-supplemental
     page: 336
@@ -3400,7 +3429,7 @@ records:
   entry: '2'
   cites: Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: assumption
@@ -3427,17 +3456,23 @@ records:
     page: 375
     claim: interpretation
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: open
-    note: 'Obtain and compare the separately cited original formulation and questions; reconcile any differences explicitly
+    decision: approved
+    note: 'Entry 2 (p. 310) with its six questions, as the book''s own Carneades model of the scheme sorts them (pp. 374-375):
+      CQ1 and CQ6 defaults, CQ2 and CQ3 premises, CQ4 and CQ5 exceptions. Approved against compendium entry 2 under decision
+      D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas
+      Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225.) was
+      not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Reviewer: the
+      implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier
+      hold: Obtain and compare the separately cited original formulation and questions; reconcile any differences explicitly
       before promoting this inherited record. Evidence: docs/reviews/record-dispositions.json: expert_opinion'
 - record: ignorance
   origin: upstream
   entry: '26'
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: exception
@@ -3449,18 +3484,26 @@ records:
     kind: standard
     note: how strong the proof has to be
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Compare the cited 1995 source and specify application-supplied dialogue burden/probandum independently of the issue
-      proof standard; add examples for the chosen burden contract. Evidence: docs/reviews/record-dispositions.json: ignorance'
+    decision: approved
+    note: 'Entry 26 (p. 327). CQ1 (how far the search for evidence has gone) is the exception that the statement has not been
+      sufficiently investigated; CQ2 and CQ3, on the burden and the standard of proof, are answered by how the application
+      builds the graph (D16; the dialogue adapter gives a finite alternative). Approved against compendium entry 26 under
+      decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites
+      (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150)
+      was not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Reviewer:
+      the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      Earlier hold: Compare the cited 1995 source and specify application-supplied dialogue burden/probandum independently
+      of the issue proof standard; add examples for the chosen burden contract. Evidence: docs/reviews/record-dispositions.json:
+      ignorance'
 - record: negative_consequences
   origin: upstream
   entry: '33.2'
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp.
     155-156.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: assumption
@@ -3483,11 +3526,18 @@ records:
     page: 332
     claim: interpretation
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Retain the compendium-supported adequacy hook and scoped inherited adaptation; compare the original cited 1995
-      form before original-source approval. Evidence: docs/reviews/record-dispositions.json: negative_consequences'
+    decision: approved
+    note: 'Entry 33.2 (p. 332): the premise split into the consequence and its being bad; CQ1 the likelihood-adequacy default
+      shared with 33.1 and 33.3, CQ2 the consequence premise, CQ3 the rebuttal by an argument for performing the action (p.
+      333). Approved against compendium entry 33.2 under decision D20, taken by the owner on 2026-11-21: the compendium is
+      the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University
+      of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.) was not compared; that comparison is recorded when the
+      work is at hand and is not a condition of approval. Reviewer: the implementer, who did not write this record (Carneades
+      did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported adequacy
+      hook and scoped inherited adaptation; compare the original cited 1995 form before original-source approval. Evidence:
+      docs/reviews/record-dispositions.json: negative_consequences'
 - record: position_to_know
   origin: upstream
   entry: '1'
@@ -3519,7 +3569,7 @@ records:
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp.
     155-156.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: assumption
@@ -3542,11 +3592,18 @@ records:
     source review 2026-11-21: qualified. The compendium-supported hook closes this operational gap. Preserve the original
     cited-source hold: the 1995 work was not independently read.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Retain the compendium-supported adequacy hook without imposing a fixed numerical threshold; compare the original
-      cited 1995 form before original-source approval. Evidence: docs/reviews/record-dispositions.json: positive_consequences'
+    decision: approved
+    note: 'Entry 33.1 (p. 332): the premise split into the consequence and its being good; CQ1 the likelihood-adequacy default,
+      CQ2 the consequence premise, CQ3 the rebuttal by an argument against performing the action (p. 333). Approved against
+      compendium entry 33.1 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record.
+      The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa
+      and London, 1995, pp. 155-156.) was not compared; that comparison is recorded when the work is at hand and is not a
+      condition of approval. Reviewer: the implementer, who did not write this record (Carneades did) nor its last change.
+      See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported adequacy hook without imposing a fixed
+      numerical threshold; compare the original cited 1995 form before original-source approval. Evidence: docs/reviews/record-dispositions.json:
+      positive_consequences'
 - record: practical_reasoning1
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
@@ -3671,7 +3728,7 @@ records:
     decision: open
     note: 'Obtain Walton (2015), locate and compare the actual instrumental schema and all its questions, inventory the printed
       CQ count, then review burdens and a genuinely source-grounded reference example. Evidence: docs/reviews/record-dispositions.json:
-      practical_reasoning2'
+      practical_reasoning2 Source: doi:10.1017/CBO9781316340554 (docs/reviews/d20-approvals.md).'
 - record: exeption_to_rule
   origin: upstream
   upstream: precedent
@@ -3684,13 +3741,16 @@ records:
     decision: open
     note: 'Obtain the cited 1995 p. 148 and any preserved 2019 correspondence underlying the rename; adjudicate whether this
       is precedent or exception, inventory actual source CQs, and replace the generic reference example with a sourced interpretation.
-      Evidence: docs/reviews/record-dispositions.json: exeption_to_rule'
+      Evidence: docs/reviews/record-dispositions.json: exeption_to_rule Implementer, 2026-11-21: the cited page (1995, p.
+      148) is the reference the compendium prints for entry 57, argument from precedent (p. 344), but this record applies
+      the ratio of a similar case, while entry 57 concludes from a counterexample that the rule needs an exception or a change;
+      it is not approved against 57. Sources and identifiers: docs/reviews/d20-approvals.md.'
 - record: slippery_slope_base_case
   origin: upstream
   entry: '49'
   cites: Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: premise
@@ -3708,17 +3768,25 @@ records:
     qualified. Preserve as a useful legacy component with original-source hold. Do not count the pair alone as exact completed
     coverage of entry 49’s full scheme.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Compare the cited 1999 pages; retain the base component explicitly and provide the full entry 49 formulation if
-      complete compendium coverage is claimed. Evidence: docs/reviews/record-dispositions.json: slippery_slope_base_case'
+    decision: approved
+    note: 'Declared as a component of entry 49 (pp. 339-340), with slippery_slope_inductive_step: the steps chain from the
+      act through causes to an outcome with horrible costs, and this record concludes that the act has negative consequences;
+      the step to "should not be brought about" is the work of slippery_slope_compendium, which states the whole printed pattern.
+      CQ1-3 attack the links, which are premises. Approved against compendium entry 49 under decision D20, taken by the owner
+      on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, Slippery Slope
+      Arguments, Vale Press, Newport News, 1999, pp. 93, 95.) was not compared; that comparison is recorded when the work
+      is at hand and is not a condition of approval. Reviewer: the implementer, who did not write this record (Carneades did)
+      nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1999 pages; retain the base
+      component explicitly and provide the full entry 49 formulation if complete compendium coverage is claimed. Evidence:
+      docs/reviews/record-dispositions.json: slippery_slope_base_case'
 - record: slippery_slope_inductive_step
   origin: upstream
   entry: '49'
   cites: Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: premise
@@ -3733,37 +3801,55 @@ records:
   note: ' Independent source review 2026-11-21: qualified. Retain inherited-component and unavailable-original-source qualifications,
     together with the entry-49 coverage limitation.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Compare the cited 1999 pages; retain the inductive component explicitly and provide the full entry 49 formulation
-      if complete compendium coverage is claimed. Evidence: docs/reviews/record-dispositions.json: slippery_slope_inductive_step'
+    decision: approved
+    note: 'Declared as a component of entry 49 (pp. 339-340), with slippery_slope_base_case: each step carries the horrible
+      costs back one link of the sequence. CQ1-3 attack the links, which are premises. The whole printed pattern is slippery_slope_compendium.
+      Approved against compendium entry 49 under decision D20, taken by the owner on 2026-11-21: the compendium is the source
+      of record. The older work the record cites (Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999,
+      pp. 93, 95.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
+      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      Earlier hold: Compare the cited 1999 pages; retain the inductive component explicitly and provide the full entry 49
+      formulation if complete compendium coverage is claimed. Evidence: docs/reviews/record-dispositions.json: slippery_slope_inductive_step'
 - record: sunk_costs
   origin: upstream
-  entry: '25'
+  entry: '24'
   cites: Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation, 16, 2002, p. 489
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
-  - n: 0
+  - n: 1
     kind: assumption
     as: feasible(A)
-    note: upstream's
-  - n: 0
+    note: entry 24 CQ1, whether bringing about A is possible; upstream's default
+  - n: 2
     kind: exception
     as: future_losses_outweigh(A)
-    note: upstream's
+    note: entry 24 CQ2, a reassessment of costs and benefits from this point on, setting the past losses aside; the exception
+      holds when that reassessment finds the future losses greater than the value
   note: 'compared with its source (5.5): the article prints on p. 489 the compendium''s form, a choice at t2 and a precommitment
     at t1, which is now the record sunk_costs_precommitment; upstream''s form is a reading of the article''s discussion, the
     costs incurred and too high to waste from the argument from waste (p. 488), feasibility and future losses from the critical
     questions of practical inference (p. 493)'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: 'Retain the legacy quantity/feasibility record as a documented adaptation, distinct from sunk_costs_precommitment;
+    decision: approved
+    note: 'Re-filed under entry 24, the argument from waste (p. 326), whose premises it states with the sunk costs C and their
+      being too high to waste, and whose two questions it answers: CQ1 the default that A is feasible, CQ2 the exception that
+      the future losses outweigh the value. Entry 25''s precommitment form, which the cited article prints on p. 489, is sunk_costs_precommitment.
+      Approved against compendium entry 24 under decision D20, taken by the owner on 2026-11-21: the compendium is the source
+      of record. The older work the record cites (Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation,
+      16, 2002, p. 489) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
+      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      Earlier hold: Retain the legacy quantity/feasibility record as a documented adaptation, distinct from sunk_costs_precommitment;
       settle the selected practical-question and future-loss policy rather than treating the legacy form as the article''s
       printed p. 489 scheme. Evidence: docs/reviews/record-dispositions.json: sunk_costs'
+  changes:
+  - plan: D20
+    page: 326
+    claim: interpretation
 - record: verbal_classification
   origin: upstream
   entry: '14'
@@ -3796,7 +3882,7 @@ records:
     Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press
     2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008.'
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: assumption
@@ -3824,12 +3910,20 @@ records:
     in the domain of S'' Closure correction supersedes the old behavior: bias is tied to the witness account and situated
     proposition, not every assertion by this witness.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
-    decision: hold
-    note: The compendium correction is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md;
-      the unavailable separately cited original remains held. This correction does not certify the original record as fully
-      source-checked.
+    decision: approved
+    note: 'Entry 3 (p. 310). The position-to-know premise is stated for a domain containing the proposition, shared with entry
+      1; the truth-telling premise is the witness''s belief together with the assertion. CQ1 default, CQ2-CQ5 exceptions;
+      the bias exception is scoped to the witness''s account (closure correction). Approved against compendium entry 3 under
+      decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites
+      (Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings
+      of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp.
+      35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008.) was not compared; that comparison
+      is recorded when the work is at hand and is not a condition of approval. Reviewer: the implementer, who did not write
+      this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: The compendium correction
+      is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md; the unavailable separately
+      cited original remains held. This correction does not certify the original record as fully source-checked.'
 - record: part_in_whole_physical
   origin: book
   entry: '9.2'

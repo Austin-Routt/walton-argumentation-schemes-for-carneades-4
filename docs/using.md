@@ -7,7 +7,7 @@ library today, and the command gives every label its `tests:` expect.
 
 ## Source approval and scope
 
-The full 143-record file is a preview. 128 records have independently approved interpretations, recorded as `example-passed` and bound to current fingerprints. 15 inherited records retain source or interpretation holds. The [current register](reviews/closure-current-register.md) gives every disposition. Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
+The full 143-record file is a preview. 140 records have approved interpretations, recorded as `example-passed` and bound to current fingerprints; twelve inherited ones are approved against their compendium entries only (D20), not against the older works they cite. Three records with no compendium entry remain held. The [current register](reviews/closure-current-register.md) gives every disposition. Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
 
 API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
 

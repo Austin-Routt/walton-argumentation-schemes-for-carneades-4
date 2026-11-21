@@ -50,7 +50,7 @@ VV_STRICT=1 tools/vv/run.sh  # required repository, Python, harness and engine/l
 
 The corrected preview uses library **0.3.0** (`walton.yml` and all category files) and engine **4.3.1+walton.5** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
 
-The closure review has **128 of 143 records at `example-passed`:119 book-origin and 9 inherited**. 13 inherited rows remain `transcription-checked` and 2 `mapped`.35 of the original 50 holds are closed and all 23 new variants independently accepted. All book-origin rows being approved does not certify every inherited record assigned to a compendium entry: entries 2,3,26,29,33.1 and 33.2 still have no approved record. See the [current complete register](docs/reviews/closure-current-register.md) for every decision. The complete library remains a preview; full 1.0.0 requires all 143 rows to meet gate L.
+**140 of 143 records are at `example-passed`: 119 book-origin and 21 inherited.** The closure review approved 128; on 2026-11-21 the owner took decision D20 (the compendium is the source of record), and the twelve inherited records held only for the older works they cite were approved against their compendium entries (`docs/reviews/d20-approvals.md`); `sunk_costs` is now filed under entry 24, the argument from waste. Three records with no compendium entry remain held: `practical_reasoning2` and `exeption_to_rule` until their original sources are compared, and `practical_reasoning1` (Atkinson and Bench-Capon 2007, which is at hand) for its AS2 scope. See the [current complete register](docs/reviews/closure-current-register.md) for every decision. The complete library remains a preview; full 1.0.0 requires all 143 rows to meet gate L.
 
 Source approvals are recorded in `docs/reviews/independent-approvals.json` and bound to the reviewed content. Run:
 
@@ -59,7 +59,7 @@ python3 tools/check_source_approvals.py --repo .
 python3 tools/check_source_approvals.py --repo . --require-stable
 ```
 
-The first checks integrity of current approvals. The second is expected to fail while the 15 inherited-source holds remain; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
+The first checks integrity of current approvals. The second is expected to fail while the three records without a compendium entry remain held; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
 
 ## Closure verification and dialogue
 
