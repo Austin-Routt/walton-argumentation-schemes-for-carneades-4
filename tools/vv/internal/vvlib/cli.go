@@ -6,6 +6,8 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
+	"sort"
 	"strings"
 	"time"
 
@@ -250,6 +252,98 @@ assumptions: ["p(a,b)"]
 			}
 		}
 		out = append(out, eres("cli-upstream-examples-check", len(files) > 0 && len(probs) == 0, "%s", strings.Join(probs, "; ")))
+	}
+	return out
+}
+
+// MigrationFixtureChecks migrates each graph of cases/migration, written for
+// release R1, with tools/migrate_r2.py, and evaluates the graph before and
+// after with the command (PLAN.md 5.6: graph fixtures migrated in a test).
+// The migrated graph uses none of the old identifiers, both evaluations
+// complete, and every statement has the same label under its new name.
+func MigrationFixtureChecks(cli *CLI) []Result {
+	root := RepoRoot()
+	b, err := os.ReadFile(filepath.Join(root, "tools", "migration_r2.yml"))
+	if err != nil {
+		return []Result{fail("tools/migration_r2.yml", "(file)", "migration/fixtures", "%v", err)}
+	}
+	var t struct {
+		Changes []struct {
+			Kind string `yaml:"kind"`
+			Old  string `yaml:"old"`
+			New  string `yaml:"new"`
+		} `yaml:"changes"`
+	}
+	if err := yaml.Unmarshal(b, &t); err != nil {
+		return []Result{fail("tools/migration_r2.yml", "(file)", "migration/fixtures", "%v", err)}
+	}
+	type ren struct {
+		rx  *regexp.Regexp
+		new string
+	}
+	rens := []ren{}
+	for _, c := range t.Changes {
+		o, n := c.Old, c.New
+		switch c.Kind {
+		case "rename-predicate":
+			o, n = strings.Split(o, "/")[0], strings.Split(n, "/")[0]
+		case "rename-scheme":
+		default:
+			continue
+		}
+		rens = append(rens, ren{regexp.MustCompile(`(^|[^\w-])` + regexp.QuoteMeta(o) + `($|[^\w-])`), n})
+	}
+	rename := func(s string) string {
+		for _, r := range rens {
+			s = r.rx.ReplaceAllString(s, "${1}"+r.new+"${2}")
+		}
+		return s
+	}
+	files, _ := filepath.Glob(filepath.Join("cases", "migration", "*.yml"))
+	sort.Strings(files)
+	out := []Result{}
+	for _, f := range files {
+		name := filepath.ToSlash(f)
+		src, err := os.ReadFile(f)
+		if err != nil {
+			out = append(out, fail(name, "(file)", "migration/fixture", "%v", err))
+			continue
+		}
+		cmd := exec.Command("python3", "-I", filepath.Join(root, "tools", "migrate_r2.py"), "--stdout", f)
+		var stdout, stderr bytes.Buffer
+		cmd.Stdout, cmd.Stderr = &stdout, &stderr
+		if err := cmd.Run(); err != nil {
+			out = append(out, fail(name, "(file)", "migration/fixture", "migrate_r2.py: %v %s", err, firstLine(stderr.String())))
+			continue
+		}
+		migrated := stdout.String()
+		probs := []string{}
+		if rename(migrated) != migrated {
+			probs = append(probs, "the migrated graph still uses an old identifier")
+		}
+		before, after := cli.Run(string(src), "eval", "-t", "yaml"), cli.Run(migrated, "eval", "-t", "yaml")
+		if before.Exit != 0 || after.Exit != 0 {
+			probs = append(probs, fmt.Sprintf("evaluation ended with %d before and %d after (%s)", before.Exit, after.Exit, firstLine(after.Stderr)))
+		} else {
+			l1, err1 := labels(before.Stdout)
+			l2, err2 := labels(after.Stdout)
+			if err1 != nil || err2 != nil {
+				probs = append(probs, "an output is not YAML")
+			}
+			if len(l1) != len(l2) {
+				probs = append(probs, fmt.Sprintf("%d statements before and %d after", len(l1), len(l2)))
+			}
+			for id, l := range l1 {
+				if l2[Norm(rename(id))] != l && l2[rename(id)] != l {
+					probs = append(probs, fmt.Sprintf("%s was %s and %s is %s", id, l, rename(id), l2[rename(id)]))
+				}
+			}
+		}
+		sort.Strings(probs)
+		out = append(out, res(name, "(file)", "migration/fixture", probs))
+	}
+	if len(files) == 0 {
+		out = append(out, fail("cases/migration", "(file)", "migration/fixture", "no fixture"))
 	}
 	return out
 }

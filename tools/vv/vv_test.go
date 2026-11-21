@@ -204,6 +204,7 @@ func TestSource(t *testing.T) {
 		t.Skipf("walton.yml does not import (reported by TestLibrary): %v", err)
 	}
 	judge(t, vvlib.SourceChecks(l, lib))
+	judge(t, vvlib.MigrationChecks(lib))
 }
 
 // TestCLI drives the carneades command, one new process per run.
@@ -218,6 +219,7 @@ func TestCLI(t *testing.T) {
 			t.Run(r.Check, func(t *testing.T) { judge(t, []vvlib.Result{r}) })
 		}
 	})
+	t.Run("migration", func(t *testing.T) { judge(t, vvlib.MigrationFixtureChecks(cli)) })
 	root := vvlib.RepoRoot()
 	for _, f := range vvlib.SchemeFiles(root) {
 		f := f

@@ -3,14 +3,14 @@
 
 meta:
   title: "Reasoning - Causal Reasoning"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  accept_all_steps/0: "There is a climate of social opinion such that once people come to accept each step as plausible, then they will also be led to accept the next step."
+  accept_all_steps/1: "There is a climate of social opinion such that once people come to accept each step from %s on as plausible, they will also be led to accept the next step."
   act_value/2: "Done act %s is attributed the value %s."
   cannot_opposite_evaluation/3: "If %s receives the evaluation %s, it cannot receive the opposite evaluation %s at the same time and in the same respect."
   cannot_present_sametime/2: "%s cannot present %s at the same time and in the same respect."
-  cannot_recieve_evaluation/2: "%s cannot receive the evaluation %s at the same time and in the same respect."
+  cannot_receive_evaluation/2: "%s cannot receive the evaluation %s at the same time and in the same respect."
   causes/2: "Event %s causes event %s."
   causes_both/2: "Some other event causes both %s and %s."
   contrary_treatment_required/2: "The contrary treatment %[2]s is required for the subject %[1]s."
@@ -23,7 +23,6 @@ language:
   initial_presumption/1: "Case %s is tentatively acceptable as an initial presumption."
   interference/1: "An event has occurred which interferes with event %s."
   leads_to_next/3: "There exists a series of cases %s, %s, ..., %s where each leads to the next by a combination of causal, precedent and/or analogical steps."
-  led_to_step/0: "People will be led to accept the next step once they come to accept each step as plausible."
   must_present_complementary_contrary/3: "If %s does not present the predicate %s, it must present the complementary contrary predicate %s at the same time and in the same respect."
   must_present_sametime/2: "%s must present %s at the same time and in the same respect."
   negative_consequences/1: "Performing action %s would have negative consequences."
@@ -36,7 +35,7 @@ language:
   person_value_depending/3: "If a person is %s, his acts %s depending on judgment value, will be %s."
   presents/2: "%s presents %s."
   presents_predicate/3: "If %s presents the predicate %s, it cannot present the contradictory, contrary, converse, incompatible, predicate %s at the same time and in the same respect."
-  recieves_evaluation/2: "%s receives the evaluation %s."
+  receives_evaluation/2: "%s receives the evaluation %s."
   relation_converse_relation/4: "If %s is in relation %s with %s they can be in the converse relation %s."
   relation_with/3: "%s is in relation %s with %s."
   treatment_required/2: "The treatment %[2]s is required for the subject %[1]s."
@@ -53,8 +52,7 @@ argument_schemes:
   - id: slippery_slope_base_case
     meta:
       title: Slippery Slope Argument
-      source: >
-        Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 49, p. 339. Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95."
     variables: [A,E]
     conclusions:
       - negative_consequences(A)
@@ -65,8 +63,7 @@ argument_schemes:
   - id: slippery_slope_inductive_step
     meta:
       title: Slippery Slope Argument
-      source: >
-        Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 49, p. 339. Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95."
     variables: [E1,E2]
     conclusions:
       - horrible_costs(E1)
@@ -74,12 +71,10 @@ argument_schemes:
       - causes(E1,E2)
       - horrible_costs(E2)
 
-  - id: opposition-descriptive_1
+  - id: opposition_descriptive_1
     meta:
       title: Argument From Opposition - Descriptive Scheme 1
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 317. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1a, p. 317."
     variables: [P,P2,A]
     conclusions:
       - cannot_present_sametime(A,P2)
@@ -87,12 +82,10 @@ argument_schemes:
       - presents_predicate(A,P,P2)
       - presents(A,P)
 
-  - id: opposition-descriptive_2
+  - id: opposition_descriptive_2
     meta:
       title: Argument From Opposition - Descriptive Scheme 2
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 317.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1b, p. 317."
     variables: [P,P2,A]
     conclusions:
       - must_present_sametime(A,P2)
@@ -100,12 +93,10 @@ argument_schemes:
       - not_presents_predicate(A,P,P2)
       - ¬presents(A,P)
 
-  - id: opposition-descriptive_3
+  - id: opposition_descriptive_3
     meta:
       title: Argument From Opposition - Descriptive Scheme 3
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1c, p. 318."
     variables: [P,P2,A]
     conclusions:
       - must_present_sametime(A,P2)
@@ -113,25 +104,21 @@ argument_schemes:
       - must_present_complementary_contrary(A,P,P2)
       - ¬presents(A,P)
 
-  - id: opposition-normative
+  - id: opposition_normative
     meta:
       title: Argument From Opposition - Normative Scheme
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.2, p. 318."
     variables: [A,X,X2]
     conclusions:
-      - cannot_recieve_evaluation(A,X2)
+      - cannot_receive_evaluation(A,X2)
     premises:
       - cannot_opposite_evaluation(A,X,X2)
-      - recieves_evaluation(A,X)
+      - receives_evaluation(A,X)
 
   - id: rhetorical_oppositions_normative
     meta:
       title: Rhetorical Argument From Opposition - Normative Schemes
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-             Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 12.1, p. 318."
     variables: [X,X2,A,A2]
     conclusions:
       - contrary_treatment_required(X2,A2)
@@ -142,9 +129,7 @@ argument_schemes:
   - id: rhetorical_oppositions_descriptive
     meta:
       title: Rhetorical Argument From Opposition - Descriptive Schemes
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-             Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 12.2, p. 318."
     variables: [A,B,R,R2]
     conclusions:
       - converse_relation(B,R2,A)
@@ -155,9 +140,7 @@ argument_schemes:
   - id: interaction_act_person_1
     meta: 
       title: Argument From Interaction of Act and Person - Variant 1
-      source: >
-               Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. 
-               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 18.1, p. 321. Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305."
     variables: [X,A,V]
     conclusions: 
       - person_value(A,V)
@@ -168,9 +151,7 @@ argument_schemes:
   - id: interaction_act_person_2
     meta: 
       title:  Argument From Interaction of Act and Person - Variant 2
-      source: >
-               Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. 
-               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 18.2, p. 321. Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305."
     variables: [A,X,V1,V2]
     conclusions: 
       - person_acts_value(A,X,V2)
@@ -181,21 +162,19 @@ argument_schemes:
   - id: full_slippery_slope
     meta:
       title: Full Slippery Slope Argument
-      source: >
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 200, 203.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 53, p. 341. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 200, 203."
     variables: [C0,C1,C2]
     conclusions:
       - not_acceptable_step(C0)
     premises:
       - initial_presumption(C0)
       - leads_to_next(C0,C1,C2)
-      - accept_all_steps
-    assumptions:
-     - led_to_step
+      - accept_all_steps(C0)
 
   - id: cause_to_effect
     meta:
       title: Argument from Cause to Effect
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 28, p. 328."
     variables: [E1,E2]
     conclusions:
       - will_occur(E2)
@@ -208,9 +187,7 @@ argument_schemes:
   - id: correlation_to_cause
     meta:
       title: Argument from Correlation to Cause
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 29, p. 328. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 142."
     variables: [E1,E2]
     conclusions:
       - causes(E1,E2)

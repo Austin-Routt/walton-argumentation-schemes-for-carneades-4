@@ -3,7 +3,7 @@
 
 meta:
   title: "Reasoning - Practical Reasoning"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   acceptable_action/1: "%s is an acceptable action."
@@ -11,6 +11,7 @@ language:
   action_will_help/2: "Proposed action %s will really help %s."
   agent_bring_about/2: "If I, as an agent, bring about %s, then %s will occur."
   alternative_action/2: "I reasonably consider on the given information that bringing about at least one of %s is necessary to bring about %s."
+  alternative_action_sufficient/2: "I reasonably consider on the given information that bringing about at least one of %s is sufficient to bring about %s."
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
   alternative_means/2: "There are alternative means of realizing %s other than %s."
   alternatives/2: "Either you must bring about %s, or %s will occur."
@@ -21,22 +22,22 @@ language:
   bad_for_you/1: "%s is very bad for you."
   better_alternative_by_values/2: "In light of the values %[2]s, an alternative to %[1]s is better."
   bring_about_more_effectively/2: "There exists an action that would bring about %s more effectively than %s."
-  bring_relive/2: "Therefore, %s ought to bring about %s."
-  bringing_about_action/1: "Therefore, it is required that I bring about %s."
+  bring_relieve/2: "%s ought to bring about %s."
+  bringing_about_action/1: "It is required that I bring about %s."
   brings_about/2: "The action %s brings about %s."
   can_be_case/2: "Either %s or %s can be the case."
   can_be_required/2: "Either %s or %s can be required."
   can_carry_out/2: "%s can carry out %s."
-  carry_out/2: "Therefore, %s ought to carry out %s."
-  carry_out_action/1: "Therefore, you should carry out action %s."
+  carry_out/2: "%s ought to carry out %s."
+  carry_out_action/1: "You should carry out action %s."
   cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
   conflicting_goals/2: "%s has other goals that might conflict with realizing %s."
   contributing_action/2: "Doing act %s contributes to goal %s."
   current_circumstances/1: "%s is the case in the current circumstances."
   danger/1: "%s is a danger to you."
   distress/1: "Individual %s is in distress, is suffering."
-  do_other/1: "Therefore, you should -ought to, practically speaking- bring about %s."
-  easy_to_achive/1: "%s is easy to achieve."
+  do_other/1: "You should -ought to, practically speaking- bring about %s."
+  easy_to_achieve/1: "%s is easy to achieve."
   ends_important/1: "%s should be regarded as highly important."
   feasible/1: "It is feasible to perform the action %s."
   future_losses_outweigh/1: "Future losses of completing the action %s outweigh its value."
@@ -47,7 +48,6 @@ language:
   great_sacrifice/3: "If a great sacrifice %s has been made for %s, then the value %s of it will be greater."
   great_sacrifice_made/2: "A great sacrifice %s has been made for %s."
   great_side_effects/2: "There will be too great negative side effects of %s bringing about %s."
-  greater_side_effects/1: "There will be greater negative side effects of carrying out %s."
   have_goal/1: "I have a goal %s."
   help_needed/2: "If %[1]s needs help and giving help would not be too costly, then %[2]s ought to help."
   incompatible_consequences/2: "Bringing about %s has incompatible consequences with %s."
@@ -61,53 +61,54 @@ language:
   more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
   more_efficient_alternative_actions/2: "There are more efficient alternative actions to %s that would also bring about %s."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
-  necessary_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, necessary condition for %s."
+  necessary_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, necessary condition for %s."
   necessary_or_sufficient_for_goal/3: "Bringing about %[2]s is necessary or sufficient for %[1]s to bring about %[3]s."
-  not_bring_about/1: "Therefore, you had better not bring about %s."
+  not_bring_about/1: "You had better not bring about %s."
   not_do_appear/2: "If you do not bring about %s, then %s will occur."
   not_doing/1: "You were considering not doing %s."
   not_required/1: "%s is not required."
   not_too_costly/2: "%s's carrying out %s would not be too costly, that is, the negative side effects would not be too great."
   occur/2: "If the respondent brings about %s, then %s will occur."
   only_way_prevent/2: "But the only way for you to prevent %s is to bring about %s."
+  other_actions_required/2: "Actions other than %[2]s are also required to bring about %[1]s."
   other_consequences/1: "There are other good or bad consequences of doing %s that should be taken into account."
   other_goals_conflict/1: "There are other goals that might conflict with %s."
-  ought_to_bring_about/1: "Therefore, you ought to bring about %s."
-  ought_to_continue/2: "Therefore, %s ought to continue trying to realize %s."
+  ought_to_bring_about/1: "You ought to bring about %s."
+  ought_to_continue/2: "%s ought to continue trying to realize %s."
+  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   person_goal/2: "Person %s has goal %s."
   plausibly_case/1: "%s is plausibly the case."
   plausibly_not_case/1: "%s is plausibly not the case."
-  posible/1: "%s is possible."
+  can_be_realized/1: "%s is possible."
   position_to_bring_about/1: "I am in a position to bring about %s."
   possible/1: "Action %s is possible."
   possible_action/1: "%s is possible."
   possible_agent/2: "%s is possible to do for agent %s."
   possible_bring_about/2: "It is possible for %s to bring about %s."
-  possible_carry_out/2: "It is possible for %s to carry out %s."
   possible_goal/1: "%s is possible."
   practicality_action/1: "Nothing unchangeable prevents me from bringing about %s, as far as I know."
-  prevent/1: "Therefore, you ought to prevent %s if possible."
+  prevent/1: "You ought to prevent %s if possible."
   promote_more_effectively/2: "There exists an action that would promote the value %s more effectively than %s."
-  prudential/1: "Therefore, you ought to reconsider and, other things being equal, you ought prudentially to do %s."
+  prudential/1: "You ought to reconsider and, other things being equal, you ought prudentially to do %s."
   realize_more_effectively/2: "There exists an action that would realize the goal %s more effectively than %s."
-  really_distress/1: "%s is really in distress."
-  relieve/2: "If %s brings about %s, it will relieve or help to relieve this distress."
+  reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
+  relieve/3: "If %s brings about %s, it will relieve or help to relieve the distress of %s."
   sacrifice_made/2: "For the thing %s, sacrifice %s is made."
   sacrifice_value/2: "%s has a great value %s."
   should_be_performed/1: "Action %s should be performed."
   should_bring_about/2: "%s should, practically speaking, bring about %s."
-  should_carry_out/2: "Therefore, %s should carry out %s, unless he has better reasons not to."
+  should_carry_out/2: "%s should carry out %s, unless he has better reasons not to."
   should_do/2: "%s should do %s."
-  should_not/1: "Therefore, you should not bring about %s."
-  should_not_bring_about/1: "Therefore, practically speaking, I should not bring about %s."
+  should_not/1: "You should not bring about %s."
+  should_not_bring_about/1: "Practically speaking, I should not bring about %s."
   side_effect_action/2: "There are negative side effects of %s's bringing about %s that ought to be considered."
   side_effect_other_act/2: "Carrying out %s has known side effects that might conflict with %s's other goals."
   side_effects/2: "Performing %s in %s would have side-effects which demote some value."
   situation_help/3: "%s is in a situation where some action %s by %s would help."
-  situation_necessiy/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
+  situation_necessity/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
   strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
-  sufficient_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, sufficient condition for %s."
+  sufficient_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
   too_high_to_waste/1: "The sunk costs of %s are too high to waste."
@@ -129,11 +130,7 @@ argument_schemes:
   - id: practical_reasoning1
     meta:
       title: Argument from Value-Based Practical Reasoning
-      source: >
-        Atkinson, K., and Bench-Capon, T. J. M.
-        Practical reasoning as presumptive argumentation using action
-        based alternating transition systems. Artificial Intelligence 171,
-        10-15 (2007), 855–874.
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874."
     variables: [A,S1,S2,G,V]
     conclusions:
       - should_be_performed(A)
@@ -155,9 +152,7 @@ argument_schemes:
   - id: practical_reasoning2
     meta:
       title: Argument from Instrumental Practical Reasoning
-      source: >
-        Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. 
-        Cambridge University Press.
+      source: "Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press."
     variables: [A,S1,S2,G]
     conclusions:
       - should_be_performed(A)
@@ -178,10 +173,7 @@ argument_schemes:
   - id: negative_consequences
     meta:
       title: Argument from Negative Consequences
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London,
-        1995, pp. 155-156.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.2, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156."
     variables: [A,G]
     conclusions:
       - ¬should_be_performed(A)
@@ -192,10 +184,7 @@ argument_schemes:
   - id: positive_consequences
     meta:
       title: Argument from Positive Consequences
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London,
-        1995, pp. 155-156.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.1, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156."
     variables: [A,G]
     conclusions:
       - should_be_performed(A)
@@ -206,10 +195,7 @@ argument_schemes:
   - id: alternative_cognitive
     meta:
       title: Argument From Alternatives - Cognitive Schemes
-      source: >
-              Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. 
-              Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 13.1, p. 318. Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306."
     variables: [A,B]
     conclusions:
       - plausibly_case(B)
@@ -220,9 +206,7 @@ argument_schemes:
   - id: alternative_normative
     meta:
       title: Argument From Alternatives - Normative Schemes
-      source: >
-              Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. 
-              Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 13.2, p. 318. Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306."
     variables: [A,B]
     conclusions:
       - not_required(B)
@@ -233,9 +217,7 @@ argument_schemes:
   - id: sacrifice
     meta:
       title: Argumentation From Sacrifice 
-      source: >
-               Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. 
-               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 20, p. 322. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254."
     variables: [A,S,V]
     conclusions: 
       - sacrifice_value(A,V)
@@ -247,13 +229,7 @@ argument_schemes:
   - id: practical_inference
     meta:
       title: Practical Reasoning - Practical Inference
-      source: >
-             Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-             Journal of Logic and Computation 13 (2003), pp. 429-448.
-             Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990.
-             Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
-             "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.1, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
     variables: [A,G]
     conclusions:
       - carry_out_action(A)
@@ -271,20 +247,14 @@ argument_schemes:
   - id: practical_necessary_condition
     meta:
       title: Practical Reasoning - Necessary Condition Schema
-      source: >
-             Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-             Journal of Logic and Computation 13 (2003), pp. 429-448.
-             Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990.
-             Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
-             "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,P]
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.2, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
+    variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(X,A)
-      - necessary_action(X,A)
+      - alternative_action(S,A)
+      - necessary_action(X,S,A)
       - practicality_action(X)
       - more_acceptable_bringing(A,X)
     exceptions:
@@ -299,20 +269,14 @@ argument_schemes:
   - id: practical_sufficient_condition
     meta:
       title: Practical Reasoning - Sufficient Condition Schema
-      source: >
-             Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-             Journal of Logic and Computation 13 (2003), pp. 429-448.
-             Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990.
-             Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
-             "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,P]
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.3, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
+    variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(X,A)
-      - sufficient_action(X,A)
+      - alternative_action_sufficient(S,A)
+      - sufficient_action(X,S,A)
       - practicality_action(X)
       - more_acceptable_bringing(A,X)
     exceptions:
@@ -327,8 +291,7 @@ argument_schemes:
   - id: value_based_practical_reasoning
     meta:
       title: Value-Based Practical Reasoning
-      source: >
-            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 324.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.4, p. 324."
     variables: [P,G,V,A]
     conclusions:
       - should_bring_about(P,A)
@@ -348,10 +311,7 @@ argument_schemes:
   - id: practical_goal
     meta:
       title: Practical Reasoning - Argument From Goal
-      source: >
-              Bart Verheij, "Dialectical Argumentation with Argumentation Schemes: An Approach to Legal Logic." 
-              Artificial Intelligence and Law 11 (2003), p. 169.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.5, p. 325. Bart Verheij, \"Dialectical Argumentation with Argumentation Schemes: An Approach to Legal Logic.\" Artificial Intelligence and Law 11 (2003), p. 169."
     variables: [P,X,G]
     conclusions:
       - should_do(P,X)
@@ -362,9 +322,7 @@ argument_schemes:
   - id: end_and_means_1
     meta:
       title: Practical Reasoning - Argument From Ends and Means 1
-      source: > 
-              Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation 
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
     variables: [X,Y]
     conclusions:
       - good(X)
@@ -375,9 +333,7 @@ argument_schemes:
   - id: end_and_means_2
     meta:
       title: Practical Reasoning - Argument From Ends and Means 2
-      source: >
-              Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation 
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
     variables: [X]
     conclusions:
       - ends_important(X)
@@ -388,42 +344,36 @@ argument_schemes:
   - id: end_and_means_3
     meta:
       title: Practical Reasoning - Argument From Ends and Means 3
-      source: >
-              Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation 
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.3, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
     variables: [X,Y]
     conclusions:
       - good(Y)
     premises:
       - means_to_end(X,Y)
-      - easy_to_achive(X)
+      - easy_to_achieve(X)
 
   - id: two_person_practical
     meta:
       title: Two Person Practical Reasoning
-      source: >
-             Douglas Walton, Appeal to Expert Opinion. University Park: 
-             Pennsylvania State University Press. 1997 p. 163.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 23, p. 325. Douglas Walton, Appeal to Expert Opinion. University Park: Pennsylvania State University Press. 1997 p. 163."
     variables: [A,B,X,Y]
     conclusions:
       - should_carry_out(A,Y)
     premises:
       - tells_intend(A,X,B)
-      - situation_necessiy(B,Y,X,A)
+      - situation_necessity(B,Y,X,A)
     exceptions:
-      - alternative_means(A,X)
+      - alternative_means(X,Y)
       - goals_higher_priority(A,X)
-      - side_effect_other_act(B,A)
+      - side_effect_other_act(Y,A)
+      - other_actions_required(X,Y)
     assumptions: 
      - possible_action(Y)
 
   - id: waste
     meta:
       title: Argument From Waste
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy, Tuscaloosa and London: University
-             of Alabama Press, 1995, p. 157.
-             Douglas Walton "The Sunk Cost Fallacy or Argument from Waste" Argumentation 16 (2002), p.488.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 24, p. 326. Douglas Walton, A Pragmatic Theory of Fallacy, Tuscaloosa and London: University of Alabama Press, 1995, p. 157. Douglas Walton \"The Sunk Cost Fallacy or Argument from Waste\" Argumentation 16 (2002), p.488."
     variables: [A,X]
     conclusions:
       - ought_to_continue(A,X)
@@ -431,15 +381,14 @@ argument_schemes:
       - stop_realize_wasted(A,X)
       - waste_bad_thing(A,X)
     assumptions: 
-     - posible(X)
+     - can_be_realized(X)
+    exceptions:
+     - reassessment_against_continuing(A,X)
 
   - id: negative_consequences_prudential
     meta:
       title: Argument From Negative Consequences - Prudential Inference
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: 
-             University of Alabama Press, 1995. pp. 155- 156.
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.4, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155- 156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
     variables: [X,C]
     conclusions:
       - prudential(X)
@@ -454,8 +403,7 @@ argument_schemes:
   - id: pragmatic_alternative
     meta:
       title: Pragmatic Argument From Alternatives
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 142.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 34, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 142."
     variables: [A,B]
     conclusions:
       - do_other(A) 
@@ -463,12 +411,10 @@ argument_schemes:
       - alternatives(A,B)
       - undesirable(B)
 
-  - id: treat
+  - id: threat
     meta:
       title: Argument From Threat
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London:
-             University of Alabama Press, 1995, p. 157.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 35, p. 333. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 157."
     variables: [X,C]
     conclusions:
       - not_bring_about(X)
@@ -480,8 +426,7 @@ argument_schemes:
   - id: ad_baculum
     meta:
       title: Argument From Disjunctive Ad Baculum Threat
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 35.1, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140."
     variables: [X,Y]
     conclusions:
       - do_other(X)
@@ -492,8 +437,7 @@ argument_schemes:
   - id: fear
     meta:
       title: Argument From Fear Appeal 
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 22.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 36, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 22."
     variables: [X,Y]
     conclusions:
       - ought_to_bring_about(X)
@@ -506,8 +450,7 @@ argument_schemes:
   - id: danger
     meta:
       title: Argument From Danger Appeal
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 173.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 37, p. 334. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 173."
     variables: [X,Y]
     conclusions:
       - should_not(X)
@@ -518,8 +461,7 @@ argument_schemes:
   - id: help
     meta:
       title: Argument From Need For Help
-      source: >
-             Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 104,155.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 38, p. 334. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 104,155."
     variables: [A,B,X]
     conclusions:
       - carry_out(B,X)
@@ -527,50 +469,42 @@ argument_schemes:
       - help_needed(A,B)
       - situation_help(A,X,B)
       - can_carry_out(B,X)
-      - not_too_costly(B,X)    
-    exceptions:
-      - greater_side_effects(X)
+      - not_too_costly(B,X)
     assumptions: 
-     - possible_carry_out(B,X)
      - action_will_help(X,A)
 
   - id: distress
     meta:
       title: Argument From Distress 
-      source: >
-             Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1991, pp. 105,155.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 39, p. 334. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1991, pp. 105,155."
     variables: [B,X,A]
     conclusions:
-      - bring_relive(B,X)
+      - bring_relieve(B,X)
     premises:
       - distress(A)
-      - relieve(B,X)
+      - relieve(B,X,A)
     exceptions:
       - great_side_effects(B,X)
     assumptions: 
-     - really_distress(A)
      - possible_bring_about(B,X)
 
   - id: negative_consequences_reasoning
     meta:
       title: Argument From Consequences - Reasoning From Negative Consequences
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy.
-             Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156.
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
     variables: [A,B]
     conclusions:
       - should_not_bring_about(A)
     premises:
       - agent_bring_about(A,B)
       - bad_for_goals(B)
+    assumptions:
+      - outcome_likely(A,B)
 
   - id: sunk_costs
     meta:
       title: Argument from Sunk Costs
-      source: >
-        Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’,
-        Argumentation, 16, 2002, p. 489
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 25, p. 326. Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation, 16, 2002, p. 489"
     variables: [A,C]
     conclusions:
       - should_be_performed(A)

@@ -3,25 +3,24 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Popular Acceptance"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."
-  accept_saying/0: "Therefore, you should accept what I say."
-  acceptable_in_case/1: "Therefore, %s is acceptable in this case."
+  accept_saying/1: "You should accept what %s says."
+  acceptable_in_case/1: "%s is acceptable in this case."
   acceptable_norm/3: "Doing %s or accepting %s shows that they are an acceptable norm of conduct for %s."
   admired_people/2: "Everybody in this group of admired, popular people %s accepts %s."
   asserts/2: "%s asserts that %s is true."
-  background/0: "The speaker is an ordinary person, that is, shares a common background with the audience."
+  background/1: "%s is an ordinary person, that is, shares a common background with the audience."
   bad_moral_character/1: "%s has bad moral character."
-  being_credible/0: "Therefore, you ought to take what I say as being more credible or acceptable."
-  carry_out_action/1: "Therefore, you should carry out action %s."
+  being_credible/1: "You ought to take what %s says as being more credible or acceptable."
+  carry_out_action/1: "You should carry out action %s."
   character_is_relevant/1: "Character is relevant for evaluating the plausibility of the assertion: %s"
   deliberate/2: "Group %s has deliberated intelligently and extensively on whether to accept proposition %s or not."
   doubting_general/1: "There are some strong reasons for doubting %s is generally true."
   elite_group/1: "This group %s is elite, that is, everyone who belongs to it has prestige."
   favor/1: "If %s is generally accepted as true, that gives a reason in favor of it."
-  generally_accepted/1: "%s is generally accepted as true."
   generally_true/1: "%s is generally accepted as true."
   goal_good_group/1: "Your goal is to be a good person, or a member of a group %s with good qualities."
   goal_prestige/0: "Prestige is an important goal for you."
@@ -29,14 +28,14 @@ language:
   good_moral_character/1: "%s is of good moral character."
   group_accepted/2: "Everybody in this group %s accepts %s."
   group_action/2: "If you carry out action %s then you will belong to this group %s."
-  group_background/1: "I, the speaker, am an ordinary person, that is, I share a common background with the members of this audience, group %s."
+  group_background/2: "%s, the speaker, is an ordinary person, that is, shares a common background with the members of this audience, group %s."
   group_does/3: "Everybody in a group %s does %s or accepts proposition %s as a policy."
   group_member/1: "The speaker is a member of %s."
   have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
-  morally_acceptable_action/2: "Therefore, my doing %s or accepting %s is morally justified as an acceptable action or policy."
+  morally_acceptable_action/2: "My doing %s or accepting %s is morally justified as an acceptable action or policy."
   out_group_not_accept/2: "If you do not accept %s, you will be out of this group %s."
-  plausibly_true/1: "Therefore, %s is plausibly true."
-  popular_practise/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
+  plausibly_true/1: "%s is plausibly true."
+  popular_practice/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
   property_or_object/2: "Everybody in this group %s accepts %s or has some property, or possesses some object."
   reason_in_favor/1: "There is a reason in favor of %s."
   reference_group_accepted/2: "Everybody in particular group %s accepts %s."
@@ -55,30 +54,32 @@ argument_schemes:
   - id: popular_opinion
     meta:
       title: Argument From Popular Opinion
-      source: >
-              Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 91.
-              Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989, p. 89.
-              Douglas Walton, Appeal to Popular Opinion. University Park: Pennsylvania State University Press, 1999, pp. 223-226.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4, p. 311. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 91. Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989, p. 89. Douglas Walton, Appeal to Popular Opinion. University Park: Pennsylvania State University Press, 1999, pp. 223-226."
     variables: [A]
     conclusions:
       - reason_in_favor(A)
     premises:
       - generally_true(A)
       - favor(A)
-    assumptions:
-      - generally_accepted(A)
     exceptions:
       - doubting_general(A)
 
   - id: pop_scheme
     meta:
       title: Pop Scheme
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 311. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.1, p. 311."
     variables: [A,G]
     conclusions:
       - A
+    premises:
+      - reference_group_accepted(G,A)
+
+  - id: pop_scheme_acceptance
+    meta:
+      title: Pop Scheme (the reading that you should accept A)
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.1, p. 311."
+    variables: [A,G]
+    conclusions:
       - should_accept(A)
     premises:
       - reference_group_accepted(G,A)
@@ -86,9 +87,7 @@ argument_schemes:
   - id: deliberation_ad_populum 
     meta:
       title: Deliberation Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.4, p. 312."
     variables: [A,G]
     conclusions:
       - plausibly_true(A)
@@ -99,9 +98,7 @@ argument_schemes:
   - id: moral_justification_ad_populum
     meta:
       title: Moral Justification Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312."
     variables: [G,P]
     conclusions:
       - should_accept(P)
@@ -112,9 +109,7 @@ argument_schemes:
   - id: moral_justification_ad_populum_excuse
     meta:
       title: Moral Justification Ad Populum Argument Excuse Subtype
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312."
     variables: [G,X,A]
     conclusions:
       - morally_acceptable_action(X,A)
@@ -126,9 +121,7 @@ argument_schemes:
   - id: snob_appeal_ad_populum
     meta:
       title: Snob Appeal Ad Populum Argument
-      source: > 
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
     variables: [A,G,O,P]
     conclusions:
       - should_accept(A)
@@ -141,9 +134,7 @@ argument_schemes:
   - id: appeal_to_vanity_ad_populum
     meta:
       title: Appeal to Vanity Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.8, p. 312."
     variables: [G,A,X]
     conclusions:
       - carry_out_action(X)
@@ -154,9 +145,7 @@ argument_schemes:
   - id: rhetoric_ad_populum
     meta:
       title: Rhetoric of Belonging Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.9, p. 313."
     variables: [G,A]
     conclusions:
       - should_accept(A)
@@ -168,39 +157,33 @@ argument_schemes:
   - id: common_folk_ad_populum 
     meta:
       title: Common Folks Ad Populum Argument
-      source: >
-              Argumentation Schemes. Cambridge University Press, p. 312.
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-    variables: []
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.10, p. 313."
+    variables: [S]
     conclusions:
-      - being_credible
+      - being_credible(S)
     premises:
-      - background
+      - background(S)
 
   - id: common_folks_group_ad_populum
     meta:
       title: Common Folks Ad Populum Group Subtype
-      source: >
-              Argumentation Schemes. Cambridge University Press, p. 312.
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-    variables: [G]
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.11, p. 313."
+    variables: [G,S]
     conclusions:
-      - accept_saying
+      - accept_saying(S)
     premises:
-      - group_background(G)
+      - group_background(S,G)
       - respondent_member(G)
 
-  - id: popular_practise
+  - id: popular_practice
     meta:
       title: Argument From Popular Practice
-      source: >
-              Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge
-              University Press, 2006, p. 93.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 93."
     variables: [A]
     conclusions:
       - acceptable_in_case(A)
     premises:
-      - popular_practise(A)
+      - popular_practice(A)
       - to_think_acceptable(A)
     assumptions: 
      - have_grounds_think(A)
@@ -208,9 +191,7 @@ argument_schemes:
   - id: ethotic1
     meta:
       title: Positive Argument from Ethos
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
     variables: [P,S]
     conclusions: [S]
     premises:
@@ -222,9 +203,7 @@ argument_schemes:
   - id: ethotic2
     meta:
       title: Negative Argument from Ethos
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
     variables: [P,S]
     conclusions: [¬S]
     premises:

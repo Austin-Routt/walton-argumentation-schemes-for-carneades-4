@@ -1,0 +1,117 @@
+# The one migration of release R2 (PLAN.md D4, 5.6): every change to a
+# record that alters what a graph file has to state, from old to new. A graph
+# written for 0.1.0 (release R1) is brought to R2 by applying these rows in
+# order. 5.6 adds the renamings of misspelt identifiers and a script that
+# applies the table; until then this file is the record of what changed.
+#
+#   record   the scheme
+#   kind     arguments (the same predicate, other arguments), arity (the
+#            predicate gains or loses an argument), replaced (another
+#            predicate), removed (the record no longer uses the statement),
+#            premise (a premise added: a graph has to state it), added (a new
+#            assumption or exception; nothing to migrate, listed so that the
+#            table is complete)
+#   old/new  the statement as the record writes it
+#            rename-scheme, rename-predicate (name/arity), rename-file: the
+#            identifiers of 5.6, applied by tools/migrate_r2.py; wording: a
+#            change of the language templates only
+#   plan     the plan item; page: the compendium's page
+changes:
+  - {record: popular_opinion, kind: removed, old: "generally_accepted(A)", new: "", plan: "5.1", page: 311, note: "repeated the premise generally_true(A)"}
+  - {record: from_example, kind: added, old: "", new: "supports_generalization(A,P1,P2)", plan: "5.2", page: 314}
+  - {record: verbal_classification, kind: added, old: "", new: "doubtful_classification(F,G)", plan: "5.2", page: 319}
+  - {record: verbal_classification_vagueness, kind: arguments, old: "property_precion_needed(F)", new: "property_precion_needed(A)", plan: "5.1", page: 320, note: "the context requiring precision is the argument's"}
+  - {record: verbal_classification_arbitrariness, kind: added, old: "", new: "arbitrariness_harmless(A,F)", plan: "5.2", page: 320}
+  - {record: two_person_practical, kind: arguments, old: "alternative_means(A,X)", new: "alternative_means(X,Y)", plan: "5.1", page: 326, note: "the goal and the action, not the person and the goal"}
+  - {record: two_person_practical, kind: arguments, old: "side_effect_other_act(B,A)", new: "side_effect_other_act(Y,A)", plan: "5.1", page: 326, note: "the action, not the other person"}
+  - {record: two_person_practical, kind: added, old: "", new: "other_actions_required(X,Y)", plan: "5.2", page: 326}
+  - {record: waste, kind: added, old: "", new: "reassessment_against_continuing(A,X)", plan: "5.2", page: 326}
+  - {record: negative_normal_expectations, kind: added, old: "", new: "uninvestigated(A)", plan: "5.2", page: 327}
+  - {record: abductive_backward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
+  - {record: abductive_forward, kind: added, old: "", new: "sufficient_account(C1,D)", plan: "5.2", page: 330}
+  - {record: abductive_forward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
+  - {record: retroductive, kind: added, old: "", new: "not_fit_action(A)", plan: "5.2", page: 331}
+  - {record: evidence_hypothesis_falsification, kind: arguments, old: "sufficient_correlation(A,H)", new: "sufficient_correlation(H,A)", plan: "5.1", page: 332, note: "the order 32.1 uses for the shared question"}
+  - {record: negative_consequences_reasoning, kind: added, old: "", new: "outcome_likely(A,B)", plan: "5.2", page: 332}
+  - {record: help, kind: removed, old: "possible_carry_out(B,X)", new: "", plan: "5.1", page: 334, note: "repeated premise 3, can_carry_out(B,X)"}
+  - {record: help, kind: removed, old: "greater_side_effects(X)", new: "", plan: "5.1", page: 334, note: "repeated premise 4, not_too_costly(B,X)"}
+  - {record: distress, kind: arity, old: "relieve(B,X)", new: "relieve(B,X,A)", plan: "5.1", page: 334, note: "whose distress is relieved"}
+  - {record: distress, kind: removed, old: "really_distress(A)", new: "", plan: "5.1", page: 334, note: "repeated premise 1, distress(A)"}
+  - {record: commitment1, kind: removed, old: "commitment_support_evidence(A,X)", new: "", plan: "5.1", page: 335, note: "repeated the commitment premise"}
+  - {record: commitment1, kind: added, old: "", new: "commitment_linkage_exception(A,X,Y)", plan: "5.2", page: 335}
+  - {record: commitment2, kind: removed, old: "commitment_support_evidence(A,X)", new: "", plan: "5.1", page: 335, note: "repeated the minor premise"}
+  - {record: commitment2, kind: added, old: "", new: "commitment_linkage_exception(A,X,Y)", plan: "5.2", page: 335}
+  - {record: ad_hominem, kind: removed, old: "attack_well_supported", new: "", plan: "5.1", page: 336, note: "restated the character attack premise; the book's own example, p. 374"}
+  - {record: pragmatic_inconsistency, kind: removed, old: "descriptions_opposite(A,S)", new: "", plan: "5.1", page: 337, note: "restated premise 2"}
+  - {record: pragmatic_inconsistency, kind: added, old: "", new: "inconsistency_relevant(A,S)", plan: "5.2", page: 337}
+  - {record: inconsistent_commitment, kind: removed, old: "evidence_not_commited(A,S)", new: "", plan: "5.1", page: 337, note: "restated premise 2 and undercut the argument with its own evidence"}
+  - {record: inconsistent_commitment, kind: added, old: "", new: "commitments_conflict(A,S)", plan: "5.2", page: 337}
+  - {record: circumstantial_ad_hominem, kind: arguments, old: "commited_opposite(A,S)", new: "commited_opposite(A,C)", plan: "5.1", page: 337, note: "the opposite of the conclusion, not of the argument"}
+  - {record: circumstantial_ad_hominem, kind: added, old: "", new: "inconsistency_explained(A,S)", plan: "5.2", page: 338}
+  - {record: bias, kind: arguments, old: "not_taken_both(X,C)", new: "not_taken_both(A,C)", plan: "5.3", page: 338, note: "the variable X goes; the scheme's parameters are [A,C], not [A,X,C]"}
+  - {record: bias, kind: added, old: "", new: "bias_relevant(A,C)", plan: "5.2", page: 338}
+  - {record: full_slippery_slope, kind: removed, old: "led_to_step", new: "", plan: "5.1", page: 341, note: "restated the group opinion premise"}
+  - {record: exeptional, kind: added, old: "", new: "exception_backed(A)", plan: "5.3", page: 344}
+  - {record: plea_for_excuse, kind: arity, old: "special_circumstances(E)", new: "special_circumstances(E,T)", plan: "5.1", page: 345, note: "the excuse is for the action committed"}
+  - {record: memory, kind: added, old: "", new: "based_on_false_belief(M)", plan: "5.2", page: 346}
+  - {record: memory, kind: added, old: "", new: "not_originally_believed(M)", plan: "5.2", page: 346}
+  - {record: memory, kind: added, old: "", new: "recaller_doubts(P,M)", plan: "5.2", page: 346}
+  - {record: illustration, kind: arity, old: "usually_properties(X,P1,P2)", new: "usually_properties(P1,P2)", plan: "5.1", page: 315, note: "the rule names no individual; the variable X goes, the parameters are [Y,P1,P2]"}
+  - {record: illustration, kind: arity, old: "valid_rule(Y)", new: "valid_rule(P1,P2)", plan: "5.1", page: 315, note: "the conclusion is that the rule is valid"}
+  - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
+  - {record: epistemic_ignorence, kind: premise, old: "", new: "bivalent(D)", plan: "5.5", page: 328, note: "premise 5, which the record left out"}
+  - {record: verbal_slippery_slope, kind: arguments, old: "individuals_propoerty(A1,F,A2)", new: "individuals_propoerty(A1,P,A2)", plan: "5.1", page: 341, note: "one property throughout; the variable F goes, the parameters are [A1,A2,A,P]"}
+  - {record: pop_scheme, kind: removed, old: "should_accept(A)", new: "", plan: "5.3", page: 311, note: "the acceptance reading is the record pop_scheme_acceptance"}
+  - {record: pop_scheme_acceptance, kind: added, old: "", new: "should_accept(A)", plan: "5.3", page: 311, note: "a new record, split from pop_scheme"}
+  - {record: practical_necessary_condition, kind: arguments, old: "alternative_action(X,A)", new: "alternative_action(S,A)", plan: "5.3", page: 323, note: "the set of alternatives; the parameters are [X,A,P,S]"}
+  - {record: practical_necessary_condition, kind: arity, old: "necessary_action(X,A)", new: "necessary_action(X,S,A)", plan: "5.3", page: 323, note: "the member X selected from the set S"}
+  - {record: practical_sufficient_condition, kind: replaced, old: "alternative_action(X,A)", new: "alternative_action_sufficient(S,A)", plan: "5.3", page: 323, note: "sufficient, as p. 96 says; the parameters are [X,A,P,S]"}
+  - {record: practical_sufficient_condition, kind: arity, old: "sufficient_action(X,A)", new: "sufficient_action(X,S,A)", plan: "5.3", page: 323, note: "the member X selected from the set S"}
+  - {record: common_folk_ad_populum, kind: arity, old: "background", new: "background(S)", plan: "5.4", page: 313, note: "the speaker; the parameters are [S]"}
+  - {record: common_folk_ad_populum, kind: arity, old: "being_credible", new: "being_credible(S)", plan: "5.4", page: 313}
+  - {record: common_folks_group_ad_populum, kind: arity, old: "group_background(G)", new: "group_background(S,G)", plan: "5.4", page: 313, note: "the speaker; the parameters are [G,S]"}
+  - {record: common_folks_group_ad_populum, kind: arity, old: "accept_saying", new: "accept_saying(S)", plan: "5.4", page: 313}
+  - {record: negative_normal_expectations, kind: arity, old: "not_normal", new: "not_normal(A)", plan: "5.4", page: 327}
+  - {record: negative_practical, kind: arity, old: "sufficient_evidence", new: "sufficient_evidence(A)", plan: "5.4", page: 327}
+  - {record: sign, kind: arity, old: "more_reliable", new: "more_reliable(A)", plan: "5.4", page: 329}
+  - {record: retroductive, kind: arity, old: "reference_class", new: "reference_class(A,Q)", plan: "5.4", page: 331}
+  - {record: ad_hominem, kind: arity, old: "character_revelant", new: "character_revelant(S)", plan: "5.4", page: 336}
+  - {record: gradualism, kind: arity, old: "proper_sequence", new: "proper_sequence(P1,P4)", plan: "5.4", page: 339}
+  - {record: full_slippery_slope, kind: arity, old: "accept_all_steps", new: "accept_all_steps(C0)", plan: "5.4", page: 341}
+  - {record: rule_physical_world_1, kind: arity, old: "not_necessarily_true", new: "not_necessarily_true(W,D)", plan: "5.4", page: 342}
+  - {record: rule_physical_world_2, kind: arity, old: "rule_changed", new: "rule_changed(I,D,W)", plan: "5.4", page: 342}
+  - {record: exceptional, kind: rename-scheme, old: "exeptional", new: "exceptional", plan: "5.6", page: 0}
+  - {record: epistemic_ignorance, kind: rename-scheme, old: "epistemic_ignorence", new: "epistemic_ignorance", plan: "5.6", page: 0}
+  - {record: threat, kind: rename-scheme, old: "treat", new: "threat", plan: "5.6", page: 0}
+  - {record: popular_practice, kind: rename-scheme, old: "popular_practise", new: "popular_practice", plan: "5.6", page: 0}
+  - {record: opposition_descriptive_1, kind: rename-scheme, old: "opposition-descriptive_1", new: "opposition_descriptive_1", plan: "5.6", page: 0}
+  - {record: opposition_descriptive_2, kind: rename-scheme, old: "opposition-descriptive_2", new: "opposition_descriptive_2", plan: "5.6", page: 0}
+  - {record: opposition_descriptive_3, kind: rename-scheme, old: "opposition-descriptive_3", new: "opposition_descriptive_3", plan: "5.6", page: 0}
+  - {record: opposition_normative, kind: rename-scheme, old: "opposition-normative", new: "opposition_normative", plan: "5.6", page: 0}
+  - {record: end_and_means_3, kind: rename-predicate, old: "easy_to_achive/1", new: "easy_to_achieve/1", plan: "5.6", page: 0}
+  - {record: pragmatic_inconsistency, kind: rename-predicate, old: "arguement_not_accepted/2", new: "argument_not_accepted/2", plan: "5.6", page: 0}
+  - {record: memory, kind: rename-predicate, old: "reasonable_belive/1", new: "reasonable_believe/1", plan: "5.6", page: 0}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "certainity_no_need/2", new: "certainty_no_need/2", plan: "5.6", page: 0}
+  - {record: circumstantial_ad_hominem, kind: rename-predicate, old: "commited_opposite/2", new: "committed_opposite/2", plan: "5.6", page: 0}
+  - {record: sorites_slippery_slope, kind: rename-predicate, old: "beyond_contetion/2", new: "beyond_contention/2", plan: "5.6", page: 0}
+  - {record: two_person_practical, kind: rename-predicate, old: "situation_necessiy/4", new: "situation_necessity/4", plan: "5.6", page: 0}
+  - {record: rule_physical_world_2, kind: rename-predicate, old: "oficcial_rulebook/3", new: "official_rulebook/3", plan: "5.6", page: 0}
+  - {record: waste, kind: rename-predicate, old: "posible/1", new: "can_be_realized/1", plan: "5.6", page: 0, note: "possible/1 is upstream's, about an action; this one is about a goal"}
+  - {record: popular_practice, kind: rename-predicate, old: "popular_practise/1", new: "popular_practice/1", plan: "5.6", page: 0}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "property_precion_needed/1", new: "precision_needed/1", plan: "5.6", page: 0}
+  - {record: composition_generic, kind: rename-predicate, old: "all_parts_propert/2", new: "all_parts_property/2", plan: "5.6", page: 0}
+  - {record: part_in_whole, kind: rename-predicate, old: "part_propert/2", new: "part_property/2", plan: "5.6", page: 0}
+  - {record: verbal_slippery_slope, kind: rename-predicate, old: "not_has_propery/2", new: "not_has_property/2", plan: "5.6", page: 0}
+  - {record: verbal_slippery_slope, kind: rename-predicate, old: "individuals_propoerty/3", new: "individuals_property/3", plan: "5.6", page: 0}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "vaguness_recejted/1", new: "vagueness_rejected/1", plan: "5.6", page: 0}
+  - {record: opposition_normative, kind: rename-predicate, old: "recieves_evaluation/2", new: "receives_evaluation/2", plan: "5.6", page: 0}
+  - {record: opposition_normative, kind: rename-predicate, old: "cannot_recieve_evaluation/2", new: "cannot_receive_evaluation/2", plan: "5.6", page: 0}
+  - {record: distress, kind: rename-predicate, old: "bring_relive/2", new: "bring_relieve/2", plan: "5.6", page: 0}
+  - {record: ad_hominem, kind: rename-predicate, old: "character_revelant/1", new: "character_relevant/1", plan: "5.6", page: 0}
+  - {record: abductive_backward, kind: rename-predicate, old: "succesful_account/2", new: "successful_account/2", plan: "5.6", page: 0}
+  - {record: abductive_forward, kind: rename-predicate, old: "succesful_diagram/1", new: "successful_diagram/1", plan: "5.6", page: 0}
+  - {record: abductive_action_to_character, kind: rename-predicate, old: "not_fit_action/1", new: "action_fits_quality/1", plan: "5.6", page: 0, note: "the text was always positive: renamed, not inverted"}
+  - {record: "(library)", kind: rename-file, old: "A_reasoning/5_casual-reasoning.yml", new: "A_reasoning/5_causal-reasoning.yml", plan: "5.6", page: 0}
+  - {record: "(library)", kind: rename-file, old: "B_source-based-arguments/2_argumen-from-commitment.yml", new: "B_source-based-arguments/2_argument-from-commitment.yml", plan: "5.6", page: 0}
+  - {record: "(library)", kind: rename-file, old: "B_source-based-arguments/4_argumen-from-popular-acceptence.yml", new: "B_source-based-arguments/4_argument-from-popular-acceptance.yml", plan: "5.6", page: 0}
+  - {record: "(library)", kind: wording, old: "", new: "", plan: "5.6", page: 0, note: "no template begins with \"Therefore\" any more; 39 did"}

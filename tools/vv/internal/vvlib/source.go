@@ -7,9 +7,11 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 
+	"github.com/carneades/carneades-4/src/engine/caes"
 	"gopkg.in/yaml.v2"
 )
 
@@ -85,8 +87,10 @@ type RecordChange struct {
 var (
 	Claims = map[string]bool{"transcription": true, "correction": true, "interpretation": true, "policy": true, "unchecked": true}
 	Stages = []string{"mapped", "transcription-checked", "interpretation-approved", "questions-sorted", "example-passed"}
-	// QuestionKinds are the four sorts of PLAN.md 5.1.
-	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true}
+	// QuestionKinds are the four sorts of PLAN.md 5.1, and standard: a
+	// question about the burden or the standard of proof, which Carneades
+	// sets for an issue in the graph, not in a scheme.
+	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true, "standard": true}
 )
 
 // StageIndex is the position of a stage in Stages, or -1.
@@ -375,13 +379,28 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		if r.Entry != entryOf[s.Id] {
 			probs = append(probs, fmt.Sprintf("entry %q, but the compendium list files the record under %q", r.Entry, entryOf[s.Id]))
 		}
-		src := ""
+		// PLAN.md 5.9: every record has a title and a source; a record filed
+		// under an entry names the compendium, the entry and its page first,
+		// and the row's cites holds the rest of its source.
+		src, title := "", ""
 		if v, ok := s.Metadata["source"]; ok && v != nil {
 			src = strings.Join(strings.Fields(fmt.Sprint(v)), " ")
 		}
-		want := ""
-		if src != "" && !strings.HasPrefix(src, CompendiumSource) {
-			want = src
+		if v, ok := s.Metadata["title"]; ok && v != nil {
+			title = strings.TrimSpace(fmt.Sprint(v))
+		}
+		if title == "" {
+			probs = append(probs, "the record has no meta.title")
+		}
+		want := src
+		if r.Entry != "" {
+			std := fmt.Sprintf("%s. Argumentation Schemes. Cambridge University Press, ch. 9, entry %s, p. %d.", CompendiumSource, r.Entry, entries[r.Entry].Page)
+			if !strings.HasPrefix(src, std) {
+				probs = append(probs, fmt.Sprintf("meta.source should begin with %q", std))
+			}
+			want = strings.TrimSpace(strings.TrimPrefix(src, std))
+		} else if src == "" {
+			probs = append(probs, "the record has no meta.source")
 		}
 		if r.Cites != want {
 			probs = append(probs, fmt.Sprintf("cites %q, but the record cites %q", r.Cites, want))
@@ -401,18 +420,7 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		if stage >= 1 && r.Claim == "unchecked" {
 			probs = append(probs, "a row past mapped says what the record claims to be")
 		}
-		for _, q := range r.Questions {
-			if !QuestionKinds[q.Kind] {
-				probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
-			} else if q.Kind != "premise" && q.As == "" {
-				probs = append(probs, fmt.Sprintf("question %d is an %s: name the statement that models it", q.N, q.Kind))
-			}
-		}
-		if stage >= StageIndex("questions-sorted") && r.Origin == "book" {
-			if n := entries[r.Entry].Questions; len(r.Questions) != n {
-				probs = append(probs, fmt.Sprintf("questions sorted: %d of the %d the compendium prints for entry %s", len(r.Questions), n, r.Entry))
-			}
-		}
+		probs = append(probs, questionProblems(r, s, entries[r.Entry].Questions, stage >= StageIndex("questions-sorted"))...)
 		if stage >= StageIndex("example-passed") && !cases[r.Record+"/book"] {
 			probs = append(probs, "example passed, but no reference case "+r.Record+"/book")
 		}
@@ -443,5 +451,213 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		probs = append(probs, fmt.Sprintf("upstream records with no row: %v", missing))
 	}
 	out = append(out, res(sourceFile, "(file)", "source/records-complete", probs))
+	return out
+}
+
+// questionProblems checks a row's sorted questions (PLAN.md 5.1) against its
+// record: an assumption is one of the record's assumptions, an exception one
+// of its exceptions, a premise (when it names one) one of its premises, and a
+// rebuttal the negation of one of its conclusions, weighed against it in the
+// negation issue. Numbers run from 1 to the count the compendium prints; 0
+// marks a statement the record models although the book prints no question
+// for it. Once the row is at questions-sorted, every printed question is
+// sorted and every assumption and exception of the record is accounted for.
+func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) []string {
+	probs := []string{}
+	in := func(list []string, st string) bool {
+		for _, x := range list {
+			if Norm(x) == Norm(st) {
+				return true
+			}
+		}
+		return false
+	}
+	negations := []string{}
+	for _, c := range s.Conclusions {
+		n := Norm(c)
+		if strings.HasPrefix(n, "¬") {
+			negations = append(negations, strings.TrimPrefix(n, "¬"))
+		} else {
+			negations = append(negations, "¬"+n)
+		}
+	}
+	seen := map[int]bool{}
+	named := map[string]bool{}
+	for _, q := range r.Questions {
+		switch {
+		case q.N < 0 || (printed >= 0 && r.Origin == "book" && q.N > printed):
+			probs = append(probs, fmt.Sprintf("question %d: the compendium prints %d", q.N, printed))
+		case q.N > 0 && seen[q.N]:
+			probs = append(probs, fmt.Sprintf("question %d is sorted twice", q.N))
+		}
+		seen[q.N] = true
+		ok := true
+		if q.As == "" && q.Kind != "premise" && q.Kind != "standard" {
+			// sorted, not modelled yet (a gap of PLAN.md 5.2)
+			if complete {
+				probs = append(probs, fmt.Sprintf("question %d, %s, is not modelled", q.N, article(q.Kind)))
+			}
+			seen[q.N] = true
+			continue
+		}
+		switch q.Kind {
+		case "premise":
+			ok = q.As == "" || in(s.Premises, q.As)
+		case "assumption":
+			ok = in(s.Assumptions, q.As)
+		case "exception":
+			ok = in(s.Exceptions, q.As)
+		case "rebuttal":
+			ok = in(negations, q.As)
+		case "standard":
+			ok = q.As == ""
+		default:
+			probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
+			continue
+		}
+		if !ok {
+			probs = append(probs, fmt.Sprintf("question %d, %s, is modelled by %q, which is not one of the record's %ss", q.N, article(q.Kind), q.As, map[string]string{"premise": "premise", "assumption": "assumption", "exception": "exception", "rebuttal": "negated conclusion"}[q.Kind]))
+		}
+		if q.As != "" {
+			named[Norm(q.As)] = true
+		}
+	}
+	if complete {
+		for n := 1; n <= printed; n++ {
+			if !seen[n] {
+				probs = append(probs, fmt.Sprintf("question %d of %d is not sorted", n, printed))
+			}
+		}
+		for _, st := range append(append([]string{}, s.Assumptions...), s.Exceptions...) {
+			if !named[Norm(st)] {
+				probs = append(probs, fmt.Sprintf("%s is modelled but no question names it (use n: 0 for a statement the book prints no question for)", st))
+			}
+		}
+	}
+	return probs
+}
+
+// article puts "a" or "an" before a kind of question.
+func article(kind string) string {
+	if strings.ContainsAny(kind[:1], "aeiou") {
+		return "an " + kind
+	}
+	return "a " + kind
+}
+
+// MigrationChecks compares tools/migration_r2.yml, the old-to-new table of
+// release R2 (PLAN.md D4, 5.6), with the library: a row's new statement is in
+// its record, and its old statement, where the row replaces or removes one,
+// is not.
+func MigrationChecks(lib *Library) []Result {
+	const file = "tools/migration_r2.yml"
+	b, err := os.ReadFile(filepath.Join(RepoRoot(), filepath.FromSlash(file)))
+	if err != nil {
+		return []Result{fail(file, "(file)", "migration/readable", "%v", err)}
+	}
+	var t struct {
+		Changes []struct {
+			Record string `yaml:"record"`
+			Kind   string `yaml:"kind"`
+			Old    string `yaml:"old"`
+			New    string `yaml:"new"`
+			Plan   string `yaml:"plan"`
+			Page   int    `yaml:"page"`
+			Note   string `yaml:"note"`
+		} `yaml:"changes"`
+	}
+	if err := yaml.UnmarshalStrict(b, &t); err != nil {
+		return []Result{fail(file, "(file)", "migration/readable", "%v", err)}
+	}
+	out := []Result{pass(file, "(file)", "migration/readable")}
+	// The renames of 5.6 come last in the table and hold for every row before
+	// them: a row names a record and statements as they were then.
+	schemeRen, predRen := map[string]string{}, map[string]string{}
+	for _, c := range t.Changes {
+		switch c.Kind {
+		case "rename-scheme":
+			schemeRen[c.Old] = c.New
+		case "rename-predicate":
+			predRen[strings.Split(c.Old, "/")[0]] = strings.Split(c.New, "/")[0]
+		}
+	}
+	renamed := func(st string) string {
+		for o, n := range predRen {
+			st = regexp.MustCompile(`(^|[^\w-])`+regexp.QuoteMeta(o)+`($|[^\w-])`).ReplaceAllString(st, "${1}"+n+"${2}")
+		}
+		return st
+	}
+	for _, c := range t.Changes {
+		probs := []string{}
+		switch c.Kind {
+		case "rename-scheme":
+			if lib.Scheme(c.Old) != nil || lib.Scheme(c.New) == nil {
+				probs = append(probs, fmt.Sprintf("the library should have %s and no longer %s", c.New, c.Old))
+			}
+		case "rename-predicate":
+			_, hasOld := lib.AG.Theory.Language[c.Old]
+			_, hasNew := lib.AG.Theory.Language[c.New]
+			if hasOld || !hasNew {
+				probs = append(probs, fmt.Sprintf("the language should define %s and no longer %s", c.New, c.Old))
+			}
+		case "rename-file":
+			_, errOld := os.Stat(filepath.Join(RepoRoot(), filepath.FromSlash(c.Old)))
+			_, errNew := os.Stat(filepath.Join(RepoRoot(), filepath.FromSlash(c.New)))
+			if errOld == nil || errNew != nil {
+				probs = append(probs, fmt.Sprintf("%s should exist and %s no longer", c.New, c.Old))
+			}
+		case "wording":
+			if c.Note == "" {
+				probs = append(probs, "a wording row says what changed in its note")
+			}
+		}
+		if strings.HasPrefix(c.Kind, "rename-") || c.Kind == "wording" {
+			if c.Plan == "" {
+				probs = append(probs, "a row needs its plan item")
+			}
+			out = append(out, res(file, c.Record, "migration/"+c.Kind+" "+c.Old, probs))
+			continue
+		}
+		rec := c.Record
+		if n, ok := schemeRen[rec]; ok {
+			rec = n
+		}
+		c.Old, c.New = renamed(c.Old), renamed(c.New)
+		s := lib.Scheme(rec)
+		if s == nil {
+			probs = append(probs, "no such record")
+		} else {
+			all := map[string]bool{}
+			for _, l := range [][]string{s.Premises, s.Assumptions, s.Exceptions, s.Conclusions} {
+				for _, st := range l {
+					all[Norm(st)] = true
+				}
+			}
+			switch c.Kind {
+			case "added", "premise":
+				if c.Old != "" || c.New == "" || !all[Norm(c.New)] {
+					probs = append(probs, fmt.Sprintf("added: %q should be in the record, with no old statement", c.New))
+				}
+			case "removed":
+				if c.New != "" || c.Old == "" || all[Norm(c.Old)] {
+					probs = append(probs, fmt.Sprintf("removed: %q should no longer be in the record", c.Old))
+				}
+			case "arguments", "arity", "replaced":
+				if c.Old == "" || c.New == "" || all[Norm(c.Old)] || !all[Norm(c.New)] {
+					probs = append(probs, fmt.Sprintf("%s: %q should have replaced %q in the record", c.Kind, c.New, c.Old))
+				}
+			default:
+				probs = append(probs, fmt.Sprintf("unknown kind %q", c.Kind))
+			}
+		}
+		if c.Plan == "" || c.Page == 0 {
+			probs = append(probs, "a row needs its plan item and page")
+		}
+		st := c.New
+		if st == "" {
+			st = c.Old
+		}
+		out = append(out, res(file, c.Record, "migration/"+c.Kind+" "+st, probs))
+	}
 	return out
 }

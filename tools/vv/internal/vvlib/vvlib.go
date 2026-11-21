@@ -472,7 +472,7 @@ func StaticChecks(file string, s *caes.Scheme) []Result {
 
 	// The scheme id is written into a CHR term, argument(id,[...]), and read
 	// back from the store. It has to come back as it was written: a name, or
-	// names joined by operators that nothing computes (opposition-normative is
+	// names joined by operators that nothing computes (opposition-normative was
 	// read as a subtraction of two names and printed back unchanged). An id with
 	// a number or a variable as an operand would be computed or bound on the way.
 	if t, ok := parse(id); ok && t.String() == id && namesOnly(t) {

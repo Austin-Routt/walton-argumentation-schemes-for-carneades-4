@@ -3,26 +3,27 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Commitment"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   also_committed/2: "Generally, when an arguer is committed to %s, it can be inferred that he is also committed to %s."
   also_committed_questioned/3: "If arguer %s has committed herself to proposition %s at some point in a dialogue, then it may be inferred that she is also committed to proposition %s, should the question of whether it is true become an issue later in the dialogue."
   commitment_arises/2: "At some later point in the dialogue, where the issue of %[2]s arises, arguer %[1]s may be said to be committed to it."
   commitment_contrary_evidence/2: "There is contrary evidence indicating that %s might not be committed to %s."
-  commitment_support_evidence/2: "There is evidence that supports the claim that %s is committed to %s."
+  commitment_linkage_exception/3: "In this case there is an exception, for %[1]s, to the general rule that commitment to %[2]s implies commitment to %[3]s."
+  commitments_conflict/2: "The evidence that %s is committed to %s, and the evidence that he is not, prove a conflict of commitments."
   committed/2: "In this case it was shown that %s is committed to proposition %s, according to the evidence of what he said or did."
   committed_to/2: "In this case, %s is committed to %s."
   dialog_committed/2: "Arguer %s has committed herself to proposition %s at some point in a dialogue."
-  evidence_not_commited/2: "There is evidence in this particular case that shows that %s is not committed to %s."
   inconsistent_commitment/1: "%s's commitments are inconsistent."
   initial_commitment/2: "%s has claimed or indicated that he is committed to proposition %s, generally or by virtue of what he has said in the past."
   judged_negative_value/2: "Value %s is negative as judged by agent %s."
   judged_positive_value/2: "Value %s is positive as judged by agent %s."
-  negative_affects/3: "The fact that value %s is negative affects the interpretation and therefore the evaluation of goal %s of agent %s, if value is bad, it supports commitment to goal."
+  negative_affects/3: "The fact that value %s is negative affects the interpretation and therefore the evaluation of goal %s of agent %s: if the value is bad, it goes against commitment to the goal."
   opposed_commitment/2: "Other evidence in this particular case shows that %s is not really committed to %s."
   positive_affects/3: "The fact that value %s is positive affects the interpretation and therefore the evaluation of goal %s of agent %s, if value is good, it supports commitment to goal."
   reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s."
+  reason_retracting_goal/2: "%s is a reason for retracting commitment to goal %s."
 
 issue_schemes:
   # A statement and its explicit negation are the two positions of one issue,
@@ -34,11 +35,7 @@ argument_schemes:
   - id: commitment1
     meta:
       title: Argument From Commitment - Version 1
-      source: > 
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 117- 118.
-             Douglas Walton, "The Sunk Costs Fallacy or Argument from Waste." 
-             Argumentation 16 (2002), p. 490.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 40a, p. 335. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 117- 118. Douglas Walton, \"The Sunk Costs Fallacy or Argument from Waste.\" Argumentation 16 (2002), p. 490."
     variables: [A,X,Y]
     conclusions:
       - committed_to(A,Y)
@@ -47,17 +44,12 @@ argument_schemes:
       - also_committed(X,Y)
     exceptions:
       - commitment_contrary_evidence(A,X)
-    assumptions: 
-     - commitment_support_evidence(A,X)
+      - commitment_linkage_exception(A,X,Y)
 
   - id: commitment2
     meta:
       title: Argument From Commitment - Version 2
-      source: >
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 117- 118.
-             Douglas Walton, "The Sunk Costs Fallacy or Argument from Waste." 
-             Argumentation 16 (2002), p. 490.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 40b, p. 335. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 117- 118. Douglas Walton, \"The Sunk Costs Fallacy or Argument from Waste.\" Argumentation 16 (2002), p. 490."
     variables: [A,X,Y]
     conclusions:
       - commitment_arises(A,Y)
@@ -66,32 +58,25 @@ argument_schemes:
       - dialog_committed(A,X)
     exceptions:
       - commitment_contrary_evidence(A,X)
-    assumptions: 
-      - commitment_support_evidence(A,X)
+      - commitment_linkage_exception(A,X,Y)
 
   - id: inconsistent_commitment
     meta:
       title: Argument From Inconsistent Commitment
-      source: >
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 120-121.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 44, p. 337. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 120-121."
     variables: [A,S]
     conclusions:
       - inconsistent_commitment(A)
     premises:
       - initial_commitment(A,S)
       - opposed_commitment(A,S)
-    exceptions:
-      - evidence_not_commited(A,S)
+    assumptions:
+      - commitments_conflict(A,S)
 
   - id: positive_value
     meta: 
       title: "Argument From Values - Variant 1: Positive Value"
-      source: >
-               Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-               Journal of Logic and Computation 13 (2003), pp.429­448. 
-               Trevor Bench-Capon, "Agreeing to Differ: Modelling Persuasive Dialogue
-               between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.1, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
     variables: [V,A,G]
     conclusions: 
       - reason_retaining_goal(V,G)
@@ -102,14 +87,10 @@ argument_schemes:
   - id: negative_value
     meta:
       title: "Argument From Values - Variant 2: Negative Value"
-      source: >
-               Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-               Journal of Logic and Computation 13 (2003), pp.429­448. 
-               Trevor Bench-Capon, "Agreeing to Differ: Modelling Persuasive Dialogue
-               between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.2, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
     variables: [V,A,G]
     conclusions: 
-      - reason_retaining_goal(V,G)
+      - reason_retracting_goal(V,G)
     premises: 
       - judged_negative_value(V,A)
       - negative_affects(V,G,A)

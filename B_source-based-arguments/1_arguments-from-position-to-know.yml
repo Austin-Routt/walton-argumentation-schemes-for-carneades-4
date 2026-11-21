@@ -3,15 +3,17 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Position to Know"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  act_on_presumption/1: "Therefore, I act on the presumption that %s is not true or true."
+  act_on_presumption/1: "I act on the presumption that %s is not true or true."
   asserts/2: "%s asserts that %s is true."
   based_on_evidence/1: "The assertion %v is based on evidence."
+  based_on_false_belief/1: "%s was originally based on beliefs of which one is false."
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
   biased/1: "Arguer %s is biased."
+  bivalent/1: "Every proposition in %s is either true or false."
   case_not_true/1: "It is not the case that %s is true."
   consequences_presumption/2: "If I act on the presumption that %s is true, and it is not true, consequences %s will follow."
   credible_source/2: "Witness %s is a credible source for the domain %s."
@@ -31,21 +33,23 @@ language:
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   normal_true/1: "If the situation were normal, %s would be true."
   not_know_true/1: "I do not know whether %s is true or not."
-  not_normal/0: "Therefore, the situation is not normal."
+  not_normal/1: "The situation in which %s was expected is not normal."
+  not_originally_believed/1: "%s was not originally believed for other reasons."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
-  plausible_false/2: "Therefore, subject to further investigations in %s it is plausible to presume that %s is false."
-  plausibly_true/1: "Therefore, %s is plausibly true."
+  plausible_false/2: "Subject to further investigations in %s it is plausible to presume that %s is false."
+  plausibly_true/1: "%s is plausibly true."
   position_to_know/2: "%s is in a position to know about things in a certain subject domain %s."
   position_to_know_group/2: "Group %s is in a special position to know that %s is true."
   presumption/1: "I have to act on the presumption that %s is true or not true."
-  reasonable_belive/1: "It is reasonable to believe %s."
+  reasonable_believe/1: "It is reasonable to believe %s."
+  recaller_doubts/2: "%s, who recalls %s, expresses doubt about it."
   recalls/2: "Person %s recalls %s."
   special_in/2: "%s is in %s."
   special_not_in/2: "%s is not in %s."
   special_proposition/2: "%s is a special type of proposition such that, if it were true, it would normally or usually be expected to be in %s."
-  sufficient_evidence/0: "The search for evidence has progressed sufficiently."
-  therefore_true/1: "Therefore %s is true."
+  sufficient_evidence/1: "The search for evidence about whether %s is true has progressed sufficiently."
+  therefore_true/1: "%s is true."
   true_propositions_contained/2: "It has not been established that all the true propositions in %s are contained in %s."
   uninvestigated/1: "The truth of %s has not been sufficiently investigated."
   untrustworthy/1: "%s is untrustworthy."
@@ -61,9 +65,7 @@ argument_schemes:
   - id: position_to_know
     meta:
       title: Argument from Position to Know
-      source: >
-        Douglas Walton, Legal Argumentation and Evidence,
-        The Pennsylvania State University Press, University Park, 2002, p.46.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 1, p. 309. Douglas Walton, Legal Argumentation and Evidence, The Pennsylvania State University Press, University Park, 2002, p.46."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -76,13 +78,7 @@ argument_schemes:
   - id: witness_testimony
     meta:
       title: Argument from Witness Testimony
-      source: >
-        Douglas Walton, Henry Prakken, Chris Reed,
-        Argumentation Schemes and Generalisations in Reasoning about
-        Evidence, Proceedings of the 9th International Conference on
-        Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM
-        Press 2003, pp. 35.  Douglas Walton, Witness Testimony Evidence,
-        Cambridge University Press, 2008.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 3, p. 310. Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -101,9 +97,7 @@ argument_schemes:
   - id: position_to_know_ad_populum
     meta:
       title: Position to Know Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 311. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.2, p. 311."
     variables: [A,G]
     conclusions:
       - plausibly_true(A)
@@ -114,9 +108,7 @@ argument_schemes:
   - id: expert_opinion_ad_populum
     meta:
       title: Expert Opinion Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.3, p. 312."
     variables: [A,G]
     conclusions:
       - therefore_true(A)
@@ -127,27 +119,20 @@ argument_schemes:
   - id: negative_normal_expectations
     meta:
       title: Negative Reasoning from Normal Expectations
-      source: >
-             Douglas Walton, Arguments from Ignorance. University Park: 
-             Pennsylvania State University Press, 1996, pp. 84,86.
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: 
-             University of Alabama Press, 1995. p. 150.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.1, p. 327. Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150."
     variables: [A]
     conclusions:
-      - not_normal
+      - not_normal(A)
     premises:
       - normal_true(A)
       - case_not_true(A)
+    exceptions:
+      - uninvestigated(A)
 
   - id: negative_practical
     meta:
       title: Negative Practical Reasoning
-      source: >
-             Douglas Walton, Arguments from Ignorance. University Park: 
-             Pennsylvania State University Press, 1996, pp. 84,86.
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: 
-             University of Alabama Press, 1995. p. 150.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.2, p. 327. Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150."
     variables: [A,B,C]
     conclusions:
       - act_on_presumption(A)
@@ -158,14 +143,12 @@ argument_schemes:
       - other_consequences_presumption(A,C)
       - more_serious_consequences(B,C)
     assumptions: 
-     - sufficient_evidence   
+     - sufficient_evidence(A)
 
-  - id: epistemic_ignorence
+  - id: epistemic_ignorance
     meta:
       title: Epistemic Argument From Ignorance
-      source: >
-              Douglas Walton , "Nonfallacious Arguments from Ignorance." 
-              American Philosophical Quarterly 29 (1992), p. 386.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 27, p. 328. Douglas Walton , \"Nonfallacious Arguments from Ignorance.\" American Philosophical Quarterly 29 (1992), p. 386."
     variables: [A,D,K]
     conclusions:
       - plausible_false(D,A)
@@ -174,23 +157,27 @@ argument_schemes:
       - special_proposition(A,K)
       - special_in(A,D)
       - special_not_in(A,K)
+      - bivalent(D)
 
   - id: memory
     meta:
       title: Argument From Memory
-      source: >
-             J.L. Pollock, "Defeasible Reasoning." Cognitive Science 11 (1987), pp. 481-518.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 60, p. 346. J.L. Pollock, \"Defeasible Reasoning.\" Cognitive Science 11 (1987), pp. 481-518."
     variables: [P,M]
     conclusions:
-      - reasonable_belive(M)
+      - reasonable_believe(M)
     premises:
       - recalls(P,M)
       - believe_it(M)
+    exceptions:
+      - based_on_false_belief(M)
+      - not_originally_believed(M)
+      - recaller_doubts(P,M)
 
   - id: appearance
     meta:
       title: Argument from Appearance
-      source: "Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.2, p. 345. Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006."
     variables: [O,C]
     conclusions:
       - instance(O,C)
@@ -200,9 +187,7 @@ argument_schemes:
   - id: credible_source
     meta:
       title: "Argument from Credible Source"
-      source: "Wyner, A., A
-              functional perspective on argumentation schemes. 
-              Argument and Computation, vol. 7, pp. 113-133. 2016."
+      source: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -217,9 +202,7 @@ argument_schemes:
   - id: expert_opinion
     meta:
       title: Argument from Expert Opinion
-      source: >
-        Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press,
-        University Park, Albany, 1997, p.211-225.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 2, p. 310. Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225."
     variables: [W,D,S]
     premises:
       - expert(W,D)
@@ -236,9 +219,7 @@ argument_schemes:
   - id: ignorance
     meta:
       title: Argument from Ignorance
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 150
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26, p. 327. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150"
     variables: [S]
     conclusions:
       - ¬S

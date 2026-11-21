@@ -3,23 +3,25 @@
 
 meta:
   title: "Applying Rules to Cases - Verbal Classification Arguments"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."
   arbitrary_property/2: "Some property %s that occurs in %s is defined in a way that is arbitrary."
-  arbitrary_rejected/1: "Therefore, %s ought to be rejected as deficient."
-  certainity_no_need/2: "In argument %s, property %s does not need to be certain for the sake of the argument."
+  arbitrary_rejected/1: "%s ought to be rejected as deficient."
+  certainty_no_need/2: "In argument %s, property %s does not need to be certain for the sake of the argument."
   classified_as/2: "Objects which satisfy definition %s are classified as instances of class %s."
+  doubtful_classification/2: "Classifying what is %s as %s rests merely on an assumption about word usage that is subject to doubt."
   inadequate_definition/2: "%s is an inadequate definition of %s."
   instance/2: "%s is an instance of class %s."
   needed_nonarbitrary/2: "%s occurs in a context of dialogue that requires a nonarbitrary definition for a key property %s that occurs in the argument."
-  property_precion_needed/1: "%s occurs in a context of dialogue that requires a certain level of precision that is appropriate for that context."
+  precision_needed/1: "%s occurs in a context of dialogue that requires a certain level of precision that is appropriate for that context."
   property_vagueness/2: "Some property %s that occurs in %s is defined in a way that is too vague to meet the requirement of the level of precision appropriate for the context."
   satisfies_definition/2: "%s satisfies definition %s."
   subclass/2:  "%s is a subclass of %s."
   vague_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of precision, but some property %s that occurs in the argument is defined in a way that is too vague to meet the requirement of that level of precision, then the argument ought to be rejected as deficient."
-  vaguness_recejted/1: "Therefore, %s ought to be rejected as deficient."
+  vagueness_rejected/1: "%s ought to be rejected as deficient."
 
 issue_schemes:
   # A statement and its explicit negation are the two positions of one issue,
@@ -31,19 +33,20 @@ argument_schemes:
   - id: verbal_classification
     meta:
       title: Argument from Verbal Classification
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 14, p. 319."
     variables: [O,F,G]
     conclusions:
       - instance(O,G)
     premises:
       - instance(O,F)
       - subclass(F,G)
+    exceptions:
+      - doubtful_classification(F,G)
 
   - id: definition_to_verbal_classification
     meta:
       title: Argument from Definition to Verbal Classification
-      source: >
-        Douglas Walton, Fundamentals of Critical Argumentation,
-        Cambridge University Press, New York 2006, p. 129.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 15, p. 319. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 129."
     variables: [O,G,D]
     conclusions:
       - instance(O,G)
@@ -56,25 +59,21 @@ argument_schemes:
   - id:  verbal_classification_vagueness
     meta: 
       title: Argument From Vagueness of a Verbal Classification
-      source: >
-                Douglas Walton, Argumentation Schemes for Presumptive Reasoning. 
-                Mahwah, NJ.: Erlbaum, 1996, pp.102-103.       
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 16, p. 319. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.102-103."
     variables: [A,F]
     conclusions: 
-      -  vaguness_recejted(A)
+      -  vagueness_rejected(A)
     premises: 
       - vague_defined_property(A,F)
-      - property_precion_needed(F)
+      - precision_needed(A)
       - property_vagueness(F,A)
     exceptions: 
-      - certainity_no_need(A,F)
+      - certainty_no_need(A,F)
 
   - id: verbal_classification_arbitrariness
     meta:
       title:  Argument From Arbitrariness of a Verbal Classification
-      source: >
-               Douglas Walton, Argumentation Schemes for Presumptive Reasoning. 
-               Mahwah, NJ.: Erlbaum, 1996, pp.104-105.	          
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 17, p. 320. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.104-105."
     variables: [A,F]
     conclusions:
       - arbitrary_rejected(A)
@@ -82,3 +81,5 @@ argument_schemes:
       - arbitrary_defined_property(A,F)
       - needed_nonarbitrary(A,F)
       - arbitrary_property(F,A)
+    exceptions:
+      - arbitrariness_harmless(A,F)

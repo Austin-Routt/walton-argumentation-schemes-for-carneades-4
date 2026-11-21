@@ -12,6 +12,9 @@ python3 "$repo/tools/build_category_files.py" "$repo" --check || status=1
 echo "== tools/test_validate_schemes.py (the validator's probes, mutations and instances)"
 python3 "$repo/tools/test_validate_schemes.py" "$repo" 2>&1 | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1
+echo "== tools/test_migrate_r2.py (the migration tool of release R2)"
+python3 "$repo/tools/test_migrate_r2.py" 2>&1 | tail -1
+[ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/vv/setup.sh (engine sources)"
 WALTON_REPO="$repo" "$here/setup.sh" || exit 1
 echo "== go vet, and the unit tests of the suite itself"

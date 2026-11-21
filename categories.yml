@@ -19,7 +19,7 @@ A_reasoning/3_practical-reasoning.yml:
             practical_sufficient_condition, value_based_practical_reasoning,
             practical_goal, end_and_means_1,
             end_and_means_2, end_and_means_3, two_person_practical, waste,
-            negative_consequences_prudential, pragmatic_alternative, treat,
+            negative_consequences_prudential, pragmatic_alternative, threat,
             ad_baculum, fear, danger, help, distress,
             negative_consequences_reasoning, sunk_costs]
 
@@ -30,11 +30,11 @@ A_reasoning/4_abductive-reasoning.yml:
             retroductive, evidence_hypothesis_verification,
             evidence_hypothesis_falsification, abduction]
 
-A_reasoning/5_casual-reasoning.yml:
+A_reasoning/5_causal-reasoning.yml:
   title: Reasoning - Causal Reasoning
   schemes: [slippery_slope_base_case, slippery_slope_inductive_step,
-            opposition-descriptive_1, opposition-descriptive_2,
-            opposition-descriptive_3, opposition-normative,
+            opposition_descriptive_1, opposition_descriptive_2,
+            opposition_descriptive_3, opposition_normative,
             rhetorical_oppositions_normative, rhetorical_oppositions_descriptive,
             interaction_act_person_1, interaction_act_person_2,
             full_slippery_slope, cause_to_effect, correlation_to_cause]
@@ -43,10 +43,10 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml:
   title: Source-based Arguments - Arguments from Position to Know
   schemes: [position_to_know, witness_testimony, position_to_know_ad_populum,
             expert_opinion_ad_populum, negative_normal_expectations,
-            negative_practical, epistemic_ignorence, memory, appearance,
+            negative_practical, epistemic_ignorance, memory, appearance,
             credible_source, expert_opinion, ignorance]
 
-B_source-based-arguments/2_argumen-from-commitment.yml:
+B_source-based-arguments/2_argument-from-commitment.yml:
   title: Source-based Arguments - Arguments from Commitment
   schemes: [commitment1, commitment2, inconsistent_commitment, positive_value,
             negative_value]
@@ -56,14 +56,14 @@ B_source-based-arguments/3_attacking-personal-credibility.yml:
   schemes: [ad_hominem, pragmatic_inconsistency, circumstantial_ad_hominem, bias,
             bias_ad_hominem]
 
-B_source-based-arguments/4_argumen-from-popular-acceptence.yml:
+B_source-based-arguments/4_argument-from-popular-acceptance.yml:
   title: Source-based Arguments - Arguments from Popular Acceptance
-  schemes: [popular_opinion, pop_scheme, deliberation_ad_populum,
+  schemes: [popular_opinion, pop_scheme, pop_scheme_acceptance, deliberation_ad_populum,
             moral_justification_ad_populum,
             moral_justification_ad_populum_excuse, snob_appeal_ad_populum,
             appeal_to_vanity_ad_populum, rhetoric_ad_populum,
             common_folk_ad_populum, common_folks_group_ad_populum,
-            popular_practise, ethotic1, ethotic2]
+            popular_practice, ethotic1, ethotic2]
 
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml:
   title: Applying Rules to Cases - Arguments Based on Cases
@@ -74,7 +74,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml:
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml:
   title: Applying Rules to Cases - Defeasible Rule-based Arguments
   schemes: [rule_physical_world_1, rule_physical_world_2, rule_mental_world, rule,
-            regulative_rule, regulative_rule_prohibition, exeptional,
+            regulative_rule, regulative_rule_prohibition, exceptional,
             from_precedent, plea_for_excuse, defeasible_modus_ponens]
 
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml:
