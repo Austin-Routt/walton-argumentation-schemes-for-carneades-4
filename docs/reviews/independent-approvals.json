@@ -1372,6 +1372,170 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "part_in_whole",
+      "fingerprint": "sha256:56b5c4d810a42989de497f7b4ddafbc249d40ccf09685011be72ae35fb841f2a",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: part_in_whole",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "part_in_whole/book",
+        "part_in_whole/closure-physical-is-not-species"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "part_in_whole_physical",
+      "fingerprint": "sha256:0b1ca0d0379c47d4feaf9a2f25f8d3f096c43b290caf968175ad70c0571e0b34",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_physical",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "part_in_whole_physical/closure-physical-positive",
+        "part_in_whole_physical/closure-species-is-not-physical"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "part_in_whole_species_degree",
+      "fingerprint": "sha256:42ea829e12fbace63cb451f67772556661d416123d226812b05fe9ed6bc7d0ca",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_species_degree",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "part_in_whole_species_degree/closure-species-degree",
+        "part_in_whole_species_degree/closure-no-common-scale"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "part_in_whole_physical_degree",
+      "fingerprint": "sha256:312fcee4f1dbc562d296150b1a003032eb84d60434f095e50971657524612016",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_physical_degree",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "part_in_whole_physical_degree/closure-physical-degree",
+        "part_in_whole_physical_degree/closure-wrong-property-scale"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "part_in_whole_smaller_degree",
+      "fingerprint": "sha256:5e6ccd28cfc511100376c76366a3b162ab6c4f36f9aaff4bc157bdf6fde0c069",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_smaller_degree",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "part_in_whole_smaller_degree/closure-smaller-degree",
+        "part_in_whole_smaller_degree/closure-no-smaller-part-evidence"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "whole_into_parts",
+      "fingerprint": "sha256:5de898657cc922ce5fcbe6674b5b74dfd56bc52644354a76209dc4cc06c6d8c6",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: whole_into_parts",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "whole_into_parts/book",
+        "whole_into_parts/closure-legacy-only-if-insufficient",
+        "whole_into_parts/closure-legacy-other-part-warrant"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "whole_into_parts_selected",
+      "fingerprint": "sha256:a4e34feb65a99a8cd42353cb6f89bb3fd8003ac4b393fe6891c6caebe8108476",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: whole_into_parts_selected",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "whole_into_parts_selected/closure-arbitrary-selected-member",
+        "whole_into_parts_selected/closure-two-parts",
+        "whole_into_parts_selected/closure-necessary-is-not-sufficient",
+        "whole_into_parts_selected/closure-other-partition-member",
+        "whole_into_parts_selected/closure-other-whole-warrant"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "whole_into_parts_negative",
+      "fingerprint": "sha256:f345576eb150fdf7edd30eae281ad4da035665ed862dee49330d5cf92137456d",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: whole_into_parts_negative",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "whole_into_parts_negative/closure-negative-only-if",
+        "whole_into_parts_negative/closure-not-closed-world",
+        "whole_into_parts_negative/closure-one-negative-part-insufficient",
+        "whole_into_parts_negative/closure-other-partition-negative",
+        "whole_into_parts_negative/closure-sufficient-is-not-necessary"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "verbal_classification_vagueness",
+      "fingerprint": "sha256:3726511efbad6fa9bc908f520ef9d4a72d2fdec1e3bd3c9eaf46b57a85899bae",
+      "evidence": [
+        "docs/reviews/closure-parts-independent-acceptance.md: verbal_classification_vagueness",
+        "docs/source-closure-contracts.md"
+      ],
+      "examples": [
+        "verbal_classification_vagueness/closure-supported-rejection",
+        "verbal_classification_vagueness/closure-precision-evidence-missing",
+        "verbal_classification_vagueness/closure-supported-harmlessness",
+        "verbal_classification_vagueness/closure-question-is-not-exception-evidence",
+        "verbal_classification_vagueness/closure-other-argument-exception",
+        "verbal_classification_vagueness/closure-other-property-exception"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }

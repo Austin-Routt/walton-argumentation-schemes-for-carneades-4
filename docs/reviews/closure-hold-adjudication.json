@@ -246,7 +246,17 @@
         "Compendium pp.316–317 entry9.2"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "REPAIRED: lower degree is no longer an exception defeating possession of the property. The positive species/part-to-property branch concludes has_property(y,A). No printed CQ exists here. The removed exception was a conclusion parenthesis incorrectly promoted to a defeat condition. Remaining scope: The current predicate species_of represents the species reading; physical part and comparative degree variants need explicit scope or separate records. Do not claim the degree parenthesis has been fully computed."
+      "baseline_review_reason": "REPAIRED: lower degree is no longer an exception defeating possession of the property. The positive species/part-to-property branch concludes has_property(y,A). No printed CQ exists here. The removed exception was a conclusion parenthesis incorrectly promoted to a defeat condition. Remaining scope: The current predicate species_of represents the species reading; physical part and comparative degree variants need explicit scope or separate records. Do not claim the degree parenthesis has been fully computed.",
+      "followup_review": {
+        "decision": "approved_with_implemented_family_variants",
+        "evidence": "docs/reviews/closure-parts-independent-acceptance.md",
+        "reviewed_commits": [
+          "611e0c7",
+          "04d586c"
+        ],
+        "focused_execution": "27 cases /54 API+CLI checks, all pass",
+        "next_step": "Final combined acceptance gate; source approval fingerprint is now recorded."
+      }
     },
     {
       "record": "whole_into_parts",
@@ -266,7 +276,17 @@
         "Compendium p.317 entry10.2"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The implementation fixes three named parts and derives the whole's property from X1 plus the stated whole/part warrant. The source allows x1 through xn and alternative negative branches. No printed CQs. The source itself says only if; treating this as a presumptive argumentative pattern does not establish a deductively valid sufficient condition. Remaining scope: Declare the positive, three-part restricted instance. Arbitrary cardinality, other selected parts, negative branches and the only-if interpretation remain unimplemented or unresolved."
+      "baseline_review_reason": "The implementation fixes three named parts and derives the whole's property from X1 plus the stated whole/part warrant. The source allows x1 through xn and alternative negative branches. No printed CQs. The source itself says only if; treating this as a presumptive argumentative pattern does not establish a deductively valid sufficient condition. Remaining scope: Declare the positive, three-part restricted instance. Arbitrary cardinality, other selected parts, negative branches and the only-if interpretation remain unimplemented or unresolved.",
+      "followup_review": {
+        "decision": "approved_with_implemented_family_variants",
+        "evidence": "docs/reviews/closure-parts-independent-acceptance.md",
+        "reviewed_commits": [
+          "611e0c7",
+          "04d586c"
+        ],
+        "focused_execution": "27 cases /54 API+CLI checks, all pass",
+        "next_step": "Final combined acceptance gate; source approval fingerprint is now recorded."
+      }
     },
     {
       "record": "alternative_normative",
@@ -325,7 +345,17 @@
         "Compendium pp.319–320 visually checked"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "REPAIRED wording: the counterclaim concerns precision, not certainty. The argument and property roles in the vagueness/precision premises are coherent. CQ1/CQ2 are premises; CQ3 is an opposing exception asserting that precision is not required here. This is an interpretation of a why-question, not the only possible burden policy. Remaining scope: Approve the content correction, but document when an unanswered precision challenge defeats the argument versus requiring an affirmative exception."
+      "baseline_review_reason": "REPAIRED wording: the counterclaim concerns precision, not certainty. The argument and property roles in the vagueness/precision premises are coherent. CQ1/CQ2 are premises; CQ3 is an opposing exception asserting that precision is not required here. This is an interpretation of a why-question, not the only possible burden policy. Remaining scope: Approve the content correction, but document when an unanswered precision challenge defeats the argument versus requiring an affirmative exception.",
+      "followup_review": {
+        "decision": "approved_declared_static_interpretation",
+        "evidence": "docs/reviews/closure-parts-independent-acceptance.md",
+        "reviewed_commits": [
+          "611e0c7",
+          "04d586c"
+        ],
+        "focused_execution": "27 cases /54 API+CLI checks, all pass",
+        "next_step": "Final combined acceptance gate; source approval fingerprint is now recorded."
+      }
     },
     {
       "record": "verbal_classification_arbitrariness",
@@ -1079,5 +1109,13 @@
     "rule_mental_world",
     "perception",
     "plea_for_excuse"
+  ],
+  "additional_new_approved_records": [
+    "part_in_whole_physical",
+    "part_in_whole_species_degree",
+    "part_in_whole_physical_degree",
+    "part_in_whole_smaller_degree",
+    "whole_into_parts_selected",
+    "whole_into_parts_negative"
   ]
 }
