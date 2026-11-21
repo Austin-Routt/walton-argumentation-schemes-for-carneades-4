@@ -118,15 +118,21 @@ assumptions:
 	}
 }
 
-const counter = `
+// tree derives two new terms from every term: within the profile, it reaches
+// the rule limit long before the term-size limit.
+const tree = `
 language:
-  n/1: "%s is a number"
+  t/1: "%s is a term"
 argument_schemes:
-  - id: count
-    variables: []
-    deletions: [n(X)]
-    conclusions: [n(X+1)]
-assumptions: [n(0)]
+  - id: left
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(l(X))]
+  - id: right
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(r(X))]
+assumptions: [t(a)]
 `
 
 const growing = `
@@ -146,7 +152,7 @@ assumptions:
 // A limit is an error and leaves the graph as it was (docs/contracts.md,
 // contract 3), whether the rule limit or the term size ends the run.
 func TestLimitIsAnErrorAndGraphUnchanged(t *testing.T) {
-	for name, src := range map[string]string{"counter": counter, "growing term": growing} {
+	for name, src := range map[string]string{"tree": tree, "growing term": growing} {
 		ag, err := yaml.Import(strings.NewReader(src))
 		if err != nil {
 			t.Fatalf("%s: import: %v", name, err)
@@ -172,7 +178,7 @@ func TestLimitIsAnErrorAndGraphUnchanged(t *testing.T) {
 
 // A cancelled context stops argument construction with ErrCancelled.
 func TestInferContextCancelled(t *testing.T) {
-	ag, err := yaml.Import(strings.NewReader(counter))
+	ag, err := yaml.Import(strings.NewReader(tree))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -296,5 +302,79 @@ assumptions:
 	}
 	if len(ag.Arguments) != n {
 		t.Errorf("a second Infer: %d arguments, then %d", n, len(ag.Arguments))
+	}
+}
+
+// Outside the profile (contract 1): deletions and guards are unsupported, and
+// arithmetic in a statement is invalid input, not computed.
+func TestProfile(t *testing.T) {
+	for _, c := range []struct {
+		src  string
+		kind error
+	}{
+		{`
+language:
+  n/1: "%s is a number"
+argument_schemes:
+  - id: count
+    variables: [X]
+    deletions: [n(X)]
+    conclusions: [m(X)]
+assumptions: [n(0)]
+`, caes.ErrUnsupported},
+		{`
+language:
+  p/2: "%s p %s"
+  q/2: "%s q %s"
+argument_schemes:
+  - id: s4
+    variables: [P,D]
+    premises: ["p(P,D)"]
+    conclusions: ["q(P,D)"]
+assumptions:
+  - p(joe,1990-05-17)
+`, caes.ErrInvalidInput},
+		{`
+language:
+  p/1: "%s p"
+  q/1: "%s q"
+argument_schemes:
+  - id: s
+    variables: [X]
+    premises: ["p(X)"]
+    conclusions: ["q(X+1)"]
+assumptions: [p(1)]
+`, caes.ErrInvalidInput},
+	} {
+		ag, err := yaml.Import(strings.NewReader(c.src))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := ag.Infer(); !errors.Is(err, c.kind) {
+			t.Errorf("want %v, got %v", c.kind, err)
+		}
+		if len(ag.Arguments) != 0 {
+			t.Errorf("%d arguments added", len(ag.Arguments))
+		}
+	}
+	// a quoted date, a hyphenated name and a negative number are constants
+	ag := infer(t, `
+language:
+  p/2: "%s p %s"
+  q/2: "%s q %s"
+argument_schemes:
+  - id: s4
+    variables: [P,D]
+    premises: ["p(P,D)"]
+    conclusions: ["q(P,D)"]
+assumptions:
+  - 'p(joe,"1990-05-17")'
+  - p(opposition-normative,-1)
+  - 'p(joe,"it rains")'
+`)
+	for _, c := range []string{`q(joe,"1990-05-17")`, "q(opposition-normative,-1)", `q(joe,"it rains")`} {
+		if got := argumentsFor(ag, c); len(got) != 1 {
+			t.Errorf("arguments for %s: %v", c, got)
+		}
 	}
 }

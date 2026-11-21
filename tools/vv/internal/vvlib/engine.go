@@ -2,6 +2,7 @@ package vvlib
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -132,17 +133,25 @@ argument_schemes:
 assumptions: [p(a), r(a)]
 `
 
-// Counter never terminates, whatever the store semantics, and stays small: the
-// scheme replaces n(X) by n(X+1), so the store holds one number at a time.
+// Counter never terminates, whatever the store semantics, and stays small:
+// every term yields two new ones, so it reaches the limit of rule
+// applications with terms of fewer than 20 nodes. It is a theory of the
+// supported profile (propagation rules, no arithmetic): the counting
+// theory used before, n(X) deleted and n(X+1) concluded, is outside it since
+// PLAN.md 2.6 and is refused as unsupported and invalid input.
 const Counter = `
 language:
-  n/1: "%s is a number."
+  t/1: "%s is a term."
 argument_schemes:
-  - id: count
-    variables: []
-    deletions: [n(X)]
-    conclusions: [n(X+1)]
-assumptions: [n(0)]
+  - id: left
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(l(X))]
+  - id: right
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(r(X))]
+assumptions: [t(a)]
 `
 
 // inferOnly imports a graph and constructs arguments without labelling it.
@@ -437,9 +446,26 @@ assumptions:
 				}
 			}
 		}
-		ok := e.usable() && e.Label("q(joe,1990-05-17)") == "in"
-		out = append(out, eres("hyphenated-constants-are-not-computed", ok,
-			"from p(joe,1990-05-17) the engine derives %v: the rule engine evaluates 1990-05-17 as a subtraction %s", got, e.why()))
+		// Restated with PLAN.md 2.6 (contract 1): an unquoted 1990-05-17 is
+		// arithmetic, and a statement carries none. It was
+		// hyphenated-constants-are-not-computed, which asked for the date to be
+		// kept as written.
+		ok := e.InferErr != nil && errors.Is(e.InferErr, caes.ErrInvalidInput) && len(got) == 0
+		out = append(out, eres("arithmetic-in-a-statement-is-invalid-input", ok,
+			"from p(joe,1990-05-17) the engine derives %v (Infer: %v): the rule engine evaluates 1990-05-17 as a subtraction, and the input should be refused", got, e.InferErr))
+	}
+	{
+		// contract 1: deletions and guards are outside the supported profile
+		e := EvalYAML(baseTheory + `
+argument_schemes:
+  - id: s5
+    variables: [X]
+    deletions: [p(X)]
+    conclusions: [q(X)]
+assumptions: [p(a)]
+`)
+		out = append(out, eres("deletions-and-guards-are-unsupported", errors.Is(e.InferErr, caes.ErrUnsupported) && (e.AG == nil || len(e.AG.Arguments) == 0),
+			"a scheme with a deletion is run instead of refused as unsupported (Infer: %v)", e.InferErr))
 	}
 
 	// --- rule engine ---------------------------------------------------------------

@@ -26,6 +26,9 @@ func TestYaml(t *testing.T) {
 	files, err := d.Readdir(0)
 	check(t, err)
 	for _, fi := range files {
+		if skipUnsupported(t, fi.Name()) {
+			continue
+		}
 		file, err := os.Open(yamlDir + fi.Name())
 		check(t, err)
 		if path.Ext(file.Name()) == ".yml" {

@@ -26,8 +26,9 @@ func TheoryToRuleStore(t *Theory) *chr.RuleStore {
 
 // RuleStoreOf translates a theory into a GoCHR rule store, one rule per
 // scheme with conclusions. The error names every scheme whose rule GoCHR
-// refuses, for example for a premise it cannot read (E-PARSE); those schemes
-// are left out of the store.
+// refuses, for example for a premise it cannot read (E-PARSE), or that has a
+// statement with arithmetic the rule engine would compute (contract 1); those
+// schemes are left out of the store.
 func RuleStoreOf(t *Theory) (*chr.RuleStore, error) {
 	// log.Printf("TheoryToRuleStore\n") // DEBUG
 	rs := chr.MakeRuleStore()
@@ -65,6 +66,10 @@ func RuleStoreOf(t *Theory) (*chr.RuleStore, error) {
 			// Note that the body of the rules includes the assumptions
 			// and conclusions of the scheme.
 			// fmt.Printf("AddRule id=%s, premises=%s, deletions=%s, guards=%s, conclusions=%s\n", s.Id, premises, s.Deletions, s.Guards, conclusions)
+			if probs := arithmeticProblems(s); len(probs) != 0 {
+				errs = append(errs, fmt.Sprintf("scheme %s: %s", s.Id, strings.Join(probs, "; ")))
+				continue
+			}
 			if err := rs.AddRule(s.Id, premises, s.Deletions, s.Guards, conclusions); err != nil {
 				errs = append(errs, fmt.Sprintf("scheme %s: %v", s.Id, err))
 			}

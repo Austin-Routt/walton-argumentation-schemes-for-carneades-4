@@ -150,6 +150,11 @@ func checkCmd() {
 		// invalid input (docs/contracts.md, contract 3)
 		os.Exit(caes.ExitStatus(caes.ErrInvalidInput))
 	}
+	if err := caes.Unsupported(ag.Theory); err != nil {
+		// outside the supported profile (docs/contracts.md, contract 1)
+		fmt.Fprintf(outFile, "%v\n", err)
+		os.Exit(caes.ExitStatus(err))
+	}
 	if ag.Inconsistent() {
 		fmt.Fprintf(outFile, "%v\n", caes.NewRunError(caes.ErrInconsistentContext,
 			"the graph assumes two positions of one issue, or a statement and its negation"))

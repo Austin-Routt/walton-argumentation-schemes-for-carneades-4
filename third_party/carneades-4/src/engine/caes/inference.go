@@ -88,6 +88,14 @@ func (ag *ArgGraph) Infer() error {
 // is done before argument construction ends. The graph is then left
 // unchanged.
 func (ag *ArgGraph) InferContext(ctx context.Context) error {
+	if err := Unsupported(ag.Theory); err != nil {
+		return err
+	}
+	for _, a := range ag.Assumptions {
+		if p := ArithmeticProblem(a); p != "" {
+			return NewRunError(ErrInvalidInput, "assumption %s", p)
+		}
+	}
 	if len(ag.Theory.ArgSchemes) != 0 {
 		// rb := TheoryToSWIRulebase(ag.Theory)
 		rb, err := RuleStoreOf(ag.Theory)

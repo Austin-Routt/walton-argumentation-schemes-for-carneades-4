@@ -3,12 +3,41 @@ package test
 import (
 	"fmt"
 	"github.com/carneades/carneades-4/src/engine/caes"
-	//	"github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
+	"github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
 	//	"log"
 	"errors"
-	//	"os"
+	"os"
 	"testing"
 )
+
+// unsupportedExamples are the examples outside the supported profile
+// (docs/contracts.md, contract 1, PLAN.md D3): chr-leq uses CHR deletions and
+// guards, and Infer refuses it as unsupported instead of running it.
+var unsupportedExamples = map[string]bool{"chr-leq.yml": true}
+
+// skipUnsupported checks that Infer refuses a listed example as unsupported,
+// and tells the caller to skip it.
+func skipUnsupported(t *testing.T, name string) bool {
+	t.Helper()
+	if !unsupportedExamples[name] {
+		return false
+	}
+	f, err := os.Open(yamlDir + name)
+	if err != nil {
+		t.Errorf("%s: %v", name, err)
+		return true
+	}
+	defer f.Close()
+	ag, err := yaml.Import(f)
+	if err != nil {
+		t.Errorf("%s: %v", name, err)
+		return true
+	}
+	if err := ag.Infer(); !errors.Is(err, caes.ErrUnsupported) {
+		t.Errorf("%s: Infer returned %v, want unsupported", name, err)
+	}
+	return true
+}
 
 const yamlDir = "../../examples/AGs/YAML/"
 const yamlTmp = "/tmp/"

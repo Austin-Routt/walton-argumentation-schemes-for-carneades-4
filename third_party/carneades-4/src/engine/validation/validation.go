@@ -259,6 +259,9 @@ func validateAssumptions(ag *caes.ArgGraph) []Problem {
 				p := Problem{ASSUMPTION, "", "not a ground atomic formula", k}
 				problems = append(problems, p)
 			}
+			if d := caes.ArithmeticProblem(k); d != "" {
+				problems = append(problems, Problem{ASSUMPTION, "", "arithmetic the rule engine would compute; quote a constant such as a date", k})
+			}
 		}
 		// Check that there is a statement for the assumption
 		//		_, ok = ag.Statements[k]
@@ -408,6 +411,11 @@ func validateScheme(s *caes.Scheme, l caes.Language) []Problem {
 			default:
 				p := Problem{SCHEME, s.Id, "not an atomic formula", atm}
 				problems = append(problems, p)
+			}
+			if kind != "guard" {
+				if d := caes.ArithmeticProblem(atm); d != "" {
+					problems = append(problems, Problem{SCHEME, s.Id, "arithmetic the rule engine would compute; quote a constant such as a date", atm})
+				}
 			}
 			// Check that the predicate of the atom, with the given arity, has been declared in the language
 

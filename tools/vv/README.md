@@ -166,13 +166,15 @@ to the ledger under an issue.
   says: a flipped negation or two swapped arguments in a scheme pass every
   check. That needs examples written from the book, with the expected result
   written by hand (plan items 3.10, 4.4 and 5.7).
-* Six checks state the stronger of two outcomes the project may choose, to
-  make an input work or to reject it with a message:
+* Checks that state one of two outcomes the project could choose, to make an
+  input work or to reject it with a message, follow docs/contracts.md:
+  `premise-order-does-not-matter` passes (the input works);
+  `hyphenated-constants-are-not-computed` was restated as
+  `arithmetic-in-a-statement-is-invalid-input` (contract 1);
   `is-as-predicate-in-conclusion`, `explicit-argument-gets-critical-questions`,
-  `argument-from-scheme-and-parameters`, `scheme-roles-are-imported`,
-  `hyphenated-constants-are-not-computed` and `premise-order-does-not-matter`.
-  Where the decision is to reject, restate the check in a change of its own,
-  after the contract that says so is written down.
+  `argument-from-scheme-and-parameters` and `scheme-roles-are-imported` still
+  state the stronger outcome. Where the decision is to reject, the check is
+  restated in a change of its own, after the contract that says so.
 * A ledger entry names a check, not a cause. Nothing here notices when a known
   failure starts failing for another reason; a fingerprint of each known
   failure's message would, and is not built yet.

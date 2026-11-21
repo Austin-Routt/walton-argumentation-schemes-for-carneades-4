@@ -14,7 +14,7 @@ A contract changes only together with its checks, in one reviewed change.
 
 **Facts.** The ground statements of a graph form a set (contract 2).
 
-Checked by: `iso/*`, `full/*`, `cli/*`, `static/range-restricted`, `string-constants-survive`, `hyphenated-constants-are-not-computed`, `yaml-import-keeps-globals-clean`.
+Checked by: `iso/*`, `full/*`, `cli/*`, `static/range-restricted`, `string-constants-survive`, `arithmetic-in-a-statement-is-invalid-input`, `deletions-and-guards-are-unsupported`, `yaml-import-keeps-globals-clean`.
 
 ## 2. One fact, one argument (D8)
 

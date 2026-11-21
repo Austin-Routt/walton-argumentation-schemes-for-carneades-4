@@ -657,15 +657,11 @@ func sString(s *sc.Scanner) (Term, rune, bool) {
 	if trace {
 		fmt.Printf("--> sString : '%s'\n", s.TokenText())
 	}
-	var (
-		str string
-		err error
-	)
-	_, err = fmt.Sscan(s.TokenText(), &str)
-	if err == nil {
-		return String(str), s.Scan(), true
-	}
-	return String(str), s.Scan(), false
+	// The string keeps its quotes, as in GoCHR's reader, so that a term
+	// prints back as it was written and means the same to both readers.
+	// fmt.Sscan stopped at the first space: "it rains" was read as "it
+	// (E-TERMS).
+	return String(s.TokenText()), s.Scan(), true
 }
 
 func sChar(s *sc.Scanner) (Term, rune, bool) {
