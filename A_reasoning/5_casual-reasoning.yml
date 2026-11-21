@@ -3,6 +3,7 @@
 
 meta:
   title: "Reasoning - Causal Reasoning"
+  version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   accept_all_steps/0: "There is a climate of social opinion such that once people come to accept each step as plausible, then they will also be led to accept the next step."

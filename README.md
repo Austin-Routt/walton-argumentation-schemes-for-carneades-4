@@ -43,13 +43,20 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,162 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,164 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+
+## Versions and releases
+
+The library and the engine carry versions of their own. The library's is `meta.version` of `walton.yml`, which every category file carries too: **0.1.0** at release R1. The engine's is in `third_party/VERSION`, and `carneades` prints it: **4.3.1+walton.1**, that is Carneades 4.3.1 and GoCHR at the commits of `sources.lock`, with the fixes of this repository.
+
+* **R1, a preview** (`PLAN.md`, gate R): the engine's profile of `docs/contracts.md` is accepted; the library is not yet. Its repairs are interpretations until Phase 5 has checked them against the book, and every record's row in `tools/vv/source_ledger.yml` is still at "mapped".
+* **R2**, the first stable release of the library (1.0.0), follows gate L: every released record at "example passed", and the one migration of identifiers with its old-to-new table.
 
 ## Known limitations
 
 * The library is a **preview** (release R1 of `PLAN.md`): every scheme runs, but the repairs of 2026-11-21 are executable interpretations of the book until `PLAN.md` Phase 5 has checked them, and the sorting of critical questions into assumptions and exceptions is still to be done for most records (5.1). The engine as shipped could evaluate no scheme of `walton.yml` through the command and 54 of the 114 from their category file; see the changelog for what changed.
 * A scheme's `assumptions` hold until they are called into question (pp. 373–375): list a statement under `questioned:` in a graph file (or `ArgGraph.Questioned`), and the default is suspended until an argument supports it. A statement the graph itself stipulates under `assumptions:` stays assumed (`docs/contracts.md`, contract 5).
-* Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; no quoted strings with spaces; one term per line in YAML lists).
+* Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; one term per line in YAML lists; no `is`, `true` or `false` as predicate names).
 * Misspelt identifiers are kept so that existing argument graphs keep working: scheme ids such as `exeption_to_rule`, `epistemic_ignorence`, `exeptional`, predicate names such as `recieves_evaluation`, `oficcial_rulebook`, `succesful_account`, and the file name `5_casual-reasoning.yml`. They change once, in release R2, with an old-to-new table (`PLAN.md` D4, 5.6). The repairs of 2026-11-21 did change the identifiers of the nine schemes they touch (none of which could be evaluated through the command before); the changelog lists them.
 * Some schemes use 0-ary statements (for example `background`, `being_credible`) where the book's wording has no obvious variables.
 

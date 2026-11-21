@@ -69,7 +69,7 @@ def templates_used(block):
     return keys
 
 
-def render(title, templates, blocks, ids, issues):
+def render(title, templates, blocks, ids, issues, version=None):
     used = []
     for sid in ids:
         for k in templates_used(blocks[sid]):
@@ -78,8 +78,10 @@ def render(title, templates, blocks, ids, issues):
     missing = [k for k in used if k not in templates]
     if missing:
         raise SystemExit(f"{title}: walton.yml has no template for {missing}")
-    out = [HEADER, "meta:", f"  title: {json.dumps(title, ensure_ascii=False)}",
-           f"  source: {json.dumps(SOURCE)}", "language:"]
+    out = [HEADER, "meta:", f"  title: {json.dumps(title, ensure_ascii=False)}"]
+    if version:                                                # the library's version, from walton.yml
+        out.append(f"  version: {json.dumps(str(version))}")
+    out += [f"  source: {json.dumps(SOURCE)}", "language:"]
     out += [templates[k] for k in templates if k in used]      # walton.yml order
     if issues:                                                 # the issue schemes, verbatim
         out += [""] + issues
@@ -92,6 +94,7 @@ def main(argv):
     root = next((a for a in argv[1:] if not a.startswith("--")), os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     check = "--check" in argv
     templates, blocks, issues = read_master(os.path.join(root, "walton.yml"))
+    version = (yaml.safe_load(open(os.path.join(root, "walton.yml"), encoding="utf-8")).get("meta") or {}).get("version")
     cats = yaml.safe_load(open(os.path.join(root, "categories.yml"), encoding="utf-8"))
     seen = {}
     for rel, spec in cats.items():
@@ -106,7 +109,7 @@ def main(argv):
         raise SystemExit(f"categories.yml does not place these schemes of walton.yml: {unassigned}")
     stale = []
     for rel, spec in cats.items():
-        text = render(spec["title"], templates, blocks, spec["schemes"], issues)
+        text = render(spec["title"], templates, blocks, spec["schemes"], issues, version)
         path = os.path.join(root, rel)
         current = open(path, encoding="utf-8").read() if os.path.exists(path) else None
         if current == text:

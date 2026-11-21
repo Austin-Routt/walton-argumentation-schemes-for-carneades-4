@@ -3,6 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Verbal Classification Arguments"
+  version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."

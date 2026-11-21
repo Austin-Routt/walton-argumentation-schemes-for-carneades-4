@@ -7,14 +7,17 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
 
+	"github.com/carneades/carneades-4/src/common"
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/dot"
 	cyaml "github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
 	"github.com/carneades/carneades-4/src/engine/validation"
+	"gopkg.in/yaml.v2"
 )
 
 // Engine checks state what the engine has to do for the scheme library to be
@@ -1229,5 +1232,49 @@ func ToolchainChecks() []Result {
 
 	o, err = goCmd(dir, mod, append([]string{"test", "-count=1", "-vet=off", "-skip", "TestCouchDB"}, pkgs...)...)
 	out = append(out, eres("baseline-upstream-tests-without-couchdb", err == nil, "upstream tests fail even without vet and CouchDB: %.300s", o))
+	return out
+}
+
+// VersionChecks: the engine and the library each carry a version of their
+// own (PLAN.md Phase 6). third_party/VERSION names the engine's, and the
+// command prints the same; walton.yml's meta.version names the library's,
+// and every category file carries it.
+func VersionChecks() []Result {
+	root := RepoRoot()
+	out := []Result{}
+	engine := ""
+	if b, err := os.ReadFile(filepath.Join(root, "third_party", "VERSION")); err == nil {
+		var v struct {
+			Engine string `yaml:"engine"`
+		}
+		if yaml.Unmarshal(b, &v) == nil {
+			engine = v.Engine
+		}
+	}
+	out = append(out, eres("engine-version-recorded", engine != "" && engine == common.Version,
+		"third_party/VERSION names the engine version %q and the command prints %q: they should be one and the same", engine, common.Version))
+	read := func(rel string) string {
+		var f struct {
+			Meta struct {
+				Version string `yaml:"version"`
+			} `yaml:"meta"`
+		}
+		b, err := os.ReadFile(filepath.Join(root, filepath.FromSlash(rel)))
+		if err != nil || yaml.Unmarshal(b, &f) != nil {
+			return ""
+		}
+		return f.Meta.Version
+	}
+	lib := read("walton.yml")
+	probs := []string{}
+	if !regexp.MustCompile(`^[0-9]+\.[0-9]+\.[0-9]+$`).MatchString(lib) {
+		probs = append(probs, fmt.Sprintf("walton.yml meta.version is %q, not MAJOR.MINOR.PATCH", lib))
+	}
+	for _, f := range SchemeFiles(root) {
+		if v := read(f); v != lib {
+			probs = append(probs, fmt.Sprintf("%s carries version %q", f, v))
+		}
+	}
+	out = append(out, res("", "(engine)", "library-version-recorded", probs))
 	return out
 }

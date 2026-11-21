@@ -7122,6 +7122,7 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|default-yields-to-stipulated-position
 |(engine)|deletions-and-guards-are-unsupported
 |(engine)|engine-keeps-stdout-clean
+|(engine)|engine-version-recorded
 |(engine)|explicit-argument-without-questions-is-reported
 |(engine)|export-keeps-compound-parameters
 |(engine)|export-keeps-expected-labels
@@ -7135,6 +7136,7 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|invalid-rule-is-reported
 |(engine)|issue-extension-keeps-positions
 |(engine)|labelling-returns-after-issue-gains-position
+|(engine)|library-version-recorded
 |(engine)|malformed-statement-is-an-error
 |(engine)|negated-assumption-alone
 |(engine)|negated-premises-match
