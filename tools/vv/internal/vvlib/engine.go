@@ -571,6 +571,47 @@ assumptions: ["p(a,b)"]
 		out = append(out, eres("no-scheme-is-starved", e.usable() && e.Label("s(a)") == "in",
 			"a scheme listed after two mutually recursive schemes never gets its turn: from r(a) it should conclude s(a), which is %s", e.Label("s(a)")))
 	}
+	{
+		// Issue closure over 1,200 statements. The acceptance candidate's scan
+		// visited some 1.4 million candidates and refused the graph at its
+		// budget of 1,000,000; positions are now looked up by key
+		// (docs/contracts.md, contract 3).
+		var b strings.Builder
+		b.WriteString("language:\n  p/1: \"%s is p.\"\n  q/1: \"%s is q.\"\n  r/1: \"%s is r.\"\n" +
+			"issue_schemes:\n  negation: [\"S\", \"¬S\"]\nargument_schemes:\n" +
+			"  - id: a\n    variables: [X]\n    premises: [\"p(X)\"]\n    conclusions: [\"q(X)\"]\n" +
+			"  - id: b\n    variables: [X]\n    premises: [\"r(X)\"]\n    conclusions: [\"¬q(X)\"]\nassumptions:\n")
+		for i := 0; i < 400; i++ {
+			fmt.Fprintf(&b, "  - p(k%d)\n", i)
+		}
+		for i := 0; i < 200; i++ {
+			fmt.Fprintf(&b, "  - r(k%d)\n", i)
+		}
+		e := EvalYAML(b.String())
+		issues := 0
+		if e.AG != nil {
+			issues = len(e.AG.Issues)
+		}
+		out = append(out, eres("large-issue-closure-completes",
+			e.usable() && issues == 200 && e.Label("q(k10)") == "out" && e.Label("¬q(k10)") == "out" && e.Label("q(k300)") == "in",
+			"400 arguments for q(kN) and 200 for ¬q(kN): want 200 issues, q(k10) and ¬q(k10) out, q(k300) in; got %d issues, %s, %s, %s %s",
+			issues, e.Label("q(k10)"), e.Label("¬q(k10)"), e.Label("q(k300)"), e.why()))
+	}
+	{
+		// A join that mostly fails: p(X), p(Y), p(Z), q(X,Y,Z) over 120 facts p
+		// and one fact q visits some 1.7 million candidates, which the
+		// acceptance candidate refused at its budget of 1,000,000.
+		var b strings.Builder
+		b.WriteString("language:\n  p/1: \"%s is p.\"\n  q/3: \"%s, %s and %s are q.\"\n  t/3: \"%s, %s and %s are t.\"\n" +
+			"argument_schemes:\n  - id: s\n    variables: [X, Y, Z]\n    premises: [\"p(X)\", \"p(Y)\", \"p(Z)\", \"q(X,Y,Z)\"]\n" +
+			"    conclusions: [\"t(X,Y,Z)\"]\nassumptions:\n  - q(c1,c2,c3)\n")
+		for i := 0; i < 120; i++ {
+			fmt.Fprintf(&b, "  - p(c%d)\n", i)
+		}
+		e := EvalYAML(b.String())
+		out = append(out, eres("failing-join-completes", e.usable() && e.Label("t(c1,c2,c3)") == "in",
+			"a four-premise join over 120 facts with one match: t(c1,c2,c3) should be in, it is %s %s", e.Label("t(c1,c2,c3)"), e.why()))
+	}
 	// Theories that can run away are evaluated in a process of their own, with a
 	// time limit and a memory limit (isolate.go).
 	// A counter: genuinely infinite, whatever the store semantics, and small.

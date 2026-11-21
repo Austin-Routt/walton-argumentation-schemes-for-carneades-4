@@ -155,9 +155,8 @@ func checkCmd() {
 		fmt.Fprintf(outFile, "%v\n", err)
 		os.Exit(caes.ExitStatus(err))
 	}
-	if ag.Inconsistent() {
-		fmt.Fprintf(outFile, "%v\n", caes.NewRunError(caes.ErrInconsistentContext,
-			"the graph assumes two positions of one issue, or a statement and its negation"))
-		os.Exit(caes.ExitStatus(caes.ErrInconsistentContext))
+	if err := ag.CheckContext(); err != nil {
+		fmt.Fprintf(outFile, "%v\n", err)
+		os.Exit(caes.ExitStatus(err))
 	}
 }

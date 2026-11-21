@@ -1,0 +1,526 @@
+{
+  "schema": "walton-consolidated-independent-source-disposition/v1",
+  "review_date": "2026-11-21",
+  "scope": "All 120 current integrated source-ledger rows; read-only adjudication, no new engine test claim.",
+  "repository_head_at_capture": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+  "capture_note": "The reviewed working files may include uncommitted integration edits; SHA256 below identifies the actual audited source ledger and scheme file, not only HEAD.",
+  "source_ledger_sha256": "6cf5bfcacca1a0629ba88a289a8de16ba40ec9eff0a4b392d21a69757e71e545",
+  "walton_yml_sha256": "197c68f249b26012e846fe5a84a53eb6e782511c4d2b8ac87fab8029653d1d47",
+  "book_pdf_sha256": "d010348014e8b80fa561b68e5fac732cce0b3905fb0b1d522dd6fd2578a69634",
+  "input_reviews": {
+    "book-first-audit/adjudication.json": "230b5d341281449f481eed32327dbb51d6c4b4c7a15cdf34ba7cf17c751a90be",
+    "book-second-audit/per-record-audit.json": "097d6cb23afae4f7b11073d3b064764bc72c76bf799394b78ca42b9a2ab128d0",
+    "fixes/docs/reviews/atkinson-2007-decisions.json": "dbb6ceef98b5fa510230ce1b7ff27fbf547a8a66826884d00ecba9c228524332",
+    "book-first-audit/final-disposition/peer13-followup-2026-11-21.json": "0e3b5e80c10a3e6abdd3274691834e1e1ffd94e758b370ddc96dd356720ea9ee"
+  },
+  "peer13_followup": {
+    "date": "2026-11-21",
+    "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+    "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+    "approved_formula_aliases": [
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "illustration",
+        "reviewed_formula_changes": {
+          "premises": {
+            "before": [
+              "usually_properties(P1,P2)",
+              "same_properties(Y,P1,P2)"
+            ],
+            "after": [
+              "usually_properties(P1,P2)",
+              "has_properties(Y,P1,P2)"
+            ]
+          }
+        },
+        "source_pages": [
+          314,
+          315
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      },
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "interaction_act_person_2",
+        "reviewed_formula_changes": {
+          "premises": {
+            "before": [
+              "person_judgment_value(A,V1)",
+              "person_value_depending(V1,X,V2)"
+            ],
+            "after": [
+              "person_value(A,V1)",
+              "person_value_depending(V1,X,V2)"
+            ]
+          }
+        },
+        "source_pages": [
+          321
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      },
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "perception",
+        "reviewed_formula_changes": {
+          "conclusions": {
+            "before": [
+              "reasonable_case(I)"
+            ],
+            "after": [
+              "reasonable_believe(I)"
+            ]
+          }
+        },
+        "source_pages": [
+          345,
+          346
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-second-followup.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      }
+    ],
+    "historical_inputs": {
+      "book-first-audit/adjudication-pre-peer13.json": "b26a72a5851bd343222e06a6a2f4504d38ccf9c9e8c41bb21302e3b4b5f743bc",
+      "book-second-audit/per-record-audit-pre-peer13.json": "c8599b8255d2239215f9662e801022e53f23c43b243c5ecd94e9acb9026d445f"
+    },
+    "record_updates": {
+      "popular_opinion": {
+        "note": "PR13 follow-up corrected an error missed by the first independent review: printed p311 CQ2 asks for good reasons to doubt that A is true, not that A is generally true. The template now expresses that exact truth question; its exception role and approved scope are retained.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "rhetorical_oppositions_descriptive": {
+        "note": "PR13 follow-up corrected the ambiguous major-premise template against printed p318: the latter participant bears the converse relation to the former, and contrariwise. The original conclusion already had the correct reversed arguments. Approval applies to the corrected template.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "two_person_practical": {
+        "note": "PR13 follow-up corrected sets to sees using visually checked printed pp97,325, preserving the adviser-to-agent communication. This closes the wording defect; its separate dialogue and alternative-action scope qualifications remain.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "negative_practical": {
+        "note": "PR13 correctly found that the original /book fixture still paired loaded with reversed accident/delay consequences after the formula repair. It now uses unloaded: assuming unloaded falsely risks an accident; assuming not-unloaded falsely costs delay. The source locator explicitly identifies this as an illustrative application of p327, not a printed example. The source-correct negative branch remains held for the existing branch/burden scope.",
+        "examples": [
+          "negative_practical/book"
+        ],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "illustration": {
+        "note": "PR13 follow-up confirms the individual/F/G conjunction is identical in entries6.1 and6.2. same_properties/3 is now canonically has_properties/3, with migration and an actual two-scheme chain plus wrong-individual/property controls. Generic premise-withdrawal controls isolate the actual selected schema after a positive control; full-library positive, label and exception checks retain their context, so valid rederivation is not forbidden.",
+        "examples": [
+          "illustration/peer13-shared-conjunction-chains-from-example"
+        ],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "from_example": {
+        "note": "The PR13 follow-up additionally unifies illustration's same_properties/3 with this record's has_properties/3, because the same individual and two properties are asserted. The new composed case uses one conjunction fact to support this induction and then illustration. This interoperability improvement does not resolve the independent generalization-strength policy hold.",
+        "examples": [
+          "illustration/peer13-shared-conjunction-chains-from-example"
+        ],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "interaction_act_person_1": {
+        "note": "PR13 follow-up confirms that this record's person_value/2 conclusion and entry18.2's person_judgment_value/2 premise express the same person/judgment-value relation on p321. The consumer is canonicalized to person_value/2; this producer formula is unchanged. A two-scheme case checks chaining without mixing people or values.",
+        "examples": [
+          "interaction_act_person_2/peer13-shared-person-valuation-chains"
+        ],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "interaction_act_person_2": {
+        "note": "PR13 follow-up canonically replaces person_judgment_value/2 with person_value/2: printed p321 uses the same person/judgment-value assertion as entry18.1's conclusion. Migration and an actual two-scheme case preserve the evaluation-context convention and reject wrong-person/wrong-value instances.",
+        "examples": [
+          "interaction_act_person_2/peer13-shared-person-valuation-chains"
+        ],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "perception": {
+        "note": "PR13 follow-up visually compared pp345–346 and canonicalized reasonable_case/1 to memory's reasonable_believe/1 for the same case-qualified proposition. Five new cases establish independent supports, survival of either undefeated support, defeat of both, and protection against another case's memory. The not_indicator(I) observer/context qualification remains; no stage is promoted. The migrator rejects colliding old/canonical keyed entries rather than silently choosing their metadata or labels.",
+        "examples": [
+          "perception/peer13-converges-with-memory",
+          "perception/peer13-unreliable-image-leaves-memory",
+          "memory/peer13-false-basis-leaves-perception",
+          "memory/peer13-both-supports-defeated",
+          "perception/peer13-other-case-memory-does-not-rescue"
+        ],
+        "references": [
+          "docs/reviews/peer13-second-followup.md",
+          "peer13-comparison-second.md"
+        ]
+      },
+      "memory": {
+        "note": "The PR13 follow-up makes perception's reasonable-belief conclusion identical to this record's existing conclusion for the same case-qualified proposition. This record's formula and scoped recaller defeaters remain unchanged. Five composed cases separately defeat each source, both sources and an unrelated case's memory.",
+        "examples": [
+          "perception/peer13-converges-with-memory",
+          "perception/peer13-unreliable-image-leaves-memory",
+          "memory/peer13-false-basis-leaves-perception",
+          "memory/peer13-both-supports-defeated",
+          "perception/peer13-other-case-memory-does-not-rescue"
+        ],
+        "references": [
+          "docs/reviews/peer13-second-followup.md",
+          "peer13-comparison-second.md"
+        ]
+      },
+      "credible_source": {
+        "note": "PR13 follow-up restores the inherited generic biased/1 wording rather than adding an Arguer restriction. The proposition/exception remains unchanged, and the reviewed fingerprint is refreshed for its language contract.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-second-followup.md"
+        ]
+      },
+      "bias": {
+        "note": "PR13 follow-up restores the generic upstream biased/1 wording, which also fits the arguer of this entry. The logical formula and source interpretation are unchanged.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-second-followup.md"
+        ]
+      },
+      "witness_testimony": {
+        "note": "PR13 follow-up restores the generic upstream biased/1 wording instead of the added Arguer restriction. This does not resolve the case/account scope or separately cited original-source holds.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-second-followup.md"
+        ]
+      },
+      "moral_justification_ad_populum": {
+        "note": "PR13 additionally notes that the source's (or should be) alternative is omitted from premise2. That omission must be stated in the selected reading; peer approval alone does not supply the missing branch or close the participant/context qualification.",
+        "examples": [],
+        "references": [
+          "peer13-comparison-first.md"
+        ]
+      },
+      "from_model": {
+        "note": "PR13 approved the older form while noting it retained only the conditional consequent. The independent source-supported model-specific conditional warrant repair and wrong-model case remain required; peer approval of an earlier representation is not a reason to revert them.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "division_generic": {
+        "note": "PR13's full-library observation is correct: an undisputed divisional-heredity default can transfer a stipulated whole-property fact to all parts. This is the declared defeasible policy, not evidence of universal heredity. Usage guidance must retain whole/context identity, deliberate scheme selection and questioning conventions.",
+        "examples": [],
+        "references": [
+          "docs/using.md",
+          "peer13-comparison-first.md"
+        ]
+      },
+      "bias_ad_hominem": {
+        "note": "PR13 follow-up explicitly retains morally_bad/1 separately from generic bad_character/1: moral badness is a more specific source judgment, not an automatic equivalence to every character criticism. An application may supply a justified bridge; the generic library does not assert one.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-second-followup.md"
+        ]
+      },
+      "ad_hominem": {
+        "note": "PR13 follow-up explicitly retains bad_character/1 separately from morally_bad/1 in entry47. The source does not justify automatic equivalence of generic character criticism and the more specific moral judgment.",
+        "examples": [],
+        "references": [
+          "docs/reviews/peer13-second-followup.md"
+        ]
+      }
+    },
+    "full_peer_comparison": [
+      "peer13-comparison-first.md",
+      "peer13-comparison-first.json",
+      "peer13-comparison-second.md",
+      "peer13-comparison-second.json",
+      "docs/reviews/pr13-reconciliation.md"
+    ],
+    "source_stage_counts_unchanged": {
+      "example-passed": 70,
+      "transcription-checked": 48,
+      "mapped": 2
+    }
+  },
+  "record_count": 120,
+  "stage_counts": {
+    "transcription-checked": 48,
+    "example-passed": 70,
+    "mapped": 2
+  },
+  "disposition_counts": {
+    "book form approved; own-original-source hold": 3,
+    "qualified; interpretation approval withheld": 44,
+    "approved within declared scope": 70,
+    "blocked as exact mapped book formulation": 1,
+    "mapping-only; source interpretation unreviewed": 2
+  },
+  "origin_and_stage_counts": {
+    "upstream / transcription-checked": 17,
+    "book / example-passed": 65,
+    "book / transcription-checked": 31,
+    "upstream / example-passed": 5,
+    "upstream / mapped": 2
+  },
+  "approved_ids": [
+    "abduction",
+    "abductive_action_to_character",
+    "abductive_character_to_action",
+    "abductive_forward",
+    "ad_baculum",
+    "ad_hominem",
+    "alternative_cognitive",
+    "appeal_to_vanity_ad_populum",
+    "appearance",
+    "bias",
+    "bias_ad_hominem",
+    "commitment1",
+    "commitment2",
+    "common_folk_ad_populum",
+    "common_folks_group_ad_populum",
+    "composition_generic",
+    "credible_source",
+    "danger",
+    "defeasible_modus_ponens",
+    "deliberation_ad_populum",
+    "distress",
+    "division_generic",
+    "epistemic_ignorance",
+    "evidence_hypothesis_falsification",
+    "evidence_hypothesis_verification",
+    "exceptional",
+    "expert_opinion_ad_populum",
+    "fear",
+    "from_model",
+    "from_precedent",
+    "full_slippery_slope",
+    "gradualism",
+    "group_1",
+    "group_2",
+    "help",
+    "illustration",
+    "inconsistent_commitment",
+    "interaction_act_person_1",
+    "interaction_act_person_2",
+    "memory",
+    "negative_consequences_prudential",
+    "negative_consequences_reasoning",
+    "opposition_descriptive_1",
+    "opposition_descriptive_2",
+    "opposition_descriptive_3",
+    "opposition_normative",
+    "pop_scheme",
+    "pop_scheme_acceptance",
+    "popular_opinion",
+    "position_to_know_ad_populum",
+    "practical_analogy_negative",
+    "practical_analogy_positive",
+    "practical_goal",
+    "pragmatic_alternative",
+    "pragmatic_inconsistency",
+    "precedent_slippery_slope",
+    "regulative_rule",
+    "regulative_rule_prohibition",
+    "retroductive",
+    "rhetoric_ad_populum",
+    "rhetorical_oppositions_descriptive",
+    "rhetorical_oppositions_normative",
+    "rule",
+    "rule_physical_world_1",
+    "sorites_slippery_slope",
+    "sunk_costs_precommitment",
+    "threat",
+    "verbal_classification",
+    "verbal_slippery_slope",
+    "waste"
+  ],
+  "held_ids": [
+    "abductive_backward",
+    "alternative_normative",
+    "analogy",
+    "cause_to_effect",
+    "circumstantial_ad_hominem",
+    "correlation_to_cause",
+    "definition_to_verbal_classification",
+    "end_and_means_1",
+    "end_and_means_2",
+    "end_and_means_3",
+    "established_rule",
+    "ethotic1",
+    "ethotic2",
+    "exeption_to_rule",
+    "expert_opinion",
+    "from_antimodel",
+    "from_example",
+    "ignorance",
+    "moral_justification_ad_populum",
+    "moral_justification_ad_populum_excuse",
+    "negative_consequences",
+    "negative_normal_expectations",
+    "negative_practical",
+    "negative_value",
+    "part_in_whole",
+    "perception",
+    "plea_for_excuse",
+    "popular_practice",
+    "position_to_know",
+    "positive_consequences",
+    "positive_value",
+    "practical_inference",
+    "practical_necessary_condition",
+    "practical_reasoning1",
+    "practical_reasoning2",
+    "practical_sufficient_condition",
+    "rule_mental_world",
+    "rule_physical_world_2",
+    "sacrifice",
+    "sign",
+    "slippery_slope_base_case",
+    "slippery_slope_inductive_step",
+    "snob_appeal_ad_populum",
+    "sunk_costs",
+    "two_person_practical",
+    "value_based_practical_reasoning",
+    "verbal_classification_arbitrariness",
+    "verbal_classification_vagueness",
+    "whole_into_parts",
+    "witness_testimony"
+  ],
+  "promotion_mismatches": [],
+  "reviewed_book_formula_drift": [],
+  "known_declared_source_cq_counts": 118,
+  "unknown_declared_source_cq_ids": [
+    "exeption_to_rule",
+    "practical_reasoning2"
+  ],
+  "known_zero_declared_source_cq_counts": 53,
+  "printed_cq_occurrences_counted_per_record": 206,
+  "additional_n0_hooks": 15,
+  "nonstandard_blank_operational_mappings": [
+    {
+      "record": "practical_reasoning1",
+      "question": 5,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 6,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 7,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 11,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 12,
+      "kind": "assumption"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 14,
+      "kind": "assumption"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 15,
+      "kind": "assumption"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 17,
+      "kind": "assumption"
+    }
+  ],
+  "application_standard_rows_without_atoms": [
+    {
+      "record": "negative_normal_expectations",
+      "question": 2
+    },
+    {
+      "record": "negative_normal_expectations",
+      "question": 3
+    },
+    {
+      "record": "negative_practical",
+      "question": 2
+    },
+    {
+      "record": "negative_practical",
+      "question": 3
+    },
+    {
+      "record": "circumstantial_ad_hominem",
+      "question": 4
+    },
+    {
+      "record": "full_slippery_slope",
+      "question": 1
+    },
+    {
+      "record": "full_slippery_slope",
+      "question": 2
+    },
+    {
+      "record": "ethotic1",
+      "question": 3
+    },
+    {
+      "record": "ethotic2",
+      "question": 3
+    },
+    {
+      "record": "ignorance",
+      "question": 2
+    },
+    {
+      "record": "ignorance",
+      "question": 3
+    }
+  ],
+  "source_questions_caveat": "Compendium questions are counted for book-mapped formulations. This does not establish original-source question counts for inherited variants. Zero and unknown are distinct; n0 hooks are implementation additions, not printed source questions.",
+  "runtime_gate_caveat": "Full integrated runtime/CI/release evidence is owned by the root review. This report checks consistency and substantive source adjudication; it does not relabel passing reference cases as proof of complete semantic fidelity."
+}

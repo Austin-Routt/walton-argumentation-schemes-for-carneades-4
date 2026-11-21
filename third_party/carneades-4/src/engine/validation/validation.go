@@ -148,13 +148,20 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 		s := arg.Scheme
 		if len(arg.Parameters) == 0 && len(s.Variables) != 0 {
 			// no parameters written: the substitution is the one that makes
-			// the conclusion and the premises instances of the scheme
-			if !instanceWithoutParameters(s, arg) {
+			// the conclusion, premises and exception links instances of the
+			// scheme. Try every matching substitution: a symmetric premise
+			// list can have more than one, and its exception links must agree
+			// with the same one.
+			validInstance := false
+			validExceptions := instanceWithoutParameters(s, arg, func(b terms.Bindings) bool {
+				validInstance = true
+				return carriesExceptions(ag, arg, b)
+			})
+			if !validInstance {
 				p := Problem{ARGUMENT, id, "premises and conclusion do not instantiate the scheme with one substitution", ""}
 				problems = append(problems, p)
-			}
-			if len(s.Exceptions) != 0 && arg.Undercutter == nil {
-				p := Problem{ARGUMENT, id, "does not carry the scheme's exceptions (no undercutter); give it an undercutter, or let inference construct it from the scheme", strings.Join(s.Exceptions, ", ")}
+			} else if !validExceptions {
+				p := exceptionProblem(id, s)
 				problems = append(problems, p)
 			}
 			continue
@@ -211,11 +218,12 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 		}
 
 		// the scheme's exceptions are critical questions the argument has to
-		// carry: an argument written out without an undercutter could never be
-		// undercut by them (docs/contracts.md, contract 6). It is reported,
-		// not completed: a written-out argument is never rewritten.
-		if len(s.Exceptions) != 0 && arg.Undercutter == nil {
-			p := Problem{ARGUMENT, id, "does not carry the scheme's exceptions (no undercutter); give it an undercutter, or let inference construct it from the scheme", strings.Join(s.Exceptions, ", ")}
+		// carry: a nonnil undercutter alone is not enough. Every exception
+		// must have a direct linked argument for that undercutter, under the
+		// same substitution (docs/contracts.md, contract 6). Report missing
+		// links; never complete or rewrite an authored graph.
+		if !carriesExceptions(ag, arg, b) {
+			p := exceptionProblem(id, s)
 			problems = append(problems, p)
 		}
 
@@ -252,8 +260,9 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 // instanceWithoutParameters reports whether an argument written without
 // parameters is an instance of its scheme: one substitution makes its
 // conclusion a conclusion of the scheme and its premises the scheme's
-// premises and assumptions, each used once.
-func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument) bool {
+// premises and assumptions, each used once. accept checks that the exception
+// links use the same substitution, without writing inferred parameters back.
+func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument, accept func(terms.Bindings) bool) bool {
 	if arg.Conclusion == nil || len(arg.Premises) != len(s.Premises)+len(s.Assumptions) {
 		return false
 	}
@@ -283,7 +292,7 @@ func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument) bool {
 		if !ok {
 			continue
 		}
-		if b, ok := terms.Match(cp, c, nil); ok && matchEach(patterns, stmts, b, make([]bool, len(patterns))) {
+		if b, ok := terms.Match(cp, c, nil); ok && matchEachWith(patterns, stmts, b, make([]bool, len(patterns)), accept) {
 			return true
 		}
 	}
@@ -293,8 +302,12 @@ func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument) bool {
 // matchEach reports whether the statements can be paired one to one with the
 // patterns so that every pair matches under one extension of the bindings b.
 func matchEach(patterns, stmts []terms.Term, b terms.Bindings, used []bool) bool {
+	return matchEachWith(patterns, stmts, b, used, func(terms.Bindings) bool { return true })
+}
+
+func matchEachWith(patterns, stmts []terms.Term, b terms.Bindings, used []bool, accept func(terms.Bindings) bool) bool {
 	if len(stmts) == 0 {
-		return true
+		return accept(b)
 	}
 	for i, p := range patterns {
 		if used[i] {
@@ -302,13 +315,74 @@ func matchEach(patterns, stmts []terms.Term, b terms.Bindings, used []bool) bool
 		}
 		if b2, ok := terms.Match(p, stmts[0], b); ok {
 			used[i] = true
-			if matchEach(patterns, stmts[1:], b2, used) {
+			if matchEachWith(patterns, stmts[1:], b2, used, accept) {
 				return true
 			}
 			used[i] = false
 		}
 	}
 	return false
+}
+
+func exceptionProblem(id string, s *caes.Scheme) Problem {
+	return Problem{ARGUMENT, id,
+		"does not carry the scheme's exceptions: each instantiated exception needs a direct, single-premise linked argument for this argument's undercutter; let inference construct the argument, or supply all exception links",
+		strings.Join(s.Exceptions, ", ")}
+}
+
+// carriesExceptions recognizes the exception structure built by
+// InstantiateScheme and preserved by YAML export/import. An inert undercutter,
+// a link for another instance, a missing exception, an extra prerequisite or a
+// custom weighing function must not silently suppress a scheme's exceptions.
+// An exception argument can itself be attacked, as generated arguments can;
+// this validates its structure, not the outcome of a particular dispute.
+func carriesExceptions(ag *caes.ArgGraph, arg *caes.Argument, b terms.Bindings) bool {
+	if len(arg.Scheme.Exceptions) == 0 {
+		return true
+	}
+	u := arg.Undercutter
+	if u == nil || ag.Statements[terms.Normalize(u.Id)] != u {
+		return false
+	}
+	for _, e := range arg.Scheme.Exceptions {
+		pattern, ok := terms.ReadString(e)
+		if !ok {
+			return false
+		}
+		// Validation also sees malformed, nonground authored input. Do not
+		// follow variable-to-variable bindings (possibly cyclic) while
+		// checking an exception: valid argument bindings are ground terms.
+		for _, v := range pattern.OccurVars() {
+			value, bound := terms.GetBinding(v, b)
+			if !bound || !terms.Ground(value, nil) {
+				return false
+			}
+		}
+		instance := terms.Substitute(pattern, b)
+		if !terms.Ground(instance, nil) {
+			return false
+		}
+		found := false
+		for _, link := range u.Args {
+			if link == nil || ag.Arguments[link.Id] != link || link.Conclusion != u || len(link.Premises) != 1 {
+				continue
+			}
+			// A nil scheme has the linked weighing function. After YAML
+			// import that same default is the built-in linked scheme.
+			if link.Scheme != nil && link.Scheme != caes.BasicSchemes["linked"] {
+				continue
+			}
+			p := link.Premises[0].Stmt
+			if p != nil && ag.Statements[terms.Normalize(p.Id)] == p && terms.Normalize(p.Id) == terms.Normalize(instance.String()) {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return false
+		}
+	}
+	return true
 }
 
 // Validate the assumptions of an argument graph

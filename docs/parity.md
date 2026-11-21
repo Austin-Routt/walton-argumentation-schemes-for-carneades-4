@@ -24,7 +24,7 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | per scheme: `roundtrip` (export and import, parameters compared) | covered | `iso/roundtrip` (ported): every argument with its scheme, parameters, premises and undercutter, and every label, after export and import with clean globals; `roundtrip` of every reference case in a second process |
 | per scheme: `negation-text` | covered | `iso/negation-texts` |
 | static: `gochr-name` (built-in names as predicates) | covered | `static/no-reserved-functor`, `is-as-predicate-in-conclusion` |
-| static: `shared-0ary` (statements without variables used by several schemes) | to port | none; belongs with PLAN.md 5.4 |
+| static: `shared-0ary` (statements without variables used by several schemes) | covered | `static/shared-0ary` in `TestSource`: rejects unreviewed cross-scheme nullary predicates, including use beneath negation. The reviewed exception is `do_obligator/0`, with its exact universal-warrant wording and the exact positive-premise consumer set `regulative_rule`, `regulative_rule_prohibition` (PLAN.md 5.4; CHANGELOG.md 3.2 and 5.4). A changed consumer set or wording fails. Mutation tests cover unexpected sharing, changed consumers, polarity and burden; controls keep local nullaries, statement variables and other arities distinct. |
 | static: `loop` (schemes that can re-trigger each other) | covered | `static/not-self-feeding`; the cycle report of `go run ./cmd/schemecheck` |
 | probe: `global-state` | covered | `yaml-import-keeps-globals-clean` |
 | probe: `argument-validation`, `argument-validation-panic` | covered | `validator-checks-arguments-against-schemes`, `validator-accepts-correct-argument` |
@@ -77,3 +77,4 @@ Each port names its new check here and removes the row's **to port**.
 | third review, `run_python_audit.py` | `tools/test_validate_schemes.py` | PLAN.md 3.10 |
 | third review, `full_workflow_mutations.py` | `tools/test_validate_schemes.py` | PLAN.md 3.10 |
 | second review, `TestNoRuleFiringMustPreserveStore` | GoCHR `TestNoRuleFiredKeepsGoals` | PLAN.md 1.3 |
+| second review, static `shared-0ary` | `static/shared-0ary`, `TestSharedNullaryMutations` and positive controls | PLAN.md 5.4; reviewed shared universal warrant retained |

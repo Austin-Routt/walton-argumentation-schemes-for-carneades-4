@@ -1,0 +1,637 @@
+{
+  "schema": "walton-independent-source-review/v1",
+  "review_date": "2026-11-21",
+  "baseline_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+  "source": {
+    "authors": [
+      "Katie Atkinson",
+      "Trevor Bench-Capon"
+    ],
+    "year": 2007,
+    "title": "Practical reasoning as presumptive argumentation using action based alternating transition systems",
+    "journal": "Artificial Intelligence",
+    "volume": 171,
+    "printed_pages": [
+      855,
+      874
+    ],
+    "pdf_pages": 20,
+    "sha256": "dad4124c052c48b5c82de02494aac6971de113bb8452ae9fc6e764aa35e43cbc",
+    "doi": "10.1016/j.artint.2007.04.009",
+    "complete_text_read": true,
+    "rendered_pages_visually_inspected": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      12
+    ]
+  },
+  "records_derived_from_source": [
+    "practical_reasoning1"
+  ],
+  "record": {
+    "id": "practical_reasoning1",
+    "origin": "upstream",
+    "claim": "interpretation",
+    "stage_before": "mapped",
+    "stage_after": "transcription-checked",
+    "source_questions": 17,
+    "original_source_comparison": "complete",
+    "full_interpretation_approval": "withheld",
+    "scoped_approval": "legacy flat AS1 premises/conclusion and explicitly inherited policies; successful focused regression behavior",
+    "source_formula_changed": false,
+    "engine_changed": false,
+    "variables": [
+      "A",
+      "S1",
+      "S2",
+      "G",
+      "V"
+    ],
+    "roles": [],
+    "premises": [
+      "current_circumstances(S1)",
+      "would_bring_about(A,S1,S2)",
+      "would_be_realized(G,S2)",
+      "would_promote_value(G,V)"
+    ],
+    "conclusions": [
+      "should_be_performed(A)"
+    ],
+    "assumptions": [
+      "legitimate_value(V)",
+      "worthy_goal(G)",
+      "possible(A)"
+    ],
+    "exceptions": [
+      "bring_about_more_effectively(S2,A)",
+      "realize_more_effectively(G,A)",
+      "promote_more_effectively(V,A)",
+      "side_effects(A,S1)"
+    ],
+    "semantic_fields_match_original_carneades_record": true
+  },
+  "question_coverage": {
+    "direct_scoped_AS1": [
+      1,
+      2,
+      3,
+      4,
+      10,
+      13,
+      16
+    ],
+    "partial_legacy_policy": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "no_separate_mapping_or_valid_model_contract": [
+      11,
+      12,
+      14,
+      15,
+      17
+    ],
+    "incomplete_full_source_mapping": [
+      5,
+      6,
+      7,
+      11,
+      12,
+      14,
+      15,
+      17
+    ],
+    "qualification": "Dedicated predicates are not required if a documented and tested valid-model/premise-challenge contract discharges CQ12,14,15; that contract is not presently established."
+  },
+  "questions": [
+    {
+      "number": 1,
+      "question_paraphrase": "Are the believed circumstances correct?",
+      "printed_pages": [
+        858,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        8
+      ],
+      "classification": "premise",
+      "as": "current_circumstances(S1)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "p. 858; AS1 circumstances. AS2 also makes the acting agent's action preconditions explicit (pp. 861-862).",
+      "required_for_full_source_coverage": "For AS2, represent the actual initial state and action preconditions.",
+      "regression_fixtures": [
+        "practical_reasoning1/book",
+        "practical_reasoning1/wrong-initial-state"
+      ]
+    },
+    {
+      "number": 2,
+      "question_paraphrase": "Does the action have the alleged consequences in these circumstances?",
+      "printed_pages": [
+        858,
+        859,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8
+      ],
+      "classification": "premise",
+      "as": "would_bring_about(A,S1,S2)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858, 862; the asserted transition. This does not separately model the other agents' choices in CQ17.",
+      "required_for_full_source_coverage": "For AS2, identify the full joint-action transition; keep CQ17 separate.",
+      "regression_fixtures": [
+        "practical_reasoning1/book"
+      ]
+    },
+    {
+      "number": 3,
+      "question_paraphrase": "Do those consequences realize the desired goal?",
+      "printed_pages": [
+        858,
+        861,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        7,
+        8
+      ],
+      "classification": "premise",
+      "as": "would_be_realized(G,S2)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858, 862; goal in the resulting state. AS2 additionally represents whether the proposition changes between states.",
+      "required_for_full_source_coverage": "For AS2, represent the relevant proposition change between initial and resulting states.",
+      "regression_fixtures": [
+        "practical_reasoning1/wrong-goal-state",
+        "practical_reasoning1/cq10-wrong-result-state"
+      ]
+    },
+    {
+      "number": 4,
+      "question_paraphrase": "Does the goal promote the stated value?",
+      "printed_pages": [
+        858,
+        861,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        7,
+        8
+      ],
+      "classification": "premise",
+      "as": "would_promote_value(G,V)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858, 861-862; AS1 abstraction. AS2 values are agent-specific and transition-relative; this inherited relation omits those arguments.",
+      "required_for_full_source_coverage": "For AS2, scope valuation by deciding agent and transition.",
+      "regression_fixtures": [
+        "practical_reasoning1/cq10-wrong-goal"
+      ]
+    },
+    {
+      "number": 5,
+      "question_paraphrase": "Is there another action achieving the same consequences?",
+      "printed_pages": [
+        858,
+        859,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8
+      ],
+      "classification": "alternative",
+      "as": null,
+      "coverage": "partial_legacy_policy",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858-859, 862; another action achieving the same consequences. bring_about_more_effectively(S2,A) is a stronger application policy, not a complete mapping.",
+      "required_for_full_source_coverage": "Represent an alternative witness and a justified comparison; greater effectiveness is only the inherited stronger policy.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 6,
+      "question_paraphrase": "Is there another action achieving the same goal?",
+      "printed_pages": [
+        858,
+        859,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8
+      ],
+      "classification": "alternative",
+      "as": null,
+      "coverage": "partial_legacy_policy",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858-859, 862; another action achieving the same goal. realize_more_effectively(G,A) is a stronger application policy, not a complete mapping.",
+      "required_for_full_source_coverage": "Represent an alternative witness and comparison without presuming that existence alone defeats the original action.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 7,
+      "question_paraphrase": "Is there another action promoting the same value?",
+      "printed_pages": [
+        858,
+        859,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8
+      ],
+      "classification": "alternative",
+      "as": null,
+      "coverage": "partial_legacy_policy",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858-859, 862; another action promoting the same value. promote_more_effectively(V,A) is a stronger application policy, not a complete mapping.",
+      "required_for_full_source_coverage": "Represent an alternative witness with the same promoted value and an explicit comparison.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 8,
+      "question_paraphrase": "Does a side effect demote the same value?",
+      "printed_pages": [
+        858,
+        859,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8
+      ],
+      "classification": "exception",
+      "as": "side_effects(A,S1)",
+      "coverage": "partial_legacy_policy",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858-859, 862; legacy approximation only: merges same-value and other-value demotion and undercuts unconditionally, without a negative AS1 argument or value comparison.",
+      "required_for_full_source_coverage": "Distinguish same-value demotion, generate the negative argument and define its comparison with positive reasons.",
+      "regression_fixtures": [
+        "practical_reasoning1/inherited-side-effect-policy",
+        "practical_reasoning1/side-effect-other-state",
+        "practical_reasoning1/side-effect-other-action"
+      ]
+    },
+    {
+      "number": 9,
+      "question_paraphrase": "Does a side effect demote a different value?",
+      "printed_pages": [
+        858,
+        859,
+        862,
+        868
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8,
+        14
+      ],
+      "classification": "exception",
+      "as": "side_effects(A,S1)",
+      "coverage": "partial_legacy_policy",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858-859, 862, 868; legacy approximation only. The paper allows a contrary preference to defeat a negative side-effect argument; this aggregate exception does not.",
+      "required_for_full_source_coverage": "Retain the demoted value and an explicit preference/argument comparison; no automatic global priority for any side effect.",
+      "regression_fixtures": [
+        "practical_reasoning1/inherited-side-effect-policy"
+      ]
+    },
+    {
+      "number": 10,
+      "question_paraphrase": "Does the action also promote another value?",
+      "printed_pages": [
+        858,
+        862,
+        866
+      ],
+      "pdf_pages": [
+        4,
+        8,
+        12
+      ],
+      "classification": "support",
+      "as": "should_be_performed(A)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "p. 862 explicitly treats this as positive support, not a reason against performing A. Another goal/value instantiation can support the same conclusion; the farmer's Arg6 (p. 866) promotes P and F. This is the AS1 abstraction, not full agent/transition modelling.",
+      "required_for_full_source_coverage": "Preserve distinct additional positive justifications; full AS2 additionally needs agent/transition scope.",
+      "regression_fixtures": [
+        "practical_reasoning1/cq10-additional-value-supports",
+        "practical_reasoning1/cq10-questioning-extra-value-keeps-first-support",
+        "TestAtkinsonCQ10AddsSupport"
+      ]
+    },
+    {
+      "number": 11,
+      "question_paraphrase": "Does this action preclude an action promoting a different value?",
+      "printed_pages": [
+        858,
+        859,
+        862,
+        865
+      ],
+      "pdf_pages": [
+        4,
+        5,
+        8,
+        11
+      ],
+      "classification": "alternative",
+      "as": null,
+      "coverage": "no_separate_mapping_or_valid_model_contract",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858-859, 862, 865; the action precludes another action promoting a different value. No explicit incompatibility relation, alternative witness or value comparison in this record.",
+      "required_for_full_source_coverage": "Represent the incompatible alternative, its distinct promoted value and comparison.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 12,
+      "question_paraphrase": "Are the described initial circumstances possible?",
+      "printed_pages": [
+        858,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        8
+      ],
+      "classification": "assumption",
+      "as": null,
+      "coverage": "no_separate_mapping_or_valid_model_contract",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858, 862; whether the described initial circumstances are possible. No corresponding default or AATS state-membership check; proposed burden is an executable interpretation, not stated by the paper.",
+      "required_for_full_source_coverage": "Choose and test an explicit valid-model contract or a separate state-possibility challenge; no claim that the paper prescribes default burden.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 13,
+      "question_paraphrase": "Is the action possible?",
+      "printed_pages": [
+        858,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        8
+      ],
+      "classification": "assumption",
+      "as": "possible(A)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858, 862; action feasibility. The default/questioning burden is Carneades' policy; the paper formalizes joint-action membership.",
+      "required_for_full_source_coverage": "For AS2, validate joint-action membership; legacy default burden is implementation policy.",
+      "regression_fixtures": [
+        "practical_reasoning1/cq13-action-questioned",
+        "practical_reasoning1/cq13-questioned-action-supported",
+        "TestAtkinsonInheritedQuestionScope"
+      ]
+    },
+    {
+      "number": 14,
+      "question_paraphrase": "Are the described consequences possible?",
+      "printed_pages": [
+        858,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        8
+      ],
+      "classification": "assumption",
+      "as": null,
+      "coverage": "no_separate_mapping_or_valid_model_contract",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858, 862; whether the described consequences are possible. No corresponding default or AATS successor-state membership check; proposed burden is an executable interpretation.",
+      "required_for_full_source_coverage": "Choose and test a valid-model contract or a separate successor-state possibility challenge.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 15,
+      "question_paraphrase": "Is the goal realizable?",
+      "printed_pages": [
+        858,
+        862
+      ],
+      "pdf_pages": [
+        4,
+        8
+      ],
+      "classification": "assumption",
+      "as": null,
+      "coverage": "no_separate_mapping_or_valid_model_contract",
+      "incomplete_full_source_mapping": true,
+      "decision": "pp. 858, 862; whether the goal is realizable in any state. worthy_goal(G) is a different claim. No realizability mapping; proposed burden is an executable interpretation.",
+      "required_for_full_source_coverage": "Choose and test realizability or a valid-model construction contract; worthiness is not realizability.",
+      "regression_fixtures": []
+    },
+    {
+      "number": 16,
+      "question_paraphrase": "Is the value legitimate?",
+      "printed_pages": [
+        858,
+        862,
+        865
+      ],
+      "pdf_pages": [
+        4,
+        8,
+        11
+      ],
+      "classification": "assumption",
+      "as": "legitimate_value(V)",
+      "coverage": "direct_scoped_AS1",
+      "incomplete_full_source_mapping": false,
+      "decision": "pp. 858, 862, 865; value membership/legitimacy. The default/questioning burden is Carneades' policy.",
+      "required_for_full_source_coverage": "For AS2, distinguish model value membership and agent valuation; retain explicit default/questioning policy.",
+      "regression_fixtures": [
+        "practical_reasoning1/cq16-argument-local-challenge",
+        "TestAtkinsonInheritedQuestionScope"
+      ]
+    },
+    {
+      "number": 17,
+      "question_paraphrase": "Will the other agents execute their required parts of the joint action?",
+      "printed_pages": [
+        859,
+        861,
+        862,
+        865,
+        866
+      ],
+      "pdf_pages": [
+        5,
+        7,
+        8,
+        11,
+        12
+      ],
+      "classification": "assumption",
+      "as": null,
+      "coverage": "no_separate_mapping_or_valid_model_contract",
+      "incomplete_full_source_mapping": true,
+      "decision": "p. 859 introduces the additional CQ; p. 862 distinguishes the other agents' joint-action choices from CQ2. No agent/joint-action/cooperation mapping; proposed burden is an executable interpretation.",
+      "required_for_full_source_coverage": "Represent other agents and their component choices; distinguish failure to choose a transition from a nonexistent transition.",
+      "regression_fixtures": [
+        "TestOriginalSourceQuestionInventory (inventory guard only, not CQ17 semantics)"
+      ]
+    }
+  ],
+  "application_additions": [
+    {
+      "n": 0,
+      "kind": "assumption",
+      "as": "worthy_goal(G)",
+      "note": "Inherited application policy, not CQ15: worthiness is not realizability."
+    },
+    {
+      "n": 0,
+      "kind": "exception",
+      "as": "bring_about_more_effectively(S2,A)",
+      "note": "Inherited stronger policy related to CQ5; the paper's question does not require greater effectiveness."
+    },
+    {
+      "n": 0,
+      "kind": "exception",
+      "as": "realize_more_effectively(G,A)",
+      "note": "Inherited stronger policy related to CQ6; the paper's question does not require greater effectiveness."
+    },
+    {
+      "n": 0,
+      "kind": "exception",
+      "as": "promote_more_effectively(V,A)",
+      "note": "Inherited stronger policy related to CQ7; the paper's question does not require greater effectiveness."
+    }
+  ],
+  "claims": [
+    {
+      "id": "AB07-01",
+      "claim": "The original source contains 17 CQs, not only the 16 printed in the initial list.",
+      "decision": "verified",
+      "printed_pages": [
+        858,
+        859,
+        862
+      ]
+    },
+    {
+      "id": "AB07-02",
+      "claim": "CQ10 can support action performance and must not automatically undercut.",
+      "decision": "verified_and_regression_tested",
+      "printed_pages": [
+        862,
+        866
+      ]
+    },
+    {
+      "id": "AB07-03",
+      "claim": "The inherited scheme completely implements all 17 CQs or full AS2/AATS.",
+      "decision": "rejected",
+      "printed_pages": [
+        858,
+        859,
+        860,
+        861,
+        862
+      ]
+    },
+    {
+      "id": "AB07-04",
+      "claim": "The existing Hal and Carla p322 case is sourced to this paper.",
+      "decision": "rejected_and_fixture_replaced_with_Arg8",
+      "printed_pages": [
+        855,
+        866,
+        874
+      ]
+    },
+    {
+      "id": "AB07-05",
+      "claim": "All source gaps in the library total five because five blank mappings were previously recorded.",
+      "decision": "rejected_as_global_completeness_claim",
+      "evidence": "At baseline practical_reasoning1 was unchecked/mapped without an inventoried CQ list."
+    },
+    {
+      "id": "AB07-06",
+      "claim": "Passing reference cases alone justify example-passed for this record.",
+      "decision": "rejected",
+      "evidence": "Incomplete source mappings and stronger legacy policies still require review/contract resolution."
+    }
+  ],
+  "standalone_gap_inventory": {
+    "scope": "this patch against baseline; recompute after integrating other reviews",
+    "before": {
+      "blank_mappings": 5,
+      "records": 4
+    },
+    "after": {
+      "blank_mappings": 13,
+      "records": 5
+    },
+    "note": "Seventeen source questions are not seventeen wholly missing questions. CQ8/9 have partial nonblank mappings and are not counted as blank."
+  },
+  "implementation": {
+    "source_questions_required_before_questions_sorted": true,
+    "new_question_kinds": [
+      "support",
+      "alternative"
+    ],
+    "unknown_kind_blank_mapping_validation_fixed": true,
+    "source_worklist_header_change": {
+      "from": "questions_in_book",
+      "to": "questions_in_source"
+    },
+    "policy_additions_excluded_from_sorted_printed_question_count": true,
+    "reference_fixture_replaced": "practical_reasoning1/book: farmer Arg8, printed866/PDF12",
+    "persistent_cases_added": 12,
+    "registered_checks_added": 24,
+    "standalone_expected_checks": 8018,
+    "standalone_min_checks": 8018,
+    "other_records_source_stages_changed": false
+  },
+  "validation": {
+    "toolchain": "go1.27.4 linux/amd64",
+    "strict": true,
+    "focused_registered_checks": 850,
+    "focused_registered_passes": 850,
+    "known_failures": 0,
+    "unexpected_failures": 0,
+    "stale_ledger_entries": 0,
+    "counts_by_file": {
+      "cases/atkinson_2007.yml": 24,
+      "cases/book.yml": 240,
+      "walton.yml": 120,
+      "source_ledger.yml": 305,
+      "tools/migration_r2.yml": 161
+    },
+    "new_unit_test_groups": 8,
+    "full_combined_suite_status": "owned by root reviewer, not claimed by this focused review",
+    "diff_check": "passed"
+  },
+  "release_decision": {
+    "preview_legacy_scope": "acceptable only with explicit limits and commit-matched complete engine gate",
+    "stable_full_original_source_fidelity": "hold",
+    "historical_R1_pin_certified_by_this_review": false,
+    "blanket_ledger_promotion": "reject",
+    "next_implementation": "separate explicit AATS-oriented variant/adapter if full2007coverage required; preserve legacy record identity and burdens"
+  },
+  "report": "docs/reviews/atkinson-2007.md"
+}

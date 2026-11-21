@@ -1,0 +1,115 @@
+# Independent policy interpretation of entry 56, p. 344.
+# These supporting schemes discharge a QUESTIONED aggregate default.
+# Source decisions and witness truth conditions: docs/source-contracts-second-half.md.
+cases:
+  - name: exceptional/independent-recognized-clear-route
+    source: "56, p. 344, CQ1-CQ3; explicit conditional witness policy"
+    graph: &exception_witness |
+      language:
+        rule_can_waived/1: "If %s is an exception, its governing rule can be waived."
+        case_exception/1: "%s is claimed to be an exception."
+        exception_backed/1: "The exception for %s has the required conditional backing."
+        rule_waived/1: "The governing rule can be waived for %s."
+        recognized_exception_case/1: "%s is a recognized and applicable type of exception."
+        borderline_exception_case/1: "%s is borderline."
+        evidence_rule_inapplicable/1: "Evidence justifies the rule's non-applicability to %s."
+        comparable_exceptions_support/1: "Comparable cases justify the claimed treatment of %s."
+      issue_schemes:
+        negation: [S, ¬S]
+      argument_schemes:
+        - id: exceptional
+          variables: [A]
+          premises: [rule_can_waived(A), case_exception(A)]
+          assumptions: [exception_backed(A)]
+          conclusions: [rule_waived(A)]
+        - id: recognized_clear_exception
+          variables: [C]
+          premises: [recognized_exception_case(C), ¬borderline_exception_case(C)]
+          conclusions: [exception_backed(C)]
+        - id: unrecognized_clear_exception
+          variables: [C]
+          premises: [¬recognized_exception_case(C), evidence_rule_inapplicable(C), ¬borderline_exception_case(C)]
+          conclusions: [exception_backed(C)]
+        - id: recognized_borderline_exception
+          variables: [C]
+          premises: [recognized_exception_case(C), borderline_exception_case(C), comparable_exceptions_support(C)]
+          conclusions: [exception_backed(C)]
+        - id: unrecognized_borderline_exception
+          variables: [C]
+          premises: [¬recognized_exception_case(C), evidence_rule_inapplicable(C), borderline_exception_case(C), comparable_exceptions_support(C)]
+          conclusions: [exception_backed(C)]
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - recognized_exception_case(case_1)
+      - ¬borderline_exception_case(case_1)
+    questioned: [exception_backed(case_1)]
+    in: [rule_waived(case_1)]
+  - name: exceptional/independent-unrecognized-evidenced-route
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - ¬recognized_exception_case(case_1)
+      - evidence_rule_inapplicable(case_1)
+      - ¬borderline_exception_case(case_1)
+    questioned: [exception_backed(case_1)]
+    in: [rule_waived(case_1)]
+  - name: exceptional/independent-recognized-borderline-route
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - recognized_exception_case(case_1)
+      - borderline_exception_case(case_1)
+      - comparable_exceptions_support(case_1)
+    questioned: [exception_backed(case_1)]
+    in: [rule_waived(case_1)]
+  - name: exceptional/independent-unrecognized-borderline-route
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - ¬recognized_exception_case(case_1)
+      - evidence_rule_inapplicable(case_1)
+      - borderline_exception_case(case_1)
+      - comparable_exceptions_support(case_1)
+    questioned: [exception_backed(case_1)]
+    in: [rule_waived(case_1)]
+  - name: exceptional/independent-recognition-does-not-bypass-borderline-comparison
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - recognized_exception_case(case_1)
+      - borderline_exception_case(case_1)
+    questioned: [exception_backed(case_1)]
+    not_in: [rule_waived(case_1)]
+  - name: exceptional/independent-comparison-does-not-bypass-nonapplicability-evidence
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - ¬recognized_exception_case(case_1)
+      - borderline_exception_case(case_1)
+      - comparable_exceptions_support(case_1)
+    questioned: [exception_backed(case_1)]
+    not_in: [rule_waived(case_1)]
+  - name: exceptional/independent-comparisons-for-another-case-do-not-suffice
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - recognized_exception_case(case_1)
+      - borderline_exception_case(case_1)
+      - comparable_exceptions_support(case_2)
+    questioned: [exception_backed(case_1)]
+    not_in: [rule_waived(case_1)]
+  - name: exceptional/independent-unknown-status-does-not-default-to-clear
+    graph: *exception_witness
+    assumptions:
+      - rule_can_waived(case_1)
+      - case_exception(case_1)
+      - recognized_exception_case(case_1)
+    questioned: [exception_backed(case_1)]
+    not_in: [rule_waived(case_1)]

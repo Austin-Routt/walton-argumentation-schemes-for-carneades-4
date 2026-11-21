@@ -2,7 +2,97 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — implementer response to the independent reviews (engine 4.3.1+walton.3)
+
+See `docs/reviews/implementer-response.md`.
+
+* The acceptance candidate's work budgets refused ordinary inputs: whole-library graphs of some 700 statements or more ("issue matching exhausted its candidate-visit budget") and a failing four-premise join over 120 facts. Issue construction now looks positions up by key when the remaining patterns are ground; statements with variables and enumerations keep the scan. `MAXISSUESTEPS` and `MAXMATCHSTEPS` are 50,000,000, safety valves rather than working limits. A 1,200-fact library graph takes 0.7 s (master 5.8 s, the candidate refused it) and gives the same 14 issues and labels as the candidate's scan.
+* `terms.Substitute` stops on a binding chain that ends in a variable bound to itself (an upstream defect the lookup reached through an AIF example).
+* The authored-exception check normalizes both keys it compares.
+* Two checks: `large-issue-closure-completes`, `failing-join-completes` (8,230).
+* Library: entry 16's `certainty_no_need/2` takes the wording of pull request #14 (held); the unused `smaller_part_property/3` template is removed. `docs/using.md` states the one-proponent, one-respondent convention for first- and second-person schemes; `docs/reviews.md` finding 14 lists the five commits to split.
+* The implementer, who did not write them, checked the eight changes the first review both made and approved (31.2–31.5, 6.3, 54.1, 56, 60) against the printed pages and concurs; the ledger rows say so. Source approvals remain 70 of 120.
+
+## 2026-11-21 — independent acceptance candidate (engine 4.3.1+walton.2)
+
+Baseline `49ad425` was independently rerun from clean copies: 7,994 checks passed on both pinned Go versions. The former R1 pin also reproduced 7,164 passing checks, but newly specified counterexamples found gaps that required a corrected candidate.
+
+* Fixed streaming/cancellable matching and quotas, logical repeated-premise fact reuse, strict nested parsing, complete issue closure, default priority before seeding and atomic publication of inferred graph state.
+* Authored argument validation now requires a linked witness for every instantiated exception under the same binding. An arbitrary nonnil undercutter is insufficient.
+* Independently reviewed every book-mapped record and the complete Atkinson 2007 paper. Added discriminating source cases and repaired model/generalization, agent, diagram, trait, event, coextension and recaller identities. See the two exhaustive source reviews and `docs/source-contracts-second-half.md`.
+* Corrected the interpretation of entry 31.4's counterevidence: an isolated atypical action does not automatically disprove a likely tendency. The scoped hook requires relevant counterevidence sufficient to defeat the qualitative prediction.
+* Recorded 70 source approvals, 48 transcription-only rows and two mapped rows. The verbal-classification hold based on a nonexistent separately cited original was removed after code-origin and compendium reconciliation. Source stages are not automatically advanced by passing tests.
+* Final comparison caught five duplicate migration result identities. Checks now include raw old/trigger/new mappings; emitted results, expected manifests and the cross-toolchain comparator reject duplicates. Eleven comparator mutation/control tests were added. The inventory at that stage contained 8,206 checks, all distinctly identified.
+* Reconciled the incoming PR #13 review, preserving its history and all source decisions. Corrected three additional wording mistakes, three safe statement-sharing omissions and the negative-practical reference examples. The merged inventory now contains 8,228 unique checks, retaining every earlier named identity. Source approvals remain 70/120; a dated reviewer snapshot complements the semantic fingerprint and 19 approval-integrity tests.
+* Corrected the premise-withdrawal oracle: removal from stipulations is not removal from the full logical closure. Necessity controls isolate the actual selected schema and require an isolated positive control; full-theory construction, premise links, labels, exceptions and composition remain checked. New adverse controls distinguish legitimate rederivation from a genuinely unnecessary premise.
+* Added an approval registry bound to current semantic fingerprints and mutation tests; stable mode rejects incomplete content. Both pinned toolchains and their result comparison are required CI checks.
+* Replaced the operational plan, preserved the old plan/release proposal as history and superseded tagging `8c092b6`. Original engine ZIPs remain reproducibility inputs, not patched release binaries.
+
 ## Unreleased — Phase 5 of `PLAN.md`: the records against the book (library 0.2.0)
+
+### PR13 source-review follow-up
+
+* Perception (59.1, p. 345) and memory (60, p. 346) now conclude the same
+  `reasonable_believe/1` statement when they concern the identical proposition
+  and circumstances. `reasonable_case/1` migrates to that existing predicate.
+  Five two-scheme cases check convergence, either independent support surviving
+  defeat of the other, both supports defeated, and a different case that must
+  not supply the missing support. Perception remains qualified for its separate
+  observer/context issue; this vocabulary repair does not promote its row.
+* Saved-graph migration is checked through the native CLI. A many-to-one rename
+  that would duplicate `language:` or `statements:` keys is now rejected before
+  writing, with a request to reconcile the original entries. Neither rendering
+  nor statement metadata is silently overwritten.
+* Restored `biased/1` to the original imported Carneades template, "%s is
+  biased." This corrects the declared upstream-wording policy without changing
+  inference or forbidding its use for the arguer in entry 46.
+* Kept entry 47's `morally_bad/1` distinct from entry 42's `bad_character/1`,
+  now with an explicit reason: the former is a moral judgment, the latter a
+  broader character judgment. The source does not establish unconditional
+  equivalence. A bridge needs an application-specific justification; bias alone
+  does not automatically establish moral badness.
+
+### Independent source review, compendium entries 28–60
+
+The independent review found defects that the previous green examples accepted.
+New reference cases distinguish missing or wrong participants from correctly
+scoped evidence; the source ledger records approvals separately from testing.
+
+* Forward abduction (31.2) now distinguishes the strongest diagram from its
+  conclusion and links the diagram to its set. Action/character/retroduction
+  (31.3–31.5) now name the action, quality and event. A typed character-quality
+  statement connects 31.3 to 31.4; its generic property projection also supports
+  31.5. An ordinary property such as a rose's color cannot trigger a character
+  prediction. The predictive conditional and past-event identification remain
+  different statements.
+* Constitutive rule 54.1 explicitly requires referential coextension, the
+  printed warrant's antecedent. The old whale/mammal example demonstrated
+  inclusion, not synonymy; it is now an adverse example. A defining
+  triangle/three-sided-polygon pair is the positive example.
+* Memory (60) names the recaller in both original-belief undercutters, so that
+  one person's defective history cannot defeat another person's independent
+  recall of the same proposition.
+* Exceptional case (56) retains an aggregate default with a precise conditional
+  meaning: recognition or evidence for an unrecognized case, plus comparison
+  support when borderline. Four explicit challenged-witness routes and adverse
+  controls are supplied; recognition is not a bypass around a borderline
+  comparison. See `docs/source-contracts-second-half.md`.
+* Available-book questions close two likelihood gaps in inherited positive and
+  negative consequences (33.1–33.2), with a challengeable adequacy assessment
+  scoped to the action and outcome. No fixed probability or "strongly likely"
+  threshold is imposed. The inherited established-rule form (55.1) now has
+  scoped conflicting-rule and exception/excuse hooks. These are explicit
+  adaptations from the available compendium; verification against the cited
+  original 1995 works remains open.
+* Role changes and new ordinary premises are recorded in the migration table.
+  The migrator now reports new-premise review needs using an optional `trigger`
+  rather than silently skipping rows whose `old` field must remain empty.
+  It does not invent missing diagram, action, quality, event, recaller or
+  coextension facts.
+
+Some inherited formulations and compressed contexts remain qualified in the
+independent audit. These changes are not blanket approval of all records and
+do not certify first-stable-release gate L by test count alone.
 
 The printed critical questions are sorted record by record (5.1) into the four kinds of D2 (pp. 373-375): a question that restates a premise is not modelled; one that shifts the burden when asked is an assumption; one that needs backing is an exception; one that points to a counter-argument is a rebuttal, weighed against the conclusion in the negation issue. Each sorted question is in the record's row of `tools/vv/source_ledger.yml`, with the statement that models it, and `source/record-row` checks that statement against the record. A question sorted as an assumption or an exception that the record did not model is a gap (5.2) and is added, with a positive and an adverse reference case in `tools/vv/cases/phase5.yml` (D13). The 24 records taken over from Carneades keep upstream's wording (D5): where they lack a question, the row says so and 5.5 decides against their own sources. A row moves to "transcription checked" when its premises and conclusion have been compared with the book; "interpretation approved" is left to a reviewer who did not write the change (D14).
 

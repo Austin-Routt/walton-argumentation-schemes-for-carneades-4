@@ -56,7 +56,9 @@ type Case struct {
 	Issues      [][]string `yaml:"issues"`
 	Outcome     string     `yaml:"outcome"`
 	// Variants, for a case with one argument (PLAN.md 5.7): leaving out any
-	// one assumption of the case builds no such argument, and stating any
+	// one assumption of the case builds no such argument with the selected
+	// schema isolated; the ordinary positive case retains its full theory.
+	// Stating any
 	// one exception of its scheme, for the argument's parameters, undercuts
 	// it.
 	Variants bool `yaml:"variants"`
@@ -201,8 +203,9 @@ func RunCase(root string, c Case) []string {
 	return probs
 }
 
-// variantProblems runs the case once without each of its assumptions, and once
-// with each exception of its argument's scheme stated (PLAN.md 5.7).
+// variantProblems isolates the selected current scheme for its positive control
+// and premise withdrawals. The normal case and exception checks retain the full
+// theory, where another scheme may legitimately rederive a withdrawn fact.
 func variantProblems(data []byte, c Case) []string {
 	if len(c.Arguments) != 1 {
 		return []string{"variants need exactly one argument"}
@@ -212,7 +215,7 @@ func variantProblems(data []byte, c Case) []string {
 	if !ok || !isC {
 		return []string{"variants: the argument is not scheme(parameters)"}
 	}
-	run := func(assumptions []string) (*caes.ArgGraph, caes.Labelling, *caes.Scheme, error) {
+	run := func(assumptions []string, isolate bool) (*caes.ArgGraph, caes.Labelling, *caes.Scheme, error) {
 		ResetEngineGlobals()
 		cap := StartCapture()
 		defer func() { cap.Stop(); ResetEngineGlobals() }()
@@ -225,6 +228,21 @@ func variantProblems(data []byte, c Case) []string {
 			if x.Id == call.Functor {
 				s = x
 			}
+		}
+		if s == nil {
+			return nil, nil, nil, fmt.Errorf("the selected scheme %s is not in the graph", call.Functor)
+		}
+		if isolate {
+			// Use the actual imported schema, not a copied fixture. A fresh theory
+			// also prevents a stale private scheme index retaining excluded rules.
+			selected := caes.NewTheory()
+			selected.Language = ag.Theory.Language
+			selected.WeighingFunctions = ag.Theory.WeighingFunctions
+			selected.WeighingSpecs = ag.Theory.WeighingSpecs
+			selected.IssueSchemes = ag.Theory.IssueSchemes
+			selected.ArgSchemes = []*caes.Scheme{s}
+			selected.InitSchemeIndex()
+			ag.Theory = selected
 		}
 		ag.Assumptions = append(ag.Assumptions, assumptions...)
 		ag.Questioned = append(ag.Questioned, c.Questioned...)
@@ -242,16 +260,20 @@ func variantProblems(data []byte, c Case) []string {
 		return nil
 	}
 	probs := []string{}
+	plain, _, _, err := run(c.Assumptions, true)
+	if err != nil || find(plain) == nil {
+		return []string{fmt.Sprintf("variants: isolated positive control does not build %s (%v)", c.Arguments[0], err)}
+	}
 	for i := range c.Assumptions {
 		rest := append(append([]string{}, c.Assumptions[:i]...), c.Assumptions[i+1:]...)
-		ag, _, _, err := run(rest)
+		ag, _, _, err := run(rest, true)
 		if err != nil {
 			probs = append(probs, fmt.Sprintf("without %s: %v", c.Assumptions[i], err))
 		} else if find(ag) != nil {
 			probs = append(probs, fmt.Sprintf("without %s the argument is still built", c.Assumptions[i]))
 		}
 	}
-	_, _, s, err := run(c.Assumptions)
+	_, _, s, err := run(c.Assumptions, false)
 	if err != nil || s == nil {
 		return append(probs, fmt.Sprintf("variants: the scheme %s is not in the graph (%v)", call.Functor, err))
 	}
@@ -285,7 +307,7 @@ func variantProblems(data []byte, c Case) []string {
 			continue
 		}
 		stated := subst(et).String()
-		ag, l, _, err := run(append(append([]string{}, c.Assumptions...), stated))
+		ag, l, _, err := run(append(append([]string{}, c.Assumptions...), stated), false)
 		if err != nil {
 			probs = append(probs, fmt.Sprintf("with %s: %v", stated, err))
 			continue

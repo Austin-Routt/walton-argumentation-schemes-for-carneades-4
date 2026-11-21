@@ -1,0 +1,180 @@
+# Source-led review fixtures. These exercise the inherited AS1 abstraction.
+# They do not encode the entire AATS or its value-preference deliberation.
+# q0 -> q7 is stipulated for Arg6; the paper later challenges that transition.
+cases:
+  - name: practical_reasoning1/cq10-additional-value-supports
+    source: "Atkinson and Bench-Capon (2007), p. 862 CQ10 and p. 866 Arg6; initial AS1 argument conditional on q7"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_dog,q0,q7)
+      - would_be_realized(dog_right,q7)
+      - would_promote_value(dog_right,progress)
+      - would_promote_value(dog_right,friendship)
+    arguments:
+      - practical_reasoning1(row_dog,q0,q7,dog_right,progress)
+      - practical_reasoning1(row_dog,q0,q7,dog_right,friendship)
+    in:
+      - should_be_performed(row_dog)
+
+  - name: practical_reasoning1/cq10-questioning-extra-value-keeps-first-support
+    source: "Atkinson and Bench-Capon (2007), pp. 862, 866; separate value arguments; default burden is inherited policy"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_dog,q0,q7)
+      - would_be_realized(dog_right,q7)
+      - would_promote_value(dog_right,progress)
+      - would_promote_value(dog_right,friendship)
+    questioned:
+      - legitimate_value(friendship)
+    arguments:
+      - practical_reasoning1(row_dog,q0,q7,dog_right,progress)
+      - practical_reasoning1(row_dog,q0,q7,dog_right,friendship)
+    in:
+      - legitimate_value(progress)
+      - should_be_performed(row_dog)
+    not_in:
+      - legitimate_value(friendship)
+
+  - name: practical_reasoning1/cq10-wrong-goal
+    source: "Independent adverse variant of p. 866 Arg6: a value attached to another goal does not justify this goal"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_dog,q0,q7)
+      - would_be_realized(dog_right,q7)
+      - would_promote_value(dog_right,progress)
+      - would_promote_value(other_goal,friendship)
+    arguments:
+      - practical_reasoning1(row_dog,q0,q7,dog_right,progress)
+    no_arguments:
+      - practical_reasoning1(row_dog,q0,q7,dog_right,friendship)
+      - practical_reasoning1(row_dog,q0,q7,other_goal,friendship)
+    in:
+      - should_be_performed(row_dog)
+
+  - name: practical_reasoning1/cq10-wrong-result-state
+    source: "Independent adverse variant of p. 866 Arg6: an additional goal belongs to a state not reached by the stipulated action"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_dog,q0,q7)
+      - would_be_realized(dog_right,q7)
+      - would_promote_value(dog_right,progress)
+      - would_be_realized(other_goal,q_other)
+      - would_promote_value(other_goal,friendship)
+    arguments:
+      - practical_reasoning1(row_dog,q0,q7,dog_right,progress)
+    no_arguments:
+      - practical_reasoning1(row_dog,q0,q7,other_goal,friendship)
+      - practical_reasoning1(row_dog,q0,q_other,other_goal,friendship)
+    in:
+      - should_be_performed(row_dog)
+
+  - name: practical_reasoning1/wrong-initial-state
+    source: "Independent adverse variant of p. 866 Arg8: CQ1/AS1 circumstances must match the transition's origin"
+    assumptions:
+      - current_circumstances(q_other)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+    no_arguments:
+      - practical_reasoning1
+    not_in:
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/wrong-goal-state
+    source: "Independent adverse variant of p. 866 Arg8: CQ3/AS1 requires the goal in the action's resulting state"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q_other)
+      - would_promote_value(chicken_right,progress)
+    no_arguments:
+      - practical_reasoning1
+    not_in:
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/inherited-side-effect-policy
+    source: "Legacy Carneades policy on the p. 866 Arg8 fixture; unconditional side-effect undercut is stronger than the 2007 value-comparison account"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+      - side_effects(row_chicken,q0)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+    not_in:
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/side-effect-other-state
+    source: "Independent context control for the inherited exception: another initial state does not undercut this action instance"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+      - side_effects(row_chicken,q_other)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+    in:
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/side-effect-other-action
+    source: "Independent role control for the inherited exception: another action does not undercut this action instance"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+      - side_effects(row_dog,q0)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+    in:
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/cq13-action-questioned
+    source: "Atkinson and Bench-Capon (2007), p. 858 CQ13; question-to-default burden is the inherited Carneades interpretation"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+    questioned:
+      - possible(row_chicken)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+    not_in:
+      - possible(row_chicken)
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/cq13-questioned-action-supported
+    source: "Independent burden control for CQ13: stipulation supports a questioned default (docs/contracts.md section 5)"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+      - possible(row_chicken)
+    questioned:
+      - possible(row_chicken)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+    in:
+      - possible(row_chicken)
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning1/cq16-argument-local-challenge
+    source: "Atkinson and Bench-Capon (2007), CQ16; actual-library control: instrumental practical_reasoning2 can still support the same conclusion"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+    questioned:
+      - legitimate_value(progress)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+      - practical_reasoning2(row_chicken,q0,q9,chicken_right)
+    in:
+      - should_be_performed(row_chicken)
+    not_in:
+      - legitimate_value(progress)

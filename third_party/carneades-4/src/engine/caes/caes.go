@@ -124,13 +124,13 @@ const (
 )
 
 type Statement struct {
-	Id       string // a ground atomic formula, using Prolog syntax
-	Metadata Metadata
-	Text     string      // natural language
-	Issue    *Issue      // nil if not at issue
-	Args     []*Argument // concluding with this statement
-	Label    Label       // for storing the evaluated label
-	IsUndercutter bool   // true if the statement is an undercutter
+	Id            string // a ground atomic formula, using Prolog syntax
+	Metadata      Metadata
+	Text          string      // natural language
+	Issue         *Issue      // nil if not at issue
+	Args          []*Argument // concluding with this statement
+	Label         Label       // for storing the evaluated label
+	IsUndercutter bool        // true if the statement is an undercutter
 }
 
 // A Rulebase is a set of constraint handling rules.
@@ -150,10 +150,10 @@ type Theory struct { // aka Knowledge Base
 	WeighingFunctions map[string]WeighingFunction
 	// WeighingSpecs are the named weighing functions as written in the input,
 	// kept for export (PLAN.md 4.1)
-	WeighingSpecs     map[string]interface{}
-	ArgSchemes        []*Scheme
-	IssueSchemes      map[string]*IssueScheme
-	schemeIndex       map[string]*Scheme
+	WeighingSpecs map[string]interface{}
+	ArgSchemes    []*Scheme
+	IssueSchemes  map[string]*IssueScheme
+	schemeIndex   map[string]*Scheme
 }
 
 type WeighingFunction func(*Argument, Labelling) float64 // [0.0,1.0]
@@ -601,7 +601,7 @@ func positionLabels(issue *Issue, l Labelling) string {
 // some issue, or both a statement and its negation (docs/contracts.md,
 // contract 4). The answer is computed from the assumptions as they are now,
 // not from the index that labelling builds.
-func (ag *ArgGraph) Inconsistent() bool {
+func (ag *ArgGraph) inconsistentPositions() bool {
 	assumed := map[string]bool{}
 	for _, a := range ag.Assumed() {
 		assumed[a] = true
@@ -825,8 +825,8 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				// add it to the statements of the graph
 				ucid := "undercut(" + argId + ")"
 				uc = Statement{Id: ucid,
-					Text: argId + " is undercut.",
-				        IsUndercutter: true}
+					Text:          argId + " is undercut.",
+					IsUndercutter: true}
 				ag.Statements[terms.Normalize(ucid)] = &uc
 				for _, c := range conclusions {
 					// Construct an argument for each conclusion and add it to the graph
@@ -921,22 +921,43 @@ func (ag *ArgGraph) addDefault(stmt_id string) {
 // If some pattern is not synatically correct and thus cannot be parsed,
 // an error is returned and the argument graph is left unchanged.
 // If all goes well, the argument graph is updated and nil is returned
-func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error) {
+// issueLookup lets issue construction look positions up by key when the
+// remaining patterns are ground; tests turn it off to compare with the scan.
+var issueLookup = true
 
-	// skip issue schemes with less than two patterns
+// readIssuePatterns rejects the complete pattern list before any graph write.
+func readIssuePatterns(patterns []string) ([]terms.Term, error) {
 	if len(patterns) < 2 {
-		fmt.Fprintf(os.Stderr, "Issue scheme with less than two patterns: %v\n", issueScheme)
-		return
+		return nil, fmt.Errorf("fewer than two patterns")
 	}
-	// Try to match the first pattern with each statement
-	// in the argument graph.
-	pattern, ok := terms.ReadString(patterns[0])
+	parsed := make([]terms.Term, len(patterns))
+	for i, p := range patterns {
+		if i == 1 && len(patterns) == 3 && p == "..." {
+			continue
+		}
+		t, ok := terms.ReadString(p)
+		if !ok {
+			return nil, fmt.Errorf("cannot parse pattern %q", p)
+		}
+		parsed[i] = t
+	}
+	return parsed, nil
+}
 
-	if !ok {
-		fmt.Fprintf(os.Stderr, "Could not parse issue scheme pattern: %v\n", patterns[0])
-		return
+func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) error {
+	return ag.makeIssueWithWork(issueScheme, patterns, nil)
+}
+
+func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, work *issueWork) (err error) {
+	parsed, err := readIssuePatterns(patterns)
+	if err != nil {
+		return err
 	}
+	pattern := parsed[0]
 	for wff1, stmt := range ag.Statements {
+		if err := work.step(); err != nil {
+			return err
+		}
 		term1, ok := terms.ReadString(wff1)
 		if !ok {
 			fmt.Fprintf(os.Stderr, "Statement key not a term: %v\n", wff1)
@@ -967,13 +988,55 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 				}
 			}
 
-			// For each matching statement, iterate over the statements
-			// again to try to find other positions of the issue. Whether or
-			// not a statement is a position depends on the remaining patterns
-			// of the issue scheme and, in particular, whether or not the
-			// issue scheme is an enumeration.
+			// When every remaining pattern is ground under the bindings of
+			// the first (as "¬S" is once S is bound), its positions are
+			// looked up by key instead of found by a scan of all statements.
+			// The scan made issue construction quadratic in the size of the
+			// graph, so that a graph of some 800 statements exhausted the
+			// issue-visit budget (docs/contracts.md, contract 3).
+			// Only a ground statement gives ground bindings: statement
+			// keys with variables keep the scan, which matches them.
+			ground := !isEnumeration && issueLookup && terms.Ground(term1, nil)
+			keys := []string{}
+			if ground {
+				for _, pattern2 := range parsed[1:] {
+					inst := terms.Substitute(pattern2, bindings)
+					if !terms.Ground(inst, nil) {
+						ground = false
+						break
+					}
+					keys = append(keys, terms.Normalize(inst.String()))
+				}
+			}
+			if ground {
+				seen := map[string]bool{wff1: true}
+				for _, k := range keys {
+					if err := work.step(); err != nil {
+						return err
+					}
+					if seen[k] {
+						continue
+					}
+					seen[k] = true
+					if stmt2, ok := ag.Statements[k]; ok {
+						candidates = append(candidates, stmt2)
+					}
+				}
+			}
+
+			// Otherwise, for each matching statement, iterate over the
+			// statements again to try to find other positions of the issue.
+			// Whether or not a statement is a position depends on the
+			// remaining patterns of the issue scheme and, in particular,
+			// whether or not the issue scheme is an enumeration.
 
 			for wff2, stmt2 := range ag.Statements {
+				if ground {
+					break
+				}
+				if err := work.step(); err != nil {
+					return err
+				}
 				if wff2 == wff1 {
 					// skip the matching statement found previously
 					continue
@@ -989,11 +1052,9 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 					// try matching against each of the remaining patterns
 					// and update the bindings and add the statement as
 					// as candidate if any pattern matches
-					for _, p := range patterns[1:] {
-						pattern2, ok := terms.ReadString(p)
-						if !ok {
-							fmt.Fprintf(os.Stderr, "Could not parse issue scheme pattern: %v\n", p)
-							continue
+					for _, pattern2 := range parsed[1:] {
+						if err := work.step(); err != nil {
+							return err
 						}
 						bindings, match = terms.Match(pattern2, term2, bindings)
 						if match {
@@ -1030,8 +1091,7 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 						issue = c.Issue
 					} else if c.Issue != issue {
 						// found a conflict, due to statements being positions of different issues
-						fmt.Fprintf(os.Stderr, "Statement matching an issue scheme is already a position of different issue: %v\n", c.Id)
-						continue
+						return fmt.Errorf("statement %s connects distinct existing issues; explicit issue resolution is required", c.Id)
 					}
 				}
 				positions = append(positions, c)

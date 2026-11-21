@@ -67,16 +67,16 @@ cases:
       - has_property(team,strong)
     variants: true
   - name: practical_reasoning1/book
-    source: "upstream: Atkinson and Bench-Capon (2007); Hal and Carla, p. 322"
+    source: "Atkinson and Bench-Capon (2007), p. 866, farmer Arg8; AS1 abstraction of the stipulated transition q0 to q9"
     assumptions:
-      - current_circumstances(hal_needs_insulin)
-      - would_bring_about(take_insulin,hal_needs_insulin,hal_survives)
-      - would_be_realized(survival,hal_survives)
-      - would_promote_value(survival,life)
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
     arguments:
-      - practical_reasoning1(take_insulin,hal_needs_insulin,hal_survives,survival,life)
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
     in:
-      - should_be_performed(take_insulin)
+      - should_be_performed(row_chicken)
     variants: true
   - name: practical_reasoning2/book
     source: "upstream: Walton (2015)"
@@ -154,10 +154,10 @@ cases:
     source: "22.2, p. 323"
     assumptions:
       - goal_of_agent(me,pass_exam)
-      - alternative_action(ways_to_pass,pass_exam)
-      - necessary_action(study,ways_to_pass,pass_exam)
-      - practicality_action(study)
-      - more_acceptable_bringing(pass_exam,study)
+      - alternative_action(me,ways_to_pass,pass_exam)
+      - necessary_action(me,study,ways_to_pass,pass_exam)
+      - practicality_action(me,study)
+      - more_acceptable_bringing(me,pass_exam,study)
     arguments:
       - practical_necessary_condition(study,pass_exam,me,ways_to_pass)
     in:
@@ -167,10 +167,10 @@ cases:
     source: "22.3, p. 323"
     assumptions:
       - goal_of_agent(me,pass_exam)
-      - alternative_action_sufficient(ways_to_pass,pass_exam)
-      - sufficient_action(study,ways_to_pass,pass_exam)
-      - practicality_action(study)
-      - more_acceptable_bringing(pass_exam,study)
+      - alternative_action_sufficient(me,ways_to_pass,pass_exam)
+      - sufficient_action(me,study,ways_to_pass,pass_exam)
+      - practicality_action(me,study)
+      - more_acceptable_bringing(me,pass_exam,study)
     arguments:
       - practical_sufficient_condition(study,pass_exam,me,ways_to_pass)
     in:
@@ -388,40 +388,41 @@ cases:
     assumptions:
       - data_set(clues)
       - diagram_set(diagrams,clues,conclusions)
-      - successful_diagram(butler_guilty)
+      - successful_diagram(diagrams,butler_argument)
+      - diagram_conclusion(butler_argument,butler_guilty)
     arguments:
-      - abductive_forward(clues,diagrams,conclusions,butler_guilty)
+      - abductive_forward(clues,diagrams,conclusions,butler_guilty,butler_argument)
     in:
       - plausible_conclusion(butler_guilty)
     variants: true
   - name: abductive_action_to_character/book
     source: "31.3, p. 330"
     assumptions:
-      - action_character(bob)
+      - action_character(bob,kept_promise,honest)
     arguments:
-      - abductive_action_to_character(bob)
+      - abductive_action_to_character(bob,kept_promise,honest)
     in:
-      - character_quality(bob)
+      - has_property(bob,honest)
     variants: true
   - name: abductive_character_to_action/book
     source: "31.4, p. 330"
     assumptions:
-      - character(bob)
+      - character_quality(bob,honest)
     arguments:
-      - abductive_character_to_action(bob)
+      - abductive_character_to_action(bob,honest)
     in:
-      - character_action(bob)
+      - character_action(bob,honest)
     variants: true
   - name: retroductive/book
     source: "31.5, p. 331"
     assumptions:
-      - agent_event(bob)
-      - event_quality(greedy)
+      - agent_event(bob,missing_cash)
+      - event_quality(missing_cash,greedy)
       - has_property(bob,greedy)
     arguments:
-      - retroductive(bob,greedy)
+      - retroductive(bob,greedy,missing_cash)
     in:
-      - event_question(bob)
+      - event_question(bob,missing_cash)
     variants: true
   - name: evidence_hypothesis_verification/book
     source: "32.1, p. 331"
@@ -547,7 +548,7 @@ cases:
   - name: interaction_act_person_2/book
     source: "18.2, p. 321"
     assumptions:
-      - person_judgment_value(ann,honest)
+      - person_value(ann,honest)
       - person_value_depending(honest,report,truthful)
     arguments:
       - interaction_act_person_2(ann,report,honest,truthful)
@@ -638,17 +639,17 @@ cases:
       - not_normal(alarm_silent)
     variants: true
   - name: negative_practical/book
-    source: "26.2, p. 327"
+    source: "26.2, p. 327; illustrative firearm-safety application, not a printed example"
     assumptions:
-      - not_know_true(loaded)
-      - presumption(loaded)
-      - consequences_presumption(loaded,accident)
-      - other_consequences_presumption(loaded,delay)
+      - not_know_true(unloaded)
+      - presumption(unloaded)
+      - consequences_presumption(unloaded,accident)
+      - other_consequences_presumption(unloaded,delay)
       - more_serious_consequences(accident,delay)
     arguments:
-      - negative_practical(loaded,accident,delay)
+      - negative_practical(unloaded,accident,delay)
     in:
-      - act_on_presumption(loaded)
+      - act_on_presumption_false(unloaded)
     variants: true
   - name: epistemic_ignorance/book
     source: "27, p. 328"
@@ -975,13 +976,15 @@ cases:
     arguments:
       - from_example(tweety,bird,flies)
     in:
-      - both_properties(tweety,bird,flies)
+      - usually_properties(bird,flies)
     variants: true
   - name: illustration/book
     source: "6.2, p. 315"
     assumptions:
       - usually_properties(bird,flies)
-      - same_properties(tweety,bird,flies)
+      - has_properties(tweety,bird,flies)
+    # The variant helper isolates premise necessity; the normal case and the
+    # separate peer13 case retain the full theory and its valid chaining.
     arguments:
       - illustration(tweety,bird,flies)
     in:
@@ -992,7 +995,7 @@ cases:
     assumptions:
       - prestigious_individual(gandhi,students)
       - carry_out_act(gandhi,fasting)
-      - worth_imitated(fasting,students)
+      - imitation_warrant(gandhi,fasting,students)
     arguments:
       - from_model(gandhi,students,fasting)
     in:
@@ -1037,7 +1040,7 @@ cases:
     arguments:
       - perception(ann,red)
     in:
-      - reasonable_case(red)
+      - reasonable_believe(red)
     variants: true
   - name: analogy/book
     source: "7, p. 315"
@@ -1062,12 +1065,13 @@ cases:
   - name: rule_physical_world_1/book
     source: "54.1, p. 342"
     assumptions:
-      - is_a(whale,mammal)
+      - is_a(triangle,three_sided_polygon)
+      - referentially_coextensive(triangle,three_sided_polygon)
       - synonymous
     arguments:
-      - rule_physical_world_1(whale,mammal)
+      - rule_physical_world_1(triangle,three_sided_polygon)
     in:
-      - means_same(whale,mammal)
+      - means_same(triangle,three_sided_polygon)
     variants: true
   - name: rule_physical_world_2/book
     source: "54.2, p. 342"

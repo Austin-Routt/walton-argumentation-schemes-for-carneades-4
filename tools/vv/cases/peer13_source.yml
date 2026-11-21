@@ -1,0 +1,35 @@
+# Independent reconciliation of PR13 with the supplied source, 2026-11-21.
+# Each case names both schemas so one must actually feed the other.
+cases:
+- name: illustration/peer13-shared-conjunction-chains-from-example
+  source: 'Entries 6.1-6.2, pp.314-315: the same individual has properties F and G in both premises'
+  assumptions:
+  - has_properties(tweety,bird,flies)
+  arguments:
+  - from_example(tweety,bird,flies)
+  - illustration(tweety,bird,flies)
+  no_arguments:
+  - illustration(polly,bird,flies)
+  - illustration(tweety,bird,swims)
+  in:
+  - usually_properties(bird,flies)
+  - valid_rule(bird,flies)
+- name: interaction_act_person_2/peer13-shared-person-valuation-chains
+  source: 'Entries 18.1-18.2, p.321: person P is V denotes the same person and judgment value'
+  assumptions:
+  - person_act(ann,help)
+  - act_value(help,good)
+  - person_value_depending(good,donation,generous)
+  - person_value_depending(dishonest,donation,bad)
+  arguments:
+  - interaction_act_person_1(help,ann,good)
+  - interaction_act_person_2(ann,donation,good,generous)
+  no_arguments:
+  - interaction_act_person_2(bob,donation,good,generous)
+  - interaction_act_person_2(ann,donation,dishonest,bad)
+  in:
+  - person_value(ann,good)
+  - person_acts_value(ann,donation,generous)
+  not_in:
+  - person_acts_value(bob,donation,generous)
+  - person_acts_value(ann,donation,bad)

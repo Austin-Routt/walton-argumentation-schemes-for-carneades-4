@@ -1,0 +1,146 @@
+# Independent source review, 2026-11-21. Expectations come from the cited source passages.
+cases:
+- name: from_example/independent-two-examples-one-generalization
+  source: '6.1 p.314: the generalization quantifies over x; a remains argument provenance, not conclusion
+    identity'
+  assumptions:
+  - has_properties(tweety,bird,flies)
+  - has_properties(polly,bird,flies)
+  - has_properties(robin,bird,flies)
+  arguments:
+  - from_example(tweety,bird,flies)
+  - from_example(polly,bird,flies)
+  - illustration(robin,bird,flies)
+  in:
+  - usually_properties(bird,flies)
+  - valid_rule(bird,flies)
+- name: from_model/independent-conditional-warrant
+  source: '6.3 p.315: premise 3 is a conditional about the same model'
+  assumptions:
+  - prestigious_individual(gandhi,students)
+  - carry_out_act(gandhi,fasting)
+  - imitation_warrant(gandhi,fasting,students)
+  - prestigious_individual(mandela,students)
+  - carry_out_act(mandela,fasting)
+  arguments:
+  - from_model(gandhi,students,fasting)
+  no_arguments:
+  - from_model(mandela,students,fasting)
+  in:
+  - should_do(students,fasting)
+- name: part_in_whole/independent-lower-degree-is-not-a-defeater
+  source: '9.2 p.316: less A is a parenthetical conclusion qualification, not a CQ or exception'
+  assumptions:
+  - species_of(rose,flower)
+  - has_property(flower,beautiful)
+  - smaller_part_property(rose,beautiful,flower)
+  arguments:
+  - part_in_whole(rose,flower,beautiful)
+  in:
+  - has_property(rose,beautiful)
+- name: negative_practical/independent-false-presumption-selected
+  source: '26.2 p.327: when the loss of assuming true falsely is worse, act on NOT-A'
+  assumptions:
+  - not_know_true(safe)
+  - presumption(safe)
+  - consequences_presumption(safe,injury)
+  - other_consequences_presumption(safe,delay)
+  - more_serious_consequences(injury,delay)
+  arguments:
+  - negative_practical(safe,injury,delay)
+  in:
+  - act_on_presumption_false(safe)
+- name: negative_practical/independent-opposite-ranking-does-not-select-false
+  source: '26.2 p.327: this record explicitly implements only the B>C / NOT-A branch'
+  assumptions:
+  - not_know_true(safe)
+  - presumption(safe)
+  - consequences_presumption(safe,injury)
+  - other_consequences_presumption(safe,delay)
+  - more_serious_consequences(delay,injury)
+  no_arguments:
+  - negative_practical
+  not_in:
+  - act_on_presumption_false(safe)
+- name: practical_necessary_condition/independent-one-agents-selection-does-not-bind-another
+  source: '22.2/22.3 pp.95-96,323: I/me denotes the same agent throughout all five premises'
+  assumptions:
+  - goal_of_agent(ann,pass_exam)
+  - goal_of_agent(bob,pass_exam)
+  - alternative_action(ann,ways,pass_exam)
+  - necessary_action(ann,study,ways,pass_exam)
+  - practicality_action(ann,study)
+  - more_acceptable_bringing(ann,pass_exam,study)
+  arguments:
+  - practical_necessary_condition(study,pass_exam,ann,ways)
+  no_arguments:
+  - practical_necessary_condition(study,pass_exam,bob,ways)
+  in:
+  - should_do(ann,study)
+  not_in:
+  - should_do(bob,study)
+- name: practical_necessary_condition/independent-another-agents-alternative-does-not-defeat
+  source: '22.2/22.3 p.324: alternative means must be available to the deliberating agent'
+  assumptions:
+  - goal_of_agent(ann,pass_exam)
+  - goal_of_agent(bob,pass_exam)
+  - alternative_action(ann,ways,pass_exam)
+  - necessary_action(ann,study,ways,pass_exam)
+  - practicality_action(ann,study)
+  - more_acceptable_bringing(ann,pass_exam,study)
+  - alternative_means(bob,pass_exam,study)
+  arguments:
+  - practical_necessary_condition(study,pass_exam,ann,ways)
+  in:
+  - should_do(ann,study)
+- name: practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another
+  source: '22.2/22.3 pp.95-96,323: I/me denotes the same agent throughout all five premises'
+  assumptions:
+  - goal_of_agent(ann,pass_exam)
+  - goal_of_agent(bob,pass_exam)
+  - alternative_action_sufficient(ann,ways,pass_exam)
+  - sufficient_action(ann,study,ways,pass_exam)
+  - practicality_action(ann,study)
+  - more_acceptable_bringing(ann,pass_exam,study)
+  arguments:
+  - practical_sufficient_condition(study,pass_exam,ann,ways)
+  no_arguments:
+  - practical_sufficient_condition(study,pass_exam,bob,ways)
+  in:
+  - should_do(ann,study)
+  not_in:
+  - should_do(bob,study)
+- name: practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat
+  source: '22.2/22.3 p.324: alternative means must be available to the deliberating agent'
+  assumptions:
+  - goal_of_agent(ann,pass_exam)
+  - goal_of_agent(bob,pass_exam)
+  - alternative_action_sufficient(ann,ways,pass_exam)
+  - sufficient_action(ann,study,ways,pass_exam)
+  - practicality_action(ann,study)
+  - more_acceptable_bringing(ann,pass_exam,study)
+  - alternative_means(bob,pass_exam,study)
+  arguments:
+  - practical_sufficient_condition(study,pass_exam,ann,ways)
+  in:
+  - should_do(ann,study)
+- name: definition_to_verbal_classification/independent-biased-definition-defeats
+  source: '15 p.319 CQ2: a merely stipulative or biased definition subject to doubt undercuts this classification'
+  assumptions:
+  - satisfies_definition(ann,adult_definition)
+  - classified_as(adult_definition,adult)
+  - doubtful_definition(adult_definition,adult)
+  arguments:
+  - definition_to_verbal_classification(ann,adult,adult_definition)
+  not_in:
+  - instance(ann,adult)
+- name: definition_to_verbal_classification/independent-other-definition-does-not-defeat
+  source: '15 p.319 CQ2: the challenged definition and classification must be the ones used'
+  assumptions:
+  - satisfies_definition(ann,adult_definition)
+  - classified_as(adult_definition,adult)
+  - doubtful_definition(other_definition,adult)
+  arguments:
+  - definition_to_verbal_classification(ann,adult,adult_definition)
+  in:
+  - instance(ann,adult)

@@ -77,7 +77,7 @@
 # otherwise go unnoticed. Raise it when checks are added; lower it only in the
 # change that removes a check, where a reviewer sees it.
 
-min_checks: 7994
+min_checks: 8230
 
 issues: []
 

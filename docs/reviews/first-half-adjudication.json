@@ -1,0 +1,5940 @@
+[
+  {
+    "record": "position_to_know",
+    "entry": "1",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      309
+    ],
+    "pdf_pages": [
+      319
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Domain D links W's access and proposition S; source and assertion roles are coherent. Bare S preserves truth-claim identity.",
+    "roles_and_quantifiers": "Domain D links W's access and proposition S; source and assertion roles are coherent. Bare S preserves truth-claim identity.",
+    "critical_questions_and_burdens": "CQ1 and CQ3 are premises, honesty is an opponent-supported exception. This is a reasonable static reading of the three book questions.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "None for book form; its own cited Legal Argumentation and Evidence p.46 remains outside this book-only approval.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "position_to_know(W,D)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "dishonest(W)"
+      },
+      {
+        "n": 3,
+        "kind": "premise",
+        "as": "asserts(W,S)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "W",
+        "D",
+        "S"
+      ],
+      "premises": [
+        "position_to_know(W,D)",
+        "asserts(W,S)",
+        "in_domain(S,D)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "dishonest(W)"
+      ],
+      "conclusions": [
+        "S"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "W",
+        "D",
+        "S"
+      ],
+      "premises": [
+        "position_to_know(W,D)",
+        "asserts(W,S)",
+        "in_domain(S,D)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "dishonest(W)"
+      ],
+      "conclusions": [
+        "S"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "position_to_know/book",
+      "source": "1, p. 309",
+      "assumptions": [
+        "position_to_know(ann,street)",
+        "asserts(ann,red_light_run)",
+        "in_domain(red_light_run,street)"
+      ],
+      "arguments": [
+        "position_to_know(ann,street,red_light_run)"
+      ],
+      "in": [
+        "red_light_run"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "position_to_know(W,D)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "dishonest(W)"
+      },
+      {
+        "n": 3,
+        "kind": "premise",
+        "as": "asserts(W,S)"
+      }
+    ]
+  },
+  {
+    "record": "expert_opinion",
+    "entry": "2",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      310,
+      374,
+      375
+    ],
+    "pdf_pages": [
+      320,
+      384,
+      385
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Expert W, proposition S and domain D stay linked. Bare S is the correct object proposition, without a second plausibility fact.",
+    "roles_and_quantifiers": "Expert W, proposition S and domain D stay linked. Bare S is the correct object proposition, without a second plausibility fact.",
+    "critical_questions_and_burdens": "All six printed questions are represented; credibility as a default is additionally corroborated by the book's own Carneades model, pp.374-375.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Its separately cited original source remains subject to the inherited-source worklist.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "credible(W)",
+        "note": "the book's own Carneades model of this scheme assumes the expert credible (pp. 374-375); added in 5.5"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "in_domain(S,D)",
+        "note": "redundant, p. 374"
+      },
+      {
+        "n": 3,
+        "kind": "premise",
+        "as": "asserts(W,S)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "untrustworthy(W)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "inconsistent_with_other_experts(S)"
+      },
+      {
+        "n": 6,
+        "kind": "assumption",
+        "as": "based_on_evidence(asserts(W,S))"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "W",
+        "D",
+        "S"
+      ],
+      "premises": [
+        "expert(W,D)",
+        "in_domain(S,D)",
+        "asserts(W,S)"
+      ],
+      "assumptions": [
+        "credible(W)",
+        "based_on_evidence(asserts(W,S))"
+      ],
+      "exceptions": [
+        "untrustworthy(W)",
+        "inconsistent_with_other_experts(S)"
+      ],
+      "conclusions": [
+        "S"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "W",
+        "D",
+        "S"
+      ],
+      "premises": [
+        "expert(W,D)",
+        "in_domain(S,D)",
+        "asserts(W,S)"
+      ],
+      "assumptions": [
+        "credible(W)",
+        "based_on_evidence(asserts(W,S))"
+      ],
+      "exceptions": [
+        "untrustworthy(W)",
+        "inconsistent_with_other_experts(S)"
+      ],
+      "conclusions": [
+        "S"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "expert_opinion/book",
+      "source": "2, p. 310",
+      "assumptions": [
+        "expert(smith,law)",
+        "in_domain(liable(acme),law)",
+        "asserts(smith,liable(acme))"
+      ],
+      "arguments": [
+        "expert_opinion(smith,law,liable(acme))"
+      ],
+      "in": [
+        "liable(acme)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "credible(W)",
+        "note": "the book's own Carneades model of this scheme assumes the expert credible (pp. 374-375); added in 5.5"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "in_domain(S,D)",
+        "note": "redundant, p. 374"
+      },
+      {
+        "n": 3,
+        "kind": "premise",
+        "as": "asserts(W,S)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "untrustworthy(W)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "inconsistent_with_other_experts(S)"
+      },
+      {
+        "n": 6,
+        "kind": "assumption",
+        "as": "based_on_evidence(asserts(W,S))"
+      }
+    ]
+  },
+  {
+    "record": "witness_testimony",
+    "entry": "3",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      310
+    ],
+    "pdf_pages": [
+      320
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "W's sincerity is represented by believes(W,S) plus assertion; this is a defensible interpretation, not an exact quotation of knowing truth. A domain fact supplies access.",
+    "roles_and_quantifiers": "W's sincerity is represented by believes(W,S) plus assertion; this is a defensible interpretation, not an exact quotation of knowing truth. A domain fact supplies access.",
+    "critical_questions_and_burdens": "Internal consistency defaults; conflicting facts, other witnesses, bias and implausibility are exceptions. Global biased(W) needs case-specific use, because the question concerns the account.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Make explicit that W denotes this witness in the case and that bias is relevant to this account; own-source verification is separate.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "internally_consistent(S)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "inconsistent_with_known_facts(S)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "inconsistent_with_other_witnesses(S)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "biased(W)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "implausible(S)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "W",
+        "D",
+        "S"
+      ],
+      "premises": [
+        "position_to_know(W,D)",
+        "in_domain(S,D)",
+        "believes(W,S)",
+        "asserts(W,S)"
+      ],
+      "assumptions": [
+        "internally_consistent(S)"
+      ],
+      "exceptions": [
+        "inconsistent_with_known_facts(S)",
+        "inconsistent_with_other_witnesses(S)",
+        "biased(W)",
+        "implausible(S)"
+      ],
+      "conclusions": [
+        "S"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "W",
+        "D",
+        "S"
+      ],
+      "premises": [
+        "position_to_know(W,D)",
+        "in_domain(S,D)",
+        "believes(W,S)",
+        "asserts(W,S)"
+      ],
+      "assumptions": [
+        "internally_consistent(S)"
+      ],
+      "exceptions": [
+        "inconsistent_with_known_facts(S)",
+        "inconsistent_with_other_witnesses(S)",
+        "biased(W)",
+        "implausible(S)"
+      ],
+      "conclusions": [
+        "S"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "witness_testimony/book",
+      "source": "3, p. 310",
+      "assumptions": [
+        "position_to_know(ann,street)",
+        "in_domain(red_light_run,street)",
+        "believes(ann,red_light_run)",
+        "asserts(ann,red_light_run)"
+      ],
+      "arguments": [
+        "witness_testimony(ann,street,red_light_run)"
+      ],
+      "in": [
+        "red_light_run"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "internally_consistent(S)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "inconsistent_with_known_facts(S)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "inconsistent_with_other_witnesses(S)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "biased(W)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "implausible(S)"
+      }
+    ]
+  },
+  {
+    "record": "popular_opinion",
+    "entry": "4",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      311
+    ],
+    "pdf_pages": [
+      321
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The output remains a reason in favor of A, not an assertion that A is true. General acceptance and the acceptance-to-reason warrant are distinct.",
+    "roles_and_quantifiers": "The output remains a reason in favor of A, not an assertion that A is true. General acceptance and the acceptance-to-reason warrant are distinct.",
+    "critical_questions_and_burdens": "CQ1 is challenged via the general-acceptance premise; CQ2 is an exception. Both printed questions are accounted for.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the stated static interpretation.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "generally_true(A)",
+        "note": "asks for the evidence of the general acceptance premise; the assumption generally_accepted(A), which said the same in other words, goes"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "doubting_general(A)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A"
+      ],
+      "premises": [
+        "generally_true(A)",
+        "favor(A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "doubting_general(A)"
+      ],
+      "conclusions": [
+        "reason_in_favor(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A"
+      ],
+      "premises": [
+        "generally_true(A)",
+        "favor(A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "doubting_general(A)"
+      ],
+      "conclusions": [
+        "reason_in_favor(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "popular_opinion/book",
+      "source": "4, p. 311",
+      "assumptions": [
+        "generally_true(earth_round)",
+        "favor(earth_round)"
+      ],
+      "arguments": [
+        "popular_opinion(earth_round)"
+      ],
+      "in": [
+        "reason_in_favor(earth_round)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "generally_true(A)",
+        "note": "asks for the evidence of the general acceptance premise; the assumption generally_accepted(A), which said the same in other words, goes"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "doubting_general(A)"
+      }
+    ]
+  },
+  {
+    "record": "pop_scheme",
+    "entry": "4.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      311
+    ],
+    "pdf_pages": [
+      321
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The assertive variant concludes A itself. A may be a signed proposition, so accepting a negative proposition does not require an extra truth-wrapper.",
+    "roles_and_quantifiers": "The assertive variant concludes A itself. A may be a signed proposition, so accepting a negative proposition does not require an extra truth-wrapper.",
+    "critical_questions_and_burdens": "No printed CQs in this numbered variant; underlying group acceptance is an explicit premise.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve the assertive variant separately from the advice variant.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "pop_scheme/book",
+      "source": "4.1, p. 311",
+      "assumptions": [
+        "group_accepted(scientists,earth_round)"
+      ],
+      "arguments": [
+        "pop_scheme(earth_round,scientists)"
+      ],
+      "in": [
+        "earth_round"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "pop_scheme_acceptance",
+    "entry": "4.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      311
+    ],
+    "pdf_pages": [
+      321
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The advisory variant concludes that the implicit respondent should accept A. It no longer asserts both truth and acceptance in one inference.",
+    "roles_and_quantifiers": "The advisory variant concludes that the implicit respondent should accept A. It no longer asserts both truth and acceptance in one inference.",
+    "critical_questions_and_burdens": "No printed CQs; this is the expressly separated acceptance reading.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Scope is accepting the proposition supplied as A; rejecting an A is not automatically interchangeable with accepting its negation in every dialogue.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "pop_scheme_acceptance/book",
+      "source": "4.1, p. 311",
+      "assumptions": [
+        "group_accepted(scientists,earth_round)"
+      ],
+      "arguments": [
+        "pop_scheme_acceptance(earth_round,scientists)"
+      ],
+      "in": [
+        "should_accept(earth_round)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "position_to_know_ad_populum",
+    "entry": "4.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      311
+    ],
+    "pdf_pages": [
+      321
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "G is the same group in consensus and epistemic-position premises; A is the same conclusion proposition. Replacing plausibly_true(A) with A is appropriate for a defeasible argument.",
+    "roles_and_quantifiers": "G is the same group in consensus and epistemic-position premises; A is the same conclusion proposition. Replacing plausibly_true(A) with A is appropriate for a defeasible argument.",
+    "critical_questions_and_burdens": "No printed CQs for this variant; premise support carries the challenge path.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for this source form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "position_to_know_group(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "position_to_know_group(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "position_to_know_ad_populum/book",
+      "source": "4.2, p. 311",
+      "assumptions": [
+        "group_accepted(locals,safe_beach)",
+        "position_to_know_group(locals,safe_beach)"
+      ],
+      "arguments": [
+        "position_to_know_ad_populum(safe_beach,locals)"
+      ],
+      "in": [
+        "safe_beach"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "expert_opinion_ad_populum",
+    "entry": "4.3",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      312
+    ],
+    "pdf_pages": [
+      322
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The expert group and consensus proposition are preserved. The source itself does not bind the proposition to a separate domain variable, so this review does not invent one.",
+    "roles_and_quantifiers": "The expert group and consensus proposition are preserved. The source itself does not bind the proposition to a separate domain variable, so this review does not invent one.",
+    "critical_questions_and_burdens": "No printed CQs in this variant; a stronger domain-sensitive version could be added under a distinct interpretation.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the printed form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "expert_in_knowledge(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "expert_in_knowledge(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "expert_opinion_ad_populum/book",
+      "source": "4.3, p. 312",
+      "assumptions": [
+        "group_accepted(doctors,vaccines_safe)",
+        "expert_in_knowledge(doctors)"
+      ],
+      "arguments": [
+        "expert_opinion_ad_populum(vaccines_safe,doctors)"
+      ],
+      "in": [
+        "vaccines_safe"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "deliberation_ad_populum",
+    "entry": "4.4",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      312
+    ],
+    "pdf_pages": [
+      322
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The deliberating group is also the group accepting A; the output is A, with defeasibility represented by argument evaluation.",
+    "roles_and_quantifiers": "The deliberating group is also the group accepting A; the output is A, with defeasibility represented by argument evaluation.",
+    "critical_questions_and_burdens": "No printed CQs in this variant.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for this source form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "deliberate(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "deliberate(G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "deliberation_ad_populum/book",
+      "source": "4.4, p. 312",
+      "assumptions": [
+        "group_accepted(jury,guilty_verdict)",
+        "deliberate(jury,guilty_verdict)"
+      ],
+      "arguments": [
+        "deliberation_ad_populum(guilty_verdict,jury)"
+      ],
+      "in": [
+        "guilty_verdict"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "moral_justification_ad_populum",
+    "entry": "4.5",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      312
+    ],
+    "pdf_pages": [
+      322
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented.",
+    "roles_and_quantifiers": "Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented.",
+    "critical_questions_and_burdens": "No printed CQs; respondent identity remains implicit, as in the text.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Document one implicit respondent per graph or encode recipient identity when combining different audiences.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "P"
+      ],
+      "premises": [
+        "good_group(G,P)",
+        "goal_good_group(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(P)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "P"
+      ],
+      "premises": [
+        "good_group(G,P)",
+        "goal_good_group(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(P)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "moral_justification_ad_populum/book",
+      "source": "4.5, p. 312",
+      "assumptions": [
+        "good_group(good_citizens,recycling)",
+        "goal_good_group(good_citizens)"
+      ],
+      "arguments": [
+        "moral_justification_ad_populum(good_citizens,recycling)"
+      ],
+      "in": [
+        "should_accept(recycling)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "moral_justification_ad_populum_excuse",
+    "entry": "4.6",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      312
+    ],
+    "pdf_pages": [
+      322
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The record retains action and policy alternatives in composite predicates. It does not separately infer morally_acceptable(action) or acceptable(policy).",
+    "roles_and_quantifiers": "The record retains action and policy alternatives in composite predicates. It does not separately infer morally_acceptable(action) or acceptable(policy).",
+    "critical_questions_and_burdens": "No printed CQs. The speaker is implicit in group_member/1 and the conclusion.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Declare this as an opaque combined action/policy reading; split typed action and policy variants before claiming independent interoperability of each branch.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "X",
+        "A"
+      ],
+      "premises": [
+        "group_does(G,X,A)",
+        "acceptable_norm(X,A,G)",
+        "group_member(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "morally_acceptable_action(X,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "X",
+        "A"
+      ],
+      "premises": [
+        "group_does(G,X,A)",
+        "acceptable_norm(X,A,G)",
+        "group_member(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "morally_acceptable_action(X,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "moral_justification_ad_populum_excuse/book",
+      "source": "4.6, p. 312",
+      "assumptions": [
+        "group_does(drivers,speeding,speeding_ok)",
+        "acceptable_norm(speeding,speeding_ok,drivers)",
+        "group_member(drivers)"
+      ],
+      "arguments": [
+        "moral_justification_ad_populum_excuse(drivers,speeding,speeding_ok)"
+      ],
+      "in": [
+        "morally_acceptable_action(speeding,speeding_ok)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "snob_appeal_ad_populum",
+    "entry": "4.7",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      312
+    ],
+    "pdf_pages": [
+      322
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Group, prestige goal and membership warrant are present, but acceptance, property acquisition and object purchase are compressed. Only should_accept(A) is concluded.",
+    "roles_and_quantifiers": "Group, prestige goal and membership warrant are present, but acceptance, property acquisition and object purchase are compressed. Only should_accept(A) is concluded.",
+    "critical_questions_and_burdens": "No printed CQs. P and O occur in the membership warrant but do not select a conclusion branch.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "The Rolex reference case treats an object as A in accept(A); replace with a clearly typed acceptance example, and add property/purchase variants if those alternatives are claimed as covered.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G",
+        "O",
+        "P"
+      ],
+      "premises": [
+        "property_or_object(G,A)",
+        "elite_group(G)",
+        "goal_prestige",
+        "accept_property_object(A,P,O,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G",
+        "O",
+        "P"
+      ],
+      "premises": [
+        "property_or_object(G,A)",
+        "elite_group(G)",
+        "goal_prestige",
+        "accept_property_object(A,P,O,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "snob_appeal_ad_populum/book",
+      "source": "4.7, p. 312",
+      "assumptions": [
+        "property_or_object(jet_set,rolex)",
+        "elite_group(jet_set)",
+        "goal_prestige",
+        "accept_property_object(rolex,wealth,watch,jet_set)"
+      ],
+      "arguments": [
+        "snob_appeal_ad_populum(rolex,jet_set,watch,wealth)"
+      ],
+      "in": [
+        "should_accept(rolex)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "appeal_to_vanity_ad_populum",
+    "entry": "4.8",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      312
+    ],
+    "pdf_pages": [
+      322
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The respondent's action X, not admired group G or proposition A, is the conclusion object. Separating the second-person ought from a first-person practical goal is correct.",
+    "roles_and_quantifiers": "The respondent's action X, not admired group G or proposition A, is the conclusion object. Separating the second-person ought from a first-person practical goal is correct.",
+    "critical_questions_and_burdens": "No printed CQs. The source uses one implicit respondent.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve for one current respondent; do not silently treat the implicit audience as every named agent.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "A",
+        "X"
+      ],
+      "premises": [
+        "admired_people(G,A)",
+        "group_action(X,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "ought_to_bring_about(X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "A",
+        "X"
+      ],
+      "premises": [
+        "admired_people(G,A)",
+        "group_action(X,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "ought_to_bring_about(X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "appeal_to_vanity_ad_populum/book",
+      "source": "4.8, p. 312",
+      "assumptions": [
+        "admired_people(stars,brand_x)",
+        "group_action(buy_brand_x,stars)"
+      ],
+      "arguments": [
+        "appeal_to_vanity_ad_populum(stars,brand_x,buy_brand_x)"
+      ],
+      "in": [
+        "ought_to_bring_about(buy_brand_x)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "rhetoric_ad_populum",
+    "entry": "4.9",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      313
+    ],
+    "pdf_pages": [
+      323
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Consensus, valued membership and contrasting out-group acceptance refer to the same G and A. The conclusion is acceptance by the implicit respondent.",
+    "roles_and_quantifiers": "Consensus, valued membership and contrasting out-group acceptance refer to the same G and A. The conclusion is acceptance by the implicit respondent.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "One current respondent is part of the source reading.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "A"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "valued_to_be_member(G)",
+        "out_group_not_accept(A,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "A"
+      ],
+      "premises": [
+        "group_accepted(G,A)",
+        "valued_to_be_member(G)",
+        "out_group_not_accept(A,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_accept(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "rhetoric_ad_populum/book",
+      "source": "4.9, p. 313",
+      "assumptions": [
+        "group_accepted(union,leadership_honest)",
+        "valued_to_be_member(union)",
+        "out_group_not_accept(leadership_honest,union)"
+      ],
+      "arguments": [
+        "rhetoric_ad_populum(union,leadership_honest)"
+      ],
+      "in": [
+        "should_accept(leadership_honest)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "common_folk_ad_populum",
+    "entry": "4.10",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      313
+    ],
+    "pdf_pages": [
+      323
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Speaker S is explicit in background(S) and being_credible(S); removing the old zero-argument forms prevents unrelated speakers from sharing these facts.",
+    "roles_and_quantifiers": "Speaker S is explicit in background(S) and being_credible(S); removing the old zero-argument forms prevents unrelated speakers from sharing these facts.",
+    "critical_questions_and_burdens": "No printed CQs. The audience remains the current audience of the case.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve the speaker-bound, single-audience interpretation.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "S"
+      ],
+      "premises": [
+        "background(S)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "being_credible(S)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "S"
+      ],
+      "premises": [
+        "background(S)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "being_credible(S)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "common_folk_ad_populum/book",
+      "source": "4.10, p. 313",
+      "assumptions": [
+        "background(senator)"
+      ],
+      "arguments": [
+        "common_folk_ad_populum(senator)"
+      ],
+      "in": [
+        "being_credible(senator)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "common_folks_group_ad_populum",
+    "entry": "4.11",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      313
+    ],
+    "pdf_pages": [
+      323
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The speaker belongs to the same background group as the respondent; accept_saying(S) retains the speaker identity.",
+    "roles_and_quantifiers": "The speaker belongs to the same background group as the respondent; accept_saying(S) retains the speaker identity.",
+    "critical_questions_and_burdens": "No printed CQs. Group G is consistently bound.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve for the current respondent; the predicate is an endorsement of this speaker, not all of that person's future utterances across cases.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "S"
+      ],
+      "premises": [
+        "group_background(S,G)",
+        "respondent_member(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "accept_saying(S)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "S"
+      ],
+      "premises": [
+        "group_background(S,G)",
+        "respondent_member(G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "accept_saying(S)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "common_folks_group_ad_populum/book",
+      "source": "4.11, p. 313",
+      "assumptions": [
+        "group_background(senator,farmers)",
+        "respondent_member(farmers)"
+      ],
+      "arguments": [
+        "common_folks_group_ad_populum(farmers,senator)"
+      ],
+      "in": [
+        "accept_saying(senator)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "popular_practice",
+    "entry": "5",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      314
+    ],
+    "pdf_pages": [
+      324
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The popular-practice premise and current-case conclusion have the right roles. The minor template is the consequent of an anaphoric warrant, rather than a self-contained conditional.",
+    "roles_and_quantifiers": "The popular-practice premise and current-case conclusion have the right roles. The minor template is the consequent of an anaphoric warrant, rather than a self-contained conditional.",
+    "critical_questions_and_burdens": "CQ1 is a premise challenge; CQ2 is represented by justified grounds as a default assumption, a defensible interpretation.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Clarify the warrant template and state that each graph has one current case; cases with different circumstances require distinct contextual practice terms.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "popular_practice(A)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "have_grounds_think(A)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A"
+      ],
+      "premises": [
+        "popular_practice(A)",
+        "to_think_acceptable(A)"
+      ],
+      "assumptions": [
+        "have_grounds_think(A)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "acceptable_in_case(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A"
+      ],
+      "premises": [
+        "popular_practice(A)",
+        "to_think_acceptable(A)"
+      ],
+      "assumptions": [
+        "have_grounds_think(A)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "acceptable_in_case(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "popular_practice/book",
+      "source": "5, p. 314",
+      "assumptions": [
+        "popular_practice(tipping)",
+        "to_think_acceptable(tipping)"
+      ],
+      "arguments": [
+        "popular_practice(tipping)"
+      ],
+      "in": [
+        "acceptable_in_case(tipping)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "popular_practice(A)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "have_grounds_think(A)"
+      }
+    ]
+  },
+  {
+    "record": "from_example",
+    "entry": "6.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      314
+    ],
+    "pdf_pages": [
+      324
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "REPAIRED: the generalization now depends on F and G only, using usually_properties(F,G). The example a remains in argument parameters, allowing convergent support and feeding illustration.",
+    "roles_and_quantifiers": "REPAIRED: the generalization now depends on F and G only, using usually_properties(F,G). The example a remains in argument parameters, allowing convergent support and feeding illustration.",
+    "critical_questions_and_burdens": "CQ1 premise, CQ2/CQ3 defaults, CQ5 exception. CQ4 is a supported challenge to the generalization in its negation issue; one exceptional case does not by itself refute a defeasible generalization.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Keep this CQ4 policy explicit. Generic grounded examples are insufficient to calibrate how strong a generalization is; a policy-level strength example remains desirable.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "has_properties(A,P1,P2)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "supports_generalization(A,P1,P2)"
+      },
+      {
+        "n": 3,
+        "kind": "assumption",
+        "as": "typical_example(A)"
+      },
+      {
+        "n": 4,
+        "kind": "rebuttal",
+        "as": "¬both_properties(A,P1,P2)",
+        "note": "how strong the generalization is: a counter-example argues against it in the negation issue"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "impair_general(A)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "P1",
+        "P2"
+      ],
+      "premises": [
+        "has_properties(A,P1,P2)"
+      ],
+      "assumptions": [
+        "typical_example(A)",
+        "supports_generalization(A,P1,P2)"
+      ],
+      "exceptions": [
+        "impair_general(A)"
+      ],
+      "conclusions": [
+        "both_properties(A,P1,P2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "P1",
+        "P2"
+      ],
+      "premises": [
+        "has_properties(A,P1,P2)"
+      ],
+      "assumptions": [
+        "typical_example(A)",
+        "supports_generalization(A,P1,P2)"
+      ],
+      "exceptions": [
+        "impair_general(A)"
+      ],
+      "conclusions": [
+        "usually_properties(P1,P2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "from_example/book",
+      "source": "6.1, p. 314",
+      "assumptions": [
+        "has_properties(tweety,bird,flies)"
+      ],
+      "arguments": [
+        "from_example(tweety,bird,flies)"
+      ],
+      "in": [
+        "usually_properties(bird,flies)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "from_example/independent-two-examples-one-generalization",
+        "source": "6.1 p.314: the generalization quantifies over x; a remains argument provenance, not conclusion identity",
+        "assumptions": [
+          "has_properties(tweety,bird,flies)",
+          "has_properties(polly,bird,flies)",
+          "same_properties(robin,bird,flies)"
+        ],
+        "arguments": [
+          "from_example(tweety,bird,flies)",
+          "from_example(polly,bird,flies)",
+          "illustration(robin,bird,flies)"
+        ],
+        "in": [
+          "usually_properties(bird,flies)",
+          "valid_rule(bird,flies)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "has_properties(A,P1,P2)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "supports_generalization(A,P1,P2)"
+      },
+      {
+        "n": 3,
+        "kind": "assumption",
+        "as": "typical_example(A)"
+      },
+      {
+        "n": 4,
+        "kind": "rebuttal",
+        "as": "¬usually_properties(P1,P2)",
+        "note": "how strong the generalization is: a supported challenge to the generalization argues against it in the negation issue; an isolated exception need not refute a defeasible generalization"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "impair_general(A)"
+      }
+    ]
+  },
+  {
+    "record": "illustration",
+    "entry": "6.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      315
+    ],
+    "pdf_pages": [
+      325
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The rule premise and validity conclusion depend on F and G rather than on the illustrating individual. The particular case supplies an instance of both properties.",
+    "roles_and_quantifiers": "The rule premise and validity conclusion depend on F and G rather than on the illustrating individual. The particular case supplies an instance of both properties.",
+    "critical_questions_and_burdens": "No printed CQs. Quantification over x in the rule is represented as an opaque rule proposition, not an inference that enumerates all x.",
+    "source_ledger_claim_before": "correction",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve this source-form interpretation; the new two-example case also verifies composition from example to illustration.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "Y",
+        "P1",
+        "P2"
+      ],
+      "premises": [
+        "usually_properties(P1,P2)",
+        "same_properties(Y,P1,P2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "valid_rule(P1,P2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "Y",
+        "P1",
+        "P2"
+      ],
+      "premises": [
+        "usually_properties(P1,P2)",
+        "has_properties(Y,P1,P2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "valid_rule(P1,P2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "illustration/book",
+      "source": "6.2, p. 315",
+      "assumptions": [
+        "usually_properties(bird,flies)",
+        "same_properties(tweety,bird,flies)"
+      ],
+      "arguments": [
+        "illustration(tweety,bird,flies)"
+      ],
+      "in": [
+        "valid_rule(bird,flies)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [],
+    "followup_reviews": [
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "illustration",
+        "reviewed_formula_changes": {
+          "premises": {
+            "before": [
+              "usually_properties(P1,P2)",
+              "same_properties(Y,P1,P2)"
+            ],
+            "after": [
+              "usually_properties(P1,P2)",
+              "has_properties(Y,P1,P2)"
+            ]
+          }
+        },
+        "source_pages": [
+          314,
+          315
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      }
+    ]
+  },
+  {
+    "record": "from_model",
+    "entry": "6.3",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      315
+    ],
+    "pdf_pages": [
+      325
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "REPAIRED: the third premise is now imitation_warrant(model,action,imitators), preserving the complete conditional and its model. The imitators are the recipients of should_do.",
+    "roles_and_quantifiers": "REPAIRED: the third premise is now imitation_warrant(model,action,imitators), preserving the complete conditional and its model. The imitators are the recipients of should_do.",
+    "critical_questions_and_burdens": "No printed CQs. The new adverse case prevents a warrant about one model from licensing a different model's argument.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No remaining book-form blocker after the patch and positive/adverse cases.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B",
+        "X"
+      ],
+      "premises": [
+        "prestigious_individual(A,B)",
+        "carry_out_act(A,X)",
+        "worth_imitated(X,B)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_do(B,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B",
+        "X"
+      ],
+      "premises": [
+        "prestigious_individual(A,B)",
+        "carry_out_act(A,X)",
+        "imitation_warrant(A,X,B)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_do(B,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "from_model/book",
+      "source": "6.3, p. 315",
+      "assumptions": [
+        "prestigious_individual(gandhi,students)",
+        "carry_out_act(gandhi,fasting)",
+        "imitation_warrant(gandhi,fasting,students)"
+      ],
+      "arguments": [
+        "from_model(gandhi,students,fasting)"
+      ],
+      "in": [
+        "should_do(students,fasting)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "from_model/independent-conditional-warrant",
+        "source": "6.3 p.315: premise 3 is a conditional about the same model",
+        "assumptions": [
+          "prestigious_individual(gandhi,students)",
+          "carry_out_act(gandhi,fasting)",
+          "imitation_warrant(gandhi,fasting,students)",
+          "prestigious_individual(mandela,students)",
+          "carry_out_act(mandela,fasting)"
+        ],
+        "arguments": [
+          "from_model(gandhi,students,fasting)"
+        ],
+        "no_arguments": [
+          "from_model(mandela,students,fasting)"
+        ],
+        "in": [
+          "should_do(students,fasting)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "from_antimodel",
+    "entry": "6.4",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      315
+    ],
+    "pdf_pages": [
+      325
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The model, act and would-be imitators are consistently bound. The implementation concludes negated should_do, while the text says should not do.",
+    "roles_and_quantifiers": "The model, act and would-be imitators are consistently bound. The implementation concludes negated should_do, while the text says should not do.",
+    "critical_questions_and_burdens": "No printed CQs. Under a two-position recommendation policy these can be treated as opposing recommendations, but ordinary deontic logic distinguishes not obligatory from obligatory not.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Document the binary recommendation convention or introduce an explicit refrain-from-action predicate before claiming full deontic equivalence.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B",
+        "X"
+      ],
+      "premises": [
+        "¬prestigious_individual(A,B)",
+        "carry_out_act(A,X)",
+        "want_to_be_different(B,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "¬should_do(B,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B",
+        "X"
+      ],
+      "premises": [
+        "¬prestigious_individual(A,B)",
+        "carry_out_act(A,X)",
+        "want_to_be_different(B,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "¬should_do(B,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "from_antimodel/book",
+      "source": "6.4, p. 315",
+      "assumptions": [
+        "¬prestigious_individual(tyrant,citizens)",
+        "carry_out_act(tyrant,lying)",
+        "want_to_be_different(citizens,tyrant)"
+      ],
+      "arguments": [
+        "from_antimodel(tyrant,citizens,lying)"
+      ],
+      "in": [
+        "¬should_do(citizens,lying)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "analogy",
+    "entry": "7",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      315
+    ],
+    "pdf_pages": [
+      325
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The source and current cases are distinguished by an implicit current-case convention. The conclusion is A in that current case.",
+    "roles_and_quantifiers": "The source and current cases are distinguished by an implicit current-case convention. The conclusion is A in that current case.",
+    "critical_questions_and_burdens": "CQ1 relevant differences and CQ2 base premise are present. CQ3 in the book asks about another similar contrary case, whereas more_on_point imposes a stronger relevance condition.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Own-source form may justify the inherited variant, but this is not yet a complete equivalence to the book CQ3; keep that scope difference explicit.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "relevant_differences(C)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "in_case(A,C)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "more_on_point(A,C)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "C"
+      ],
+      "premises": [
+        "similar_case(C)",
+        "in_case(A,C)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "relevant_differences(C)",
+        "more_on_point(A,C)"
+      ],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "C"
+      ],
+      "premises": [
+        "similar_case(C)",
+        "in_case(A,C)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "relevant_differences(C)",
+        "more_on_point(A,C)"
+      ],
+      "conclusions": [
+        "A"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "analogy/book",
+      "source": "7, p. 315",
+      "assumptions": [
+        "similar_case(case1)",
+        "in_case(liable,case1)"
+      ],
+      "arguments": [
+        "analogy(liable,case1)"
+      ],
+      "in": [
+        "liable"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "relevant_differences(C)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "in_case(A,C)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "more_on_point(A,C)"
+      }
+    ]
+  },
+  {
+    "record": "practical_analogy_positive",
+    "entry": "8.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      316
+    ],
+    "pdf_pages": [
+      326
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The action X is preserved while the situation changes from A1 to similar A2. The conclusion remains a normative assessment in A2.",
+    "roles_and_quantifiers": "The action X is preserved while the situation changes from A1 to similar A2. The conclusion remains a normative assessment in A2.",
+    "critical_questions_and_burdens": "No printed CQs in these practical analogy variants.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the positive source form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A1",
+        "A2",
+        "X"
+      ],
+      "premises": [
+        "right_to_do(A1,X)",
+        "similar_to(A1,A2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "carry_out_right(A2,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A1",
+        "A2",
+        "X"
+      ],
+      "premises": [
+        "right_to_do(A1,X)",
+        "similar_to(A1,A2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "carry_out_right(A2,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "practical_analogy_positive/book",
+      "source": "8.1, p. 316",
+      "assumptions": [
+        "right_to_do(case1,mediate)",
+        "similar_to(case1,case2)"
+      ],
+      "arguments": [
+        "practical_analogy_positive(case1,case2,mediate)"
+      ],
+      "in": [
+        "carry_out_right(case2,mediate)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "practical_analogy_negative",
+    "entry": "8.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      316
+    ],
+    "pdf_pages": [
+      326
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The negative assessment of doing X transfers from A1 to similar A2; it does not change the action or assert the opposite descriptive proposition.",
+    "roles_and_quantifiers": "The negative assessment of doing X transfers from A1 to similar A2; it does not change the action or assert the opposite descriptive proposition.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the negative source form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A1",
+        "A2",
+        "X"
+      ],
+      "premises": [
+        "wrong_to_do(A1,X)",
+        "similar_to(A1,A2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "carry_out_wrong(A2,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A1",
+        "A2",
+        "X"
+      ],
+      "premises": [
+        "wrong_to_do(A1,X)",
+        "similar_to(A1,A2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "carry_out_wrong(A2,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "practical_analogy_negative/book",
+      "source": "8.2, p. 316",
+      "assumptions": [
+        "wrong_to_do(case1,strike)",
+        "similar_to(case1,case2)"
+      ],
+      "arguments": [
+        "practical_analogy_negative(case1,case2,strike)"
+      ],
+      "in": [
+        "carry_out_wrong(case2,strike)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "composition_generic",
+    "entry": "9.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      316,
+      113
+    ],
+    "pdf_pages": [
+      326,
+      123
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "All parts have the property; the conclusion attributes it to the whole. Sharing has_property with other schemes is correct when object and property identifiers denote the same things.",
+    "roles_and_quantifiers": "All parts have the property; the conclusion attributes it to the whole. Sharing has_property with other schemes is correct when object and property identifiers denote the same things.",
+    "critical_questions_and_burdens": "The compositional-heredity default follows the direction established in the narrative; the compendium parenthesis reverses the direction and is appropriately treated as a supported correction.",
+    "source_ledger_claim_before": "correction",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "This is defeasible composition, not a universally valid transfer of every property. The hereditary default is question-sensitive.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "compositionally_hereditary(A,P)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "P"
+      ],
+      "premises": [
+        "all_parts_property(A,P)"
+      ],
+      "assumptions": [
+        "compositionally_hereditary(A,P)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(A,P)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "P"
+      ],
+      "premises": [
+        "all_parts_property(A,P)"
+      ],
+      "assumptions": [
+        "compositionally_hereditary(A,P)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(A,P)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "composition_generic/book",
+      "source": "9.1, p. 316",
+      "assumptions": [
+        "all_parts_property(car,heavy)"
+      ],
+      "arguments": [
+        "composition_generic(car,heavy)"
+      ],
+      "in": [
+        "has_property(car,heavy)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "compositionally_hereditary(A,P)"
+      }
+    ]
+  },
+  {
+    "record": "part_in_whole",
+    "entry": "9.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      316
+    ],
+    "pdf_pages": [
+      326
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "REPAIRED: lower degree is no longer an exception defeating possession of the property. The positive species/part-to-property branch concludes has_property(y,A).",
+    "roles_and_quantifiers": "REPAIRED: lower degree is no longer an exception defeating possession of the property. The positive species/part-to-property branch concludes has_property(y,A).",
+    "critical_questions_and_burdens": "No printed CQ exists here. The removed exception was a conclusion parenthesis incorrectly promoted to a defeat condition.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "The current predicate species_of represents the species reading; physical part and comparative degree variants need explicit scope or separate records. Do not claim the degree parenthesis has been fully computed.",
+    "source_questions_original_ledger": [
+      {
+        "n": 0,
+        "kind": "exception",
+        "as": "smaller_part_property(Y,A,X)",
+        "note": "no printed question: the conclusion's parenthesis, 'less A because a smaller part'"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "Y",
+        "X",
+        "A"
+      ],
+      "premises": [
+        "species_of(Y,X)",
+        "has_property(X,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "smaller_part_property(Y,A,X)"
+      ],
+      "conclusions": [
+        "has_property(Y,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "Y",
+        "X",
+        "A"
+      ],
+      "premises": [
+        "species_of(Y,X)",
+        "has_property(X,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(Y,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "part_in_whole/book",
+      "source": "9.2, p. 316",
+      "assumptions": [
+        "species_of(rose,flower)",
+        "has_property(flower,beautiful)"
+      ],
+      "arguments": [
+        "part_in_whole(rose,flower,beautiful)"
+      ],
+      "in": [
+        "has_property(rose,beautiful)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "part_in_whole/independent-lower-degree-is-not-a-defeater",
+        "source": "9.2 p.316: less A is a parenthetical conclusion qualification, not a CQ or exception",
+        "assumptions": [
+          "species_of(rose,flower)",
+          "has_property(flower,beautiful)",
+          "smaller_part_property(rose,beautiful,flower)"
+        ],
+        "arguments": [
+          "part_in_whole(rose,flower,beautiful)"
+        ],
+        "in": [
+          "has_property(rose,beautiful)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "division_generic",
+    "entry": "10.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      317,
+      113
+    ],
+    "pdf_pages": [
+      327,
+      123
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The whole has a property and, defeasibly, all parts have it. The direction is distinct from composition even though they can form an engine-safe cycle.",
+    "roles_and_quantifiers": "The whole has a property and, defeasibly, all parts have it. The direction is distinct from composition even though they can form an engine-safe cycle.",
+    "critical_questions_and_burdens": "The divisional-heredity default is the substantive warrant; it is challengeable. The source's reversed explanatory parenthesis is corrected using narrative context.",
+    "source_ledger_claim_before": "correction",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve with the same property-identity and case-context convention as composition.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "divisionally_hereditary(A,P)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "P"
+      ],
+      "premises": [
+        "has_property(A,P)"
+      ],
+      "assumptions": [
+        "divisionally_hereditary(A,P)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "all_parts_property(A,P)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "P"
+      ],
+      "premises": [
+        "has_property(A,P)"
+      ],
+      "assumptions": [
+        "divisionally_hereditary(A,P)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "all_parts_property(A,P)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "division_generic/book",
+      "source": "10.1, p. 317",
+      "assumptions": [
+        "has_property(car,heavy)"
+      ],
+      "arguments": [
+        "division_generic(car,heavy)"
+      ],
+      "in": [
+        "all_parts_property(car,heavy)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "divisionally_hereditary(A,P)"
+      }
+    ]
+  },
+  {
+    "record": "whole_into_parts",
+    "entry": "10.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      317
+    ],
+    "pdf_pages": [
+      327
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The implementation fixes three named parts and derives the whole's property from X1 plus the stated whole/part warrant. The source allows x1 through xn and alternative negative branches.",
+    "roles_and_quantifiers": "The implementation fixes three named parts and derives the whole's property from X1 plus the stated whole/part warrant. The source allows x1 through xn and alternative negative branches.",
+    "critical_questions_and_burdens": "No printed CQs. The source itself says only if; treating this as a presumptive argumentative pattern does not establish a deductively valid sufficient condition.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Declare the positive, three-part restricted instance. Arbitrary cardinality, other selected parts, negative branches and the only-if interpretation remain unimplemented or unresolved.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "X1",
+        "X2",
+        "X3",
+        "A"
+      ],
+      "premises": [
+        "whole_of(X,X1,X2,X3)",
+        "part_whole(X,A,X1,X2,X3)",
+        "has_property(X1,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(X,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "X1",
+        "X2",
+        "X3",
+        "A"
+      ],
+      "premises": [
+        "whole_of(X,X1,X2,X3)",
+        "part_whole(X,A,X1,X2,X3)",
+        "has_property(X1,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(X,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "whole_into_parts/book",
+      "source": "10.2, p. 317",
+      "assumptions": [
+        "whole_of(team,ann,bob,cy)",
+        "part_whole(team,strong,ann,bob,cy)",
+        "has_property(ann,strong)"
+      ],
+      "arguments": [
+        "whole_into_parts(team,ann,bob,cy,strong)"
+      ],
+      "in": [
+        "has_property(team,strong)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "opposition_descriptive_1",
+    "entry": "11.1a",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      317
+    ],
+    "pdf_pages": [
+      327
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The contrary-property warrant and asserted property concern the same subject A; the conclusion is inability to present the opposite at the same time.",
+    "roles_and_quantifiers": "The contrary-property warrant and asserted property concern the same subject A; the conclusion is inability to present the opposite at the same time.",
+    "critical_questions_and_burdens": "No printed CQs. Modal cannot-present is kept distinct from a plain negated observation.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the printed variant.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "P",
+        "P2",
+        "A"
+      ],
+      "premises": [
+        "presents_predicate(A,P,P2)",
+        "presents(A,P)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "cannot_present_sametime(A,P2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "P",
+        "P2",
+        "A"
+      ],
+      "premises": [
+        "presents_predicate(A,P,P2)",
+        "presents(A,P)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "cannot_present_sametime(A,P2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "opposition_descriptive_1/book",
+      "source": "11.1, p. 317",
+      "assumptions": [
+        "presents_predicate(wall,white,black)",
+        "presents(wall,white)"
+      ],
+      "arguments": [
+        "opposition_descriptive_1(white,black,wall)"
+      ],
+      "in": [
+        "cannot_present_sametime(wall,black)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "opposition_descriptive_2",
+    "entry": "11.1b",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The negative property premise instantiates the antecedent of the stated opposition warrant; the conclusion names the paired property of the same subject.",
+    "roles_and_quantifiers": "The negative property premise instantiates the antecedent of the stated opposition warrant; the conclusion names the paired property of the same subject.",
+    "critical_questions_and_burdens": "No printed CQs. The warrant, not absence of any arbitrary property, licenses the inference.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for this source-form record.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "P",
+        "P2",
+        "A"
+      ],
+      "premises": [
+        "not_presents_predicate(A,P,P2)",
+        "¬presents(A,P)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "must_present_sametime(A,P2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "P",
+        "P2",
+        "A"
+      ],
+      "premises": [
+        "not_presents_predicate(A,P,P2)",
+        "¬presents(A,P)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "must_present_sametime(A,P2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "opposition_descriptive_2/book",
+      "source": "11.1, p. 317",
+      "assumptions": [
+        "not_presents_predicate(number,even,odd)",
+        "¬presents(number,even)"
+      ],
+      "arguments": [
+        "opposition_descriptive_2(even,odd,number)"
+      ],
+      "in": [
+        "must_present_sametime(number,odd)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "opposition_descriptive_3",
+    "entry": "11.1c",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Complementary-or-contrary alternatives and absence of one yield the required other predicate for the same subject and time context.",
+    "roles_and_quantifiers": "Complementary-or-contrary alternatives and absence of one yield the required other predicate for the same subject and time context.",
+    "critical_questions_and_burdens": "No printed CQs. This is the declared paired-property interpretation, not unrestricted closed-world reasoning.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the stated source form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "P",
+        "P2",
+        "A"
+      ],
+      "premises": [
+        "must_present_complementary_contrary(A,P,P2)",
+        "¬presents(A,P)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "must_present_sametime(A,P2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "P",
+        "P2",
+        "A"
+      ],
+      "premises": [
+        "must_present_complementary_contrary(A,P,P2)",
+        "¬presents(A,P)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "must_present_sametime(A,P2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "opposition_descriptive_3/book",
+      "source": "11.1, pp. 317-318",
+      "assumptions": [
+        "must_present_complementary_contrary(light,on,off)",
+        "¬presents(light,on)"
+      ],
+      "arguments": [
+        "opposition_descriptive_3(on,off,light)"
+      ],
+      "in": [
+        "must_present_sametime(light,off)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "opposition_normative",
+    "entry": "11.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The corrected minor premise instantiates the first evaluation in the major warrant; the conclusion excludes the opposite evaluation for the same subject.",
+    "roles_and_quantifiers": "The corrected minor premise instantiates the first evaluation in the major warrant; the conclusion excludes the opposite evaluation for the same subject.",
+    "critical_questions_and_burdens": "No printed CQs. The source's inconsistent symbol is corrected coherently rather than reproduced as a swapped role.",
+    "source_ledger_claim_before": "correction",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for this documented correction.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "X",
+        "X2"
+      ],
+      "premises": [
+        "cannot_opposite_evaluation(A,X,X2)",
+        "receives_evaluation(A,X)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "cannot_receive_evaluation(A,X2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "X",
+        "X2"
+      ],
+      "premises": [
+        "cannot_opposite_evaluation(A,X,X2)",
+        "receives_evaluation(A,X)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "cannot_receive_evaluation(A,X2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "opposition_normative/book",
+      "source": "11.2, p. 318",
+      "assumptions": [
+        "cannot_opposite_evaluation(act,good,bad)",
+        "receives_evaluation(act,good)"
+      ],
+      "arguments": [
+        "opposition_normative(act,good,bad)"
+      ],
+      "in": [
+        "cannot_receive_evaluation(act,bad)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "rhetorical_oppositions_normative",
+    "entry": "12.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Entity and treatment pairs retain the correct direction: the current required treatment triggers the warranted contrary treatment for the contrary entity.",
+    "roles_and_quantifiers": "Entity and treatment pairs retain the correct direction: the current required treatment triggers the warranted contrary treatment for the contrary entity.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker; source-form relational variables are not conflated with properties of the same entity.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "X2",
+        "A",
+        "A2"
+      ],
+      "premises": [
+        "if_treatment_required(X,A,X2,A2)",
+        "treatment_required(X,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "contrary_treatment_required(X2,A2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "X2",
+        "A",
+        "A2"
+      ],
+      "premises": [
+        "if_treatment_required(X,A,X2,A2)",
+        "treatment_required(X,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "contrary_treatment_required(X2,A2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "rhetorical_oppositions_normative/book",
+      "source": "12.1, p. 318",
+      "assumptions": [
+        "if_treatment_required(friends,kindness,enemies,severity)",
+        "treatment_required(friends,kindness)"
+      ],
+      "arguments": [
+        "rhetorical_oppositions_normative(friends,enemies,kindness,severity)"
+      ],
+      "in": [
+        "contrary_treatment_required(enemies,severity)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "rhetorical_oppositions_descriptive",
+    "entry": "12.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "A's relation to B and the paired converse relation yield B's converse relation to A. Roles are reversed exactly once.",
+    "roles_and_quantifiers": "A's relation to B and the paired converse relation yield B's converse relation to A. Roles are reversed exactly once.",
+    "critical_questions_and_burdens": "No printed CQs. The one implemented direction is warranted by the source's bidirectional description.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for this direction of the relational pattern.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B",
+        "R",
+        "R2"
+      ],
+      "premises": [
+        "relation_converse_relation(A,R,B,R2)",
+        "relation_with(A,R,B)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "converse_relation(B,R2,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B",
+        "R",
+        "R2"
+      ],
+      "premises": [
+        "relation_converse_relation(A,R,B,R2)",
+        "relation_with(A,R,B)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "converse_relation(B,R2,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "rhetorical_oppositions_descriptive/book",
+      "source": "12.2, p. 318",
+      "assumptions": [
+        "relation_converse_relation(ann,teaches,bob,learns_from)",
+        "relation_with(ann,teaches,bob)"
+      ],
+      "arguments": [
+        "rhetorical_oppositions_descriptive(ann,bob,teaches,learns_from)"
+      ],
+      "in": [
+        "converse_relation(bob,learns_from,ann)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "alternative_cognitive",
+    "entry": "13.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The chosen alternatives are propositions A and B; negated A and the alternative warrant yield B. Bare propositions allow this output to feed other schemes.",
+    "roles_and_quantifiers": "The chosen alternatives are propositions A and B; negated A and the alternative warrant yield B. Bare propositions allow this output to feed other schemes.",
+    "critical_questions_and_burdens": "No printed CQs. The rule remains a defeasible argument rather than a modal theorem about all possible worlds.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the stated alternative warrant.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B"
+      ],
+      "premises": [
+        "can_be_case(A,B)",
+        "¬A"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "B"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B"
+      ],
+      "premises": [
+        "can_be_case(A,B)",
+        "¬A"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "B"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "alternative_cognitive/book",
+      "source": "13.1, p. 318",
+      "assumptions": [
+        "can_be_case(rain,snow)",
+        "¬rain"
+      ],
+      "arguments": [
+        "alternative_cognitive(rain,snow)"
+      ],
+      "in": [
+        "snow"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "alternative_normative",
+    "entry": "13.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      318
+    ],
+    "pdf_pages": [
+      328
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "A and B remain the same normative alternatives. Required A yields negated required B under the supplied alternative warrant.",
+    "roles_and_quantifiers": "A and B remain the same normative alternatives. Required A yields negated required B under the supplied alternative warrant.",
+    "critical_questions_and_burdens": "No printed CQs. This reading requires mutually exclusive normative alternatives; an inclusive A-or-B would not suffice.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Document exclusivity and distinguish not-required(B) from required(not-B).",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B"
+      ],
+      "premises": [
+        "can_be_required(A,B)",
+        "is_required(A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "¬is_required(B)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B"
+      ],
+      "premises": [
+        "can_be_required(A,B)",
+        "is_required(A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "¬is_required(B)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "alternative_normative/book",
+      "source": "13.2, p. 318",
+      "assumptions": [
+        "can_be_required(stop,go)",
+        "is_required(stop)"
+      ],
+      "arguments": [
+        "alternative_normative(stop,go)"
+      ],
+      "in": [
+        "¬is_required(go)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "verbal_classification",
+    "entry": "14",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      319
+    ],
+    "pdf_pages": [
+      329
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Object O classified under F and F subsumed by G yield O under G. Classification hierarchy and object positions are coherent.",
+    "roles_and_quantifiers": "Object O classified under F and F subsumed by G yield O under G. Classification hierarchy and object positions are coherent.",
+    "critical_questions_and_burdens": "CQ1 is the object-class premise; CQ2 is the doubtful-classification exception.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Book form approved; its own cited original remains subject to the inherited-source worklist.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "instance(O,F)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "doubtful_classification(F,G)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "O",
+        "F",
+        "G"
+      ],
+      "premises": [
+        "instance(O,F)",
+        "subclass(F,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "doubtful_classification(F,G)"
+      ],
+      "conclusions": [
+        "instance(O,G)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "O",
+        "F",
+        "G"
+      ],
+      "premises": [
+        "instance(O,F)",
+        "subclass(F,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "doubtful_classification(F,G)"
+      ],
+      "conclusions": [
+        "instance(O,G)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "verbal_classification/book",
+      "source": "14, p. 319",
+      "assumptions": [
+        "instance(rex,dog)",
+        "subclass(dog,mammal)"
+      ],
+      "arguments": [
+        "verbal_classification(rex,dog,mammal)"
+      ],
+      "in": [
+        "instance(rex,mammal)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "instance(O,F)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "doubtful_classification(F,G)"
+      }
+    ]
+  },
+  {
+    "record": "definition_to_verbal_classification",
+    "entry": "15",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      319
+    ],
+    "pdf_pages": [
+      329
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "REPAIRED: the definition satisfaction and definition-to-class link yield the correct object classification; the complete book CQ set is represented. The source's inconsistent x/a in its universal premise is read coherently, not as all objects having G.",
+    "roles_and_quantifiers": "REPAIRED: the definition satisfaction and definition-to-class link yield the correct object classification; the complete book CQ set is represented. The source's inconsistent x/a in its universal premise is read coherently, not as all objects having G.",
+    "critical_questions_and_burdens": "CQ1 inadequacy remains an exception. CQ2 now has doubtful_definition(D,G), explicitly for a merely stipulative or biased definition subject to doubt. Positive and wrong-definition controls distinguish relevant from unrelated challenges.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Book-form interpretation approved; this addition is sourced to p.319 and does not verify the independently cited 2006 original. Inherited-source stage remains held.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "inadequate_definition(D,G)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "note": "a merely stipulative or biased definition; not modelled, the record keeps upstream's wording (D5, 5.5)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "O",
+        "G",
+        "D"
+      ],
+      "premises": [
+        "satisfies_definition(O,D)",
+        "classified_as(D,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "inadequate_definition(D,G)"
+      ],
+      "conclusions": [
+        "instance(O,G)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "O",
+        "G",
+        "D"
+      ],
+      "premises": [
+        "satisfies_definition(O,D)",
+        "classified_as(D,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "inadequate_definition(D,G)",
+        "doubtful_definition(D,G)"
+      ],
+      "conclusions": [
+        "instance(O,G)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "definition_to_verbal_classification/book",
+      "source": "15, p. 319",
+      "assumptions": [
+        "satisfies_definition(rex,dog_definition)",
+        "classified_as(dog_definition,dog)"
+      ],
+      "arguments": [
+        "definition_to_verbal_classification(rex,dog,dog_definition)"
+      ],
+      "in": [
+        "instance(rex,dog)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "definition_to_verbal_classification/independent-biased-definition-defeats",
+        "source": "15 p.319 CQ2: a merely stipulative or biased definition subject to doubt undercuts this classification",
+        "assumptions": [
+          "satisfies_definition(ann,adult_definition)",
+          "classified_as(adult_definition,adult)",
+          "doubtful_definition(adult_definition,adult)"
+        ],
+        "arguments": [
+          "definition_to_verbal_classification(ann,adult,adult_definition)"
+        ],
+        "not_in": [
+          "instance(ann,adult)"
+        ]
+      },
+      {
+        "name": "definition_to_verbal_classification/independent-other-definition-does-not-defeat",
+        "source": "15 p.319 CQ2: the challenged definition and classification must be the ones used",
+        "assumptions": [
+          "satisfies_definition(ann,adult_definition)",
+          "classified_as(adult_definition,adult)",
+          "doubtful_definition(other_definition,adult)"
+        ],
+        "arguments": [
+          "definition_to_verbal_classification(ann,adult,adult_definition)"
+        ],
+        "in": [
+          "instance(ann,adult)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "inadequate_definition(D,G)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "doubtful_definition(D,G)",
+        "note": "book p. 319: a merely stipulative or biased definition subject to doubt; added as a book-supported interpretation, not verification of the separately cited 2006 original"
+      }
+    ]
+  },
+  {
+    "record": "verbal_classification_vagueness",
+    "entry": "16",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      319,
+      320
+    ],
+    "pdf_pages": [
+      329,
+      330
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "REPAIRED wording: the counterclaim concerns precision, not certainty. The argument and property roles in the vagueness/precision premises are coherent.",
+    "roles_and_quantifiers": "REPAIRED wording: the counterclaim concerns precision, not certainty. The argument and property roles in the vagueness/precision premises are coherent.",
+    "critical_questions_and_burdens": "CQ1/CQ2 are premises; CQ3 is an opposing exception asserting that precision is not required here. This is an interpretation of a why-question, not the only possible burden policy.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Approve the content correction, but document when an unanswered precision challenge defeats the argument versus requiring an affirmative exception.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "precision_needed(A)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "property_vagueness(F,A)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "certainty_no_need(A,F)",
+        "note": "why the vagueness is a problem: shown not to be, because the property need not be precise here"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "F"
+      ],
+      "premises": [
+        "vague_defined_property(A,F)",
+        "precision_needed(A)",
+        "property_vagueness(F,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "certainty_no_need(A,F)"
+      ],
+      "conclusions": [
+        "rejected_as_deficient(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "F"
+      ],
+      "premises": [
+        "vague_defined_property(A,F)",
+        "precision_needed(A)",
+        "property_vagueness(F,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "certainty_no_need(A,F)"
+      ],
+      "conclusions": [
+        "rejected_as_deficient(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "verbal_classification_vagueness/book",
+      "source": "16, pp. 319-320",
+      "assumptions": [
+        "vague_defined_property(arg1,heap)",
+        "precision_needed(arg1)",
+        "property_vagueness(heap,arg1)"
+      ],
+      "arguments": [
+        "verbal_classification_vagueness(arg1,heap)"
+      ],
+      "in": [
+        "rejected_as_deficient(arg1)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "precision_needed(A)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "property_vagueness(F,A)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "certainty_no_need(A,F)",
+        "note": "why the vagueness is a problem: shown not to be, because the property need not be precise here"
+      }
+    ]
+  },
+  {
+    "record": "verbal_classification_arbitrariness",
+    "entry": "17",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      320
+    ],
+    "pdf_pages": [
+      330
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The arbitrary property, relevant argument and need for a nonarbitrary definition retain their roles; the conclusion rejects that argument as deficient.",
+    "roles_and_quantifiers": "The arbitrary property, relevant argument and need for a nonarbitrary definition retain their roles; the conclusion rejects that argument as deficient.",
+    "critical_questions_and_burdens": "CQ1/CQ2 are premises; CQ3 harmless arbitrariness is an exception. The burden choice is a project interpretation.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Keep that burden policy explicit; no extra premise should simply restate the conclusion.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "needed_nonarbitrary(A,F)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "arbitrary_property(F,A)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "arbitrariness_harmless(A,F)",
+        "note": "as 16's third question"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "F"
+      ],
+      "premises": [
+        "arbitrary_defined_property(A,F)",
+        "needed_nonarbitrary(A,F)",
+        "arbitrary_property(F,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "arbitrariness_harmless(A,F)"
+      ],
+      "conclusions": [
+        "rejected_as_deficient(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "F"
+      ],
+      "premises": [
+        "arbitrary_defined_property(A,F)",
+        "needed_nonarbitrary(A,F)",
+        "arbitrary_property(F,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "arbitrariness_harmless(A,F)"
+      ],
+      "conclusions": [
+        "rejected_as_deficient(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "verbal_classification_arbitrariness/book",
+      "source": "17, p. 320",
+      "assumptions": [
+        "arbitrary_defined_property(arg1,poverty)",
+        "needed_nonarbitrary(arg1,poverty)",
+        "arbitrary_property(poverty,arg1)"
+      ],
+      "arguments": [
+        "verbal_classification_arbitrariness(arg1,poverty)"
+      ],
+      "in": [
+        "rejected_as_deficient(arg1)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "premise",
+        "as": "needed_nonarbitrary(A,F)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "arbitrary_property(F,A)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "arbitrariness_harmless(A,F)",
+        "note": "as 16's third question"
+      }
+    ]
+  },
+  {
+    "record": "interaction_act_person_1",
+    "entry": "18.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      320
+    ],
+    "pdf_pages": [
+      330
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "A person's act with value V supports attributing V to that person. Agent, act and value remain separate.",
+    "roles_and_quantifiers": "A person's act with value V supports attributing V to that person. Agent, act and value remain separate.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for this source-form presumptive transfer.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "A",
+        "V"
+      ],
+      "premises": [
+        "person_act(A,X)",
+        "act_value(X,V)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "person_value(A,V)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "A",
+        "V"
+      ],
+      "premises": [
+        "person_act(A,X)",
+        "act_value(X,V)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "person_value(A,V)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "interaction_act_person_1/book",
+      "source": "18.1, p. 321",
+      "assumptions": [
+        "person_act(ann,rescue)",
+        "act_value(rescue,brave)"
+      ],
+      "arguments": [
+        "interaction_act_person_1(rescue,ann,brave)"
+      ],
+      "in": [
+        "person_value(ann,brave)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "interaction_act_person_2",
+    "entry": "18.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      320,
+      321
+    ],
+    "pdf_pages": [
+      330,
+      331
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "A prior judgment of the person's value plus a stated value-to-act evaluation warrant yields the evaluation of that person's act.",
+    "roles_and_quantifiers": "A prior judgment of the person's value plus a stated value-to-act evaluation warrant yields the evaluation of that person's act.",
+    "critical_questions_and_burdens": "No printed CQs. The generic warrant is intentionally not tied to one individual unless instantiated through the first premise.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the stated relational pattern.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "X",
+        "V1",
+        "V2"
+      ],
+      "premises": [
+        "person_judgment_value(A,V1)",
+        "person_value_depending(V1,X,V2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "person_acts_value(A,X,V2)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "X",
+        "V1",
+        "V2"
+      ],
+      "premises": [
+        "person_value(A,V1)",
+        "person_value_depending(V1,X,V2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "person_acts_value(A,X,V2)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "interaction_act_person_2/book",
+      "source": "18.2, p. 321",
+      "assumptions": [
+        "person_judgment_value(ann,honest)",
+        "person_value_depending(honest,report,truthful)"
+      ],
+      "arguments": [
+        "interaction_act_person_2(ann,report,honest,truthful)"
+      ],
+      "in": [
+        "person_acts_value(ann,report,truthful)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [],
+    "followup_reviews": [
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "interaction_act_person_2",
+        "reviewed_formula_changes": {
+          "premises": {
+            "before": [
+              "person_judgment_value(A,V1)",
+              "person_value_depending(V1,X,V2)"
+            ],
+            "after": [
+              "person_value(A,V1)",
+              "person_value_depending(V1,X,V2)"
+            ]
+          }
+        },
+        "source_pages": [
+          321
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      }
+    ]
+  },
+  {
+    "record": "positive_value",
+    "entry": "19.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      321
+    ],
+    "pdf_pages": [
+      331
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Agent A's judgment and its effect on A's goal lead to a reason for retaining the goal. The conclusion omits A.",
+    "roles_and_quantifiers": "Agent A's judgment and its effect on A's goal lead to a reason for retaining the goal. The conclusion omits A.",
+    "critical_questions_and_burdens": "No printed CQs. Two people with an identical goal term but different evaluations would share the conclusion's identity.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Require goal terms to identify the owner's goal instance or add the agent to the conclusion before mixed-agent value comparisons.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "V",
+        "A",
+        "G"
+      ],
+      "premises": [
+        "judged_positive_value(V,A)",
+        "positive_affects(V,G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "reason_retaining_goal(V,G)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "V",
+        "A",
+        "G"
+      ],
+      "premises": [
+        "judged_positive_value(V,A)",
+        "positive_affects(V,G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "reason_retaining_goal(V,G)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "positive_value/book",
+      "source": "19.1, p. 321; Hal and Carla, p. 322",
+      "assumptions": [
+        "judged_positive_value(life,hal)",
+        "positive_affects(life,survival,hal)"
+      ],
+      "arguments": [
+        "positive_value(life,hal,survival)"
+      ],
+      "in": [
+        "reason_retaining_goal(life,survival)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "negative_value",
+    "entry": "19.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      321
+    ],
+    "pdf_pages": [
+      331
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The corrected conclusion retracts commitment, rather than retaining it. As with the positive record, the conclusion omits the evaluating agent.",
+    "roles_and_quantifiers": "The corrected conclusion retracts commitment, rather than retaining it. As with the positive record, the conclusion omits the evaluating agent.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "correction",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Owner-scoped goal identifiers or an explicit agent argument are necessary for multi-agent use; this is separate from the already corrected sign.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "V",
+        "A",
+        "G"
+      ],
+      "premises": [
+        "judged_negative_value(V,A)",
+        "negative_affects(V,G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "reason_retracting_goal(V,G)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "V",
+        "A",
+        "G"
+      ],
+      "premises": [
+        "judged_negative_value(V,A)",
+        "negative_affects(V,G,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "reason_retracting_goal(V,G)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "negative_value/book",
+      "source": "19.2, p. 321; Hal and Carla, p. 322",
+      "assumptions": [
+        "judged_negative_value(theft,hal)",
+        "negative_affects(theft,survival,hal)"
+      ],
+      "arguments": [
+        "negative_value(theft,hal,survival)"
+      ],
+      "in": [
+        "reason_retracting_goal(theft,survival)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "sacrifice",
+    "entry": "20",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      322
+    ],
+    "pdf_pages": [
+      332
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The person, sacrifice and its value are coherent in the great-sacrifice branch. The current record does not encode the small-sacrifice alternative printed parenthetically.",
+    "roles_and_quantifiers": "The person, sacrifice and its value are coherent in the great-sacrifice branch. The current record does not encode the small-sacrifice alternative printed parenthetically.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Approve only the great-sacrifice variant; add or explicitly exclude the small-sacrifice branch from coverage claims.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "S",
+        "V"
+      ],
+      "premises": [
+        "sacrifice_made(A,S)",
+        "great_sacrifice(S,A,V)",
+        "great_sacrifice_made(S,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "sacrifice_value(A,V)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "S",
+        "V"
+      ],
+      "premises": [
+        "sacrifice_made(A,S)",
+        "great_sacrifice(S,A,V)",
+        "great_sacrifice_made(S,A)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "sacrifice_value(A,V)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "sacrifice/book",
+      "source": "20, p. 322",
+      "assumptions": [
+        "sacrifice_made(degree,years)",
+        "great_sacrifice(years,degree,worth)",
+        "great_sacrifice_made(years,degree)"
+      ],
+      "arguments": [
+        "sacrifice(degree,years,worth)"
+      ],
+      "in": [
+        "sacrifice_value(degree,worth)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "group_1",
+    "entry": "21.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      321,
+      322
+    ],
+    "pdf_pages": [
+      331,
+      332
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "A member's quality plus an explicit transfer warrant yields the group's quality. The has_property(group,quality) identity is the same property statement used elsewhere.",
+    "roles_and_quantifiers": "A member's quality plus an explicit transfer warrant yields the group's quality. The has_property(group,quality) identity is the same property statement used elsewhere.",
+    "critical_questions_and_burdens": "No printed CQs. The warrant, not membership alone, supports the transfer.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker when terms identify the same quality and group in the same case.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "Q",
+        "M"
+      ],
+      "premises": [
+        "member_quality(M,G,Q)",
+        "member_group_quality(M,Q,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(G,Q)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "Q",
+        "M"
+      ],
+      "premises": [
+        "member_quality(M,G,Q)",
+        "member_group_quality(M,Q,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(G,Q)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "group_1/book",
+      "source": "21.1, pp. 321-322",
+      "assumptions": [
+        "member_quality(ann,team,fast)",
+        "member_group_quality(ann,fast,team)"
+      ],
+      "arguments": [
+        "group_1(team,fast,ann)"
+      ],
+      "in": [
+        "has_property(team,fast)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "group_2",
+    "entry": "21.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      322
+    ],
+    "pdf_pages": [
+      332
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "A group's quality, membership and explicit downward transfer warrant yield the member's quality. The shared property predicate preserves entity roles.",
+    "roles_and_quantifiers": "A group's quality, membership and explicit downward transfer warrant yield the member's quality. The shared property predicate preserves entity roles.",
+    "critical_questions_and_burdens": "No printed CQs. The membership and transfer premises prevent an unqualified automatic group-to-person inference.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the stated source form.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "G",
+        "Q",
+        "M"
+      ],
+      "premises": [
+        "has_property(G,Q)",
+        "group_member(M,G)",
+        "group_member_quality(G,Q,M)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(M,Q)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "G",
+        "Q",
+        "M"
+      ],
+      "premises": [
+        "has_property(G,Q)",
+        "group_member(M,G)",
+        "group_member_quality(G,Q,M)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "has_property(M,Q)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "group_2/book",
+      "source": "21.2, p. 322",
+      "assumptions": [
+        "has_property(senate,wise)",
+        "group_member(ann,senate)",
+        "group_member_quality(senate,wise,ann)"
+      ],
+      "arguments": [
+        "group_2(senate,wise,ann)"
+      ],
+      "in": [
+        "has_property(ann,wise)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "practical_inference",
+    "entry": "22.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      95,
+      96,
+      323
+    ],
+    "pdf_pages": [
+      105,
+      106,
+      333
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Agent P's goal and means-to-end support should_do(P,A); explicit agent binding makes the shared practical conclusion appropriate.",
+    "roles_and_quantifiers": "Agent P's goal and means-to-end support should_do(P,A); explicit agent binding makes the shared practical conclusion appropriate.",
+    "critical_questions_and_burdens": "All five printed questions have a ledger route, but other/better means and bad consequences are opponent-proven exceptions. Narrative p.96 says merely asking any of the five questions can provisionally defeat until answered.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "A static evidential exception policy is not the book's full dialogue burden behavior. Keep interpretation approval qualified until that mismatch is resolved or explicitly contracted.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "conflicting_goals(P,G)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "more_efficient_alternative(A,G)",
+        "note": "with CQ3: an alternative counts against A when it is more efficient"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "more_efficient_alternative(A,G)"
+      },
+      {
+        "n": 4,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,A)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "incompatible_consequences(A,G)"
+      },
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "possible_goal(G)",
+        "note": "no printed question: that the goal can be realized"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "G",
+        "P"
+      ],
+      "premises": [
+        "goal_of_agent(P,G)",
+        "means_to_end(A,G)"
+      ],
+      "assumptions": [
+        "possible_bring_about(P,A)",
+        "possible_goal(G)"
+      ],
+      "exceptions": [
+        "conflicting_goals(P,G)",
+        "more_efficient_alternative(A,G)",
+        "incompatible_consequences(A,G)"
+      ],
+      "conclusions": [
+        "should_do(P,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "G",
+        "P"
+      ],
+      "premises": [
+        "goal_of_agent(P,G)",
+        "means_to_end(A,G)"
+      ],
+      "assumptions": [
+        "possible_bring_about(P,A)",
+        "possible_goal(G)"
+      ],
+      "exceptions": [
+        "conflicting_goals(P,G)",
+        "more_efficient_alternative(A,G)",
+        "incompatible_consequences(A,G)"
+      ],
+      "conclusions": [
+        "should_do(P,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "practical_inference/book",
+      "source": "22.1, p. 323",
+      "assumptions": [
+        "goal_of_agent(me,health)",
+        "means_to_end(exercise,health)"
+      ],
+      "arguments": [
+        "practical_inference(exercise,health,me)"
+      ],
+      "in": [
+        "should_do(me,exercise)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "conflicting_goals(P,G)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "more_efficient_alternative(A,G)",
+        "note": "with CQ3: an alternative counts against A when it is more efficient"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "more_efficient_alternative(A,G)"
+      },
+      {
+        "n": 4,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,A)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "incompatible_consequences(A,G)"
+      },
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "possible_goal(G)",
+        "note": "no printed question: that the goal can be realized"
+      }
+    ]
+  },
+  {
+    "record": "practical_necessary_condition",
+    "entry": "22.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      95,
+      96,
+      323,
+      324
+    ],
+    "pdf_pages": [
+      105,
+      106,
+      333,
+      334
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "REPAIRED: P now scopes all personal selection, consideration, feasibility and preference premises, plus personal acceptability and alternatives. A second agent sharing a goal cannot inherit another's deliberation.",
+    "roles_and_quantifiers": "REPAIRED: P now scopes all personal selection, consideration, feasibility and preference premises, plus personal acceptability and alternatives. A second agent sharing a goal cannot inherit another's deliberation.",
+    "critical_questions_and_burdens": "CQ coverage exists; exceptions versus questions retain the practical dialogue-burden discrepancy described for 22.1.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "New positive and two-agent adverse cases pass after the patch. Resolve question-induced suspension policy before unqualified source approval.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "alternative_means(A,X)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "acceptable_action(X)"
+      },
+      {
+        "n": 3,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,X)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "side_effect_action(P,X)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "conflicting_goals(P,A)"
+      },
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "possible_goal(A)",
+        "note": "no printed question: that the goal can be brought about"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "A",
+        "P",
+        "S"
+      ],
+      "premises": [
+        "goal_of_agent(P,A)",
+        "alternative_action(S,A)",
+        "necessary_action(X,S,A)",
+        "practicality_action(X)",
+        "more_acceptable_bringing(A,X)"
+      ],
+      "assumptions": [
+        "possible_goal(A)",
+        "acceptable_action(X)",
+        "possible_bring_about(P,X)"
+      ],
+      "exceptions": [
+        "alternative_means(A,X)",
+        "side_effect_action(P,X)",
+        "conflicting_goals(P,A)"
+      ],
+      "conclusions": [
+        "should_do(P,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "A",
+        "P",
+        "S"
+      ],
+      "premises": [
+        "goal_of_agent(P,A)",
+        "alternative_action(P,S,A)",
+        "necessary_action(P,X,S,A)",
+        "practicality_action(P,X)",
+        "more_acceptable_bringing(P,A,X)"
+      ],
+      "assumptions": [
+        "possible_goal(A)",
+        "acceptable_action(P,X)",
+        "possible_bring_about(P,X)"
+      ],
+      "exceptions": [
+        "alternative_means(P,A,X)",
+        "side_effect_action(P,X)",
+        "conflicting_goals(P,A)"
+      ],
+      "conclusions": [
+        "should_do(P,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "practical_necessary_condition/book",
+      "source": "22.2, p. 323",
+      "assumptions": [
+        "goal_of_agent(me,pass_exam)",
+        "alternative_action(me,ways_to_pass,pass_exam)",
+        "necessary_action(me,study,ways_to_pass,pass_exam)",
+        "practicality_action(me,study)",
+        "more_acceptable_bringing(me,pass_exam,study)"
+      ],
+      "arguments": [
+        "practical_necessary_condition(study,pass_exam,me,ways_to_pass)"
+      ],
+      "in": [
+        "should_do(me,study)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "practical_necessary_condition/independent-one-agents-selection-does-not-bind-another",
+        "source": "22.2/22.3 pp.95-96,323: I/me denotes the same agent throughout all five premises",
+        "assumptions": [
+          "goal_of_agent(ann,pass_exam)",
+          "goal_of_agent(bob,pass_exam)",
+          "alternative_action(ann,ways,pass_exam)",
+          "necessary_action(ann,study,ways,pass_exam)",
+          "practicality_action(ann,study)",
+          "more_acceptable_bringing(ann,pass_exam,study)"
+        ],
+        "arguments": [
+          "practical_necessary_condition(study,pass_exam,ann,ways)"
+        ],
+        "no_arguments": [
+          "practical_necessary_condition(study,pass_exam,bob,ways)"
+        ],
+        "in": [
+          "should_do(ann,study)"
+        ],
+        "not_in": [
+          "should_do(bob,study)"
+        ]
+      },
+      {
+        "name": "practical_necessary_condition/independent-another-agents-alternative-does-not-defeat",
+        "source": "22.2/22.3 p.324: alternative means must be available to the deliberating agent",
+        "assumptions": [
+          "goal_of_agent(ann,pass_exam)",
+          "goal_of_agent(bob,pass_exam)",
+          "alternative_action(ann,ways,pass_exam)",
+          "necessary_action(ann,study,ways,pass_exam)",
+          "practicality_action(ann,study)",
+          "more_acceptable_bringing(ann,pass_exam,study)",
+          "alternative_means(bob,pass_exam,study)"
+        ],
+        "arguments": [
+          "practical_necessary_condition(study,pass_exam,ann,ways)"
+        ],
+        "in": [
+          "should_do(ann,study)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "alternative_means(P,A,X)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "acceptable_action(P,X)"
+      },
+      {
+        "n": 3,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,X)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "side_effect_action(P,X)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "conflicting_goals(P,A)"
+      },
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "possible_goal(A)",
+        "note": "no printed question: that the goal can be brought about"
+      }
+    ]
+  },
+  {
+    "record": "practical_sufficient_condition",
+    "entry": "22.3",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      96,
+      323,
+      324
+    ],
+    "pdf_pages": [
+      106,
+      333,
+      334
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "REPAIRED: all personal premises bind the same P; the alternatives template now says each member is sufficient, matching p.96 rather than merely one member. Selected member X is distinct from set S.",
+    "roles_and_quantifiers": "REPAIRED: all personal premises bind the same P; the alternatives template now says each member is sufficient, matching p.96 rather than merely one member. Selected member X is distinct from set S.",
+    "critical_questions_and_burdens": "Same five question routes and extra feasibility defaults as 22.2; dialogue-burden qualification remains.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "New positive and two-agent adverse cases pass after the patch. Document the narrative-supported correction and resolve provisional challenge behavior.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "alternative_means(A,X)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "acceptable_action(X)"
+      },
+      {
+        "n": 3,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,X)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "side_effect_action(P,X)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "conflicting_goals(P,A)"
+      },
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "possible_goal(A)",
+        "note": "no printed question: that the goal can be brought about"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "A",
+        "P",
+        "S"
+      ],
+      "premises": [
+        "goal_of_agent(P,A)",
+        "alternative_action_sufficient(S,A)",
+        "sufficient_action(X,S,A)",
+        "practicality_action(X)",
+        "more_acceptable_bringing(A,X)"
+      ],
+      "assumptions": [
+        "possible_goal(A)",
+        "acceptable_action(X)",
+        "possible_bring_about(P,X)"
+      ],
+      "exceptions": [
+        "alternative_means(A,X)",
+        "side_effect_action(P,X)",
+        "conflicting_goals(P,A)"
+      ],
+      "conclusions": [
+        "should_do(P,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "A",
+        "P",
+        "S"
+      ],
+      "premises": [
+        "goal_of_agent(P,A)",
+        "alternative_action_sufficient(P,S,A)",
+        "sufficient_action(P,X,S,A)",
+        "practicality_action(P,X)",
+        "more_acceptable_bringing(P,A,X)"
+      ],
+      "assumptions": [
+        "possible_goal(A)",
+        "acceptable_action(P,X)",
+        "possible_bring_about(P,X)"
+      ],
+      "exceptions": [
+        "alternative_means(P,A,X)",
+        "side_effect_action(P,X)",
+        "conflicting_goals(P,A)"
+      ],
+      "conclusions": [
+        "should_do(P,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "practical_sufficient_condition/book",
+      "source": "22.3, p. 323",
+      "assumptions": [
+        "goal_of_agent(me,pass_exam)",
+        "alternative_action_sufficient(me,ways_to_pass,pass_exam)",
+        "sufficient_action(me,study,ways_to_pass,pass_exam)",
+        "practicality_action(me,study)",
+        "more_acceptable_bringing(me,pass_exam,study)"
+      ],
+      "arguments": [
+        "practical_sufficient_condition(study,pass_exam,me,ways_to_pass)"
+      ],
+      "in": [
+        "should_do(me,study)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another",
+        "source": "22.2/22.3 pp.95-96,323: I/me denotes the same agent throughout all five premises",
+        "assumptions": [
+          "goal_of_agent(ann,pass_exam)",
+          "goal_of_agent(bob,pass_exam)",
+          "alternative_action_sufficient(ann,ways,pass_exam)",
+          "sufficient_action(ann,study,ways,pass_exam)",
+          "practicality_action(ann,study)",
+          "more_acceptable_bringing(ann,pass_exam,study)"
+        ],
+        "arguments": [
+          "practical_sufficient_condition(study,pass_exam,ann,ways)"
+        ],
+        "no_arguments": [
+          "practical_sufficient_condition(study,pass_exam,bob,ways)"
+        ],
+        "in": [
+          "should_do(ann,study)"
+        ],
+        "not_in": [
+          "should_do(bob,study)"
+        ]
+      },
+      {
+        "name": "practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat",
+        "source": "22.2/22.3 p.324: alternative means must be available to the deliberating agent",
+        "assumptions": [
+          "goal_of_agent(ann,pass_exam)",
+          "goal_of_agent(bob,pass_exam)",
+          "alternative_action_sufficient(ann,ways,pass_exam)",
+          "sufficient_action(ann,study,ways,pass_exam)",
+          "practicality_action(ann,study)",
+          "more_acceptable_bringing(ann,pass_exam,study)",
+          "alternative_means(bob,pass_exam,study)"
+        ],
+        "arguments": [
+          "practical_sufficient_condition(study,pass_exam,ann,ways)"
+        ],
+        "in": [
+          "should_do(ann,study)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "alternative_means(P,A,X)"
+      },
+      {
+        "n": 2,
+        "kind": "assumption",
+        "as": "acceptable_action(P,X)"
+      },
+      {
+        "n": 3,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,X)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "side_effect_action(P,X)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "conflicting_goals(P,A)"
+      },
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "possible_goal(A)",
+        "note": "no printed question: that the goal can be brought about"
+      }
+    ]
+  },
+  {
+    "record": "value_based_practical_reasoning",
+    "entry": "22.4",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      95,
+      96,
+      324
+    ],
+    "pdf_pages": [
+      105,
+      106,
+      334
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Agent P, goal G, value set V and act A are connected through the means premise; practical conclusion should_do(P,A) is coherent.",
+    "roles_and_quantifiers": "Agent P, goal G, value set V and act A are connected through the means premise; practical conclusion should_do(P,A) is coherent.",
+    "critical_questions_and_burdens": "All seven printed CQs are mapped. Value-based preference and alternative facts omit P and rely on goal/action terms carrying context; practical challenge burden remains a policy interpretation.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Use owner/context-specific goals and value sets, and settle the explicit challenge policy before full mixed-agent semantic approval.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "conflicting_goals(P,G)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "goal_supported_by_values(G,V)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "alternative_means(G,A)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "more_efficient_alternative(A,G)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "better_alternative_by_values(A,V)"
+      },
+      {
+        "n": 6,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,A)"
+      },
+      {
+        "n": 7,
+        "kind": "exception",
+        "as": "worse_consequences(A,G)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "P",
+        "G",
+        "V",
+        "A"
+      ],
+      "premises": [
+        "goal_of_agent(P,G)",
+        "goal_supported_by_values(G,V)",
+        "necessary_or_sufficient_for_goal(P,A,G)"
+      ],
+      "assumptions": [
+        "possible_bring_about(P,A)"
+      ],
+      "exceptions": [
+        "conflicting_goals(P,G)",
+        "alternative_means(G,A)",
+        "more_efficient_alternative(A,G)",
+        "better_alternative_by_values(A,V)",
+        "worse_consequences(A,G)"
+      ],
+      "conclusions": [
+        "should_do(P,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "P",
+        "G",
+        "V",
+        "A"
+      ],
+      "premises": [
+        "goal_of_agent(P,G)",
+        "goal_supported_by_values(G,V)",
+        "necessary_or_sufficient_for_goal(P,A,G)"
+      ],
+      "assumptions": [
+        "possible_bring_about(P,A)"
+      ],
+      "exceptions": [
+        "conflicting_goals(P,G)",
+        "alternative_means(G,A)",
+        "more_efficient_alternative(A,G)",
+        "better_alternative_by_values(A,V)",
+        "worse_consequences(A,G)"
+      ],
+      "conclusions": [
+        "should_do(P,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "value_based_practical_reasoning/book",
+      "source": "22.4, p. 324; Hal and Carla, p. 322",
+      "assumptions": [
+        "goal_of_agent(hal,survival)",
+        "goal_supported_by_values(survival,life)",
+        "necessary_or_sufficient_for_goal(hal,take_insulin,survival)"
+      ],
+      "arguments": [
+        "value_based_practical_reasoning(hal,survival,life,take_insulin)"
+      ],
+      "in": [
+        "should_do(hal,take_insulin)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "conflicting_goals(P,G)"
+      },
+      {
+        "n": 2,
+        "kind": "premise",
+        "as": "goal_supported_by_values(G,V)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "alternative_means(G,A)"
+      },
+      {
+        "n": 4,
+        "kind": "exception",
+        "as": "more_efficient_alternative(A,G)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "better_alternative_by_values(A,V)"
+      },
+      {
+        "n": 6,
+        "kind": "assumption",
+        "as": "possible_bring_about(P,A)"
+      },
+      {
+        "n": 7,
+        "kind": "exception",
+        "as": "worse_consequences(A,G)"
+      }
+    ]
+  },
+  {
+    "record": "practical_goal",
+    "entry": "22.5",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      325
+    ],
+    "pdf_pages": [
+      335
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The same person's goal G and action X's contribution to that goal yield should_do(P,X). The named agent makes vocabulary sharing appropriate.",
+    "roles_and_quantifiers": "The same person's goal G and action X's contribution to that goal yield should_do(P,X). The named agent makes vocabulary sharing appropriate.",
+    "critical_questions_and_burdens": "No printed CQs in this variant. This is a defeasible reason to act, not a proof that every contributing action must be jointly performed.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "No semantic blocker for the source-form record.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "P",
+        "X",
+        "G"
+      ],
+      "premises": [
+        "contributing_action(X,G)",
+        "goal_of_agent(P,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_do(P,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "P",
+        "X",
+        "G"
+      ],
+      "premises": [
+        "contributing_action(X,G)",
+        "goal_of_agent(P,G)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_do(P,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "practical_goal/book",
+      "source": "22.5, p. 325",
+      "assumptions": [
+        "contributing_action(exercise,health)",
+        "goal_of_agent(ann,health)"
+      ],
+      "arguments": [
+        "practical_goal(ann,exercise,health)"
+      ],
+      "in": [
+        "should_do(ann,exercise)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "end_and_means_1",
+    "entry": "22.6.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      325
+    ],
+    "pdf_pages": [
+      335
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The record represents the positive branch: X is a means to good end Y, so X is good. The source also prints less-bad and bad alternatives.",
+    "roles_and_quantifiers": "The record represents the positive branch: X is a means to good end Y, so X is good. The source also prints less-bad and bad alternatives.",
+    "critical_questions_and_burdens": "No printed CQs. Evaluation is context-sensitive; the source is presumptive, not unrestricted moral closure.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Approve only the explicitly positive branch; missing parenthetical variants cannot be counted as tested.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "Y"
+      ],
+      "premises": [
+        "means_to_end(X,Y)",
+        "good(Y)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "good(X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "Y"
+      ],
+      "premises": [
+        "means_to_end(X,Y)",
+        "good(Y)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "good(X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "end_and_means_1/book",
+      "source": "22.6.1, p. 325",
+      "assumptions": [
+        "means_to_end(training,victory)",
+        "good(victory)"
+      ],
+      "arguments": [
+        "end_and_means_1(training,victory)"
+      ],
+      "in": [
+        "good(training)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "end_and_means_2",
+    "entry": "22.6.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      325
+    ],
+    "pdf_pages": [
+      335
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The ends-importance warrant and means-to-end premise preserve the positive branch. The record's importance warrant is zero-argument and therefore global within a graph.",
+    "roles_and_quantifiers": "The ends-importance warrant and means-to-end premise preserve the positive branch. The record's importance warrant is zero-argument and therefore global within a graph.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Limit this to one evaluation context and the positive branch; opposite valuation and mixed-context warrants need separate representation.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "X"
+      ],
+      "premises": [
+        "means_end(X)",
+        "more_important_ends"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "ends_important(X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X"
+      ],
+      "premises": [
+        "means_end(X)",
+        "more_important_ends"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "ends_important(X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "end_and_means_2/book",
+      "source": "22.6.2, p. 325",
+      "assumptions": [
+        "means_end(money)",
+        "more_important_ends"
+      ],
+      "arguments": [
+        "end_and_means_2(money)"
+      ],
+      "in": [
+        "ends_important(money)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "end_and_means_3",
+    "entry": "22.6.3",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      325
+    ],
+    "pdf_pages": [
+      335
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Ease of achieving the means supports goodness of the end in the positive branch. Difficult-means/bad-end is not represented.",
+    "roles_and_quantifiers": "Ease of achieving the means supports goodness of the end in the positive branch. Difficult-means/bad-end is not represented.",
+    "critical_questions_and_burdens": "No printed CQs.",
+    "source_ledger_claim_before": "transcription",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Approve only the easy/good branch and record the omitted alternative explicitly.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "X",
+        "Y"
+      ],
+      "premises": [
+        "means_to_end(X,Y)",
+        "easy_to_achieve(X)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "good(Y)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "X",
+        "Y"
+      ],
+      "premises": [
+        "means_to_end(X,Y)",
+        "easy_to_achieve(X)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "good(Y)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "end_and_means_3/book",
+      "source": "22.6.3, p. 325",
+      "assumptions": [
+        "means_to_end(walking,health)",
+        "easy_to_achieve(walking)"
+      ],
+      "arguments": [
+        "end_and_means_3(walking,health)"
+      ],
+      "in": [
+        "good(health)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "two_person_practical",
+    "entry": "23",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      325,
+      326
+    ],
+    "pdf_pages": [
+      335,
+      336
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act.",
+    "roles_and_quantifiers": "A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act.",
+    "critical_questions_and_burdens": "All five printed questions are sorted. Alternative means and additional actions omit the deliberating agent and assume one current case.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Correct speaker/recipient roles are approved, but practical dialogue burdens and cross-agent availability of alternatives need an explicit contract or scoped facts.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "conflicting_goals(A,X)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "alternative_means(X,Y)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "side_effect_other_act(Y,A)"
+      },
+      {
+        "n": 4,
+        "kind": "assumption",
+        "as": "possible_bring_about(A,Y)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "other_actions_required(X,Y)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B",
+        "X",
+        "Y"
+      ],
+      "premises": [
+        "tells_intend(A,X,B)",
+        "situation_necessity(B,Y,X,A)"
+      ],
+      "assumptions": [
+        "possible_bring_about(A,Y)"
+      ],
+      "exceptions": [
+        "alternative_means(X,Y)",
+        "conflicting_goals(A,X)",
+        "side_effect_other_act(Y,A)",
+        "other_actions_required(X,Y)"
+      ],
+      "conclusions": [
+        "should_do(A,Y)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B",
+        "X",
+        "Y"
+      ],
+      "premises": [
+        "tells_intend(A,X,B)",
+        "situation_necessity(B,Y,X,A)"
+      ],
+      "assumptions": [
+        "possible_bring_about(A,Y)"
+      ],
+      "exceptions": [
+        "alternative_means(X,Y)",
+        "conflicting_goals(A,X)",
+        "side_effect_other_act(Y,A)",
+        "other_actions_required(X,Y)"
+      ],
+      "conclusions": [
+        "should_do(A,Y)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "two_person_practical/book",
+      "source": "23, pp. 325-326",
+      "assumptions": [
+        "tells_intend(ann,trip,bob)",
+        "situation_necessity(bob,ticket,trip,ann)"
+      ],
+      "arguments": [
+        "two_person_practical(ann,bob,trip,ticket)"
+      ],
+      "in": [
+        "should_do(ann,ticket)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "conflicting_goals(A,X)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "alternative_means(X,Y)"
+      },
+      {
+        "n": 3,
+        "kind": "exception",
+        "as": "side_effect_other_act(Y,A)"
+      },
+      {
+        "n": 4,
+        "kind": "assumption",
+        "as": "possible_bring_about(A,Y)"
+      },
+      {
+        "n": 5,
+        "kind": "exception",
+        "as": "other_actions_required(X,Y)"
+      }
+    ]
+  },
+  {
+    "record": "waste",
+    "entry": "24",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      326
+    ],
+    "pdf_pages": [
+      336
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "Agent A's stopping would waste efforts toward goal X; avoiding that waste supports continuing toward X. Feasibility concerns bringing about X.",
+    "roles_and_quantifiers": "Agent A's stopping would waste efforts toward goal X; avoiding that waste supports continuing toward X. Feasibility concerns bringing about X.",
+    "critical_questions_and_burdens": "CQ1 is the possible-goal default; CQ2 is reassessment against continuing, rather than an automatic rule that sunk costs justify every continuation.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve the stated static source interpretation; a newly supported forward-looking reassessment can undercut the argument.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "possible_goal(X)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "reassessment_against_continuing(A,X)"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "X"
+      ],
+      "premises": [
+        "stop_realize_wasted(A,X)",
+        "waste_bad_thing(A,X)"
+      ],
+      "assumptions": [
+        "possible_goal(X)"
+      ],
+      "exceptions": [
+        "reassessment_against_continuing(A,X)"
+      ],
+      "conclusions": [
+        "ought_to_continue(A,X)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "X"
+      ],
+      "premises": [
+        "stop_realize_wasted(A,X)",
+        "waste_bad_thing(A,X)"
+      ],
+      "assumptions": [
+        "possible_goal(X)"
+      ],
+      "exceptions": [
+        "reassessment_against_continuing(A,X)"
+      ],
+      "conclusions": [
+        "ought_to_continue(A,X)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "waste/book",
+      "source": "24, p. 326",
+      "assumptions": [
+        "stop_realize_wasted(ann,thesis)",
+        "waste_bad_thing(ann,thesis)"
+      ],
+      "arguments": [
+        "waste(ann,thesis)"
+      ],
+      "in": [
+        "ought_to_continue(ann,thesis)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "possible_goal(X)"
+      },
+      {
+        "n": 2,
+        "kind": "exception",
+        "as": "reassessment_against_continuing(A,X)"
+      }
+    ]
+  },
+  {
+    "record": "sunk_costs",
+    "entry": "25",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      327
+    ],
+    "pdf_pages": [
+      337
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The inherited sunk-cost quantity/feasibility form differs from the compendium's time-indexed precommitment form. Keeping both as distinct records is correct.",
+    "roles_and_quantifiers": "The inherited sunk-cost quantity/feasibility form differs from the compendium's time-indexed precommitment form. Keeping both as distinct records is correct.",
+    "critical_questions_and_burdens": "Its feasibility and future-loss questions belong to the inherited form, not a fabricated CQ list for the book's precommitment form.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Do not certify it as a transcription of p.327. Its cited article/original must be independently checked by the inherited-source reviewer.",
+    "source_questions_original_ledger": [
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "feasible(A)",
+        "note": "upstream's"
+      },
+      {
+        "n": 0,
+        "kind": "exception",
+        "as": "future_losses_outweigh(A)",
+        "note": "upstream's"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "C"
+      ],
+      "premises": [
+        "sunk_costs(A,C)",
+        "too_high_to_waste(C)"
+      ],
+      "assumptions": [
+        "feasible(A)"
+      ],
+      "exceptions": [
+        "future_losses_outweigh(A)"
+      ],
+      "conclusions": [
+        "should_be_performed(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "C"
+      ],
+      "premises": [
+        "sunk_costs(A,C)",
+        "too_high_to_waste(C)"
+      ],
+      "assumptions": [
+        "feasible(A)"
+      ],
+      "exceptions": [
+        "future_losses_outweigh(A)"
+      ],
+      "conclusions": [
+        "should_be_performed(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "sunk_costs/book",
+      "source": "25, pp. 326-327",
+      "assumptions": [
+        "sunk_costs(concorde,millions)",
+        "too_high_to_waste(millions)"
+      ],
+      "arguments": [
+        "sunk_costs(concorde,millions)"
+      ],
+      "in": [
+        "should_be_performed(concorde)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 0,
+        "kind": "assumption",
+        "as": "feasible(A)",
+        "note": "upstream's"
+      },
+      {
+        "n": 0,
+        "kind": "exception",
+        "as": "future_losses_outweigh(A)",
+        "note": "upstream's"
+      }
+    ]
+  },
+  {
+    "record": "sunk_costs_precommitment",
+    "entry": "25",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      327
+    ],
+    "pdf_pages": [
+      337
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "The choice at T2, prior commitment through T1, acting agent P and chosen A retain the roles of both printed premises; should_do(P,A) is the proper practical conclusion.",
+    "roles_and_quantifiers": "The choice at T2, prior commitment through T1, acting agent P and chosen A retain the roles of both printed premises; should_do(P,A) is the proper practical conclusion.",
+    "critical_questions_and_burdens": "No printed CQs for this numbered form. Earlier/later ordering is part of the precommitted relation's meaning; arbitrary timestamps are not separately reasoned about.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve as the separate book-form variant; graph authors must not assert precommitted for a future rather than prior commitment.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "P",
+        "A",
+        "T1",
+        "T2"
+      ],
+      "premises": [
+        "choice_at(T2,A)",
+        "precommitted(P,A,T1,T2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_do(P,A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "P",
+        "A",
+        "T1",
+        "T2"
+      ],
+      "premises": [
+        "choice_at(T2,A)",
+        "precommitted(P,A,T1,T2)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "should_do(P,A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "sunk_costs_precommitment/book",
+      "source": "25, pp. 326-327",
+      "assumptions": [
+        "choice_at(spring,finish_thesis)",
+        "precommitted(ann,finish_thesis,autumn,spring)"
+      ],
+      "arguments": [
+        "sunk_costs_precommitment(ann,finish_thesis,autumn,spring)"
+      ],
+      "in": [
+        "should_do(ann,finish_thesis)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  },
+  {
+    "record": "ignorance",
+    "entry": "26",
+    "origin": "upstream",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      327
+    ],
+    "pdf_pages": [
+      337
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "Would-be-known(S) and not-known(S) yield not-S. This is the correct negative conclusion and is not a closed-world inference from mere absence.",
+    "roles_and_quantifiers": "Would-be-known(S) and not-known(S) yield not-S. This is the correct negative conclusion and is not a closed-world inference from mere absence.",
+    "critical_questions_and_burdens": "CQ1 investigation is an exception; CQ2 dialogue burden and CQ3 evidential strength are both marked standard. A proof-standard threshold does not itself decide the dialogue's probandum or burden holder.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Own cited source approval is not implied by a book-form match.",
+    "remaining_action_or_scope": "Own-source approval remains separate; specify how dialogue burden/probandum is supplied by an application before claiming all CQs are operationally implemented.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "uninvestigated(S)"
+      },
+      {
+        "n": 2,
+        "kind": "standard",
+        "note": "who has the burden of proof in the dialogue"
+      },
+      {
+        "n": 3,
+        "kind": "standard",
+        "note": "how strong the proof has to be"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "S"
+      ],
+      "premises": [
+        "would_be_known(S)",
+        "¬known(S)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "uninvestigated(S)"
+      ],
+      "conclusions": [
+        "¬S"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "S"
+      ],
+      "premises": [
+        "would_be_known(S)",
+        "¬known(S)"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "uninvestigated(S)"
+      ],
+      "conclusions": [
+        "¬S"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "ignorance/book",
+      "source": "26, p. 327",
+      "assumptions": [
+        "would_be_known(spy(bob))",
+        "¬known(spy(bob))"
+      ],
+      "arguments": [
+        "ignorance(spy(bob))"
+      ],
+      "in": [
+        "¬spy(bob)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "uninvestigated(S)"
+      },
+      {
+        "n": 2,
+        "kind": "standard",
+        "note": "who has the burden of proof in the dialogue"
+      },
+      {
+        "n": 3,
+        "kind": "standard",
+        "note": "how strong the proof has to be"
+      }
+    ]
+  },
+  {
+    "record": "negative_normal_expectations",
+    "entry": "26.1",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      327
+    ],
+    "pdf_pages": [
+      337
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "The warranted normal expectation of A and explicit not-A support a non-normal situation, identified by A in the current encoding.",
+    "roles_and_quantifiers": "The warranted normal expectation of A and explicit not-A support a non-normal situation, identified by A in the current encoding.",
+    "critical_questions_and_burdens": "CQ1 investigation is represented. CQ2/CQ3 have the same burden/proof-standard distinction as ignorance.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Document one expectation context or add a situation identifier; distinguish dialogue burden allocation from strength of proof.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "uninvestigated(A)"
+      },
+      {
+        "n": 2,
+        "kind": "standard",
+        "note": "who has the burden of proof in the dialogue"
+      },
+      {
+        "n": 3,
+        "kind": "standard",
+        "note": "how strong the proof has to be"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A"
+      ],
+      "premises": [
+        "normal_true(A)",
+        "¬A"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "uninvestigated(A)"
+      ],
+      "conclusions": [
+        "not_normal(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A"
+      ],
+      "premises": [
+        "normal_true(A)",
+        "¬A"
+      ],
+      "assumptions": [],
+      "exceptions": [
+        "uninvestigated(A)"
+      ],
+      "conclusions": [
+        "not_normal(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "negative_normal_expectations/book",
+      "source": "26.1, p. 327",
+      "assumptions": [
+        "normal_true(alarm_silent)",
+        "¬alarm_silent"
+      ],
+      "arguments": [
+        "negative_normal_expectations(alarm_silent)"
+      ],
+      "in": [
+        "not_normal(alarm_silent)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "exception",
+        "as": "uninvestigated(A)"
+      },
+      {
+        "n": 2,
+        "kind": "standard",
+        "note": "who has the burden of proof in the dialogue"
+      },
+      {
+        "n": 3,
+        "kind": "standard",
+        "note": "how strong the proof has to be"
+      }
+    ]
+  },
+  {
+    "record": "negative_practical",
+    "entry": "26.2",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      327
+    ],
+    "pdf_pages": [
+      337
+    ],
+    "decision_after_source_patch": "qualified",
+    "book_form_adjudication": "REPAIRED: B>C now yields acting on the false presumption, explicitly. The opposite C>B branch is not silently collapsed into the same ambiguous action.",
+    "roles_and_quantifiers": "REPAIRED: B>C now yields acting on the false presumption, explicitly. The opposite C>B branch is not silently collapsed into the same ambiguous action.",
+    "critical_questions_and_burdens": "CQ1 is an evidence-progress default. CQ2 burden allocation and CQ3 strength still require distinct external dialogue information.",
+    "source_ledger_claim_before": "interpretation",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "transcription-checked",
+    "stage_reason": "Qualified or blocked judgment needs the stated scope/burden issue resolved before unqualified promotion.",
+    "remaining_action_or_scope": "Negative branch is source-correct and tested; declare the missing true-presumption branch and resolve dialogue metadata before unqualified approval.",
+    "source_questions_original_ledger": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "sufficient_evidence(A)"
+      },
+      {
+        "n": 2,
+        "kind": "standard",
+        "note": "who has the burden of proof in the dialogue"
+      },
+      {
+        "n": 3,
+        "kind": "standard",
+        "note": "how strong the proof has to be"
+      }
+    ],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "premises": [
+        "not_know_true(A)",
+        "presumption(A)",
+        "consequences_presumption(A,B)",
+        "other_consequences_presumption(A,C)",
+        "more_serious_consequences(B,C)"
+      ],
+      "assumptions": [
+        "sufficient_evidence(A)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "act_on_presumption(A)"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "premises": [
+        "not_know_true(A)",
+        "presumption(A)",
+        "consequences_presumption(A,B)",
+        "other_consequences_presumption(A,C)",
+        "more_serious_consequences(B,C)"
+      ],
+      "assumptions": [
+        "sufficient_evidence(A)"
+      ],
+      "exceptions": [],
+      "conclusions": [
+        "act_on_presumption_false(A)"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "negative_practical/book",
+      "source": "26.2, p. 327",
+      "assumptions": [
+        "not_know_true(loaded)",
+        "presumption(loaded)",
+        "consequences_presumption(loaded,accident)",
+        "other_consequences_presumption(loaded,delay)",
+        "more_serious_consequences(accident,delay)"
+      ],
+      "arguments": [
+        "negative_practical(loaded,accident,delay)"
+      ],
+      "in": [
+        "act_on_presumption_false(loaded)"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [
+      {
+        "name": "negative_practical/independent-false-presumption-selected",
+        "source": "26.2 p.327: when the loss of assuming true falsely is worse, act on NOT-A",
+        "assumptions": [
+          "not_know_true(safe)",
+          "presumption(safe)",
+          "consequences_presumption(safe,injury)",
+          "other_consequences_presumption(safe,delay)",
+          "more_serious_consequences(injury,delay)"
+        ],
+        "arguments": [
+          "negative_practical(safe,injury,delay)"
+        ],
+        "in": [
+          "act_on_presumption_false(safe)"
+        ]
+      },
+      {
+        "name": "negative_practical/independent-opposite-ranking-does-not-select-false",
+        "source": "26.2 p.327: this record explicitly implements only the B>C / NOT-A branch",
+        "assumptions": [
+          "not_know_true(safe)",
+          "presumption(safe)",
+          "consequences_presumption(safe,injury)",
+          "other_consequences_presumption(safe,delay)",
+          "more_serious_consequences(delay,injury)"
+        ],
+        "no_arguments": [
+          "negative_practical"
+        ],
+        "not_in": [
+          "act_on_presumption_false(safe)"
+        ]
+      }
+    ],
+    "example_judgment": "The existing /book grounding exercises the represented branch; passing it does not resolve the specific scope/burden issue in this adjudication.",
+    "source_questions_after_patch": [
+      {
+        "n": 1,
+        "kind": "assumption",
+        "as": "sufficient_evidence(A)"
+      },
+      {
+        "n": 2,
+        "kind": "standard",
+        "note": "who has the burden of proof in the dialogue"
+      },
+      {
+        "n": 3,
+        "kind": "standard",
+        "note": "how strong the proof has to be"
+      }
+    ]
+  },
+  {
+    "record": "epistemic_ignorance",
+    "entry": "27",
+    "origin": "book",
+    "reviewed_commit": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "printed_pages": [
+      328
+    ],
+    "pdf_pages": [
+      338
+    ],
+    "decision_after_source_patch": "approve",
+    "book_form_adjudication": "All five premises are present, including the bivalence of domain D. The proposition A and knowledge base K retain their membership roles; the conclusion is not-A.",
+    "roles_and_quantifiers": "All five premises are present, including the bivalence of domain D. The proposition A and knowledge base K retain their membership roles; the conclusion is not-A.",
+    "critical_questions_and_burdens": "No printed CQs for this separate schema. The awkward predicate name true_propositions_contained has negative natural-language content, but it is an opaque fact, not a computed double negation.",
+    "source_ledger_claim_before": "correction",
+    "stage_before": "transcription-checked",
+    "recommended_stage": "example-passed",
+    "stage_reason": "Independent semantic review and positive example support this stated source form.",
+    "remaining_action_or_scope": "Approve the printed source form; no inference from an open-world database is licensed unless all five premises are asserted.",
+    "source_questions_original_ledger": [],
+    "baseline_form": {
+      "variables": [
+        "A",
+        "D",
+        "K"
+      ],
+      "premises": [
+        "true_propositions_contained(D,K)",
+        "special_proposition(A,K)",
+        "special_in(A,D)",
+        "special_not_in(A,K)",
+        "bivalent(D)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "¬A"
+      ]
+    },
+    "reviewed_patched_form": {
+      "variables": [
+        "A",
+        "D",
+        "K"
+      ],
+      "premises": [
+        "true_propositions_contained(D,K)",
+        "special_proposition(A,K)",
+        "special_in(A,D)",
+        "special_not_in(A,K)",
+        "bivalent(D)"
+      ],
+      "assumptions": [],
+      "exceptions": [],
+      "conclusions": [
+        "¬A"
+      ]
+    },
+    "book_example_reviewed": {
+      "name": "epistemic_ignorance/book",
+      "source": "27, p. 328",
+      "assumptions": [
+        "true_propositions_contained(staff,files)",
+        "special_proposition(spy,files)",
+        "special_in(spy,staff)",
+        "special_not_in(spy,files)",
+        "bivalent(staff)"
+      ],
+      "arguments": [
+        "epistemic_ignorance(spy,staff,files)"
+      ],
+      "in": [
+        "¬spy"
+      ],
+      "variants": true
+    },
+    "new_independent_examples": [],
+    "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
+    "source_questions_after_patch": []
+  }
+]

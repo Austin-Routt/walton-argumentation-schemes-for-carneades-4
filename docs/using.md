@@ -5,6 +5,18 @@ repository (PLAN.md, Phase 6). The examples under `docs/examples/` are checked
 by `tools/vv` on every push: each is what the tool below makes from the
 library today, and the command gives every label its `tests:` expect.
 
+## Source approval and scope
+
+The full 120-record file is a preview. The independently reviewed 70-record subset is identified by `example-passed` in `tools/vv/source_ledger.yml` and bound to recorded approvals in `docs/reviews/independent-approvals.json`. The other 50 records retain specific source or interpretation holds. The graph generator copies a requested scheme; it does not imply that scheme has passed source approval. Read its ledger row and review scope when selecting it.
+
+API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
+
+### Participants, contexts and defaults
+
+In records whose statements still say "I" or "you" without a participant argument, those words refer to one fixed proponent and one fixed respondent for that graph. Such a record does not distinguish several speakers, audiences or deliberations automatically. Use separate graphs, or context-qualified ground terms where the record supports them, for separate cases. The source register identifies the records that still need explicit participant or context parameters before broader use; this convention does not remove their holds.
+
+Load the schemes needed for the question being evaluated. Loading the entire library enables every matching rule and every unchallenged default. For example, `division_generic` can infer that all parts have a property from a whole having it while its divisional-heredity assumption stands. That is the scheme's defeasible claim, not a general fact that arbitrary properties are inherited by parts. Question the relevant default, supply contrary evidence, or omit that scheme when the application does not justify using it. The cycle warnings make some interactions visible but do not decide whether the application warrants them.
+
 ## What to load
 
 * `walton.yml` holds every scheme (120 records) with the language templates
@@ -36,7 +48,7 @@ The engine is kept as source in `third_party/`, with this repository's fixes;
 ```sh
 cd tools/vv
 go build -o ~/bin/carneades github.com/carneades/carneades-4/src/cmd/carneades
-carneades            # prints the engine's version, 4.3.1+walton.1
+carneades            # prints the engine's version, 4.3.1+walton.3
 ```
 
 `carneades check case.yml` reads and validates a graph without evaluating it;
@@ -83,7 +95,7 @@ count only once they are shown.
 * **Arguments** are built by the command from the schemes, one for each way
   the premises of a scheme hold. You can also write an argument out, under
   `arguments:`; one that names a scheme is checked against it (contract 6).
-* **Critical questions** are of two kinds (D2, pp. 373-375). An assumption of
+* **Challengeable defaults and exceptions** have different burdens (D2, pp. 373-375). An assumption of
   a scheme holds until it is questioned: list it under `questioned:`, and the
   argument then needs support for it like an ordinary premise. An exception
   defeats the argument only once it is shown: assume it, or argue for it.
@@ -98,6 +110,13 @@ count only once they are shown.
 * **Expected labels** go under `tests:`, with the lists `in`, `out` and
   `undecided`. A statement named there has to be declared under
   `statements:`, with its text; otherwise the command refuses the file.
+* **I and you.** Some schemes are printed in the first or second person: the
+  subtypes 4.7 to 4.9, 26.2, 33.4, the appeals of entries 34 to 37, 51, 52
+  and 58. Their statements name no participant, so a graph that uses them
+  holds one proponent ("I") and one respondent ("you"); two speakers need two
+  graphs. Where a scheme names its agent (22.1 to 22.5, 23, 33.3, 38, 39), the
+  agent is a constant of your case, such as `me`. (Proposed by the second
+  independent review, pull request #14.)
 
 ## Pro and con in one issue
 
@@ -119,7 +138,7 @@ from different schemes meet in one issue.
 ## Versions
 
 The library's version is `meta.version` in `walton.yml` and the engine's is
-printed by the command (`docs/releases/`). A graph written for release R1
+printed by the command (`docs/releases/`). A graph written for the former R1 candidate
 (library 0.1.0) is brought up to date with
 
 ```sh

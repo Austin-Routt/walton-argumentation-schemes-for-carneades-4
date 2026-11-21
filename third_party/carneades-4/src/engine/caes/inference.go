@@ -31,6 +31,17 @@ const MAXRULEAPPS = 100000
 // result on every check with a limit of 30 as with 500.
 const MAXTERMSIZE = 500
 
+// Logical work and storage quotas for the supported propagation profile.
+// These also bound unsuccessful joins and broad, shallow stores; they do
+// not replace input-size limits or operating-system memory isolation.
+// MAXMATCHSTEPS is a safety valve as well: a join that fails over 120 facts
+// of one predicate visits some 1.7 million candidates in well under a second,
+// and an evaluation the unbounded matcher completed must not end as limit
+// reached for want of budget.
+const MAXMATCHSTEPS = 50000000
+const MAXCONSTRAINTS = 100000
+const MAXSTORENODES = 2000000
+
 // ArgDesc: Structure describing an argument instantiating an
 // argument scheme. Represented in Prolog as argument(Scheme,Values)
 type ArgDesc struct {
@@ -96,12 +107,27 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		return err
 	}
 	defer releaseEngine()
+	work := ag.copyForInference()
+	if err := work.inferStaged(ctx); err != nil {
+		return err
+	}
+	if ctx.Err() != nil {
+		return NewRunError(ErrCancelled, "cancelled before committing the graph")
+	}
+	ag.commitInference(work)
+	return nil
+}
+
+// inferStaged may mutate only a private graph; any failure discards it.
+func (ag *ArgGraph) inferStaged(ctx context.Context) error {
+	if ag.Theory == nil {
+		return NewRunError(ErrInvalidInput, "argument graph has no theory")
+	}
 	if err := Unsupported(ag.Theory); err != nil {
 		return err
 	}
-	if ag.Inconsistent() {
-		// contract 3: an inconsistent context is reported, not resolved
-		return NewRunError(ErrInconsistentContext, "the graph assumes two positions of one issue, or a statement and its negation")
+	if err := ag.resolveContext(ctx); err != nil {
+		return err
 	}
 	for _, a := range ag.Assumptions {
 		if p := ArithmeticProblem(a); p != "" {
@@ -163,9 +189,15 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		if !success {
 			return nil
 		}
+		if ctx.Err() != nil {
+			return NewRunError(ErrCancelled, "cancelled before committing constructed arguments")
+		}
 
 		// fmt.Printf("store:\n")
 		for _, s := range store {
+			if ctx.Err() != nil {
+				return NewRunError(ErrCancelled, "cancelled while constructing arguments")
+			}
 			// fmt.Printf("   %s\n", s)
 			// If the term does not represent an argument already in the graph
 			// then, if the term does represent an argument, use it to
@@ -180,16 +212,8 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 			}
 		}
 	}
-	// Use issue schemes of the theory to derive or update the issues
-	// of the argument graph
-
-	if ag.Theory.IssueSchemes != nil {
-		for issue, patterns := range ag.Theory.IssueSchemes {
-			err := ag.makeIssue(issue, *patterns)
-			if err != nil {
-				return NewRunError(ErrInvalidInput, "issue scheme %s: %v", issue, err)
-			}
-		}
+	if len(ag.Theory.ArgSchemes) == 0 && ctx.Err() != nil {
+		return NewRunError(ErrCancelled, "cancelled before committing context statements")
 	}
 	// Once the run is complete: an assumption is a statement of the graph even
 	// when no argument uses it, so that it is labelled (in) like any other.
@@ -202,6 +226,12 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 			}
 			ag.Statements[a] = &Statement{Id: a, Text: text}
 		}
+	}
+	if err := ag.materializeIssues(ctx); err != nil {
+		return err
+	}
+	if ag.inconsistentPositions() {
+		return NewRunError(ErrInconsistentContext, "constructed issues connect contradictory accepted context")
 	}
 	return nil
 }

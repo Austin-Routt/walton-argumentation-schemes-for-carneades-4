@@ -621,7 +621,8 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 
 	if mode != "iso" {
 		// With every scheme of the file loaded, an exception must still undercut
-		// this scheme's argument, and a missing premise must still prevent it.
+		// this scheme's argument. Premise necessity is separately isolated below:
+		// another scheme may legitimately rederive a withdrawn stipulation.
 		if len(in.Exceptions) > 0 {
 			out = append(out, res(file, id, chk("exceptions-undercut"), exceptionProblems(lang, theory, s, in, control)))
 		}
@@ -897,8 +898,11 @@ func exceptionProblems(lang caes.Language, theory []*caes.Scheme, s *caes.Scheme
 	return probs
 }
 
-// premiseProblems leaves out each premise of the scheme in turn: no argument
-// of the scheme may then be constructed. Both this check and the one above
+// premiseProblems isolates the selected current scheme, then leaves out each
+// premise in turn: no argument of that scheme may then be constructed. A fact
+// withdrawn from the full theory's stipulations may still be derived by another
+// scheme, so absence from the input is not absence from its closure. Both this
+// check and the one above
 // need the plain run as a control (it finished and built the argument) and a
 // finished run of their own; otherwise they report that nothing was judged. As for exceptions, the oracle is the
 // scheme's own argument; whether the conclusion keeps other support is a
@@ -906,6 +910,11 @@ func exceptionProblems(lang caes.Language, theory []*caes.Scheme, s *caes.Scheme
 func premiseProblems(lang caes.Language, theory []*caes.Scheme, s *caes.Scheme, in *Instance, control string) []string {
 	if control != "" {
 		return []string{"not judged: " + control + ", so leaving a premise out shows nothing"}
+	}
+	isolated := []*caes.Scheme{s}
+	plain := Infer(lang, in.Synthetic, isolated, in.Premises)
+	if plain.TimedOut || plain.Err != nil || plain.BudgetExhausted() || len(plain.ArgsOf(s.Id)) == 0 {
+		return []string{"not judged: the isolated positive control did not finish and construct the selected scheme's argument"}
 	}
 	probs := []string{}
 	for i := range in.Premises {
@@ -915,7 +924,7 @@ func premiseProblems(lang caes.Language, theory []*caes.Scheme, s *caes.Scheme, 
 				rest = append(rest, p)
 			}
 		}
-		r2 := Infer(lang, in.Synthetic, theory, rest)
+		r2 := Infer(lang, in.Synthetic, isolated, rest)
 		if r2.TimedOut || r2.Err != nil {
 			probs = append(probs, fmt.Sprintf("without premise %d (%s): inference failed", i+1, s.Premises[i]))
 			continue

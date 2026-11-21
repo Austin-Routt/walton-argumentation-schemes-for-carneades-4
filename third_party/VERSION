@@ -1,6 +1,6 @@
 # The version of the engine in third_party/, kept apart from the library's
 # (walton.yml meta.version; PLAN.md Phase 6). The engine is carneades-4 4.3.1
 # and GoCHR at the commits of sources.lock, with the fixes of this repository;
-# the number after "walton." counts its releases. `carneades` prints it
+# the number after "walton." identifies its candidate revisions. `carneades` prints it
 # (src/common/globals.go), and tools/vv checks that the two agree.
-engine: 4.3.1+walton.1
+engine: 4.3.1+walton.3

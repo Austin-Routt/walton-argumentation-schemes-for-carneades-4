@@ -16,15 +16,12 @@ jobs:
   vv:
     name: tools/vv (Go ${{ matrix.go }})
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.informational }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - go: "1.24"       # the version the suite and its ledger were measured with
-            informational: false
-          - go: "stable"     # early warning of toolchain changes; does not block
-            informational: true
+          - go: "1.24.13"    # pinned release toolchain
+          - go: "1.27.4"     # independently verified second release toolchain
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -61,12 +58,11 @@ jobs:
     needs: vv
     if: always()
     runs-on: ubuntu-latest
-    continue-on-error: true   # like the stable job: an early warning, not a gate
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           path: results
       - run: |
-          cat results/vv-results-go-1.24/go-version.txt results/vv-results-go-stable/go-version.txt
-          python3 tools/vv/compare_results.py results/vv-results-go-1.24/vv-results.jsonl results/vv-results-go-stable/vv-results.jsonl
+          cat results/vv-results-go-1.24.13/go-version.txt results/vv-results-go-1.27.4/go-version.txt
+          python3 tools/vv/compare_results.py results/vv-results-go-1.24.13/vv-results.jsonl results/vv-results-go-1.27.4/vv-results.jsonl

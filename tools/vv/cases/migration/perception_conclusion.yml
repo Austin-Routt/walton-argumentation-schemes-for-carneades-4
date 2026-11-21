@@ -1,0 +1,26 @@
+# Pre-follow-up perception form from 49ad425. This tests a saved graph's
+# statement keys, scheme conclusion, explicit statement text and test labels
+# through the existing migration and native-CLI before/after label checks.
+language:
+  image/2: "Person %s has a %s image -an image of a perceptible property-."
+  exemplify/1: "To have a %s image -an image of a perceptible property- is a prima facie reason to believe that the circumstances exemplify it."
+  reasonable_case/1: "It is reasonable to believe that %s is the case."
+  not_indicator/1: "The circumstances are such that having a %s image is not a reliable indicator of it."
+argument_schemes:
+  - id: perception
+    variables: [P,I]
+    premises:
+      - image(P,I)
+      - exemplify(I)
+    conclusions:
+      - reasonable_case(I)
+    exceptions:
+      - not_indicator(I)
+statements:
+  reasonable_case(door_closed(case1)): "It is reasonable to believe the door is closed in case1."
+assumptions:
+  - image(ann,door_closed(case1))
+  - exemplify(door_closed(case1))
+tests:
+  in:
+    - reasonable_case(door_closed(case1))

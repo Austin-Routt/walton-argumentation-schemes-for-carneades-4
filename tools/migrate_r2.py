@@ -18,6 +18,8 @@ the ones whose old statement the file uses, and the reader decides.
 The rename-file rows name the scheme files that were renamed; a file name
 inside the text is replaced as well. A chain of renames (posible to
 can_be_realized, then can_be_realized to possible_goal) is followed to its end.
+If a many-to-one rename would duplicate a language or statement key, the file
+is rejected unchanged for manual reconciliation; user text is never discarded.
 """
 import os
 import re
@@ -32,6 +34,34 @@ TABLE = os.path.join(HERE, "migration_r2.yml")
 KEYED_TEXT = {"language", "statements"}
 # keys whose values are natural language wherever they stand
 TEXT_KEYS = {"title", "source", "note", "description", "text", "summary"}
+
+
+class MigrationConflict(ValueError):
+    """A rename needs a human decision about two keyed entries."""
+
+
+def check_keyed_collisions(src):
+    """Reject colliding mapping keys before a YAML reader can keep only one.
+
+    compose preserves duplicate mapping entries, unlike safe_load. This only
+    inspects the two text-valued sections whose keys the migrator rewrites;
+    it neither chooses a preferred rendering nor merges statement metadata.
+    """
+    node = yaml.compose(src)
+    if not isinstance(node, yaml.MappingNode):
+        return
+    for section, entries in node.value:
+        if section.value not in KEYED_TEXT or not isinstance(entries, yaml.MappingNode):
+            continue
+        seen = set()
+        for key, _ in entries.value:
+            if not isinstance(key, yaml.ScalarNode):
+                continue
+            if key.value in seen:
+                raise MigrationConflict(
+                    f"{section.value}: duplicate migrated key {key.value!r}; "
+                    "reconcile the original entries by hand before migration")
+            seen.add(key.value)
 
 
 def load_table(path=TABLE):
@@ -116,13 +146,15 @@ class Migrator:
                 meta_indent = indent + (2 if re.match(r"^\s+-\s+meta", ln) else 0)
                 continue
             out.append(self.line(ln, section, meta_indent is not None and (section == "meta" or indent > meta_indent)))
-        return "\n".join(out)
+        migrated = "\n".join(out)
+        check_keyed_collisions(migrated)
+        return migrated
 
     def needs_hand(self, src):
         """Rows that cannot be applied mechanically and whose old statement the text uses."""
         hits = []
         for r in self.manual:
-            old = r.get("old") or ""
+            old = r.get("trigger") or r.get("old") or ""
             m = re.match(r"\s*¬?\s*([\w\-]+)", old)
             if not m:
                 continue
@@ -152,7 +184,11 @@ def main(argv):
     for f in files:
         with open(f, encoding="utf-8") as fh:
             src = fh.read()
-        new = mig.text(src)
+        try:
+            new = mig.text(src)
+        except (MigrationConflict, yaml.YAMLError) as err:
+            print(f"{f}: not migrated: {err}", file=sys.stderr)
+            return 2
         for r in mig.needs_hand(src):
             print(f"{f}: by hand ({r['kind']}, {r['record']}): {r.get('old')} -> {r.get('new') or '(removed)'}" + (f"  [{r['note']}]" if r.get("note") else ""), file=sys.stderr)
         if stdout:

@@ -22,15 +22,22 @@ go test                  # about 35 seconds
 ```
 
 CI runs `tools/vv/engine-tests.sh`, then `tools/vv/run.sh` with `VV_STRICT=1`, on every
-push and pull request (`.github/workflows/verify.yml`), under Go 1.24 and under the
-current stable Go; its job "toolchains" compares the two runs check by check with
-`compare_results.py`.
+push and pull request (`.github/workflows/verify.yml`), under pinned Go 1.24.13 and
+Go 1.27.4. Both jobs and the `toolchains` comparison are required. The comparator
+rejects duplicate result identities as well as disagreeing results.
+
+The comparator requires one unique `(file, scheme, check)` identity per JSON
+object and a JSON boolean `pass` value. Duplicate identities, missing or
+malformed fields, and unreadable inputs fail with exit status 2; none are
+silently overwritten or coerced. Agreement describes the outcomes in the two
+files, so matching failed checks still need the strict suite's release gate.
 
 Needs Go, `unzip`, Python 3 with PyYAML, and network access to the Go module
 proxy the first time (for `gopkg.in/yaml.v2` and `go-yaml2json`, the engine's
 own dependencies). The suite
-was written and run with Go 1.24.7; its `go.mod`, like the engine's, asks for
-1.18 or newer, and older versions than 1.24 have not been tried. Graphviz `dot`
+was originally written with Go 1.24.7. Release acceptance independently verifies
+Go 1.24.13 and Go 1.27.4; the older module minimum is not a claim that every
+intervening toolchain has been tested. Graphviz `dot`
 is used by one check if it is installed.
 
 The run ends with a summary by issue. A green run means: nothing fails that the
@@ -79,6 +86,13 @@ entry and could otherwise be removed without anyone noticing.
 listed check that did not run fails the run, and so does a check that is not
 listed: `VV_UPDATE_CHECKS=1` rewrites the list, in the change that adds or
 removes checks, where the difference is reviewed with the code.
+
+Each emitted identity and each manifest entry must be unique. Duplicate
+results fail even a focused run; duplicates in either inventory block manifest
+regeneration. A migration check names its kind and its original `old`,
+`trigger`, and `new` fields, before predicate rename normalization. Two old
+forms migrating to one current form therefore remain two independently
+identifiable checks, and reordering migration rows does not change identities.
 
 An entry may carry a `fingerprint:`, a text the failure's message must contain.
 A listed check that fails for another reason is then reported as a new failure,
@@ -153,6 +167,24 @@ what it needs; `source/records-complete` that no row is missing or left over.
 `go run ./cmd/schemecheck -format source` prints them as the worklist of
 Phase 5.
 
+For an upstream-only record, `source_questions` records the number of critical
+questions in its own source: absent means unknown and `0` means the source has
+been checked and prints none. It is required before `questions-sorted`; the
+worklist's `questions_in_source` column is blank when the number is unknown.
+`questions_sorted` counts positive question numbers, excluding `n: 0` policy
+additions. A question's valid kind is checked even when its `as` mapping is blank.
+
+The source review of Atkinson and Bench-Capon (2007) adds two distinctions to
+PLAN.md 5.1. `support` names a conclusion receiving another supporting argument
+(their CQ10); it is not a negated conclusion or an exception. `alternative`
+records a choice between actions that still needs a comparison contract. It has
+no executable `as` mapping and prevents advancement to `questions-sorted`.
+Neither category changes engine behavior. A blank mapping records incomplete
+content, while a nonblank mapping proves only that the statement exists in the
+scheme: the independent review must still assess its fidelity and scope.
+See `docs/reviews/atkinson-2007.md` for the 17-question source comparison and the
+limits of `practical_reasoning1`.
+
 **Engine** (`TestEngine`, `TestEngineToolchain`, and the `command` group of
 `TestCLI`): small experiments stating what practical use needs, such as "two
 schemes that derive each other's premise terminate", "the engine can read the
@@ -187,13 +219,14 @@ to the ledger under an issue.
   (`stress`). Interactions that need particular data are exercised only where
   a reference case has them (cyclic `causes` facts in
   `cases/acceptance.yml`, for example).
-* The engine keeps global state and writes to stdout and stderr. The suite
-  resets and captures both, and never runs checks in parallel.
-* A green strict run says that these finite cases pass. It is not a proof for
-  every input, and no check here can tell whether a scheme says what the book
-  says: a flipped negation or two swapped arguments in a scheme pass every
-  check. That needs examples written from the book, with the expected result
-  written by hand (plan items 3.10, 4.4 and 5.7).
+* Legacy engine/parser state is serialized by the supported API entry points.
+  The suite captures diagnostics and verifies output contracts; it does not
+  run its shared-engine checks in parallel.
+* A green strict run establishes these finite cases, not every possible input.
+  Source examples and approval fingerprints now detect many polarity/role
+  changes that the original generic suite missed. Their expected results still
+  require independent source judgment; fingerprints preserve that judgment
+  rather than deriving it automatically.
 * Checks that state one of two outcomes the project could choose, to make an
   input work or to reject it with a message, follow docs/contracts.md:
   `premise-order-does-not-matter` passes (the input works);
@@ -206,8 +239,8 @@ to the ledger under an issue.
   `reserved-predicate-names-are-rejected` (contract 7);
   `scheme-roles-are-imported` still states the stronger outcome. Where the decision is to reject, the check is
   restated in a change of its own, after the contract that says so.
-* Every check of the two other reviews is ported (`docs/parity.md`) but the
-  second review's `shared-0ary`, which comes with `PLAN.md` 5.4.
+* Every check of the two other reviews is ported (`docs/parity.md`), including
+  the second review's `shared-0ary` with its reviewed global-warrant exception.
 * `experiments/` holds the four experiments that came before the work of
   `PLAN.md`: a prototype that gives the rule engine set semantics, trial edits
   to the scheme files on a copy of the repository, the two combined with the
@@ -255,3 +288,20 @@ for with every scheme repair (D13), and grow into the reference cases of
 `PLAN.md` 4.4 and the book instances of 5.7. Each case is one check, `case`,
 under its file. Write YAML lists of terms one per line: a flow list splits a
 term at its comma.
+
+## Premise-necessity controls after source-statement sharing
+
+A premise withdrawn from stipulated facts may still be derived by another loaded
+scheme. The selected scheme's own premise-necessity checks therefore use that
+actual schema in isolation, with a successful isolated positive control before
+withdrawing each premise. This applies to both the registered `premises-needed`
+checks and reference-case `variants` controls. A full-library mode still runs and
+checks the full positive graph; its withdrawal subcheck isolates the selected
+schema rather than claiming that a withdrawn stipulation is absent from closure.
+
+Ordinary reference cases, full-library arguments and grounded labels, premise
+link checks, and exception checks retain their existing theory context. Explicit
+two-scheme cases test legitimate composition. The isolation regression also
+checks that an unnecessary reference premise and a missing positive control
+still fail. See `docs/reviews/peer13-first-half-addendum.md` for the source-backed
+unifications that exposed the old oracle assumption.

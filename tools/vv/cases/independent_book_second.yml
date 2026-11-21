@@ -1,0 +1,342 @@
+# Independent source review, 2026-11-21. These expectations were specified
+# from the printed roles and warrants, separately from the original fixtures.
+cases:
+  - name: abductive_forward/independent-diagram-and-conclusion
+    source: "31.2, pp. 329-330: G1 is a diagram; C1 is its conclusion"
+    assumptions:
+      - data_set(clues)
+      - diagram_set(diagrams,clues,conclusions)
+      - successful_diagram(diagrams,butler_argument)
+      - diagram_conclusion(butler_argument,butler_guilty)
+    arguments:
+      - abductive_forward(clues,diagrams,conclusions,butler_guilty,butler_argument)
+    in:
+      - plausible_conclusion(butler_guilty)
+    not_in:
+      - plausible_conclusion(butler_argument)
+    variants: true
+  - name: abductive_forward/independent-wrong-diagram-set
+    source: "31.2, pp. 329-330: the strongest diagram belongs to the given set"
+    assumptions:
+      - data_set(clues)
+      - diagram_set(diagrams,clues,conclusions)
+      - successful_diagram(other_diagrams,butler_argument)
+      - diagram_conclusion(butler_argument,butler_guilty)
+    no_arguments: [abductive_forward]
+    not_in:
+      - plausible_conclusion(butler_guilty)
+  - name: abductive_forward/independent-wrong-conclusion-link
+    source: "31.2, pp. 329-330: a different diagram's conclusion is not selected"
+    assumptions:
+      - data_set(clues)
+      - diagram_set(diagrams,clues,conclusions)
+      - successful_diagram(diagrams,butler_argument)
+      - diagram_conclusion(maid_argument,maid_guilty)
+    no_arguments: [abductive_forward]
+    not_in:
+      - plausible_conclusion(maid_guilty)
+  - name: memory/independent-false-basis-same-recaller
+    source: "60, p. 346: the false basis belongs to the person recalling M"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+      - based_on_false_belief(ann,door_locked)
+    not_in:
+      - reasonable_believe(door_locked)
+  - name: memory/independent-false-basis-other-recaller
+    source: "60, p. 346: Ann's false basis does not defeat Bob's independent recall"
+    assumptions:
+      - recalls(bob,door_locked)
+      - believe_it(door_locked)
+      - based_on_false_belief(ann,door_locked)
+    arguments:
+      - memory(bob,door_locked)
+    in:
+      - reasonable_believe(door_locked)
+  - name: memory/independent-support-survives
+    source: "60, p. 346: one attacked argument does not remove independent support"
+    assumptions:
+      - recalls(ann,door_locked)
+      - recalls(bob,door_locked)
+      - believe_it(door_locked)
+      - based_on_false_belief(ann,door_locked)
+    arguments:
+      - memory(ann,door_locked)
+      - memory(bob,door_locked)
+    in:
+      - reasonable_believe(door_locked)
+  - name: memory/independent-both-bases-defeated
+    source: "60, p. 346: both supports must be defeated before the conclusion loses both"
+    assumptions:
+      - recalls(ann,door_locked)
+      - recalls(bob,door_locked)
+      - believe_it(door_locked)
+      - based_on_false_belief(ann,door_locked)
+      - based_on_false_belief(bob,door_locked)
+    not_in:
+      - reasonable_believe(door_locked)
+  - name: memory/independent-original-belief-same-recaller
+    source: "60, p. 346, CQ2: original belief history is personal"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+      - not_originally_believed(ann,door_locked)
+    not_in:
+      - reasonable_believe(door_locked)
+  - name: memory/independent-original-belief-other-recaller
+    source: "60, p. 346, CQ2: Ann's history does not defeat Bob's recall"
+    assumptions:
+      - recalls(bob,door_locked)
+      - believe_it(door_locked)
+      - not_originally_believed(ann,door_locked)
+    in:
+      - reasonable_believe(door_locked)
+  - name: rule_physical_world_1/independent-coextension
+    source: "54.1, p. 342: the warrant's antecedent is referential coextension"
+    assumptions:
+      - is_a(triangle,three_sided_polygon)
+      - referentially_coextensive(triangle,three_sided_polygon)
+      - synonymous
+    arguments:
+      - rule_physical_world_1(triangle,three_sided_polygon)
+    in:
+      - means_same(triangle,three_sided_polygon)
+    variants: true
+  - name: rule_physical_world_1/independent-inclusion-is-insufficient
+    source: "54.1, p. 342: every whale is a mammal does not establish coextension"
+    assumptions:
+      - is_a(whale,mammal)
+      - synonymous
+    no_arguments: [rule_physical_world_1]
+    not_in:
+      - means_same(whale,mammal)
+  - name: rule_physical_world_1/independent-other-pair-is-insufficient
+    source: "54.1, p. 342: coextension of another pair does not license the warrant"
+    assumptions:
+      - is_a(whale,mammal)
+      - referentially_coextensive(triangle,three_sided_polygon)
+      - synonymous
+    no_arguments: [rule_physical_world_1]
+    not_in:
+      - means_same(whale,mammal)
+  - name: abductive_action_to_character/independent-quality-and-prediction-chain
+    source: "31.3-31.4, p. 330: the same person and quality connect action, trait and prediction"
+    assumptions:
+      - action_character(bob,kept_promise,honest)
+    arguments:
+      - abductive_action_to_character(bob,kept_promise,honest)
+      - abductive_character_to_action(bob,honest)
+    in:
+      - has_property(bob,honest)
+      - character_action(bob,honest)
+    not_in:
+      - has_property(bob,violent)
+      - character_action(bob,violent)
+      - character_action(ann,honest)
+  - name: abductive_action_to_character/independent-fit-is-action-and-quality-specific
+    source: "31.3, p. 330, CQ3: challenging one action/quality fit does not challenge another"
+    assumptions:
+      - action_character(bob,kept_promise,honest)
+      - action_character(bob,took_cash,greedy)
+    questioned:
+      - action_fits_quality(bob,took_cash,greedy)
+    in:
+      - has_property(bob,honest)
+    not_in:
+      - has_property(bob,greedy)
+  - name: abductive_action_to_character/independent-quality-definition
+    source: "31.3, p. 330, CQ2: the definition belongs to the named quality"
+    assumptions:
+      - action_character(bob,kept_promise,honest)
+      - action_character(ann,took_cash,greedy)
+    questioned:
+      - quality_defined(greedy)
+    in:
+      - has_property(bob,honest)
+    not_in:
+      - has_property(ann,greedy)
+  - name: abductive_character_to_action/independent-counterexample-is-quality-specific
+    source: "31.4, p. 330, CQ3: evidence against one trait prediction is scoped to that trait"
+    assumptions:
+      - character_quality(bob,honest)
+      - character_quality(bob,greedy)
+      - not_character_action(bob,greedy)
+    in:
+      - character_action(bob,honest)
+    not_in:
+      - character_action(bob,greedy)
+  - name: retroductive/independent-event-and-trait-link
+    source: "31.5, p. 331: a past-action trait can support identification only for the named event"
+    assumptions:
+      - action_character(bob,took_cash,greedy)
+      - agent_event(bob,missing_cash)
+      - event_quality(missing_cash,greedy)
+    arguments:
+      - abductive_action_to_character(bob,took_cash,greedy)
+      - retroductive(bob,greedy,missing_cash)
+    in:
+      - event_question(bob,missing_cash)
+    not_in:
+      - event_question(bob,broken_window)
+  - name: retroductive/independent-wrong-event
+    source: "31.5, p. 331: a character description of a different event is insufficient"
+    assumptions:
+      - agent_event(bob,missing_cash)
+      - event_quality(broken_window,violent)
+      - has_property(bob,violent)
+    no_arguments: [retroductive]
+    not_in:
+      - event_question(bob,missing_cash)
+  - name: retroductive/independent-wrong-quality
+    source: "31.5, p. 331: the candidate's trait must match the event's character quality"
+    assumptions:
+      - agent_event(bob,missing_cash)
+      - event_quality(missing_cash,greedy)
+      - has_property(bob,honest)
+    no_arguments: [retroductive]
+    not_in:
+      - event_question(bob,missing_cash)
+  - name: retroductive/independent-reference-class-event-scope
+    source: "31.5, p. 331, CQ4: the reference class concerns the event being attributed"
+    assumptions:
+      - agent_event(bob,missing_cash)
+      - event_quality(missing_cash,greedy)
+      - agent_event(bob,stolen_jewels)
+      - event_quality(stolen_jewels,greedy)
+      - has_property(bob,greedy)
+    questioned:
+      - reference_class(bob,stolen_jewels,greedy)
+    in:
+      - event_question(bob,missing_cash)
+    not_in:
+      - event_question(bob,stolen_jewels)
+
+  - name: positive_consequences/independent-likelihood-questioned
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(plant_tree,shade)
+    - good(shade)
+    questioned:
+    - consequence_likelihood_adequate(plant_tree,shade)
+    not_in:
+    - should_be_performed(plant_tree)
+  - name: positive_consequences/independent-likelihood-backed
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(plant_tree,shade)
+    - good(shade)
+    - consequence_likelihood_adequate(plant_tree,shade)
+    questioned:
+    - consequence_likelihood_adequate(plant_tree,shade)
+    in:
+    - should_be_performed(plant_tree)
+  - name: positive_consequences/independent-wrong-action-questioned
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(plant_tree,shade)
+    - good(shade)
+    questioned:
+    - consequence_likelihood_adequate(other_action,shade)
+    in:
+    - should_be_performed(plant_tree)
+  - name: positive_consequences/independent-wrong-outcome-questioned
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(plant_tree,shade)
+    - good(shade)
+    questioned:
+    - consequence_likelihood_adequate(plant_tree,other_outcome)
+    in:
+    - should_be_performed(plant_tree)
+  - name: negative_consequences/independent-likelihood-questioned
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(dump_waste,pollution)
+    - bad(pollution)
+    questioned:
+    - consequence_likelihood_adequate(dump_waste,pollution)
+    not_in:
+    - ¬should_be_performed(dump_waste)
+  - name: negative_consequences/independent-likelihood-backed
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(dump_waste,pollution)
+    - bad(pollution)
+    - consequence_likelihood_adequate(dump_waste,pollution)
+    questioned:
+    - consequence_likelihood_adequate(dump_waste,pollution)
+    in:
+    - ¬should_be_performed(dump_waste)
+  - name: negative_consequences/independent-wrong-action-questioned
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(dump_waste,pollution)
+    - bad(pollution)
+    questioned:
+    - consequence_likelihood_adequate(other_action,pollution)
+    in:
+    - ¬should_be_performed(dump_waste)
+  - name: negative_consequences/independent-wrong-outcome-questioned
+    source: '33.1-33.2, pp. 332-333: CQ1 is likelihood adequacy for the same action and outcome; original cited work unverified'
+    assumptions:
+    - brings_about(dump_waste,pollution)
+    - bad(pollution)
+    questioned:
+    - consequence_likelihood_adequate(dump_waste,other_outcome)
+    in:
+    - ¬should_be_performed(dump_waste)
+  - name: established_rule/independent-conflicting_or_overriding_rule-same-application
+    source: '55.1, p. 343, CQ2-CQ3: book-supported adaptation to the inherited rule/conclusion form'
+    assumptions:
+    - has_conclusion(traffic_rule,pay_fine)
+    - applicable(traffic_rule)
+    - conflicting_or_overriding_rule(traffic_rule,pay_fine)
+    not_in:
+    - pay_fine
+  - name: established_rule/independent-conflicting_or_overriding_rule-wrong-rule
+    source: '55.1, p. 343, CQ2-CQ3: book-supported adaptation to the inherited rule/conclusion form'
+    assumptions:
+    - has_conclusion(traffic_rule,pay_fine)
+    - applicable(traffic_rule)
+    - conflicting_or_overriding_rule(other_rule,pay_fine)
+    in:
+    - pay_fine
+  - name: established_rule/independent-conflicting_or_overriding_rule-wrong-conclusion
+    source: '55.1, p. 343, CQ2-CQ3: book-supported adaptation to the inherited rule/conclusion form'
+    assumptions:
+    - has_conclusion(traffic_rule,pay_fine)
+    - applicable(traffic_rule)
+    - conflicting_or_overriding_rule(traffic_rule,lose_license)
+    in:
+    - pay_fine
+  - name: established_rule/independent-rule_exception_or_excuse-same-application
+    source: '55.1, p. 343, CQ2-CQ3: book-supported adaptation to the inherited rule/conclusion form'
+    assumptions:
+    - has_conclusion(traffic_rule,pay_fine)
+    - applicable(traffic_rule)
+    - rule_exception_or_excuse(traffic_rule,pay_fine)
+    not_in:
+    - pay_fine
+  - name: established_rule/independent-rule_exception_or_excuse-wrong-rule
+    source: '55.1, p. 343, CQ2-CQ3: book-supported adaptation to the inherited rule/conclusion form'
+    assumptions:
+    - has_conclusion(traffic_rule,pay_fine)
+    - applicable(traffic_rule)
+    - rule_exception_or_excuse(other_rule,pay_fine)
+    in:
+    - pay_fine
+  - name: established_rule/independent-rule_exception_or_excuse-wrong-conclusion
+    source: '55.1, p. 343, CQ2-CQ3: book-supported adaptation to the inherited rule/conclusion form'
+    assumptions:
+    - has_conclusion(traffic_rule,pay_fine)
+    - applicable(traffic_rule)
+    - rule_exception_or_excuse(traffic_rule,lose_license)
+    in:
+    - pay_fine
+  - name: abductive_character_to_action/independent-ordinary-property-is-not-character
+    source: "31.4, p. 330: an ordinary color property is not a character trait"
+    assumptions:
+      - has_property(rose,red)
+    no_arguments: [abductive_character_to_action]
+    not_in:
+      - character_action(rose,red)

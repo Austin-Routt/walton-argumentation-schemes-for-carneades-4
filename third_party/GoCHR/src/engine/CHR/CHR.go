@@ -115,7 +115,12 @@ type RuleStore struct {
 	// count copies of a constraint are unaffected. Carneades sets it for
 	// argument construction, where facts form a set.
 	Unique bool
-	alive  map[string]*Compound // Unique: ground constraint -> the copy in the store
+	// ReuseConstraints gives a pure propagation program logical conjunction:
+	// one fact may satisfy more than one premise. The default preserves CHR's
+	// requirement that heads consume distinct constraint identities. It is
+	// effective only with Unique and without guards or deleted heads.
+	ReuseConstraints bool
+	alive            map[string]*Compound // Unique: ground constraint -> the copy in the store
 	// ExplicitNegation makes ¬ a constructor of constraints: a constraint
 	// ¬S is stored and matched like any other, under the functor ¬, which no
 	// predicate name can be, and ¬¬S is read as S, in rule heads and in every
@@ -128,6 +133,18 @@ type RuleStore struct {
 	// ErrLimit. The rule limit alone does not bound a run whose terms grow
 	// without end: each rule application costs more than the last.
 	MaxTermSize int
+	// MaxMatchSteps bounds candidate visits in the pure propagation solver,
+	// including failed joins. Zero leaves this logical work budget unlimited.
+	MaxMatchSteps int
+	// MaxConstraints and MaxStoreNodes bound constraints inserted during a run
+	// and their cumulative term-node count, after ground duplicate suppression.
+	// Zero leaves the corresponding budget unlimited. They are logical quotas,
+	// not a byte limit on the parser, process or operating system.
+	MaxConstraints    int
+	MaxStoreNodes     int
+	matchSteps        int
+	storedConstraints int
+	storeNodes        int
 	// Done, when not nil, stops the run with ErrCancelled once it is closed
 	// (for example a context's Done channel).
 	Done <-chan struct{}
@@ -300,12 +317,19 @@ func addRuleToPred2rule(rs *RuleStore, r *chrRule) {
 }
 
 func (rs *RuleStore) Infer(goals []string, max int) (bool, []string, error) {
+	rs.Stopped = nil
+	if cancelled(rs) {
+		return false, nil, rs.Stopped
+	}
 	cGoals, err := parseGoals(goals)
 	if err == nil {
 		// fmt.Printf("** parseGoals OK\n")
 		ClearCHRStore(rs)
 		for _, g := range cGoals {
 			addRefConstraintToStore(rs, g)
+			if rs.Stopped != nil {
+				break
+			}
 		}
 		CHRsolver(rs, max)
 		if rs.Stopped != nil {
@@ -363,6 +387,7 @@ func storeStrings(rs *RuleStore) []string {
 func InitStore(rs *RuleStore) {
 	rs.Result = REmpty
 	rs.Stopped = nil
+	rs.matchSteps, rs.storedConstraints, rs.storeNodes = 0, 0, 0
 	InitRenamingVariables()
 	v := NewVariable("")
 	rs.emptyBinding = &BindEle{Var: v, T: nil, Next: nil}
@@ -380,6 +405,7 @@ func InitStore(rs *RuleStore) {
 func ClearCHRStore(rs *RuleStore) {
 	rs.Result = REmpty
 	rs.Stopped = nil
+	rs.matchSteps, rs.storedConstraints, rs.storeNodes = 0, 0, 0
 	InitRenamingVariables()
 	rs.chrCounter = big.NewInt(0)
 	rs.alive = map[string]*Compound{}
@@ -497,6 +523,7 @@ func addGoal1(g *Compound, s store) {
 func addConstraintToStore(rs *RuleStore, g Compound) {
 	addRefConstraintToStore(rs, &g)
 }
+
 // isNegation reports whether g is the constraint ¬S of ExplicitNegation.
 func isNegation(rs *RuleStore, g *Compound) bool {
 	return rs.ExplicitNegation && g.Functor == "¬" && len(g.Args) == 1
@@ -519,6 +546,9 @@ func foldNegation(g Compound) Compound {
 }
 
 func addRefConstraintToStore(rs *RuleStore, g *Compound) {
+	if rs.Stopped != nil || cancelled(rs) {
+		return
+	}
 	if isNegation(rs, g) {
 		n := foldNegation(*g)
 		g = &n
@@ -532,6 +562,7 @@ func addRefConstraintToStore(rs *RuleStore, g *Compound) {
 			return
 		}
 	}
+	key := ""
 	if rs.Unique && chrConstraint && len(g.OccurVars()) == 0 {
 		// set semantics: a ground constraint already alive is not added again
 		// IsDeleted cannot tell whether that copy is still alive: matching
@@ -541,10 +572,26 @@ func addRefConstraintToStore(rs *RuleStore, g *Compound) {
 		if c, ok := rs.alive[k]; ok && Equal(*c, *g) {
 			return
 		}
+		key = k
+	}
+	if rs.MaxConstraints > 0 && rs.storedConstraints >= rs.MaxConstraints {
+		rs.Stopped = fmt.Errorf("%w: %d inserted constraints", ErrLimit, rs.MaxConstraints)
+		return
+	}
+	if rs.MaxStoreNodes > 0 {
+		n := termSize(*g, rs.MaxStoreNodes-rs.storeNodes)
+		if n > rs.MaxStoreNodes-rs.storeNodes {
+			rs.Stopped = fmt.Errorf("%w: %d stored term nodes", ErrLimit, rs.MaxStoreNodes)
+			return
+		}
+		rs.storeNodes += n
+	}
+	rs.storedConstraints++
+	if key != "" {
 		if rs.alive == nil {
 			rs.alive = map[string]*Compound{}
 		}
-		rs.alive[k] = g
+		rs.alive[key] = g
 	}
 	// TraceHeadln(3, 3, " a) Counter %v \n", chrCounter)
 	g.Id = rs.chrCounter
