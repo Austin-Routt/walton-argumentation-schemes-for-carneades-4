@@ -352,6 +352,16 @@ cases:
     in:
       - should_be_performed(concorde)
     variants: true
+  - name: sunk_costs_precommitment/book
+    source: "25, pp. 326-327"
+    assumptions:
+      - choice_at(spring,finish_thesis)
+      - precommitted(ann,finish_thesis,autumn,spring)
+    arguments:
+      - sunk_costs_precommitment(ann,finish_thesis,autumn,spring)
+    in:
+      - should_do(ann,finish_thesis)
+    variants: true
   - name: sign/book
     source: "30, p. 329"
     assumptions:

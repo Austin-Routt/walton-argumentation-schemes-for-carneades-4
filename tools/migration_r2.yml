@@ -185,3 +185,7 @@ changes:
   - {record: gradualism, kind: replaced, old: "true_acceptable(P1)", new: "P1", plan: "5.6", page: 339}
   - {record: gradualism, kind: replaced, old: "true_acceptable(P4)", new: "P4", plan: "5.6", page: 339}
   - {record: witness_testimony, kind: arguments, old: "in_domain(D,S)", new: "in_domain(S,D)", plan: "5.6", page: 310, note: "the statement first, as the template and the other source records have it"}
+  # 5.5, the records taken over from Carneades against the works they cite
+  - {record: appearance, kind: added, old: "", new: "misleading_appearance(O,C)", plan: "5.5", page: 345, note: "CQ1, as Walton (2006), p. 325, prints it"}
+  - {record: appearance, kind: added, old: "", new: "more_justifiable_category(O,C)", plan: "5.5", page: 345, note: "CQ2, as Walton (2006), p. 325, prints it"}
+  - {record: sunk_costs_precommitment, kind: added, old: "", new: "should_do(P,A)", plan: "5.5", page: 327, note: "a new record: entry 25 in the compendium's form, which the article cited prints on p. 489; the parameters are [P,A,T1,T2]"}

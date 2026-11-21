@@ -372,3 +372,78 @@ func MigrationFixtureChecks(cli *CLI) []Result {
 	}
 	return out
 }
+
+// DocExampleChecks (PLAN.md Phase 6, "document how the library is used"): each
+// graph in docs/examples is what tools/graph_from_library.py makes from the
+// library today for the schemes it names, followed by a case; the command
+// evaluates it, and every label its tests: section expects is the label the
+// command gives.
+func DocExampleChecks(cli *CLI) []Result {
+	root := RepoRoot()
+	files, _ := filepath.Glob(filepath.Join(root, "docs", "examples", "*.yml"))
+	sort.Strings(files)
+	out := []Result{}
+	for _, f := range files {
+		name := "docs/examples/" + filepath.Base(f)
+		src, err := os.ReadFile(f)
+		if err != nil {
+			out = append(out, fail(name, "(file)", "docs/example-current", "%v", err))
+			continue
+		}
+		var doc struct {
+			Meta    map[string]interface{} `yaml:"meta"`
+			Schemes []struct {
+				Id string `yaml:"id"`
+			} `yaml:"argument_schemes"`
+			Tests map[string][]string `yaml:"tests"`
+		}
+		if err := yaml.Unmarshal(src, &doc); err != nil {
+			out = append(out, fail(name, "(file)", "docs/example-current", "not YAML: %v", err))
+			continue
+		}
+		args := []string{"-I", filepath.Join(root, "tools", "graph_from_library.py")}
+		for _, s := range doc.Schemes {
+			args = append(args, s.Id)
+		}
+		if t, ok := doc.Meta["title"].(string); ok {
+			args = append(args, "--title", t)
+		}
+		cmd := exec.Command("python3", args...)
+		var gen, stderr bytes.Buffer
+		cmd.Stdout, cmd.Stderr = &gen, &stderr
+		probs := []string{}
+		if err := cmd.Run(); err != nil {
+			probs = append(probs, fmt.Sprintf("graph_from_library.py: %v %s", err, firstLine(stderr.String())))
+		} else if !strings.HasPrefix(string(src), gen.String()) {
+			probs = append(probs, "the example does not begin with what tools/graph_from_library.py makes from the library today: regenerate its schemes and language")
+		}
+		out = append(out, res(name, "(file)", "docs/example-current", probs))
+
+		probs = []string{}
+		r := cli.Run(string(src), "eval", "-t", "yaml")
+		if r.Exit != 0 {
+			probs = append(probs, fmt.Sprintf("evaluation ended with %d (%s)", r.Exit, firstLine(r.Stderr)))
+		} else if l, err := labels(r.Stdout); err != nil {
+			probs = append(probs, "the output is not YAML")
+		} else {
+			n := 0
+			for want, ids := range doc.Tests {
+				for _, id := range ids {
+					n++
+					if got := l[Norm(id)]; got != want && l[id] != want {
+						probs = append(probs, fmt.Sprintf("%s is %s, the example expects %s", id, got, want))
+					}
+				}
+			}
+			if n == 0 {
+				probs = append(probs, "the example expects no label: add tests")
+			}
+		}
+		sort.Strings(probs)
+		out = append(out, res(name, "(file)", "docs/example-labels", probs))
+	}
+	if len(files) == 0 {
+		out = append(out, fail("docs/examples", "(file)", "docs/example-labels", "no example"))
+	}
+	return out
+}

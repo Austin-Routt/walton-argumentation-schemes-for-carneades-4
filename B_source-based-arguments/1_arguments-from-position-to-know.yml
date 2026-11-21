@@ -30,6 +30,8 @@ language:
   internally_consistent/1: "%s is internally consistent."
   known/1: "%s is known to be true."
   looks_like/2: "%s looks like a %s."
+  misleading_appearance/2: "The appearance of %s looking like it could be classified under %s is misleading for some reason."
+  more_justifiable_category/2: "Although %s may look like it can be classified under %s, there are grounds for classifying it under another category, which is more justifiable."
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   normal_true/1: "If the situation were normal, %s would be true."
   not_know_true/1: "I do not know whether %s is true or not."
@@ -174,17 +176,20 @@ argument_schemes:
   - id: appearance
     meta:
       title: Argument from Appearance
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.2, p. 345. Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.2, p. 345. Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, Logique et Analyse 195, 2006, pp. 324-325."
     variables: [O,C]
     conclusions:
       - instance(O,C)
     premises:
       - looks_like(O,C)
+    exceptions:
+      - misleading_appearance(O,C)
+      - more_justifiable_category(O,C)
 
   - id: credible_source
     meta:
       title: "Argument from Credible Source"
-      source: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016."
+      source: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016, p. 127."
     variables: [W,D,S]
     conclusions: [S]
     premises:

@@ -25,6 +25,7 @@ language:
   can_be_case/2: "Either %s or %s can be the case."
   can_be_required/2: "Either %s or %s can be required."
   can_carry_out/2: "%s can carry out %s."
+  choice_at/2: "There is a choice at %s between doing %s and not doing it."
   cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
   conflicting_goals/2: "%s has other goals that might conflict with realizing %s."
   contributing_action/2: "Doing act %s contributes to goal %s."
@@ -69,6 +70,7 @@ language:
   possible_bring_about/2: "It is possible for %s to bring about %s."
   possible_goal/1: "Bringing about %s is possible."
   practicality_action/1: "Nothing unchangeable prevents me from bringing about %s, as far as I know."
+  precommitted/4: "At %[4]s, %[1]s is precommitted to %[2]s because of what that agent did or committed to at %[3]s."
   prevent/1: "You ought to prevent %s if possible."
   promote_more_effectively/2: "There exists an action that would promote the value %s more effectively than %s."
   prudential/1: "You ought to reconsider and, other things being equal, you ought prudentially to do %s."
@@ -493,3 +495,14 @@ argument_schemes:
       - feasible(A)
     exceptions:
       - future_losses_outweigh(A)
+
+  - id: sunk_costs_precommitment
+    meta:
+      title: Argument from Sunk Costs (the compendium's form)
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 25, p. 326. Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation 16, 2002, p. 489."
+    variables: [P,A,T1,T2]
+    conclusions:
+      - should_do(P,A)
+    premises:
+      - choice_at(T2,A)
+      - precommitted(P,A,T1,T2)
