@@ -15,12 +15,13 @@ tools/vv/run.sh          # Python checks, the source check, then the suite (abou
 or step by step:
 
 ```
+tools/vv/engine-tests.sh # the engines' own unit tests on third_party/ (a few seconds)
 tools/vv/setup.sh        # check the archives against sources.lock; list engine files changed here
 cd tools/vv
 go test                  # about 35 seconds
 ```
 
-CI runs `tools/vv/run.sh` on every push and pull request
+CI runs `tools/vv/engine-tests.sh`, then `tools/vv/run.sh`, on every push and pull request
 (`.github/workflows/verify.yml`).
 
 Needs Go, `unzip`, Python 3 with PyYAML, and network access to the Go module
