@@ -93,7 +93,7 @@ issues:
   - id: E-EXPORT
     where: engine
     severity: major
-    title: "YAML export cannot be read back: it leaves out the theory, splits a parameter that contains a comma, and writes expected labels under a key the importer ignores"
+    title: "YAML export does not round-trip: it splits a parameter that contains a comma, and writes expected labels under a key the importer ignores (the theory is written since PLAN.md 4.1)"
   - id: E-TERMS
     where: engine
     severity: major
@@ -140,7 +140,7 @@ expected:
   - {issue: E-BUILD,   scheme: (engine), checks: [build-all-packages, go-vet-clean, upstream-tests-pass-as-shipped]}
   - {issue: E-GLOBALS, scheme: (engine), checks: [yaml-import-keeps-globals-clean]}
   - {issue: E-ARGVAL,  scheme: (engine), checks: [validator-checks-arguments-against-schemes, validator-accepts-correct-argument, validator-enforces-shared-bindings]}
-  - {issue: E-EXPORT,  scheme: (engine), checks: [yaml-export-can-be-reimported, cli-reads-its-own-yaml, export-keeps-compound-parameters, export-keeps-expected-labels]}
+  - {issue: E-EXPORT,  scheme: (engine), checks: [export-keeps-compound-parameters, export-keeps-expected-labels]}
   - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
   - {issue: E-IDEMP,   scheme: (engine), checks: [infer-is-idempotent, infer-twice-with-exception, withdrawn-assumption-survives-second-infer]}
   - {issue: E-PARSE,   scheme: (engine), checks: [malformed-statement-is-an-error]}

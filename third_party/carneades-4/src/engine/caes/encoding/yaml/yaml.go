@@ -15,6 +15,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"sort"
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/terms"
@@ -1826,6 +1827,10 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 			writeKeyValue1(f, sp3, md_key, md_val)
 		}
 	}
+	// The theory: without it an exported graph whose arguments use schemes
+	// cannot be read back (issue E-EXPORT of tools/vv).
+	writeTheory(f, caesAg.Theory)
+
 	if caesAg.ExpectedLabeling != nil && len(caesAg.ExpectedLabeling) != 0 {
 		fmt.Fprintf(f, "labels:\n")
 		in := []string{}
@@ -1943,4 +1948,60 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 	//		}
 	//	}
 
+}
+
+// writeTheory writes the language, the argument schemes and the issue schemes
+// of a theory, so that an exported graph whose arguments use schemes can be
+// imported again. A scheme's weighing function is not written: only the
+// default one survives a round trip so far.
+func writeTheory(f io.Writer, t *caes.Theory) {
+	if t == nil {
+		return
+	}
+	list := func(sp, key string, l []string) {
+		if len(l) == 0 {
+			return
+		}
+		fmt.Fprintf(f, "%s%s:\n", sp, key)
+		for _, s := range l {
+			fmt.Fprintf(f, "%s%s- %s\n", sp, spPlus, mkYamlString(s))
+		}
+	}
+	if len(t.Language) > 0 {
+		keys := make([]string, 0, len(t.Language))
+		for k := range t.Language {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		fmt.Fprintf(f, "language:\n")
+		for _, k := range keys {
+			fmt.Fprintf(f, "%s%s: %s\n", sp1, mkYamlString(k), mkYamlString(t.Language[k]))
+		}
+	}
+	if len(t.ArgSchemes) > 0 {
+		fmt.Fprintf(f, "argument_schemes:\n")
+		for _, s := range t.ArgSchemes {
+			fmt.Fprintf(f, "%s- id: %s\n", sp1, mkYamlString(s.Id))
+			in := sp1 + "  " // the keys of a list item align with "id"
+			writeMetaData(f, in, in+spPlus, s.Metadata)
+			list(in, "variables", s.Variables)
+			list(in, "premises", s.Premises)
+			list(in, "assumptions", s.Assumptions)
+			list(in, "exceptions", s.Exceptions)
+			list(in, "deletions", s.Deletions)
+			list(in, "guards", s.Guards)
+			list(in, "conclusions", s.Conclusions)
+		}
+	}
+	if len(t.IssueSchemes) > 0 {
+		keys := make([]string, 0, len(t.IssueSchemes))
+		for k := range t.IssueSchemes {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		fmt.Fprintf(f, "issue_schemes:\n")
+		for _, k := range keys {
+			list(sp1, mkYamlString(k), []string(*t.IssueSchemes[k]))
+		}
+	}
 }
