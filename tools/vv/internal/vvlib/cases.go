@@ -10,6 +10,8 @@ package vvlib
 //	  - name: ad_hominem/positive
 //	    source: "42, p. 336"                      # where the reading comes from
 //	    library: walton.yml                       # the scheme file loaded (default walton.yml)
+//	    graph: |                                  # or a whole graph file of its own, instead
+//	      ...
 //	    assumptions: [bad_character(bob), ...]    # one term per line in practice
 //	    questioned: [...]                         # statements called into question
 //	    arguments: ["ad_hominem(bob,arg1,tax_cut)"]  # built, scheme(parameters)
@@ -41,6 +43,7 @@ type Case struct {
 	Name        string     `yaml:"name"`
 	Source      string     `yaml:"source"`
 	Library     string     `yaml:"library"`
+	Graph       string     `yaml:"graph"`
 	Assumptions []string   `yaml:"assumptions"`
 	Questioned  []string   `yaml:"questioned"`
 	Arguments   []string   `yaml:"arguments"`
@@ -87,8 +90,11 @@ func RunCase(root string, c Case) []string {
 	if lib == "" {
 		lib = "walton.yml"
 	}
-	data, err := os.ReadFile(filepath.Join(root, lib))
-	if err != nil {
+	var data []byte
+	var err error
+	if c.Graph != "" {
+		data = []byte(c.Graph)
+	} else if data, err = os.ReadFile(filepath.Join(root, lib)); err != nil {
 		return []string{err.Error()}
 	}
 	ResetEngineGlobals()
@@ -96,10 +102,10 @@ func RunCase(root string, c Case) []string {
 	defer func() { cap.Stop(); ResetEngineGlobals() }()
 	ag, err := cyaml.Import(strings.NewReader(string(data)))
 	if err != nil {
-		return []string{"the library does not import: " + err.Error()}
+		return []string{"the graph does not import: " + err.Error()}
 	}
-	ag.Assumptions = append([]string{}, c.Assumptions...)
-	ag.Questioned = append([]string{}, c.Questioned...)
+	ag.Assumptions = append(ag.Assumptions, c.Assumptions...)
+	ag.Questioned = append(ag.Questioned, c.Questioned...)
 	err = ag.Infer()
 	if c.Outcome != "" {
 		want, ok := outcomes[c.Outcome]
@@ -200,6 +206,96 @@ func CaseChecks(root, path string) []Result {
 		}
 		seen[c.Name] = true
 		out = append(out, res(path, c.Name, "case", RunCase(root, c)))
+	}
+	return out
+}
+
+// CaseRoundTrip evaluates a case with the carneades command, reads the YAML
+// it writes back in a second process, and compares the labels (PLAN.md 4.5:
+// export followed by import in a new process). The second run must also
+// meet the case's expectations of labels.
+func CaseRoundTrip(cli *CLI, root string, c Case) []string {
+	var text string
+	if c.Graph != "" {
+		text = c.Graph
+	} else {
+		lib := c.Library
+		if lib == "" {
+			lib = "walton.yml"
+		}
+		data, err := os.ReadFile(filepath.Join(root, lib))
+		if err != nil {
+			return []string{err.Error()}
+		}
+		text = string(data)
+	}
+	for _, l := range []struct {
+		key   string
+		items []string
+	}{{"assumptions", c.Assumptions}, {"questioned", c.Questioned}} {
+		if len(l.items) == 0 {
+			continue
+		}
+		b, _ := yaml.Marshal(map[string][]string{l.key: l.items})
+		text = strings.TrimRight(text, "\n") + "\n" + string(b)
+	}
+	first := cli.Run(text, "eval", "-t", "yaml")
+	if first.Exit != 0 {
+		return []string{fmt.Sprintf("first run: exit %d: %s", first.Exit, firstLine(first.Stderr))}
+	}
+	second := cli.Run(first.Stdout, "eval", "-t", "yaml")
+	if second.Exit != 0 {
+		return []string{fmt.Sprintf("the second process cannot read the first one's YAML: exit %d: %s", second.Exit, firstLine(second.Stderr))}
+	}
+	l1, err1 := labels(first.Stdout)
+	l2, err2 := labels(second.Stdout)
+	if err1 != nil || err2 != nil {
+		return []string{fmt.Sprintf("output is not YAML: %v %v", err1, err2)}
+	}
+	var probs []string
+	for id, a := range l1 {
+		if b, ok := l2[terms.Normalize(id)]; !ok {
+			if b, ok = l2[id]; !ok {
+				probs = append(probs, id+" is missing after the round trip")
+				continue
+			}
+			if a != b {
+				probs = append(probs, fmt.Sprintf("%s: %s, then %s", id, a, b))
+			}
+		} else if a != b {
+			probs = append(probs, fmt.Sprintf("%s: %s, then %s", id, a, b))
+		}
+	}
+	lab := func(id string) string {
+		if v, ok := l2[id]; ok {
+			return v
+		}
+		if v, ok := l2[terms.Normalize(id)]; ok {
+			return v
+		}
+		return "absent"
+	}
+	for _, s := range c.In {
+		if got := lab(s); got != "in" {
+			probs = append(probs, fmt.Sprintf("after the round trip %s is %s, want in", s, got))
+		}
+	}
+	sort.Strings(probs)
+	return probs
+}
+
+// CaseRoundTrips runs CaseRoundTrip for every case of a file that completes.
+func CaseRoundTrips(cli *CLI, root, path string) []Result {
+	cases, err := LoadCases(path)
+	if err != nil {
+		return nil // reported by CaseChecks
+	}
+	out := []Result{}
+	for _, c := range cases {
+		if c.Outcome != "" || c.Name == "" {
+			continue
+		}
+		out = append(out, res(path, c.Name, "roundtrip", CaseRoundTrip(cli, root, c)))
 	}
 	return out
 }

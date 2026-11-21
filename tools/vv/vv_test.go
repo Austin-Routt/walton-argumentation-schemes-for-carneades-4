@@ -173,10 +173,24 @@ func TestLibrary(t *testing.T) {
 // hand against the library, with the arguments and labels each must produce.
 func TestCases(t *testing.T) {
 	root := vvlib.RepoRoot()
+	cli, err := vvlib.FindCLI()
+	if err != nil {
+		t.Fatalf("no carneades command: %v", err)
+	}
 	for _, f := range vvlib.CaseFiles() {
 		f := f
-		t.Run(f, func(t *testing.T) { judge(t, vvlib.CaseChecks(root, f)) })
+		t.Run(f, func(t *testing.T) {
+			judge(t, vvlib.CaseChecks(root, f))
+			// PLAN.md 4.5: evaluated by the command, written, and read back
+			// in a new process
+			judge(t, vvlib.CaseRoundTrips(cli, root, f))
+		})
 	}
+}
+
+// TestProperties runs the property tests of PLAN.md 4.5.
+func TestProperties(t *testing.T) {
+	judge(t, vvlib.PropertyChecks(vvlib.RepoRoot()))
 }
 
 func TestSource(t *testing.T) {

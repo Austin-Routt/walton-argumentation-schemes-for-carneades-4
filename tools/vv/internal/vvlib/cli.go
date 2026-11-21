@@ -209,6 +209,21 @@ assumptions: ["p(a,b)"]
 		out = append(out, eres("baseline-cli-upstream-walton-example", ok,
 			"upstream's own Walton example no longer evaluates as before: untrustworthy(joe) %s, ¬caused_by(global_warming,humans) %s (%v)",
 			l["untrustworthy(joe)"], l["¬caused_by(global_warming,humans)"], err))
+
+		// every example upstream ships passes `check`, but the two that are
+		// refused by design: chr-leq is outside the profile (contract 1) and
+		// paraconsistency assumes p and ¬p (contract 4)
+		want := map[string]int{"chr-leq.yml": 2, "paraconsistency.yml": 3}
+		files, _ := filepath.Glob(filepath.Join(dir, "examples", "AGs", "YAML", "*.yml"))
+		probs := []string{}
+		for _, f := range files {
+			b, _ := os.ReadFile(f)
+			r := cli.Run(string(b), "check")
+			if r.Exit != want[filepath.Base(f)] {
+				probs = append(probs, fmt.Sprintf("%s: exit %d, want %d (%s)", filepath.Base(f), r.Exit, want[filepath.Base(f)], firstLine(r.Stderr)))
+			}
+		}
+		out = append(out, eres("cli-upstream-examples-check", len(files) > 0 && len(probs) == 0, "%s", strings.Join(probs, "; ")))
 	}
 	return out
 }

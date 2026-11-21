@@ -236,6 +236,8 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 4.1 Export writes the theory, with weights and weighing functions, and quotes parameters (E-EXPORT)
 - [x] 4.2 Expected labels survive (`tests:`), and so do `questioned:` and the origin of assumptions (`defaults:`)
 - [x] 4.3 `roles` are imported (E-ROLES)
+- [x] 4.4 Reference cases written by hand (`tools/vv/cases/reference.yml`, 24 cases: linked support, a missing premise, every state of a critical question, an undercutter, a rebuttal in an issue, three proof standards, two conclusions, a cycle, four ways a run ends, two cases side by side, a chain of schemes, an unrelated fact)
+- [x] 4.5 Property tests: terms mean the same to both readers (400 generated terms), renaming a scheme's variables changes no argument (every scheme), every reference case evaluated by the command and read back in a new process
 - [x] Phase 3: 3.1 to 3.11 (nine repairs, the prohibition record, records 50, 57 and 22.4, the negation issue scheme, the validator); X-IS's engine side; gate S reached (every file checks clean, all 118 schemes run through the command, the ledger holds only E-EXPORT and E-ROLES)
 - [ ] Phase 4; gate R; release R1
 - [ ] Phase 5; gate L; release R2

@@ -8,7 +8,10 @@ All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*
 * Expected labels are written under `tests:`, the key the importer reads (they were written under `labels:` and lost).
 * The theory is written with each scheme's weight and roles and with the named weighing functions, as they were read: constant weights, criteria and preferences were written only as comments, so `rebuttal`, `mcda-porsche` and `lex` lost their labels on a round trip.
 * Scheme `roles`, which USAGE.md documents, are imported and give each premise its role (E-ROLES); more roles than premises is an import error.
-* The ledger of known failures is empty: all 6,692 checks pass.
+* Reference cases written by hand (`PLAN.md` 4.4, `tools/vv/cases/reference.yml`): what happens to the argument and to the conclusion for linked support, a missing premise, every state of a critical question, an undercutter, a rebuttal in an issue, three proof standards, two conclusions, a cycle, four of the ways a run ends, two cases side by side, a chain of schemes and an unrelated fact.
+* Property tests (4.5): 400 generated statements mean the same to Carneades' reader and to GoCHR's; renaming every scheme's variables changes none of its arguments; every reference case is evaluated by the command, written as YAML and read back in a second process with the same labels.
+* Found by these: an assumption no argument uses had no statement and no label (it is now in once a run completes); a written-out argument without parameters was refused although its premises and conclusion instantiate its scheme (it is now validated by one substitution, as contract 6 says); a scheme that only gives a weighing function made the validator refuse every argument naming it. Every example upstream ships now passes `carneades check`, but `chr-leq` (unsupported) and `paraconsistency` (an inconsistent context), as designed.
+* The ledger of known failures is empty: all 6,774 checks pass.
 
 ## 2026-11-21 — the scheme repairs of release R1 (`PLAN.md` Phase 3)
 

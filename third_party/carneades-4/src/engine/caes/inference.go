@@ -183,5 +183,17 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 			}
 		}
 	}
+	// Once the run is complete: an assumption is a statement of the graph even
+	// when no argument uses it, so that it is labelled (in) like any other.
+	// (On any other outcome the graph stays as it was.)
+	for _, a := range ag.Assumed() {
+		if _, ok := ag.Statements[a]; !ok {
+			text := a
+			if t, ok := terms.ReadString(a); ok && ag.Theory != nil {
+				text = ag.Theory.Language.Apply(t)
+			}
+			ag.Statements[a] = &Statement{Id: a, Text: text}
+		}
+	}
 	return nil
 }
