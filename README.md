@@ -50,7 +50,7 @@ tools/vv/run.sh      # the two checks above, the engine sources against sources.
 
 The corrected preview uses library **0.2.0** (`walton.yml` and all category files) and engine **4.3.1+walton.3** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
 
-The independent review examined all 114 book-mapped records and the attached Atkinson and Bench-Capon paper. **70 of the 120 records are `example-passed`; 48 are `transcription-checked` and two are `mapped`.** The 70 approvals comprise 65 book-origin and five inherited records with explicit scope and provenance. The remaining 50 have record-specific source or interpretation holds. The complete library is a preview; full 1.0.0 requires every row to meet stable gate L.
+The independent review examined all 114 book-mapped records and the attached Atkinson and Bench-Capon paper. **88 of the 120 records are `example-passed`; 30 are `transcription-checked` and two are `mapped`.** The 88 approvals comprise 78 book-origin and ten inherited records with explicit scope and provenance; 18 of them were added by the reviewer's follow-up of 2026-11-21 under decisions D16 to D20 of [PLAN.md](PLAN.md). The remaining 32 have one decided action each ([the follow-up](docs/reviews/2026-11-21-reviewer-follow-up.md), section 6). The complete library is a preview; full 1.0.0 requires every row to meet stable gate L.
 
 Source approvals are recorded in `docs/reviews/independent-approvals.json` and bound to the reviewed content. Run:
 
@@ -59,7 +59,7 @@ python3 tools/check_source_approvals.py --repo .
 python3 tools/check_source_approvals.py --repo . --require-stable
 ```
 
-The first checks integrity of current approvals. The second is expected to fail while the 50 content holds remain; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
+The first checks integrity of current approvals. The second is expected to fail while the 32 content holds remain; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
 
 ## Known limitations and migration
 

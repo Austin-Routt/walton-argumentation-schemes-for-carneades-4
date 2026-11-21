@@ -13,9 +13,9 @@ The author's measurements are reproducible: clean baseline copies pass all 7,994
 | Library records | 120: 96 book-origin and 24 inherited |
 | Mapping | 114 records under 109 compendium entries; six upstream-only |
 | Independent source review | All 114 mapped records examined against the supplied book; attached Atkinson and Bench-Capon paper reviewed in full |
-| Source stages | 70 `example-passed`, 48 `transcription-checked`, two `mapped` |
-| Approved records | 65 book-origin and five inherited, within their documented interpretation and provenance |
-| Remaining source holds | 50 named records, with individual reasons and next actions |
+| Source stages | 88 `example-passed`, 30 `transcription-checked`, two `mapped` (70, 48 and two before the follow-up of 2026-11-21) |
+| Approved records | 78 book-origin and ten inherited, within their documented interpretation and provenance |
+| Remaining source holds | 32 named records, each with one decided action (`docs/reviews/2026-11-21-reviewer-follow-up.md`, section 6) |
 | Previously deferred five questions | Modelled from the supplied compendium; verification of unavailable cited originals remains separate |
 | Atkinson coverage | All 17 questions reviewed; eight lack a complete independent mapping in the inherited AS1 form |
 | Runtime gate | Added logical reuse, streaming/bounded matching, complete context closure, atomic inference, strict nested parsing and authored-exception checks |
@@ -42,6 +42,22 @@ The exact current check inventory is `tools/vv/expected_checks.txt`. The review 
 | D13: source plus behavior | Every repair needs a source locator, explicit interpretation, positive example and a discriminating adverse example. Source judgment and executable verification are separate evidence. |
 | D14: independent acceptance | Review source passages and expectations independently of the implementer's tests; rerun clean copies and record disagreement. AI-assisted review supplies technical evidence, not institutional or authorial certification. No new broad opinion round is required; reopen concrete holds/regressions. |
 
+## Decisions D15 to D23 (follow-up of 2026-11-21)
+
+Made by the reviewer of 2026-11-21 at the owner's request, after the implementer's response left them to a reviewer or to the owner. The reasons, and the action each decision gives every held row, are in `docs/reviews/2026-11-21-reviewer-follow-up.md`. Where a sentence elsewhere in this plan says otherwise, these decisions govern; the owner can overrule any of them.
+
+| Decision | Required contract |
+|---|---|
+| D15: release | `8c092b6` is withdrawn. `r1` is the corrected candidate with engine 4.3.1+walton.4, tagged at the master commit that contains that engine after someone who did not write its changes has checked them and both Go jobs are green. |
+| D16: questions and burden | The library implements the book's formal account of critical questions (pp. 33, 373–375): each is sorted once and evaluation is static. The dialogue of p. 96 is not implemented and not claimed. Questions about the burden or standard of proof are answered by how the application builds the graph. No row is held for this. |
+| D17: variants | A record states one variant of its entry; the ledger names it and what is left out, and that is a complete record. 9.2 is the species reading with the plain conclusion. 10.2 takes a part premise before the stable release. |
+| D18: participants | A statement carries a participant when the print names it in that statement; an exception carries enough of them that one instance cannot undercut another. First- and second-person schemes keep one proponent and one respondent. Inherited records keep upstream's arguments and declare the limit. |
+| D19: polarity | The engine weighs positions and has no degrees: a negated recommendation reads "should not", "more plausible" is an argument for a statement and "rejected as less plausible" an argument for its negation. |
+| D20: source of record | The compendium. An inherited record filed under an entry is complete when it is compared with that entry, every printed question has a disposition, differences are declared and its examples pass. Agreement with the older work it cites is recorded when that work is at hand and is not a condition of the stable release. |
+| D21: legacy records | `practical_reasoning1`, `practical_reasoning2` and `exeption_to_rule` stay as Carneades wrote them, are marked legacy and are not counted as source-checked. No record for the fuller model of Atkinson and Bench-Capon. The stable gate is 117 records at `example-passed` and three legacy records identical to upstream; `tools/check_source_approvals.py --require-stable` is to learn that class. |
+| D22: outside contacts | Upstream patches are regenerated from the released engine and the two drafts for the authors are merged. Both are sent only when the owner says so; neither holds a release. |
+| D23: entries 33.3 and 33.4 | They take the reading of 33.1 and 33.2: a likelihood adequate for the argument, with no fixed threshold. |
+
 ## Source stages and stable gate L
 
 The stages are cumulative evidence states:
@@ -64,7 +80,7 @@ For 1.0.0, run both ordinary gates and:
 python3 tools/check_source_approvals.py --repo . --require-stable
 ```
 
-All 120 records must reach `example-passed`. Do not silently shrink the release scope or count qualified interpretations as complete. A selectively approved preview is useful but does not satisfy the complete-library gate.
+All 120 records must reach `example-passed`, except the three legacy records of D21, which must be identical to upstream and marked. Do not silently shrink the release scope or count qualified interpretations as complete. A selectively approved preview is useful but does not satisfy the complete-library gate.
 
 ## Remaining implementation sequence
 
@@ -81,7 +97,9 @@ Some per-record actions list more than one technically defensible implementation
 3. Commit the candidate. From clean full clones, run `tools/vv/engine-tests.sh` and `VV_STRICT=1 tools/vv/run.sh` with each pinned Go binary. Compare every named result. Record commit, actual version, environment, clean status, exit codes and log hashes. A linked-worktree VCS-stamping failure is infrastructure evidence, not a product defect or a waived gate.
 4. Publish `r1` only at the accepted corrected candidate, using `docs/releases/r1-candidate.md`. The old `8c092b6` tagging command is superseded. Distinguish patched source assets from the original engine ZIPs. Without authenticated GitHub write access, deliver the tested bundle, patches and exact publication commands; do not claim a remote release exists.
 
-### B. The 50 source holds
+### B. The source holds (50 at the acceptance candidate, 32 after the follow-up of 2026-11-21)
+
+Decisions D16 to D21 settle the choices the items below left open: item 1 is no longer a condition of the stable release (D20), item 4 is decided for static evaluation (D16), and item 5 is decided for the legacy class (D21). The action for each of the 32 rows is in `docs/reviews/2026-11-21-reviewer-follow-up.md`, section 6.
 
 Resolve these in targeted batches using each record's adjudication, not another general review round:
 

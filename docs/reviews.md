@@ -85,3 +85,13 @@ Nothing that contradicts what release R1 claims. In the library on `master`:
 * Publish R1. GitHub refused the reviewer's push of the tag as it refused the implementer's (HTTP 403), so the three commands of `PLAN.md` are the owner's to run.
 * Decide whether a record from Carneades that is filed under an entry may be closed against that entry when the book it cites cannot be had. The reviewer recommends it, with the row saying so; the five questions of 5.2 can then be modelled from the compendium.
 * Offer the engine fixes upstream and write to the book's authors. The reviewer prepared the patch series and a draft letter and sent neither.
+
+
+## The reviewer's follow-up of 2026-11-21
+
+After the implementer's response (`reviews/implementer-response.md`), the reviewer of 2026-11-21 checked the response and the corrected candidate at `e6d2d6f`: `reviews/2026-11-21-reviewer-follow-up.md`.
+
+* It withdraws the sentence "Nothing that contradicts what release R1 claims" in the section above, and with it the verdict that `8c092b6` could be released: the third review's counterexamples are defects of that engine, reproduced one by one.
+* It confirms the response except for three statements, and agrees with the changes to the engine and to the 19 records.
+* It reports three more engine defects (the graph did not read `¬¬S` as `S`; issue construction depended on run order; the key lookup missed keys not in normal form) and fixes them as engine 4.3.1+walton.4 in a pull request of its own, for someone else to check.
+* It makes decisions D15 to D23 (`PLAN.md`), approves 18 held rows under them (88 of 120) and gives each of the other 32 one action.

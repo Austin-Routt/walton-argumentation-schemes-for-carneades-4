@@ -83,6 +83,10 @@ Checked by: `negated-premises-match`, `negation-through-statement-variable`, `ba
 
 The book's three kinds are kept (pp. 33, 373–375). An ordinary **premise** has to be supported. An **assumption** holds until it is called into question, and then has to be supported like a premise. An **exception** counts against the argument only once it is shown.
 
+**What this is, and what it is not (D16).** Each printed question of a scheme is sorted once, as a premise, an assumption, an exception or a rebuttal, by the book's own test (p. 33): a question the proponent's argument presupposes can be asked out of the blue and is an assumption; a question that asks for something to be named, another goal, another means, a consequence, a bias, counts once that thing is shown and is an exception. Evaluation is static: a graph is one state of a dispute. The library does not implement a dialogue. In particular it does not implement what p. 96 describes for practical reasoning, where asking any of the five questions suspends the argument until it is answered; to record that a question of the assumption kind has been asked, list its statement under `questioned:`. A question about the burden or the standard of proof (26, CQ2 and CQ3) has no statement in the scheme: the application answers it when it builds the graph, by who stipulates what, which statement is at issue and the proof standard of that issue.
+
+**Recommendations and degrees (D19).** The engine weighs positions for and against a statement and has no degrees of plausibility. `¬should_do(P,A)` reads "P should not do A". A scheme the book concludes with "more plausible" is an argument for the statement, and one it concludes with "rejected as less plausible" is an argument for its negation.
+
 A statement of a graph can have three origins, kept apart:
 
 * **stipulated**: listed under `assumptions:` in the graph file, or added through the API;

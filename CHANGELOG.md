@@ -2,6 +2,16 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — reviewer's follow-up: decisions D15 to D23, 88 of 120 rows approved
+
+See `docs/reviews/2026-11-21-reviewer-follow-up.md`. No record, template or engine file changes in this entry.
+
+* The review merged as pull request #13 concluded that `8c092b6` could be released. That is withdrawn: the third review's counterexamples are defects of that engine.
+* Decisions D15 to D23 in `PLAN.md` settle the release, the reading of critical questions (static, as the book formalizes them on pp. 33 and 373–375; no dialogue), variants, participants, polarity, the compendium as the source of record, three legacy records, outside contacts, and the likelihood reading of 33.3 and 33.4. `docs/contracts.md` contract 5 states the reading of questions and of negated recommendations.
+* 18 rows move from hold to `example-passed` under those decisions: five inherited rows that were held only for the older work they cite (1, 2, 15, 33.1, 33.2) and thirteen whose condition was a decision (4.6, 6.4, 9.2, 13.2, 17, 20, 22.1, 22.2, 22.3, 22.6.1 to 22.6.3, 26.2). 88 of 120 are approved; each of the other 32 has one action.
+* The reviewer withdraws seven of its own approvals of this morning (30, 28, 59.1, 45, 58, 22.4, 31.1), where the third review's hold names a statement identified by too few of its participants.
+* `tools/vv`: the check `cli-interrupt-is-cancelled` interrupted a run that, since the limits of engine 4.3.1+walton.2, ends as "limit reached" in a few tenths of a second; on a fast machine the interrupt came too late and the check failed (one of the two runs of this change's first commit, on both Go versions). Its workload is now a join that takes seconds under every limit. The assertion is unchanged.
+
 ## 2026-11-21 — implementer response to the independent reviews (engine 4.3.1+walton.3)
 
 See `docs/reviews/implementer-response.md`.
