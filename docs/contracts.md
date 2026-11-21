@@ -94,9 +94,13 @@ Checked by: `default-yields-to-stipulated-negation`, `default-yields-to-stipulat
 
 **A request to instantiate** (a `scheme:` and `parameters:`, nothing else) is carried out, giving the argument the scheme's premises, conclusion and questions, or is refused as **unsupported** until that is implemented. It is never accepted silently as an empty argument.
 
-Implemented: the validator reports a written-out argument whose scheme has exceptions and which has no undercutter; the importer carries out a request (an argument with `scheme:` and `parameters:` only) by instantiating the scheme.
+Implemented: for every instantiated exception, the validator requires a direct, single-premise linked argument concluding the authored argument's actual undercutter. An arbitrary nonnil undercutter, a link for another instance or another target, an extra prerequisite, a missing exception, or a custom weighing function cannot stand in for that structure. The accepted link has either no scheme or the built-in `linked` scheme, as produced by instantiation and preserved by export/import. Links and their statements must belong to the graph. A link may itself be attacked, as generated exception arguments may; validation checks the structure without deciding the outcome of such a dispute.
+
+When parameters are omitted, premises, conclusion and exception links must all agree under one substitution, including cases with several possible premise matchings. Validation does not write inferred parameters or missing links into the authored graph. Equivalent custom networks without direct linked witnesses are outside this structural acceptance rule and are reported for the author to restate. The importer carries out a request (an argument with `scheme:` and `parameters:` only) by instantiating the scheme.
 
 Checked by: `validator-checks-arguments-against-schemes`, `validator-enforces-shared-bindings`, `validator-accepts-correct-argument`, `explicit-argument-without-questions-is-reported`, `argument-from-scheme-and-parameters`; issues E-ARGVAL, E-EXPLICIT.
+
+Also checked by `TestAuthoredExceptionLinksCLI` (both `check` and `eval`, with and without parameters) and the validation package's exception-link tests, including complete authored controls, ambiguous bindings and exported generated graphs.
 
 ## 7. Names the validator rejects (D11)
 

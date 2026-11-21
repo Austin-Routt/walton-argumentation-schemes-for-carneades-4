@@ -1,3 +1,7 @@
+(engine)|authored-explicit|cli/check-exception-links
+(engine)|authored-explicit|cli/eval-exception-links
+(engine)|authored-inferred|cli/check-exception-links
+(engine)|authored-inferred|cli/eval-exception-links
 A_reasoning/1_deductive-reasoning.yml|(file)|cli/check-clean
 A_reasoning/1_deductive-reasoning.yml|(file)|cli/eval-produces-output
 A_reasoning/1_deductive-reasoning.yml|(file)|engine-validator
