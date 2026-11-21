@@ -50,8 +50,15 @@ var engine = make(chan struct{}, 1)
 
 // acquireEngine waits until no other run uses the rule engine, or ctx is done.
 func acquireEngine(ctx context.Context) error {
+	if ctx.Err() != nil {
+		return NewRunError(ErrCancelled, "cancelled before using the rule engine")
+	}
 	select {
 	case engine <- struct{}{}:
+		if ctx.Err() != nil {
+			releaseEngine()
+			return NewRunError(ErrCancelled, "cancelled before using the rule engine")
+		}
 		return nil
 	case <-ctx.Done():
 		return NewRunError(ErrCancelled, "cancelled while another run used the rule engine")
@@ -70,7 +77,11 @@ func ruleStoreOf(t *Theory) (*chr.RuleStore, error) {
 	// not trigger the schemes again. Without this, schemes that re-derive a
 	// fact, or derive each other's premises, run to MAXRULEAPPS.
 	rs.Unique = true
+	rs.ReuseConstraints = true
 	rs.MaxTermSize = MAXTERMSIZE
+	rs.MaxMatchSteps = MAXMATCHSTEPS
+	rs.MaxConstraints = MAXCONSTRAINTS
+	rs.MaxStoreNodes = MAXSTORENODES
 	// ¬S is the explicit negation of S (docs/contracts.md, contract 4): it is
 	// matched by rule heads like any statement, also when it reaches a rule
 	// through a statement variable, and ¬¬S is read as S.

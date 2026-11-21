@@ -124,13 +124,13 @@ const (
 )
 
 type Statement struct {
-	Id       string // a ground atomic formula, using Prolog syntax
-	Metadata Metadata
-	Text     string      // natural language
-	Issue    *Issue      // nil if not at issue
-	Args     []*Argument // concluding with this statement
-	Label    Label       // for storing the evaluated label
-	IsUndercutter bool   // true if the statement is an undercutter
+	Id            string // a ground atomic formula, using Prolog syntax
+	Metadata      Metadata
+	Text          string      // natural language
+	Issue         *Issue      // nil if not at issue
+	Args          []*Argument // concluding with this statement
+	Label         Label       // for storing the evaluated label
+	IsUndercutter bool        // true if the statement is an undercutter
 }
 
 // A Rulebase is a set of constraint handling rules.
@@ -150,10 +150,10 @@ type Theory struct { // aka Knowledge Base
 	WeighingFunctions map[string]WeighingFunction
 	// WeighingSpecs are the named weighing functions as written in the input,
 	// kept for export (PLAN.md 4.1)
-	WeighingSpecs     map[string]interface{}
-	ArgSchemes        []*Scheme
-	IssueSchemes      map[string]*IssueScheme
-	schemeIndex       map[string]*Scheme
+	WeighingSpecs map[string]interface{}
+	ArgSchemes    []*Scheme
+	IssueSchemes  map[string]*IssueScheme
+	schemeIndex   map[string]*Scheme
 }
 
 type WeighingFunction func(*Argument, Labelling) float64 // [0.0,1.0]
@@ -825,8 +825,8 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				// add it to the statements of the graph
 				ucid := "undercut(" + argId + ")"
 				uc = Statement{Id: ucid,
-					Text: argId + " is undercut.",
-				        IsUndercutter: true}
+					Text:          argId + " is undercut.",
+					IsUndercutter: true}
 				ag.Statements[terms.Normalize(ucid)] = &uc
 				for _, c := range conclusions {
 					// Construct an argument for each conclusion and add it to the graph
@@ -921,21 +921,31 @@ func (ag *ArgGraph) addDefault(stmt_id string) {
 // If some pattern is not synatically correct and thus cannot be parsed,
 // an error is returned and the argument graph is left unchanged.
 // If all goes well, the argument graph is updated and nil is returned
-func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error) {
-
-	// skip issue schemes with less than two patterns
+// readIssuePatterns rejects the complete pattern list before any graph write.
+func readIssuePatterns(patterns []string) ([]terms.Term, error) {
 	if len(patterns) < 2 {
-		fmt.Fprintf(os.Stderr, "Issue scheme with less than two patterns: %v\n", issueScheme)
-		return
+		return nil, fmt.Errorf("fewer than two patterns")
 	}
-	// Try to match the first pattern with each statement
-	// in the argument graph.
-	pattern, ok := terms.ReadString(patterns[0])
+	parsed := make([]terms.Term, len(patterns))
+	for i, p := range patterns {
+		if i == 1 && len(patterns) == 3 && p == "..." {
+			continue
+		}
+		t, ok := terms.ReadString(p)
+		if !ok {
+			return nil, fmt.Errorf("cannot parse pattern %q", p)
+		}
+		parsed[i] = t
+	}
+	return parsed, nil
+}
 
-	if !ok {
-		fmt.Fprintf(os.Stderr, "Could not parse issue scheme pattern: %v\n", patterns[0])
-		return
+func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error) {
+	parsed, err := readIssuePatterns(patterns)
+	if err != nil {
+		return err
 	}
+	pattern := parsed[0]
 	for wff1, stmt := range ag.Statements {
 		term1, ok := terms.ReadString(wff1)
 		if !ok {
@@ -989,12 +999,7 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 					// try matching against each of the remaining patterns
 					// and update the bindings and add the statement as
 					// as candidate if any pattern matches
-					for _, p := range patterns[1:] {
-						pattern2, ok := terms.ReadString(p)
-						if !ok {
-							fmt.Fprintf(os.Stderr, "Could not parse issue scheme pattern: %v\n", p)
-							continue
-						}
+					for _, pattern2 := range parsed[1:] {
 						bindings, match = terms.Match(pattern2, term2, bindings)
 						if match {
 							break

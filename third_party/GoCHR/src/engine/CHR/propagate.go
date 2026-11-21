@@ -28,8 +28,9 @@ import (
 //     matched in an order in which such a variable is bound first when another
 //     head binds it, and otherwise it matches any constraint.
 //
-// As in the general solver, the heads of one firing match distinct
-// constraints, and max bounds the number of rule applications.
+// By default heads match distinct constraints as in the general solver.
+// ReuseConstraints instead permits repeated use of a fact in a conjunction.
+// max bounds rule applications; MaxMatchSteps also bounds failed searches.
 //
 // The solver works in rounds (semi-naive evaluation): a round looks only for
 // tuples with at least one constraint added since the previous round began,
@@ -142,22 +143,59 @@ func matchHead(h propHead, c *Compound, env Bindings) (Bindings, bool) {
 	return AddBinding(h.varOf, *c, env), true
 }
 
-// candidates for a head under env: the constraints of its functor, or, for a
-// bare variable, of the functor it is bound to, or all.
-func candidates(rs *RuleStore, h propHead, env Bindings) CList {
+// candidateView snapshots the store at a rule's turn. Streaming the matches
+// must not let a firing add candidates to that same turn; they enter the next
+// round, as when all tuples were materialized before firing. At most one list
+// per functor and one list of all constraints is cached.
+type candidateView struct {
+	rs     *RuleStore
+	before *big.Int
+	lists  map[string]CList
+}
+
+func (v *candidateView) list(f string) CList {
+	if a, ok := v.lists[f]; ok {
+		return a
+	}
+	a := aliveConstraints(v.rs, f)
+	out := a[:0]
+	for _, c := range a {
+		if c.Id.Cmp(v.before) < 0 {
+			out = append(out, c)
+		}
+	}
+	v.lists[f] = out
+	return out
+}
+
+func (v *candidateView) candidates(h propHead, env Bindings) CList {
 	if !h.isVar {
-		return aliveConstraints(rs, h.head.Functor)
+		return v.list(h.head.Functor)
 	}
 	if b, ok := GetBinding(h.varOf, env); ok {
 		switch t := b.(type) {
 		case Compound:
-			return aliveConstraints(rs, t.Functor)
+			return v.list(t.Functor)
 		case Atom:
-			return aliveConstraints(rs, string(t))
+			return v.list(string(t))
 		}
 		return nil
 	}
-	return aliveConstraints(rs, "")
+	return v.list("")
+}
+
+// Each candidate visit counts, even when its bindings fail to join. A rule
+// application limit alone cannot bound a search in which no tuple matches.
+func matchStep(rs *RuleStore) bool {
+	if rs.Stopped != nil || cancelled(rs) {
+		return false
+	}
+	if rs.MaxMatchSteps > 0 && rs.matchSteps >= rs.MaxMatchSteps {
+		rs.Stopped = fmt.Errorf("%w: %d match candidate visits", ErrLimit, rs.MaxMatchSteps)
+		return false
+	}
+	rs.matchSteps++
+	return true
 }
 
 type propMatch struct {
@@ -165,36 +203,42 @@ type propMatch struct {
 	key string
 }
 
-// newMatches finds the tuples for rule r with at least one constraint whose id
-// is at least from. For each head position i it takes head i from the new
-// constraints, the heads before it in the order from the old ones, and those
-// after it from all, so that each tuple is found once.
-func newMatches(rs *RuleStore, r *chrRule, order []propHead, from *big.Int) []propMatch {
-	var out []propMatch
+// visitMatches streams tuples with at least one constraint whose id is at
+// least from. It stops immediately when the visitor, cancellation or a budget
+// asks it to stop. No array of the potentially combinatorial join is built.
+func visitMatches(rs *RuleStore, r *chrRule, order []propHead, from *big.Int, yield func(propMatch) bool) bool {
+	view := candidateView{rs: rs, before: new(big.Int).Set(rs.chrCounter), lists: map[string]CList{}}
 	n := len(order)
 	used := make([]*Compound, n)
 	isNew := func(c *Compound) bool { return c.Id.Cmp(from) >= 0 }
 	for i := 0; i < n; i++ {
-		var walk func(k int, env Bindings)
-		walk = func(k int, env Bindings) {
+		var walk func(k int, env Bindings) bool
+		walk = func(k int, env Bindings) bool {
+			if rs.Stopped != nil || cancelled(rs) {
+				return false
+			}
 			if k == n {
 				ids := make([]string, len(r.keepHead))
 				for j, h := range order {
 					ids[h.pos] = used[j].Id.String()
 				}
-				out = append(out, propMatch{env: env, key: strings.Join(ids, ",")})
-				return
+				return yield(propMatch{env: env, key: strings.Join(ids, ",")})
 			}
-			for _, c := range candidates(rs, order[k], env) {
+			for _, c := range view.candidates(order[k], env) {
+				if !matchStep(rs) {
+					return false
+				}
 				switch {
 				case k == i && !isNew(c), k < i && isNew(c):
 					continue
 				}
 				distinct := true
-				for j := 0; j < k; j++ {
-					if used[j] == c {
-						distinct = false
-						break
+				if !rs.ReuseConstraints {
+					for j := 0; j < k; j++ {
+						if used[j] == c {
+							distinct = false
+							break
+						}
 					}
 				}
 				if !distinct {
@@ -205,12 +249,17 @@ func newMatches(rs *RuleStore, r *chrRule, order []propHead, from *big.Int) []pr
 					continue
 				}
 				used[k] = c
-				walk(k+1, env2)
+				if !walk(k+1, env2) {
+					return false
+				}
 			}
+			return true
 		}
-		walk(0, nil)
+		if !walk(0, nil) {
+			return false
+		}
 	}
-	return out
+	return true
 }
 
 // propagationSolver computes the closure of the store under the rules.
@@ -223,20 +272,23 @@ func propagationSolver(rs *RuleStore, max int) {
 	apps := 0
 	from := big.NewInt(0)
 	for rs.Stopped == nil && rs.Result != RFalse {
+		if cancelled(rs) {
+			return
+		}
 		next := new(big.Int).Set(rs.chrCounter)
 		fired := false
 		for i, r := range rs.CHRruleStore {
-			for _, m := range newMatches(rs, r, orders[i], from) {
+			if !visitMatches(rs, r, orders[i], from, func(m propMatch) bool {
 				key := fmt.Sprintf("%d:%s", r.id, m.key)
 				if history[key] {
-					continue
+					return true
 				}
 				if max != 0 && apps >= max {
 					rs.Stopped = fmt.Errorf("%w: %d rule applications", ErrLimit, max)
-					return
+					return false
 				}
 				if cancelled(rs) {
-					return
+					return false
 				}
 				history[key] = true
 				rs.RenameRuleVars = <-Counter
@@ -244,9 +296,9 @@ func propagationSolver(rs *RuleStore, max int) {
 				fireRule(rs, r, m.env)
 				apps++
 				fired = true
-				if rs.Stopped != nil || rs.Result == RFalse {
-					return
-				}
+				return rs.Stopped == nil && rs.Result != RFalse
+			}) {
+				return
 			}
 		}
 		if !fired {
