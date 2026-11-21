@@ -9,7 +9,7 @@ language:
   act_on_presumption_false/1: "I act on the presumption that %s is not true."
   asserts/2: "%s asserts that %s is true."
   based_on_evidence/1: "The assertion %v is based on evidence."
-  based_on_false_belief/1: "%s was originally based on beliefs of which one is false."
+  based_on_false_belief/2: "%s originally believed %s on the basis of beliefs of which one is false."
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
   biased/1: "Arguer %s is biased."
@@ -36,7 +36,7 @@ language:
   normal_true/1: "If the situation were normal, %s would be true."
   not_know_true/1: "I do not know whether %s is true or not."
   not_normal/1: "The situation in which %s was expected is not normal."
-  not_originally_believed/1: "%s was not originally believed for other reasons."
+  not_originally_believed/2: "%s did not originally believe %s for other reasons."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
   position_to_know/2: "%s is in a position to know about things in a certain subject domain %s."
@@ -169,8 +169,8 @@ argument_schemes:
       - recalls(P,M)
       - believe_it(M)
     exceptions:
-      - based_on_false_belief(M)
-      - not_originally_believed(M)
+      - based_on_false_belief(P,M)
+      - not_originally_believed(P,M)
       - recaller_doubts(P,M)
 
   - id: appearance

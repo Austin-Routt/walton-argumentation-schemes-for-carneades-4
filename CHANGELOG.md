@@ -4,6 +4,48 @@ All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*
 
 ## Unreleased — Phase 5 of `PLAN.md`: the records against the book (library 0.2.0)
 
+### Independent source review, compendium entries 28–60
+
+The independent review found defects that the previous green examples accepted.
+New reference cases distinguish missing or wrong participants from correctly
+scoped evidence; the source ledger records approvals separately from testing.
+
+* Forward abduction (31.2) now distinguishes the strongest diagram from its
+  conclusion and links the diagram to its set. Action/character/retroduction
+  (31.3–31.5) now name the action, quality and event. A typed character-quality
+  statement connects 31.3 to 31.4; its generic property projection also supports
+  31.5. An ordinary property such as a rose's color cannot trigger a character
+  prediction. The predictive conditional and past-event identification remain
+  different statements.
+* Constitutive rule 54.1 explicitly requires referential coextension, the
+  printed warrant's antecedent. The old whale/mammal example demonstrated
+  inclusion, not synonymy; it is now an adverse example. A defining
+  triangle/three-sided-polygon pair is the positive example.
+* Memory (60) names the recaller in both original-belief undercutters, so that
+  one person's defective history cannot defeat another person's independent
+  recall of the same proposition.
+* Exceptional case (56) retains an aggregate default with a precise conditional
+  meaning: recognition or evidence for an unrecognized case, plus comparison
+  support when borderline. Four explicit challenged-witness routes and adverse
+  controls are supplied; recognition is not a bypass around a borderline
+  comparison. See `docs/source-contracts-second-half.md`.
+* Available-book questions close two likelihood gaps in inherited positive and
+  negative consequences (33.1–33.2), with a challengeable adequacy assessment
+  scoped to the action and outcome. No fixed probability or "strongly likely"
+  threshold is imposed. The inherited established-rule form (55.1) now has
+  scoped conflicting-rule and exception/excuse hooks. These are explicit
+  adaptations from the available compendium; verification against the cited
+  original 1995 works remains open.
+* Role changes and new ordinary premises are recorded in the migration table.
+  The migrator now reports new-premise review needs using an optional `trigger`
+  rather than silently skipping rows whose `old` field must remain empty.
+  It does not invent missing diagram, action, quality, event, recaller or
+  coextension facts.
+
+Some inherited formulations and compressed contexts remain qualified in the
+independent audit. These changes are not blanket approval of all records and
+do not certify first-stable-release gate L by test count alone.
+
 The printed critical questions are sorted record by record (5.1) into the four kinds of D2 (pp. 373-375): a question that restates a premise is not modelled; one that shifts the burden when asked is an assumption; one that needs backing is an exception; one that points to a counter-argument is a rebuttal, weighed against the conclusion in the negation issue. Each sorted question is in the record's row of `tools/vv/source_ledger.yml`, with the statement that models it, and `source/record-row` checks that statement against the record. A question sorted as an assumption or an exception that the record did not model is a gap (5.2) and is added, with a positive and an adverse reference case in `tools/vv/cases/phase5.yml` (D13). The 24 records taken over from Carneades keep upstream's wording (D5): where they lack a question, the row says so and 5.5 decides against their own sources. A row moves to "transcription checked" when its premises and conclusion have been compared with the book; "interpretation approved" is left to a reviewer who did not write the change (D14).
 
 * Entries 1 to 17 (13 records with questions): 33 questions sorted.

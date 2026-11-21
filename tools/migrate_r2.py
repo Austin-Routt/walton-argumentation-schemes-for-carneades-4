@@ -122,7 +122,7 @@ class Migrator:
         """Rows that cannot be applied mechanically and whose old statement the text uses."""
         hits = []
         for r in self.manual:
-            old = r.get("old") or ""
+            old = r.get("trigger") or r.get("old") or ""
             m = re.match(r"\s*¬?\s*([\w\-]+)", old)
             if not m:
                 continue

@@ -15,7 +15,7 @@ language:
   established_rule_property/3: "Generally, according to the established rule %s, if something has property %s, then it also has property %s."
   evaluation/3: "If %s is the case, then an evaluation %s is justified/conduct %s is required."
   evaluation_justified/2: "Evaluation %s is justified/conduct %s is required."
-  exception_backed/1: "The case of %s is of a recognized type of exception, or evidence that the established rule does not apply to it, or comparable cases, can be given."
+  exception_backed/1: "The case of %s has an applicable recognized exception or, if unrecognized, evidence of the governing rule's non-applicability; if borderline, comparable cases additionally justify its treatment."
   excuse/1: "%s falls under a recognized category of excuses for this type of case and the inclusion can be justified, or what is special about the case justifies the exemption."
   excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
   exempted/1: "In this instance, I ought to be exempted from %s."
@@ -42,6 +42,7 @@ language:
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
   special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
+  referentially_coextensive/2: "The expressions %s and %s are referentially coextensive."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
   without_correcting/1: "Speakers are able to use the word %s in the correct physical and grammatical context without being correct about the nature of its referent or property."
 
@@ -61,6 +62,7 @@ argument_schemes:
       - means_same(W,D)
     premises:
       - is_a(W,D)
+      - referentially_coextensive(W,D)
       - synonymous
     exceptions:
       - not_necessarily_true(W,D)

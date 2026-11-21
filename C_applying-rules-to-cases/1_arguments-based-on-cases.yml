@@ -6,6 +6,8 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  conflicting_or_overriding_rule/2: "Another established rule conflicts with or overrides rule %s in its application to conclusion %s."
+  rule_exception_or_excuse/2: "An exceptional case or an adequate excuse defeats rule %s in its application to conclusion %s."
   applicable/1: "Argument %s is applicable."
   carry_out_act/2: "%s carries out action %s."
   carry_out_right/2: "The right thing to do in %s is carry out %s."
@@ -168,3 +170,6 @@ argument_schemes:
       - applicable(R)
     assumptions:
       - valid(R)
+    exceptions:
+      - conflicting_or_overriding_rule(R,C)
+      - rule_exception_or_excuse(R,C)

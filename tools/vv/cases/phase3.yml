@@ -208,18 +208,20 @@ cases:
   - name: rule_physical_world_1/positive
     source: "54.1, p. 342"
     assumptions:
-      - is_a(whale,mammal)
+      - is_a(triangle,three_sided_polygon)
+      - referentially_coextensive(triangle,three_sided_polygon)
       - synonymous
     in:
-      - means_same(whale,mammal)
+      - means_same(triangle,three_sided_polygon)
   - name: rule_physical_world_1/rebuttal-factor
     source: "54.1, p. 342"
     assumptions:
-      - is_a(whale,mammal)
+      - is_a(triangle,three_sided_polygon)
+      - referentially_coextensive(triangle,three_sided_polygon)
       - synonymous
-      - not_necessarily_true(whale,mammal)
+      - not_necessarily_true(triangle,three_sided_polygon)
     not_in:
-      - means_same(whale,mammal)
+      - means_same(triangle,three_sided_polygon)
 
   # 3.7 argument for an exceptional case (56, p. 344)
   - name: exceptional/positive

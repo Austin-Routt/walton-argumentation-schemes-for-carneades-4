@@ -6,18 +6,16 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  action_character/1: "Agent %s did something that can be classified as fitting a particular character quality."
-  agent_event/1: "An observed event appears to have been brought about by some agent %s."
-  character/1: "Agent %s has a character quality of a kind that has been defined."
-  character_action/1: "If %s carries out some action in the future, this action is likely to be classifiable as fitting under that character quality."
-  character_defined/1: "Agent %s's character is well defined."
-  character_quality/1: "%s has this character quality."
+  action_character/3: "Agent %s performed action %s, which can be classified as fitting character quality %s."
+  agent_event/2: "Agent %s appears to have brought about observed event %s."
+  character_quality/2: "%s has character quality %s."
+  character_action/2: "If %s carries out some action in the future, this action is likely to fit character quality %s."
   data_account/2: "Each account in the set %s is successful in explaining %s."
   data_set/1: "%s is a set of data or supposed facts in a case."
   diagram_set/3: "There is a set of argument diagrams %s and in each argument diagram %s represents premises of an argument that, supplemented by plausible conditionals and other statements that function as missing parts of enthymemes, leads to a respective conclusion %s."
   event_false/1: "%s has been observed to be false, in a given instance."
-  event_quality/1: "The bringing about of this event fits a certain character quality %s."
-  event_question/1: "%s brought about the event in question."
+  event_quality/2: "The bringing about of event %s fits character quality %s."
+  event_question/2: "%s brought about event %s."
   event_true/1: "%s has been observed to be true, in a given instance."
   explanation/2: "Theory %s explains %s."
   has_property/2: "%s has property %s."
@@ -27,16 +25,17 @@ language:
   inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
   more_reliable/1: "There are other events that would more reliably account for the sign %s."
-  not_character_action/1: "Agent %s has some actions that don't fit into defined character."
-  action_fits_quality/1: "The description of agent %s's action actually fits the definition of the quality."
+  not_character_action/2: "Agent %s has actions that do not fit the defined character quality %s."
+  action_fits_quality/3: "The description of agent %s's action or event %s actually fits the definition of quality %s."
   observed/1:  "%s has been observed."
   plausible_conclusion/1: "%s is the most plausible conclusion in the case."
   plausible_hypothesis/1: "%s is the most plausible hypothesis in the case."
-  quality_defined/1: "The character quality attributed to %s is well defined."
-  reference_class/2: "Few agents other than %s might have brought about this event and have the character quality %s."
+  quality_defined/1: "The character quality %s is well defined."
+  reference_class/3: "Few agents other than %s might have brought about event %s and have character quality %s."
   strong_correlation/2: "Correlation of %s and %s is strong."
   successful_account/2: "%s is the account that explains %s most successfully."
-  successful_diagram/1: "The most plausible -strongest- argument is represented by %s."
+  successful_diagram/2: "Among the diagrams in %s, the strongest argument is represented by %s."
+  diagram_conclusion/2: "The argument represented by diagram %s has conclusion %s."
   sufficient_account/2: "%s itself, as an explanation of %s apart from other alternative explanations available so far, is sufficient."
   sufficient_correlation/2: "Correlation between %s and %s is sufficient."
 
@@ -82,13 +81,14 @@ argument_schemes:
     meta:
       title: Abductive Argumentation Scheme - Forward Argumentation Scheme
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.2, p. 329."
-    variables: [D,G,C,C1]
+    variables: [D,G,C,C1,G1]
     conclusions:
       - plausible_conclusion(C1) 
     premises:
       - data_set(D)
       - diagram_set(G,D,C)
-      - successful_diagram(C1)
+      - successful_diagram(G,G1)
+      - diagram_conclusion(G1,C1)
     assumptions:
       - sufficient_account(C1,D)
     exceptions:
@@ -98,44 +98,45 @@ argument_schemes:
     meta:
       title: Abductive Argumentation Scheme - From Action to Character
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.3, p. 330."
-    variables: [A]
+    variables: [A,X,Q]
     conclusions:
-      - character_quality(A)
+      - character_quality(A,Q)
+      - has_property(A,Q)
     premises:
-      - action_character(A)
+      - action_character(A,X,Q)
     assumptions: 
-     - quality_defined(A)
-     - action_fits_quality(A)
+     - quality_defined(Q)
+     - action_fits_quality(A,X,Q)
 
   - id: abductive_character_to_action
     meta:
       title: Abductive Argumentation Scheme - From Character to Action (Predictive) 
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.4, p. 330."
-    variables: [A]
+    variables: [A,Q]
     conclusions:
-      - character_action(A)
+      - character_action(A,Q)
     premises:
-      - character(A)
+      - character_quality(A,Q)
     exceptions:
-      - not_character_action(A)
+      - not_character_action(A,Q)
     assumptions: 
-     - character_defined(A)
+     - quality_defined(Q)
 
   - id: retroductive
     meta:
       title: Retroductive Scheme for Identifying an Agent from Past Action
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.5, p. 331."
-    variables: [A,Q]
+    variables: [A,Q,E]
     conclusions:
-      - event_question(A)
+      - event_question(A,E)
     premises:
-      - agent_event(A)
-      - event_quality(Q)
+      - agent_event(A,E)
+      - event_quality(E,Q)
       - has_property(A,Q)
     assumptions: 
-     - quality_defined(A)
-     - action_fits_quality(A)
-     - reference_class(A,Q)
+     - quality_defined(Q)
+     - action_fits_quality(A,E,Q)
+     - reference_class(A,E,Q)
 
   - id: evidence_hypothesis_verification
     meta:

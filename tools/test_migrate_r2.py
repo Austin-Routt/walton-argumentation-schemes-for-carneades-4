@@ -57,7 +57,7 @@ class Migrate(unittest.TestCase):
 
     def test_identifiers(self):
         for s in ["- id: exceptional", "- all_parts_property(A,b)", "- possible_goal(A)", "- id: opposition_normative",
-                  "[receives_evaluation(A,good)]", "scheme: threat", "[possible_goal(x)]", "conclusion: action_fits_quality(x)",
+                  "[receives_evaluation(A,good)]", "scheme: threat", "[possible_goal(x)]", "conclusion: not_fit_action(x)",
                   "  - all_parts_property(car,heavy)", "in: [possible_goal(x)]"]:
             self.assertIn(s, self.new, s)
 
@@ -96,6 +96,17 @@ class Migrate(unittest.TestCase):
         self.assertIn(("practical_inference", "should_do(P,A)"), rows)
         self.assertIn(("appeal_to_vanity_ad_populum", "ought_to_bring_about(X)"), rows)
         self.assertIn(("position_to_know_ad_populum", "A"), rows)
+
+    def test_new_premise_and_role_changes_require_evidence(self):
+        src = "assumptions: [is_a(whale,mammal), successful_diagram(c1), based_on_false_belief(p), action_character(ann)]\n"
+        mig = Migrator()
+        # Roles and coextension cannot be invented by a spelling migration.
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("rule_physical_world_1", "referentially_coextensive(W,D)"), rows)
+        self.assertIn(("abductive_forward", "diagram_conclusion(G1,C1)"), rows)
+        self.assertIn(("memory", "based_on_false_belief(P,M)"), rows)
+        self.assertIn(("abductive_action_to_character", "action_character(A,X,Q)"), rows)
 
 
 if __name__ == "__main__":

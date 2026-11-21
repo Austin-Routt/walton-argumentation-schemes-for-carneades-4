@@ -637,13 +637,14 @@ func MigrationChecks(lib *Library) []Result {
 	}
 	var t struct {
 		Changes []struct {
-			Record string `yaml:"record"`
-			Kind   string `yaml:"kind"`
-			Old    string `yaml:"old"`
-			New    string `yaml:"new"`
-			Plan   string `yaml:"plan"`
-			Page   int    `yaml:"page"`
-			Note   string `yaml:"note"`
+			Record  string `yaml:"record"`
+			Kind    string `yaml:"kind"`
+			Old     string `yaml:"old"`
+			New     string `yaml:"new"`
+			Plan    string `yaml:"plan"`
+			Page    int    `yaml:"page"`
+			Note    string `yaml:"note"`
+			Trigger string `yaml:"trigger"`
 		} `yaml:"changes"`
 	}
 	if err := yaml.UnmarshalStrict(b, &t); err != nil {

@@ -261,9 +261,10 @@ cases:
     assumptions:
       - data_set(d)
       - diagram_set(g,d,c)
-      - successful_diagram(c1)
+      - successful_diagram(g,g1)
+      - diagram_conclusion(g1,c1)
     arguments:
-      - abductive_forward(d,g,c,c1)
+      - abductive_forward(d,g,c,c1,g1)
     in:
       - plausible_conclusion(c1)
   - name: abductive_forward/adverse-account-questioned
@@ -271,7 +272,8 @@ cases:
     assumptions:
       - data_set(d)
       - diagram_set(g,d,c)
-      - successful_diagram(c1)
+      - successful_diagram(g,g1)
+      - diagram_conclusion(g1,c1)
     questioned:
       - sufficient_account(c1,d)
     not_in:
@@ -281,33 +283,34 @@ cases:
     assumptions:
       - data_set(d)
       - diagram_set(g,d,c)
-      - successful_diagram(c1)
+      - successful_diagram(g,g1)
+      - diagram_conclusion(g1,c1)
       - inquiry_incomplete(d)
     not_in:
       - plausible_conclusion(c1)
 
   # 31.5 retroductive (p. 331): CQ3, whether the action fits the definition
-  # of Q, is the assumption 31.3 uses, not_fit_action(A).
+  # of Q, is the assumption 31.3 uses, action_fits_quality(A,E,Q).
   - name: retroductive/positive
     source: "31.5, p. 331"
     assumptions:
-      - agent_event(ann)
-      - event_quality(greedy)
+      - agent_event(ann,the_event)
+      - event_quality(the_event,greedy)
       - has_property(ann,greedy)
     arguments:
-      - retroductive(ann,greedy)
+      - retroductive(ann,greedy,the_event)
     in:
-      - event_question(ann)
+      - event_question(ann,the_event)
   - name: retroductive/adverse-fit-questioned
     source: "31.5, p. 331, CQ3"
     assumptions:
-      - agent_event(ann)
-      - event_quality(greedy)
+      - agent_event(ann,the_event)
+      - event_quality(the_event,greedy)
       - has_property(ann,greedy)
     questioned:
-      - action_fits_quality(ann)
+      - action_fits_quality(ann,the_event,greedy)
     not_in:
-      - event_question(ann)
+      - event_question(ann,the_event)
 
   # 32.1 and 32.2 (pp. 331-332) share their questions; CQ3 is
   # sufficient_correlation(H,A) in both, where 32.2 had the arguments the
@@ -620,8 +623,9 @@ cases:
       - not_acceptable_step(c0)
 
   # 56 exeptional (p. 344): the three conditional questions ask for the
-  # exception to be backed, by its recognized type, by evidence that the rule
-  # does not apply, or by comparable cases (5.3): the assumption
+  # exception to be backed by an applicable recognized type, or evidence of
+  # non-applicability if unrecognized, with comparable cases additionally
+  # required if borderline (independent review): the assumption
   # exception_backed(A).
   - name: exceptional/positive
     source: "56, p. 344"
@@ -699,7 +703,7 @@ cases:
     assumptions:
       - recalls(ann,door_locked)
       - believe_it(door_locked)
-      - based_on_false_belief(door_locked)
+      - based_on_false_belief(ann,door_locked)
     not_in:
       - reasonable_believe(door_locked)
   - name: memory/adverse-not-originally-believed
@@ -707,7 +711,7 @@ cases:
     assumptions:
       - recalls(ann,door_locked)
       - believe_it(door_locked)
-      - not_originally_believed(door_locked)
+      - not_originally_believed(ann,door_locked)
     not_in:
       - reasonable_believe(door_locked)
   - name: memory/adverse-recaller-doubts
@@ -929,17 +933,17 @@ cases:
   - name: retroductive/two-agents
     source: "31.5, p. 331, CQ4"
     assumptions:
-      - agent_event(ann)
-      - event_quality(greedy)
+      - agent_event(ann,the_event)
+      - event_quality(the_event,greedy)
       - has_property(ann,greedy)
-      - agent_event(bob)
+      - agent_event(bob,the_event)
       - has_property(bob,greedy)
     questioned:
-      - reference_class(bob,greedy)
+      - reference_class(bob,the_event,greedy)
     in:
-      - event_question(ann)
+      - event_question(ann,the_event)
     not_in:
-      - event_question(bob)
+      - event_question(bob,the_event)
   - name: ad_hominem/two-arguments
     source: "42, p. 336, CQ2"
     assumptions:
@@ -982,14 +986,16 @@ cases:
   - name: rule_physical_world_1/two-claims
     source: "54.1, p. 342"
     assumptions:
-      - is_a(whale,mammal)
-      - is_a(tomato,fruit)
+      - is_a(triangle,three_sided_polygon)
+      - referentially_coextensive(triangle,three_sided_polygon)
+      - is_a(square,equilateral_right_quadrilateral)
+      - referentially_coextensive(square,equilateral_right_quadrilateral)
       - synonymous
-      - not_necessarily_true(tomato,fruit)
+      - not_necessarily_true(square,equilateral_right_quadrilateral)
     in:
-      - means_same(whale,mammal)
+      - means_same(triangle,three_sided_polygon)
     not_in:
-      - means_same(tomato,fruit)
+      - means_same(square,equilateral_right_quadrilateral)
   - name: rule_physical_world_2/two-rules
     source: "54.2, p. 342"
     assumptions:
@@ -1062,16 +1068,16 @@ cases:
       - has_property(gang,violent)
       - group_member(bob,gang)
       - group_member_quality(gang,violent,bob)
-      - agent_event(bob)
-      - agent_event(ann)
-      - event_quality(violent)
+      - agent_event(bob,the_event)
+      - agent_event(ann,the_event)
+      - event_quality(the_event,violent)
     arguments:
       - group_2(gang,violent,bob)
-      - retroductive(bob,violent)
+      - retroductive(bob,violent,the_event)
     in:
-      - event_question(bob)
+      - event_question(bob,the_event)
     not_in:
-      - event_question(ann)
+      - event_question(ann,the_event)
   - name: sorites_slippery_slope/conditional-shared-with-verbal_slippery_slope
     source: "51, pp. 340-341; 52, p. 341"
     assumptions:

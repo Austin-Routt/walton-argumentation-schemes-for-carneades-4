@@ -388,40 +388,41 @@ cases:
     assumptions:
       - data_set(clues)
       - diagram_set(diagrams,clues,conclusions)
-      - successful_diagram(butler_guilty)
+      - successful_diagram(diagrams,butler_argument)
+      - diagram_conclusion(butler_argument,butler_guilty)
     arguments:
-      - abductive_forward(clues,diagrams,conclusions,butler_guilty)
+      - abductive_forward(clues,diagrams,conclusions,butler_guilty,butler_argument)
     in:
       - plausible_conclusion(butler_guilty)
     variants: true
   - name: abductive_action_to_character/book
     source: "31.3, p. 330"
     assumptions:
-      - action_character(bob)
+      - action_character(bob,kept_promise,honest)
     arguments:
-      - abductive_action_to_character(bob)
+      - abductive_action_to_character(bob,kept_promise,honest)
     in:
-      - character_quality(bob)
+      - has_property(bob,honest)
     variants: true
   - name: abductive_character_to_action/book
     source: "31.4, p. 330"
     assumptions:
-      - character(bob)
+      - character_quality(bob,honest)
     arguments:
-      - abductive_character_to_action(bob)
+      - abductive_character_to_action(bob,honest)
     in:
-      - character_action(bob)
+      - character_action(bob,honest)
     variants: true
   - name: retroductive/book
     source: "31.5, p. 331"
     assumptions:
-      - agent_event(bob)
-      - event_quality(greedy)
+      - agent_event(bob,missing_cash)
+      - event_quality(missing_cash,greedy)
       - has_property(bob,greedy)
     arguments:
-      - retroductive(bob,greedy)
+      - retroductive(bob,greedy,missing_cash)
     in:
-      - event_question(bob)
+      - event_question(bob,missing_cash)
     variants: true
   - name: evidence_hypothesis_verification/book
     source: "32.1, p. 331"
@@ -1062,12 +1063,13 @@ cases:
   - name: rule_physical_world_1/book
     source: "54.1, p. 342"
     assumptions:
-      - is_a(whale,mammal)
+      - is_a(triangle,three_sided_polygon)
+      - referentially_coextensive(triangle,three_sided_polygon)
       - synonymous
     arguments:
-      - rule_physical_world_1(whale,mammal)
+      - rule_physical_world_1(triangle,three_sided_polygon)
     in:
-      - means_same(whale,mammal)
+      - means_same(triangle,three_sided_polygon)
     variants: true
   - name: rule_physical_world_2/book
     source: "54.2, p. 342"

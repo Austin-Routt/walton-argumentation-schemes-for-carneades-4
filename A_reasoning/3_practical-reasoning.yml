@@ -6,6 +6,7 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  consequence_likelihood_adequate/2: "The assessed likelihood that action %s brings about outcome %s is adequate for the strength of this consequence argument."
   acceptable_action/2: "For %s, %s is an acceptable action."
   action_will_help/2: "Proposed action %s will really help %s."
   agent_bring_about/3: "If %s, as an agent, brings about %s, then %s will occur."
@@ -161,6 +162,8 @@ argument_schemes:
     premises:
       - brings_about(A,G)
       - bad(G)
+    assumptions:
+      - consequence_likelihood_adequate(A,G)
 
   - id: positive_consequences
     meta:
@@ -172,6 +175,8 @@ argument_schemes:
     premises:
       - brings_about(A,G)
       - good(G)
+    assumptions:
+      - consequence_likelihood_adequate(A,G)
 
   - id: alternative_cognitive
     meta:
