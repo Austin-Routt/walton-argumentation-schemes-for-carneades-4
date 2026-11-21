@@ -99,10 +99,22 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		// Create an index of the previous arguments constructed
 		// to avoid constructing equivalent instanstiations of schemes
 		// and to allow the inference engine to construct undercutters
+		//
+		// An argument is identified by its scheme and its canonical parameters
+		// (docs/contracts.md, contract 2): the key is the term in the
+		// canonical form of the term reader, so "[a,b]" written here and
+		// "[a, b]" printed by the rule engine are one key. Arguments without a
+		// scheme, such as the undercutters built for exceptions, are not
+		// instances of a scheme and have no key.
 		prevArgs := map[string]bool{}
+		goalArgs := []string{}
 		for _, a := range ag.Arguments {
-			if a != nil {
-				prevArgs["argument("+a.Scheme.Id+",["+strings.Join(a.Parameters, ",")+"])"] = true
+			if a != nil && a.Scheme != nil {
+				k := "argument(" + a.Scheme.Id + ",[" + strings.Join(a.Parameters, ",") + "])"
+				if !prevArgs[terms.Normalize(k)] {
+					goalArgs = append(goalArgs, k)
+				}
+				prevArgs[terms.Normalize(k)] = true
 			}
 		}
 
@@ -117,9 +129,7 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		for _, k := range ag.Assumptions {
 			goals = append(goals, k)
 		}
-		for k, _ := range prevArgs {
-			goals = append(goals, k)
-		}
+		goals = append(goals, goalArgs...)
 
 		success, store, err := rb.Infer(goals, MAXRULEAPPS)
 		switch {
@@ -142,11 +152,11 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 			// then, if the term does represent an argument, use it to
 			// add an argument to the argument graph by instantiating the
 			// argumentation scheme applied.
-			if _, exists := prevArgs[s]; !exists {
+			if k := terms.Normalize(s); !prevArgs[k] {
 				isArg, a := termToArgDesc(s)
 				if isArg {
 					ag.InstantiateScheme(a.Scheme, a.Values)
-					prevArgs[s] = true
+					prevArgs[k] = true
 				}
 			}
 		}

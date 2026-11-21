@@ -594,6 +594,11 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 		control = "with every premise asserted the scheme constructs no argument"
 	}
 
+	// A second Infer on the finished graph adds nothing and changes no label
+	// (contract 2; E-IDEMP). Ported from the third review's per-scheme check
+	// of a second inference (docs/parity.md).
+	out = append(out, res(file, id, chk("infer-twice"), secondInferProblems(run, control)))
+
 	if ng := run.NonGround(); len(ng) == 0 {
 		out = append(out, pass(file, id, chk("ground")))
 	} else {
@@ -682,6 +687,43 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 	// every premise is needed: without it the scheme must not construct an argument
 	out = append(out, res(file, id, chk("premises-needed"), premiseProblems(lang, theory, s, in, control)))
 	return out, run
+}
+
+// secondInferProblems runs Infer again on the graph of a finished run.
+func secondInferProblems(run *Run, control string) []string {
+	if control != "" {
+		return []string{"not judged: " + control}
+	}
+	n1 := len(run.AG.Arguments)
+	before := map[string]caes.Label{}
+	for st, l := range run.L {
+		before[st.Id] = l
+	}
+	var panicked any
+	var err error
+	c := StartCapture()
+	func() {
+		defer func() { panicked = recover() }()
+		err = run.AG.Infer()
+	}()
+	c.Stop()
+	if panicked != nil {
+		return []string{fmt.Sprintf("the second Infer panics: %v", panicked)}
+	}
+	if err != nil {
+		return []string{fmt.Sprintf("the second Infer fails: %v", err)}
+	}
+	probs := []string{}
+	if n2 := len(run.AG.Arguments); n2 != n1 {
+		probs = append(probs, fmt.Sprintf("the second Infer raises the number of arguments from %d to %d", n1, n2))
+	}
+	for st, l := range run.AG.GroundedLabelling() {
+		if b, ok := before[st.Id]; ok && b != l {
+			probs = append(probs, fmt.Sprintf("%s was %s and is %s after the second Infer", st.Id, b, l))
+		}
+	}
+	sort.Strings(probs)
+	return probs
 }
 
 // exceptionProblems asserts each exception of the scheme in turn, next to the

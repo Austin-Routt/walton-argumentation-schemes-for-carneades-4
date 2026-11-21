@@ -54,7 +54,7 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | `TestLinkedEvidenceAndExceptionLabels` | covered | `baseline-scheme-with-exception` |
 | `TestManualValidArgumentDoesNotPanic` | covered | `validator-accepts-correct-argument` |
 | `TestNegatedPremiseMustFire` | covered | `negated-premises-match` |
-| `TestNoRuleFiringMustPreserveStore` | to port | none (PLAN.md 1.3) |
+| `TestNoRuleFiringMustPreserveStore` | covered | GoCHR `TestNoRuleFiredKeepsGoals`, run by `tools/vv/engine-tests.sh` (PLAN.md 1.3) |
 | `TestPositiveRule` | covered | `iso/fires` for every scheme |
 | `TestRepeatedInferenceDoesNotDuplicateArguments`, `TestRepeatedInferenceWithException` | covered | `infer-is-idempotent`, `infer-twice-with-exception` |
 | `TestRolesArePreserved` | covered | `scheme-roles-are-imported` |
@@ -63,8 +63,14 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | `run_python_audit.py`: 20 schema probes of `tools/validate_schemes.py` | to port | none; PLAN.md 3.10 |
 | `full_workflow_mutations.py`: two semantic mutations | to port | none; PLAN.md 3.10 |
 | `sources.lock.json` with a hard failure on a hash mismatch | covered | `tools/vv/setup.sh` with `sources.lock` |
-| per scheme: a withdrawn assumption, a second inference | to port | engine level only (see the second review's rows) |
+| per scheme: a second inference | covered | `iso/infer-twice`, `full/infer-twice` (ported) |
+| per scheme: a withdrawn assumption | to port | engine level only (see the second review's rows); with PLAN.md 2.7 |
 
 ## Ported
 
-None yet. Each port names its new check here and removes the row's **to port**.
+Each port names its new check here and removes the row's **to port**.
+
+| Check | Ported as | With |
+|---|---|---|
+| third review, per scheme: a second inference | `iso/infer-twice`, `full/infer-twice` (456 checks) | PLAN.md 2.5 |
+| second review, `TestNoRuleFiringMustPreserveStore` | GoCHR `TestNoRuleFiredKeepsGoals` | PLAN.md 1.3 |

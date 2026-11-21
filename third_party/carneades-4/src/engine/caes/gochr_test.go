@@ -269,3 +269,32 @@ assumptions: ["says(ann,¬p(a))", "¬p(b)"]
 		}
 	}
 }
+
+// A second Infer adds nothing: arguments are identified by scheme and
+// canonical parameters, and undercutters have no scheme (E-IDEMP).
+func TestInferTwice(t *testing.T) {
+	ag := infer(t, `
+language:
+  p/2: "%s p %s"
+  q/2: "%s q %s"
+  r/1: "%s is r"
+argument_schemes:
+  - id: s
+    variables: [X, Y]
+    premises:
+      - p(X,Y)
+    exceptions:
+      - r(X)
+    conclusions:
+      - q(X,Y)
+assumptions:
+  - p(a,b)
+`)
+	n := len(ag.Arguments)
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if len(ag.Arguments) != n {
+		t.Errorf("a second Infer: %d arguments, then %d", n, len(ag.Arguments))
+	}
+}

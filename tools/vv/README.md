@@ -96,6 +96,7 @@ and the engine constructs and evaluates the argument, once with the scheme alone
 | `static/no-variable-capture` | no declared variable can capture the fresh name of an unbound one |
 | `static/no-reserved-functor` | no conclusion or assumption uses `is/2`, `=/2`, `:=/2` |
 | `static/not-self-feeding` | the scheme does not derive one of its own premises |
+| `…/infer-twice` | a second `Infer` on the finished graph adds no argument and changes no label |
 | `…/infer-ok`, `…/terminates` | argument construction returns without error and without hitting the rule limit |
 | `…/fires` | one argument per conclusion is constructed, with the expected parameters |
 | `…/ground` | no statement in the resulting graph contains a variable |
