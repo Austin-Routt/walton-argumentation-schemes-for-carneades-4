@@ -26,6 +26,16 @@ The printed critical questions are sorted record by record (5.1) into the four k
   * `distress` (39, pp. 334-335): the relief is of x's distress, `relieve(B,X,A)`; the record did not say whose. The assumption `really_distress(A)` repeated premise 1 and goes.
   * `commitment1`, `commitment2` (40, p. 335): the assumption `commitment_support_evidence(A,X)` repeated the commitment premise and goes; CQ2 is the exception `commitment_linkage_exception(A,X,Y)`.
   * Recorded for 5.5, not changed: `positive_consequences` and `negative_consequences` (upstream) do not model CQ1, how likely the consequences are.
+* Entries 41 to 60 (24 records with questions): 61 questions sorted, which completes 5.1: all 189 printed questions of the records filed under an entry are sorted. Six records taken over from Carneades leave nine questions unmodelled (`expert_opinion`, `definition_to_verbal_classification`, `positive_consequences`, `negative_consequences`, `established_rule`, `appearance`); 5.5 decides them against their own sources.
+  * `ad_hominem` (42, p. 336): CQ1 is the book's own example of a question that restates a premise (p. 374); the assumption `attack_well_supported` goes.
+  * `pragmatic_inconsistency` (43, pp. 336-337): the assumption `descriptions_opposite(A,S)` restated premise 2 and goes; CQ3 is the assumption `inconsistency_relevant(A,S)`.
+  * `inconsistent_commitment` (44, p. 337): the exception `evidence_not_commited(A,S)` said what premise 2 says, so the evidence for the conclusion undercut the argument; it goes. CQ3 is the assumption `commitments_conflict(A,S)`.
+  * `circumstantial_ad_hominem` (45, pp. 337-338): the arguer is committed to the opposite of the conclusion, `commited_opposite(A,C)`, not of the argument; CQ2 is the exception `inconsistency_explained(A,S)`.
+  * `bias` (46, p. 338): the major premise is stated for the arguer at hand, `not_taken_both(A,C)`, and the stray variable `X` goes (5.3); CQ1 is the assumption `bias_relevant(A,C)`.
+  * `full_slippery_slope` (53, p. 341): the assumption `led_to_step` restated the group opinion premise and goes.
+  * `exeptional` (56, p. 344): its three conditional questions are the assumption `exception_backed(A)`: the exception is of a recognized type, or evidence that the rule does not apply, or comparable cases, can be given (5.3).
+  * `plea_for_excuse` (58, p. 345): the excuse is for the action committed, `special_circumstances(E,T)`; CQ1 and CQ2 are the assumption `excuse(E)`, whose text says both.
+  * `memory` (60, p. 346): the three undercutters are the exceptions `based_on_false_belief(M)`, `not_originally_believed(M)` and `recaller_doubts(P,M)`.
 * `tools/migration_r2.yml` starts the old-to-new table of R2 (5.6): every change of Phase 5 that alters what a graph has to state. `tools/vv` checks each row against the library (`migration/*`).
 
 ## 2026-11-21 — release R1, a preview (library 0.1.0, engine 4.3.1+walton.1)

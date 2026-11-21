@@ -398,7 +398,7 @@ INSTANCES = [
      {"premises": ["sacrifice_made(a,s)", "great_sacrifice(s,a,v)", "great_sacrifice_made(s,a)"], "conclusions": ["sacrifice_value(a,v)"]}),
     # the repairs of PLAN.md 3.1 to 3.7
     ("ad_hominem", "42, p. 336", {"A": "bob", "S": "arg1", "C": "tax_cut"},
-     {"premises": ["bad_character(bob)", "advocates_conclusion(bob,arg1,tax_cut)"], "assumptions": ["attack_well_supported", "character_revelant"], "exceptions": ["stronger_than_character(arg1)"], "conclusions": ["bad_not_accepted(bob,arg1)"]}),
+     {"premises": ["bad_character(bob)", "advocates_conclusion(bob,arg1,tax_cut)"], "assumptions": ["character_revelant"], "exceptions": ["stronger_than_character(arg1)"], "conclusions": ["bad_not_accepted(bob,arg1)"]}),
     ("regulative_rule", "55.3, p. 343", {"A": "sam", "X": "pay_tax"},
      {"premises": ["obligatory(pay_tax)", "do_obligator", "addressee_of(sam,pay_tax)"], "exceptions": ["excuse_or_overriding_duty(sam,pay_tax)"], "conclusions": ["must_do(sam,pay_tax)"]}),
     ("regulative_rule_prohibition", "55.3, p. 343", {"A": "sam", "X": "smoke"},
@@ -420,7 +420,7 @@ INSTANCES = [
     ("rule_physical_world_1", "54.1, p. 342", {"W": "w", "D": "d"},
      {"premises": ["is_a(w,d)", "synonymous"], "exceptions": ["not_necessarily_true"], "conclusions": ["means_same(w,d)"]}),
     ("exeptional", "56, p. 344", {"A": "a"},
-     {"premises": ["rule_can_waived(a)", "case_exception(a)"], "conclusions": ["rule_waived(a)"]}),
+     {"premises": ["rule_can_waived(a)", "case_exception(a)"], "assumptions": ["exception_backed(a)"], "conclusions": ["rule_waived(a)"]}),
     # the records added by PLAN.md 3.8
     ("precedent_slippery_slope", "50, p. 340", {"C": "c0", "R": "r", "N": "cn"},
      {"premises": ["claimed_exception(c0,r)", "precedent_series(c0,r,cn)", "intolerable_exception(c0,r)"], "conclusions": ["cannot_be_exception(c0,r)"]}),
@@ -461,6 +461,20 @@ INSTANCES = [
      {"premises": ["committed(ann,p)", "also_committed(p,q)"], "exceptions": ["commitment_contrary_evidence(ann,p)", "commitment_linkage_exception(ann,p,q)"], "conclusions": ["committed_to(ann,q)"]}),
     ("commitment2", "40, p. 335", {"A": "ann", "X": "p", "Y": "q"},
      {"premises": ["also_committed_questioned(ann,p,q)", "dialog_committed(ann,p)"], "exceptions": ["commitment_contrary_evidence(ann,p)", "commitment_linkage_exception(ann,p,q)"], "conclusions": ["commitment_arises(ann,q)"]}),
+    ("pragmatic_inconsistency", "43, pp. 336-337", {"A": "bob", "S": "arg1", "X": "tax_cut"},
+     {"premises": ["advocates_conclusion(bob,arg1,tax_cut)", "opposite_action(bob,arg1,¬tax_cut)"], "assumptions": ["strong_advocate(bob,arg1,tax_cut)", "inconsistency_relevant(bob,arg1)"], "conclusions": ["arguement_not_accepted(bob,arg1)"]}),
+    ("inconsistent_commitment", "44, p. 337", {"A": "bob", "S": "tax_cut"},
+     {"premises": ["initial_commitment(bob,tax_cut)", "opposed_commitment(bob,tax_cut)"], "assumptions": ["commitments_conflict(bob,tax_cut)"], "conclusions": ["inconsistent_commitment(bob)"]}),
+    ("circumstantial_ad_hominem", "45, pp. 337-338", {"A": "bob", "S": "arg1", "C": "tax_cut"},
+     {"premises": ["advocates_conclusion(bob,arg1,tax_cut)", "commited_opposite(bob,tax_cut)", "credibility_questioned(bob)"], "assumptions": ["character_issue(bob)"], "exceptions": ["inconsistency_explained(bob,arg1)"], "conclusions": ["plausibility_decreased(bob,arg1)"]}),
+    ("bias", "46, p. 338", {"A": "bob", "C": "tax_cut"},
+     {"premises": ["not_taken_both(bob,tax_cut)", "biased(bob)"], "assumptions": ["bias_relevant(bob,tax_cut)"], "conclusions": ["arguer_not_taken_both(bob,tax_cut)"]}),
+    ("full_slippery_slope", "53, p. 341", {"C0": "c0", "C1": "c1", "C2": "cn"},
+     {"premises": ["initial_presumption(c0)", "leads_to_next(c0,c1,cn)", "accept_all_steps"], "conclusions": ["not_acceptable_step(c0)"]}),
+    ("plea_for_excuse", "58, p. 345", {"S": "fine", "R": "r", "T": "speeding", "E": "emergency"},
+     {"premises": ["rule_require(r,speeding,fine)", "pleader_committed(speeding)", "special_circumstances(emergency,speeding)"], "assumptions": ["excuse(emergency)"], "exceptions": ["not_excuse(emergency)"], "conclusions": ["exempted(fine)"]}),
+    ("memory", "60, p. 346", {"P": "ann", "M": "door_locked"},
+     {"premises": ["recalls(ann,door_locked)", "believe_it(door_locked)"], "exceptions": ["based_on_false_belief(door_locked)", "not_originally_believed(door_locked)", "recaller_doubts(ann,door_locked)"], "conclusions": ["reasonable_belive(door_locked)"]}),
 ]
 
 def instantiate(statement, binding):

@@ -23,7 +23,6 @@ language:
   initial_presumption/1: "Case %s is tentatively acceptable as an initial presumption."
   interference/1: "An event has occurred which interferes with event %s."
   leads_to_next/3: "There exists a series of cases %s, %s, ..., %s where each leads to the next by a combination of causal, precedent and/or analogical steps."
-  led_to_step/0: "People will be led to accept the next step once they come to accept each step as plausible."
   must_present_complementary_contrary/3: "If %s does not present the predicate %s, it must present the complementary contrary predicate %s at the same time and in the same respect."
   must_present_sametime/2: "%s must present %s at the same time and in the same respect."
   negative_consequences/1: "Performing action %s would have negative consequences."
@@ -190,8 +189,6 @@ argument_schemes:
       - initial_presumption(C0)
       - leads_to_next(C0,C1,C2)
       - accept_all_steps
-    assumptions:
-     - led_to_step
 
   - id: cause_to_effect
     meta:

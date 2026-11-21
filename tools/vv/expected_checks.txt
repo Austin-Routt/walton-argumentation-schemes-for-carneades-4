@@ -1724,6 +1724,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|cli/scenar
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|engine-validator
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/assumptions-questionable
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/conclusions-in
+B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/exceptions-undercut
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/fires
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/ground
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/infer-ok
@@ -1732,6 +1733,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/premi
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|full/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/assumptions-questionable
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/conclusions-in
+B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/exceptions-undercut
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/fires
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/ground
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/infer-ok
@@ -1955,7 +1957,6 @@ B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|c
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|engine-validator
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/assumptions-questionable
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/conclusions-in
-B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/exceptions-undercut
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/fires
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/ground
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/infer-ok
@@ -1964,7 +1965,6 @@ B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|f
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|full/terminates
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/assumptions-questionable
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/conclusions-in
-B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/exceptions-undercut
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/fires
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/ground
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/infer-ok
@@ -2126,6 +2126,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|engine-validator
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/assumptions-questionable
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/conclusions-in
+B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/exceptions-undercut
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/fires
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/ground
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/infer-ok
@@ -2134,6 +2135,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|full/terminates
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/assumptions-questionable
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/conclusions-in
+B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/exceptions-undercut
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/fires
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/ground
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/infer-ok
@@ -3432,6 +3434,20 @@ cases/phase5.yml|abductive_forward/adverse-inquiry-incomplete|case
 cases/phase5.yml|abductive_forward/adverse-inquiry-incomplete|roundtrip
 cases/phase5.yml|abductive_forward/positive|case
 cases/phase5.yml|abductive_forward/positive|roundtrip
+cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|case
+cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|roundtrip
+cases/phase5.yml|bias/adverse-another-persons-premise|case
+cases/phase5.yml|bias/adverse-another-persons-premise|roundtrip
+cases/phase5.yml|bias/adverse-dialogue-questioned|case
+cases/phase5.yml|bias/adverse-dialogue-questioned|roundtrip
+cases/phase5.yml|bias/positive|case
+cases/phase5.yml|bias/positive|roundtrip
+cases/phase5.yml|circumstantial_ad_hominem/adverse-inconsistency-explained|case
+cases/phase5.yml|circumstantial_ad_hominem/adverse-inconsistency-explained|roundtrip
+cases/phase5.yml|circumstantial_ad_hominem/adverse-opposite-of-another-proposition|case
+cases/phase5.yml|circumstantial_ad_hominem/adverse-opposite-of-another-proposition|roundtrip
+cases/phase5.yml|circumstantial_ad_hominem/positive|case
+cases/phase5.yml|circumstantial_ad_hominem/positive|roundtrip
 cases/phase5.yml|commitment1/adverse-linkage-exception|case
 cases/phase5.yml|commitment1/adverse-linkage-exception|roundtrip
 cases/phase5.yml|commitment1/positive|case
@@ -3452,18 +3468,42 @@ cases/phase5.yml|evidence_hypothesis_falsification/adverse-correlation-questione
 cases/phase5.yml|evidence_hypothesis_falsification/adverse-correlation-questioned|roundtrip
 cases/phase5.yml|evidence_hypothesis_falsification/positive|case
 cases/phase5.yml|evidence_hypothesis_falsification/positive|roundtrip
+cases/phase5.yml|exeptional/adverse-exception-questioned|case
+cases/phase5.yml|exeptional/adverse-exception-questioned|roundtrip
+cases/phase5.yml|exeptional/positive|case
+cases/phase5.yml|exeptional/positive|roundtrip
+cases/phase5.yml|exeptional/questioned-and-backed|case
+cases/phase5.yml|exeptional/questioned-and-backed|roundtrip
 cases/phase5.yml|from_example/adverse-support-questioned|case
 cases/phase5.yml|from_example/adverse-support-questioned|roundtrip
 cases/phase5.yml|from_example/positive|case
 cases/phase5.yml|from_example/positive|roundtrip
 cases/phase5.yml|from_example/support-questioned-and-shown|case
 cases/phase5.yml|from_example/support-questioned-and-shown|roundtrip
+cases/phase5.yml|full_slippery_slope/positive|case
+cases/phase5.yml|full_slippery_slope/positive|roundtrip
+cases/phase5.yml|full_slippery_slope/questioning-the-removed-assumption-is-idle|case
+cases/phase5.yml|full_slippery_slope/questioning-the-removed-assumption-is-idle|roundtrip
 cases/phase5.yml|help/adverse-help-questioned|case
 cases/phase5.yml|help/adverse-help-questioned|roundtrip
 cases/phase5.yml|help/adverse-premise-missing|case
 cases/phase5.yml|help/adverse-premise-missing|roundtrip
 cases/phase5.yml|help/positive|case
 cases/phase5.yml|help/positive|roundtrip
+cases/phase5.yml|inconsistent_commitment/adverse-conflict-questioned|case
+cases/phase5.yml|inconsistent_commitment/adverse-conflict-questioned|roundtrip
+cases/phase5.yml|inconsistent_commitment/positive|case
+cases/phase5.yml|inconsistent_commitment/positive|roundtrip
+cases/phase5.yml|inconsistent_commitment/the-evidence-of-premise-2-does-not-undercut|case
+cases/phase5.yml|inconsistent_commitment/the-evidence-of-premise-2-does-not-undercut|roundtrip
+cases/phase5.yml|memory/adverse-false-basis|case
+cases/phase5.yml|memory/adverse-false-basis|roundtrip
+cases/phase5.yml|memory/adverse-not-originally-believed|case
+cases/phase5.yml|memory/adverse-not-originally-believed|roundtrip
+cases/phase5.yml|memory/adverse-recaller-doubts|case
+cases/phase5.yml|memory/adverse-recaller-doubts|roundtrip
+cases/phase5.yml|memory/positive|case
+cases/phase5.yml|memory/positive|roundtrip
 cases/phase5.yml|negative_consequences_reasoning/adverse-likelihood-questioned|case
 cases/phase5.yml|negative_consequences_reasoning/adverse-likelihood-questioned|roundtrip
 cases/phase5.yml|negative_consequences_reasoning/positive|case
@@ -3472,12 +3512,22 @@ cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|case
 cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|roundtrip
 cases/phase5.yml|negative_normal_expectations/positive|case
 cases/phase5.yml|negative_normal_expectations/positive|roundtrip
+cases/phase5.yml|plea_for_excuse/adverse-excuse-for-another-action|case
+cases/phase5.yml|plea_for_excuse/adverse-excuse-for-another-action|roundtrip
+cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|case
+cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|roundtrip
+cases/phase5.yml|plea_for_excuse/positive|case
+cases/phase5.yml|plea_for_excuse/positive|roundtrip
 cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|case
 cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|roundtrip
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|case
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|roundtrip
 cases/phase5.yml|popular_opinion/positive|case
 cases/phase5.yml|popular_opinion/positive|roundtrip
+cases/phase5.yml|pragmatic_inconsistency/adverse-relevance-questioned|case
+cases/phase5.yml|pragmatic_inconsistency/adverse-relevance-questioned|roundtrip
+cases/phase5.yml|pragmatic_inconsistency/positive|case
+cases/phase5.yml|pragmatic_inconsistency/positive|roundtrip
 cases/phase5.yml|retroductive/adverse-fit-questioned|case
 cases/phase5.yml|retroductive/adverse-fit-questioned|roundtrip
 cases/phase5.yml|retroductive/positive|case
@@ -3570,8 +3620,10 @@ source_ledger.yml|analogy|source/record-row
 source_ledger.yml|appeal_to_vanity_ad_populum|source/record-row
 source_ledger.yml|appearance|source/record-row
 source_ledger.yml|arbitrariness_harmless/2|source/name-in-language
+source_ledger.yml|based_on_false_belief/1|source/name-in-language
 source_ledger.yml|better_alternative_by_values/2|source/name-in-language
 source_ledger.yml|bias_ad_hominem|source/record-row
+source_ledger.yml|bias_relevant/2|source/name-in-language
 source_ledger.yml|bias|source/record-row
 source_ledger.yml|cannot_be_exception/2|source/name-in-language
 source_ledger.yml|cause_to_effect|source/record-row
@@ -3580,6 +3632,7 @@ source_ledger.yml|claimed_exception/2|source/name-in-language
 source_ledger.yml|commitment1|source/record-row
 source_ledger.yml|commitment2|source/record-row
 source_ledger.yml|commitment_linkage_exception/3|source/name-in-language
+source_ledger.yml|commitments_conflict/2|source/name-in-language
 source_ledger.yml|common_folk_ad_populum|source/record-row
 source_ledger.yml|common_folks_group_ad_populum|source/record-row
 source_ledger.yml|composition_generic|source/record-row
@@ -3712,6 +3765,7 @@ source_ledger.yml|ethotic1|source/record-row
 source_ledger.yml|ethotic2|source/record-row
 source_ledger.yml|evidence_hypothesis_falsification|source/record-row
 source_ledger.yml|evidence_hypothesis_verification|source/record-row
+source_ledger.yml|exception_backed/1|source/name-in-language
 source_ledger.yml|excuse_or_overriding_duty/2|source/name-in-language
 source_ledger.yml|exeption_to_rule|source/record-row
 source_ledger.yml|exeptional|source/record-row
@@ -3732,6 +3786,8 @@ source_ledger.yml|has/2|source/name-in-language
 source_ledger.yml|help|source/record-row
 source_ledger.yml|ignorance|source/record-row
 source_ledger.yml|illustration|source/record-row
+source_ledger.yml|inconsistency_explained/2|source/name-in-language
+source_ledger.yml|inconsistency_relevant/2|source/name-in-language
 source_ledger.yml|inconsistent_commitment|source/record-row
 source_ledger.yml|inquiry_incomplete/1|source/name-in-language
 source_ledger.yml|interaction_act_person_1|source/record-row
@@ -3751,6 +3807,7 @@ source_ledger.yml|negative_consequences|source/record-row
 source_ledger.yml|negative_normal_expectations|source/record-row
 source_ledger.yml|negative_practical|source/record-row
 source_ledger.yml|negative_value|source/record-row
+source_ledger.yml|not_originally_believed/1|source/name-in-language
 source_ledger.yml|opposition-descriptive_1|source/record-row
 source_ledger.yml|opposition-descriptive_2|source/record-row
 source_ledger.yml|opposition-descriptive_3|source/record-row
@@ -3782,6 +3839,7 @@ source_ledger.yml|precedent_slippery_slope|source/record-row
 source_ledger.yml|prohibited/1|source/name-in-language
 source_ledger.yml|reapplication_sequence/3|source/name-in-language
 source_ledger.yml|reassessment_against_continuing/2|source/name-in-language
+source_ledger.yml|recaller_doubts/2|source/name-in-language
 source_ledger.yml|recognized_exception_category/2|source/name-in-language
 source_ledger.yml|regulative_rule_prohibition|source/record-row
 source_ledger.yml|regulative_rule|source/record-row
@@ -3803,6 +3861,7 @@ source_ledger.yml|slippery_slope_base_case|source/record-row
 source_ledger.yml|slippery_slope_inductive_step|source/record-row
 source_ledger.yml|snob_appeal_ad_populum|source/record-row
 source_ledger.yml|sorites_slippery_slope|source/record-row
+source_ledger.yml|special_circumstances/2|source/name-in-language
 source_ledger.yml|sunk_costs|source/record-row
 source_ledger.yml|supports_generalization/3|source/name-in-language
 source_ledger.yml|treat|source/record-row
@@ -3820,6 +3879,11 @@ tools/migration_r2.yml|(file)|migration/readable
 tools/migration_r2.yml|abductive_backward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_forward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_forward|migration/added sufficient_account(C1,D)
+tools/migration_r2.yml|ad_hominem|migration/removed attack_well_supported
+tools/migration_r2.yml|bias|migration/added bias_relevant(A,C)
+tools/migration_r2.yml|bias|migration/arguments not_taken_both(A,C)
+tools/migration_r2.yml|circumstantial_ad_hominem|migration/added inconsistency_explained(A,S)
+tools/migration_r2.yml|circumstantial_ad_hominem|migration/arguments commited_opposite(A,C)
 tools/migration_r2.yml|commitment1|migration/added commitment_linkage_exception(A,X,Y)
 tools/migration_r2.yml|commitment1|migration/removed commitment_support_evidence(A,X)
 tools/migration_r2.yml|commitment2|migration/added commitment_linkage_exception(A,X,Y)
@@ -3827,12 +3891,22 @@ tools/migration_r2.yml|commitment2|migration/removed commitment_support_evidence
 tools/migration_r2.yml|distress|migration/arity relieve(B,X,A)
 tools/migration_r2.yml|distress|migration/removed really_distress(A)
 tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
+tools/migration_r2.yml|exeptional|migration/added exception_backed(A)
 tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
+tools/migration_r2.yml|full_slippery_slope|migration/removed led_to_step
 tools/migration_r2.yml|help|migration/removed greater_side_effects(X)
 tools/migration_r2.yml|help|migration/removed possible_carry_out(B,X)
+tools/migration_r2.yml|inconsistent_commitment|migration/added commitments_conflict(A,S)
+tools/migration_r2.yml|inconsistent_commitment|migration/removed evidence_not_commited(A,S)
+tools/migration_r2.yml|memory|migration/added based_on_false_belief(M)
+tools/migration_r2.yml|memory|migration/added not_originally_believed(M)
+tools/migration_r2.yml|memory|migration/added recaller_doubts(P,M)
 tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_likely(A,B)
 tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
+tools/migration_r2.yml|plea_for_excuse|migration/arity special_circumstances(E,T)
 tools/migration_r2.yml|popular_opinion|migration/removed generally_accepted(A)
+tools/migration_r2.yml|pragmatic_inconsistency|migration/added inconsistency_relevant(A,S)
+tools/migration_r2.yml|pragmatic_inconsistency|migration/removed descriptions_opposite(A,S)
 tools/migration_r2.yml|retroductive|migration/added not_fit_action(A)
 tools/migration_r2.yml|two_person_practical|migration/added other_actions_required(X,Y)
 tools/migration_r2.yml|two_person_practical|migration/arguments alternative_means(X,Y)
@@ -4285,6 +4359,7 @@ walton.yml|circumstantial_ad_hominem|cli/scenario
 walton.yml|circumstantial_ad_hominem|engine-validator
 walton.yml|circumstantial_ad_hominem|full/assumptions-questionable
 walton.yml|circumstantial_ad_hominem|full/conclusions-in
+walton.yml|circumstantial_ad_hominem|full/exceptions-undercut
 walton.yml|circumstantial_ad_hominem|full/fires
 walton.yml|circumstantial_ad_hominem|full/ground
 walton.yml|circumstantial_ad_hominem|full/infer-ok
@@ -4293,6 +4368,7 @@ walton.yml|circumstantial_ad_hominem|full/premises-needed
 walton.yml|circumstantial_ad_hominem|full/terminates
 walton.yml|circumstantial_ad_hominem|iso/assumptions-questionable
 walton.yml|circumstantial_ad_hominem|iso/conclusions-in
+walton.yml|circumstantial_ad_hominem|iso/exceptions-undercut
 walton.yml|circumstantial_ad_hominem|iso/fires
 walton.yml|circumstantial_ad_hominem|iso/ground
 walton.yml|circumstantial_ad_hominem|iso/infer-ok
@@ -5399,7 +5475,6 @@ walton.yml|inconsistent_commitment|cli/scenario
 walton.yml|inconsistent_commitment|engine-validator
 walton.yml|inconsistent_commitment|full/assumptions-questionable
 walton.yml|inconsistent_commitment|full/conclusions-in
-walton.yml|inconsistent_commitment|full/exceptions-undercut
 walton.yml|inconsistent_commitment|full/fires
 walton.yml|inconsistent_commitment|full/ground
 walton.yml|inconsistent_commitment|full/infer-ok
@@ -5408,7 +5483,6 @@ walton.yml|inconsistent_commitment|full/premises-needed
 walton.yml|inconsistent_commitment|full/terminates
 walton.yml|inconsistent_commitment|iso/assumptions-questionable
 walton.yml|inconsistent_commitment|iso/conclusions-in
-walton.yml|inconsistent_commitment|iso/exceptions-undercut
 walton.yml|inconsistent_commitment|iso/fires
 walton.yml|inconsistent_commitment|iso/ground
 walton.yml|inconsistent_commitment|iso/infer-ok
@@ -5485,6 +5559,7 @@ walton.yml|memory|cli/scenario
 walton.yml|memory|engine-validator
 walton.yml|memory|full/assumptions-questionable
 walton.yml|memory|full/conclusions-in
+walton.yml|memory|full/exceptions-undercut
 walton.yml|memory|full/fires
 walton.yml|memory|full/ground
 walton.yml|memory|full/infer-ok
@@ -5493,6 +5568,7 @@ walton.yml|memory|full/premises-needed
 walton.yml|memory|full/terminates
 walton.yml|memory|iso/assumptions-questionable
 walton.yml|memory|iso/conclusions-in
+walton.yml|memory|iso/exceptions-undercut
 walton.yml|memory|iso/fires
 walton.yml|memory|iso/ground
 walton.yml|memory|iso/infer-ok

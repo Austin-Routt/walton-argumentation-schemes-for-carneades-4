@@ -15,7 +15,8 @@ language:
   established_rule_property/3: "Generally, according to the established rule %s, if something has property %s, then it also has property %s."
   evaluation/3: "If %s is the case, then an evaluation %s is justified/conduct %s is required."
   evaluation_justified/2: "Therefore, evaluation %s is justified/conduct %s is required."
-  excuse/1: "%s falls under one of the recognized categories of excuses for this type of case, and this inclusion can be justified in this case."
+  exception_backed/1: "The case of %s is of a recognized type of exception, or evidence that the established rule does not apply to it, or comparable cases, can be given."
+  excuse/1: "%s falls under a recognized category of excuses for this type of case and the inclusion can be justified, or what is special about the case justifies the exemption."
   excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
   exempted/1: "Therefore, in this instance, I ought to be exempted from %s."
   has_property/2: "%s has property %s."
@@ -40,7 +41,7 @@ language:
   rule_waived/1: "Therefore, the established rule can be waived in the case of %s."
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
-  special_circumstances/1: "But I can cite special circumstances that constitute an excuse %s."
+  special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
   without_correcting/1: "Speakers are able to use the word %s in the correct physical and grammatical context without being correct about the nature of its referent or property."
 
@@ -151,6 +152,8 @@ argument_schemes:
     premises:
       - rule_can_waived(A)
       - case_exception(A)
+    assumptions:
+      - exception_backed(A)
 
   - id: from_precedent
     meta:
@@ -182,7 +185,7 @@ argument_schemes:
     premises:
       - rule_require(R,T,S)
       - pleader_committed(T)
-      - special_circumstances(E)
+      - special_circumstances(E,T)
     exceptions:
       - not_excuse(E)
     assumptions: 

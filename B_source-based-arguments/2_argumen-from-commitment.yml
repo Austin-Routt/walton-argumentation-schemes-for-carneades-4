@@ -11,10 +11,10 @@ language:
   commitment_arises/2: "At some later point in the dialogue, where the issue of %[2]s arises, arguer %[1]s may be said to be committed to it."
   commitment_contrary_evidence/2: "There is contrary evidence indicating that %s might not be committed to %s."
   commitment_linkage_exception/3: "In this case there is an exception, for %[1]s, to the general rule that commitment to %[2]s implies commitment to %[3]s."
+  commitments_conflict/2: "The evidence that %s is committed to %s, and the evidence that he is not, prove a conflict of commitments."
   committed/2: "In this case it was shown that %s is committed to proposition %s, according to the evidence of what he said or did."
   committed_to/2: "In this case, %s is committed to %s."
   dialog_committed/2: "Arguer %s has committed herself to proposition %s at some point in a dialogue."
-  evidence_not_commited/2: "There is evidence in this particular case that shows that %s is not committed to %s."
   inconsistent_commitment/1: "%s's commitments are inconsistent."
   initial_commitment/2: "%s has claimed or indicated that he is committed to proposition %s, generally or by virtue of what he has said in the past."
   judged_negative_value/2: "Value %s is negative as judged by agent %s."
@@ -79,8 +79,8 @@ argument_schemes:
     premises:
       - initial_commitment(A,S)
       - opposed_commitment(A,S)
-    exceptions:
-      - evidence_not_commited(A,S)
+    assumptions:
+      - commitments_conflict(A,S)
 
   - id: positive_value
     meta: 

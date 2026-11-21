@@ -36,3 +36,18 @@ changes:
   - {record: commitment1, kind: added, old: "", new: "commitment_linkage_exception(A,X,Y)", plan: "5.2", page: 335}
   - {record: commitment2, kind: removed, old: "commitment_support_evidence(A,X)", new: "", plan: "5.1", page: 335, note: "repeated the minor premise"}
   - {record: commitment2, kind: added, old: "", new: "commitment_linkage_exception(A,X,Y)", plan: "5.2", page: 335}
+  - {record: ad_hominem, kind: removed, old: "attack_well_supported", new: "", plan: "5.1", page: 336, note: "restated the character attack premise; the book's own example, p. 374"}
+  - {record: pragmatic_inconsistency, kind: removed, old: "descriptions_opposite(A,S)", new: "", plan: "5.1", page: 337, note: "restated premise 2"}
+  - {record: pragmatic_inconsistency, kind: added, old: "", new: "inconsistency_relevant(A,S)", plan: "5.2", page: 337}
+  - {record: inconsistent_commitment, kind: removed, old: "evidence_not_commited(A,S)", new: "", plan: "5.1", page: 337, note: "restated premise 2 and undercut the argument with its own evidence"}
+  - {record: inconsistent_commitment, kind: added, old: "", new: "commitments_conflict(A,S)", plan: "5.2", page: 337}
+  - {record: circumstantial_ad_hominem, kind: arguments, old: "commited_opposite(A,S)", new: "commited_opposite(A,C)", plan: "5.1", page: 337, note: "the opposite of the conclusion, not of the argument"}
+  - {record: circumstantial_ad_hominem, kind: added, old: "", new: "inconsistency_explained(A,S)", plan: "5.2", page: 338}
+  - {record: bias, kind: arguments, old: "not_taken_both(X,C)", new: "not_taken_both(A,C)", plan: "5.3", page: 338, note: "the variable X goes; the scheme's parameters are [A,C], not [A,X,C]"}
+  - {record: bias, kind: added, old: "", new: "bias_relevant(A,C)", plan: "5.2", page: 338}
+  - {record: full_slippery_slope, kind: removed, old: "led_to_step", new: "", plan: "5.1", page: 341, note: "restated the group opinion premise"}
+  - {record: exeptional, kind: added, old: "", new: "exception_backed(A)", plan: "5.3", page: 344}
+  - {record: plea_for_excuse, kind: arity, old: "special_circumstances(E)", new: "special_circumstances(E,T)", plan: "5.1", page: 345, note: "the excuse is for the action committed"}
+  - {record: memory, kind: added, old: "", new: "based_on_false_belief(M)", plan: "5.2", page: 346}
+  - {record: memory, kind: added, old: "", new: "not_originally_believed(M)", plan: "5.2", page: 346}
+  - {record: memory, kind: added, old: "", new: "recaller_doubts(P,M)", plan: "5.2", page: 346}

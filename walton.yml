@@ -44,7 +44,6 @@ language:
   arguer_not_taken_both/2: "Arguer %s is less likely to have taken the evidence on both sides into account in arriving at conclusion %s."
   assert_bad/2: "I hereby assert that in fact I will see to it that %[2]s occurs if you bring about %[1]s."
   asserts/2: "%s asserts that %s is true."
-  attack_well_supported/0: "The allegation made in the character attack premise is well supported by evidence."
   background/0: "The speaker is an ordinary person, that is, shares a common background with the audience."
   bad/1: "%s is bad."
   bad_character/1: "%s is a person of bad character."
@@ -54,11 +53,13 @@ language:
   bad_moral_character/1: "%s has bad moral character."
   bad_not_accepted/2: "%s's argument %s should not be accepted."
   based_on_evidence/1: "The assertion %v is based on evidence."
+  based_on_false_belief/1: "%s was originally based on beliefs of which one is false."
   being_credible/0: "Therefore, you ought to take what I say as being more credible or acceptable."
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
   better_alternative_by_values/2: "In light of the values %[2]s, an alternative to %[1]s is better."
   beyond_contetion/2: "It is clearly beyond contention that %s has %s."
+  bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
   biased/1: "Arguer %s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
   both_properties/3: "Therefore, generally, if something has property %[2]s, then it also has property %[3]s (generalizing from %[1]s)."
@@ -100,6 +101,7 @@ language:
   commitment_arises/2: "At some later point in the dialogue, where the issue of %[2]s arises, arguer %[1]s may be said to be committed to it."
   commitment_contrary_evidence/2: "There is contrary evidence indicating that %s might not be committed to %s."
   commitment_linkage_exception/3: "In this case there is an exception, for %[1]s, to the general rule that commitment to %[2]s implies commitment to %[3]s."
+  commitments_conflict/2: "The evidence that %s is committed to %s, and the evidence that he is not, prove a conflict of commitments."
   committed/2: "In this case it was shown that %s is committed to proposition %s, according to the evidence of what he said or did."
   committed_to/2: "In this case, %s is committed to %s."
   compositionally_hereditary/2: "Property %[2]s is compositionally hereditary with regard to %[1]s: if every part has it, the whole has it."
@@ -119,7 +121,6 @@ language:
   data_set/1: "%s is a set of data or supposed facts in a case."
   defeasibly_implies/2: "If %s is true then presumably %s is also true."
   deliberate/2: "Group %s has deliberated intelligently and extensively on whether to accept proposition %s or not."
-  descriptions_opposite/2: "The description of the action implies that %s is personally committed to the opposite of the conclusion of %s."
   diagram_set/3: "There is a set of argument diagrams %s and in each argument diagram %s represents premises of an argument that, supplemented by plausible conditionals and other statements that function as missing parts of enthymemes, leads to a respective conclusion %s."
   dialog_committed/2: "Arguer %s has committed herself to proposition %s at some point in a dialogue."
   dishonest/1: "%s is dishonest."
@@ -139,8 +140,8 @@ language:
   event_quality/1: "The bringing about of this event fits a certain character quality %s."
   event_question/1: "%s brought about the event in question."
   event_true/1: "%s has been observed to be true, in a given instance."
-  evidence_not_commited/2: "There is evidence in this particular case that shows that %s is not committed to %s."
-  excuse/1: "%s falls under one of the recognized categories of excuses for this type of case, and this inclusion can be justified in this case."
+  exception_backed/1: "The case of %s is of a recognized type of exception, or evidence that the established rule does not apply to it, or comparable cases, can be given."
+  excuse/1: "%s falls under a recognized category of excuses for this type of case and the inclusion can be justified, or what is special about the case justifies the exemption."
   excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
   exemplify/1: "To have a %s image -an image of a perceptible property- is a prima facie reason to believe that the circumstances exemplify it."
   exempted/1: "Therefore, in this instance, I ought to be exempted from %s."
@@ -194,6 +195,8 @@ language:
   inapplicable_rule/1: "Rule %s is inapplicable in this case."
   incompatible_consequences/2: "Bringing about %s has incompatible consequences with %s."
   incompatible_goal/1: "Another goal is incompatible with %s."
+  inconsistency_explained/2: "The practical inconsistency of the commitments of %s can be resolved or explained by further dialogue, so that it does not show a lack of credibility in arguing %s."
+  inconsistency_relevant/2: "The pragmatic inconsistency of %s is a relevant reason for not accepting argument %s."
   inconsistent_commitment/1: "%s's commitments are inconsistent."
   inconsistent_with_known_facts/1: "%s is inconsistent with the known facts."
   inconsistent_with_other_experts/1:  "%s is inconsistent with what other experts assert."
@@ -216,7 +219,6 @@ language:
   judged_positive_value/2: "Value %s is positive as judged by agent %s."
   known/1: "%s is known to be true."
   leads_to_next/3: "There exists a series of cases %s, %s, ..., %s where each leads to the next by a combination of causal, precedent and/or analogical steps."
-  led_to_step/0: "People will be led to accept the next step once they come to accept each step as plausible."
   legitimate_case/2: "The case of %s is a legitimate case under the rule %s, not only an apparent violation of it."
   legitimate_value/1: "%s is a legitimate value."
   looks_like/2: "%s looks like a %s."
@@ -261,6 +263,7 @@ language:
   not_know_true/1: "I do not know whether %s is true or not."
   not_necessarily_true/0: "The premise is not a necessary truth."
   not_normal/0: "Therefore, the situation is not normal."
+  not_originally_believed/1: "%s was not originally believed for other reasons."
   not_presents_predicate/3: "If %s does not present the predicate %s, it must present the contradictory predicate %s at the same time and in the same respect."
   not_required/1: "%s is not required."
   not_taken_both/2: "If %s is biased, then it is less likely to have taken the evidence on both sides into account in arriving at conclusion %s."
@@ -333,6 +336,7 @@ language:
   reasonable_belive/1: "It is reasonable to believe %s."
   reasonable_case/1: "It is reasonable to believe that %s is the case."
   reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
+  recaller_doubts/2: "%s, who recalls %s, expresses doubt about it."
   recalls/2: "Person %s recalls %s."
   recieves_evaluation/2: "%s receives the evaluation %s."
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
@@ -374,7 +378,7 @@ language:
   situation_necessiy/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
   smaller_part_property/3: "%s is less %s than %s, because it is a smaller part of it."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
-  special_circumstances/1: "But I can cite special circumstances that constitute an excuse %s."
+  special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
   special_in/2: "%s is in %s."
   special_not_in/2: "%s is not in %s."
   special_proposition/2: "%s is a special type of proposition such that, if it were true, it would normally or usually be expected to be in %s."
@@ -1547,7 +1551,6 @@ argument_schemes:
     exceptions:
       - stronger_than_character(S)
     assumptions: 
-     - attack_well_supported
      - character_revelant
 
   - id: pragmatic_inconsistency
@@ -1564,7 +1567,7 @@ argument_schemes:
       - opposite_action(A,S,¬X)
     assumptions: 
      - strong_advocate(A,S,X)
-     - descriptions_opposite(A,S)
+     - inconsistency_relevant(A,S)
   
   - id: inconsistent_commitment
     meta:
@@ -1578,8 +1581,8 @@ argument_schemes:
     premises:
       - initial_commitment(A,S)
       - opposed_commitment(A,S)
-    exceptions:
-      - evidence_not_commited(A,S)
+    assumptions:
+      - commitments_conflict(A,S)
 
   - id: circumstantial_ad_hominem
     meta:
@@ -1594,10 +1597,12 @@ argument_schemes:
       - plausibility_decreased(A,S)
     premises:
       - advocates_conclusion(A,S,C)
-      - commited_opposite(A,S)
+      - commited_opposite(A,C)
       - credibility_questioned(A)
     assumptions: 
-     - character_issue(A)  
+     - character_issue(A)
+    exceptions:
+     - inconsistency_explained(A,S)
 
   - id: bias
     meta:
@@ -1605,12 +1610,14 @@ argument_schemes:
       source: >
              Douglas Walton, A Pragmatic Theory of Fallacy. 
              Tuscaloosa and London : University of Alabama Press, 1995, p. 153.
-    variables: [A,X,C]
+    variables: [A,C]
     conclusions:
       - arguer_not_taken_both(A,C)
     premises:
-      - not_taken_both(X,C)
+      - not_taken_both(A,C)
       - biased(A)
+    assumptions:
+      - bias_relevant(A,C)
 
   - id: bias_ad_hominem
     meta:
@@ -1683,8 +1690,6 @@ argument_schemes:
       - initial_presumption(C0)
       - leads_to_next(C0,C1,C2)
       - accept_all_steps
-    assumptions:
-     - led_to_step
 
   - id: precedent_slippery_slope
     meta:
@@ -1799,6 +1804,8 @@ argument_schemes:
     premises:
       - rule_can_waived(A)
       - case_exception(A)
+    assumptions:
+      - exception_backed(A)
 
   - id: from_precedent
     meta:
@@ -1830,7 +1837,7 @@ argument_schemes:
     premises:
       - rule_require(R,T,S)
       - pleader_committed(T)
-      - special_circumstances(E)
+      - special_circumstances(E,T)
     exceptions:
       - not_excuse(E)
     assumptions: 
@@ -1861,6 +1868,10 @@ argument_schemes:
     premises:
       - recalls(P,M)
       - believe_it(M)
+    exceptions:
+      - based_on_false_belief(M)
+      - not_originally_believed(M)
+      - recaller_doubts(P,M)
   - id: abduction
     variables: [S,T,H]
     conclusions: [H]

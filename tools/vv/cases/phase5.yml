@@ -467,3 +467,254 @@ cases:
       - commitment_contrary_evidence(ann,p)
     not_in:
       - commitment_arises(ann,q)
+
+  # --- batch 4: entries 41 to 60 --------------------------------------------
+  # 42 ad_hominem (p. 336): CQ1 restates the character attack premise, as the
+  # book itself says of this question (p. 374); the assumption
+  # attack_well_supported goes. Questioning it no longer matters.
+  - name: ad_hominem/questioning-the-removed-assumption-is-idle
+    source: "42, p. 336, CQ1; p. 374"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+    questioned: [attack_well_supported]
+    in:
+      - bad_not_accepted(bob,arg1)
+
+  # 43 pragmatic_inconsistency (pp. 336-337): CQ2 restates premise 2, and the
+  # assumption descriptions_opposite(A,S) goes; CQ3, why the inconsistency is
+  # a relevant reason, is the assumption inconsistency_relevant(A,S).
+  - name: pragmatic_inconsistency/positive
+    source: "43, pp. 336-337"
+    assumptions:
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - opposite_action(bob,arg1,¬tax_cut)
+    arguments:
+      - pragmatic_inconsistency(bob,arg1,tax_cut)
+    in:
+      - arguement_not_accepted(bob,arg1)
+  - name: pragmatic_inconsistency/adverse-relevance-questioned
+    source: "43, p. 337, CQ3"
+    assumptions:
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - opposite_action(bob,arg1,¬tax_cut)
+    questioned:
+      - inconsistency_relevant(bob,arg1)
+    not_in:
+      - arguement_not_accepted(bob,arg1)
+
+  # 44 inconsistent_commitment (p. 337): the exception evidence_not_commited
+  # said what premise 2 says, so the evidence for the conclusion undercut the
+  # argument; it goes. CQ3, whether the evidence proves a conflict, is the
+  # assumption commitments_conflict(A,S).
+  - name: inconsistent_commitment/positive
+    source: "44, p. 337"
+    assumptions:
+      - initial_commitment(bob,tax_cut)
+      - opposed_commitment(bob,tax_cut)
+    arguments:
+      - inconsistent_commitment(bob,tax_cut)
+    in:
+      - inconsistent_commitment(bob)
+  - name: inconsistent_commitment/the-evidence-of-premise-2-does-not-undercut
+    source: "44, p. 337"
+    assumptions:
+      - initial_commitment(bob,tax_cut)
+      - opposed_commitment(bob,tax_cut)
+      - evidence_not_commited(bob,tax_cut)
+    in:
+      - inconsistent_commitment(bob)
+  - name: inconsistent_commitment/adverse-conflict-questioned
+    source: "44, p. 337, CQ3"
+    assumptions:
+      - initial_commitment(bob,tax_cut)
+      - opposed_commitment(bob,tax_cut)
+    questioned:
+      - commitments_conflict(bob,tax_cut)
+    not_in:
+      - inconsistent_commitment(bob)
+
+  # 45 circumstantial_ad_hominem (pp. 337-338): the inconsistent commitment
+  # premise is to the opposite of the conclusion C, not of the argument S;
+  # CQ2, an inconsistency resolved or explained, is the exception
+  # inconsistency_explained(A,S).
+  - name: circumstantial_ad_hominem/positive
+    source: "45, p. 337"
+    assumptions:
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - commited_opposite(bob,tax_cut)
+      - credibility_questioned(bob)
+    arguments:
+      - circumstantial_ad_hominem(bob,arg1,tax_cut)
+    in:
+      - plausibility_decreased(bob,arg1)
+  - name: circumstantial_ad_hominem/adverse-opposite-of-another-proposition
+    source: "45, p. 337"
+    assumptions:
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - commited_opposite(bob,arg1)
+      - credibility_questioned(bob)
+    no_arguments: [circumstantial_ad_hominem]
+    not_in:
+      - plausibility_decreased(bob,arg1)
+  - name: circumstantial_ad_hominem/adverse-inconsistency-explained
+    source: "45, p. 338, CQ2"
+    assumptions:
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - commited_opposite(bob,tax_cut)
+      - credibility_questioned(bob)
+      - inconsistency_explained(bob,arg1)
+    not_in:
+      - plausibility_decreased(bob,arg1)
+
+  # 46 bias (p. 338): the major premise is stated for the arguer at hand, as
+  # exeptional's was in 3.7 (5.3), and X goes; CQ1, the type of dialogue, is
+  # the assumption bias_relevant(A,C).
+  - name: bias/positive
+    source: "46, p. 338"
+    assumptions:
+      - not_taken_both(bob,tax_cut)
+      - biased(bob)
+    arguments:
+      - bias(bob,tax_cut)
+    in:
+      - arguer_not_taken_both(bob,tax_cut)
+  - name: bias/adverse-another-persons-premise
+    source: "46, p. 338"
+    assumptions:
+      - not_taken_both(ann,tax_cut)
+      - biased(bob)
+    no_arguments: [bias]
+    not_in:
+      - arguer_not_taken_both(bob,tax_cut)
+  - name: bias/adverse-dialogue-questioned
+    source: "46, p. 338, CQ1"
+    assumptions:
+      - not_taken_both(bob,tax_cut)
+      - biased(bob)
+    questioned:
+      - bias_relevant(bob,tax_cut)
+    not_in:
+      - arguer_not_taken_both(bob,tax_cut)
+
+  # 53 full_slippery_slope (p. 341): CQ3 restates the group opinion premise;
+  # the assumption led_to_step goes. Questioning it no longer matters.
+  - name: full_slippery_slope/positive
+    source: "53, p. 341"
+    assumptions:
+      - initial_presumption(c0)
+      - leads_to_next(c0,c1,cn)
+      - accept_all_steps
+    arguments:
+      - full_slippery_slope(c0,c1,cn)
+    in:
+      - not_acceptable_step(c0)
+  - name: full_slippery_slope/questioning-the-removed-assumption-is-idle
+    source: "53, p. 341, CQ3"
+    assumptions:
+      - initial_presumption(c0)
+      - leads_to_next(c0,c1,cn)
+      - accept_all_steps
+    questioned: [led_to_step]
+    in:
+      - not_acceptable_step(c0)
+
+  # 56 exeptional (p. 344): the three conditional questions ask for the
+  # exception to be backed, by its recognized type, by evidence that the rule
+  # does not apply, or by comparable cases (5.3): the assumption
+  # exception_backed(A).
+  - name: exeptional/positive
+    source: "56, p. 344"
+    assumptions:
+      - rule_can_waived(ann)
+      - case_exception(ann)
+    arguments:
+      - exeptional(ann)
+    in:
+      - rule_waived(ann)
+  - name: exeptional/adverse-exception-questioned
+    source: "56, p. 344, CQ1"
+    assumptions:
+      - rule_can_waived(ann)
+      - case_exception(ann)
+    questioned:
+      - exception_backed(ann)
+    not_in:
+      - rule_waived(ann)
+  - name: exeptional/questioned-and-backed
+    source: "56, p. 344, CQ2 and CQ3"
+    assumptions:
+      - rule_can_waived(ann)
+      - case_exception(ann)
+      - exception_backed(ann)
+    questioned:
+      - exception_backed(ann)
+    in:
+      - rule_waived(ann)
+
+  # 58 plea_for_excuse (p. 345): the special circumstances are an excuse for
+  # the action committed, special_circumstances(E,T); CQ2 joins CQ1 in the
+  # assumption excuse(E), whose text now says both.
+  - name: plea_for_excuse/positive
+    source: "58, p. 345"
+    assumptions:
+      - rule_require(r,speeding,fine)
+      - pleader_committed(speeding)
+      - special_circumstances(emergency,speeding)
+    arguments:
+      - plea_for_excuse(fine,r,speeding,emergency)
+    in:
+      - exempted(fine)
+  - name: plea_for_excuse/adverse-excuse-for-another-action
+    source: "58, p. 345"
+    assumptions:
+      - rule_require(r,speeding,fine)
+      - pleader_committed(speeding)
+      - special_circumstances(emergency,parking)
+    no_arguments: [plea_for_excuse]
+    not_in:
+      - exempted(fine)
+  - name: plea_for_excuse/adverse-precedent-problem
+    source: "58, p. 345, CQ3"
+    assumptions:
+      - rule_require(r,speeding,fine)
+      - pleader_committed(speeding)
+      - special_circumstances(emergency,speeding)
+      - not_excuse(emergency)
+    not_in:
+      - exempted(fine)
+
+  # 60 memory (p. 346): the three undercutters are exceptions.
+  - name: memory/positive
+    source: "60, p. 346"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+    arguments:
+      - memory(ann,door_locked)
+    in:
+      - reasonable_belive(door_locked)
+  - name: memory/adverse-false-basis
+    source: "60, p. 346, CQ1"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+      - based_on_false_belief(door_locked)
+    not_in:
+      - reasonable_belive(door_locked)
+  - name: memory/adverse-not-originally-believed
+    source: "60, p. 346, CQ2"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+      - not_originally_believed(door_locked)
+    not_in:
+      - reasonable_belive(door_locked)
+  - name: memory/adverse-recaller-doubts
+    source: "60, p. 346, CQ3"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+      - recaller_doubts(ann,door_locked)
+    not_in:
+      - reasonable_belive(door_locked)
