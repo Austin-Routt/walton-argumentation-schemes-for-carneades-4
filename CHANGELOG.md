@@ -2,6 +2,15 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — independent PR15 closure (library0.3.0, engine4.3.1+walton.4)
+
+* Reconciled all reviews and reproduced the public baseline. Corrected the dismissed default counterexample, nine-row accounting and Atkinson's ten nonfull CQ mappings; preserved historical failures and decisions.
+* Repaired normalized API lookup, double negation, authored-premise order and explicit default-origin promotion. Strengthened all API/CLI oracles, context preservation and linked-argument observation; fresh non-author controls verify the repairs.
+* Added23 explicit source variants and repaired participants, cases, warrants, polarity and strength. Approvals now128/143;35 of50 original holds closed. Fifteen inherited rows remain held with exact source/model obligations.
+* Added finite dialogue snapshots:13 actual-engine Python groups cover30 CQs in six families and four ignorance allocations. External adequacy/relevance judgments remain inputs.
+* Reviewed inventory:9,959 distinct checks. Complete clean acceptance requires both pinned Go versions and exact comparison without update mode. Validator0 errors/11 warnings. Regenerated all four examples; intermediate stale-prefix failure is retained in evidence.
+* Original engine archives remain unchanged. Reviewed snapshots, Git bundle and source-root patches carry corrections. Local preparation does not imply remote release or outside contact.
+
 ## 2026-11-21 — implementer response to the independent reviews (engine 4.3.1+walton.3)
 
 See `docs/reviews/implementer-response.md`.

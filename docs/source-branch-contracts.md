@@ -1,5 +1,8 @@
 # Executable alternatives in the source compendium
 
+
+Current approval status (2026-11-21): implementation-stage statements below saying review is pending are historical. The new compendium variants now have non-author acceptance in `reviews/closure-current-register.md` and individual acceptance reports. Inherited-original holds remain separate; the contracts are retained.
+
 This review reads Walton, Reed and Macagno (2008), printed pp.312, 322, 325
 and 327 of the supplied book. It does not claim independent inspection of
 the earlier works listed in those entries' bibliographies. The records model

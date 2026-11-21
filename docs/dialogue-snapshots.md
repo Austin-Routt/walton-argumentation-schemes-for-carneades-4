@@ -44,8 +44,11 @@ carneades eval -t yaml case.yml > base.yml
 Keep `base.yml` unchanged for this dialogue. A target names a constructed
 argument ID **and** its actual scheme **and** its complete ordered parameter
 list. Copy these from the exported `arguments` mapping. Argument IDs are not
-stable across independently reconstructed graphs, so a journal is bound to
-this specific base, whose canonical content hash is included in each result.
+stable across independently reconstructed graphs, so the caller must preserve a journal with
+this specific unchanged base. Each result includes the base's canonical hash
+for audit. The journal does not carry an enforced input-base hash, so this
+is a caller-maintained association, not cryptographic protection against
+substituting another base with matching target tuples.
 The target must have premises, a known conclusion, and one unambiguous schema
 with the corresponding parameter arity. An unexpanded inference request is
 insufficient.

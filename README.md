@@ -1,9 +1,9 @@
 
 # Walton Argumentation Schemes for Carneades 4
 
-This repo contains full lists of **Walton's Argumentation Schemes** in YAML for the use for the [**Carneades Argumentation System** (version 4)](https://github.com/carneades/carneades-4).
+This repository contains an executable preview library of **Walton's Argumentation Schemes** in YAML for the [**Carneades Argumentation System** (version 4)](https://github.com/carneades/carneades-4).
 
-24 of the **Walton's argumentation schemes** are already available in YAML at **Carneades 4** as [walton.yml](https://github.com/carneades/carneades-4/blob/master/examples/AGs/YAML/walton.yml). [**Argumentation Schemes (2008)**](https://www.cambridge.org/core/books/argumentation-schemes/9AE7E4E6ABDE690565442B2BD516A8B6) prints its compendium of schemes in chapter 9 without a total; counted one way it holds 106 schemes, counted another 109 (`tools/vv/source_ledger.yml` lists every entry with the record filed under it). We aimed to complete the list and created the remaining schemes in YAML: `walton.yml` holds 120 records, 114 filed under the 109 compendium entries (55.3 has two, for an obligation and a prohibition; 49 has two, a base case and a step; 4.1 has two, one for each reading of its conclusion; 25 has two, Carneades' own form and the compendium's) and 6 taken over from Carneades without an entry of their own. Every compendium entry has a record of its own since 2026-11-21 (`PLAN.md` 3.8).
+The pinned original Carneades snapshot provides24 inherited records. The current `walton.yml` contains **143 records:119 book-origin and24 inherited**, with137 mapped to the109 indexed compendium entries and6 inherited records without an entry of their own. Several entries have separately executable alternatives. The source text prints no single compendium total; the repository's explicit entry index and current approval scope are in `tools/vv/source_ledger.yml` and the [current complete register](docs/reviews/closure-current-register.md).
 
 In addition to our main file [walton.yml](walton.yml) in which a complete list is presented, there are also smaller files which are classified based on the classification system present in [**Argumentation Schemes (2008)**](https://www.cambridge.org/core/books/argumentation-schemes/9AE7E4E6ABDE690565442B2BD516A8B6). First, all the schemes are divided into 3 main categories ([**Reasoning**](A_reasoning), [**Source-based Arguments**](B_source-based-arguments), [**Applying Rules to Cases**](C_applying-rules-to-cases)), and under those categories, different files are created corresponding to different types of arguments falling into each category.
 
@@ -11,10 +11,10 @@ This study was conducted within the scope of the master's thesis titled **Dougla
 
 ## Files
 
-* `walton.yml` – the complete list (120 schemes) and the negation issue scheme. **This is the only hand-edited scheme file.**
+* `walton.yml` – the complete list (143 schemes) and the negation issue scheme. **This is the only hand-edited scheme file.**
 * `A_reasoning/`, `B_source-based-arguments/`, `C_applying-rules-to-cases/` – one file per type of argument. These files are **generated** from `walton.yml`: each contains, copied verbatim, the schemes assigned to it in `categories.yml` and exactly the language templates those schemes use, so each file loads into Carneades 4 on its own. Do not edit them; edit `walton.yml` (or the grouping in `categories.yml`) and run `python3 tools/build_category_files.py`.
 * `categories.yml` – which scheme goes into which category file.
-* `docs/using.md` – how to evaluate a case of your own with the library: Carneades 4 has no include mechanism, so a graph carries the schemes and templates it uses; `tools/graph_from_library.py SCHEME...` starts such a graph from `walton.yml`, and `docs/examples/` holds two worked cases that `tools/vv` evaluates on every push.
+* `docs/using.md` – how to evaluate a case of your own with the library: Carneades 4 has no include mechanism, so a graph carries the schemes and templates it uses; `tools/graph_from_library.py SCHEME...` starts such a graph from `walton.yml`, and `docs/examples/` holds four worked cases that `tools/vv` evaluates on every push.
 * `tools/validate_schemes.py` – checks the files against the rules Carneades 4 applies when it loads a theory (see below); `tools/test_validate_schemes.py` tests it with malformed fixtures and mutated copies of the library.
 * `tools/build_category_files.py` – regenerates the category files; `--check` reports stale files without writing.
 * `third_party/` – the sources of the Carneades 4 engine and of its rule engine GoCHR, imported byte for byte from `carneades-4.zip` and `GoCHR.zip` (see `sources.lock`). Engine fixes are kept here as focused, reviewable commits.
@@ -41,16 +41,16 @@ Both need Python 3 and PyYAML. The validator follows the Carneades 4 source (`sr
 A second, independent check runs the Carneades 4 engine itself on every scheme:
 
 ```
-tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
+VV_STRICT=1 tools/vv/run.sh  # required repository, Python, harness and engine/library checks
 ```
 
 `tools/vv/known_issues.yml` records known executable failures. The strict gate allows none. The independent review reproduced the previous 7,994 passing checks on both Go versions, then added cases that exposed and repaired previously untested defects. Use `tools/vv/expected_checks.txt` and the acceptance logs for the current named inventory. Passing executable tests does not automatically approve an interpretation of a source.
 
 ## Versions and releases
 
-The corrected preview uses library **0.2.0** (`walton.yml` and all category files) and engine **4.3.1+walton.3** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
+The corrected preview uses library **0.3.0** (`walton.yml` and all category files) and engine **4.3.1+walton.4** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
 
-The independent review examined all 114 book-mapped records and the attached Atkinson and Bench-Capon paper. **70 of the 120 records are `example-passed`; 48 are `transcription-checked` and two are `mapped`.** The 70 approvals comprise 65 book-origin and five inherited records with explicit scope and provenance. The remaining 50 have record-specific source or interpretation holds. The complete library is a preview; full 1.0.0 requires every row to meet stable gate L.
+The closure review has **128 of143 records at `example-passed`:119 book-origin and9 inherited**.13 inherited rows remain `transcription-checked` and2 `mapped`.35 of the original50 holds are closed and all23 new variants independently accepted. All book-origin rows being approved does not certify every inherited record assigned to a compendium entry: entries2,3,26,29,33.1 and33.2 still have no approved record. See the [current complete register](docs/reviews/closure-current-register.md) for every decision. The complete library remains a preview; full1.0.0 requires all143 rows to meet gateL.
 
 Source approvals are recorded in `docs/reviews/independent-approvals.json` and bound to the reviewed content. Run:
 
@@ -59,11 +59,19 @@ python3 tools/check_source_approvals.py --repo .
 python3 tools/check_source_approvals.py --repo . --require-stable
 ```
 
-The first checks integrity of current approvals. The second is expected to fail while the 50 content holds remain; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
+The first checks integrity of current approvals. The second is expected to fail while the 15 inherited-source holds remain; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
+
+## Closure verification and dialogue
+
+The current named inventory contains **9,959 distinct registered checks**, plus separate native/unit/Python/vet/race gates. All declared API/CLI case expectations are checked without re-inference. Final acceptance requires clean copies on both pinned versions and an exact result comparison; the review archive records the exact candidate commit and all outcomes. Validator:0 errors and11 informational warnings, comprising six preserved unused templates and five dependency-cycle groups.
+
+[Finite dialogue snapshots](docs/dialogue-snapshots.md) supplies ask, accepted-answer and reopen states for30 CQs across six families, plus explicit burden allocation for four ignorance families. It preserves independent support and original defeaters; appropriateness and answer adequacy are application judgments. It is separate from canonical static exceptions. API callers use `AddAssumption` to promote a default to a stipulation and maintain origin invariants when directly editing public fields.
+
+Root engine ZIPs remain unchanged original provenance inputs; the current source snapshot and Git bundle carry the patches. Prepared assets and commands do not imply a remote release or upstream message.
 
 ## Known limitations and migration
 
-* Source agreement and successful execution are separate requirements. Original cited books and the attributed 2019 correspondence remain outstanding where individually identified. The Atkinson paper is now reviewed: the inherited AS1 record has eight incomplete question mappings and does not implement the paper's full AS2 transition/value model. See `docs/reviews/atkinson-2007.md`.
+* Source agreement and successful execution are separate requirements. Original cited books and the attributed 2019 correspondence remain outstanding where individually identified. The Atkinson paper is now reviewed: the inherited AS1 record has ten incomplete full-source question mappings and does not implement the paper's full AS2 transition/value model. See `docs/reviews/atkinson-2007.md`.
 * A scheme default holds until challenged through `questioned:`; a graph-level stipulation remains assumed until withdrawn. Premises, assumptions, exceptions and rebuttals have distinct burdens. Evidence adequacy and application truth are supplied by the caller; the engine does not infer them from natural-language facts.
 * This release supports the offline CLI/API profile. Logical work/storage quotas and cancellation are documented in `docs/contracts.md`; they do not provide a total process-memory or hostile-input service guarantee. API clients must structurally validate authored graphs before inference.
 * Use `tools/migration_r2.yml` and `tools/migrate_r2.py` for previous preview graphs. Participant, event, diagram, coextension and evidence changes can require new facts; the tool reports manual work instead of inventing those facts. Keep the 2019 `exeption_to_rule` provenance hold separate from the compendium's `from_precedent` record.

@@ -1,5 +1,8 @@
 # Source closure contracts: entries 9.2, 10.2 and 16
 
+
+Current approval status (2026-11-21): implementation-stage statements below saying review is pending are historical. The new compendium variants now have non-author acceptance in `reviews/closure-current-register.md` and individual acceptance reports. Inherited-original holds remain separate; the contracts are retained.
+
 These contracts interpret the supplied Walton, Reed and Macagno (2008)
 compendium. Its bibliographical predecessors are not claimed as independently
 inspected. The implementation author proposes the new forms and tests;
