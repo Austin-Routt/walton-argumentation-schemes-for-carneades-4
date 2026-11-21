@@ -32,6 +32,7 @@
         ]
       },
       "examples": [
+        "part_in_whole/book",
         "part_in_whole/closure-physical-is-not-species"
       ]
     },
@@ -321,12 +322,13 @@
         ]
       },
       "examples": [
-        "verbal_classification_vagueness/closure-supported-rejection",
-        "verbal_classification_vagueness/closure-precision-evidence-missing",
-        "verbal_classification_vagueness/closure-supported-harmlessness",
-        "verbal_classification_vagueness/closure-question-is-not-exception-evidence",
+        "verbal_classification_vagueness/book",
         "verbal_classification_vagueness/closure-other-argument-exception",
-        "verbal_classification_vagueness/closure-other-property-exception"
+        "verbal_classification_vagueness/closure-other-property-exception",
+        "verbal_classification_vagueness/closure-precision-evidence-missing",
+        "verbal_classification_vagueness/closure-question-is-not-exception-evidence",
+        "verbal_classification_vagueness/closure-supported-harmlessness",
+        "verbal_classification_vagueness/closure-supported-rejection"
       ]
     },
     {
@@ -362,13 +364,750 @@
         ]
       },
       "examples": [
+        "negative_consequences_reasoning/book",
+        "negative_consequences_reasoning/closure-likelihood-outcome-isolation",
+        "negative_consequences_reasoning/closure-no-universal-strong-threshold",
+        "negative_consequences_reasoning/closure-old-threshold-does-not-answer",
         "negative_consequences_reasoning/closure-shared-likelihood-positive",
         "negative_consequences_reasoning/closure-shared-likelihood-question",
-        "negative_consequences_reasoning/closure-likelihood-outcome-isolation",
-        "negative_consequences_reasoning/closure-supported-likelihood-answer",
-        "negative_consequences_reasoning/closure-no-universal-strong-threshold",
-        "negative_consequences_reasoning/closure-old-threshold-does-not-answer"
+        "negative_consequences_reasoning/closure-supported-likelihood-answer"
+      ]
+    },
+    {
+      "record": "moral_justification_actual_goal",
+      "entry": "4.5",
+      "source_pages": [
+        312
+      ],
+      "scope": "The source actual-goal branch, with a named respondent and acceptance represented as an action; no bridge from an ought-goal to an actual goal.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "moral_justification_actual_goal",
+        "meta": {
+          "title": "Moral Justification Ad Populum - Named Respondent with an Actual Goal",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312."
+        },
+        "variables": [
+          "R",
+          "G",
+          "P"
+        ],
+        "conclusions": [
+          "should_do(R,accept(P))"
+        ],
+        "premises": [
+          "good_group(G,P)",
+          "goal_good_group_for(R,G)"
+        ]
+      },
+      "examples": [
+        "moral_justification_actual_goal/book",
+        "moral_justification_actual_goal/closure-other-group-goal"
+      ]
+    },
+    {
+      "record": "moral_justification_ought_goal",
+      "entry": "4.5",
+      "source_pages": [
+        312
+      ],
+      "scope": "The parenthetical ought-goal branch; recommending this goal does not assert that the respondent actually has it.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "moral_justification_ought_goal",
+        "meta": {
+          "title": "Moral Justification Ad Populum - Named Respondent with an Ought-Goal",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312."
+        },
+        "variables": [
+          "R",
+          "G",
+          "P"
+        ],
+        "conclusions": [
+          "should_do(R,accept(P))"
+        ],
+        "premises": [
+          "good_group(G,P)",
+          "ought_goal_good_group(R,G)"
+        ]
+      },
+      "examples": [
+        "moral_justification_ought_goal/book",
+        "moral_justification_ought_goal/closure-other-group-goal"
+      ]
+    },
+    {
+      "record": "moral_excuse_action",
+      "entry": "4.6",
+      "source_pages": [
+        312
+      ],
+      "scope": "Separate action branch; group practice, the same action norm and this speaker's membership are explicit premises.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "moral_excuse_action",
+        "meta": {
+          "title": "Moral Justification Excuse - Named Speaker and Action",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312."
+        },
+        "variables": [
+          "S",
+          "G",
+          "X"
+        ],
+        "conclusions": [
+          "morally_justified(S,X)"
+        ],
+        "premises": [
+          "group_acts(G,X)",
+          "action_norm(X,G)",
+          "person_group_member(S,G)"
+        ]
+      },
+      "examples": [
+        "moral_excuse_action/book",
+        "moral_excuse_action/closure-generic-member-is-not-person",
+        "moral_excuse_action/closure-other-speaker-group",
+        "moral_excuse_action/closure-policy-evidence-is-not-action-evidence"
+      ]
+    },
+    {
+      "record": "moral_excuse_policy",
+      "entry": "4.6",
+      "source_pages": [
+        312
+      ],
+      "scope": "Separate policy-acceptance branch; it does not infer the policy's truth or confuse accepting it with any associated action.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "moral_excuse_policy",
+        "meta": {
+          "title": "Moral Justification Excuse - Named Speaker and Policy Acceptance",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312."
+        },
+        "variables": [
+          "S",
+          "G",
+          "A"
+        ],
+        "conclusions": [
+          "morally_justified(S,accept(A))"
+        ],
+        "premises": [
+          "group_accepted(G,A)",
+          "policy_norm(A,G)",
+          "person_group_member(S,G)"
+        ]
+      },
+      "examples": [
+        "moral_excuse_policy/book",
+        "moral_excuse_policy/closure-accepting-does-not-prove-truth",
+        "moral_excuse_policy/closure-other-policy-norm"
+      ]
+    },
+    {
+      "record": "snob_appeal_acceptance",
+      "entry": "4.7",
+      "source_pages": [
+        312
+      ],
+      "scope": "Matched acceptance branch with named respondent; objects are not conclusions asserted as propositions.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "snob_appeal_acceptance",
+        "meta": {
+          "title": "Snob Appeal - Named Respondent Accepting a Proposition",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
+        },
+        "variables": [
+          "R",
+          "G",
+          "A"
+        ],
+        "conclusions": [
+          "should_do(R,accept(A))"
+        ],
+        "premises": [
+          "group_accepted(G,A)",
+          "elite_group(G)",
+          "goal_prestige_for(R)",
+          "membership_if_accepts(R,A,G)"
+        ]
+      },
+      "examples": [
+        "snob_appeal_acceptance/book",
+        "snob_appeal_acceptance/closure-acceptance-is-not-truth",
+        "snob_appeal_acceptance/closure-purchase-warrant-is-not-acceptance"
+      ]
+    },
+    {
+      "record": "snob_appeal_property",
+      "entry": "4.7",
+      "source_pages": [
+        312
+      ],
+      "scope": "Matched property-acquisition branch; every member having a property is distinct from the group collectively having it.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "snob_appeal_property",
+        "meta": {
+          "title": "Snob Appeal - Named Respondent Acquiring a Property",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
+        },
+        "variables": [
+          "R",
+          "G",
+          "P"
+        ],
+        "conclusions": [
+          "should_do(R,acquire(P))"
+        ],
+        "premises": [
+          "all_have_property(G,P)",
+          "elite_group(G)",
+          "goal_prestige_for(R)",
+          "membership_if_acquires(R,P,G)"
+        ]
+      },
+      "examples": [
+        "snob_appeal_property/book",
+        "snob_appeal_property/closure-collective-is-not-universal-property",
+        "snob_appeal_property/closure-other-group-property"
+      ]
+    },
+    {
+      "record": "snob_appeal_purchase",
+      "entry": "4.7",
+      "source_pages": [
+        312
+      ],
+      "scope": "Matched purchase branch; possession of a kind of object and the respondent's purchase-to-membership warrant are both required.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "snob_appeal_purchase",
+        "meta": {
+          "title": "Snob Appeal - Named Respondent Buying an Object",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
+        },
+        "variables": [
+          "R",
+          "G",
+          "O"
+        ],
+        "conclusions": [
+          "should_do(R,buy(O))"
+        ],
+        "premises": [
+          "all_possess_object(G,O)",
+          "elite_group(G)",
+          "goal_prestige_for(R)",
+          "membership_if_buys(R,O,G)"
+        ]
+      },
+      "examples": [
+        "snob_appeal_purchase/book",
+        "snob_appeal_purchase/closure-other-person-warrant"
+      ]
+    },
+    {
+      "record": "sacrifice_small",
+      "entry": "20",
+      "source_pages": [
+        322
+      ],
+      "scope": "Source small-sacrifice alternative with its conditional supplied explicitly as an application premise; no invalid converse from the great-sacrifice conditional.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "sacrifice_small",
+        "meta": {
+          "title": "Argument from a Small Sacrifice - Explicit Small-Value Warrant",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 20, p. 322. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254."
+        },
+        "variables": [
+          "A",
+          "S",
+          "V"
+        ],
+        "conclusions": [
+          "small_sacrifice_value(A,V)"
+        ],
+        "premises": [
+          "sacrifice_made(A,S)",
+          "small_sacrifice_warrant(S,A,V)",
+          "small_sacrifice_made(S,A)"
+        ]
+      },
+      "examples": [
+        "sacrifice_small/book",
+        "sacrifice_small/closure-great-warrant-does-not-entail-small",
+        "sacrifice_small/closure-other-object-warrant",
+        "sacrifice_small/closure-small-is-not-absence-of-great"
+      ]
+    },
+    {
+      "record": "end_and_means_bad",
+      "entry": "22.6.1",
+      "source_pages": [
+        325
+      ],
+      "scope": "Printed bad-end/bad-means branch; this supplies a defeasible valuation argument, not a universal moral truth.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_bad",
+        "meta": {
+          "title": "Ends and Means - Bad End and Bad Means",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "Y"
+        ],
+        "conclusions": [
+          "bad(X)"
+        ],
+        "premises": [
+          "means_to_end(X,Y)",
+          "bad(Y)"
+        ]
+      },
+      "examples": [
+        "end_and_means_bad/book",
+        "end_and_means_bad/closure-other-end-badness"
+      ]
+    },
+    {
+      "record": "end_and_means_less_bad",
+      "entry": "22.6.1",
+      "source_pages": [
+        325
+      ],
+      "scope": "Printed less-bad alternative interpreted qualitatively relative to evaluating the same means without the good purpose; prior badness is an explicit application precondition. It is not goodness or numerical utility.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_less_bad",
+        "meta": {
+          "title": "Ends and Means - Bad Means Made Less Bad by a Good End",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "Y"
+        ],
+        "conclusions": [
+          "less_bad_as_means(X,Y)"
+        ],
+        "premises": [
+          "means_to_end(X,Y)",
+          "good(Y)",
+          "bad(X)"
+        ]
+      },
+      "examples": [
+        "end_and_means_less_bad/book",
+        "end_and_means_less_bad/closure-less-bad-is-not-good",
+        "end_and_means_less_bad/closure-no-adverse-baseline",
+        "end_and_means_less_bad/closure-other-good-purpose"
+      ]
+    },
+    {
+      "record": "end_and_means_reverse",
+      "entry": "22.6.2",
+      "source_pages": [
+        325
+      ],
+      "scope": "Printed reverse reclassification branch; the importance warrant is an ordinary premise about the same evaluation context, and the conclusion directly opposes the positive branch in that context.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_reverse",
+        "meta": {
+          "title": "Ends and Means - End Reclassified as a Means in One Context",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "C"
+        ],
+        "conclusions": [
+          "¬ends_important(X,C)"
+        ],
+        "premises": [
+          "end_means(X,C)",
+          "more_important_ends(C)"
+        ]
+      },
+      "examples": [
+        "end_and_means_reverse/book",
+        "end_and_means_reverse/closure-distinct-contexts",
+        "end_and_means_reverse/closure-opposed-reclassifications",
+        "end_and_means_reverse/closure-warrant-context-isolation"
+      ]
+    },
+    {
+      "record": "end_and_means_difficult",
+      "entry": "22.6.3",
+      "source_pages": [
+        325
+      ],
+      "scope": "Printed not-easy branch, requiring explicit negative evidence; absence of evidence that a means is easy does not establish it is not easy.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_difficult",
+        "meta": {
+          "title": "Ends and Means - Not-Easy Means and a Bad End",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.3, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "Y"
+        ],
+        "conclusions": [
+          "bad(Y)"
+        ],
+        "premises": [
+          "means_to_end(X,Y)",
+          "¬easy_to_achieve(X)"
+        ]
+      },
+      "examples": [
+        "end_and_means_difficult/book",
+        "end_and_means_difficult/closure-no-easiness-evidence",
+        "end_and_means_difficult/closure-other-means-difficulty"
+      ]
+    },
+    {
+      "record": "negative_practical_true",
+      "entry": "26.2",
+      "source_pages": [
+        327
+      ],
+      "scope": "The opposite printed seriousness ranking and true-presumption conclusion. Search adequacy is a challengeable assumption; burden/probandum and proof standard are declared graph policy, not inferred dialogue states.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "negative_practical_true",
+        "meta": {
+          "title": "Negative Practical Reasoning - Act on the True Presumption",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.2, p. 327. Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150."
+        },
+        "variables": [
+          "A",
+          "B",
+          "C"
+        ],
+        "conclusions": [
+          "act_on_presumption_true(A)"
+        ],
+        "premises": [
+          "not_know_true(A)",
+          "presumption(A)",
+          "consequences_presumption(A,B)",
+          "other_consequences_presumption(A,C)",
+          "more_serious_consequences(C,B)"
+        ],
+        "assumptions": [
+          "sufficient_evidence(A)"
+        ]
+      },
+      "examples": [
+        "negative_practical_true/book",
+        "negative_practical_true/closure-no-global-choice-negation-bridge",
+        "negative_practical_true/closure-no-severity-ranking",
+        "negative_practical_true/closure-opposed-rankings",
+        "negative_practical_true/closure-other-search-challenge",
+        "negative_practical_true/closure-same-consequence-no-strict-ranking",
+        "negative_practical_true/closure-search-answer",
+        "negative_practical_true/closure-search-challenge",
+        "negative_practical_true/closure-search-not-same-as-truth-evidence"
+      ]
+    },
+    {
+      "record": "moral_justification_ad_populum",
+      "entry": "4.5",
+      "source_pages": [
+        312
+      ],
+      "scope": "Legacy actual-goal acceptance branch for one designated respondent; named actual-goal and ought-goal variants are separate records. No actual goal is inferred from an ought-goal.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "moral_justification_ad_populum",
+        "meta": {
+          "title": "Moral Justification Ad Populum Argument",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312."
+        },
+        "variables": [
+          "G",
+          "P"
+        ],
+        "conclusions": [
+          "should_accept(P)"
+        ],
+        "premises": [
+          "good_group(G,P)",
+          "goal_good_group(G)"
+        ]
+      },
+      "examples": [
+        "moral_justification_ad_populum/book"
+      ]
+    },
+    {
+      "record": "moral_justification_ad_populum_excuse",
+      "entry": "4.6",
+      "source_pages": [
+        312
+      ],
+      "scope": "Legacy combined action/policy alternative for one designated speaker; separate typed named-speaker action and policy-acceptance records provide explicit branch coverage.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "moral_justification_ad_populum_excuse",
+        "meta": {
+          "title": "Moral Justification Ad Populum Argument Excuse Subtype",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312."
+        },
+        "variables": [
+          "G",
+          "X",
+          "A"
+        ],
+        "conclusions": [
+          "morally_acceptable_action(X,A)"
+        ],
+        "premises": [
+          "group_does(G,X,A)",
+          "acceptable_norm(X,A,G)",
+          "group_member(G)"
+        ]
+      },
+      "examples": [
+        "moral_justification_ad_populum_excuse/book"
+      ]
+    },
+    {
+      "record": "snob_appeal_ad_populum",
+      "entry": "4.7",
+      "source_pages": [
+        312
+      ],
+      "scope": "Legacy acceptance branch for one designated respondent. It now requires group_accepted(G,A) as an ordinary premise selecting the acceptance clause of the inherited disjunctive wording; possession/property evidence alone cannot justify acceptance. Separate named respondent acceptance/acquisition/purchase records cover all printed branches.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "snob_appeal_ad_populum",
+        "meta": {
+          "title": "Snob Appeal Ad Populum Argument",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
+        },
+        "variables": [
+          "A",
+          "G",
+          "O",
+          "P"
+        ],
+        "conclusions": [
+          "should_accept(A)"
+        ],
+        "premises": [
+          "property_or_object(G,A)",
+          "group_accepted(G,A)",
+          "elite_group(G)",
+          "goal_prestige",
+          "accept_property_object(A,P,O,G)"
+        ]
+      },
+      "examples": [
+        "snob_appeal_ad_populum/book",
+        "snob_appeal_ad_populum/closure-disjunctive-legacy-is-not-acceptance-evidence"
+      ]
+    },
+    {
+      "record": "sacrifice",
+      "entry": "20",
+      "source_pages": [
+        322
+      ],
+      "scope": "Source great-sacrifice branch. The separately named small branch requires its own explicit conditional; no converse is inferred from this record.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "sacrifice",
+        "meta": {
+          "title": "Argumentation From Sacrifice",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 20, p. 322. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254."
+        },
+        "variables": [
+          "A",
+          "S",
+          "V"
+        ],
+        "conclusions": [
+          "sacrifice_value(A,V)"
+        ],
+        "premises": [
+          "sacrifice_made(A,S)",
+          "great_sacrifice(S,A,V)",
+          "great_sacrifice_made(S,A)"
+        ]
+      },
+      "examples": [
+        "sacrifice/book"
+      ]
+    },
+    {
+      "record": "end_and_means_1",
+      "entry": "22.6.1",
+      "source_pages": [
+        325
+      ],
+      "scope": "Printed good-end/good-means branch. Separate bad and less-bad records preserve the parenthetical alternatives, with less-bad remaining distinct from good.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_1",
+        "meta": {
+          "title": "Practical Reasoning - Argument From Ends and Means 1",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "Y"
+        ],
+        "conclusions": [
+          "good(X)"
+        ],
+        "premises": [
+          "means_to_end(X,Y)",
+          "good(Y)"
+        ]
+      },
+      "examples": [
+        "end_and_means_1/book"
+      ]
+    },
+    {
+      "record": "end_and_means_2",
+      "entry": "22.6.2",
+      "source_pages": [
+        325
+      ],
+      "scope": "Positive reclassification branch now names one evaluation context C in all three statements; the same-context importance warrant is an ordinary premise. The reverse branch is separately executable. Existing graphs need manual context migration.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_2",
+        "meta": {
+          "title": "Practical Reasoning - Argument From Ends and Means 2",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "C"
+        ],
+        "conclusions": [
+          "ends_important(X,C)"
+        ],
+        "premises": [
+          "means_end(X,C)",
+          "more_important_ends(C)"
+        ]
+      },
+      "examples": [
+        "end_and_means_2/book",
+        "end_and_means_2/closure-no-global-warrant",
+        "end_and_means_2/closure-warrant-context-isolation"
+      ]
+    },
+    {
+      "record": "end_and_means_3",
+      "entry": "22.6.3",
+      "source_pages": [
+        325
+      ],
+      "scope": "Printed easy-means/good-end branch. The separate difficult variant requires explicit not-easy evidence; missing easiness evidence does not suffice.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "end_and_means_3",
+        "meta": {
+          "title": "Practical Reasoning - Argument From Ends and Means 3",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.3, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
+        },
+        "variables": [
+          "X",
+          "Y"
+        ],
+        "conclusions": [
+          "good(Y)"
+        ],
+        "premises": [
+          "means_to_end(X,Y)",
+          "easy_to_achieve(X)"
+        ]
+      },
+      "examples": [
+        "end_and_means_3/book"
+      ]
+    },
+    {
+      "record": "negative_practical",
+      "entry": "26.2",
+      "source_pages": [
+        327
+      ],
+      "scope": "Source false-presumption branch for B more serious than C. The true branch is separate; applications using both choices declare the binary issue explicitly under docs/source-branch-contracts.md. No automatic global choice/negation equivalence.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair, variant or expanded contract; independent approval required",
+      "scheme": {
+        "id": "negative_practical",
+        "meta": {
+          "title": "Negative Practical Reasoning",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.2, p. 327. Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150."
+        },
+        "variables": [
+          "A",
+          "B",
+          "C"
+        ],
+        "conclusions": [
+          "act_on_presumption_false(A)"
+        ],
+        "premises": [
+          "not_know_true(A)",
+          "presumption(A)",
+          "consequences_presumption(A,B)",
+          "other_consequences_presumption(A,C)",
+          "more_serious_consequences(B,C)"
+        ],
+        "assumptions": [
+          "sufficient_evidence(A)"
+        ]
+      },
+      "examples": [
+        "negative_practical/book",
+        "negative_practical/closure-false-ranking"
       ]
     }
-  ]
+  ],
+  "explicit_issue_contract": {
+    "positions": [
+      "act_on_presumption_false(A)",
+      "act_on_presumption_true(A)"
+    ],
+    "source": "Entry26.2, p.327: opposing practical choices in a declared binary-choice graph.",
+    "scope": "Worked graphs explicitly declare only the two positive choices for each question. No global issue scheme or arbitrary choice/negation equivalence is installed. Explicit negations of choice statements are outside that binary issue protocol."
+  }
 }

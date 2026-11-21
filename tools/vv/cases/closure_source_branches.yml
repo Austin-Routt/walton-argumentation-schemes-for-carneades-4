@@ -1,0 +1,640 @@
+# Hand-specified positive and adverse source cases. See docs/source-branch-contracts.md.
+cases:
+- name: moral_justification_actual_goal/book
+  source: '4.5, p.312: actual goal and same named respondent'
+  assumptions:
+  - good_group(good_citizens,recycling_policy)
+  - goal_good_group_for(ann,good_citizens)
+  arguments:
+  - moral_justification_actual_goal(ann,good_citizens,recycling_policy)
+  in:
+  - should_do(ann,accept(recycling_policy))
+  not_in:
+  - should_do(bob,accept(recycling_policy))
+  no_arguments:
+  - moral_justification_ought_goal
+  variants: true
+- name: moral_justification_ought_goal/book
+  source: '4.5, p.312: the parenthetical normative goal does not assert an actual goal'
+  assumptions:
+  - good_group(good_citizens,recycling_policy)
+  - ought_goal_good_group(ann,good_citizens)
+  arguments:
+  - moral_justification_ought_goal(ann,good_citizens,recycling_policy)
+  in:
+  - should_do(ann,accept(recycling_policy))
+  not_in:
+  - goal_good_group_for(ann,good_citizens)
+  no_arguments:
+  - moral_justification_actual_goal
+  variants: true
+- name: moral_justification_actual_goal/closure-other-group-goal
+  source: '4.5: goal of membership in another group cannot be substituted'
+  assumptions:
+  - good_group(good_citizens,recycling_policy)
+  - goal_good_group_for(ann,other_group)
+  not_in:
+  - should_do(ann,accept(recycling_policy))
+  no_arguments:
+  - moral_justification_actual_goal
+- name: moral_justification_ought_goal/closure-other-group-goal
+  source: '4.5: the ought-goal also names the same group'
+  assumptions:
+  - good_group(good_citizens,recycling_policy)
+  - ought_goal_good_group(ann,other_group)
+  not_in:
+  - should_do(ann,accept(recycling_policy))
+  no_arguments:
+  - moral_justification_ought_goal
+- name: moral_excuse_action/book
+  source: '4.6, p.312: named speaker, same action, explicit group norm'
+  assumptions:
+  - group_acts(cyclists,wear_helmet)
+  - action_norm(wear_helmet,cyclists)
+  - person_group_member(ann,cyclists)
+  arguments:
+  - moral_excuse_action(ann,cyclists,wear_helmet)
+  in:
+  - morally_justified(ann,wear_helmet)
+  not_in:
+  - morally_justified(bob,wear_helmet)
+  - morally_justified(ann,accept(wear_helmet))
+  no_arguments:
+  - moral_excuse_policy
+  variants: true
+- name: moral_excuse_policy/book
+  source: '4.6, p.312: named speaker and policy-acceptance branch in the full library'
+  assumptions:
+  - group_accepted(cyclists,helmet_policy)
+  - policy_norm(helmet_policy,cyclists)
+  - person_group_member(ann,cyclists)
+  arguments:
+  - moral_excuse_policy(ann,cyclists,helmet_policy)
+  in:
+  - morally_justified(ann,accept(helmet_policy))
+  not_in:
+  - morally_justified(bob,accept(helmet_policy))
+  no_arguments:
+  - moral_excuse_action
+  variants: true
+- name: moral_excuse_policy/closure-accepting-does-not-prove-truth
+  source: '4.6: this selected live record justifies acceptance and does not assert policy truth; the full library has a separate
+    pop_scheme'
+  assumptions:
+  - group_accepted(cyclists,helmet_policy)
+  - policy_norm(helmet_policy,cyclists)
+  - person_group_member(ann,cyclists)
+  arguments:
+  - moral_excuse_policy(ann,cyclists,helmet_policy)
+  in:
+  - morally_justified(ann,accept(helmet_policy))
+  not_in:
+  - helmet_policy
+  schemes:
+  - moral_excuse_policy
+- name: moral_excuse_action/closure-other-speaker-group
+  source: '4.6: the speaker must belong to the group whose practice is cited'
+  assumptions:
+  - group_acts(cyclists,wear_helmet)
+  - action_norm(wear_helmet,cyclists)
+  - person_group_member(ann,swimmers)
+  not_in:
+  - morally_justified(ann,wear_helmet)
+  no_arguments:
+  - moral_excuse_action
+- name: moral_excuse_policy/closure-other-policy-norm
+  source: '4.6: acceptability of another policy does not warrant this policy'
+  assumptions:
+  - group_accepted(cyclists,helmet_policy)
+  - policy_norm(speed_policy,cyclists)
+  - person_group_member(ann,cyclists)
+  not_in:
+  - morally_justified(ann,accept(helmet_policy))
+  no_arguments:
+  - moral_excuse_policy
+- name: moral_excuse_action/closure-policy-evidence-is-not-action-evidence
+  source: '4.6: the two printed alternatives are not mixed'
+  assumptions:
+  - group_accepted(cyclists,helmet_policy)
+  - action_norm(wear_helmet,cyclists)
+  - person_group_member(ann,cyclists)
+  not_in:
+  - morally_justified(ann,wear_helmet)
+  - morally_justified(ann,accept(helmet_policy))
+  no_arguments:
+  - moral_excuse_action
+  - moral_excuse_policy
+- name: moral_excuse_action/closure-generic-member-is-not-person
+  source: '4.6: generic membership includes products and ideas in entry21.2 and does not supply a speaking person'
+  assumptions:
+  - group_acts(cyclists,wear_helmet)
+  - action_norm(wear_helmet,cyclists)
+  - group_member(helmet_product,cyclists)
+  - group_accepted(cyclists,helmet_policy)
+  - policy_norm(helmet_policy,cyclists)
+  not_in:
+  - morally_justified(helmet_product,wear_helmet)
+  - morally_justified(helmet_product,accept(helmet_policy))
+  no_arguments:
+  - moral_excuse_action
+  - moral_excuse_policy
+- name: snob_appeal_acceptance/book
+  source: '4.7, p.312: matched acceptance branch for one named respondent in the full library'
+  assumptions:
+  - group_accepted(elite,luxury_is_desirable)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_accepts(ann,luxury_is_desirable,elite)
+  arguments:
+  - snob_appeal_acceptance(ann,elite,luxury_is_desirable)
+  in:
+  - should_do(ann,accept(luxury_is_desirable))
+  not_in:
+  - should_do(bob,accept(luxury_is_desirable))
+  no_arguments:
+  - snob_appeal_property
+  - snob_appeal_purchase
+  variants: true
+- name: snob_appeal_acceptance/closure-acceptance-is-not-truth
+  source: '4.7: this selected live branch recommends acceptance; it does not itself prove the proposition'
+  assumptions:
+  - group_accepted(elite,luxury_is_desirable)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_accepts(ann,luxury_is_desirable,elite)
+  arguments:
+  - snob_appeal_acceptance(ann,elite,luxury_is_desirable)
+  in:
+  - should_do(ann,accept(luxury_is_desirable))
+  not_in:
+  - luxury_is_desirable
+  schemes:
+  - snob_appeal_acceptance
+- name: snob_appeal_property/book
+  source: '4.7, p.312: universal member property and acquisition warrant'
+  assumptions:
+  - all_have_property(elite,fluency)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_acquires(ann,fluency,elite)
+  arguments:
+  - snob_appeal_property(ann,elite,fluency)
+  in:
+  - should_do(ann,acquire(fluency))
+  not_in:
+  - should_do(ann,accept(fluency))
+  - should_do(ann,buy(fluency))
+  - has_property(ann,fluency)
+  no_arguments:
+  - snob_appeal_acceptance
+  - snob_appeal_purchase
+  variants: true
+- name: snob_appeal_purchase/book
+  source: '4.7, p.312: possession of the kind of object and purchase warrant'
+  assumptions:
+  - all_possess_object(elite,rolex_watch)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_buys(ann,rolex_watch,elite)
+  arguments:
+  - snob_appeal_purchase(ann,elite,rolex_watch)
+  in:
+  - should_do(ann,buy(rolex_watch))
+  not_in:
+  - should_do(ann,accept(rolex_watch))
+  - should_accept(rolex_watch)
+  - rolex_watch
+  no_arguments:
+  - snob_appeal_acceptance
+  - snob_appeal_property
+  - snob_appeal_ad_populum
+  variants: true
+- name: snob_appeal_acceptance/closure-purchase-warrant-is-not-acceptance
+  source: '4.7: a purchase-membership warrant does not warrant accepting a proposition'
+  assumptions:
+  - group_accepted(elite,luxury_is_desirable)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_buys(ann,luxury_is_desirable,elite)
+  not_in:
+  - should_do(ann,accept(luxury_is_desirable))
+  no_arguments:
+  - snob_appeal_acceptance
+- name: snob_appeal_property/closure-collective-is-not-universal-property
+  source: '4.7: a property of the group is not necessarily a property of each member'
+  assumptions:
+  - has_property(elite,wealthy)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_acquires(ann,wealthy,elite)
+  not_in:
+  - should_do(ann,acquire(wealthy))
+  no_arguments:
+  - snob_appeal_property
+- name: snob_appeal_purchase/closure-other-person-warrant
+  source: '4.7: another respondent''s purchase path does not provide this respondent''s path'
+  assumptions:
+  - all_possess_object(elite,rolex_watch)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_buys(bob,rolex_watch,elite)
+  not_in:
+  - should_do(ann,buy(rolex_watch))
+  - should_do(bob,buy(rolex_watch))
+  no_arguments:
+  - snob_appeal_purchase
+- name: snob_appeal_property/closure-other-group-property
+  source: '4.7: the universal property must belong to the cited elite group'
+  assumptions:
+  - all_have_property(other_group,fluency)
+  - elite_group(elite)
+  - goal_prestige_for(ann)
+  - membership_if_acquires(ann,fluency,elite)
+  not_in:
+  - should_do(ann,acquire(fluency))
+  no_arguments:
+  - snob_appeal_property
+- name: snob_appeal_ad_populum/closure-disjunctive-legacy-is-not-acceptance-evidence
+  source: '4.7: inherited disjunctive premise must be narrowed to the actual acceptance branch'
+  assumptions:
+  - property_or_object(jet_set,luxury_is_desirable)
+  - elite_group(jet_set)
+  - goal_prestige
+  - accept_property_object(luxury_is_desirable,wealth,watch,jet_set)
+  not_in:
+  - should_accept(luxury_is_desirable)
+  no_arguments:
+  - snob_appeal_ad_populum
+- name: sacrifice_small/book
+  source: '20, p.322: small branch with a supported small-value conditional'
+  assumptions:
+  - sacrifice_made(trinket,minute)
+  - small_sacrifice_warrant(minute,trinket,sentimental_value)
+  - small_sacrifice_made(minute,trinket)
+  arguments:
+  - sacrifice_small(trinket,minute,sentimental_value)
+  in:
+  - small_sacrifice_value(trinket,sentimental_value)
+  not_in:
+  - sacrifice_value(trinket,sentimental_value)
+  no_arguments:
+  - sacrifice
+  variants: true
+- name: sacrifice_small/closure-great-warrant-does-not-entail-small
+  source: '20: a great-sacrifice conditional does not establish the small-sacrifice conditional'
+  assumptions:
+  - sacrifice_made(trinket,minute)
+  - great_sacrifice(minute,trinket,sentimental_value)
+  - small_sacrifice_made(minute,trinket)
+  not_in:
+  - small_sacrifice_value(trinket,sentimental_value)
+  no_arguments:
+  - sacrifice_small
+- name: sacrifice_small/closure-other-object-warrant
+  source: '20: the small-value conditional must apply to this thing and sacrifice'
+  assumptions:
+  - sacrifice_made(trinket,minute)
+  - small_sacrifice_warrant(minute,other_thing,sentimental_value)
+  - small_sacrifice_made(minute,trinket)
+  not_in:
+  - small_sacrifice_value(trinket,sentimental_value)
+  no_arguments:
+  - sacrifice_small
+- name: sacrifice_small/closure-small-is-not-absence-of-great
+  source: '20: no great-sacrifice fact is not evidence of a small sacrifice'
+  assumptions:
+  - sacrifice_made(trinket,minute)
+  - small_sacrifice_warrant(minute,trinket,sentimental_value)
+  not_in:
+  - small_sacrifice_value(trinket,sentimental_value)
+  no_arguments:
+  - sacrifice_small
+- name: end_and_means_bad/book
+  source: '22.6.1, p.325: the printed bad-end parenthesis'
+  assumptions:
+  - means_to_end(fraud,illicit_profit)
+  - bad(illicit_profit)
+  arguments:
+  - end_and_means_bad(fraud,illicit_profit)
+  in:
+  - bad(fraud)
+  not_in:
+  - good(fraud)
+  no_arguments:
+  - end_and_means_1
+  variants: true
+- name: end_and_means_bad/closure-other-end-badness
+  source: '22.6.1: badness of an unrelated end does not transfer'
+  assumptions:
+  - means_to_end(training,victory)
+  - bad(illicit_profit)
+  not_in:
+  - bad(training)
+  no_arguments:
+  - end_and_means_bad
+- name: end_and_means_less_bad/book
+  source: '22.6.1, p.325: less-bad reading with an explicit adverse baseline; full theory may also instantiate the distinct
+    good branch'
+  assumptions:
+  - means_to_end(painful_treatment,recovery)
+  - good(recovery)
+  - bad(painful_treatment)
+  arguments:
+  - end_and_means_less_bad(painful_treatment,recovery)
+  in:
+  - less_bad_as_means(painful_treatment,recovery)
+  - bad(painful_treatment)
+  not_in:
+  - ¬bad(painful_treatment)
+  variants: true
+- name: end_and_means_less_bad/closure-less-bad-is-not-good
+  source: '22.6.1: selecting the live less-bad record does not substitute the alternative good conclusion'
+  assumptions:
+  - means_to_end(painful_treatment,recovery)
+  - good(recovery)
+  - bad(painful_treatment)
+  arguments:
+  - end_and_means_less_bad(painful_treatment,recovery)
+  in:
+  - less_bad_as_means(painful_treatment,recovery)
+  not_in:
+  - good(painful_treatment)
+  - ¬bad(painful_treatment)
+  schemes:
+  - end_and_means_less_bad
+- name: end_and_means_less_bad/closure-no-adverse-baseline
+  source: '22.6.1: no badness baseline is invented merely because a good end is served'
+  assumptions:
+  - means_to_end(training,victory)
+  - good(victory)
+  in:
+  - good(training)
+  not_in:
+  - less_bad_as_means(training,victory)
+  - bad(training)
+  no_arguments:
+  - end_and_means_less_bad
+- name: end_and_means_less_bad/closure-other-good-purpose
+  source: '22.6.1: a different good end does not supply the selected means'' purpose'
+  assumptions:
+  - means_to_end(painful_treatment,recovery)
+  - good(victory)
+  - bad(painful_treatment)
+  not_in:
+  - less_bad_as_means(painful_treatment,recovery)
+  no_arguments:
+  - end_and_means_less_bad
+- name: end_and_means_reverse/book
+  source: '22.6.2, p.325: an end reclassified as a means is not highly important in the same evaluation'
+  assumptions:
+  - end_means(money,retirement)
+  - more_important_ends(retirement)
+  arguments:
+  - end_and_means_reverse(money,retirement)
+  in:
+  - ¬ends_important(money,retirement)
+  not_in:
+  - ends_important(money,retirement)
+  - ¬ends_important(money,other_context)
+  no_arguments:
+  - end_and_means_2
+  variants: true
+- name: end_and_means_2/closure-warrant-context-isolation
+  source: '22.6.2: the positive branch cannot borrow a warrant from a different evaluation'
+  assumptions:
+  - means_end(money,retirement)
+  - more_important_ends(other_context)
+  not_in:
+  - ends_important(money,retirement)
+  no_arguments:
+  - end_and_means_2
+- name: end_and_means_reverse/closure-warrant-context-isolation
+  source: '22.6.2: the reverse branch also needs the same context warrant'
+  assumptions:
+  - end_means(money,retirement)
+  - more_important_ends(other_context)
+  not_in:
+  - ¬ends_important(money,retirement)
+  no_arguments:
+  - end_and_means_reverse
+- name: end_and_means_2/closure-no-global-warrant
+  source: '22.6.2: an old unqualified warrant is deliberately not migrated automatically'
+  assumptions:
+  - means_end(money,retirement)
+  - more_important_ends
+  not_in:
+  - ends_important(money,retirement)
+  no_arguments:
+  - end_and_means_2
+- name: end_and_means_reverse/closure-opposed-reclassifications
+  source: '22.6.2: conflicting equal arguments about the same context oppose each other'
+  assumptions:
+  - means_end(money,retirement)
+  - end_means(money,retirement)
+  - more_important_ends(retirement)
+  arguments:
+  - end_and_means_2(money,retirement)
+  - end_and_means_reverse(money,retirement)
+  not_in:
+  - ends_important(money,retirement)
+  - ¬ends_important(money,retirement)
+  issues:
+  - - ends_important(money,retirement)
+    - ¬ends_important(money,retirement)
+- name: end_and_means_reverse/closure-distinct-contexts
+  source: '22.6.2: contrary reclassifications about different evaluations can both hold'
+  assumptions:
+  - means_end(money,retirement)
+  - end_means(money,artistic_work)
+  - more_important_ends(retirement)
+  - more_important_ends(artistic_work)
+  arguments:
+  - end_and_means_2(money,retirement)
+  - end_and_means_reverse(money,artistic_work)
+  in:
+  - ends_important(money,retirement)
+  - ¬ends_important(money,artistic_work)
+- name: end_and_means_difficult/book
+  source: '22.6.3, p.325: not-easy evidence is explicit, not closed-world absence'
+  assumptions:
+  - means_to_end(arduous_route,isolated_destination)
+  - ¬easy_to_achieve(arduous_route)
+  arguments:
+  - end_and_means_difficult(arduous_route,isolated_destination)
+  in:
+  - bad(isolated_destination)
+  not_in:
+  - good(isolated_destination)
+  no_arguments:
+  - end_and_means_3
+  variants: true
+- name: end_and_means_difficult/closure-no-easiness-evidence
+  source: '22.6.3: absence of easy does not establish not easy'
+  assumptions:
+  - means_to_end(route,destination)
+  not_in:
+  - bad(destination)
+  - good(destination)
+  no_arguments:
+  - end_and_means_difficult
+  - end_and_means_3
+- name: end_and_means_difficult/closure-other-means-difficulty
+  source: '22.6.3: another means'' difficulty is not transferable'
+  assumptions:
+  - means_to_end(route,destination)
+  - ¬easy_to_achieve(other_route)
+  not_in:
+  - bad(destination)
+  no_arguments:
+  - end_and_means_difficult
+- name: negative_practical_true/book
+  source: '26.2, p.327: C more serious than B selects the true presumption'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  - more_serious_consequences(missed_departure,extra_check)
+  arguments:
+  - negative_practical_true(door_unlocked,extra_check,missed_departure)
+  in:
+  - act_on_presumption_true(door_unlocked)
+  not_in:
+  - act_on_presumption_false(door_unlocked)
+  - door_unlocked
+  - ¬door_unlocked
+  no_arguments:
+  - negative_practical
+  variants: true
+- name: negative_practical/closure-false-ranking
+  source: '26.2, p.327: reversing the severity ordering changes the recommended presumption'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  - more_serious_consequences(extra_check,missed_departure)
+  arguments:
+  - negative_practical(door_unlocked,extra_check,missed_departure)
+  in:
+  - act_on_presumption_false(door_unlocked)
+  not_in:
+  - act_on_presumption_true(door_unlocked)
+  - door_unlocked
+  - ¬door_unlocked
+  no_arguments:
+  - negative_practical_true
+- name: negative_practical_true/closure-no-severity-ranking
+  source: '26.2: no strict ordering, including an undecided or equal comparison, supplies neither branch'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  not_in:
+  - act_on_presumption_true(door_unlocked)
+  - act_on_presumption_false(door_unlocked)
+  no_arguments:
+  - negative_practical
+  - negative_practical_true
+- name: negative_practical_true/closure-same-consequence-no-strict-ranking
+  source: '26.2: identical consequences do not establish a strict seriousness ranking'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,delay)
+  - other_consequences_presumption(door_unlocked,delay)
+  not_in:
+  - act_on_presumption_true(door_unlocked)
+  - act_on_presumption_false(door_unlocked)
+  no_arguments:
+  - negative_practical
+  - negative_practical_true
+- name: negative_practical_true/closure-search-challenge
+  source: '26.2 CQ1: an unanswered challenge to search adequacy prevents acceptance'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  - more_serious_consequences(missed_departure,extra_check)
+  arguments:
+  - negative_practical_true(door_unlocked,extra_check,missed_departure)
+  not_in:
+  - act_on_presumption_true(door_unlocked)
+  questioned:
+  - sufficient_evidence(door_unlocked)
+- name: negative_practical_true/closure-search-answer
+  source: '26.2 CQ1: explicit support answers the search-adequacy challenge'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  - more_serious_consequences(missed_departure,extra_check)
+  - sufficient_evidence(door_unlocked)
+  arguments:
+  - negative_practical_true(door_unlocked,extra_check,missed_departure)
+  in:
+  - act_on_presumption_true(door_unlocked)
+  questioned:
+  - sufficient_evidence(door_unlocked)
+- name: negative_practical_true/closure-other-search-challenge
+  source: '26.2 CQ1: a challenge about another question cannot disable this question''s default'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  - more_serious_consequences(missed_departure,extra_check)
+  arguments:
+  - negative_practical_true(door_unlocked,extra_check,missed_departure)
+  in:
+  - act_on_presumption_true(door_unlocked)
+  questioned:
+  - sufficient_evidence(other_question)
+- name: negative_practical_true/closure-opposed-rankings
+  source: '26.2 CQ2-3: the worked binary-choice protocol explicitly declares one issue and PE; conflicting equal arguments
+    fail it'
+  assumptions: []
+  arguments:
+  - negative_practical_true(door_unlocked,extra_check,missed_departure)
+  - negative_practical(door_unlocked,extra_check,missed_departure)
+  not_in:
+  - act_on_presumption_true(door_unlocked)
+  - act_on_presumption_false(door_unlocked)
+  issues:
+  - - act_on_presumption_false(door_unlocked)
+    - act_on_presumption_true(door_unlocked)
+  library: docs/examples/practical_presumption_conflict.yml
+- name: negative_practical_true/closure-no-global-choice-negation-bridge
+  source: '26.2: the bare library does not merge a true choice with its compatible negation of the false choice'
+  assumptions:
+  - not_know_true(door_unlocked)
+  - presumption(door_unlocked)
+  - consequences_presumption(door_unlocked,extra_check)
+  - other_consequences_presumption(door_unlocked,missed_departure)
+  - more_serious_consequences(missed_departure,extra_check)
+  - ¬act_on_presumption_false(door_unlocked)
+  arguments:
+  - negative_practical_true(door_unlocked,extra_check,missed_departure)
+  in:
+  - act_on_presumption_true(door_unlocked)
+  - ¬act_on_presumption_false(door_unlocked)
+  not_in:
+  - act_on_presumption_false(door_unlocked)
+  no_arguments:
+  - negative_practical
+- name: negative_practical_true/closure-search-not-same-as-truth-evidence
+  source: '26.2 CQ1: knowing which search is sufficient does not prove the questioned proposition'
+  assumptions:
+  - sufficient_evidence(door_unlocked)
+  - presumption(door_unlocked)
+  not_in:
+  - door_unlocked
+  - ¬door_unlocked
+  - act_on_presumption_true(door_unlocked)
+  - act_on_presumption_false(door_unlocked)
+  no_arguments:
+  - negative_practical
+  - negative_practical_true

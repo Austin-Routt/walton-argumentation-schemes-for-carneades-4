@@ -17,7 +17,7 @@ import sys
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_category_files import read_master, templates_used  # noqa: E402
+from build_category_files import read_master, templates_used, issue_templates_used  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -45,7 +45,7 @@ def graph(ids, library, title=None):
     unknown = [s for s in ids if s not in blocks]
     if unknown:
         raise SystemExit(f"{os.path.basename(library)} has no scheme {', '.join(unknown)}")
-    used = []
+    used = issue_templates_used(issues)
     for sid in ids:
         for k in templates_used(blocks[sid]):
             if k not in used:

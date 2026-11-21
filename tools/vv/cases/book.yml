@@ -211,12 +211,12 @@ cases:
   - name: end_and_means_2/book
     source: "22.6.2, p. 325"
     assumptions:
-      - means_end(money)
-      - more_important_ends
+      - means_end(money,retirement)
+      - more_important_ends(retirement)
     arguments:
-      - end_and_means_2(money)
+      - end_and_means_2(money,retirement)
     in:
-      - ends_important(money)
+      - ends_important(money,retirement)
     variants: true
   - name: end_and_means_3/book
     source: "22.6.3, p. 325"
@@ -885,14 +885,15 @@ cases:
   - name: snob_appeal_ad_populum/book
     source: "4.7, p. 312"
     assumptions:
-      - property_or_object(jet_set,rolex)
+      - property_or_object(jet_set,luxury_watches_are_desirable)
+      - group_accepted(jet_set,luxury_watches_are_desirable)
       - elite_group(jet_set)
       - goal_prestige
-      - accept_property_object(rolex,wealth,watch,jet_set)
+      - accept_property_object(luxury_watches_are_desirable,wealth,watch,jet_set)
     arguments:
-      - snob_appeal_ad_populum(rolex,jet_set,watch,wealth)
+      - snob_appeal_ad_populum(luxury_watches_are_desirable,jet_set,watch,wealth)
     in:
-      - should_accept(rolex)
+      - should_accept(luxury_watches_are_desirable)
     variants: true
   - name: appeal_to_vanity_ad_populum/book
     source: "4.8, p. 312"

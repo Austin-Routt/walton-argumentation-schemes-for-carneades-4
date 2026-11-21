@@ -15,7 +15,7 @@ import sys, os, re, json
 import yaml
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from validate_schemes import parse_statement, LIST_FIELDS, TermError  # noqa: E402
+from validate_schemes import parse_statement, LIST_FIELDS, TermError, issue_template_keys  # noqa: E402
 
 HEADER = ("# Generated from walton.yml by tools/build_category_files.py. Do not edit:\n"
           "# change walton.yml (or the grouping in categories.yml) and run the tool again.\n")
@@ -69,8 +69,17 @@ def templates_used(block):
     return keys
 
 
+def issue_templates_used(issues):
+    """Issue schemes are copied too, so retain their language dependencies."""
+    parsed = yaml.safe_load("\n".join(issues)) or {}
+    try:
+        return sorted(issue_template_keys(parsed.get("issue_schemes")))
+    except TermError as error:
+        raise SystemExit(f"cannot parse issue schemes: {error}")
+
+
 def render(title, templates, blocks, ids, issues, version=None):
-    used = []
+    used = issue_templates_used(issues)
     for sid in ids:
         for k in templates_used(blocks[sid]):
             if k not in used:

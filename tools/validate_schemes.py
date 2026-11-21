@@ -127,6 +127,27 @@ def parse_statement(s):
         return neg, None, 0, vs                    # schema variable: no functor, no template needed
     return neg, t[1], len(t[2]), vs
 
+
+def issue_template_keys(issue_schemes):
+    """Language dependencies of fixed or enumerated issue patterns."""
+    if issue_schemes is None:
+        return set()
+    if not isinstance(issue_schemes, dict):
+        raise TermError("issue_schemes must be a mapping")
+    keys = set()
+    for sid, patterns in issue_schemes.items():
+        if not isinstance(patterns, list):
+            raise TermError(f"issue {sid}: patterns must be a list")
+        for pattern in patterns:
+            if pattern == "...":
+                continue
+            if not isinstance(pattern, str):
+                raise TermError(f"issue {sid}: pattern must be text")
+            _, functor, arity, _ = parse_statement(pattern)
+            if functor is not None:
+                keys.add(f"{functor}/{arity}")
+    return keys
+
 VERB = re.compile(r"%(?:%|(\[\d+\])?([sv])|.?)")
 
 def template_args(tpl, arity):
@@ -271,6 +292,14 @@ def check_file(path, rel, rep):
         for v in sorted(declared - allvars): rep.add("WARNING", "VARIABLE_UNUSED", where, f"variable {v} is declared but never used")
         unbound = sorted((allvars & declared) - premvars)
         if unbound: rep.add("ERROR", "RANGE_RESTRICTION", where, f"variable(s) {unbound} occur only outside the premises: the engine's validator rejects the scheme, and an argument from it holds statements with variables (contract 1)")
+    try:
+        issue_used = issue_template_keys(d.get("issue_schemes"))
+    except TermError as error:
+        rep.add("ERROR", "ISSUE_PATTERN_SYNTAX", rel, str(error))
+    else:
+        used |= issue_used
+        for key in sorted(issue_used - set(lang)):
+            rep.add("ERROR", "ISSUE_TEMPLATE_MISSING", rel, f"issue pattern needs language template {key!r} in this file")
     for k in sorted(set(lang) - used):
         rep.add("WARNING", "TEMPLATE_UNUSED", rel, f"template {k!r} is not used by any scheme in this file")
     return d
@@ -373,6 +402,10 @@ def cycles(master, rep):
 # that yields anything else fails: a flipped negation, two swapped arguments, a
 # missing or extra statement. Page numbers are those of the compendium (WRM 2008).
 INSTANCES = [
+    ("end_and_means_2", "22.6.2, p.325; one evaluation context", {"X": "money", "C": "retirement"},
+     {"premises": ["means_end(money,retirement)", "more_important_ends(retirement)"], "conclusions": ["ends_important(money,retirement)"]}),
+    ("snob_appeal_ad_populum", "4.7, p.312; explicit acceptance branch", {"A": "luxury_watches_are_desirable", "G": "jet_set", "O": "watch", "P": "wealth"},
+     {"premises": ["property_or_object(jet_set,luxury_watches_are_desirable)", "group_accepted(jet_set,luxury_watches_are_desirable)", "elite_group(jet_set)", "goal_prestige", "accept_property_object(luxury_watches_are_desirable,wealth,watch,jet_set)"], "conclusions": ["should_accept(luxury_watches_are_desirable)"]}),
     ("whole_into_parts", "10.2, p.317; explicit sufficient-direction adaptation", {"X": "machine", "X1": "power_unit", "X2": "control_unit", "X3": "motor", "A": "electrically_live"},
      {"premises": ["whole_of(machine,power_unit,control_unit,motor)", "part_whole(machine,electrically_live,power_unit,control_unit,motor)", "selected_part_sufficient_for_whole(machine,power_unit,electrically_live)", "has_property(power_unit,electrically_live)"], "conclusions": ["has_property(machine,electrically_live)"]}),
     # the eleven corrections of the changelog (2026-11-06)

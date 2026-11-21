@@ -25,6 +25,27 @@ LIBRARY = os.path.join(os.path.dirname(HERE), "walton.yml")
 
 
 class Graphs(unittest.TestCase):
+    def issue_library(self, directory):
+        path = os.path.join(directory, "issue-library.yml")
+        with open(path, "w", encoding="utf-8") as stream:
+            stream.write('''language:
+  p/1: "%s is P."
+  q/1: "%s is Q."
+  act_on_presumption_false/1: "Act as if %s is false."
+  act_on_presumption_true/1: "Act as if %s is true."
+issue_schemes:
+  practical_presumption: ["act_on_presumption_false(A)", "act_on_presumption_true(A)"]
+argument_schemes:
+  - id: sample
+    meta:
+      title: Generator control
+      source: Handwritten generator test
+    variables: [X]
+    premises: [p(X)]
+    conclusions: [q(X)]
+''')
+        return path
+
     def test_every_scheme(self):
         _, blocks, _ = read_master(LIBRARY)
         with tempfile.TemporaryDirectory() as td:
@@ -47,6 +68,30 @@ class Graphs(unittest.TestCase):
         self.assertEqual(["practical_inference", "negative_consequences_reasoning"], [s["id"] for s in d["argument_schemes"]])
         self.assertIn("should_do/2", d["language"])
         self.assertIn("negation", d["issue_schemes"])
+
+    def test_issue_dependencies_survive_argument_selection(self):
+        # Neither presumption predicate occurs in sample, but the
+        # copied issue still needs both declarations for engine validation.
+        with tempfile.TemporaryDirectory() as directory:
+            d = yaml.safe_load(graph(["sample"], self.issue_library(directory)))
+        self.assertIn("act_on_presumption_false/1", d["language"])
+        self.assertIn("act_on_presumption_true/1", d["language"])
+        self.assertEqual(["act_on_presumption_false(A)", "act_on_presumption_true(A)"],
+                         d["issue_schemes"]["practical_presumption"])
+        self.assertEqual(["sample"], [s["id"] for s in d["argument_schemes"]])
+
+    def test_missing_issue_language_is_rejected(self):
+        with tempfile.TemporaryDirectory() as td:
+            d = yaml.safe_load(graph(["sample"], self.issue_library(td)))
+            del d["language"]["act_on_presumption_true/1"]
+            path = os.path.join(td, "missing-issue-language.yml")
+            with open(path, "w", encoding="utf-8") as stream:
+                yaml.safe_dump(d, stream, sort_keys=False, allow_unicode=True)
+            report = Report()
+            check_file(path, "missing-issue-language.yml", report)
+            self.assertTrue(any(item["code"] == "ISSUE_TEMPLATE_MISSING" and
+                                "act_on_presumption_true/1" in item["message"]
+                                for item in report.items))
 
     def test_unknown_scheme(self):
         r = subprocess.run([sys.executable, "-I", os.path.join(HERE, "graph_from_library.py"), "no_such_scheme"],

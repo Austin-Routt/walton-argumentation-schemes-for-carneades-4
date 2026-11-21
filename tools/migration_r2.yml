@@ -292,3 +292,34 @@ changes:
   - {record: practical_inference, kind: arity, old: 'incompatible_consequences(A,G)', new: 'incompatible_consequences(P,A,G)', plan: closure-scope, page: 323, note: 'Supply the actor whose goal is affected by these consequences.'}
   - {record: two_person_practical, kind: arity, old: 'alternative_means(X,Y)', new: 'alternative_means(A,X,Y)', plan: closure-scope, page: 326, note: 'The actor A, not adviser B, owns the available alternative.'}
   - {record: two_person_practical, kind: arity, old: 'other_actions_required(X,Y)', new: 'other_actions_required(A,X,Y)', plan: closure-scope, page: 326, note: 'The actor A, not adviser B, must perform the additional actions; retain contextual X/Y terms.'}
+
+# Source-branch closure: explicit context and the legacy acceptance clause.
+  - record: end_and_means_2
+    kind: arity
+    old: means_end(X)
+    new: means_end(X,C)
+    plan: closure-review
+    page: 325
+    note: The evaluator must supply the applicable context; no context can be invented by a rename.
+  - record: end_and_means_2
+    kind: arity
+    old: more_important_ends
+    new: more_important_ends(C)
+    plan: closure-review
+    page: 325
+    note: Ordinary warrant applies to the same declared evaluation context, not every context in the graph.
+  - record: end_and_means_2
+    kind: arity
+    old: ends_important(X)
+    new: ends_important(X,C)
+    plan: closure-review
+    page: 325
+    note: Conclusion and scheme parameters now include context C.
+  - record: snob_appeal_ad_populum
+    kind: premise
+    old: ''
+    new: group_accepted(G,A)
+    trigger: property_or_object(G,A)
+    plan: closure-review
+    page: 312
+    note: Support the specific acceptance branch; possession of an object is not acceptance of a proposition. No membership/acceptance evidence is manufactured.

@@ -316,3 +316,41 @@ Misspelt identifiers (scheme ids, predicate names, the file name `5_casual-reaso
 - Documented the static evidence burden of entry 16 and independently concurred with the implementer's problem-for-dialogue wording. Added premise, affirmative-exception, mere-question and scope-isolation controls. New variants and changed interpretations await separate source approval.
 
 - Independent review of the new variants also required repairing the legacy three-part positive form: it now requires `selected_part_sufficient_for_whole(X,X1,A)` as an ordinary premise. The source only-if condition alone cannot license the positive conclusion. The old example, validator instance, adverse cases and manual migration now state that distinction.
+
+## Closure follow-up: explicit printed branches
+
+- Entries 4.5–4.7 now have named-respondent actual-goal/ought-goal forms,
+  named-speaker action/policy excuses, and separate acceptance, property and
+  purchase snob appeals. The old snob identifier additionally requires
+  `group_accepted(G,A)` to select the acceptance branch it concludes; its
+  reference example uses a proposition instead of a Rolex object. Saved
+  graphs need explicit acceptance evidence.
+- Entry 20 adds the small-sacrifice branch with its own ordinary conditional
+  warrant. It never infers that warrant from the great-sacrifice conditional.
+  Entry 22.6 adds bad, qualitatively less-bad, reverse-reclassification and
+  not-easy alternatives. Less-bad is distinct from good, and not-easy needs
+  explicit negative evidence. Both reclassification forms now name one
+  evaluation context; the old positive form requires manual context migration.
+- Entry 26.2 adds the true-presumption branch under the opposite seriousness
+  ranking. Two worked examples explicitly declare a binary issue of the two
+  positive practical choice statements, with PE. A proposed global issue was
+  withdrawn after independent review found that merging choice and negation
+  issues would conflate compatible statements. The three CQs have an explicit
+  static evidence/issue-standard contract; no dynamic dialogue controller is
+  claimed and no automatic global choice issue is installed.
+- The change adds 13 records and 49 hand-specified cases. Each new record has
+  an exact `<id>/book` positive case, missing-premise controls and targeted
+  adverse cases. Full-library composition and selected-live-record controls
+  distinguish an argument's own consequence from support supplied by another
+  scheme. The expected check inventory remains for final integrated review.
+- Category and selected-graph generation now retain language dependencies of
+  copied issue patterns. The earlier omission failed actual engine validation
+  during the initial fixed-presumption-issue proposal. A synthetic fixed-issue
+  mutation test rejects the missing-template case even though the global issue
+  was withdrawn. Generated categories and usage examples were regenerated.
+  The additional bad-end propagation cycle is reported openly as
+  one more validator warning; it is not suppressed.
+- Source formulas, branch/adaptation decisions, migration requirements and
+  all three critical-question responsibilities are documented in
+  `docs/source-branch-contracts.md` and the source proposals. New and revised
+  rows remain held for separate independent approval.

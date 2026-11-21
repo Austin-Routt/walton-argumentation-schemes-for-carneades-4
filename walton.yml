@@ -39,6 +39,28 @@ language:
   other_actions_required/3: "For agent %s, realizing goal %s requires additional actions besides %s."
   means_same_in_language/3: "In language %s, word %s means the same as definition %s."
   member_of_accounts/2: "Account %s is a member of the candidate account set %s."
+  goal_good_group_for/2: "%s has the goal of being a good person or a member of group %s with good qualities."
+  ought_goal_good_group/2: "%s ought to have the goal of being a good person or a member of group %s with good qualities."
+  group_acts/2: "Everybody in group %s performs action %s."
+  action_norm/2: "Performing action %s is an acceptable norm of conduct for group %s."
+  policy_norm/2: "Accepting policy %s is an acceptable norm of conduct for group %s."
+  person_group_member/2: "Person %s, the speaker of this excuse, is a member of group %s."
+  morally_justified/2: "For the stated group norm, %s is morally justified in performing action %s."
+  goal_prestige_for/1: "Prestige is an important goal for %s."
+  all_have_property/2: "Every member of group %s has property %s."
+  all_possess_object/2: "Every member of group %s possesses an object of the specified kind %s."
+  membership_if_accepts/3: "If %s accepts proposition or policy %s, then that person will be a member of group %s."
+  membership_if_acquires/3: "If %s acquires property %s, then that person will be a member of group %s."
+  membership_if_buys/3: "If %s buys an object of kind %s, then that person will be a member of group %s."
+  small_sacrifice_warrant/3: "If sacrifice %s made for %s is small, the value %s of that thing is small in this evaluation."
+  small_sacrifice_made/2: "A small sacrifice %s has been made for %s."
+  small_sacrifice_value/2: "%s has a small value %s in the stated evaluation."
+  less_bad_as_means/2: "%s is less bad insofar as it serves the good end %s, compared with evaluating that means without this purpose."
+  means_end/2: "Means %s should be regarded as an end in evaluation context %s."
+  end_means/2: "End %s should be regarded as a means in evaluation context %s."
+  more_important_ends/1: "In evaluation context %s, ends are more important than the means used to achieve them."
+  ends_important/2: "%s should be regarded as highly important in evaluation context %s."
+  act_on_presumption_true/1: "I should act on the presumption that %s is true."
   selected_part_sufficient_for_whole/3: "For whole %s, the selected part %s having property %s is sufficient for the whole to have that property in this application."
   physical_part_of/2: "%s is a physical part of %s."
   degree_comparable/3: "%s and %s are comparable on the same contextually specified degree scale for property %s."
@@ -162,7 +184,6 @@ language:
   doubting_general/1: "There are good reasons for doubting that %s is true."
   easy_to_achieve/1: "%s is easy to achieve."
   elite_group/1: "This group %s is elite, that is, everyone who belongs to it has prestige."
-  ends_important/1: "%s should be regarded as highly important."
   established_rule_property/3: "Generally, according to the established rule %s, if something has property %s, then it also has property %s."
   evaluation/3: "If %s is the case, then an evaluation %s is justified/conduct %s is required."
   evaluation_justified/2: "Evaluation %s is justified/conduct %s is required."
@@ -242,7 +263,6 @@ language:
   legitimate_value/1: "%s is a legitimate value."
   looks_like/2: "%s looks like a %s."
   may_have/2: "%s may have %s, for all we know or can prove."
-  means_end/1: "Means %s should be regarded as an end."
   means_same/2: "%s means the same as %s."
   means_to_end/2: "%s is means to the end %s."
   member_group_quality/3: "If the member %s has quality %s, then %s will have it as well."
@@ -252,7 +272,6 @@ language:
   morally_bad/1: "%s is a morally bad person."
   more_acceptable_bringing/3: "For %s, bringing about %s is more acceptable than not bringing about %s."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
-  more_important_ends/0: "Ends are more important than the means used to achieve them."
   more_justifiable_category/2: "Although %s may look like it can be classified under %s, there are grounds for classifying it under another category, which is more justifiable."
   more_reliable/2: "Another event accounts for sign %s more reliably than candidate %s does."
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
@@ -525,16 +544,21 @@ argument_schemes:
   - id: snob_appeal_ad_populum
     meta:
       title: Snob Appeal Ad Populum Argument
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
-    variables: [A,G,O,P]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - A
+    - G
+    - O
+    - P
     conclusions:
-      - should_accept(A)
+    - should_accept(A)
     premises:
-      - property_or_object(G,A)
-      - elite_group(G)
-      - goal_prestige
-      - accept_property_object(A,P,O,G)
-      
+    - property_or_object(G,A)
+    - group_accepted(G,A)
+    - elite_group(G)
+    - goal_prestige
+    - accept_property_object(A,P,O,G)
+
   - id: appeal_to_vanity_ad_populum
     meta:
       title: Appeal to Vanity Ad Populum Argument
@@ -1053,13 +1077,16 @@ argument_schemes:
   - id: end_and_means_2
     meta:
       title: Practical Reasoning - Argument From Ends and Means 2
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
-    variables: [X]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The
+        New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.'
+    variables:
+    - X
+    - C
     conclusions:
-      - ends_important(X)
+    - ends_important(X,C)
     premises:
-      - means_end(X)
-      - more_important_ends
+    - means_end(X,C)
+    - more_important_ends(C)
 
   - id: end_and_means_3
     meta:
@@ -2303,3 +2330,190 @@ argument_schemes:
     conclusions:
     - must_do(P,A)
 
+# Typed source alternatives; see docs/source-branch-contracts.md.
+  - id: moral_justification_actual_goal
+    meta:
+      title: Moral Justification Ad Populum - Named Respondent with an Actual Goal
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312.
+    variables:
+    - R
+    - G
+    - P
+    conclusions:
+    - should_do(R,accept(P))
+    premises:
+    - good_group(G,P)
+    - goal_good_group_for(R,G)
+  - id: moral_justification_ought_goal
+    meta:
+      title: Moral Justification Ad Populum - Named Respondent with an Ought-Goal
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312.
+    variables:
+    - R
+    - G
+    - P
+    conclusions:
+    - should_do(R,accept(P))
+    premises:
+    - good_group(G,P)
+    - ought_goal_good_group(R,G)
+  - id: moral_excuse_action
+    meta:
+      title: Moral Justification Excuse - Named Speaker and Action
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312.
+    variables:
+    - S
+    - G
+    - X
+    conclusions:
+    - morally_justified(S,X)
+    premises:
+    - group_acts(G,X)
+    - action_norm(X,G)
+    - person_group_member(S,G)
+  - id: moral_excuse_policy
+    meta:
+      title: Moral Justification Excuse - Named Speaker and Policy Acceptance
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312.
+    variables:
+    - S
+    - G
+    - A
+    conclusions:
+    - morally_justified(S,accept(A))
+    premises:
+    - group_accepted(G,A)
+    - policy_norm(A,G)
+    - person_group_member(S,G)
+  - id: snob_appeal_acceptance
+    meta:
+      title: Snob Appeal - Named Respondent Accepting a Proposition
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - R
+    - G
+    - A
+    conclusions:
+    - should_do(R,accept(A))
+    premises:
+    - group_accepted(G,A)
+    - elite_group(G)
+    - goal_prestige_for(R)
+    - membership_if_accepts(R,A,G)
+  - id: snob_appeal_property
+    meta:
+      title: Snob Appeal - Named Respondent Acquiring a Property
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - R
+    - G
+    - P
+    conclusions:
+    - should_do(R,acquire(P))
+    premises:
+    - all_have_property(G,P)
+    - elite_group(G)
+    - goal_prestige_for(R)
+    - membership_if_acquires(R,P,G)
+  - id: snob_appeal_purchase
+    meta:
+      title: Snob Appeal - Named Respondent Buying an Object
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - R
+    - G
+    - O
+    conclusions:
+    - should_do(R,buy(O))
+    premises:
+    - all_possess_object(G,O)
+    - elite_group(G)
+    - goal_prestige_for(R)
+    - membership_if_buys(R,O,G)
+  - id: sacrifice_small
+    meta:
+      title: Argument from a Small Sacrifice - Explicit Small-Value Warrant
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 20, p. 322. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254.'
+    variables:
+    - A
+    - S
+    - V
+    conclusions:
+    - small_sacrifice_value(A,V)
+    premises:
+    - sacrifice_made(A,S)
+    - small_sacrifice_warrant(S,A,V)
+    - small_sacrifice_made(S,A)
+  - id: end_and_means_bad
+    meta:
+      title: Ends and Means - Bad End and Bad Means
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The
+        New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.'
+    variables:
+    - X
+    - Y
+    conclusions:
+    - bad(X)
+    premises:
+    - means_to_end(X,Y)
+    - bad(Y)
+  - id: end_and_means_less_bad
+    meta:
+      title: Ends and Means - Bad Means Made Less Bad by a Good End
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The
+        New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.'
+    variables:
+    - X
+    - Y
+    conclusions:
+    - less_bad_as_means(X,Y)
+    premises:
+    - means_to_end(X,Y)
+    - good(Y)
+    - bad(X)
+  - id: end_and_means_reverse
+    meta:
+      title: Ends and Means - End Reclassified as a Means in One Context
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The
+        New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.'
+    variables:
+    - X
+    - C
+    conclusions:
+    - ¬ends_important(X,C)
+    premises:
+    - end_means(X,C)
+    - more_important_ends(C)
+  - id: end_and_means_difficult
+    meta:
+      title: Ends and Means - Not-Easy Means and a Bad End
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.3, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The
+        New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.'
+    variables:
+    - X
+    - Y
+    conclusions:
+    - bad(Y)
+    premises:
+    - means_to_end(X,Y)
+    - ¬easy_to_achieve(X)
+  - id: negative_practical_true
+    meta:
+      title: Negative Practical Reasoning - Act on the True Presumption
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.2, p. 327. Douglas Walton, Arguments from Ignorance. University
+        Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150.'
+    variables:
+    - A
+    - B
+    - C
+    conclusions:
+    - act_on_presumption_true(A)
+    premises:
+    - not_know_true(A)
+    - presumption(A)
+    - consequences_presumption(A,B)
+    - other_consequences_presumption(A,C)
+    - more_serious_consequences(C,B)
+    assumptions:
+    - sufficient_evidence(A)

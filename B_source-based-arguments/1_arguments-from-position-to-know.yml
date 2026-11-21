@@ -7,6 +7,7 @@ meta:
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   witness_account_biased/2: "The account by witness %s concerning situated proposition %s has relevant bias."
+  act_on_presumption_true/1: "I should act on the presumption that %s is true."
   act_on_presumption_false/1: "I act on the presumption that %s is not true."
   asserts/2: "%s asserts that %s is true."
   based_on_evidence/1: "The assertion %v is based on evidence."
@@ -152,6 +153,26 @@ argument_schemes:
       - more_serious_consequences(B,C)
     assumptions: 
      - sufficient_evidence(A)
+
+  - id: negative_practical_true
+    meta:
+      title: Negative Practical Reasoning - Act on the True Presumption
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.2, p. 327. Douglas Walton, Arguments from Ignorance. University
+        Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150.'
+    variables:
+    - A
+    - B
+    - C
+    conclusions:
+    - act_on_presumption_true(A)
+    premises:
+    - not_know_true(A)
+    - presumption(A)
+    - consequences_presumption(A,B)
+    - other_consequences_presumption(A,C)
+    - more_serious_consequences(C,B)
+    assumptions:
+    - sufficient_evidence(A)
 
   - id: epistemic_ignorance
     meta:

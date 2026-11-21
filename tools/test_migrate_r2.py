@@ -186,6 +186,18 @@ class Migrate(unittest.TestCase):
         self.assertIn(("whole_into_parts_selected", "some_part_sufficient_for_whole(X,S,A)"), rows)
         self.assertIn(("whole_into_parts", "selected_part_sufficient_for_whole(X,X1,A)"), rows)
 
+    def test_source_branch_context_and_acceptance_are_not_invented(self):
+        src = ("assumptions: ['means_end(money)', 'more_important_ends', "
+               "'property_or_object(elite,watch_policy)']\n"
+               "tests:\n  in: ['ends_important(money)']\n")
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("end_and_means_2", "means_end(X,C)"), rows)
+        self.assertIn(("end_and_means_2", "more_important_ends(C)"), rows)
+        self.assertIn(("end_and_means_2", "ends_important(X,C)"), rows)
+        self.assertIn(("snob_appeal_ad_populum", "group_accepted(G,A)"), rows)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

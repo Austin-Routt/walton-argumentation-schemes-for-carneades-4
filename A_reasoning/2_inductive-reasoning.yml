@@ -179,3 +179,5 @@ argument_schemes:
     - whole_partition(X,S)
     - whole_requires_property_part(X,S,A)
     - no_partition_part_property(X,S,A)
+
+# Typed source alternatives; see docs/source-branch-contracts.md.

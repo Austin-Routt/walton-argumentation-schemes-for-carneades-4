@@ -18,10 +18,10 @@ A_reasoning/3_practical-reasoning.yml:
   title: Reasoning - Practical Reasoning
   schemes: [practical_reasoning1, practical_reasoning2, negative_consequences,
             positive_consequences, alternative_cognitive, alternative_normative,
-            sacrifice, practical_inference, practical_necessary_condition,
+            sacrifice, sacrifice_small, practical_inference, practical_necessary_condition,
             practical_sufficient_condition, value_based_practical_reasoning,
-            practical_goal, end_and_means_1,
-            end_and_means_2, end_and_means_3, two_person_practical, waste,
+            practical_goal, end_and_means_1, end_and_means_bad, end_and_means_less_bad,
+            end_and_means_2, end_and_means_reverse, end_and_means_3, end_and_means_difficult, two_person_practical, waste,
             negative_consequences_prudential, pragmatic_alternative, threat,
             ad_baculum, fear, danger, help, distress,
             negative_consequences_reasoning, sunk_costs,
@@ -47,7 +47,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml:
   title: Source-based Arguments - Arguments from Position to Know
   schemes: [position_to_know, witness_testimony, position_to_know_ad_populum,
             expert_opinion_ad_populum, negative_normal_expectations,
-            negative_practical, epistemic_ignorance, memory, appearance,
+            negative_practical, negative_practical_true, epistemic_ignorance, memory, appearance,
             credible_source, expert_opinion, ignorance]
 
 B_source-based-arguments/2_argument-from-commitment.yml:
@@ -63,8 +63,8 @@ B_source-based-arguments/3_attacking-personal-credibility.yml:
 B_source-based-arguments/4_argument-from-popular-acceptance.yml:
   title: Source-based Arguments - Arguments from Popular Acceptance
   schemes: [popular_opinion, pop_scheme, pop_scheme_acceptance, deliberation_ad_populum,
-            moral_justification_ad_populum,
-            moral_justification_ad_populum_excuse, snob_appeal_ad_populum,
+            moral_justification_ad_populum, moral_justification_actual_goal, moral_justification_ought_goal,
+            moral_justification_ad_populum_excuse, moral_excuse_action, moral_excuse_policy, snob_appeal_ad_populum, snob_appeal_acceptance, snob_appeal_property, snob_appeal_purchase,
             appeal_to_vanity_ad_populum, rhetoric_ad_populum,
             common_folk_ad_populum, common_folks_group_ad_populum,
             popular_practice, ethotic1, ethotic2, ethotic_positive_compendium, ethotic_negative_compendium]
