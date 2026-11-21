@@ -488,9 +488,14 @@ func (ag *ArgGraph) GroundedLabelling() Labelling {
 					changed = true
 				} else if stmt.Issue != nil && stmt.Issue.ReadyToBeResolved(l) {
 					// Apply proof standards to label the positions of issues
-					// ready to be resolved
+					// ready to be resolved. Only a label that actually changed
+					// counts as progress: otherwise a statement the issue does
+					// not list would keep the loop running for ever.
+					before := positionLabels(stmt.Issue, l)
 					stmt.Issue.Resolve(l)
-					changed = true
+					if positionLabels(stmt.Issue, l) != before {
+						changed = true
+					}
 				}
 			}
 		}
@@ -499,6 +504,16 @@ func (ag *ArgGraph) GroundedLabelling() Labelling {
 			return l
 		}
 	}
+}
+
+// positionLabels summarizes the labels of the positions of an issue, to see
+// whether resolving the issue changed any of them.
+func positionLabels(issue *Issue, l Labelling) string {
+	s := make([]byte, 0, len(issue.Positions))
+	for _, p := range issue.Positions {
+		s = append(s, byte('0'+int(l[p])))
+	}
+	return string(s)
 }
 
 // An argument graph is inconsistent if more than one position of some
@@ -895,10 +910,12 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 				issue.Id = id
 				ag.Issues[id] = issue
 			} else {
-				// add new positions to the existing issue
+				// add new positions to the existing issue: link both ways,
+				// so that labelling resolves them with the other positions
 				for _, pos := range positions {
 					if pos.Issue == nil {
 						pos.Issue = issue
+						issue.Positions = append(issue.Positions, pos)
 					}
 				}
 			}

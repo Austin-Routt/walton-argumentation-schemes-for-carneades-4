@@ -106,10 +106,6 @@ issues:
     where: engine
     severity: major
     title: "Running Infer twice on a graph panics when a scheme has an exception, and otherwise duplicates every argument with two or more parameters; the duplicate also assumes again an assumption that had been withdrawn"
-  - id: E-ISSUE
-    where: engine
-    severity: major
-    title: "A statement that joins an existing issue is not added to the issue's positions; labelling such a graph never returns"
   - id: E-PARSE
     where: engine
     severity: major
@@ -147,7 +143,6 @@ expected:
   - {issue: E-EXPORT,  scheme: (engine), checks: [yaml-export-can-be-reimported, cli-reads-its-own-yaml, export-keeps-compound-parameters, export-keeps-expected-labels]}
   - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
   - {issue: E-IDEMP,   scheme: (engine), checks: [infer-is-idempotent, infer-twice-with-exception, withdrawn-assumption-survives-second-infer]}
-  - {issue: E-ISSUE,   scheme: (engine), checks: [issue-extension-keeps-positions, labelling-returns-after-issue-gains-position]}
   - {issue: E-PARSE,   scheme: (engine), checks: [malformed-statement-is-an-error]}
   - {issue: X-ASSUME,  scheme: (engine), checks: [questioned-assumption-is-not-assumed]}
   - {issue: E-MATCH,   scheme: (engine), checks: [wrong-arity-fact-is-harmless, premise-order-does-not-matter]}
