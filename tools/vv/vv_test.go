@@ -15,11 +15,11 @@
 package waltonvv
 
 import (
-	"strings"
 	"encoding/json"
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 	"sync"
 	"testing"
 
@@ -120,7 +120,7 @@ func summary() {
 
 // TestEngine checks the engine through its Go API, independently of the scheme files.
 func TestEngine(t *testing.T) {
-	for _, r := range vvlib.EngineChecks() {
+	for _, r := range append(vvlib.EngineChecks(), vvlib.VersionChecks()...) {
 		r := r
 		t.Run(r.Check, func(t *testing.T) { judge(t, []vvlib.Result{r}) })
 	}

@@ -21,8 +21,10 @@ cd tools/vv
 go test                  # about 35 seconds
 ```
 
-CI runs `tools/vv/engine-tests.sh`, then `tools/vv/run.sh`, on every push and pull request
-(`.github/workflows/verify.yml`).
+CI runs `tools/vv/engine-tests.sh`, then `tools/vv/run.sh` with `VV_STRICT=1`, on every
+push and pull request (`.github/workflows/verify.yml`), under Go 1.24 and under the
+current stable Go; its job "toolchains" compares the two runs check by check with
+`compare_results.py`.
 
 Needs Go, `unzip`, Python 3 with PyYAML, and network access to the Go module
 proxy the first time (for `gopkg.in/yaml.v2` and `go-yaml2json`, the engine's

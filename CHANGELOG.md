@@ -2,6 +2,13 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — release R1, a preview (library 0.1.0, engine 4.3.1+walton.1)
+
+* Gate R of `PLAN.md`: CI runs the suite strictly (`VV_STRICT=1`); every one of its 7,164 checks has to pass, and the engines' own tests pass, also under the race detector. R1 accepts the engine's profile (`docs/contracts.md`); the library is a preview until Phase 5 has checked its records against the book.
+* The library and the engine are versioned apart: `meta.version` in `walton.yml` and in every category file (0.1.0), and `third_party/VERSION` (4.3.1+walton.1: Carneades 4.3.1 and GoCHR at the commits of `sources.lock`, with this repository's fixes), which `carneades` prints. `engine-version-recorded` and `library-version-recorded` check both.
+* CI compares the results of Go 1.24 and the current stable Go check by check (`tools/vv/compare_results.py`, job "toolchains").
+* The rules for writing terms at the end of `PLAN.md` say what the engine does now: an unquoted date is invalid input, quoted strings keep their spaces, `is`, `true` and `false` are rejected as predicate names.
+
 ## 2026-11-21 — interchange, reference cases and the ported checks (`PLAN.md` 4.1 to 4.5, 0.2, 0.3)
 
 * The YAML export (and the JSON export, which goes through it) writes each argument's parameters one per line and quoted where YAML needs it: a flow list split `liable(acme,smith)` at its comma. Statement ids in premises, conclusions, undercutters and assumptions are quoted the same way.

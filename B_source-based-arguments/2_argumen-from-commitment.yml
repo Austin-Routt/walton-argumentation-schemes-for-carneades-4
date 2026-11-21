@@ -3,6 +3,7 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Commitment"
+  version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   also_committed/2: "Generally, when an arguer is committed to %s, it can be inferred that he is also committed to %s."

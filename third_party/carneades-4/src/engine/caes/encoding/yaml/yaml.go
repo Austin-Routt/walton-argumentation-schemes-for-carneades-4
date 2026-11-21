@@ -1939,7 +1939,6 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 		}
 	}
 
-
 	//	// Write out the theory, as a YAML comment, for debugging
 	//	t := caesAg.Theory
 	//	if t == nil {

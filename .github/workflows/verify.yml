@@ -3,9 +3,11 @@
 # their archives, and the suite in tools/vv, which runs the engine in
 # third_party/ on every scheme.
 #
-# A green run means: no check fails that tools/vv/known_issues.yml does not
-# list, and no listed check has started to pass. It is not a claim that the
-# engine or the library is stable; see PLAN.md for the gates.
+# The run is strict (VV_STRICT=1, the release gate of PLAN.md): every check
+# has to pass, a check listed in tools/vv/known_issues.yml included. The
+# ledger is empty since Phase 4, so the ordinary and the strict run agree.
+# The job "toolchains" compares the results of the two Go versions check by
+# check (PLAN.md Phase 6).
 name: verify
 on:
   push:
@@ -41,11 +43,30 @@ jobs:
       - name: tools/vv/run.sh
         env:
           GOFLAGS: -mod=mod
+          VV_STRICT: "1"
           VV_RESULTS: ${{ github.workspace }}/vv-results.jsonl
         run: tools/vv/run.sh
+      - run: go version | tee go-version.txt
+        if: always()
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: vv-results-go-${{ matrix.go }}
-          path: vv-results.jsonl
+          path: |
+            vv-results.jsonl
+            go-version.txt
           if-no-files-found: ignore
+  toolchains:
+    name: the two Go versions agree check by check
+    needs: vv
+    if: always()
+    runs-on: ubuntu-latest
+    continue-on-error: true   # like the stable job: an early warning, not a gate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: results
+      - run: |
+          cat results/vv-results-go-1.24/go-version.txt results/vv-results-go-stable/go-version.txt
+          python3 tools/vv/compare_results.py results/vv-results-go-1.24/vv-results.jsonl results/vv-results-go-stable/vv-results.jsonl

@@ -3,6 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Defeasible Rule-based Arguments"
+  version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   addressee_of/2: "%s is subject to the rule concerning %s."

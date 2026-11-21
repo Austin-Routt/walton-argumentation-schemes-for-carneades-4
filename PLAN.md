@@ -201,11 +201,11 @@ The reading and the ledger start now; edits wait for gate S. `go run ./cmd/schem
 ## Rules for terms (for users of the library)
 
 * Constants start with a lower-case letter; a word starting with a capital is a variable, and a non-ground assumption blocks evaluation.
-* Write a date as a quoted string: `"1990-05-17"` survives. Unquoted it is an arithmetic expression, and the argument is built for `1968`. Use underscores in names for the same reason.
-* No quoted strings containing spaces: `"it rains"` is cut off at the space when the file is read.
+* Write a date as a quoted string: `"1990-05-17"` survives. Unquoted it is arithmetic, which a statement may not carry, and the file is refused as invalid input (contract 1). Use underscores in names for the same reason.
+* Quoted strings may contain spaces: `"it rains"` survives (E-TERMS, fixed in Phase 2).
 * In YAML, write lists of terms one per line. `[p(a,b)]` is read as the two strings `p(a` and `b)`.
-* Do not use `is` as a predicate name: in a conclusion the rule engine executes it.
-* Do not assume both a statement and its negation: `check` and `eval` report such a graph as an inconsistent context (exit 3).
+* `is`, `true` and `false` are no predicate names: the validator rejects them (contract 7).
+* Do not stipulate both a statement and its negation: `check` and `eval` report such a graph as an inconsistent context (exit 3). A scheme's default assumption yields to a stipulated contrary (contract 5).
 
 ## Implementation status
 
