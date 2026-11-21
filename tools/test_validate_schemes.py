@@ -119,7 +119,7 @@ class Mutations(unittest.TestCase):
     """A deliberately wrong scheme must not survive the documented workflow."""
     def test_mutations(self):
         for name, sid, old, new in [
-            ("danger_polarity", "danger", "      - should_not(X)", "      - ¬should_not(X)"),
+            ("danger_polarity", "danger", "      - ¬ought_to_bring_about(X)", "      - ought_to_bring_about(X)"),
             ("division_roles", "division_generic", "      - all_parts_property(A,P)", "      - all_parts_property(P,A)"),
             ("precedent_negation_dropped", "from_precedent", "      - ¬has_property(A,G)", "      - has_property(A,G)"),
             ("sacrifice_arguments_swapped", "sacrifice", "      - sacrifice_value(A,V)", "      - sacrifice_value(V,A)"),

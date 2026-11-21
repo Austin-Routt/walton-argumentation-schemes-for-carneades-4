@@ -9,13 +9,13 @@ cases:
   - name: group_2/book
     source: "21.2, p. 322"
     assumptions:
-      - group_quality(senate,wise)
+      - has_property(senate,wise)
       - group_member(ann,senate)
       - group_member_quality(senate,wise,ann)
     arguments:
       - group_2(senate,wise,ann)
     in:
-      - has(ann,wise)
+      - has_property(ann,wise)
     variants: true
   - name: division_generic/book
     source: "10.1, p. 317"
@@ -34,7 +34,7 @@ cases:
     arguments:
       - group_1(team,fast,ann)
     in:
-      - has(team,fast)
+      - has_property(team,fast)
     variants: true
   - name: composition_generic/book
     source: "9.1, p. 316"
@@ -49,22 +49,22 @@ cases:
     source: "9.2, p. 316"
     assumptions:
       - species_of(rose,flower)
-      - species_property(flower,beautiful)
+      - has_property(flower,beautiful)
     arguments:
       - part_in_whole(rose,flower,beautiful)
     in:
-      - part_property(rose,beautiful)
+      - has_property(rose,beautiful)
     variants: true
   - name: whole_into_parts/book
     source: "10.2, p. 317"
     assumptions:
       - whole_of(team,ann,bob,cy)
       - part_whole(team,strong,ann,bob,cy)
-      - part_is(ann,strong)
+      - has_property(ann,strong)
     arguments:
       - whole_into_parts(team,ann,bob,cy,strong)
     in:
-      - whole_is(team,strong)
+      - has_property(team,strong)
     variants: true
   - name: practical_reasoning1/book
     source: "upstream: Atkinson and Bench-Capon (2007); Hal and Carla, p. 322"
@@ -113,11 +113,11 @@ cases:
     source: "13.1, p. 318"
     assumptions:
       - can_be_case(rain,snow)
-      - plausibly_not_case(rain)
+      - ¬rain
     arguments:
       - alternative_cognitive(rain,snow)
     in:
-      - plausibly_case(snow)
+      - snow
     variants: true
   - name: alternative_normative/book
     source: "13.2, p. 318"
@@ -127,7 +127,7 @@ cases:
     arguments:
       - alternative_normative(stop,go)
     in:
-      - not_required(go)
+      - ¬is_required(go)
     variants: true
   - name: sacrifice/book
     source: "20, p. 322"
@@ -143,12 +143,12 @@ cases:
   - name: practical_inference/book
     source: "22.1, p. 323"
     assumptions:
-      - have_goal(health)
-      - action_realize_goal(exercise,health)
+      - goal_of_agent(me,health)
+      - means_to_end(exercise,health)
     arguments:
-      - practical_inference(exercise,health)
+      - practical_inference(exercise,health,me)
     in:
-      - carry_out_action(exercise)
+      - should_do(me,exercise)
     variants: true
   - name: practical_necessary_condition/book
     source: "22.2, p. 323"
@@ -161,7 +161,7 @@ cases:
     arguments:
       - practical_necessary_condition(study,pass_exam,me,ways_to_pass)
     in:
-      - bringing_about_action(study)
+      - should_do(me,study)
     variants: true
   - name: practical_sufficient_condition/book
     source: "22.3, p. 323"
@@ -174,7 +174,7 @@ cases:
     arguments:
       - practical_sufficient_condition(study,pass_exam,me,ways_to_pass)
     in:
-      - bringing_about_action(study)
+      - should_do(me,study)
     variants: true
   - name: value_based_practical_reasoning/book
     source: "22.4, p. 324; Hal and Carla, p. 322"
@@ -185,13 +185,13 @@ cases:
     arguments:
       - value_based_practical_reasoning(hal,survival,life,take_insulin)
     in:
-      - should_bring_about(hal,take_insulin)
+      - should_do(hal,take_insulin)
     variants: true
   - name: practical_goal/book
     source: "22.5, p. 325"
     assumptions:
       - contributing_action(exercise,health)
-      - person_goal(ann,health)
+      - goal_of_agent(ann,health)
     arguments:
       - practical_goal(ann,exercise,health)
     in:
@@ -235,7 +235,7 @@ cases:
     arguments:
       - two_person_practical(ann,bob,trip,ticket)
     in:
-      - should_carry_out(ann,ticket)
+      - should_do(ann,ticket)
     variants: true
   - name: waste/book
     source: "24, p. 326"
@@ -265,7 +265,7 @@ cases:
     arguments:
       - pragmatic_alternative(pay_ransom,hostage_harmed)
     in:
-      - do_other(pay_ransom)
+      - ought_to_bring_about(pay_ransom)
     variants: true
   - name: threat/book
     source: "35, p. 333"
@@ -276,7 +276,7 @@ cases:
     arguments:
       - threat(strike,layoffs)
     in:
-      - not_bring_about(strike)
+      - ¬ought_to_bring_about(strike)
     variants: true
   - name: ad_baculum/book
     source: "35.1, p. 333"
@@ -286,7 +286,7 @@ cases:
     arguments:
       - ad_baculum(pay,lawsuit)
     in:
-      - do_other(pay)
+      - ought_to_bring_about(pay)
     variants: true
   - name: fear/book
     source: "36, pp. 333-334"
@@ -308,7 +308,7 @@ cases:
     arguments:
       - danger(smoke,cancer)
     in:
-      - should_not(smoke)
+      - ¬ought_to_bring_about(smoke)
     variants: true
   - name: help/book
     source: "38, p. 334"
@@ -320,7 +320,7 @@ cases:
     arguments:
       - help(ann,bob,lift)
     in:
-      - carry_out(bob,lift)
+      - should_do(bob,lift)
     variants: true
   - name: distress/book
     source: "39, pp. 334-335"
@@ -330,17 +330,17 @@ cases:
     arguments:
       - distress(bob,food,ann)
     in:
-      - bring_relieve(bob,food)
+      - should_do(bob,food)
     variants: true
   - name: negative_consequences_reasoning/book
     source: "33.3, p. 332"
     assumptions:
-      - agent_bring_about(tax_rise,recession)
-      - bad_for_goals(recession)
+      - agent_bring_about(me,tax_rise,recession)
+      - bad_for_goals(me,recession)
     arguments:
-      - negative_consequences_reasoning(tax_rise,recession)
+      - negative_consequences_reasoning(tax_rise,recession,me)
     in:
-      - should_not_bring_about(tax_rise)
+      - ¬should_do(me,tax_rise)
     variants: true
   - name: sunk_costs/book
     source: "25, pp. 326-327"
@@ -355,12 +355,12 @@ cases:
   - name: sign/book
     source: "30, p. 329"
     assumptions:
-      - finding_true(bear_tracks)
+      - bear_tracks
       - indicated_true(bear_passed,bear_tracks)
     arguments:
       - sign(bear_tracks,bear_passed)
     in:
-      - true_in_situation(bear_passed)
+      - bear_passed
     variants: true
   - name: abductive_backward/book
     source: "31.1, p. 329"
@@ -407,7 +407,7 @@ cases:
     assumptions:
       - agent_event(bob)
       - event_quality(greedy)
-      - agent_quality(bob,greedy)
+      - has_property(bob,greedy)
     arguments:
       - retroductive(bob,greedy)
     in:
@@ -589,7 +589,7 @@ cases:
     source: "3, p. 310"
     assumptions:
       - position_to_know(ann,street)
-      - in_domain(street,red_light_run)
+      - in_domain(red_light_run,street)
       - believes(ann,red_light_run)
       - asserts(ann,red_light_run)
     arguments:
@@ -605,7 +605,7 @@ cases:
     arguments:
       - position_to_know_ad_populum(safe_beach,locals)
     in:
-      - plausibly_true(safe_beach)
+      - safe_beach
     variants: true
   - name: expert_opinion_ad_populum/book
     source: "4.3, p. 312"
@@ -615,13 +615,13 @@ cases:
     arguments:
       - expert_opinion_ad_populum(vaccines_safe,doctors)
     in:
-      - therefore_true(vaccines_safe)
+      - vaccines_safe
     variants: true
   - name: negative_normal_expectations/book
     source: "26.1, p. 327"
     assumptions:
       - normal_true(alarm_silent)
-      - case_not_true(alarm_silent)
+      - ¬alarm_silent
     arguments:
       - negative_normal_expectations(alarm_silent)
     in:
@@ -651,7 +651,7 @@ cases:
     arguments:
       - epistemic_ignorance(spy,staff,files)
     in:
-      - plausible_false(staff,spy)
+      - ¬spy
     variants: true
   - name: memory/book
     source: "60, p. 346"
@@ -762,7 +762,7 @@ cases:
     arguments:
       - ad_hominem(bob,arg1,tax_cut)
     in:
-      - bad_not_accepted(bob,arg1)
+      - argument_not_accepted(bob,arg1)
     variants: true
   - name: pragmatic_inconsistency/book
     source: "43, pp. 336-337"
@@ -819,7 +819,7 @@ cases:
   - name: pop_scheme/book
     source: "4.1, p. 311"
     assumptions:
-      - reference_group_accepted(scientists,earth_round)
+      - group_accepted(scientists,earth_round)
     arguments:
       - pop_scheme(earth_round,scientists)
     in:
@@ -828,7 +828,7 @@ cases:
   - name: pop_scheme_acceptance/book
     source: "4.1, p. 311"
     assumptions:
-      - reference_group_accepted(scientists,earth_round)
+      - group_accepted(scientists,earth_round)
     arguments:
       - pop_scheme_acceptance(earth_round,scientists)
     in:
@@ -842,7 +842,7 @@ cases:
     arguments:
       - deliberation_ad_populum(guilty_verdict,jury)
     in:
-      - plausibly_true(guilty_verdict)
+      - guilty_verdict
     variants: true
   - name: moral_justification_ad_populum/book
     source: "4.5, p. 312"
@@ -885,7 +885,7 @@ cases:
     arguments:
       - appeal_to_vanity_ad_populum(stars,brand_x,buy_brand_x)
     in:
-      - carry_out_action(buy_brand_x)
+      - ought_to_bring_about(buy_brand_x)
     variants: true
   - name: rhetoric_ad_populum/book
     source: "4.9, p. 313"
@@ -1156,13 +1156,13 @@ cases:
   - name: gradualism/book
     source: "48, p. 339"
     assumptions:
-      - true_acceptable(a)
+      - a
       - sequence(a,b1,bn,c)
       - must_proper(a,c)
     arguments:
       - gradualism(a,b1,bn,c)
     in:
-      - true_acceptable(c)
+      - c
     variants: true
   - name: precedent_slippery_slope/book
     source: "50, p. 340"
@@ -1179,7 +1179,7 @@ cases:
     source: "51, pp. 340-341"
     assumptions:
       - beyond_contention(a0,bald)
-      - all_has(a0,bald,a1)
+      - also_has(a0,bald,a1)
       - reapplication_sequence(a0,an,bald)
     arguments:
       - sorites_slippery_slope(an,bald,a1,a0)
@@ -1189,10 +1189,10 @@ cases:
   - name: verbal_slippery_slope/book
     source: "52, p. 341"
     assumptions:
-      - individual_property(a1,bald)
-      - individuals_property(a1,bald,a2)
+      - has_property(a1,bald)
+      - also_has(a1,bald,a2)
       - vague_property(bald,a1,an)
-      - individual_property_false(an,bald)
+      - ¬has_property(an,bald)
     arguments:
       - verbal_slippery_slope(a1,a2,an,bald)
     in:
@@ -1227,7 +1227,7 @@ cases:
     arguments:
       - verbal_classification_vagueness(arg1,heap)
     in:
-      - vagueness_rejected(arg1)
+      - rejected_as_deficient(arg1)
     variants: true
   - name: verbal_classification_arbitrariness/book
     source: "17, p. 320"
@@ -1238,5 +1238,5 @@ cases:
     arguments:
       - verbal_classification_arbitrariness(arg1,poverty)
     in:
-      - arbitrary_rejected(arg1)
+      - rejected_as_deficient(arg1)
     variants: true

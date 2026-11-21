@@ -14,7 +14,6 @@ language:
   believes/2: "%s believes %s to be true."
   biased/1: "Arguer %s is biased."
   bivalent/1: "Every proposition in %s is either true or false."
-  case_not_true/1: "It is not the case that %s is true."
   consequences_presumption/2: "If I act on the presumption that %s is true, and it is not true, consequences %s will follow."
   credible/1: "%s is credible as an expert source."
   credible_source/2: "Witness %s is a credible source for the domain %s."
@@ -38,8 +37,6 @@ language:
   not_originally_believed/1: "%s was not originally believed for other reasons."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
-  plausible_false/2: "Subject to further investigations in %s it is plausible to presume that %s is false."
-  plausibly_true/1: "%s is plausibly true."
   position_to_know/2: "%s is in a position to know about things in a certain subject domain %s."
   position_to_know_group/2: "Group %s is in a special position to know that %s is true."
   presumption/1: "I have to act on the presumption that %s is true or not true."
@@ -50,7 +47,6 @@ language:
   special_not_in/2: "%s is not in %s."
   special_proposition/2: "%s is a special type of proposition such that, if it were true, it would normally or usually be expected to be in %s."
   sufficient_evidence/1: "The search for evidence about whether %s is true has progressed sufficiently."
-  therefore_true/1: "%s is true."
   true_propositions_contained/2: "It has not been established that all the true propositions in %s are contained in %s."
   uninvestigated/1: "The truth of %s has not been sufficiently investigated."
   untrustworthy/1: "%s is untrustworthy."
@@ -84,7 +80,7 @@ argument_schemes:
     conclusions: [S]
     premises:
       - position_to_know(W,D)
-      - in_domain(D,S)
+      - in_domain(S,D)
       - believes(W,S)
       - asserts(W,S)
     assumptions:
@@ -101,7 +97,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.2, p. 311."
     variables: [A,G]
     conclusions:
-      - plausibly_true(A)
+      - A
     premises:
       - group_accepted(G,A)
       - position_to_know_group(G,A)
@@ -112,7 +108,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.3, p. 312."
     variables: [A,G]
     conclusions:
-      - therefore_true(A)
+      - A
     premises:
       - group_accepted(G,A)
       - expert_in_knowledge(G)
@@ -126,7 +122,7 @@ argument_schemes:
       - not_normal(A)
     premises:
       - normal_true(A)
-      - case_not_true(A)
+      - ¬A
     exceptions:
       - uninvestigated(A)
 
@@ -152,7 +148,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 27, p. 328. Douglas Walton , \"Nonfallacious Arguments from Ignorance.\" American Philosophical Quarterly 29 (1992), p. 386."
     variables: [A,D,K]
     conclusions:
-      - plausible_false(D,A)
+      - ¬A
     premises:
       - true_propositions_contained(D,K)
       - special_proposition(A,K)

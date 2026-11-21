@@ -15,7 +15,6 @@ language:
   background/1: "%s is an ordinary person, that is, shares a common background with the audience."
   bad_moral_character/1: "%s has bad moral character."
   being_credible/1: "You ought to take what %s says as being more credible or acceptable."
-  carry_out_action/1: "You should carry out action %s."
   character_is_relevant/1: "Character is relevant for evaluating the plausibility of the assertion: %s"
   deliberate/2: "Group %s has deliberated intelligently and extensively on whether to accept proposition %s or not."
   doubting_general/1: "There are some strong reasons for doubting %s is generally true."
@@ -33,12 +32,11 @@ language:
   group_member/1: "The speaker is a member of %s."
   have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
   morally_acceptable_action/2: "My doing %s or accepting %s is morally justified as an acceptable action or policy."
+  ought_to_bring_about/1: "You should (ought to, practically speaking) bring about %s."
   out_group_not_accept/2: "If you do not accept %s, you will be out of this group %s."
-  plausibly_true/1: "%s is plausibly true."
   popular_practice/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
   property_or_object/2: "Everybody in this group %s accepts %s or has some property, or possesses some object."
   reason_in_favor/1: "There is a reason in favor of %s."
-  reference_group_accepted/2: "Everybody in particular group %s accepts %s."
   respondent_member/1: "You, the respondent are a member of this audience, group %s."
   should_accept/1: "You should accept %s."
   to_think_acceptable/1: "That gives a reason to think that %s is acceptable."
@@ -72,7 +70,7 @@ argument_schemes:
     conclusions:
       - A
     premises:
-      - reference_group_accepted(G,A)
+      - group_accepted(G,A)
 
   - id: pop_scheme_acceptance
     meta:
@@ -82,7 +80,7 @@ argument_schemes:
     conclusions:
       - should_accept(A)
     premises:
-      - reference_group_accepted(G,A)
+      - group_accepted(G,A)
 
   - id: deliberation_ad_populum 
     meta:
@@ -90,7 +88,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.4, p. 312."
     variables: [A,G]
     conclusions:
-      - plausibly_true(A)
+      - A
     premises:
       - group_accepted(G,A)
       - deliberate(G,A)
@@ -137,7 +135,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.8, p. 312."
     variables: [G,A,X]
     conclusions:
-      - carry_out_action(X)
+      - ought_to_bring_about(X)
     premises:
       - admired_people(G,A)
       - group_action(X,G)

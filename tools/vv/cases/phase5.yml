@@ -99,7 +99,7 @@ cases:
     arguments:
       - verbal_classification_vagueness(arg1,heap)
     in:
-      - vagueness_rejected(arg1)
+      - rejected_as_deficient(arg1)
   - name: verbal_classification_vagueness/adverse-precision-said-of-the-property
     source: "16, pp. 319-320"
     assumptions:
@@ -108,7 +108,7 @@ cases:
       - property_vagueness(heap,arg1)
     no_arguments: [verbal_classification_vagueness]
     not_in:
-      - vagueness_rejected(arg1)
+      - rejected_as_deficient(arg1)
   - name: verbal_classification_vagueness/exception
     source: "16, p. 320, CQ3"
     assumptions:
@@ -119,7 +119,7 @@ cases:
     arguments:
       - verbal_classification_vagueness(arg1,heap)
     not_in:
-      - vagueness_rejected(arg1)
+      - rejected_as_deficient(arg1)
 
   # 17 verbal_classification_arbitrariness (p. 320): CQ3, why arbitrariness is
   # a problem in this dialogue, is an exception, as for 16.
@@ -132,7 +132,7 @@ cases:
     arguments:
       - verbal_classification_arbitrariness(arg1,poverty)
     in:
-      - arbitrary_rejected(arg1)
+      - rejected_as_deficient(arg1)
   - name: verbal_classification_arbitrariness/adverse-arbitrariness-harmless
     source: "17, p. 320, CQ3"
     assumptions:
@@ -143,7 +143,7 @@ cases:
     arguments:
       - verbal_classification_arbitrariness(arg1,poverty)
     not_in:
-      - arbitrary_rejected(arg1)
+      - rejected_as_deficient(arg1)
 
   # --- batch 2: entries 18 to 30 --------------------------------------------
   # 23 two_person_practical (pp. 325-326): the exceptions of CQ2 and CQ3 were
@@ -157,7 +157,7 @@ cases:
     arguments:
       - two_person_practical(ann,bob,trip,ticket)
     in:
-      - should_carry_out(ann,ticket)
+      - should_do(ann,ticket)
   - name: two_person_practical/adverse-alternative-means
     source: "23, p. 326, CQ2"
     assumptions:
@@ -165,7 +165,7 @@ cases:
       - situation_necessity(bob,ticket,trip,ann)
       - alternative_means(trip,ticket)
     not_in:
-      - should_carry_out(ann,ticket)
+      - should_do(ann,ticket)
   - name: two_person_practical/old-binding-does-not-undercut
     source: "23, p. 326, CQ2"
     assumptions:
@@ -173,7 +173,7 @@ cases:
       - situation_necessity(bob,ticket,trip,ann)
       - alternative_means(ann,trip)
     in:
-      - should_carry_out(ann,ticket)
+      - should_do(ann,ticket)
   - name: two_person_practical/adverse-side-effects
     source: "23, p. 326, CQ3"
     assumptions:
@@ -181,7 +181,7 @@ cases:
       - situation_necessity(bob,ticket,trip,ann)
       - side_effect_other_act(ticket,ann)
     not_in:
-      - should_carry_out(ann,ticket)
+      - should_do(ann,ticket)
   - name: two_person_practical/adverse-other-actions-required
     source: "23, p. 326, CQ5"
     assumptions:
@@ -189,7 +189,7 @@ cases:
       - situation_necessity(bob,ticket,trip,ann)
       - other_actions_required(trip,ticket)
     not_in:
-      - should_carry_out(ann,ticket)
+      - should_do(ann,ticket)
 
   # 24 waste (p. 326): CQ2, a reassessment from now on with past losses set
   # aside, is an exception.
@@ -218,7 +218,7 @@ cases:
     source: "26.1, p. 327"
     assumptions:
       - normal_true(alarm_silent)
-      - case_not_true(alarm_silent)
+      - ¬alarm_silent
     arguments:
       - negative_normal_expectations(alarm_silent)
     in:
@@ -227,7 +227,7 @@ cases:
     source: "26.1, p. 327, CQ1"
     assumptions:
       - normal_true(alarm_silent)
-      - case_not_true(alarm_silent)
+      - ¬alarm_silent
       - uninvestigated(alarm_silent)
     not_in:
       - not_normal(alarm_silent)
@@ -293,7 +293,7 @@ cases:
     assumptions:
       - agent_event(ann)
       - event_quality(greedy)
-      - agent_quality(ann,greedy)
+      - has_property(ann,greedy)
     arguments:
       - retroductive(ann,greedy)
     in:
@@ -303,7 +303,7 @@ cases:
     assumptions:
       - agent_event(ann)
       - event_quality(greedy)
-      - agent_quality(ann,greedy)
+      - has_property(ann,greedy)
     questioned:
       - action_fits_quality(ann)
     not_in:
@@ -349,21 +349,21 @@ cases:
   - name: negative_consequences_reasoning/positive
     source: "33.3, p. 332"
     assumptions:
-      - agent_bring_about(tax,recession)
-      - bad_for_goals(recession)
+      - agent_bring_about(me,tax,recession)
+      - bad_for_goals(me,recession)
     arguments:
-      - negative_consequences_reasoning(tax,recession)
+      - negative_consequences_reasoning(tax,recession,me)
     in:
-      - should_not_bring_about(tax)
+      - ¬should_do(me,tax)
   - name: negative_consequences_reasoning/adverse-likelihood-questioned
     source: "33.3, pp. 332-333, CQ1"
     assumptions:
-      - agent_bring_about(tax,recession)
-      - bad_for_goals(recession)
+      - agent_bring_about(me,tax,recession)
+      - bad_for_goals(me,recession)
     questioned:
       - outcome_likely(tax,recession)
     not_in:
-      - should_not_bring_about(tax)
+      - ¬should_do(me,tax)
 
   # 38 help (p. 334): CQ2 and CQ3 restate premises 3 and 4; the assumption
   # possible_carry_out(B,X) and the exception greater_side_effects(X), which
@@ -378,7 +378,7 @@ cases:
     arguments:
       - help(ann,bob,lift)
     in:
-      - carry_out(bob,lift)
+      - should_do(bob,lift)
   - name: help/adverse-help-questioned
     source: "38, p. 334, CQ1"
     assumptions:
@@ -389,7 +389,7 @@ cases:
     questioned:
       - action_will_help(lift,ann)
     not_in:
-      - carry_out(bob,lift)
+      - should_do(bob,lift)
   - name: help/adverse-premise-missing
     source: "38, p. 334, CQ3"
     assumptions:
@@ -398,7 +398,7 @@ cases:
       - can_carry_out(bob,lift)
     no_arguments: [help]
     not_in:
-      - carry_out(bob,lift)
+      - should_do(bob,lift)
 
   # 39 distress (pp. 334-335): the relief is of x's distress, relieve(B,X,A);
   # the record did not say whose. CQ1 restates premise 1; the assumption
@@ -411,7 +411,7 @@ cases:
     arguments:
       - distress(bob,lift,ann)
     in:
-      - bring_relieve(bob,lift)
+      - should_do(bob,lift)
   - name: distress/adverse-someone-elses-distress
     source: "39, p. 334"
     assumptions:
@@ -419,7 +419,7 @@ cases:
       - relieve(bob,lift,cat)
     no_arguments: [distress]
     not_in:
-      - bring_relieve(bob,lift)
+      - should_do(bob,lift)
   - name: distress/adverse-side-effects
     source: "39, p. 335, CQ4"
     assumptions:
@@ -427,7 +427,7 @@ cases:
       - relieve(bob,lift,ann)
       - great_side_effects(bob,lift)
     not_in:
-      - bring_relieve(bob,lift)
+      - should_do(bob,lift)
 
   # 40 commitment1, commitment2 (p. 335): CQ1's first half restates the
   # commitment premise, and the assumption commitment_support_evidence(A,X),
@@ -479,7 +479,7 @@ cases:
       - advocates_conclusion(bob,arg1,tax_cut)
     questioned: [attack_well_supported]
     in:
-      - bad_not_accepted(bob,arg1)
+      - argument_not_accepted(bob,arg1)
 
   # 43 pragmatic_inconsistency (pp. 336-337): CQ2 restates premise 2, and the
   # assumption descriptions_opposite(A,S) goes; CQ3, why the inconsistency is
@@ -774,7 +774,7 @@ cases:
     arguments:
       - epistemic_ignorance(spy,staff,files)
     in:
-      - plausible_false(staff,spy)
+      - ¬spy
   - name: epistemic_ignorance/adverse-premise-5-missing
     source: "27, p. 328"
     assumptions:
@@ -784,17 +784,17 @@ cases:
       - special_not_in(spy,files)
     no_arguments: [epistemic_ignorance]
     not_in:
-      - plausible_false(staff,spy)
+      - ¬spy
 
   # 52 verbal_slippery_slope (p. 341): one property F throughout; premise 2
   # had a property of its own.
   - name: verbal_slippery_slope/positive
     source: "52, p. 341"
     assumptions:
-      - individual_property(a1,bald)
-      - individuals_property(a1,bald,a2)
+      - has_property(a1,bald)
+      - also_has(a1,bald,a2)
       - vague_property(bald,a1,an)
-      - individual_property_false(an,bald)
+      - ¬has_property(an,bald)
     arguments:
       - verbal_slippery_slope(a1,a2,an,bald)
     in:
@@ -802,10 +802,10 @@ cases:
   - name: verbal_slippery_slope/adverse-another-property-in-premise-2
     source: "52, p. 341"
     assumptions:
-      - individual_property(a1,bald)
-      - individuals_property(a1,tall,a2)
+      - has_property(a1,bald)
+      - also_has(a1,tall,a2)
       - vague_property(bald,a1,an)
-      - individual_property_false(an,bald)
+      - ¬has_property(an,bald)
     no_arguments: [verbal_slippery_slope]
     not_in:
       - not_has_property(a1,bald)
@@ -823,7 +823,7 @@ cases:
       - more_acceptable_bringing(a,b1)
     no_arguments: [practical_necessary_condition]
     not_in:
-      - bringing_about_action(b1)
+      - should_do(me,b1)
   - name: practical_sufficient_condition/adverse-necessary-alternatives
     source: "22.3, p. 323; p. 96"
     assumptions:
@@ -834,13 +834,13 @@ cases:
       - more_acceptable_bringing(a,b1)
     no_arguments: [practical_sufficient_condition]
     not_in:
-      - bringing_about_action(b1)
+      - should_do(me,b1)
 
   # 4.1 (p. 311): the conclusion's two readings are two records.
   - name: pop_scheme/two-readings-two-arguments
     source: "4.1, p. 311"
     assumptions:
-      - reference_group_accepted(g,claim)
+      - group_accepted(g,claim)
     arguments:
       - pop_scheme(claim,g)
       - pop_scheme_acceptance(claim,g)
@@ -851,7 +851,7 @@ cases:
     source: "4.1, p. 311"
     library: B_source-based-arguments/4_argument-from-popular-acceptance.yml
     assumptions:
-      - reference_group_accepted(g,claim)
+      - group_accepted(g,claim)
     arguments:
       - pop_scheme(claim,g)
     in:
@@ -887,9 +887,9 @@ cases:
     source: "26.1, p. 327"
     assumptions:
       - normal_true(alarm_silent)
-      - case_not_true(alarm_silent)
+      - ¬alarm_silent
       - normal_true(door_closed)
-      - case_not_true(door_closed)
+      - ¬door_closed
       - uninvestigated(door_closed)
     in:
       - not_normal(alarm_silent)
@@ -917,23 +917,23 @@ cases:
   - name: sign/two-signs
     source: "30, p. 329, CQ2"
     assumptions:
-      - finding_true(smoke)
+      - smoke
       - indicated_true(fire,smoke)
-      - finding_true(spots)
+      - spots
       - indicated_true(measles,spots)
       - more_reliable(spots)
     in:
-      - true_in_situation(fire)
+      - fire
     not_in:
-      - true_in_situation(measles)
+      - measles
   - name: retroductive/two-agents
     source: "31.5, p. 331, CQ4"
     assumptions:
       - agent_event(ann)
       - event_quality(greedy)
-      - agent_quality(ann,greedy)
+      - has_property(ann,greedy)
       - agent_event(bob)
-      - agent_quality(bob,greedy)
+      - has_property(bob,greedy)
     questioned:
       - reference_class(bob,greedy)
     in:
@@ -949,24 +949,24 @@ cases:
     questioned:
       - character_relevant(arg2)
     in:
-      - bad_not_accepted(bob,arg1)
+      - argument_not_accepted(bob,arg1)
     not_in:
-      - bad_not_accepted(bob,arg2)
+      - argument_not_accepted(bob,arg2)
   - name: gradualism/two-sequences
     source: "48, p. 339"
     assumptions:
-      - true_acceptable(a)
+      - a
       - sequence(a,b1,bn,c)
       - must_proper(a,c)
-      - true_acceptable(x)
+      - x
       - sequence(x,y1,yn,z)
       - must_proper(x,z)
     questioned:
       - proper_sequence(x,z)
     in:
-      - true_acceptable(c)
+      - c
     not_in:
-      - true_acceptable(z)
+      - z
   - name: full_slippery_slope/two-series
     source: "53, p. 341"
     assumptions:
@@ -1026,3 +1026,241 @@ cases:
       - credible(smith)
     in:
       - liable(acme)
+
+  # --- 5.6: statements shared by meaning and role ---------------------------
+  # A statement that two entries make in the same words, or in words of the
+  # same meaning, is one statement of the library: the conclusion of one
+  # scheme is the premise of another, two schemes argue for one conclusion,
+  # and one fact answers the same question for both. Each case puts two
+  # schemes in one graph.
+  - name: group_1/conclusion-is-group_2-premise
+    source: "21.1, 21.2, p. 322"
+    assumptions:
+      - member_quality(ann,team,fast)
+      - member_group_quality(ann,fast,team)
+      - group_member(bob,team)
+      - group_member_quality(team,fast,bob)
+    arguments:
+      - group_1(team,fast,ann)
+      - group_2(team,fast,bob)
+    in:
+      - has_property(team,fast)
+      - has_property(bob,fast)
+  - name: composition_generic/conclusion-is-part_in_whole-premise
+    source: "9.1, 9.2, p. 316"
+    assumptions:
+      - all_parts_property(flower,beautiful)
+      - species_of(rose,flower)
+    arguments:
+      - composition_generic(flower,beautiful)
+      - part_in_whole(rose,flower,beautiful)
+    in:
+      - has_property(rose,beautiful)
+  - name: group_2/conclusion-is-retroductive-trait-premise
+    source: "21.2, p. 322; 31.5, p. 331"
+    assumptions:
+      - has_property(gang,violent)
+      - group_member(bob,gang)
+      - group_member_quality(gang,violent,bob)
+      - agent_event(bob)
+      - agent_event(ann)
+      - event_quality(violent)
+    arguments:
+      - group_2(gang,violent,bob)
+      - retroductive(bob,violent)
+    in:
+      - event_question(bob)
+    not_in:
+      - event_question(ann)
+  - name: sorites_slippery_slope/conditional-shared-with-verbal_slippery_slope
+    source: "51, pp. 340-341; 52, p. 341"
+    assumptions:
+      - beyond_contention(a1,bald)
+      - also_has(a1,bald,a2)
+      - reapplication_sequence(a1,an,bald)
+      - has_property(a1,bald)
+      - vague_property(bald,a1,an)
+      - ¬has_property(an,bald)
+    arguments:
+      - sorites_slippery_slope(an,bald,a2,a1)
+      - verbal_slippery_slope(a1,a2,an,bald)
+    in:
+      - may_have(an,bald)
+      - not_has_property(a1,bald)
+  - name: pop_scheme/one-premise-with-position_to_know_ad_populum
+    source: "4.1, 4.2, p. 311"
+    assumptions:
+      - group_accepted(locals,safe_beach)
+      - position_to_know_group(locals,safe_beach)
+    arguments:
+      - pop_scheme(safe_beach,locals)
+      - pop_scheme_acceptance(safe_beach,locals)
+      - position_to_know_ad_populum(safe_beach,locals)
+    in:
+      - safe_beach
+      - should_accept(safe_beach)
+  - name: ad_hominem/one-conclusion-with-pragmatic_inconsistency
+    source: "42, p. 336; 43, pp. 336-337"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - opposite_action(bob,arg1,¬tax_cut)
+    questioned:
+      - character_relevant(arg1)
+    arguments:
+      - pragmatic_inconsistency(bob,arg1,tax_cut)
+    in:
+      - argument_not_accepted(bob,arg1)
+  - name: verbal_classification_vagueness/one-conclusion-with-arbitrariness
+    source: "16, 17, p. 320"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+      - certainty_no_need(arg1,heap)
+      - arbitrary_defined_property(arg1,poverty)
+      - needed_nonarbitrary(arg1,poverty)
+      - arbitrary_property(poverty,arg1)
+    arguments:
+      - verbal_classification_arbitrariness(arg1,poverty)
+    in:
+      - rejected_as_deficient(arg1)
+  - name: sign/a-sign-of-a-sign
+    source: "30, p. 329"
+    assumptions:
+      - smoke
+      - indicated_true(fire,smoke)
+      - indicated_true(alarm,fire)
+    arguments:
+      - sign(smoke,fire)
+      - sign(fire,alarm)
+    in:
+      - fire
+      - alarm
+  - name: ignorance/conclusion-is-alternative_cognitive-premise
+    source: "26, p. 327; 13.1, p. 318"
+    assumptions:
+      - would_be_known(rain)
+      - ¬known(rain)
+      - can_be_case(rain,sun)
+    arguments:
+      - ignorance(rain)
+      - alternative_cognitive(rain,sun)
+    in:
+      - ¬rain
+      - sun
+  - name: ignorance/undercut-and-no-alternative
+    source: "26, p. 327; 13.1, p. 318"
+    assumptions:
+      - would_be_known(rain)
+      - ¬known(rain)
+      - uninvestigated(rain)
+      - can_be_case(rain,sun)
+    not_in:
+      - ¬rain
+      - sun
+  - name: practical_inference/against-negative_consequences_reasoning
+    source: "22.1, p. 323; 33.3, p. 332"
+    assumptions:
+      - goal_of_agent(me,relax)
+      - means_to_end(smoke,relax)
+      - agent_bring_about(me,smoke,cancer)
+      - bad_for_goals(me,cancer)
+    arguments:
+      - practical_inference(smoke,relax,me)
+      - negative_consequences_reasoning(smoke,cancer,me)
+    issues: [["should_do(me,smoke)", "¬should_do(me,smoke)"]]
+  - name: practical_inference/means-shared-with-end_and_means_1
+    source: "22.1, p. 323; 22.6.1, p. 325"
+    assumptions:
+      - goal_of_agent(me,health)
+      - means_to_end(exercise,health)
+      - good(health)
+    arguments:
+      - practical_inference(exercise,health,me)
+      - end_and_means_1(exercise,health)
+    in:
+      - should_do(me,exercise)
+      - good(exercise)
+  - name: help/one-conclusion-with-distress
+    source: "38, p. 334; 39, pp. 334-335"
+    assumptions:
+      - help_needed(ann,bob)
+      - situation_help(ann,lift,bob)
+      - can_carry_out(bob,lift)
+      - not_too_costly(bob,lift)
+      - distress(ann)
+      - relieve(bob,lift,ann)
+      - great_side_effects(bob,lift)
+    arguments:
+      - help(ann,bob,lift)
+    in:
+      - should_do(bob,lift)
+  - name: distress/possibility-questioned-for-practical_inference-too
+    source: "39, p. 335, CQ3; 22.1, p. 323, CQ4"
+    assumptions:
+      - distress(ann)
+      - relieve(bob,lift,ann)
+      - goal_of_agent(bob,ann_helped)
+      - means_to_end(lift,ann_helped)
+    questioned:
+      - possible_bring_about(bob,lift)
+    not_in:
+      - should_do(bob,lift)
+  - name: fear/against-danger
+    source: "36, pp. 333-334; 37, p. 334"
+    assumptions:
+      - not_do_appear(vaccinate,flu)
+      - bad_for_you(flu)
+      - prevent(flu)
+      - only_way_prevent(flu,vaccinate)
+      - occur(vaccinate,soreness)
+      - danger(soreness)
+    arguments:
+      - fear(vaccinate,flu)
+      - danger(vaccinate,soreness)
+    issues: [[ought_to_bring_about(vaccinate), ¬ought_to_bring_about(vaccinate)]]
+  - name: waste/goal-questioned-for-practical_necessary_condition-too
+    source: "24, p. 326, CQ1; 22.2, p. 323"
+    assumptions:
+      - stop_realize_wasted(ann,thesis)
+      - waste_bad_thing(ann,thesis)
+      - goal_of_agent(ann,thesis)
+      - alternative_action(ways,thesis)
+      - necessary_action(write,ways,thesis)
+      - practicality_action(write)
+      - more_acceptable_bringing(thesis,write)
+    questioned:
+      - possible_goal(thesis)
+    not_in:
+      - ought_to_continue(ann,thesis)
+      - should_do(ann,write)
+  - name: two_person_practical/conflicting-goals-for-practical_necessary_condition-too
+    source: "23, p. 326, CQ1; 22.2, p. 324, CQ5"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessity(bob,ticket,trip,ann)
+      - goal_of_agent(ann,trip)
+      - alternative_action(ways,trip)
+      - necessary_action(ticket,ways,trip)
+      - practicality_action(ticket)
+      - more_acceptable_bringing(trip,ticket)
+      - conflicting_goals(ann,trip)
+    arguments:
+      - two_person_practical(ann,bob,trip,ticket)
+      - practical_necessary_condition(ticket,trip,ann,ways)
+    not_in:
+      - should_do(ann,ticket)
+  - name: witness_testimony/domain-shared-with-position_to_know
+    source: "1, p. 309; 3, p. 310"
+    assumptions:
+      - position_to_know(ann,street)
+      - in_domain(red_light_run,street)
+      - believes(ann,red_light_run)
+      - asserts(ann,red_light_run)
+      - dishonest(ann)
+    arguments:
+      - position_to_know(ann,street,red_light_run)
+      - witness_testimony(ann,street,red_light_run)
+    in:
+      - red_light_run

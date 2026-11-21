@@ -3700,6 +3700,8 @@ cases/phase5.yml|abductive_forward/adverse-inquiry-incomplete|case
 cases/phase5.yml|abductive_forward/adverse-inquiry-incomplete|roundtrip
 cases/phase5.yml|abductive_forward/positive|case
 cases/phase5.yml|abductive_forward/positive|roundtrip
+cases/phase5.yml|ad_hominem/one-conclusion-with-pragmatic_inconsistency|case
+cases/phase5.yml|ad_hominem/one-conclusion-with-pragmatic_inconsistency|roundtrip
 cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|case
 cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|roundtrip
 cases/phase5.yml|ad_hominem/two-arguments|case
@@ -3728,12 +3730,16 @@ cases/phase5.yml|common_folk_ad_populum/two-speakers|case
 cases/phase5.yml|common_folk_ad_populum/two-speakers|roundtrip
 cases/phase5.yml|common_folks_group_ad_populum/two-speakers|case
 cases/phase5.yml|common_folks_group_ad_populum/two-speakers|roundtrip
+cases/phase5.yml|composition_generic/conclusion-is-part_in_whole-premise|case
+cases/phase5.yml|composition_generic/conclusion-is-part_in_whole-premise|roundtrip
 cases/phase5.yml|distress/adverse-side-effects|case
 cases/phase5.yml|distress/adverse-side-effects|roundtrip
 cases/phase5.yml|distress/adverse-someone-elses-distress|case
 cases/phase5.yml|distress/adverse-someone-elses-distress|roundtrip
 cases/phase5.yml|distress/positive|case
 cases/phase5.yml|distress/positive|roundtrip
+cases/phase5.yml|distress/possibility-questioned-for-practical_inference-too|case
+cases/phase5.yml|distress/possibility-questioned-for-practical_inference-too|roundtrip
 cases/phase5.yml|epistemic_ignorance/adverse-premise-5-missing|case
 cases/phase5.yml|epistemic_ignorance/adverse-premise-5-missing|roundtrip
 cases/phase5.yml|epistemic_ignorance/positive|case
@@ -3754,6 +3760,8 @@ cases/phase5.yml|expert_opinion/adverse-credibility-questioned|case
 cases/phase5.yml|expert_opinion/adverse-credibility-questioned|roundtrip
 cases/phase5.yml|expert_opinion/credibility-questioned-and-shown|case
 cases/phase5.yml|expert_opinion/credibility-questioned-and-shown|roundtrip
+cases/phase5.yml|fear/against-danger|case
+cases/phase5.yml|fear/against-danger|roundtrip
 cases/phase5.yml|from_example/adverse-support-questioned|case
 cases/phase5.yml|from_example/adverse-support-questioned|roundtrip
 cases/phase5.yml|from_example/positive|case
@@ -3768,12 +3776,22 @@ cases/phase5.yml|full_slippery_slope/two-series|case
 cases/phase5.yml|full_slippery_slope/two-series|roundtrip
 cases/phase5.yml|gradualism/two-sequences|case
 cases/phase5.yml|gradualism/two-sequences|roundtrip
+cases/phase5.yml|group_1/conclusion-is-group_2-premise|case
+cases/phase5.yml|group_1/conclusion-is-group_2-premise|roundtrip
+cases/phase5.yml|group_2/conclusion-is-retroductive-trait-premise|case
+cases/phase5.yml|group_2/conclusion-is-retroductive-trait-premise|roundtrip
 cases/phase5.yml|help/adverse-help-questioned|case
 cases/phase5.yml|help/adverse-help-questioned|roundtrip
 cases/phase5.yml|help/adverse-premise-missing|case
 cases/phase5.yml|help/adverse-premise-missing|roundtrip
+cases/phase5.yml|help/one-conclusion-with-distress|case
+cases/phase5.yml|help/one-conclusion-with-distress|roundtrip
 cases/phase5.yml|help/positive|case
 cases/phase5.yml|help/positive|roundtrip
+cases/phase5.yml|ignorance/conclusion-is-alternative_cognitive-premise|case
+cases/phase5.yml|ignorance/conclusion-is-alternative_cognitive-premise|roundtrip
+cases/phase5.yml|ignorance/undercut-and-no-alternative|case
+cases/phase5.yml|ignorance/undercut-and-no-alternative|roundtrip
 cases/phase5.yml|illustration/adverse-other-properties|case
 cases/phase5.yml|illustration/adverse-other-properties|roundtrip
 cases/phase5.yml|illustration/positive|case
@@ -3814,6 +3832,8 @@ cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|case
 cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|roundtrip
 cases/phase5.yml|plea_for_excuse/positive|case
 cases/phase5.yml|plea_for_excuse/positive|roundtrip
+cases/phase5.yml|pop_scheme/one-premise-with-position_to_know_ad_populum|case
+cases/phase5.yml|pop_scheme/one-premise-with-position_to_know_ad_populum|roundtrip
 cases/phase5.yml|pop_scheme/truth-reading-alone|case
 cases/phase5.yml|pop_scheme/truth-reading-alone|roundtrip
 cases/phase5.yml|pop_scheme/two-readings-two-arguments|case
@@ -3824,6 +3844,10 @@ cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|case
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|roundtrip
 cases/phase5.yml|popular_opinion/positive|case
 cases/phase5.yml|popular_opinion/positive|roundtrip
+cases/phase5.yml|practical_inference/against-negative_consequences_reasoning|case
+cases/phase5.yml|practical_inference/against-negative_consequences_reasoning|roundtrip
+cases/phase5.yml|practical_inference/means-shared-with-end_and_means_1|case
+cases/phase5.yml|practical_inference/means-shared-with-end_and_means_1|roundtrip
 cases/phase5.yml|practical_necessary_condition/adverse-member-of-another-set|case
 cases/phase5.yml|practical_necessary_condition/adverse-member-of-another-set|roundtrip
 cases/phase5.yml|practical_sufficient_condition/adverse-necessary-alternatives|case
@@ -3842,14 +3866,20 @@ cases/phase5.yml|rule_physical_world_1/two-claims|case
 cases/phase5.yml|rule_physical_world_1/two-claims|roundtrip
 cases/phase5.yml|rule_physical_world_2/two-rules|case
 cases/phase5.yml|rule_physical_world_2/two-rules|roundtrip
+cases/phase5.yml|sign/a-sign-of-a-sign|case
+cases/phase5.yml|sign/a-sign-of-a-sign|roundtrip
 cases/phase5.yml|sign/two-signs|case
 cases/phase5.yml|sign/two-signs|roundtrip
+cases/phase5.yml|sorites_slippery_slope/conditional-shared-with-verbal_slippery_slope|case
+cases/phase5.yml|sorites_slippery_slope/conditional-shared-with-verbal_slippery_slope|roundtrip
 cases/phase5.yml|two_person_practical/adverse-alternative-means|case
 cases/phase5.yml|two_person_practical/adverse-alternative-means|roundtrip
 cases/phase5.yml|two_person_practical/adverse-other-actions-required|case
 cases/phase5.yml|two_person_practical/adverse-other-actions-required|roundtrip
 cases/phase5.yml|two_person_practical/adverse-side-effects|case
 cases/phase5.yml|two_person_practical/adverse-side-effects|roundtrip
+cases/phase5.yml|two_person_practical/conflicting-goals-for-practical_necessary_condition-too|case
+cases/phase5.yml|two_person_practical/conflicting-goals-for-practical_necessary_condition-too|roundtrip
 cases/phase5.yml|two_person_practical/old-binding-does-not-undercut|case
 cases/phase5.yml|two_person_practical/old-binding-does-not-undercut|roundtrip
 cases/phase5.yml|two_person_practical/positive|case
@@ -3866,6 +3896,8 @@ cases/phase5.yml|verbal_classification_vagueness/adverse-precision-said-of-the-p
 cases/phase5.yml|verbal_classification_vagueness/adverse-precision-said-of-the-property|roundtrip
 cases/phase5.yml|verbal_classification_vagueness/exception|case
 cases/phase5.yml|verbal_classification_vagueness/exception|roundtrip
+cases/phase5.yml|verbal_classification_vagueness/one-conclusion-with-arbitrariness|case
+cases/phase5.yml|verbal_classification_vagueness/one-conclusion-with-arbitrariness|roundtrip
 cases/phase5.yml|verbal_classification_vagueness/positive|case
 cases/phase5.yml|verbal_classification_vagueness/positive|roundtrip
 cases/phase5.yml|verbal_slippery_slope/adverse-another-property-in-premise-2|case
@@ -3874,8 +3906,12 @@ cases/phase5.yml|verbal_slippery_slope/positive|case
 cases/phase5.yml|verbal_slippery_slope/positive|roundtrip
 cases/phase5.yml|waste/adverse-reassessment|case
 cases/phase5.yml|waste/adverse-reassessment|roundtrip
+cases/phase5.yml|waste/goal-questioned-for-practical_necessary_condition-too|case
+cases/phase5.yml|waste/goal-questioned-for-practical_necessary_condition-too|roundtrip
 cases/phase5.yml|waste/positive|case
 cases/phase5.yml|waste/positive|roundtrip
+cases/phase5.yml|witness_testimony/domain-shared-with-position_to_know|case
+cases/phase5.yml|witness_testimony/domain-shared-with-position_to_know|roundtrip
 cases/reference.yml|chain-of-schemes|case
 cases/reference.yml|chain-of-schemes|roundtrip
 cases/reference.yml|cycle|case
@@ -3932,6 +3968,8 @@ source_ledger.yml|ad_baculum|source/record-row
 source_ledger.yml|ad_hominem|source/record-row
 source_ledger.yml|addressee_of/2|source/name-in-language
 source_ledger.yml|advocates_conclusion/3|source/name-in-language
+source_ledger.yml|agent_bring_about/3|source/name-in-language
+source_ledger.yml|also_has/3|source/name-in-language
 source_ledger.yml|alternative_action_sufficient/2|source/name-in-language
 source_ledger.yml|alternative_cognitive|source/record-row
 source_ledger.yml|alternative_normative|source/record-row
@@ -3940,6 +3978,7 @@ source_ledger.yml|appeal_to_vanity_ad_populum|source/record-row
 source_ledger.yml|appearance|source/record-row
 source_ledger.yml|arbitrariness_harmless/2|source/name-in-language
 source_ledger.yml|background/1|source/name-in-language
+source_ledger.yml|bad_for_goals/2|source/name-in-language
 source_ledger.yml|based_on_false_belief/1|source/name-in-language
 source_ledger.yml|being_credible/1|source/name-in-language
 source_ledger.yml|better_alternative_by_values/2|source/name-in-language
@@ -4107,7 +4146,7 @@ source_ledger.yml|gradualism|source/record-row
 source_ledger.yml|group_1|source/record-row
 source_ledger.yml|group_2|source/record-row
 source_ledger.yml|group_background/2|source/name-in-language
-source_ledger.yml|has/2|source/name-in-language
+source_ledger.yml|has_property/2|source/name-in-language
 source_ledger.yml|help|source/record-row
 source_ledger.yml|ignorance|source/record-row
 source_ledger.yml|illustration|source/record-row
@@ -4142,6 +4181,7 @@ source_ledger.yml|opposition_descriptive_2|source/record-row
 source_ledger.yml|opposition_descriptive_3|source/record-row
 source_ledger.yml|opposition_normative|source/record-row
 source_ledger.yml|other_actions_required/2|source/name-in-language
+source_ledger.yml|ought_to_bring_about/1|source/name-in-language
 source_ledger.yml|outcome_likely/2|source/name-in-language
 source_ledger.yml|part_in_whole|source/record-row
 source_ledger.yml|perception|source/record-row
@@ -4154,6 +4194,8 @@ source_ledger.yml|position_to_know_ad_populum|source/record-row
 source_ledger.yml|position_to_know|source/record-row
 source_ledger.yml|positive_consequences|source/record-row
 source_ledger.yml|positive_value|source/record-row
+source_ledger.yml|possible_bring_about/2|source/name-in-language
+source_ledger.yml|possible_goal/1|source/name-in-language
 source_ledger.yml|practical_analogy_negative|source/record-row
 source_ledger.yml|practical_analogy_positive|source/record-row
 source_ledger.yml|practical_goal|source/record-row
@@ -4176,6 +4218,7 @@ source_ledger.yml|recognized_exception_category/2|source/name-in-language
 source_ledger.yml|reference_class/2|source/name-in-language
 source_ledger.yml|regulative_rule_prohibition|source/record-row
 source_ledger.yml|regulative_rule|source/record-row
+source_ledger.yml|rejected_as_deficient/1|source/name-in-language
 source_ledger.yml|relieve/3|source/name-in-language
 source_ledger.yml|retroductive|source/record-row
 source_ledger.yml|rhetoric_ad_populum|source/record-row
@@ -4189,7 +4232,7 @@ source_ledger.yml|rule_physical_world_1|source/record-row
 source_ledger.yml|rule_physical_world_2|source/record-row
 source_ledger.yml|rule|source/record-row
 source_ledger.yml|sacrifice|source/record-row
-source_ledger.yml|should_bring_about/2|source/name-in-language
+source_ledger.yml|should_do/2|source/name-in-language
 source_ledger.yml|sign|source/record-row
 source_ledger.yml|slippery_slope_base_case|source/record-row
 source_ledger.yml|slippery_slope_inductive_step|source/record-row
@@ -4218,6 +4261,8 @@ tools/migration_r2.yml|(library)|migration/rename-file A_reasoning/5_casual-reas
 tools/migration_r2.yml|(library)|migration/rename-file B_source-based-arguments/2_argumen-from-commitment.yml
 tools/migration_r2.yml|(library)|migration/rename-file B_source-based-arguments/4_argumen-from-popular-acceptence.yml
 tools/migration_r2.yml|(library)|migration/wording 
+tools/migration_r2.yml|(library)|migration/wording ought_to_bring_about/1
+tools/migration_r2.yml|(library)|migration/wording possible_goal/1
 tools/migration_r2.yml|abductive_action_to_character|migration/rename-predicate not_fit_action/1
 tools/migration_r2.yml|abductive_backward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_backward|migration/rename-predicate succesful_account/2
@@ -4226,7 +4271,12 @@ tools/migration_r2.yml|abductive_forward|migration/added sufficient_account(C1,D
 tools/migration_r2.yml|abductive_forward|migration/rename-predicate succesful_diagram/1
 tools/migration_r2.yml|ad_hominem|migration/arity character_relevant(S)
 tools/migration_r2.yml|ad_hominem|migration/removed attack_well_supported
+tools/migration_r2.yml|ad_hominem|migration/rename-predicate bad_not_accepted/2
 tools/migration_r2.yml|ad_hominem|migration/rename-predicate character_revelant/1
+tools/migration_r2.yml|alternative_cognitive|migration/replaced B
+tools/migration_r2.yml|alternative_cognitive|migration/replaced ¬A
+tools/migration_r2.yml|alternative_normative|migration/replaced ¬is_required(B)
+tools/migration_r2.yml|appeal_to_vanity_ad_populum|migration/replaced ought_to_bring_about(X)
 tools/migration_r2.yml|bias|migration/added bias_relevant(A,C)
 tools/migration_r2.yml|bias|migration/arguments not_taken_both(A,C)
 tools/migration_r2.yml|circumstantial_ad_hominem|migration/added inconsistency_explained(A,S)
@@ -4241,22 +4291,32 @@ tools/migration_r2.yml|common_folk_ad_populum|migration/arity being_credible(S)
 tools/migration_r2.yml|common_folks_group_ad_populum|migration/arity accept_saying(S)
 tools/migration_r2.yml|common_folks_group_ad_populum|migration/arity group_background(S,G)
 tools/migration_r2.yml|composition_generic|migration/rename-predicate all_parts_propert/2
+tools/migration_r2.yml|danger|migration/replaced ¬ought_to_bring_about(X)
+tools/migration_r2.yml|deliberation_ad_populum|migration/replaced A
 tools/migration_r2.yml|distress|migration/arity relieve(B,X,A)
 tools/migration_r2.yml|distress|migration/removed really_distress(A)
+tools/migration_r2.yml|distress|migration/rename-predicate bring_relieve/2
 tools/migration_r2.yml|distress|migration/rename-predicate bring_relive/2
 tools/migration_r2.yml|end_and_means_3|migration/rename-predicate easy_to_achive/1
 tools/migration_r2.yml|epistemic_ignorance|migration/rename-scheme epistemic_ignorence
+tools/migration_r2.yml|epistemic_ignorance|migration/replaced ¬A
 tools/migration_r2.yml|epistemic_ignorence|migration/premise bivalent(D)
 tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
 tools/migration_r2.yml|exceptional|migration/rename-scheme exeptional
 tools/migration_r2.yml|exeptional|migration/added exception_backed(A)
+tools/migration_r2.yml|expert_opinion_ad_populum|migration/replaced A
 tools/migration_r2.yml|expert_opinion|migration/added credible(W)
 tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
 tools/migration_r2.yml|full_slippery_slope|migration/arity accept_all_steps(C0)
 tools/migration_r2.yml|full_slippery_slope|migration/removed led_to_step
 tools/migration_r2.yml|gradualism|migration/arity proper_sequence(P1,P4)
+tools/migration_r2.yml|gradualism|migration/replaced P1
+tools/migration_r2.yml|gradualism|migration/replaced P4
+tools/migration_r2.yml|group_1|migration/rename-predicate has/2
+tools/migration_r2.yml|group_2|migration/rename-predicate group_quality/2
 tools/migration_r2.yml|help|migration/removed greater_side_effects(X)
 tools/migration_r2.yml|help|migration/removed possible_carry_out(B,X)
+tools/migration_r2.yml|help|migration/rename-predicate carry_out/2
 tools/migration_r2.yml|illustration|migration/arity usually_properties(P1,P2)
 tools/migration_r2.yml|illustration|migration/arity valid_rule(P1,P2)
 tools/migration_r2.yml|inconsistent_commitment|migration/added commitments_conflict(A,S)
@@ -4266,8 +4326,12 @@ tools/migration_r2.yml|memory|migration/added not_originally_believed(M)
 tools/migration_r2.yml|memory|migration/added recaller_doubts(P,M)
 tools/migration_r2.yml|memory|migration/rename-predicate reasonable_belive/1
 tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_likely(A,B)
+tools/migration_r2.yml|negative_consequences_reasoning|migration/arity agent_bring_about(P,A,B)
+tools/migration_r2.yml|negative_consequences_reasoning|migration/arity bad_for_goals(P,B)
+tools/migration_r2.yml|negative_consequences_reasoning|migration/replaced ¬should_do(P,A)
 tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
 tools/migration_r2.yml|negative_normal_expectations|migration/arity not_normal(A)
+tools/migration_r2.yml|negative_normal_expectations|migration/replaced ¬A
 tools/migration_r2.yml|negative_practical|migration/arity sufficient_evidence(A)
 tools/migration_r2.yml|negative_value|migration/replaced reason_retracting_goal(V,G)
 tools/migration_r2.yml|opposition_descriptive_1|migration/rename-scheme opposition-descriptive_1
@@ -4277,42 +4341,79 @@ tools/migration_r2.yml|opposition_normative|migration/rename-predicate cannot_re
 tools/migration_r2.yml|opposition_normative|migration/rename-predicate recieves_evaluation/2
 tools/migration_r2.yml|opposition_normative|migration/rename-scheme opposition-normative
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate part_propert/2
+tools/migration_r2.yml|part_in_whole|migration/rename-predicate part_property/2
+tools/migration_r2.yml|part_in_whole|migration/rename-predicate species_property/2
 tools/migration_r2.yml|plea_for_excuse|migration/arity special_circumstances(E,T)
 tools/migration_r2.yml|pop_scheme_acceptance|migration/added should_accept(A)
 tools/migration_r2.yml|pop_scheme|migration/removed should_accept(A)
+tools/migration_r2.yml|pop_scheme|migration/rename-predicate reference_group_accepted/2
 tools/migration_r2.yml|popular_opinion|migration/removed generally_accepted(A)
 tools/migration_r2.yml|popular_practice|migration/rename-predicate popular_practise/1
 tools/migration_r2.yml|popular_practice|migration/rename-scheme popular_practise
+tools/migration_r2.yml|position_to_know_ad_populum|migration/replaced A
+tools/migration_r2.yml|practical_goal|migration/rename-predicate person_goal/2
+tools/migration_r2.yml|practical_inference|migration/rename-predicate action_realize_goal/2
+tools/migration_r2.yml|practical_inference|migration/rename-predicate more_efficient_alternative_actions/2
+tools/migration_r2.yml|practical_inference|migration/replaced conflicting_goals(P,G)
+tools/migration_r2.yml|practical_inference|migration/replaced goal_of_agent(P,G)
+tools/migration_r2.yml|practical_inference|migration/replaced possible_bring_about(P,A)
+tools/migration_r2.yml|practical_inference|migration/replaced should_do(P,A)
 tools/migration_r2.yml|practical_necessary_condition|migration/arguments alternative_action(S,A)
 tools/migration_r2.yml|practical_necessary_condition|migration/arity necessary_action(X,S,A)
+tools/migration_r2.yml|practical_necessary_condition|migration/replaced possible_bring_about(P,X)
+tools/migration_r2.yml|practical_necessary_condition|migration/replaced possible_goal(A)
+tools/migration_r2.yml|practical_necessary_condition|migration/replaced should_do(P,X)
 tools/migration_r2.yml|practical_sufficient_condition|migration/arity sufficient_action(X,S,A)
 tools/migration_r2.yml|practical_sufficient_condition|migration/replaced alternative_action_sufficient(S,A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/replaced possible_bring_about(P,X)
+tools/migration_r2.yml|practical_sufficient_condition|migration/replaced possible_goal(A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/replaced should_do(P,X)
+tools/migration_r2.yml|pragmatic_alternative|migration/rename-predicate do_other/1
 tools/migration_r2.yml|pragmatic_inconsistency|migration/added inconsistency_relevant(A,S)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/removed descriptions_opposite(A,S)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/rename-predicate arguement_not_accepted/2
 tools/migration_r2.yml|retroductive|migration/added action_fits_quality(A)
 tools/migration_r2.yml|retroductive|migration/arity reference_class(A,Q)
+tools/migration_r2.yml|retroductive|migration/rename-predicate agent_quality/2
 tools/migration_r2.yml|rule_physical_world_1|migration/arity not_necessarily_true(W,D)
 tools/migration_r2.yml|rule_physical_world_2|migration/arity rule_changed(I,D,W)
 tools/migration_r2.yml|rule_physical_world_2|migration/rename-predicate oficcial_rulebook/3
 tools/migration_r2.yml|sign|migration/arity more_reliable(A)
+tools/migration_r2.yml|sign|migration/replaced A
+tools/migration_r2.yml|sign|migration/replaced B
+tools/migration_r2.yml|sorites_slippery_slope|migration/rename-predicate all_has/3
 tools/migration_r2.yml|sorites_slippery_slope|migration/rename-predicate beyond_contetion/2
 tools/migration_r2.yml|threat|migration/rename-scheme treat
+tools/migration_r2.yml|threat|migration/replaced ¬ought_to_bring_about(X)
 tools/migration_r2.yml|two_person_practical|migration/added other_actions_required(X,Y)
 tools/migration_r2.yml|two_person_practical|migration/arguments alternative_means(X,Y)
 tools/migration_r2.yml|two_person_practical|migration/arguments side_effect_other_act(Y,A)
+tools/migration_r2.yml|two_person_practical|migration/rename-predicate goals_higher_priority/2
+tools/migration_r2.yml|two_person_practical|migration/rename-predicate should_carry_out/2
 tools/migration_r2.yml|two_person_practical|migration/rename-predicate situation_necessiy/4
+tools/migration_r2.yml|two_person_practical|migration/replaced possible_bring_about(A,Y)
+tools/migration_r2.yml|value_based_practical_reasoning|migration/rename-predicate should_bring_about/2
+tools/migration_r2.yml|value_based_practical_reasoning|migration/replaced possible_bring_about(P,A)
 tools/migration_r2.yml|verbal_classification_arbitrariness|migration/added arbitrariness_harmless(A,F)
+tools/migration_r2.yml|verbal_classification_arbitrariness|migration/rename-predicate arbitrary_rejected/1
 tools/migration_r2.yml|verbal_classification_vagueness|migration/arguments precision_needed(A)
 tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate certainity_no_need/2
 tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate property_precion_needed/1
+tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate vagueness_rejected/1
 tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate vaguness_recejted/1
 tools/migration_r2.yml|verbal_classification|migration/added doubtful_classification(F,G)
-tools/migration_r2.yml|verbal_slippery_slope|migration/arguments individuals_property(A1,P,A2)
+tools/migration_r2.yml|verbal_slippery_slope|migration/arguments also_has(A1,P,A2)
+tools/migration_r2.yml|verbal_slippery_slope|migration/rename-predicate individual_property/2
+tools/migration_r2.yml|verbal_slippery_slope|migration/rename-predicate individuals_property/3
 tools/migration_r2.yml|verbal_slippery_slope|migration/rename-predicate individuals_propoerty/3
 tools/migration_r2.yml|verbal_slippery_slope|migration/rename-predicate not_has_propery/2
+tools/migration_r2.yml|verbal_slippery_slope|migration/replaced ¬has_property(A,P)
 tools/migration_r2.yml|waste|migration/added reassessment_against_continuing(A,X)
+tools/migration_r2.yml|waste|migration/rename-predicate can_be_realized/1
 tools/migration_r2.yml|waste|migration/rename-predicate posible/1
+tools/migration_r2.yml|whole_into_parts|migration/rename-predicate part_is/2
+tools/migration_r2.yml|whole_into_parts|migration/rename-predicate whole_is/2
+tools/migration_r2.yml|witness_testimony|migration/arguments in_domain(S,D)
 walton.yml|(file)|cli/check-clean
 walton.yml|(file)|cli/eval-produces-output
 walton.yml|(file)|engine-validator

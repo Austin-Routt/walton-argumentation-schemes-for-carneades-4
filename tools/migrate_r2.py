@@ -16,7 +16,8 @@ a premise added) cannot be applied without knowing the case; the tool lists
 the ones whose old statement the file uses, and the reader decides.
 
 The rename-file rows name the scheme files that were renamed; a file name
-inside the text is replaced as well.
+inside the text is replaced as well. A chain of renames (posible to
+can_be_realized, then can_be_realized to possible_goal) is followed to its end.
 """
 import os
 import re
@@ -48,7 +49,19 @@ def load_table(path=TABLE):
             files[r["old"]] = r["new"]
         elif k in ("arguments", "arity", "replaced", "removed", "premise"):
             manual.append(r)
-    return schemes, preds, files, manual
+    return resolved(schemes), resolved(preds), files, manual
+
+
+def resolved(names):
+    """Follow chains of renames to their end: A to B and then B to C is A to C."""
+    out = {}
+    for o in names:
+        n, seen = names[o], {o}
+        while n in names and n not in seen:
+            seen.add(n)
+            n = names[n]
+        out[o] = n
+    return out
 
 
 def token_re(name):
