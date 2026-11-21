@@ -9,7 +9,10 @@ A_reasoning/1_deductive-reasoning.yml:
 
 A_reasoning/2_inductive-reasoning.yml:
   title: Reasoning - Inductive Reasoning
-  schemes: [group_1, composition_generic, part_in_whole, whole_into_parts]
+  schemes: [group_1, composition_generic, part_in_whole, part_in_whole_physical,
+            part_in_whole_species_degree, part_in_whole_physical_degree,
+            part_in_whole_smaller_degree, whole_into_parts,
+            whole_into_parts_selected, whole_into_parts_negative]
 
 A_reasoning/3_practical-reasoning.yml:
   title: Reasoning - Practical Reasoning

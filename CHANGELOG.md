@@ -296,7 +296,7 @@ OCR-style errors in titles and references ("lnformal Logic", "Trtatise", "Wayrw 
 ### Not changed
 
 Misspelt identifiers (scheme ids, predicate names, the file name `5_casual-reasoning.yml`) are kept because renaming them changes the interface for existing argument graphs; see `PLAN.md`.
-# Closure follow-up: consequence likelihood
+## Closure follow-up: consequence likelihood
 
 - Entry 33.3 now shares `consequence_likelihood_adequate/2` with 33.1 and
   33.2. Their common CQ1 asks about likelihood relative to the asserted
@@ -308,3 +308,9 @@ Misspelt identifiers (scheme ids, predicate names, the file name `5_casual-reaso
   negative or questioned assertions. No old source approval is renewed by
   the implementation author; independent review must renew its fingerprint.
 
+
+## Closure follow-up: part/whole alternatives and vagueness burden
+
+- Added four separately named physical/degree alternatives for entry 9.2, with explicit comparison-scale evidence for qualitative degree. Lower degree remains compatible with possession of the property.
+- Added two arbitrary finite-partition forms for entry 10.2: a selected positive member with an explicit sufficient warrant, and a universal-negative form retaining the necessary only-if direction. Neither cardinality nor universal negatives are inferred from absent facts; legacy three-part graphs are preserved.
+- Documented the static evidence burden of entry 16 and independently concurred with the implementer's problem-for-dialogue wording. Added premise, affirmative-exception, mere-question and scope-isolation controls. New variants and changed interpretations await separate source approval.

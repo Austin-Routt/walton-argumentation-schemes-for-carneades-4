@@ -9,6 +9,15 @@ meta:
 language: 
   means_same_in_language/3: "In language %s, word %s means the same as definition %s."
   member_of_accounts/2: "Account %s is a member of the candidate account set %s."
+  physical_part_of/2: "%s is a physical part of %s."
+  degree_comparable/3: "%s and %s are comparable on the same contextually specified degree scale for property %s."
+  smaller_in_relevant_measure/2: "%s is smaller than %s in the measure relevant to this part-whole comparison."
+  less_property_than/3: "%[1]s has property %[2]s to a lesser degree than %[3]s, on the stated comparison scale."
+  whole_partition/2: "%s has exactly the finite, nonempty set of parts identified by %s in this application."
+  partition_member/2: "%s is a member of the part set %s."
+  some_part_sufficient_for_whole/3: "For whole %s and its stated part set %s, having at least one part with property %s is sufficient for the whole to have that property."
+  whole_requires_property_part/3: "Whole %[1]s can have property %[3]s only if at least one member of its stated part set %[2]s has that property."
+  no_partition_part_property/3: "No member of part set %[2]s of whole %[1]s has property %[3]s; this is supported universal negative evidence, not mere absence of a positive fact."
   consequence_likelihood_adequate/2: "The assessed likelihood that action %s brings about outcome %s is adequate for the strength of this consequence argument."
   conflicting_or_overriding_rule/2: "Another established rule conflicts with or overrides rule %s in its application to conclusion %s."
   rule_exception_or_excuse/2: "An exceptional case or an adequate excuse defeats rule %s in its application to conclusion %s."
@@ -2045,3 +2054,99 @@ argument_schemes:
       - biased(W)
       - implausible(S)
 
+
+  - id: part_in_whole_physical
+    meta:
+      title: Inclusion of a Physical Part in the Whole
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241.'
+    variables:
+    - Y
+    - X
+    - A
+    conclusions:
+    - has_property(Y,A)
+    premises:
+    - physical_part_of(Y,X)
+    - has_property(X,A)
+  - id: part_in_whole_species_degree
+    meta:
+      title: Species Inclusion with a Qualitative Lesser-Degree Conclusion
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241.'
+    variables:
+    - Y
+    - X
+    - A
+    conclusions:
+    - has_property(Y,A)
+    - less_property_than(Y,A,X)
+    premises:
+    - species_of(Y,X)
+    - has_property(X,A)
+    - degree_comparable(Y,X,A)
+  - id: part_in_whole_physical_degree
+    meta:
+      title: Physical-Part Inclusion with a Qualitative Lesser-Degree Conclusion
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241.'
+    variables:
+    - Y
+    - X
+    - A
+    conclusions:
+    - has_property(Y,A)
+    - less_property_than(Y,A,X)
+    premises:
+    - physical_part_of(Y,X)
+    - has_property(X,A)
+    - degree_comparable(Y,X,A)
+  - id: part_in_whole_smaller_degree
+    meta:
+      title: Smaller-Part Inclusion with a Qualitative Lesser-Degree Conclusion
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241.'
+    variables:
+    - Y
+    - X
+    - A
+    conclusions:
+    - has_property(Y,A)
+    - less_property_than(Y,A,X)
+    premises:
+    - physical_part_of(Y,X)
+    - has_property(X,A)
+    - smaller_in_relevant_measure(Y,X)
+    - degree_comparable(Y,X,A)
+  - id: whole_into_parts_selected
+    meta:
+      title: Division into Arbitrarily Many Parts - Selected Positive Part with Explicit Sufficiency
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 10.2, p. 317. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 231-233,234-241.'
+    variables:
+    - X
+    - S
+    - Y
+    - A
+    conclusions:
+    - has_property(X,A)
+    premises:
+    - whole_partition(X,S)
+    - partition_member(Y,S)
+    - some_part_sufficient_for_whole(X,S,A)
+    - has_property(Y,A)
+  - id: whole_into_parts_negative
+    meta:
+      title: Division into Arbitrarily Many Parts - Universal Negative Only-If Branch
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 10.2, p. 317. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric:
+        A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 231-233,234-241.'
+    variables:
+    - X
+    - S
+    - A
+    conclusions:
+    - ¬has_property(X,A)
+    premises:
+    - whole_partition(X,S)
+    - whole_requires_property_part(X,S,A)
+    - no_partition_part_property(X,S,A)

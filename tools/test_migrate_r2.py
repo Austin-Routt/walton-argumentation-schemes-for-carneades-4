@@ -157,6 +157,14 @@ class Migrate(unittest.TestCase):
         self.assertIn(("memory", "based_on_false_belief(P,M)"), rows)
         self.assertIn(("abductive_action_to_character", "action_character(A,X,Q)"), rows)
 
+    def test_general_partition_witnesses_are_not_manufactured(self):
+        src = "assumptions: ['whole_of(team,ann,bob,cy)', 'part_whole(team,strong,ann,bob,cy)']\n"
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("whole_into_parts_selected", "whole_partition(X,S)"), rows)
+        self.assertIn(("whole_into_parts_selected", "some_part_sufficient_for_whole(X,S,A)"), rows)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

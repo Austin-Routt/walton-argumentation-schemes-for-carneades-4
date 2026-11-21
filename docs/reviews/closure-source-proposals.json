@@ -1,0 +1,369 @@
+{
+  "date": "2026-11-21",
+  "implementation_author": "closure_source_changes",
+  "approvals_granted_by_author": [],
+  "records": [
+    {
+      "record": "part_in_whole",
+      "entry": "9.2",
+      "source_pages": [
+        316
+      ],
+      "scope": "Unchanged positive taxonomic species branch; the physical and degree alternatives are explicit separate records.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "unchanged formula reviewed independently; new contract/tests need a separate reviewer",
+      "scheme": {
+        "id": "part_in_whole",
+        "meta": {
+          "title": "Argument From Composition - Inclusion of The Part in the Whole",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241."
+        },
+        "variables": [
+          "Y",
+          "X",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(Y,A)"
+        ],
+        "premises": [
+          "species_of(Y,X)",
+          "has_property(X,A)"
+        ]
+      },
+      "examples": [
+        "part_in_whole/closure-physical-is-not-species"
+      ]
+    },
+    {
+      "record": "part_in_whole_physical",
+      "entry": "9.2",
+      "source_pages": [
+        316
+      ],
+      "scope": "Physical-part positive source alternative; no taxonomic relation inferred; presumptive argument, not universal property-transfer truth.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "part_in_whole_physical",
+        "meta": {
+          "title": "Inclusion of a Physical Part in the Whole",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241."
+        },
+        "variables": [
+          "Y",
+          "X",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(Y,A)"
+        ],
+        "premises": [
+          "physical_part_of(Y,X)",
+          "has_property(X,A)"
+        ]
+      },
+      "examples": [
+        "part_in_whole_physical/closure-physical-positive",
+        "part_in_whole_physical/closure-species-is-not-physical"
+      ]
+    },
+    {
+      "record": "part_in_whole_species_degree",
+      "entry": "9.2",
+      "source_pages": [
+        316
+      ],
+      "scope": "Qualitative source lesser-degree species alternative; same-scale comparability is an explicit application precondition; no numeric calculation.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "part_in_whole_species_degree",
+        "meta": {
+          "title": "Species Inclusion with a Qualitative Lesser-Degree Conclusion",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241."
+        },
+        "variables": [
+          "Y",
+          "X",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(Y,A)",
+          "less_property_than(Y,A,X)"
+        ],
+        "premises": [
+          "species_of(Y,X)",
+          "has_property(X,A)",
+          "degree_comparable(Y,X,A)"
+        ]
+      },
+      "examples": [
+        "part_in_whole_species_degree/closure-species-degree",
+        "part_in_whole_species_degree/closure-no-common-scale"
+      ]
+    },
+    {
+      "record": "part_in_whole_physical_degree",
+      "entry": "9.2",
+      "source_pages": [
+        316
+      ],
+      "scope": "Qualitative source lesser-degree physical-part alternative; same-scale comparability required; no negation of property possession.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "part_in_whole_physical_degree",
+        "meta": {
+          "title": "Physical-Part Inclusion with a Qualitative Lesser-Degree Conclusion",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241."
+        },
+        "variables": [
+          "Y",
+          "X",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(Y,A)",
+          "less_property_than(Y,A,X)"
+        ],
+        "premises": [
+          "physical_part_of(Y,X)",
+          "has_property(X,A)",
+          "degree_comparable(Y,X,A)"
+        ]
+      },
+      "examples": [
+        "part_in_whole_physical_degree/closure-physical-degree",
+        "part_in_whole_physical_degree/closure-wrong-property-scale"
+      ]
+    },
+    {
+      "record": "part_in_whole_smaller_degree",
+      "entry": "9.2",
+      "source_pages": [
+        316
+      ],
+      "scope": "Source smaller-part lesser-degree alternative; both relevant-size and same-scale evidence required.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "part_in_whole_smaller_degree",
+        "meta": {
+          "title": "Smaller-Part Inclusion with a Qualitative Lesser-Degree Conclusion",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241."
+        },
+        "variables": [
+          "Y",
+          "X",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(Y,A)",
+          "less_property_than(Y,A,X)"
+        ],
+        "premises": [
+          "physical_part_of(Y,X)",
+          "has_property(X,A)",
+          "smaller_in_relevant_measure(Y,X)",
+          "degree_comparable(Y,X,A)"
+        ]
+      },
+      "examples": [
+        "part_in_whole_smaller_degree/closure-smaller-degree",
+        "part_in_whole_smaller_degree/closure-no-smaller-part-evidence"
+      ]
+    },
+    {
+      "record": "whole_into_parts",
+      "entry": "10.2",
+      "source_pages": [
+        317
+      ],
+      "scope": "Legacy positive three-part presumptive form preserved for compatibility. Do not claim deductive entailment from only-if. Prefer the explicit general adaptations for practical construction.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "unchanged formula reviewed independently; new contract/tests need a separate reviewer",
+      "scheme": {
+        "id": "whole_into_parts",
+        "meta": {
+          "title": "Argument From Division - Division of the Whole into its Parts",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 10.2, p. 317. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 231-233,234-241."
+        },
+        "variables": [
+          "X",
+          "X1",
+          "X2",
+          "X3",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(X,A)"
+        ],
+        "premises": [
+          "whole_of(X,X1,X2,X3)",
+          "part_whole(X,A,X1,X2,X3)",
+          "has_property(X1,A)"
+        ]
+      },
+      "examples": []
+    },
+    {
+      "record": "whole_into_parts_selected",
+      "entry": "10.2",
+      "source_pages": [
+        317
+      ],
+      "scope": "Arbitrary finite complete partition and selected member; positive conclusion requires an explicitly supplied sufficient warrant. Never derived from a necessary only-if condition.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "whole_into_parts_selected",
+        "meta": {
+          "title": "Division into Arbitrarily Many Parts - Selected Positive Part with Explicit Sufficiency",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 10.2, p. 317. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 231-233,234-241."
+        },
+        "variables": [
+          "X",
+          "S",
+          "Y",
+          "A"
+        ],
+        "conclusions": [
+          "has_property(X,A)"
+        ],
+        "premises": [
+          "whole_partition(X,S)",
+          "partition_member(Y,S)",
+          "some_part_sufficient_for_whole(X,S,A)",
+          "has_property(Y,A)"
+        ]
+      },
+      "examples": [
+        "whole_into_parts_selected/closure-arbitrary-selected-member",
+        "whole_into_parts_selected/closure-two-parts",
+        "whole_into_parts_selected/closure-necessary-is-not-sufficient",
+        "whole_into_parts_selected/closure-other-partition-member",
+        "whole_into_parts_selected/closure-other-whole-warrant"
+      ]
+    },
+    {
+      "record": "whole_into_parts_negative",
+      "entry": "10.2",
+      "source_pages": [
+        317
+      ],
+      "scope": "Arbitrary finite complete partition with the source necessary direction and supported universal negative evidence; no closed-world absence inference.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "whole_into_parts_negative",
+        "meta": {
+          "title": "Division into Arbitrarily Many Parts - Universal Negative Only-If Branch",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 10.2, p. 317. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 231-233,234-241."
+        },
+        "variables": [
+          "X",
+          "S",
+          "A"
+        ],
+        "conclusions": [
+          "¬has_property(X,A)"
+        ],
+        "premises": [
+          "whole_partition(X,S)",
+          "whole_requires_property_part(X,S,A)",
+          "no_partition_part_property(X,S,A)"
+        ]
+      },
+      "examples": [
+        "whole_into_parts_negative/closure-negative-only-if",
+        "whole_into_parts_negative/closure-not-closed-world",
+        "whole_into_parts_negative/closure-one-negative-part-insufficient",
+        "whole_into_parts_negative/closure-other-partition-negative",
+        "whole_into_parts_negative/closure-sufficient-is-not-necessary"
+      ]
+    },
+    {
+      "record": "verbal_classification_vagueness",
+      "entry": "16",
+      "source_pages": [
+        319,
+        320
+      ],
+      "scope": "Implementer wording independently concurs with p.320. Static evidence policy: three supported premises; affirmative harmlessness exception; questions are not affirmative exception evidence.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "unchanged formula reviewed independently; new contract/tests need a separate reviewer",
+      "scheme": {
+        "id": "verbal_classification_vagueness",
+        "meta": {
+          "title": "Argument From Vagueness of a Verbal Classification",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 16, p. 319. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.102-103."
+        },
+        "variables": [
+          "A",
+          "F"
+        ],
+        "conclusions": [
+          "rejected_as_deficient(A)"
+        ],
+        "premises": [
+          "vague_defined_property(A,F)",
+          "precision_needed(A)",
+          "property_vagueness(F,A)"
+        ],
+        "exceptions": [
+          "certainty_no_need(A,F)"
+        ]
+      },
+      "examples": [
+        "verbal_classification_vagueness/closure-supported-rejection",
+        "verbal_classification_vagueness/closure-precision-evidence-missing",
+        "verbal_classification_vagueness/closure-supported-harmlessness",
+        "verbal_classification_vagueness/closure-question-is-not-exception-evidence",
+        "verbal_classification_vagueness/closure-other-argument-exception",
+        "verbal_classification_vagueness/closure-other-property-exception"
+      ]
+    },
+    {
+      "record": "negative_consequences_reasoning",
+      "entry": "33.3",
+      "source_pages": [
+        332,
+        333
+      ],
+      "scope": "Shared CQ1 likelihood adequacy replaces unsupported strong-likelihood threshold; manual semantic migration. Author cannot renew source approval.",
+      "proposal": "approve within the stated scope after independent review",
+      "authorship": "authored repair or variant; independent approval required",
+      "scheme": {
+        "id": "negative_consequences_reasoning",
+        "meta": {
+          "title": "Argument From Consequences - Reasoning From Negative Consequences",
+          "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
+        },
+        "variables": [
+          "A",
+          "B",
+          "P"
+        ],
+        "conclusions": [
+          "¬should_do(P,A)"
+        ],
+        "premises": [
+          "agent_bring_about(P,A,B)",
+          "bad_for_goals(P,B)"
+        ],
+        "assumptions": [
+          "consequence_likelihood_adequate(A,B)"
+        ]
+      },
+      "examples": [
+        "negative_consequences_reasoning/closure-shared-likelihood-positive",
+        "negative_consequences_reasoning/closure-shared-likelihood-question",
+        "negative_consequences_reasoning/closure-likelihood-outcome-isolation",
+        "negative_consequences_reasoning/closure-supported-likelihood-answer",
+        "negative_consequences_reasoning/closure-no-universal-strong-threshold",
+        "negative_consequences_reasoning/closure-old-threshold-does-not-answer"
+      ]
+    }
+  ]
+}

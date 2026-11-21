@@ -1,0 +1,48 @@
+cases:
+  - name: verbal_classification_vagueness/closure-supported-rejection
+    source: "16, pp.319-320: all three printed premises support rejection in a static evidence graph"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+    arguments: ["verbal_classification_vagueness(arg1,heap)"]
+    in: ["rejected_as_deficient(arg1)"]
+    variants: true
+  - name: verbal_classification_vagueness/closure-precision-evidence-missing
+    source: "16, CQ1: required precision is a premise, not inferred from an unanswered question"
+    assumptions: ["vague_defined_property(arg1,heap)", "property_vagueness(heap,arg1)"]
+    questioned: ["precision_needed(arg1)"]
+    no_arguments: ["verbal_classification_vagueness"]
+    not_in: ["rejected_as_deficient(arg1)"]
+  - name: verbal_classification_vagueness/closure-supported-harmlessness
+    source: "16, CQ3: evidence that this vagueness causes no dialogue problem defeats the rejection"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+      - certainty_no_need(arg1,heap)
+    not_in: ["rejected_as_deficient(arg1)"]
+  - name: verbal_classification_vagueness/closure-question-is-not-exception-evidence
+    source: "16, CQ3: the chosen static policy does not treat a question as proof of its affirmative exception"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+    questioned: ["certainty_no_need(arg1,heap)"]
+    in: ["rejected_as_deficient(arg1)"]
+  - name: verbal_classification_vagueness/closure-other-argument-exception
+    source: "16, CQ3: harmlessness is scoped to the actual argument and dialogue context"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+      - certainty_no_need(arg2,heap)
+    in: ["rejected_as_deficient(arg1)"]
+  - name: verbal_classification_vagueness/closure-other-property-exception
+    source: "16, CQ3: harmlessness of a different property does not settle the property under challenge"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+      - certainty_no_need(arg1,tall)
+    in: ["rejected_as_deficient(arg1)"]
