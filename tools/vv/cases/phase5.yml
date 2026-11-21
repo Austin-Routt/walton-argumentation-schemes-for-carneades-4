@@ -1264,3 +1264,62 @@ cases:
       - witness_testimony(ann,street,red_light_run)
     in:
       - red_light_run
+
+  # --- 5.5: the records taken over from Carneades, against their sources ----
+  # 59.2 appearance (p. 345; Walton 2006, pp. 324-325): the two printed
+  # questions are exceptions.
+  - name: appearance/positive
+    source: "59.2, p. 345"
+    assumptions:
+      - looks_like(coil,snake)
+    arguments:
+      - appearance(coil,snake)
+    in:
+      - instance(coil,snake)
+  - name: appearance/adverse-misleading
+    source: "59.2, p. 345, CQ1"
+    assumptions:
+      - looks_like(coil,snake)
+      - misleading_appearance(coil,snake)
+    not_in:
+      - instance(coil,snake)
+  - name: appearance/adverse-another-category
+    source: "59.2, p. 345, CQ2"
+    assumptions:
+      - looks_like(coil,snake)
+      - more_justifiable_category(coil,snake)
+      - looks_like(stick,snake)
+    in:
+      - instance(stick,snake)
+    not_in:
+      - instance(coil,snake)
+  # 25 (pp. 326-327; Walton 2002, p. 489): the compendium's form, a choice at
+  # t2 and a precommitment at t1, concludes the practical ought of entry 22.
+  - name: sunk_costs_precommitment/positive
+    source: "25, pp. 326-327"
+    assumptions:
+      - choice_at(spring,finish_thesis)
+      - precommitted(ann,finish_thesis,autumn,spring)
+    arguments:
+      - sunk_costs_precommitment(ann,finish_thesis,autumn,spring)
+    in:
+      - should_do(ann,finish_thesis)
+  - name: sunk_costs_precommitment/adverse-precommitted-for-another-time
+    source: "25, pp. 326-327"
+    assumptions:
+      - choice_at(spring,finish_thesis)
+      - precommitted(ann,finish_thesis,autumn,winter)
+    no_arguments: [sunk_costs_precommitment]
+    not_in:
+      - should_do(ann,finish_thesis)
+  - name: sunk_costs_precommitment/against-negative_consequences_reasoning
+    source: "25, pp. 326-327; 33.3, p. 332"
+    assumptions:
+      - choice_at(spring,finish_thesis)
+      - precommitted(ann,finish_thesis,autumn,spring)
+      - agent_bring_about(ann,finish_thesis,burnout)
+      - bad_for_goals(ann,burnout)
+    arguments:
+      - sunk_costs_precommitment(ann,finish_thesis,autumn,spring)
+      - negative_consequences_reasoning(finish_thesis,burnout,ann)
+    issues: [["should_do(ann,finish_thesis)", "¬should_do(ann,finish_thesis)"]]

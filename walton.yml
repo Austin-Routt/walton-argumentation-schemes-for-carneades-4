@@ -31,7 +31,6 @@ language:
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
   alternative_means/2: "There are alternative means of realizing %s other than %s." 
   alternatives/2: "Either you must bring about %s, or %s will occur."
-  another_category/2: "The object may look like it can be classified under %s but it is more justifiable to classify it under another category %s."
   applicable/1: "Argument %s is applicable."
   arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."
@@ -84,6 +83,7 @@ language:
   character_issue/1: "Character is an issue in the dialogue, and more specifically, %s's argument depends on his/her credibility."
   character_quality/1: "%s has this character quality."
   character_relevant/1: "In the type of dialogue in which argument %s was used, the issue of character is relevant."
+  choice_at/2: "There is a choice at %s between doing %s and not doing it."
   cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
   claimed_exception/2: "Case %s is claimed to be an exception to the rule %s, an excusable or exceptional case."
   classified_as/2: "Objects which satisfy definition %s are classified as instances of class %s."
@@ -210,13 +210,14 @@ language:
   means_to_end/2: "%s is means to the end %s."
   member_group_quality/3: "If the member %s has quality %s, then %s will have it as well."
   member_quality/3: "Member %s of the group %s has the quality %s."
-  misleading/1: "The appearance of the object looking like it could be classified under %s is misleading for some reason."
+  misleading_appearance/2: "The appearance of %s looking like it could be classified under %s is misleading for some reason."
   morally_acceptable_action/2: "My doing %s or accepting %s is morally justified as an acceptable action or policy."
   morally_bad/1: "%s is a morally bad person."
   more_acceptable_bringing/2: "Bringing about %s is more acceptable to me than not bringing about %s."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
   more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
+  more_justifiable_category/2: "Although %s may look like it can be classified under %s, there are grounds for classifying it under another category, which is more justifiable."
   more_on_point/2: "%s is false in another case which is more on point than case %s."
   more_reliable/1: "There are other events that would more reliably account for the sign %s."
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
@@ -283,6 +284,7 @@ language:
   possible_goal/1: "Bringing about %s is possible."
   practicality_action/1: "Nothing unchangeable prevents me from bringing about %s, as far as I know."
   precedent_series/3: "By case-to-case consistency, holding case %s to be an exception to the rule %s binds us to hold each case of a sequence of similar cases, up to %s, to be an exception too."
+  precommitted/4: "At %[4]s, %[1]s is precommitted to %[2]s because of what that agent did or committed to at %[3]s."
   presents/2: "%s presents %s."
   presents_predicate/3: "If %s presents the predicate %s, it cannot present the contradictory, contrary, converse, incompatible, predicate %s at the same time and in the same respect."
   prestigious_individual/2: "Individual %s is prestigious for -admired by- individuals %s."
@@ -1668,12 +1670,15 @@ argument_schemes:
   - id: appearance
     meta:
       title: Argument from Appearance
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.2, p. 345. Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.2, p. 345. Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, Logique et Analyse 195, 2006, pp. 324-325."
     variables: [O,C]
     conclusions:
       - instance(O,C)
     premises:
       - looks_like(O,C)
+    exceptions:
+      - misleading_appearance(O,C)
+      - more_justifiable_category(O,C)
     
   - id: cause_to_effect
     meta:
@@ -1705,7 +1710,7 @@ argument_schemes:
   - id: credible_source
     meta:
       title: "Argument from Credible Source"
-      source: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016."
+      source: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016, p. 127."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -1936,7 +1941,18 @@ argument_schemes:
       - feasible(A)
     exceptions:
       - future_losses_outweigh(A)
-        
+
+  - id: sunk_costs_precommitment
+    meta:
+      title: Argument from Sunk Costs (the compendium's form)
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 25, p. 326. Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation 16, 2002, p. 489."
+    variables: [P,A,T1,T2]
+    conclusions:
+      - should_do(P,A)
+    premises:
+      - choice_at(T2,A)
+      - precommitted(P,A,T1,T2)
+
   - id: verbal_classification
     meta:
       title: Argument from Verbal Classification

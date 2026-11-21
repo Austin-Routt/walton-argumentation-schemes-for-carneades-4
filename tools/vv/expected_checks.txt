@@ -785,6 +785,33 @@ A_reasoning/3_practical-reasoning.yml|sacrifice|static/id-round-trips
 A_reasoning/3_practical-reasoning.yml|sacrifice|static/no-reserved-functor
 A_reasoning/3_practical-reasoning.yml|sacrifice|static/not-self-feeding
 A_reasoning/3_practical-reasoning.yml|sacrifice|static/range-restricted
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|chr-translation
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|cli/scenario
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|engine-validator
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/assumptions-questionable
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/conclusions-in
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/fires
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/ground
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/infer-ok
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/infer-twice
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/premises-needed
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|full/terminates
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/assumptions-questionable
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/conclusions-in
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/fires
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/ground
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/infer-ok
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/infer-twice
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/negation-texts
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/premises
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/roundtrip
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/terminates
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|iso/texts
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|static/id-round-trips
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|static/no-reserved-functor
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|static/not-self-feeding
+A_reasoning/3_practical-reasoning.yml|sunk_costs_precommitment|static/range-restricted
 A_reasoning/3_practical-reasoning.yml|sunk_costs|chr-translation
 A_reasoning/3_practical-reasoning.yml|sunk_costs|cli/scenario
 A_reasoning/3_practical-reasoning.yml|sunk_costs|engine-validator
@@ -1556,6 +1583,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|cli/sc
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|engine-validator
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/assumptions-questionable
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/conclusions-in
+B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/exceptions-undercut
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/fires
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/ground
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/infer-ok
@@ -1564,6 +1592,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/p
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|full/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/assumptions-questionable
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/conclusions-in
+B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/exceptions-undercut
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/fires
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/ground
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/infer-ok
@@ -3598,6 +3627,8 @@ cases/book.yml|sorites_slippery_slope/book|case
 cases/book.yml|sorites_slippery_slope/book|roundtrip
 cases/book.yml|sunk_costs/book|case
 cases/book.yml|sunk_costs/book|roundtrip
+cases/book.yml|sunk_costs_precommitment/book|case
+cases/book.yml|sunk_costs_precommitment/book|roundtrip
 cases/book.yml|threat/book|case
 cases/book.yml|threat/book|roundtrip
 cases/book.yml|two_person_practical/book|case
@@ -3706,6 +3737,12 @@ cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|case
 cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|roundtrip
 cases/phase5.yml|ad_hominem/two-arguments|case
 cases/phase5.yml|ad_hominem/two-arguments|roundtrip
+cases/phase5.yml|appearance/adverse-another-category|case
+cases/phase5.yml|appearance/adverse-another-category|roundtrip
+cases/phase5.yml|appearance/adverse-misleading|case
+cases/phase5.yml|appearance/adverse-misleading|roundtrip
+cases/phase5.yml|appearance/positive|case
+cases/phase5.yml|appearance/positive|roundtrip
 cases/phase5.yml|bias/adverse-another-persons-premise|case
 cases/phase5.yml|bias/adverse-another-persons-premise|roundtrip
 cases/phase5.yml|bias/adverse-dialogue-questioned|case
@@ -3872,6 +3909,12 @@ cases/phase5.yml|sign/two-signs|case
 cases/phase5.yml|sign/two-signs|roundtrip
 cases/phase5.yml|sorites_slippery_slope/conditional-shared-with-verbal_slippery_slope|case
 cases/phase5.yml|sorites_slippery_slope/conditional-shared-with-verbal_slippery_slope|roundtrip
+cases/phase5.yml|sunk_costs_precommitment/adverse-precommitted-for-another-time|case
+cases/phase5.yml|sunk_costs_precommitment/adverse-precommitted-for-another-time|roundtrip
+cases/phase5.yml|sunk_costs_precommitment/against-negative_consequences_reasoning|case
+cases/phase5.yml|sunk_costs_precommitment/against-negative_consequences_reasoning|roundtrip
+cases/phase5.yml|sunk_costs_precommitment/positive|case
+cases/phase5.yml|sunk_costs_precommitment/positive|roundtrip
 cases/phase5.yml|two_person_practical/adverse-alternative-means|case
 cases/phase5.yml|two_person_practical/adverse-alternative-means|roundtrip
 cases/phase5.yml|two_person_practical/adverse-other-actions-required|case
@@ -3989,6 +4032,7 @@ source_ledger.yml|bivalent/1|source/name-in-language
 source_ledger.yml|cannot_be_exception/2|source/name-in-language
 source_ledger.yml|cause_to_effect|source/record-row
 source_ledger.yml|character_relevant/1|source/name-in-language
+source_ledger.yml|choice_at/2|source/name-in-language
 source_ledger.yml|circumstantial_ad_hominem|source/record-row
 source_ledger.yml|claimed_exception/2|source/name-in-language
 source_ledger.yml|commitment1|source/record-row
@@ -4160,9 +4204,11 @@ source_ledger.yml|intolerable_exception/2|source/name-in-language
 source_ledger.yml|is_a/2|source/name-in-language
 source_ledger.yml|legitimate_case/2|source/name-in-language
 source_ledger.yml|memory|source/record-row
+source_ledger.yml|misleading_appearance/2|source/name-in-language
 source_ledger.yml|moral_justification_ad_populum_excuse|source/record-row
 source_ledger.yml|moral_justification_ad_populum|source/record-row
 source_ledger.yml|more_efficient_alternative/2|source/name-in-language
+source_ledger.yml|more_justifiable_category/2|source/name-in-language
 source_ledger.yml|more_reliable/1|source/name-in-language
 source_ledger.yml|must_not_do/2|source/name-in-language
 source_ledger.yml|necessary_action/3|source/name-in-language
@@ -4208,6 +4254,7 @@ source_ledger.yml|pragmatic_alternative|source/record-row
 source_ledger.yml|pragmatic_inconsistency|source/record-row
 source_ledger.yml|precedent_series/3|source/name-in-language
 source_ledger.yml|precedent_slippery_slope|source/record-row
+source_ledger.yml|precommitted/4|source/name-in-language
 source_ledger.yml|prohibited/1|source/name-in-language
 source_ledger.yml|proper_sequence/2|source/name-in-language
 source_ledger.yml|reapplication_sequence/3|source/name-in-language
@@ -4241,6 +4288,7 @@ source_ledger.yml|sorites_slippery_slope|source/record-row
 source_ledger.yml|special_circumstances/2|source/name-in-language
 source_ledger.yml|sufficient_action/3|source/name-in-language
 source_ledger.yml|sufficient_evidence/1|source/name-in-language
+source_ledger.yml|sunk_costs_precommitment|source/record-row
 source_ledger.yml|sunk_costs|source/record-row
 source_ledger.yml|supports_generalization/3|source/name-in-language
 source_ledger.yml|threat|source/record-row
@@ -4277,6 +4325,8 @@ tools/migration_r2.yml|alternative_cognitive|migration/replaced B
 tools/migration_r2.yml|alternative_cognitive|migration/replaced ¬A
 tools/migration_r2.yml|alternative_normative|migration/replaced ¬is_required(B)
 tools/migration_r2.yml|appeal_to_vanity_ad_populum|migration/replaced ought_to_bring_about(X)
+tools/migration_r2.yml|appearance|migration/added misleading_appearance(O,C)
+tools/migration_r2.yml|appearance|migration/added more_justifiable_category(O,C)
 tools/migration_r2.yml|bias|migration/added bias_relevant(A,C)
 tools/migration_r2.yml|bias|migration/arguments not_taken_both(A,C)
 tools/migration_r2.yml|circumstantial_ad_hominem|migration/added inconsistency_explained(A,S)
@@ -4383,6 +4433,7 @@ tools/migration_r2.yml|sign|migration/replaced A
 tools/migration_r2.yml|sign|migration/replaced B
 tools/migration_r2.yml|sorites_slippery_slope|migration/rename-predicate all_has/3
 tools/migration_r2.yml|sorites_slippery_slope|migration/rename-predicate beyond_contetion/2
+tools/migration_r2.yml|sunk_costs_precommitment|migration/added should_do(P,A)
 tools/migration_r2.yml|threat|migration/rename-scheme treat
 tools/migration_r2.yml|threat|migration/replaced ¬ought_to_bring_about(X)
 tools/migration_r2.yml|two_person_practical|migration/added other_actions_required(X,Y)
@@ -4744,6 +4795,7 @@ walton.yml|appearance|cli/scenario
 walton.yml|appearance|engine-validator
 walton.yml|appearance|full/assumptions-questionable
 walton.yml|appearance|full/conclusions-in
+walton.yml|appearance|full/exceptions-undercut
 walton.yml|appearance|full/fires
 walton.yml|appearance|full/ground
 walton.yml|appearance|full/infer-ok
@@ -4752,6 +4804,7 @@ walton.yml|appearance|full/premises-needed
 walton.yml|appearance|full/terminates
 walton.yml|appearance|iso/assumptions-questionable
 walton.yml|appearance|iso/conclusions-in
+walton.yml|appearance|iso/exceptions-undercut
 walton.yml|appearance|iso/fires
 walton.yml|appearance|iso/ground
 walton.yml|appearance|iso/infer-ok
@@ -7519,6 +7572,34 @@ walton.yml|sorites_slippery_slope|static/id-round-trips
 walton.yml|sorites_slippery_slope|static/no-reserved-functor
 walton.yml|sorites_slippery_slope|static/not-self-feeding
 walton.yml|sorites_slippery_slope|static/range-restricted
+walton.yml|sunk_costs_precommitment|chr-translation
+walton.yml|sunk_costs_precommitment|cli/scenario
+walton.yml|sunk_costs_precommitment|engine-validator
+walton.yml|sunk_costs_precommitment|full/assumptions-questionable
+walton.yml|sunk_costs_precommitment|full/conclusions-in
+walton.yml|sunk_costs_precommitment|full/fires
+walton.yml|sunk_costs_precommitment|full/ground
+walton.yml|sunk_costs_precommitment|full/infer-ok
+walton.yml|sunk_costs_precommitment|full/infer-twice
+walton.yml|sunk_costs_precommitment|full/premises-needed
+walton.yml|sunk_costs_precommitment|full/terminates
+walton.yml|sunk_costs_precommitment|iso/assumptions-questionable
+walton.yml|sunk_costs_precommitment|iso/conclusions-in
+walton.yml|sunk_costs_precommitment|iso/fires
+walton.yml|sunk_costs_precommitment|iso/ground
+walton.yml|sunk_costs_precommitment|iso/infer-ok
+walton.yml|sunk_costs_precommitment|iso/infer-twice
+walton.yml|sunk_costs_precommitment|iso/negation-texts
+walton.yml|sunk_costs_precommitment|iso/premises
+walton.yml|sunk_costs_precommitment|iso/premises-needed
+walton.yml|sunk_costs_precommitment|iso/roundtrip
+walton.yml|sunk_costs_precommitment|iso/terminates
+walton.yml|sunk_costs_precommitment|iso/texts
+walton.yml|sunk_costs_precommitment|source/mapped
+walton.yml|sunk_costs_precommitment|static/id-round-trips
+walton.yml|sunk_costs_precommitment|static/no-reserved-functor
+walton.yml|sunk_costs_precommitment|static/not-self-feeding
+walton.yml|sunk_costs_precommitment|static/range-restricted
 walton.yml|sunk_costs|chr-translation
 walton.yml|sunk_costs|cli/scenario
 walton.yml|sunk_costs|engine-validator

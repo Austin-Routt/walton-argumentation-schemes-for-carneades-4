@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"regexp"
 	"sort"
 	"strings"
@@ -319,17 +320,37 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		}
 	}
 	upstream := map[string]bool{}
+	// upstream's statements, field by field, for the records whose only source
+	// is upstream's file
+	upstreamStatements := map[string][4][]string{}
 	if b, err := os.ReadFile(filepath.Join(RepoRoot(), "third_party", "carneades-4", "examples", "AGs", "YAML", "walton.yml")); err == nil {
 		var f struct {
 			Schemes []struct {
-				Id string `yaml:"id"`
+				Id          string   `yaml:"id"`
+				Premises    []string `yaml:"premises"`
+				Assumptions []string `yaml:"assumptions"`
+				Exceptions  []string `yaml:"exceptions"`
+				Conclusions []string `yaml:"conclusions"`
 			} `yaml:"argument_schemes"`
 		}
 		if yaml.Unmarshal(b, &f) == nil {
 			for _, s := range f.Schemes {
 				upstream[s.Id] = true
+				upstreamStatements[s.Id] = [4][]string{s.Premises, s.Assumptions, s.Exceptions, s.Conclusions}
 			}
 		}
+	}
+	sameStatements := func(a, b []string) bool {
+		x, y := make([]string, len(a)), make([]string, len(b))
+		for i, st := range a {
+			x[i] = Norm(st)
+		}
+		for i, st := range b {
+			y[i] = Norm(st)
+		}
+		sort.Strings(x)
+		sort.Strings(y)
+		return reflect.DeepEqual(x, y)
 	}
 	cases := map[string]bool{}
 	for _, f := range CaseFiles() {
@@ -363,6 +384,18 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 				probs = append(probs, fmt.Sprintf("upstream record %s is also claimed by %s", u, prev))
 			}
 			seenUpstream[u] = r.Record
+			// PLAN.md 5.5: a record whose only source is upstream's file is
+			// checked against that file once its row is past mapped
+			if strings.HasPrefix(r.Cites, UpstreamFileSource) && StageIndex(r.Stage) >= 1 {
+				if us, ok := upstreamStatements[u]; ok {
+					mine := [4][]string{s.Premises, s.Assumptions, s.Exceptions, s.Conclusions}
+					for i, field := range []string{"premises", "assumptions", "exceptions", "conclusions"} {
+						if !sameStatements(us[i], mine[i]) {
+							probs = append(probs, fmt.Sprintf("the record's %s differ from upstream's, its only source: %v and %v", field, mine[i], us[i]))
+						}
+					}
+				}
+			}
 		case "book":
 			if r.Upstream != "" {
 				probs = append(probs, "a book record has no upstream id")
@@ -549,6 +582,10 @@ func article(kind string) string {
 // release R2 (PLAN.md D4, 5.6), with the library: a row's new statement is in
 // its record, and its old statement, where the row replaces or removes one,
 // is not.
+// UpstreamFileSource begins the citation of a record that cites nothing but
+// Carneades' own file.
+const UpstreamFileSource = "Carneades 4, examples/AGs/YAML/walton.yml"
+
 func MigrationChecks(lib *Library) []Result {
 	const file = "tools/migration_r2.yml"
 	b, err := os.ReadFile(filepath.Join(RepoRoot(), filepath.FromSlash(file)))

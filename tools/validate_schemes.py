@@ -483,6 +483,9 @@ INSTANCES = [
      {"premises": ["judged_negative_value(theft,hal)", "negative_affects(theft,survive,hal)"], "conclusions": ["reason_retracting_goal(theft,survive)"]}),
     ("epistemic_ignorance", "27, p. 328", {"A": "spy", "D": "staff", "K": "files"},
      {"premises": ["true_propositions_contained(staff,files)", "special_proposition(spy,files)", "special_in(spy,staff)", "special_not_in(spy,files)", "bivalent(staff)"], "conclusions": ["¬spy"]}),
+    # the record added by PLAN.md 5.5
+    ("sunk_costs_precommitment", "25, pp. 326-327", {"P": "me", "A": "finish", "T1": "t1", "T2": "t2"},
+     {"premises": ["choice_at(t2,finish)", "precommitted(me,finish,t1,t2)"], "conclusions": ["should_do(me,finish)"]}),
     ("verbal_slippery_slope", "52, p. 341", {"A1": "a1", "A2": "a2", "A": "an", "P": "bald"},
      {"premises": ["has_property(a1,bald)", "also_has(a1,bald,a2)", "vague_property(bald,a1,an)", "¬has_property(an,bald)"], "conclusions": ["not_has_property(a1,bald)"]}),
 ]
