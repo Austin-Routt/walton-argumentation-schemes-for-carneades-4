@@ -165,6 +165,14 @@ compendium:
 #              standard (asks about the burden or the standard of proof, which
 #              Carneades sets for an issue in the graph, not in a scheme). An
 #              assumption or an exception without a statement is a gap (5.2).
+#              support names the same conclusion, for a further supporting
+#              argument (Atkinson and Bench-Capon 2007, CQ10). alternative
+#              identifies a comparison still requiring an executable contract;
+#              it has no as: and blocks questions-sorted, rather than making
+#              every alternative an unconditional defeater.
+#   source_questions  original-source CQ count for an upstream-only record;
+#              absent means unknown, 0 means checked and none printed. Required
+#              at questions-sorted. Compendium entries retain their own counts.
 #   changes    the changes made to the record, each with its plan item, page
 #              and the kind of claim it makes
 #
@@ -285,7 +293,47 @@ records:
   - {record: negative_consequences, origin: upstream, entry: "33.2", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.", claim: interpretation, stage: transcription-checked, questions: [{n: 1, kind: assumption, note: "how likely the consequences are; not modelled, upstream's wording (D5, 5.5)"}, {n: 2, kind: premise, as: "brings_about(A,G)"}, {n: 3, kind: rebuttal, as: "should_be_performed(A)", note: "opposite consequences: positive_consequences concludes this"}], note: "the template of should_be_performed/1 is applied under ¬"}
   - {record: position_to_know, origin: upstream, entry: "1", cites: "Douglas Walton, Legal Argumentation and Evidence, The Pennsylvania State University Press, University Park, 2002, p.46.", claim: interpretation, stage: transcription-checked, questions: [{n: 1, kind: premise, as: "position_to_know(W,D)"}, {n: 2, kind: exception, as: "dishonest(W)"}, {n: 3, kind: premise, as: "asserts(W,S)"}]}
   - {record: positive_consequences, origin: upstream, entry: "33.1", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.", claim: interpretation, stage: transcription-checked, questions: [{n: 1, kind: assumption, note: "how likely the consequences are; 33.4 models it, this record keeps upstream's wording (D5, 5.5)"}, {n: 2, kind: premise, as: "brings_about(A,G)"}, {n: 3, kind: rebuttal, as: "¬should_be_performed(A)", note: "opposite consequences: negative_consequences concludes this"}]}
-  - {record: practical_reasoning1, origin: upstream, cites: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874.", claim: unchecked, stage: mapped}
+  - record: practical_reasoning1
+    origin: upstream
+    cites: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874."
+    claim: interpretation
+    stage: transcription-checked
+    source_questions: 17
+    questions:
+      - {n: 1, kind: premise, as: "current_circumstances(S1)", note: "p. 858; AS1 circumstances. AS2 also makes the acting agent's action preconditions explicit (pp. 861-862)."}
+      - {n: 2, kind: premise, as: "would_bring_about(A,S1,S2)", note: "pp. 858, 862; the asserted transition. This does not separately model the other agents' choices in CQ17."}
+      - {n: 3, kind: premise, as: "would_be_realized(G,S2)", note: "pp. 858, 862; goal in the resulting state. AS2 additionally represents whether the proposition changes between states."}
+      - {n: 4, kind: premise, as: "would_promote_value(G,V)", note: "pp. 858, 861-862; AS1 abstraction. AS2 values are agent-specific and transition-relative; this inherited relation omits those arguments."}
+      - {n: 5, kind: alternative, note: "pp. 858-859, 862; another action achieving the same consequences. bring_about_more_effectively(S2,A) is a stronger application policy, not a complete mapping."}
+      - {n: 6, kind: alternative, note: "pp. 858-859, 862; another action achieving the same goal. realize_more_effectively(G,A) is a stronger application policy, not a complete mapping."}
+      - {n: 7, kind: alternative, note: "pp. 858-859, 862; another action promoting the same value. promote_more_effectively(V,A) is a stronger application policy, not a complete mapping."}
+      - {n: 8, kind: exception, as: "side_effects(A,S1)", note: "pp. 858-859, 862; legacy approximation only: merges same-value and other-value demotion and undercuts unconditionally, without a negative AS1 argument or value comparison."}
+      - {n: 9, kind: exception, as: "side_effects(A,S1)", note: "pp. 858-859, 862, 868; legacy approximation only. The paper allows a contrary preference to defeat a negative side-effect argument; this aggregate exception does not."}
+      - {n: 10, kind: support, as: "should_be_performed(A)", note: "p. 862 explicitly treats this as positive support, not a reason against performing A. Another goal/value instantiation can support the same conclusion; the farmer's Arg6 (p. 866) promotes P and F. This is the AS1 abstraction, not full agent/transition modelling."}
+      - {n: 11, kind: alternative, note: "pp. 858-859, 862, 865; the action precludes another action promoting a different value. No explicit incompatibility relation, alternative witness or value comparison in this record."}
+      - {n: 12, kind: assumption, note: "pp. 858, 862; whether the described initial circumstances are possible. No corresponding default or AATS state-membership check; proposed burden is an executable interpretation, not stated by the paper."}
+      - {n: 13, kind: assumption, as: "possible(A)", note: "pp. 858, 862; action feasibility. The default/questioning burden is Carneades' policy; the paper formalizes joint-action membership."}
+      - {n: 14, kind: assumption, note: "pp. 858, 862; whether the described consequences are possible. No corresponding default or AATS successor-state membership check; proposed burden is an executable interpretation."}
+      - {n: 15, kind: assumption, note: "pp. 858, 862; whether the goal is realizable in any state. worthy_goal(G) is a different claim. No realizability mapping; proposed burden is an executable interpretation."}
+      - {n: 16, kind: assumption, as: "legitimate_value(V)", note: "pp. 858, 862, 865; value membership/legitimacy. The default/questioning burden is Carneades' policy."}
+      - {n: 17, kind: assumption, note: "p. 859 introduces the additional CQ; p. 862 distinguishes the other agents' joint-action choices from CQ2. No agent/joint-action/cooperation mapping; proposed burden is an executable interpretation."}
+      - {n: 0, kind: assumption, as: "worthy_goal(G)", note: "Inherited application policy, not CQ15: worthiness is not realizability."}
+      - {n: 0, kind: exception, as: "bring_about_more_effectively(S2,A)", note: "Inherited stronger policy related to CQ5; the paper's question does not require greater effectiveness."}
+      - {n: 0, kind: exception, as: "realize_more_effectively(G,A)", note: "Inherited stronger policy related to CQ6; the paper's question does not require greater effectiveness."}
+      - {n: 0, kind: exception, as: "promote_more_effectively(V,A)", note: "Inherited stronger policy related to CQ7; the paper's question does not require greater effectiveness."}
+    note: >-
+      Independently compared with the supplied 20-page 2007 paper, SHA-256
+      dad4124c052c48b5c82de02494aac6971de113bb8452ae9fc6e764aa35e43cbc.
+      AS1 and CQ1-16 are on printed p. 858 (PDF 4), CQ17 on p. 859 (PDF 5),
+      AS2 and formal treatments on pp. 861-862 (PDF 7-8). The four premises
+      and conclusion are a flat AS1 adaptation; defaults and unconditional
+      exceptions are inherited policy. Eight CQ mappings remain incomplete
+      (5,6,7,11,12,14,15,17); CQ8-9 have partial policy treatments and CQ10
+      has a supporting-argument treatment within the flat AS1 scope.
+      Source comparison is complete, but full interpretation approval is
+      withheld. The corrected reference case is farmer Arg8 (p. 866), with
+      a separate positive-value case based on Arg6. See
+      docs/reviews/atkinson-2007.md for scope, evidence and release decision.
   - {record: practical_reasoning2, origin: upstream, cites: "Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press.", claim: unchecked, stage: mapped}
   - {record: exeption_to_rule, origin: upstream, upstream: precedent, cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 148", claim: unchecked, stage: mapped}
   - {record: slippery_slope_base_case, origin: upstream, entry: "49", cites: "Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.", claim: interpretation, stage: transcription-checked, questions: [{n: 1, kind: premise, as: "would_realize(A,E)", note: "the links given: each is a premise of a step"}, {n: 2, kind: premise, as: "would_realize(A,E)", note: "steps missing from the sequence"}, {n: 3, kind: premise, as: "would_realize(A,E)", note: "the weakest link, attacked by arguing its negation"}], note: "upstream splits the scheme into a base case and an inductive step, which chain"}

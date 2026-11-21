@@ -151,6 +151,24 @@ what it needs; `source/records-complete` that no row is missing or left over.
 `go run ./cmd/schemecheck -format source` prints them as the worklist of
 Phase 5.
 
+For an upstream-only record, `source_questions` records the number of critical
+questions in its own source: absent means unknown and `0` means the source has
+been checked and prints none. It is required before `questions-sorted`; the
+worklist's `questions_in_source` column is blank when the number is unknown.
+`questions_sorted` counts positive question numbers, excluding `n: 0` policy
+additions. A question's valid kind is checked even when its `as` mapping is blank.
+
+The source review of Atkinson and Bench-Capon (2007) adds two distinctions to
+PLAN.md 5.1. `support` names a conclusion receiving another supporting argument
+(their CQ10); it is not a negated conclusion or an exception. `alternative`
+records a choice between actions that still needs a comparison contract. It has
+no executable `as` mapping and prevents advancement to `questions-sorted`.
+Neither category changes engine behavior. A blank mapping records incomplete
+content, while a nonblank mapping proves only that the statement exists in the
+scheme: the independent review must still assess its fidelity and scope.
+See `docs/reviews/atkinson-2007.md` for the 17-question source comparison and the
+limits of `practical_reasoning1`.
+
 **Engine** (`TestEngine`, `TestEngineToolchain`, and the `command` group of
 `TestCLI`): small experiments stating what practical use needs, such as "two
 schemes that derive each other's premise terminate", "the engine can read the

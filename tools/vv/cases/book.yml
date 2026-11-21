@@ -67,16 +67,16 @@ cases:
       - has_property(team,strong)
     variants: true
   - name: practical_reasoning1/book
-    source: "upstream: Atkinson and Bench-Capon (2007); Hal and Carla, p. 322"
+    source: "Atkinson and Bench-Capon (2007), p. 866, farmer Arg8; AS1 abstraction of the stipulated transition q0 to q9"
     assumptions:
-      - current_circumstances(hal_needs_insulin)
-      - would_bring_about(take_insulin,hal_needs_insulin,hal_survives)
-      - would_be_realized(survival,hal_survives)
-      - would_promote_value(survival,life)
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
     arguments:
-      - practical_reasoning1(take_insulin,hal_needs_insulin,hal_survives,survival,life)
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
     in:
-      - should_be_performed(take_insulin)
+      - should_be_performed(row_chicken)
     variants: true
   - name: practical_reasoning2/book
     source: "upstream: Walton (2015)"

@@ -56,23 +56,28 @@ type SourceLedger struct {
 
 // RecordRow is the source ledger's row for one record (PLAN.md 0.6).
 type RecordRow struct {
-	Record    string           `yaml:"record"`
-	Origin    string           `yaml:"origin"`
-	Upstream  string           `yaml:"upstream"`
-	Entry     string           `yaml:"entry"`
-	Cites     string           `yaml:"cites"`
-	Claim     string           `yaml:"claim"`
-	Stage     string           `yaml:"stage"`
-	Questions []RecordQuestion `yaml:"questions"`
-	Changes   []RecordChange   `yaml:"changes"`
-	Note      string           `yaml:"note"`
+	Record   string `yaml:"record"`
+	Origin   string `yaml:"origin"`
+	Upstream string `yaml:"upstream"`
+	Entry    string `yaml:"entry"`
+	Cites    string `yaml:"cites"`
+	Claim    string `yaml:"claim"`
+	Stage    string `yaml:"stage"`
+	// SourceQuestions is the number printed by an upstream-only record's own
+	// source. Nil means that source inventory has not yet been established;
+	// zero means it has been checked and prints no questions. Compendium
+	// records instead use SourceEntry.Questions.
+	SourceQuestions *int             `yaml:"source_questions"`
+	Questions       []RecordQuestion `yaml:"questions"`
+	Changes         []RecordChange   `yaml:"changes"`
+	Note            string           `yaml:"note"`
 }
 
 // RecordQuestion is one printed critical question, sorted (PLAN.md 5.1).
 type RecordQuestion struct {
 	N    int    `yaml:"n"`
-	Kind string `yaml:"kind"` // premise, assumption, exception, rebuttal
-	As   string `yaml:"as"`   // the statement that models it ("" for premise)
+	Kind string `yaml:"kind"` // premise, assumption, exception, rebuttal, standard, support, alternative
+	As   string `yaml:"as"`   // the statement that models it; empty if not yet modelled
 	Note string `yaml:"note"`
 }
 
@@ -88,10 +93,12 @@ type RecordChange struct {
 var (
 	Claims = map[string]bool{"transcription": true, "correction": true, "interpretation": true, "policy": true, "unchecked": true}
 	Stages = []string{"mapped", "transcription-checked", "interpretation-approved", "questions-sorted", "example-passed"}
-	// QuestionKinds are the four sorts of PLAN.md 5.1, and standard: a
-	// question about the burden or the standard of proof, which Carneades
-	// sets for an issue in the graph, not in a scheme.
-	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true, "standard": true}
+	// QuestionKinds extend PLAN.md 5.1 with standard (an issue's burden or
+	// proof standard), support (a further argument for the same conclusion),
+	// and alternative (an unresolved choice between actions). The last two
+	// are needed by Atkinson and Bench-Capon (2007), pp. 858-862: CQ10 is
+	// positive support, while an alternative is not automatically a defeater.
+	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true, "standard": true, "support": true, "alternative": true}
 )
 
 // StageIndex is the position of a stage in Stages, or -1.
@@ -203,15 +210,16 @@ func SourceChecks(l *SourceLedger, lib *Library) []Result {
 // SourceRow compares what the compendium prints for an entry with what the
 // scheme models.
 type SourceRow struct {
-	Entry       string
-	Page        int
-	Questions   int
-	Shared      bool
-	Scheme      string
-	Assumptions int
-	Exceptions  int
-	Status      string
-	Note        string
+	Entry              string
+	Page               int
+	Questions          int
+	QuestionCountKnown bool
+	Shared             bool
+	Scheme             string
+	Assumptions        int
+	Exceptions         int
+	Status             string
+	Note               string
 	// from the record's row (PLAN.md 0.6)
 	Origin, Claim, Stage string
 	Sorted               int // questions sorted
@@ -233,7 +241,19 @@ func SourceRows(l *SourceLedger, lib *Library) []SourceRow {
 		}
 		for i := range rows {
 			if r, ok := byId[rows[i].Scheme]; ok {
-				rows[i].Origin, rows[i].Claim, rows[i].Stage, rows[i].Sorted = r.Origin, r.Claim, r.Stage, len(r.Questions)
+				rows[i].Origin, rows[i].Claim, rows[i].Stage = r.Origin, r.Claim, r.Stage
+				// n: 0 records application additions, not printed questions.
+				sorted := map[int]bool{}
+				for _, q := range r.Questions {
+					if q.N > 0 {
+						sorted[q.N] = true
+					}
+				}
+				rows[i].Sorted = len(sorted)
+				if r.Entry == "" && r.SourceQuestions != nil {
+					rows[i].Questions = *r.SourceQuestions
+					rows[i].QuestionCountKnown = true
+				}
 			}
 		}
 	}()
@@ -245,7 +265,7 @@ func SourceRows(l *SourceLedger, lib *Library) []SourceRow {
 	}
 	for _, e := range l.Compendium {
 		if len(e.Schemes) == 0 {
-			rows = append(rows, SourceRow{Entry: e.Entry, Page: e.Page, Questions: e.Questions, Shared: e.Shared, Status: "no-record", Note: e.Note})
+			rows = append(rows, SourceRow{Entry: e.Entry, Page: e.Page, Questions: e.Questions, QuestionCountKnown: true, Shared: e.Shared, Status: "no-record", Note: e.Note})
 		}
 		for _, id := range e.Schemes {
 			a, x := count(id)
@@ -253,7 +273,7 @@ func SourceRows(l *SourceLedger, lib *Library) []SourceRow {
 			if e.Status != "" {
 				st = e.Status
 			}
-			rows = append(rows, SourceRow{Entry: e.Entry, Page: e.Page, Questions: e.Questions, Shared: e.Shared, Scheme: id, Assumptions: a, Exceptions: x, Status: st, Note: e.Note})
+			rows = append(rows, SourceRow{Entry: e.Entry, Page: e.Page, Questions: e.Questions, QuestionCountKnown: true, Shared: e.Shared, Scheme: id, Assumptions: a, Exceptions: x, Status: st, Note: e.Note})
 		}
 	}
 	for _, id := range l.UpstreamOnly {
@@ -453,7 +473,18 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		if stage >= 1 && r.Claim == "unchecked" {
 			probs = append(probs, "a row past mapped says what the record claims to be")
 		}
-		probs = append(probs, questionProblems(r, s, entries[r.Entry].Questions, stage >= StageIndex("questions-sorted"))...)
+		printed := entries[r.Entry].Questions
+		if r.SourceQuestions != nil {
+			if *r.SourceQuestions < 0 {
+				probs = append(probs, "source_questions must not be negative")
+			}
+			if r.Entry != "" {
+				probs = append(probs, "source_questions is for upstream-only records; a compendium record uses its entry's question count")
+			} else {
+				printed = *r.SourceQuestions
+			}
+		}
+		probs = append(probs, questionProblems(r, s, printed, stage >= StageIndex("questions-sorted"))...)
 		if stage >= StageIndex("example-passed") && !cases[r.Record+"/book"] {
 			probs = append(probs, "example passed, but no reference case "+r.Record+"/book")
 		}
@@ -491,9 +522,10 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 // record: an assumption is one of the record's assumptions, an exception one
 // of its exceptions, a premise (when it names one) one of its premises, and a
 // rebuttal the negation of one of its conclusions, weighed against it in the
-// negation issue. Numbers run from 1 to the count the compendium prints; 0
-// marks a statement the record models although the book prints no question
-// for it. Once the row is at questions-sorted, every printed question is
+// negation issue. Support names a positive conclusion, not its negation.
+// Alternative marks a question requiring a choice contract, and cannot yet
+// claim to be modelled. Numbers run from 1 to the source's declared count; 0
+// marks an application addition. Once the row is at questions-sorted, every printed question is
 // sorted and every assumption and exception of the record is accounted for.
 func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) []string {
 	probs := []string{}
@@ -518,12 +550,18 @@ func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) [
 	named := map[string]bool{}
 	for _, q := range r.Questions {
 		switch {
-		case q.N < 0 || (printed >= 0 && r.Origin == "book" && q.N > printed):
-			probs = append(probs, fmt.Sprintf("question %d: the compendium prints %d", q.N, printed))
+		case q.N < 0 || (printed >= 0 && (r.Entry != "" || r.Origin == "book" || r.SourceQuestions != nil) && q.N > printed):
+			probs = append(probs, fmt.Sprintf("question %d: the declared source prints %d", q.N, printed))
 		case q.N > 0 && seen[q.N]:
 			probs = append(probs, fmt.Sprintf("question %d is sorted twice", q.N))
 		}
 		seen[q.N] = true
+		// Validate first: an unknown (or empty) kind with a blank mapping used
+		// to bypass validation, and could panic in article at a later stage.
+		if !QuestionKinds[q.Kind] {
+			probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
+			continue
+		}
 		ok := true
 		if q.As == "" && q.Kind != "premise" && q.Kind != "standard" {
 			// sorted, not modelled yet (a gap of PLAN.md 5.2)
@@ -544,18 +582,23 @@ func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) [
 			ok = in(negations, q.As)
 		case "standard":
 			ok = q.As == ""
-		default:
-			probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
+		case "support":
+			ok = in(s.Conclusions, q.As)
+		case "alternative":
+			probs = append(probs, fmt.Sprintf("question %d: an alternative needs a comparison contract; do not claim that %q alone models it", q.N, q.As))
 			continue
 		}
 		if !ok {
-			probs = append(probs, fmt.Sprintf("question %d, %s, is modelled by %q, which is not one of the record's %ss", q.N, article(q.Kind), q.As, map[string]string{"premise": "premise", "assumption": "assumption", "exception": "exception", "rebuttal": "negated conclusion"}[q.Kind]))
+			probs = append(probs, fmt.Sprintf("question %d, %s, is modelled by %q, which is not one of the record's %ss", q.N, article(q.Kind), q.As, map[string]string{"premise": "premise", "assumption": "assumption", "exception": "exception", "rebuttal": "negated conclusion", "support": "conclusion", "standard": "proof-standard setting"}[q.Kind]))
 		}
 		if q.As != "" {
 			named[Norm(q.As)] = true
 		}
 	}
 	if complete {
+		if r.Origin == "upstream" && r.Entry == "" && r.SourceQuestions == nil {
+			probs = append(probs, "an upstream-only record needs source_questions from its own source before questions-sorted (use 0 only if the source prints none)")
+		}
 		for n := 1; n <= printed; n++ {
 			if !seen[n] {
 				probs = append(probs, fmt.Sprintf("question %d of %d is not sorted", n, printed))
@@ -572,7 +615,7 @@ func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) [
 
 // article puts "a" or "an" before a kind of question.
 func article(kind string) string {
-	if strings.ContainsAny(kind[:1], "aeiou") {
+	if kind != "" && strings.ContainsAny(kind[:1], "aeiou") {
 		return "an " + kind
 	}
 	return "a " + kind
