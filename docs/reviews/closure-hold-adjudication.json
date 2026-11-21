@@ -109,7 +109,14 @@
         "Compendium p.312 entry4.5"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented. No printed CQs; respondent identity remains implicit, as in the text. Remaining scope: Document one implicit respondent per graph or encode recipient identity when combining different audiences. Follow-up: PR13 additionally notes that the source's (or should be) alternative is omitted from premise2. That omission must be stated in the selected reading; peer approval alone does not supply the missing branch or close the participant/context qualification."
+      "baseline_review_reason": "Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented. No printed CQs; respondent identity remains implicit, as in the text. Remaining scope: Document one implicit respondent per graph or encode recipient identity when combining different audiences. Follow-up: PR13 additionally notes that the source's (or should be) alternative is omitted from premise2. That omission must be stated in the selected reading; peer approval alone does not supply the missing branch or close the participant/context qualification.",
+      "followup_review": {
+        "decision": "approved_corrected_or_completed_interpretation",
+        "evidence": "docs/reviews/closure-branches-independent-acceptance.md",
+        "reviewed_source_commit": "7b443b6c78c23dec3bd8b2928ffb358875bda307",
+        "focused_execution": "All 408 source-case checks passed; stale worked-example integration failure retained separately. Subsequent exact book/sourcebranch/assessment selection 340/340 passed.",
+        "next_step": "Preserve exact approval fingerprint and declared single-speaker/branch scope; final combined acceptance is owned by integration."
+      }
     },
     {
       "record": "moral_justification_ad_populum_excuse",
@@ -128,7 +135,14 @@
         "Compendium p.312 entry4.6"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The record retains action and policy alternatives in composite predicates. It does not separately infer morally_acceptable(action) or acceptable(policy). No printed CQs. The speaker is implicit in group_member/1 and the conclusion. Remaining scope: Declare this as an opaque combined action/policy reading; split typed action and policy variants before claiming independent interoperability of each branch."
+      "baseline_review_reason": "The record retains action and policy alternatives in composite predicates. It does not separately infer morally_acceptable(action) or acceptable(policy). No printed CQs. The speaker is implicit in group_member/1 and the conclusion. Remaining scope: Declare this as an opaque combined action/policy reading; split typed action and policy variants before claiming independent interoperability of each branch.",
+      "followup_review": {
+        "decision": "approved_corrected_or_completed_interpretation",
+        "evidence": "docs/reviews/closure-branches-independent-acceptance.md",
+        "reviewed_source_commit": "7b443b6c78c23dec3bd8b2928ffb358875bda307",
+        "focused_execution": "All 408 source-case checks passed; stale worked-example integration failure retained separately. Subsequent exact book/sourcebranch/assessment selection 340/340 passed.",
+        "next_step": "Preserve exact approval fingerprint and declared single-speaker/branch scope; final combined acceptance is owned by integration."
+      }
     },
     {
       "record": "snob_appeal_ad_populum",
@@ -147,7 +161,14 @@
         "Compendium p.312 entry4.7"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "Group, prestige goal and membership warrant are present, but acceptance, property acquisition and object purchase are compressed. Only should_accept(A) is concluded. No printed CQs. P and O occur in the membership warrant but do not select a conclusion branch. Remaining scope: The Rolex reference case treats an object as A in accept(A); replace with a clearly typed acceptance example, and add property/purchase variants if those alternatives are claimed as covered."
+      "baseline_review_reason": "Group, prestige goal and membership warrant are present, but acceptance, property acquisition and object purchase are compressed. Only should_accept(A) is concluded. No printed CQs. P and O occur in the membership warrant but do not select a conclusion branch. Remaining scope: The Rolex reference case treats an object as A in accept(A); replace with a clearly typed acceptance example, and add property/purchase variants if those alternatives are claimed as covered.",
+      "followup_review": {
+        "decision": "approved_corrected_or_completed_interpretation",
+        "evidence": "docs/reviews/closure-branches-independent-acceptance.md",
+        "reviewed_source_commit": "7b443b6c78c23dec3bd8b2928ffb358875bda307",
+        "focused_execution": "All 408 source-case checks passed; stale worked-example integration failure retained separately. Subsequent exact book/sourcebranch/assessment selection 340/340 passed.",
+        "next_step": "Preserve exact approval fingerprint and declared single-speaker/branch scope; final combined acceptance is owned by integration."
+      }
     },
     {
       "record": "popular_practice",
@@ -477,7 +498,14 @@
         "Compendium p.322 entry20"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The person, sacrifice and its value are coherent in the great-sacrifice branch. The current record does not encode the small-sacrifice alternative printed parenthetically. No printed CQs. Remaining scope: Approve only the great-sacrifice variant; add or explicitly exclude the small-sacrifice branch from coverage claims."
+      "baseline_review_reason": "The person, sacrifice and its value are coherent in the great-sacrifice branch. The current record does not encode the small-sacrifice alternative printed parenthetically. No printed CQs. Remaining scope: Approve only the great-sacrifice variant; add or explicitly exclude the small-sacrifice branch from coverage claims.",
+      "followup_review": {
+        "decision": "approved_corrected_or_completed_interpretation",
+        "evidence": "docs/reviews/closure-branches-independent-acceptance.md",
+        "reviewed_source_commit": "7b443b6c78c23dec3bd8b2928ffb358875bda307",
+        "focused_execution": "All 408 source-case checks passed; stale worked-example integration failure retained separately. Subsequent exact book/sourcebranch/assessment selection 340/340 passed.",
+        "next_step": "Preserve exact approval fingerprint and declared single-speaker/branch scope; final combined acceptance is owned by integration."
+      }
     },
     {
       "record": "practical_inference",
@@ -595,7 +623,14 @@
         "Compendium p.325 entry22.6.1"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The record represents the positive branch: X is a means to good end Y, so X is good. The source also prints less-bad and bad alternatives. No printed CQs. Evaluation is context-sensitive; the source is presumptive, not unrestricted moral closure. Remaining scope: Approve only the explicitly positive branch; missing parenthetical variants cannot be counted as tested."
+      "baseline_review_reason": "The record represents the positive branch: X is a means to good end Y, so X is good. The source also prints less-bad and bad alternatives. No printed CQs. Evaluation is context-sensitive; the source is presumptive, not unrestricted moral closure. Remaining scope: Approve only the explicitly positive branch; missing parenthetical variants cannot be counted as tested.",
+      "followup_review": {
+        "decision": "approved_corrected_or_completed_interpretation",
+        "evidence": "docs/reviews/closure-branches-independent-acceptance.md",
+        "reviewed_source_commit": "7b443b6c78c23dec3bd8b2928ffb358875bda307",
+        "focused_execution": "All 408 source-case checks passed; stale worked-example integration failure retained separately. Subsequent exact book/sourcebranch/assessment selection 340/340 passed.",
+        "next_step": "Preserve exact approval fingerprint and declared single-speaker/branch scope; final combined acceptance is owned by integration."
+      }
     },
     {
       "record": "end_and_means_2",
@@ -633,7 +668,14 @@
         "Compendium p.325 entry22.6.3"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "Ease of achieving the means supports goodness of the end in the positive branch. Difficult-means/bad-end is not represented. No printed CQs. Remaining scope: Approve only the easy/good branch and record the omitted alternative explicitly."
+      "baseline_review_reason": "Ease of achieving the means supports goodness of the end in the positive branch. Difficult-means/bad-end is not represented. No printed CQs. Remaining scope: Approve only the easy/good branch and record the omitted alternative explicitly.",
+      "followup_review": {
+        "decision": "approved_corrected_or_completed_interpretation",
+        "evidence": "docs/reviews/closure-branches-independent-acceptance.md",
+        "reviewed_source_commit": "7b443b6c78c23dec3bd8b2928ffb358875bda307",
+        "focused_execution": "All 408 source-case checks passed; stale worked-example integration failure retained separately. Subsequent exact book/sourcebranch/assessment selection 340/340 passed.",
+        "next_step": "Preserve exact approval fingerprint and declared single-speaker/branch scope; final combined acceptance is owned by integration."
+      }
     },
     {
       "record": "two_person_practical",

@@ -1683,6 +1683,317 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "moral_justification_actual_goal",
+      "fingerprint": "sha256:d91284dabf94571c9a4ba345362a7b75c9c5c016340faa6ac30cbfec4d0b3078",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: moral_justification_actual_goal",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: moral_justification_actual_goal"
+      ],
+      "examples": [
+        "moral_justification_actual_goal/book",
+        "moral_justification_actual_goal/closure-other-group-goal"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "moral_justification_ought_goal",
+      "fingerprint": "sha256:790b881011e962108c5ff1dc8498cdc91bbd9083a4052c2f5ba610d580506456",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: moral_justification_ought_goal",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: moral_justification_ought_goal"
+      ],
+      "examples": [
+        "moral_justification_ought_goal/book",
+        "moral_justification_ought_goal/closure-other-group-goal"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "moral_excuse_action",
+      "fingerprint": "sha256:87f2bbf3d191688167e682f64c056161250337e49ed5e846c0166c0c5451ed7b",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: moral_excuse_action",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: moral_excuse_action"
+      ],
+      "examples": [
+        "moral_excuse_action/book",
+        "moral_excuse_action/closure-generic-member-is-not-person",
+        "moral_excuse_action/closure-other-speaker-group",
+        "moral_excuse_action/closure-policy-evidence-is-not-action-evidence"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "moral_excuse_policy",
+      "fingerprint": "sha256:775e8bb6bd1573c3ad18be2e38a5bdca89dfeab40faf7d46528e0cdf95552c76",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: moral_excuse_policy",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: moral_excuse_policy"
+      ],
+      "examples": [
+        "moral_excuse_policy/book",
+        "moral_excuse_policy/closure-accepting-does-not-prove-truth",
+        "moral_excuse_policy/closure-other-policy-norm"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "snob_appeal_acceptance",
+      "fingerprint": "sha256:25f93e42e39c93f1f0dafc23b8758dd19cc11524560365916c45a37d18512cf9",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_acceptance",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: snob_appeal_acceptance"
+      ],
+      "examples": [
+        "snob_appeal_acceptance/book",
+        "snob_appeal_acceptance/closure-acceptance-is-not-truth",
+        "snob_appeal_acceptance/closure-purchase-warrant-is-not-acceptance"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "snob_appeal_property",
+      "fingerprint": "sha256:a1ad890174fbebb11f63a64bc356a552f7533dcce3cdc2081bb00034beb5fb8a",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_property",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: snob_appeal_property"
+      ],
+      "examples": [
+        "snob_appeal_property/book",
+        "snob_appeal_property/closure-collective-is-not-universal-property",
+        "snob_appeal_property/closure-other-group-property"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "snob_appeal_purchase",
+      "fingerprint": "sha256:3ec388b6ca6ebb4827c76ded005626937197e16940cfa2d92b4db21448b3f0a8",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_purchase",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: snob_appeal_purchase"
+      ],
+      "examples": [
+        "snob_appeal_purchase/book",
+        "snob_appeal_purchase/closure-other-person-warrant"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "sacrifice_small",
+      "fingerprint": "sha256:7b19f122c89ee18ff9e9551f4dab51ea4ee6d7f5eb3e2a1a5e8d668b9e2dbf36",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: sacrifice_small",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: sacrifice_small"
+      ],
+      "examples": [
+        "sacrifice_small/book",
+        "sacrifice_small/closure-great-warrant-does-not-entail-small",
+        "sacrifice_small/closure-other-object-warrant",
+        "sacrifice_small/closure-small-is-not-absence-of-great"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_bad",
+      "fingerprint": "sha256:73910f22005a12eea6865d003d6732af0c16ecd41672cef2536c8b60c4e214f0",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: end_and_means_bad",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: end_and_means_bad"
+      ],
+      "examples": [
+        "end_and_means_bad/book",
+        "end_and_means_bad/closure-other-end-badness"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_less_bad",
+      "fingerprint": "sha256:73d78b23d59610b612cd65f6d12c987647e56701c273251b92c012a7e4027342",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: end_and_means_less_bad",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: end_and_means_less_bad"
+      ],
+      "examples": [
+        "end_and_means_less_bad/book",
+        "end_and_means_less_bad/closure-less-bad-is-not-good",
+        "end_and_means_less_bad/closure-no-adverse-baseline",
+        "end_and_means_less_bad/closure-other-good-purpose"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_difficult",
+      "fingerprint": "sha256:55e11611f216103328b9c5101ce14ee12425bd5277fc7cb50dfd63fb8c9423b3",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: end_and_means_difficult",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: end_and_means_difficult"
+      ],
+      "examples": [
+        "end_and_means_difficult/book",
+        "end_and_means_difficult/closure-no-easiness-evidence",
+        "end_and_means_difficult/closure-other-means-difficulty"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "moral_justification_ad_populum",
+      "fingerprint": "sha256:7bc2f6529263d1f0daaf4566e9cef6bae6a851b51d915624ed848a38b5d7702d",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: moral_justification_ad_populum",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: moral_justification_ad_populum"
+      ],
+      "examples": [
+        "moral_justification_ad_populum/book"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "moral_justification_ad_populum_excuse",
+      "fingerprint": "sha256:1a7cbeb437a50c19f301bd6eab854ecfca1ad6503f54909dd94f1d645c6952a6",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: moral_justification_ad_populum_excuse",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: moral_justification_ad_populum_excuse"
+      ],
+      "examples": [
+        "moral_justification_ad_populum_excuse/book"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "snob_appeal_ad_populum",
+      "fingerprint": "sha256:4745273f475b1ad54dc2cd16b6ed3fa5e69ffe3f196d296a5b9e0b9dbf10aac7",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_ad_populum",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: snob_appeal_ad_populum"
+      ],
+      "examples": [
+        "snob_appeal_ad_populum/book",
+        "snob_appeal_ad_populum/closure-disjunctive-legacy-is-not-acceptance-evidence"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "sacrifice",
+      "fingerprint": "sha256:170fa6ff1cf415ffdb5dc9e24bcca2f28b69d6c9205526602fb5d6e09a5a2bf2",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: sacrifice",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: sacrifice"
+      ],
+      "examples": [
+        "sacrifice/book"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_1",
+      "fingerprint": "sha256:de92df8f2d5a07e9ce86a64d807e551e14ac25ed6139945a16d1b7b8c5279152",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: end_and_means_1",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: end_and_means_1"
+      ],
+      "examples": [
+        "end_and_means_1/book"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_3",
+      "fingerprint": "sha256:109a172b29a4e3155f0de27ae8e3d58b779841c6371dadd5ead62db64c472b4d",
+      "evidence": [
+        "docs/reviews/closure-branches-independent-acceptance.md: end_and_means_3",
+        "docs/source-branch-contracts.md",
+        "tools/vv/source_ledger.yml: end_and_means_3"
+      ],
+      "examples": [
+        "end_and_means_3/book"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }
