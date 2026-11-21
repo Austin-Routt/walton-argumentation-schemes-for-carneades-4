@@ -29,8 +29,11 @@ const (
 	ParseRuleBody // Chr, Built-In, true, false and Variable
 )
 
-func CHRerr(s *sc.Scanner, format string, a ...interface{}) {
-	s.Error(s, fmt.Sprintf(format, a...))
+// CHRerr reports a parse error given in pieces, as fmt.Sprint joins them:
+// CHRerr(s, " unexpected atom ", t, " in head of rule ", name). It passed
+// the pieces to Sprintf as a format and arguments, which garbled them.
+func CHRerr(s *sc.Scanner, parts ...interface{}) {
+	s.Error(s, fmt.Sprint(parts...))
 }
 
 func toClist(l Term) (CList, bool) {
@@ -581,14 +584,14 @@ func addChrRule(rs *RuleStore, s *sc.Scanner, name string, keepList, delList, gu
 func addStringGoals(rs *RuleStore, s *sc.Scanner, goals string) bool {
 	goalList, ok := ParseGoalString(goals)
 	if !ok || goalList.Type() != ListType {
-		CHRerr(s, "Scan GOAL-List failed: %s\n", goalList)
+		CHRerr(s, fmt.Sprintf("Scan GOAL-List failed: %s\n", goalList))
 		return false
 	}
 	for _, g := range goalList.(List) {
 		if g.Type() == CompoundType {
 			addConstraintToStore(rs, g.(Compound))
 		} else {
-			CHRerr(s, " GOAL is not a predicate: %s\n", g)
+			CHRerr(s, fmt.Sprintf(" GOAL is not a predicate: %s\n", g))
 			return false
 		}
 
