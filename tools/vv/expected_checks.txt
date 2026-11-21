@@ -125,7 +125,6 @@ A_reasoning/2_inductive-reasoning.yml|part_in_whole|cli/scenario
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|engine-validator
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/assumptions-questionable
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/conclusions-in
-A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/exceptions-undercut
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/fires
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/ground
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/infer-ok
@@ -134,7 +133,6 @@ A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/premises-needed
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|full/terminates
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/assumptions-questionable
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/conclusions-in
-A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/exceptions-undercut
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/fires
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/ground
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/infer-ok
@@ -2634,6 +2632,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|cli/sc
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|engine-validator
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/assumptions-questionable
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/conclusions-in
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/exceptions-undercut
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/fires
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/ground
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/infer-ok
@@ -2642,6 +2641,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/p
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|full/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/assumptions-questionable
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/conclusions-in
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/exceptions-undercut
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/fires
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/ground
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/infer-ok
@@ -3677,6 +3677,114 @@ cases/book.yml|whole_into_parts/book|case
 cases/book.yml|whole_into_parts/book|roundtrip
 cases/book.yml|witness_testimony/book|case
 cases/book.yml|witness_testimony/book|roundtrip
+cases/independent_book_second.yml|abductive_action_to_character/independent-fit-is-action-and-quality-specific|case
+cases/independent_book_second.yml|abductive_action_to_character/independent-fit-is-action-and-quality-specific|roundtrip
+cases/independent_book_second.yml|abductive_action_to_character/independent-quality-and-prediction-chain|case
+cases/independent_book_second.yml|abductive_action_to_character/independent-quality-and-prediction-chain|roundtrip
+cases/independent_book_second.yml|abductive_action_to_character/independent-quality-definition|case
+cases/independent_book_second.yml|abductive_action_to_character/independent-quality-definition|roundtrip
+cases/independent_book_second.yml|abductive_character_to_action/independent-counterexample-is-quality-specific|case
+cases/independent_book_second.yml|abductive_character_to_action/independent-counterexample-is-quality-specific|roundtrip
+cases/independent_book_second.yml|abductive_character_to_action/independent-ordinary-property-is-not-character|case
+cases/independent_book_second.yml|abductive_character_to_action/independent-ordinary-property-is-not-character|roundtrip
+cases/independent_book_second.yml|abductive_forward/independent-diagram-and-conclusion|case
+cases/independent_book_second.yml|abductive_forward/independent-diagram-and-conclusion|roundtrip
+cases/independent_book_second.yml|abductive_forward/independent-wrong-conclusion-link|case
+cases/independent_book_second.yml|abductive_forward/independent-wrong-conclusion-link|roundtrip
+cases/independent_book_second.yml|abductive_forward/independent-wrong-diagram-set|case
+cases/independent_book_second.yml|abductive_forward/independent-wrong-diagram-set|roundtrip
+cases/independent_book_second.yml|established_rule/independent-conflicting_or_overriding_rule-same-application|case
+cases/independent_book_second.yml|established_rule/independent-conflicting_or_overriding_rule-same-application|roundtrip
+cases/independent_book_second.yml|established_rule/independent-conflicting_or_overriding_rule-wrong-conclusion|case
+cases/independent_book_second.yml|established_rule/independent-conflicting_or_overriding_rule-wrong-conclusion|roundtrip
+cases/independent_book_second.yml|established_rule/independent-conflicting_or_overriding_rule-wrong-rule|case
+cases/independent_book_second.yml|established_rule/independent-conflicting_or_overriding_rule-wrong-rule|roundtrip
+cases/independent_book_second.yml|established_rule/independent-rule_exception_or_excuse-same-application|case
+cases/independent_book_second.yml|established_rule/independent-rule_exception_or_excuse-same-application|roundtrip
+cases/independent_book_second.yml|established_rule/independent-rule_exception_or_excuse-wrong-conclusion|case
+cases/independent_book_second.yml|established_rule/independent-rule_exception_or_excuse-wrong-conclusion|roundtrip
+cases/independent_book_second.yml|established_rule/independent-rule_exception_or_excuse-wrong-rule|case
+cases/independent_book_second.yml|established_rule/independent-rule_exception_or_excuse-wrong-rule|roundtrip
+cases/independent_book_second.yml|memory/independent-both-bases-defeated|case
+cases/independent_book_second.yml|memory/independent-both-bases-defeated|roundtrip
+cases/independent_book_second.yml|memory/independent-false-basis-other-recaller|case
+cases/independent_book_second.yml|memory/independent-false-basis-other-recaller|roundtrip
+cases/independent_book_second.yml|memory/independent-false-basis-same-recaller|case
+cases/independent_book_second.yml|memory/independent-false-basis-same-recaller|roundtrip
+cases/independent_book_second.yml|memory/independent-original-belief-other-recaller|case
+cases/independent_book_second.yml|memory/independent-original-belief-other-recaller|roundtrip
+cases/independent_book_second.yml|memory/independent-original-belief-same-recaller|case
+cases/independent_book_second.yml|memory/independent-original-belief-same-recaller|roundtrip
+cases/independent_book_second.yml|memory/independent-support-survives|case
+cases/independent_book_second.yml|memory/independent-support-survives|roundtrip
+cases/independent_book_second.yml|negative_consequences/independent-likelihood-backed|case
+cases/independent_book_second.yml|negative_consequences/independent-likelihood-backed|roundtrip
+cases/independent_book_second.yml|negative_consequences/independent-likelihood-questioned|case
+cases/independent_book_second.yml|negative_consequences/independent-likelihood-questioned|roundtrip
+cases/independent_book_second.yml|negative_consequences/independent-wrong-action-questioned|case
+cases/independent_book_second.yml|negative_consequences/independent-wrong-action-questioned|roundtrip
+cases/independent_book_second.yml|negative_consequences/independent-wrong-outcome-questioned|case
+cases/independent_book_second.yml|negative_consequences/independent-wrong-outcome-questioned|roundtrip
+cases/independent_book_second.yml|positive_consequences/independent-likelihood-backed|case
+cases/independent_book_second.yml|positive_consequences/independent-likelihood-backed|roundtrip
+cases/independent_book_second.yml|positive_consequences/independent-likelihood-questioned|case
+cases/independent_book_second.yml|positive_consequences/independent-likelihood-questioned|roundtrip
+cases/independent_book_second.yml|positive_consequences/independent-wrong-action-questioned|case
+cases/independent_book_second.yml|positive_consequences/independent-wrong-action-questioned|roundtrip
+cases/independent_book_second.yml|positive_consequences/independent-wrong-outcome-questioned|case
+cases/independent_book_second.yml|positive_consequences/independent-wrong-outcome-questioned|roundtrip
+cases/independent_book_second.yml|retroductive/independent-event-and-trait-link|case
+cases/independent_book_second.yml|retroductive/independent-event-and-trait-link|roundtrip
+cases/independent_book_second.yml|retroductive/independent-reference-class-event-scope|case
+cases/independent_book_second.yml|retroductive/independent-reference-class-event-scope|roundtrip
+cases/independent_book_second.yml|retroductive/independent-wrong-event|case
+cases/independent_book_second.yml|retroductive/independent-wrong-event|roundtrip
+cases/independent_book_second.yml|retroductive/independent-wrong-quality|case
+cases/independent_book_second.yml|retroductive/independent-wrong-quality|roundtrip
+cases/independent_book_second.yml|rule_physical_world_1/independent-coextension|case
+cases/independent_book_second.yml|rule_physical_world_1/independent-coextension|roundtrip
+cases/independent_book_second.yml|rule_physical_world_1/independent-inclusion-is-insufficient|case
+cases/independent_book_second.yml|rule_physical_world_1/independent-inclusion-is-insufficient|roundtrip
+cases/independent_book_second.yml|rule_physical_world_1/independent-other-pair-is-insufficient|case
+cases/independent_book_second.yml|rule_physical_world_1/independent-other-pair-is-insufficient|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-comparison-does-not-bypass-nonapplicability-evidence|case
+cases/independent_exceptional.yml|exceptional/independent-comparison-does-not-bypass-nonapplicability-evidence|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-comparisons-for-another-case-do-not-suffice|case
+cases/independent_exceptional.yml|exceptional/independent-comparisons-for-another-case-do-not-suffice|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-recognition-does-not-bypass-borderline-comparison|case
+cases/independent_exceptional.yml|exceptional/independent-recognition-does-not-bypass-borderline-comparison|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-recognized-borderline-route|case
+cases/independent_exceptional.yml|exceptional/independent-recognized-borderline-route|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-recognized-clear-route|case
+cases/independent_exceptional.yml|exceptional/independent-recognized-clear-route|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-unknown-status-does-not-default-to-clear|case
+cases/independent_exceptional.yml|exceptional/independent-unknown-status-does-not-default-to-clear|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-unrecognized-borderline-route|case
+cases/independent_exceptional.yml|exceptional/independent-unrecognized-borderline-route|roundtrip
+cases/independent_exceptional.yml|exceptional/independent-unrecognized-evidenced-route|case
+cases/independent_exceptional.yml|exceptional/independent-unrecognized-evidenced-route|roundtrip
+cases/independent_first.yml|definition_to_verbal_classification/independent-biased-definition-defeats|case
+cases/independent_first.yml|definition_to_verbal_classification/independent-biased-definition-defeats|roundtrip
+cases/independent_first.yml|definition_to_verbal_classification/independent-other-definition-does-not-defeat|case
+cases/independent_first.yml|definition_to_verbal_classification/independent-other-definition-does-not-defeat|roundtrip
+cases/independent_first.yml|from_example/independent-two-examples-one-generalization|case
+cases/independent_first.yml|from_example/independent-two-examples-one-generalization|roundtrip
+cases/independent_first.yml|from_model/independent-conditional-warrant|case
+cases/independent_first.yml|from_model/independent-conditional-warrant|roundtrip
+cases/independent_first.yml|negative_practical/independent-false-presumption-selected|case
+cases/independent_first.yml|negative_practical/independent-false-presumption-selected|roundtrip
+cases/independent_first.yml|negative_practical/independent-opposite-ranking-does-not-select-false|case
+cases/independent_first.yml|negative_practical/independent-opposite-ranking-does-not-select-false|roundtrip
+cases/independent_first.yml|part_in_whole/independent-lower-degree-is-not-a-defeater|case
+cases/independent_first.yml|part_in_whole/independent-lower-degree-is-not-a-defeater|roundtrip
+cases/independent_first.yml|practical_necessary_condition/independent-another-agents-alternative-does-not-defeat|case
+cases/independent_first.yml|practical_necessary_condition/independent-another-agents-alternative-does-not-defeat|roundtrip
+cases/independent_first.yml|practical_necessary_condition/independent-one-agents-selection-does-not-bind-another|case
+cases/independent_first.yml|practical_necessary_condition/independent-one-agents-selection-does-not-bind-another|roundtrip
+cases/independent_first.yml|practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat|case
+cases/independent_first.yml|practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat|roundtrip
+cases/independent_first.yml|practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another|case
+cases/independent_first.yml|practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another|roundtrip
 cases/migration/r1_graph.yml|(file)|migration/fixture
 cases/phase3.yml|ad_hominem/adverse-another-argument-of-the-same-person|case
 cases/phase3.yml|ad_hominem/adverse-another-argument-of-the-same-person|roundtrip
@@ -4039,13 +4147,17 @@ source_ledger.yml|abductive_character_to_action|source/record-row
 source_ledger.yml|abductive_forward|source/record-row
 source_ledger.yml|accept_all_steps/1|source/name-in-language
 source_ledger.yml|accept_saying/1|source/name-in-language
+source_ledger.yml|act_on_presumption_false/1|source/name-in-language
+source_ledger.yml|action_character/3|source/name-in-language
+source_ledger.yml|action_fits_quality/3|source/name-in-language
 source_ledger.yml|ad_baculum|source/record-row
 source_ledger.yml|ad_hominem|source/record-row
 source_ledger.yml|addressee_of/2|source/name-in-language
 source_ledger.yml|advocates_conclusion/3|source/name-in-language
 source_ledger.yml|agent_bring_about/3|source/name-in-language
+source_ledger.yml|agent_event/2|source/name-in-language
 source_ledger.yml|also_has/3|source/name-in-language
-source_ledger.yml|alternative_action_sufficient/2|source/name-in-language
+source_ledger.yml|alternative_action_sufficient/3|source/name-in-language
 source_ledger.yml|alternative_cognitive|source/record-row
 source_ledger.yml|alternative_normative|source/record-row
 source_ledger.yml|analogy|source/record-row
@@ -4054,7 +4166,7 @@ source_ledger.yml|appearance|source/record-row
 source_ledger.yml|arbitrariness_harmless/2|source/name-in-language
 source_ledger.yml|background/1|source/name-in-language
 source_ledger.yml|bad_for_goals/2|source/name-in-language
-source_ledger.yml|based_on_false_belief/1|source/name-in-language
+source_ledger.yml|based_on_false_belief/2|source/name-in-language
 source_ledger.yml|being_credible/1|source/name-in-language
 source_ledger.yml|better_alternative_by_values/2|source/name-in-language
 source_ledger.yml|bias_ad_hominem|source/record-row
@@ -4063,6 +4175,8 @@ source_ledger.yml|bias|source/record-row
 source_ledger.yml|bivalent/1|source/name-in-language
 source_ledger.yml|cannot_be_exception/2|source/name-in-language
 source_ledger.yml|cause_to_effect|source/record-row
+source_ledger.yml|character_action/2|source/name-in-language
+source_ledger.yml|character_quality/2|source/name-in-language
 source_ledger.yml|character_relevant/1|source/name-in-language
 source_ledger.yml|choice_at/2|source/name-in-language
 source_ledger.yml|circumstantial_ad_hominem|source/record-row
@@ -4075,6 +4189,8 @@ source_ledger.yml|common_folk_ad_populum|source/record-row
 source_ledger.yml|common_folks_group_ad_populum|source/record-row
 source_ledger.yml|composition_generic|source/record-row
 source_ledger.yml|conflicting_goals/2|source/name-in-language
+source_ledger.yml|conflicting_or_overriding_rule/2|source/name-in-language
+source_ledger.yml|consequence_likelihood_adequate/2|source/name-in-language
 source_ledger.yml|correlation_to_cause|source/record-row
 source_ledger.yml|credible/1|source/name-in-language
 source_ledger.yml|credible_source|source/record-row
@@ -4082,9 +4198,11 @@ source_ledger.yml|danger|source/record-row
 source_ledger.yml|defeasible_modus_ponens|source/record-row
 source_ledger.yml|definition_to_verbal_classification|source/record-row
 source_ledger.yml|deliberation_ad_populum|source/record-row
+source_ledger.yml|diagram_conclusion/2|source/name-in-language
 source_ledger.yml|distress|source/record-row
 source_ledger.yml|division_generic|source/record-row
 source_ledger.yml|doubtful_classification/2|source/name-in-language
+source_ledger.yml|doubtful_definition/2|source/name-in-language
 source_ledger.yml|end_and_means_1|source/record-row
 source_ledger.yml|end_and_means_2|source/record-row
 source_ledger.yml|end_and_means_3|source/record-row
@@ -4202,6 +4320,8 @@ source_ledger.yml|established_rule_property/3|source/name-in-language
 source_ledger.yml|established_rule|source/record-row
 source_ledger.yml|ethotic1|source/record-row
 source_ledger.yml|ethotic2|source/record-row
+source_ledger.yml|event_quality/2|source/name-in-language
+source_ledger.yml|event_question/2|source/name-in-language
 source_ledger.yml|evidence_hypothesis_falsification|source/record-row
 source_ledger.yml|evidence_hypothesis_verification|source/record-row
 source_ledger.yml|exception_backed/1|source/name-in-language
@@ -4226,6 +4346,7 @@ source_ledger.yml|has_property/2|source/name-in-language
 source_ledger.yml|help|source/record-row
 source_ledger.yml|ignorance|source/record-row
 source_ledger.yml|illustration|source/record-row
+source_ledger.yml|imitation_warrant/3|source/name-in-language
 source_ledger.yml|inconsistency_explained/2|source/name-in-language
 source_ledger.yml|inconsistency_relevant/2|source/name-in-language
 source_ledger.yml|inconsistent_commitment|source/record-row
@@ -4243,7 +4364,7 @@ source_ledger.yml|more_efficient_alternative/2|source/name-in-language
 source_ledger.yml|more_justifiable_category/2|source/name-in-language
 source_ledger.yml|more_reliable/1|source/name-in-language
 source_ledger.yml|must_not_do/2|source/name-in-language
-source_ledger.yml|necessary_action/3|source/name-in-language
+source_ledger.yml|necessary_action/4|source/name-in-language
 source_ledger.yml|necessary_or_sufficient_for_goal/3|source/name-in-language
 source_ledger.yml|negative_consequences_prudential|source/record-row
 source_ledger.yml|negative_consequences_reasoning|source/record-row
@@ -4251,9 +4372,10 @@ source_ledger.yml|negative_consequences|source/record-row
 source_ledger.yml|negative_normal_expectations|source/record-row
 source_ledger.yml|negative_practical|source/record-row
 source_ledger.yml|negative_value|source/record-row
+source_ledger.yml|not_character_action/2|source/name-in-language
 source_ledger.yml|not_necessarily_true/2|source/name-in-language
 source_ledger.yml|not_normal/1|source/name-in-language
-source_ledger.yml|not_originally_believed/1|source/name-in-language
+source_ledger.yml|not_originally_believed/2|source/name-in-language
 source_ledger.yml|opposition_descriptive_1|source/record-row
 source_ledger.yml|opposition_descriptive_2|source/record-row
 source_ledger.yml|opposition_descriptive_3|source/record-row
@@ -4289,12 +4411,14 @@ source_ledger.yml|precedent_slippery_slope|source/record-row
 source_ledger.yml|precommitted/4|source/name-in-language
 source_ledger.yml|prohibited/1|source/name-in-language
 source_ledger.yml|proper_sequence/2|source/name-in-language
+source_ledger.yml|quality_defined/1|source/name-in-language
 source_ledger.yml|reapplication_sequence/3|source/name-in-language
 source_ledger.yml|reason_retracting_goal/2|source/name-in-language
 source_ledger.yml|reassessment_against_continuing/2|source/name-in-language
 source_ledger.yml|recaller_doubts/2|source/name-in-language
 source_ledger.yml|recognized_exception_category/2|source/name-in-language
-source_ledger.yml|reference_class/2|source/name-in-language
+source_ledger.yml|reference_class/3|source/name-in-language
+source_ledger.yml|referentially_coextensive/2|source/name-in-language
 source_ledger.yml|regulative_rule_prohibition|source/record-row
 source_ledger.yml|regulative_rule|source/record-row
 source_ledger.yml|rejected_as_deficient/1|source/name-in-language
@@ -4304,6 +4428,7 @@ source_ledger.yml|rhetoric_ad_populum|source/record-row
 source_ledger.yml|rhetorical_oppositions_descriptive|source/record-row
 source_ledger.yml|rhetorical_oppositions_normative|source/record-row
 source_ledger.yml|rule_changed/3|source/name-in-language
+source_ledger.yml|rule_exception_or_excuse/2|source/name-in-language
 source_ledger.yml|rule_exception_recognized/2|source/name-in-language
 source_ledger.yml|rule_inapplicable_to/2|source/name-in-language
 source_ledger.yml|rule_mental_world|source/record-row
@@ -4318,7 +4443,8 @@ source_ledger.yml|slippery_slope_inductive_step|source/record-row
 source_ledger.yml|snob_appeal_ad_populum|source/record-row
 source_ledger.yml|sorites_slippery_slope|source/record-row
 source_ledger.yml|special_circumstances/2|source/name-in-language
-source_ledger.yml|sufficient_action/3|source/name-in-language
+source_ledger.yml|successful_diagram/2|source/name-in-language
+source_ledger.yml|sufficient_action/4|source/name-in-language
 source_ledger.yml|sufficient_evidence/1|source/name-in-language
 source_ledger.yml|sunk_costs_precommitment|source/record-row
 source_ledger.yml|sunk_costs|source/record-row
@@ -4343,12 +4469,21 @@ tools/migration_r2.yml|(library)|migration/rename-file B_source-based-arguments/
 tools/migration_r2.yml|(library)|migration/wording 
 tools/migration_r2.yml|(library)|migration/wording ought_to_bring_about/1
 tools/migration_r2.yml|(library)|migration/wording possible_goal/1
-tools/migration_r2.yml|abductive_action_to_character|migration/rename-predicate not_fit_action/1
+tools/migration_r2.yml|abductive_action_to_character|migration/added has_property(A,Q)
+tools/migration_r2.yml|abductive_action_to_character|migration/arguments quality_defined(Q)
+tools/migration_r2.yml|abductive_action_to_character|migration/arity action_character(A,X,Q)
+tools/migration_r2.yml|abductive_action_to_character|migration/arity action_fits_quality(A,X,Q)
+tools/migration_r2.yml|abductive_action_to_character|migration/arity character_quality(A,Q)
 tools/migration_r2.yml|abductive_backward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_backward|migration/rename-predicate succesful_account/2
+tools/migration_r2.yml|abductive_character_to_action|migration/arity character_action(A,Q)
+tools/migration_r2.yml|abductive_character_to_action|migration/arity not_character_action(A,Q)
+tools/migration_r2.yml|abductive_character_to_action|migration/replaced character_quality(A,Q)
+tools/migration_r2.yml|abductive_character_to_action|migration/replaced quality_defined(Q)
 tools/migration_r2.yml|abductive_forward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_forward|migration/added sufficient_account(C1,D)
-tools/migration_r2.yml|abductive_forward|migration/rename-predicate succesful_diagram/1
+tools/migration_r2.yml|abductive_forward|migration/arity successful_diagram(G,G1)
+tools/migration_r2.yml|abductive_forward|migration/premise diagram_conclusion(G1,C1)
 tools/migration_r2.yml|ad_hominem|migration/arity character_relevant(S)
 tools/migration_r2.yml|ad_hominem|migration/removed attack_well_supported
 tools/migration_r2.yml|ad_hominem|migration/rename-predicate bad_not_accepted/2
@@ -4374,6 +4509,7 @@ tools/migration_r2.yml|common_folks_group_ad_populum|migration/arity accept_sayi
 tools/migration_r2.yml|common_folks_group_ad_populum|migration/arity group_background(S,G)
 tools/migration_r2.yml|composition_generic|migration/rename-predicate all_parts_propert/2
 tools/migration_r2.yml|danger|migration/replaced ¬ought_to_bring_about(X)
+tools/migration_r2.yml|definition_to_verbal_classification|migration/added doubtful_definition(D,G)
 tools/migration_r2.yml|deliberation_ad_populum|migration/replaced A
 tools/migration_r2.yml|distress|migration/arity relieve(B,X,A)
 tools/migration_r2.yml|distress|migration/removed really_distress(A)
@@ -4383,12 +4519,17 @@ tools/migration_r2.yml|end_and_means_3|migration/rename-predicate easy_to_achive
 tools/migration_r2.yml|epistemic_ignorance|migration/rename-scheme epistemic_ignorence
 tools/migration_r2.yml|epistemic_ignorance|migration/replaced ¬A
 tools/migration_r2.yml|epistemic_ignorence|migration/premise bivalent(D)
+tools/migration_r2.yml|established_rule|migration/added conflicting_or_overriding_rule(R,C)
+tools/migration_r2.yml|established_rule|migration/added rule_exception_or_excuse(R,C)
 tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
 tools/migration_r2.yml|exceptional|migration/rename-scheme exeptional
+tools/migration_r2.yml|exceptional|migration/wording exception_backed/1
 tools/migration_r2.yml|exeptional|migration/added exception_backed(A)
 tools/migration_r2.yml|expert_opinion_ad_populum|migration/replaced A
 tools/migration_r2.yml|expert_opinion|migration/added credible(W)
 tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
+tools/migration_r2.yml|from_example|migration/replaced usually_properties(P1,P2)
+tools/migration_r2.yml|from_model|migration/replaced imitation_warrant(A,X,B)
 tools/migration_r2.yml|full_slippery_slope|migration/arity accept_all_steps(C0)
 tools/migration_r2.yml|full_slippery_slope|migration/removed led_to_step
 tools/migration_r2.yml|gradualism|migration/arity proper_sequence(P1,P4)
@@ -4403,18 +4544,22 @@ tools/migration_r2.yml|illustration|migration/arity usually_properties(P1,P2)
 tools/migration_r2.yml|illustration|migration/arity valid_rule(P1,P2)
 tools/migration_r2.yml|inconsistent_commitment|migration/added commitments_conflict(A,S)
 tools/migration_r2.yml|inconsistent_commitment|migration/removed evidence_not_commited(A,S)
-tools/migration_r2.yml|memory|migration/added based_on_false_belief(M)
-tools/migration_r2.yml|memory|migration/added not_originally_believed(M)
+tools/migration_r2.yml|memory|migration/added based_on_false_belief(P,M)
+tools/migration_r2.yml|memory|migration/added not_originally_believed(P,M)
 tools/migration_r2.yml|memory|migration/added recaller_doubts(P,M)
+tools/migration_r2.yml|memory|migration/arity based_on_false_belief(P,M)
+tools/migration_r2.yml|memory|migration/arity not_originally_believed(P,M)
 tools/migration_r2.yml|memory|migration/rename-predicate reasonable_belive/1
 tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_likely(A,B)
 tools/migration_r2.yml|negative_consequences_reasoning|migration/arity agent_bring_about(P,A,B)
 tools/migration_r2.yml|negative_consequences_reasoning|migration/arity bad_for_goals(P,B)
 tools/migration_r2.yml|negative_consequences_reasoning|migration/replaced ¬should_do(P,A)
+tools/migration_r2.yml|negative_consequences|migration/added consequence_likelihood_adequate(A,G)
 tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
 tools/migration_r2.yml|negative_normal_expectations|migration/arity not_normal(A)
 tools/migration_r2.yml|negative_normal_expectations|migration/replaced ¬A
 tools/migration_r2.yml|negative_practical|migration/arity sufficient_evidence(A)
+tools/migration_r2.yml|negative_practical|migration/replaced act_on_presumption_false(A)
 tools/migration_r2.yml|negative_value|migration/replaced reason_retracting_goal(V,G)
 tools/migration_r2.yml|opposition_descriptive_1|migration/rename-scheme opposition-descriptive_1
 tools/migration_r2.yml|opposition_descriptive_2|migration/rename-scheme opposition-descriptive_2
@@ -4422,6 +4567,7 @@ tools/migration_r2.yml|opposition_descriptive_3|migration/rename-scheme oppositi
 tools/migration_r2.yml|opposition_normative|migration/rename-predicate cannot_recieve_evaluation/2
 tools/migration_r2.yml|opposition_normative|migration/rename-predicate recieves_evaluation/2
 tools/migration_r2.yml|opposition_normative|migration/rename-scheme opposition-normative
+tools/migration_r2.yml|part_in_whole|migration/removed smaller_part_property(Y,A,X)
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate part_propert/2
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate part_property/2
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate species_property/2
@@ -4433,6 +4579,7 @@ tools/migration_r2.yml|popular_opinion|migration/removed generally_accepted(A)
 tools/migration_r2.yml|popular_practice|migration/rename-predicate popular_practise/1
 tools/migration_r2.yml|popular_practice|migration/rename-scheme popular_practise
 tools/migration_r2.yml|position_to_know_ad_populum|migration/replaced A
+tools/migration_r2.yml|positive_consequences|migration/added consequence_likelihood_adequate(A,G)
 tools/migration_r2.yml|practical_goal|migration/rename-predicate person_goal/2
 tools/migration_r2.yml|practical_inference|migration/rename-predicate action_realize_goal/2
 tools/migration_r2.yml|practical_inference|migration/rename-predicate more_efficient_alternative_actions/2
@@ -4440,24 +4587,41 @@ tools/migration_r2.yml|practical_inference|migration/replaced conflicting_goals(
 tools/migration_r2.yml|practical_inference|migration/replaced goal_of_agent(P,G)
 tools/migration_r2.yml|practical_inference|migration/replaced possible_bring_about(P,A)
 tools/migration_r2.yml|practical_inference|migration/replaced should_do(P,A)
-tools/migration_r2.yml|practical_necessary_condition|migration/arguments alternative_action(S,A)
-tools/migration_r2.yml|practical_necessary_condition|migration/arity necessary_action(X,S,A)
+tools/migration_r2.yml|practical_necessary_condition|migration/arguments alternative_action(P,S,A)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity acceptable_action(P,X)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity alternative_action(P,S,A)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity alternative_means(P,A,X)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity more_acceptable_bringing(P,A,X)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity necessary_action(P,X,S,A)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity practicality_action(P,X)
 tools/migration_r2.yml|practical_necessary_condition|migration/replaced possible_bring_about(P,X)
 tools/migration_r2.yml|practical_necessary_condition|migration/replaced possible_goal(A)
 tools/migration_r2.yml|practical_necessary_condition|migration/replaced should_do(P,X)
-tools/migration_r2.yml|practical_sufficient_condition|migration/arity sufficient_action(X,S,A)
-tools/migration_r2.yml|practical_sufficient_condition|migration/replaced alternative_action_sufficient(S,A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity acceptable_action(P,X)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity alternative_action_sufficient(P,S,A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity alternative_means(P,A,X)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity more_acceptable_bringing(P,A,X)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity practicality_action(P,X)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity sufficient_action(P,X,S,A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/replaced alternative_action_sufficient(P,S,A)
 tools/migration_r2.yml|practical_sufficient_condition|migration/replaced possible_bring_about(P,X)
 tools/migration_r2.yml|practical_sufficient_condition|migration/replaced possible_goal(A)
 tools/migration_r2.yml|practical_sufficient_condition|migration/replaced should_do(P,X)
+tools/migration_r2.yml|practical_sufficient_condition|migration/wording alternative_action_sufficient/2
 tools/migration_r2.yml|pragmatic_alternative|migration/rename-predicate do_other/1
 tools/migration_r2.yml|pragmatic_inconsistency|migration/added inconsistency_relevant(A,S)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/removed descriptions_opposite(A,S)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/rename-predicate arguement_not_accepted/2
-tools/migration_r2.yml|retroductive|migration/added action_fits_quality(A)
-tools/migration_r2.yml|retroductive|migration/arity reference_class(A,Q)
+tools/migration_r2.yml|retroductive|migration/added action_fits_quality(A,E,Q)
+tools/migration_r2.yml|retroductive|migration/arguments quality_defined(Q)
+tools/migration_r2.yml|retroductive|migration/arity action_fits_quality(A,E,Q)
+tools/migration_r2.yml|retroductive|migration/arity agent_event(A,E)
+tools/migration_r2.yml|retroductive|migration/arity event_quality(E,Q)
+tools/migration_r2.yml|retroductive|migration/arity event_question(A,E)
+tools/migration_r2.yml|retroductive|migration/arity reference_class(A,E,Q)
 tools/migration_r2.yml|retroductive|migration/rename-predicate agent_quality/2
 tools/migration_r2.yml|rule_physical_world_1|migration/arity not_necessarily_true(W,D)
+tools/migration_r2.yml|rule_physical_world_1|migration/premise referentially_coextensive(W,D)
 tools/migration_r2.yml|rule_physical_world_2|migration/arity rule_changed(I,D,W)
 tools/migration_r2.yml|rule_physical_world_2|migration/rename-predicate oficcial_rulebook/3
 tools/migration_r2.yml|sign|migration/arity more_reliable(A)
@@ -4484,6 +4648,7 @@ tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicat
 tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate property_precion_needed/1
 tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate vagueness_rejected/1
 tools/migration_r2.yml|verbal_classification_vagueness|migration/rename-predicate vaguness_recejted/1
+tools/migration_r2.yml|verbal_classification_vagueness|migration/wording certainty_no_need/2
 tools/migration_r2.yml|verbal_classification|migration/added doubtful_classification(F,G)
 tools/migration_r2.yml|verbal_slippery_slope|migration/arguments also_has(A1,P,A2)
 tools/migration_r2.yml|verbal_slippery_slope|migration/rename-predicate individual_property/2
@@ -4501,6 +4666,7 @@ walton.yml|(file)|cli/check-clean
 walton.yml|(file)|cli/eval-produces-output
 walton.yml|(file)|engine-validator
 walton.yml|(file)|import
+walton.yml|(file)|static/shared-0ary
 walton.yml|(file)|stress
 walton.yml|abduction|chr-translation
 walton.yml|abduction|cli/scenario
@@ -5461,6 +5627,7 @@ walton.yml|established_rule|cli/scenario
 walton.yml|established_rule|engine-validator
 walton.yml|established_rule|full/assumptions-questionable
 walton.yml|established_rule|full/conclusions-in
+walton.yml|established_rule|full/exceptions-undercut
 walton.yml|established_rule|full/fires
 walton.yml|established_rule|full/ground
 walton.yml|established_rule|full/infer-ok
@@ -5469,6 +5636,7 @@ walton.yml|established_rule|full/premises-needed
 walton.yml|established_rule|full/terminates
 walton.yml|established_rule|iso/assumptions-questionable
 walton.yml|established_rule|iso/conclusions-in
+walton.yml|established_rule|iso/exceptions-undercut
 walton.yml|established_rule|iso/fires
 walton.yml|established_rule|iso/ground
 walton.yml|established_rule|iso/infer-ok
@@ -6513,7 +6681,6 @@ walton.yml|part_in_whole|cli/scenario
 walton.yml|part_in_whole|engine-validator
 walton.yml|part_in_whole|full/assumptions-questionable
 walton.yml|part_in_whole|full/conclusions-in
-walton.yml|part_in_whole|full/exceptions-undercut
 walton.yml|part_in_whole|full/fires
 walton.yml|part_in_whole|full/ground
 walton.yml|part_in_whole|full/infer-ok
@@ -6522,7 +6689,6 @@ walton.yml|part_in_whole|full/premises-needed
 walton.yml|part_in_whole|full/terminates
 walton.yml|part_in_whole|iso/assumptions-questionable
 walton.yml|part_in_whole|iso/conclusions-in
-walton.yml|part_in_whole|iso/exceptions-undercut
 walton.yml|part_in_whole|iso/fires
 walton.yml|part_in_whole|iso/ground
 walton.yml|part_in_whole|iso/infer-ok
@@ -7988,6 +8154,19 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|growing-term-is-bounded
 |(engine)|inconsistent-assumptions-detected
 |(engine)|inconsistent-follows-current-assumptions
+|(engine)|independent/cancelled-empty-theory
+|(engine)|independent/cancelled-unmatched-join
+|(engine)|independent/check-generated-opposition-declared-false
+|(engine)|independent/check-generated-opposition-declared-true
+|(engine)|independent/eval-generated-opposition-declared-false
+|(engine)|independent/eval-generated-opposition-declared-true
+|(engine)|independent/invalid-empty-theory-is-atomic
+|(engine)|independent/logical-conjunction-reuses-fact
+|(engine)|independent/reject-truncated-term-1
+|(engine)|independent/reject-truncated-term-2
+|(engine)|independent/reject-truncated-term-3
+|(engine)|independent/reject-truncated-term-4
+|(engine)|independent/unsuccessful-join-budget
 |(engine)|infer-is-idempotent
 |(engine)|infer-twice-with-exception
 |(engine)|invalid-expected-label-is-rejected

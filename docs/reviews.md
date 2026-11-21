@@ -1,3 +1,5 @@
+> **Independent implementation acceptance, 2026-11-21:** see `reviews/record-dispositions.md`, `reviews/atkinson-2007.md`, `reviews/independent-engine-cross-review.md` and the revised `PLAN.md`. The historical convergence below established a development plan; later counterexamples required additional repairs. The current corrected preview has 70 approved records and 50 explicit content holds.
+
 # The three reviews, 2026-11-20 and 21
 
 Three independent reviews examined this repository, the two engine archives and the source text, Walton, Reed and Macagno, *Argumentation Schemes* (2008): "Fable" (first review), Claude (second) and ChatGPT (third). Each round, every reviewer checked the others' work against the engine and the book. Their full reports, evidence and patches are in their own archives, which are not part of this repository.

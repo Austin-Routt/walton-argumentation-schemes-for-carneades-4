@@ -1,0 +1,259 @@
+{
+  "schema": "walton-consolidated-independent-source-disposition/v1",
+  "review_date": "2026-11-21",
+  "scope": "All 120 current integrated source-ledger rows; read-only adjudication, no new engine test claim.",
+  "repository_head_at_capture": "7f2a2ce4142df3d3bc999006ddd572f05c4e0ed9",
+  "capture_note": "The reviewed working files may include uncommitted integration edits; SHA256 below identifies the actual audited source ledger and scheme file, not only HEAD.",
+  "source_ledger_sha256": "ff62dd4c005723dee79e1571ee2cb04558cbeaf399cd211de929ba2202c90cef",
+  "walton_yml_sha256": "0e6a2f96962d89d6cc8aef881c52418c244e0c880a9da529dd5f74b9408a3b75",
+  "book_pdf_sha256": "d010348014e8b80fa561b68e5fac732cce0b3905fb0b1d522dd6fd2578a69634",
+  "input_reviews": {
+    "book-first-audit/adjudication.json": "b26a72a5851bd343222e06a6a2f4504d38ccf9c9e8c41bb21302e3b4b5f743bc",
+    "book-second-audit/per-record-audit.json": "c8599b8255d2239215f9662e801022e53f23c43b243c5ecd94e9acb9026d445f",
+    "fixes/docs/reviews/atkinson-2007-decisions.json": "dbb6ceef98b5fa510230ce1b7ff27fbf547a8a66826884d00ecba9c228524332"
+  },
+  "record_count": 120,
+  "stage_counts": {
+    "transcription-checked": 48,
+    "example-passed": 70,
+    "mapped": 2
+  },
+  "disposition_counts": {
+    "book form approved; own-original-source hold": 3,
+    "qualified; interpretation approval withheld": 44,
+    "approved within declared scope": 70,
+    "blocked as exact mapped book formulation": 1,
+    "mapping-only; source interpretation unreviewed": 2
+  },
+  "origin_and_stage_counts": {
+    "upstream / transcription-checked": 17,
+    "book / example-passed": 65,
+    "book / transcription-checked": 31,
+    "upstream / example-passed": 5,
+    "upstream / mapped": 2
+  },
+  "approved_ids": [
+    "abduction",
+    "abductive_action_to_character",
+    "abductive_character_to_action",
+    "abductive_forward",
+    "ad_baculum",
+    "ad_hominem",
+    "alternative_cognitive",
+    "appeal_to_vanity_ad_populum",
+    "appearance",
+    "bias",
+    "bias_ad_hominem",
+    "commitment1",
+    "commitment2",
+    "common_folk_ad_populum",
+    "common_folks_group_ad_populum",
+    "composition_generic",
+    "credible_source",
+    "danger",
+    "defeasible_modus_ponens",
+    "deliberation_ad_populum",
+    "distress",
+    "division_generic",
+    "epistemic_ignorance",
+    "evidence_hypothesis_falsification",
+    "evidence_hypothesis_verification",
+    "exceptional",
+    "expert_opinion_ad_populum",
+    "fear",
+    "from_model",
+    "from_precedent",
+    "full_slippery_slope",
+    "gradualism",
+    "group_1",
+    "group_2",
+    "help",
+    "illustration",
+    "inconsistent_commitment",
+    "interaction_act_person_1",
+    "interaction_act_person_2",
+    "memory",
+    "negative_consequences_prudential",
+    "negative_consequences_reasoning",
+    "opposition_descriptive_1",
+    "opposition_descriptive_2",
+    "opposition_descriptive_3",
+    "opposition_normative",
+    "pop_scheme",
+    "pop_scheme_acceptance",
+    "popular_opinion",
+    "position_to_know_ad_populum",
+    "practical_analogy_negative",
+    "practical_analogy_positive",
+    "practical_goal",
+    "pragmatic_alternative",
+    "pragmatic_inconsistency",
+    "precedent_slippery_slope",
+    "regulative_rule",
+    "regulative_rule_prohibition",
+    "retroductive",
+    "rhetoric_ad_populum",
+    "rhetorical_oppositions_descriptive",
+    "rhetorical_oppositions_normative",
+    "rule",
+    "rule_physical_world_1",
+    "sorites_slippery_slope",
+    "sunk_costs_precommitment",
+    "threat",
+    "verbal_classification",
+    "verbal_slippery_slope",
+    "waste"
+  ],
+  "held_ids": [
+    "abductive_backward",
+    "alternative_normative",
+    "analogy",
+    "cause_to_effect",
+    "circumstantial_ad_hominem",
+    "correlation_to_cause",
+    "definition_to_verbal_classification",
+    "end_and_means_1",
+    "end_and_means_2",
+    "end_and_means_3",
+    "established_rule",
+    "ethotic1",
+    "ethotic2",
+    "exeption_to_rule",
+    "expert_opinion",
+    "from_antimodel",
+    "from_example",
+    "ignorance",
+    "moral_justification_ad_populum",
+    "moral_justification_ad_populum_excuse",
+    "negative_consequences",
+    "negative_normal_expectations",
+    "negative_practical",
+    "negative_value",
+    "part_in_whole",
+    "perception",
+    "plea_for_excuse",
+    "popular_practice",
+    "position_to_know",
+    "positive_consequences",
+    "positive_value",
+    "practical_inference",
+    "practical_necessary_condition",
+    "practical_reasoning1",
+    "practical_reasoning2",
+    "practical_sufficient_condition",
+    "rule_mental_world",
+    "rule_physical_world_2",
+    "sacrifice",
+    "sign",
+    "slippery_slope_base_case",
+    "slippery_slope_inductive_step",
+    "snob_appeal_ad_populum",
+    "sunk_costs",
+    "two_person_practical",
+    "value_based_practical_reasoning",
+    "verbal_classification_arbitrariness",
+    "verbal_classification_vagueness",
+    "whole_into_parts",
+    "witness_testimony"
+  ],
+  "promotion_mismatches": [],
+  "reviewed_book_formula_drift": [],
+  "known_declared_source_cq_counts": 118,
+  "unknown_declared_source_cq_ids": [
+    "exeption_to_rule",
+    "practical_reasoning2"
+  ],
+  "known_zero_declared_source_cq_counts": 53,
+  "printed_cq_occurrences_counted_per_record": 206,
+  "additional_n0_hooks": 15,
+  "nonstandard_blank_operational_mappings": [
+    {
+      "record": "practical_reasoning1",
+      "question": 5,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 6,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 7,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 11,
+      "kind": "alternative"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 12,
+      "kind": "assumption"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 14,
+      "kind": "assumption"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 15,
+      "kind": "assumption"
+    },
+    {
+      "record": "practical_reasoning1",
+      "question": 17,
+      "kind": "assumption"
+    }
+  ],
+  "application_standard_rows_without_atoms": [
+    {
+      "record": "negative_normal_expectations",
+      "question": 2
+    },
+    {
+      "record": "negative_normal_expectations",
+      "question": 3
+    },
+    {
+      "record": "negative_practical",
+      "question": 2
+    },
+    {
+      "record": "negative_practical",
+      "question": 3
+    },
+    {
+      "record": "circumstantial_ad_hominem",
+      "question": 4
+    },
+    {
+      "record": "full_slippery_slope",
+      "question": 1
+    },
+    {
+      "record": "full_slippery_slope",
+      "question": 2
+    },
+    {
+      "record": "ethotic1",
+      "question": 3
+    },
+    {
+      "record": "ethotic2",
+      "question": 3
+    },
+    {
+      "record": "ignorance",
+      "question": 2
+    },
+    {
+      "record": "ignorance",
+      "question": 3
+    }
+  ],
+  "source_questions_caveat": "Compendium questions are counted for book-mapped formulations. This does not establish original-source question counts for inherited variants. Zero and unknown are distinct; n0 hooks are implementation additions, not printed source questions.",
+  "runtime_gate_caveat": "Full integrated runtime/CI/release evidence is owned by the root review. This report checks consistency and substantive source adjudication; it does not relabel passing reference cases as proof of complete semantic fidelity."
+}
