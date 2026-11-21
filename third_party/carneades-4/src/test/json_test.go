@@ -27,6 +27,9 @@ func TestJson(t *testing.T) {
 	files, err := d.Readdir(0)
 	check(t, err)
 	for _, fi := range files {
+		if skipUnsupported(t, fi.Name()) {
+			continue
+		}
 		// YML-IMPORT
 		// ==========
 		file, err := os.Open(yamlDir + fi.Name())

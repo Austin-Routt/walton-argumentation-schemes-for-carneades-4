@@ -2,6 +2,7 @@ package vvlib
 
 import (
 	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -132,17 +133,25 @@ argument_schemes:
 assumptions: [p(a), r(a)]
 `
 
-// Counter never terminates, whatever the store semantics, and stays small: the
-// scheme replaces n(X) by n(X+1), so the store holds one number at a time.
+// Counter never terminates, whatever the store semantics, and stays small:
+// every term yields two new ones, so it reaches the limit of rule
+// applications with terms of fewer than 20 nodes. It is a theory of the
+// supported profile (propagation rules, no arithmetic): the counting
+// theory used before, n(X) deleted and n(X+1) concluded, is outside it since
+// PLAN.md 2.6 and is refused as unsupported and invalid input.
 const Counter = `
 language:
-  n/1: "%s is a number."
+  t/1: "%s is a term."
 argument_schemes:
-  - id: count
-    variables: []
-    deletions: [n(X)]
-    conclusions: [n(X+1)]
-assumptions: [n(0)]
+  - id: left
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(l(X))]
+  - id: right
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(r(X))]
+assumptions: [t(a)]
 `
 
 // inferOnly imports a graph and constructs arguments without labelling it.
@@ -437,9 +446,26 @@ assumptions:
 				}
 			}
 		}
-		ok := e.usable() && e.Label("q(joe,1990-05-17)") == "in"
-		out = append(out, eres("hyphenated-constants-are-not-computed", ok,
-			"from p(joe,1990-05-17) the engine derives %v: the rule engine evaluates 1990-05-17 as a subtraction %s", got, e.why()))
+		// Restated with PLAN.md 2.6 (contract 1): an unquoted 1990-05-17 is
+		// arithmetic, and a statement carries none. It was
+		// hyphenated-constants-are-not-computed, which asked for the date to be
+		// kept as written.
+		ok := e.InferErr != nil && errors.Is(e.InferErr, caes.ErrInvalidInput) && len(got) == 0
+		out = append(out, eres("arithmetic-in-a-statement-is-invalid-input", ok,
+			"from p(joe,1990-05-17) the engine derives %v (Infer: %v): the rule engine evaluates 1990-05-17 as a subtraction, and the input should be refused", got, e.InferErr))
+	}
+	{
+		// contract 1: deletions and guards are outside the supported profile
+		e := EvalYAML(baseTheory + `
+argument_schemes:
+  - id: s5
+    variables: [X]
+    deletions: [p(X)]
+    conclusions: [q(X)]
+assumptions: [p(a)]
+`)
+		out = append(out, eres("deletions-and-guards-are-unsupported", errors.Is(e.InferErr, caes.ErrUnsupported) && (e.AG == nil || len(e.AG.Arguments) == 0),
+			"a scheme with a deletion is run instead of refused as unsupported (Infer: %v)", e.InferErr))
 	}
 
 	// --- rule engine ---------------------------------------------------------------
@@ -615,9 +641,22 @@ assumptions:
 				}
 			}
 		}
-		out = append(out, eres("explicit-argument-gets-critical-questions", e.usable() && e.Label("safe(vaccine)") == "out",
-			"an argument written out in the file with `scheme: expert_opinion` gets no undercutter, so the exception untrustworthy(ann) does not touch it: safe(vaccine) is %s (the graph now holds %d expert_opinion arguments for the same parameters) %s",
-			e.Label("safe(vaccine)"), n, e.why()))
+		// Restated with contract 6 (D12): a written-out argument is never
+		// rewritten; that it lacks its scheme's critical questions is
+		// reported, and inference adds no second argument with its identity.
+		// It was explicit-argument-gets-critical-questions, which asked the
+		// engine to complete the argument.
+		reported := false
+		if e.AG != nil {
+			for _, p := range validation.Validate(e.AG) {
+				if p.Category == validation.ARGUMENT && p.Id == "a1" && strings.Contains(p.Description, "exceptions") {
+					reported = true
+				}
+			}
+		}
+		out = append(out, eres("explicit-argument-without-questions-is-reported", e.usable() && reported && n == 1,
+			"an argument written out with `scheme: expert_opinion` and no undercutter: the validator reports the missing exceptions: %v; the graph holds %d expert_opinion arguments for its parameters (want 1) %s",
+			reported, n, e.why()))
 	}
 	{
 		e := EvalYAML(expert + `
@@ -725,6 +764,51 @@ argument_schemes:
 		out = append(out, eres("questioned-assumption-is-not-assumed", e.usable() && e.Label("a(x)") != "in" && e.Label("c(x)") != "in",
 			"a(x) is listed as questioned and nothing supports it, yet a(x) is %s and the scheme's conclusion c(x) is %s. Every scheme assumption is assumed when the scheme is instantiated, and assumed statements are labelled in before any argument is looked at: a file has no way to call a critical question written under `assumptions:` into question %s",
 			e.Label("a(x)"), e.Label("c(x)"), e.why()))
+	}
+	{
+		// contract 5: questioning does not withdraw a stipulation
+		e := EvalYAML(questionable + "assumptions: [p(x), a(x)]\nquestioned: [a(x)]\n")
+		out = append(out, eres("questioned-stipulation-stays-assumed", e.usable() && e.Label("a(x)") == "in" && e.Label("c(x)") == "in",
+			"a(x) is stipulated by the graph and questioned: it should stay assumed, so c(x) holds; a(x) is %s, c(x) is %s %s", e.Label("a(x)"), e.Label("c(x)"), e.why()))
+	}
+	{
+		// contract 5: removing a statement from questioned restores the default,
+		// and the questioned list and the defaults survive a second Infer and
+		// export and import
+		e := EvalYAML(questionable + "assumptions: [p(x)]\nquestioned: [a(x)]\n")
+		ok, detail := false, e.why()
+		if e.usable() {
+			c := StartCapture()
+			err := e.AG.Infer()
+			before := e.AG.GroundedLabelling()
+			var buf bytes.Buffer
+			cyaml.Export(&buf, e.AG)
+			c.Stop()
+			ResetEngineGlobals()
+			c = StartCapture()
+			ag2, err2 := cyaml.Import(bytes.NewReader(buf.Bytes()))
+			c.Stop()
+			l2 := ""
+			if err2 == nil {
+				lab := ag2.GroundedLabelling()
+				if st, found := ag2.Statements["c(x)"]; found {
+					l2 = lab[st].String()
+				}
+				ag2.Questioned = nil
+				l3 := ""
+				lab3 := ag2.GroundedLabelling()
+				if st, found := ag2.Statements["c(x)"]; found {
+					l3 = lab3[st].String()
+				}
+				st0 := e.AG.Statements["c(x)"]
+				ok = err == nil && st0 != nil && before[st0] != caes.In && l2 != "in" && l3 == "in"
+				detail = fmt.Sprintf("c(x) after a second Infer %v, after export and import %s, with the question withdrawn %s (want not in, not in, in)", before[st0], l2, l3)
+			} else {
+				detail = "the exported graph cannot be read: " + err2.Error()
+			}
+			ResetEngineGlobals()
+		}
+		out = append(out, eres("questioned-state-survives-export", ok, "%s", detail))
 	}
 	{
 		e := EvalYAML(questionable + "assumptions: [p(x), e(x)]\nquestioned: [a(x)]\n")

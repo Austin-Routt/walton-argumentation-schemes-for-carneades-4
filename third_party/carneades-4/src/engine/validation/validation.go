@@ -192,6 +192,15 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 			problems = append(problems, p)
 		}
 
+		// the scheme's exceptions are critical questions the argument has to
+		// carry: an argument written out without an undercutter could never be
+		// undercut by them (docs/contracts.md, contract 6). It is reported,
+		// not completed: a written-out argument is never rewritten.
+		if len(s.Exceptions) != 0 && arg.Undercutter == nil {
+			p := Problem{ARGUMENT, id, "does not carry the scheme's exceptions (no undercutter); give it an undercutter, or let inference construct it from the scheme", strings.Join(s.Exceptions, ", ")}
+			problems = append(problems, p)
+		}
+
 		// conclusion
 		if arg.Conclusion == nil {
 			problems = append(problems, Problem{ARGUMENT, id, "argument without a conclusion", ""})
@@ -258,6 +267,9 @@ func validateAssumptions(ag *caes.ArgGraph) []Problem {
 			if !terms.AtomicFormula(t) || !terms.Ground(t, b) {
 				p := Problem{ASSUMPTION, "", "not a ground atomic formula", k}
 				problems = append(problems, p)
+			}
+			if d := caes.ArithmeticProblem(k); d != "" {
+				problems = append(problems, Problem{ASSUMPTION, "", "arithmetic the rule engine would compute; quote a constant such as a date", k})
 			}
 		}
 		// Check that there is a statement for the assumption
@@ -408,6 +420,11 @@ func validateScheme(s *caes.Scheme, l caes.Language) []Problem {
 			default:
 				p := Problem{SCHEME, s.Id, "not an atomic formula", atm}
 				problems = append(problems, p)
+			}
+			if kind != "guard" {
+				if d := caes.ArithmeticProblem(atm); d != "" {
+					problems = append(problems, Problem{SCHEME, s.Id, "arithmetic the rule engine would compute; quote a constant such as a date", atm})
+				}
 			}
 			// Check that the predicate of the atom, with the given arity, has been declared in the language
 

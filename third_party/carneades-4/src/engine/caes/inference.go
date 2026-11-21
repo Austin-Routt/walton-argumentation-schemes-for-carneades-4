@@ -88,6 +88,14 @@ func (ag *ArgGraph) Infer() error {
 // is done before argument construction ends. The graph is then left
 // unchanged.
 func (ag *ArgGraph) InferContext(ctx context.Context) error {
+	if err := Unsupported(ag.Theory); err != nil {
+		return err
+	}
+	for _, a := range ag.Assumptions {
+		if p := ArithmeticProblem(a); p != "" {
+			return NewRunError(ErrInvalidInput, "assumption %s", p)
+		}
+	}
 	if len(ag.Theory.ArgSchemes) != 0 {
 		// rb := TheoryToSWIRulebase(ag.Theory)
 		rb, err := RuleStoreOf(ag.Theory)
@@ -99,10 +107,22 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		// Create an index of the previous arguments constructed
 		// to avoid constructing equivalent instanstiations of schemes
 		// and to allow the inference engine to construct undercutters
+		//
+		// An argument is identified by its scheme and its canonical parameters
+		// (docs/contracts.md, contract 2): the key is the term in the
+		// canonical form of the term reader, so "[a,b]" written here and
+		// "[a, b]" printed by the rule engine are one key. Arguments without a
+		// scheme, such as the undercutters built for exceptions, are not
+		// instances of a scheme and have no key.
 		prevArgs := map[string]bool{}
+		goalArgs := []string{}
 		for _, a := range ag.Arguments {
-			if a != nil {
-				prevArgs["argument("+a.Scheme.Id+",["+strings.Join(a.Parameters, ",")+"])"] = true
+			if a != nil && a.Scheme != nil {
+				k := "argument(" + a.Scheme.Id + ",[" + strings.Join(a.Parameters, ",") + "])"
+				if !prevArgs[terms.Normalize(k)] {
+					goalArgs = append(goalArgs, k)
+				}
+				prevArgs[terms.Normalize(k)] = true
 			}
 		}
 
@@ -114,12 +134,9 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		// The actual goals in the query with the CHR inference
 		// engine consist of the union of the assumptions of the argument graph
 		// and the assumptions for each of the previous arguments
-		for _, k := range ag.Assumptions {
-			goals = append(goals, k)
-		}
-		for k, _ := range prevArgs {
-			goals = append(goals, k)
-		}
+		// a questioned default is no fact to reason from (contract 5)
+		goals = append(goals, ag.Assumed()...)
+		goals = append(goals, goalArgs...)
 
 		success, store, err := rb.Infer(goals, MAXRULEAPPS)
 		switch {
@@ -142,11 +159,11 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 			// then, if the term does represent an argument, use it to
 			// add an argument to the argument graph by instantiating the
 			// argumentation scheme applied.
-			if _, exists := prevArgs[s]; !exists {
+			if k := terms.Normalize(s); !prevArgs[k] {
 				isArg, a := termToArgDesc(s)
 				if isArg {
 					ag.InstantiateScheme(a.Scheme, a.Values)
-					prevArgs[s] = true
+					prevArgs[k] = true
 				}
 			}
 		}

@@ -204,10 +204,8 @@ The reading and the ledger start now; edits wait for gate S. `go run ./cmd/schem
 * Write a date as a quoted string: `"1990-05-17"` survives. Unquoted it is an arithmetic expression, and the argument is built for `1968`. Use underscores in names for the same reason.
 * No quoted strings containing spaces: `"it rains"` is cut off at the space when the file is read.
 * In YAML, write lists of terms one per line. `[p(a,b)]` is read as the two strings `p(a` and `b)`.
-* A premise that is a bare variable must come after the premise that binds it.
-* Give every fact the arity its predicate has in the schemes: one fact with another arity can stall a rule until the limit.
 * Do not use `is` as a predicate name: in a conclusion the rule engine executes it.
-* Do not assume both a statement and its negation: both are labelled in today.
+* Do not assume both a statement and its negation: `check` and `eval` report such a graph as an inconsistent context (exit 3).
 
 ## Implementation status
 
@@ -229,12 +227,12 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 1.7 Build health (E-BUILD): both modules build, vet and test as shipped; CI runs them
 - [x] 2.1 A statement joining an issue becomes its position; labelling returns (E-ISSUE)
 - [x] 2.2 Set semantics for ground statements (X-LOOP); the engines' own unit tests run in CI
-- [ ] 2.3 Matching (E-MATCH)
-- [ ] 2.4 Negation (X-NEG, E-NEGTEXT)
-- [ ] 2.5 Repeated inference (E-IDEMP)
-- [ ] 2.6 Names and terms (E-CAPTURE, X-IS, E-TERMS)
-- [ ] 2.7 Questioned statements (X-ASSUME)
-- [ ] 2.8 Arguments that name a scheme (E-EXPLICIT)
+- [x] 2.3 Matching (E-MATCH): a propagation solver with a real propagation history for set-semantics programs
+- [x] 2.4 Negation (X-NEG, E-NEGTEXT): GoCHR `ExplicitNegation`; `static/no-negated-premise` removed from the suite
+- [x] 2.5 Repeated inference (E-IDEMP); per-scheme `infer-twice` checks ported
+- [x] 2.6 Names and terms: E-CAPTURE, E-TERMS; deletions and guards unsupported, arithmetic invalid (contract 1). X-IS's engine side (the validator rejects reserved names) lands with the library repair 3.6
+- [x] 2.7 Questioned statements (X-ASSUME): `questioned:`, defaults kept apart from stipulations; per-scheme check ported
+- [x] 2.8 Arguments that name a scheme (E-EXPLICIT): validated and reported, requests carried out
 - [x] 4.1, first half: export writes the theory (the parameter quoting is still open)
 - [ ] Phase 3: 3.1 to 3.11; gate S
 - [ ] Phase 4; gate R; release R1

@@ -14,7 +14,7 @@ A contract changes only together with its checks, in one reviewed change.
 
 **Facts.** The ground statements of a graph form a set (contract 2).
 
-Checked by: `iso/*`, `full/*`, `cli/*`, `static/range-restricted`, `string-constants-survive`, `hyphenated-constants-are-not-computed`, `yaml-import-keeps-globals-clean`.
+Checked by: `iso/*`, `full/*`, `cli/*`, `static/range-restricted`, `string-constants-survive`, `arithmetic-in-a-statement-is-invalid-input`, `deletions-and-guards-are-unsupported`, `yaml-import-keeps-globals-clean`.
 
 ## 2. One fact, one argument (D8)
 
@@ -82,7 +82,9 @@ A graph can list **questioned** statements: `questioned:` in YAML, and through t
 
 A contrary argument does not question an assumption by itself; it is weighed against it in an issue (contract 4). The questioned list and the origin of each assumption survive a second `Infer`, export and import.
 
-Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`; issue X-ASSUME.
+**Representation.** `ArgGraph.Questioned` and `questioned:` hold the questioned statements; `ArgGraph.Defaults` records which assumptions a scheme instantiation added; export writes them under `questioned:` and `defaults:`, apart from the stipulated `assumptions:`. `ArgGraph.Assumed()` lists what is assumed now.
+
+Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `questioned-stipulation-stays-assumed`, `questioned-state-survives-export`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`, `iso/assumptions-questionable`; issue X-ASSUME.
 
 ## 6. Arguments in an input file that name a scheme (D12)
 
@@ -90,7 +92,9 @@ Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds
 
 **A request to instantiate** (a `scheme:` and `parameters:`, nothing else) is carried out, giving the argument the scheme's premises, conclusion and questions, or is refused as **unsupported** until that is implemented. It is never accepted silently as an empty argument.
 
-Checked by: `validator-checks-arguments-against-schemes`, `validator-enforces-shared-bindings`, `validator-accepts-correct-argument`, `explicit-argument-gets-critical-questions`, `argument-from-scheme-and-parameters`; issues E-ARGVAL, E-EXPLICIT.
+Implemented: the validator reports a written-out argument whose scheme has exceptions and which has no undercutter; the importer carries out a request (an argument with `scheme:` and `parameters:` only) by instantiating the scheme.
+
+Checked by: `validator-checks-arguments-against-schemes`, `validator-enforces-shared-bindings`, `validator-accepts-correct-argument`, `explicit-argument-without-questions-is-reported`, `argument-from-scheme-and-parameters`; issues E-ARGVAL, E-EXPLICIT.
 
 ## 7. Names the validator rejects (D11)
 

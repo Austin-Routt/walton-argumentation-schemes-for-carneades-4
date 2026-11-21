@@ -18,12 +18,15 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
 	"strings"
 	"sync/atomic"
 	"time"
+
+	"github.com/carneades/carneades-4/src/engine/caes"
 )
 
 var tainted atomic.Bool
@@ -179,8 +182,8 @@ func probeCounter() []Result {
 	if timedOut {
 		out = append(out, efail("budget-exhaustion-is-reported", "a scheme that counts upwards for ever did not come back within %v", InferTimeout))
 	} else {
-		out = append(out, eres("budget-exhaustion-is-reported", err != nil,
-			"the rule engine gave up after its limit of rule applications and Infer returned no error"))
+		out = append(out, eres("budget-exhaustion-is-reported", errors.Is(err, caes.ErrLimitReached),
+			"the rule engine gave up after its limit of rule applications and Infer returned %v, not an error wrapping caes.ErrLimitReached", err))
 	}
 	out = append(out, eres("engine-keeps-stdout-clean", strings.TrimSpace(o) == "",
 		"the engine wrote to standard output, where the CLI writes its result: %q", firstLine(o)))

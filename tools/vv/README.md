@@ -93,10 +93,10 @@ and the engine constructs and evaluates the argument, once with the scheme alone
 | `chr-translation` | GoCHR accepts the rule the scheme is translated into |
 | `static/id-round-trips` | the scheme id comes back from the engine's term reader as it was written, and has no number or variable in it that the rule engine would compute or bind |
 | `static/range-restricted` | every variable used after the premises occurs in a premise |
-| `static/no-variable-capture` | no declared variable can capture the fresh name of an unbound one |
-| `static/no-negated-premise` | no premise is negated (GoCHR never matches one) |
 | `static/no-reserved-functor` | no conclusion or assumption uses `is/2`, `=/2`, `:=/2` |
 | `static/not-self-feeding` | the scheme does not derive one of its own premises |
+| `…/assumptions-questionable` | each assumption of the scheme, called into question and unsupported, gives the scheme's argument the weight 0 |
+| `…/infer-twice` | a second `Infer` on the finished graph adds no argument and changes no label |
 | `…/infer-ok`, `…/terminates` | argument construction returns without error and without hitting the rule limit |
 | `…/fires` | one argument per conclusion is constructed, with the expected parameters |
 | `…/ground` | no statement in the resulting graph contains a variable |
@@ -167,13 +167,17 @@ to the ledger under an issue.
   says: a flipped negation or two swapped arguments in a scheme pass every
   check. That needs examples written from the book, with the expected result
   written by hand (plan items 3.10, 4.4 and 5.7).
-* Six checks state the stronger of two outcomes the project may choose, to
-  make an input work or to reject it with a message:
-  `is-as-predicate-in-conclusion`, `explicit-argument-gets-critical-questions`,
-  `argument-from-scheme-and-parameters`, `scheme-roles-are-imported`,
-  `hyphenated-constants-are-not-computed` and `premise-order-does-not-matter`.
-  Where the decision is to reject, restate the check in a change of its own,
-  after the contract that says so is written down.
+* Checks that state one of two outcomes the project could choose, to make an
+  input work or to reject it with a message, follow docs/contracts.md:
+  `premise-order-does-not-matter` passes (the input works);
+  `hyphenated-constants-are-not-computed` was restated as
+  `arithmetic-in-a-statement-is-invalid-input` (contract 1);
+  `explicit-argument-gets-critical-questions` was restated as
+  `explicit-argument-without-questions-is-reported` (contract 6);
+  `argument-from-scheme-and-parameters` passes (the request is carried out);
+  `is-as-predicate-in-conclusion` and `scheme-roles-are-imported` still state
+  the stronger outcome. Where the decision is to reject, the check is
+  restated in a change of its own, after the contract that says so.
 * A ledger entry names a check, not a cause. Nothing here notices when a known
   failure starts failing for another reason; a fingerprint of each known
   failure's message would, and is not built yet.

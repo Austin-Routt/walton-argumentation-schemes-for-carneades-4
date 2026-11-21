@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/carneades/carneades-4/src/engine/terms"
 )
@@ -41,6 +42,15 @@ type ArgGraph struct {
 	Assumptions      []string         // atomic formulas or statement keys
 	assums           map[string]bool  // map representation of the assumptions
 	ExpectedLabeling map[string]Label // for testing
+	// Questioned lists the statements called into question
+	// (docs/contracts.md, contract 5). A questioned default, an assumption
+	// that only a scheme's `assumptions:` put there, is not assumed: it then
+	// needs support like an ordinary premise. A stipulated statement stays
+	// assumed: questioning does not withdraw a stipulation.
+	Questioned []string
+	// Defaults are the assumptions added by instantiating a scheme, by their
+	// normalized key, as opposed to the stipulated ones of the graph itself.
+	Defaults map[string]bool
 }
 
 type Issue struct {
@@ -199,7 +209,36 @@ func NewArgGraph() *ArgGraph {
 		assums:           make(map[string]bool),
 		Theory:           NewTheory(),
 		ExpectedLabeling: map[string]Label{},
+		Defaults:         map[string]bool{},
 	}
+}
+
+// IsQuestioned reports whether a statement has been called into question.
+func (ag *ArgGraph) IsQuestioned(id string) bool {
+	n := terms.Normalize(id)
+	for _, q := range ag.Questioned {
+		if terms.Normalize(q) == n {
+			return true
+		}
+	}
+	return false
+}
+
+// Assumed lists the statements the graph assumes now, normalized: its
+// assumptions, except the defaults that have been called into question
+// (docs/contracts.md, contract 5).
+func (ag *ArgGraph) Assumed() []string {
+	out := []string{}
+	seen := map[string]bool{}
+	for _, a := range ag.Assumptions {
+		n := terms.Normalize(a)
+		if seen[n] || (ag.Defaults[n] && ag.IsQuestioned(n)) {
+			continue
+		}
+		seen[n] = true
+		out = append(out, n)
+	}
+	return out
 }
 
 func (l Label) String() string {
@@ -237,8 +276,9 @@ func (l Labelling) init(ag *ArgGraph) {
 	ag.Assumptions = s
 
 	// Map representation of the assumptions
-	// to make membership test efficient
-	ag.assums = SliceToMap(ag.Assumptions)
+	// to make membership test efficient; a questioned default is not
+	// assumed (contract 5)
+	ag.assums = SliceToMap(ag.Assumed())
 
 	// Normalize the keys of the statements table
 	m2 := map[string]*Statement{}
@@ -522,8 +562,8 @@ func positionLabels(issue *Issue, l Labelling) string {
 // not from the index that labelling builds.
 func (ag *ArgGraph) Inconsistent() bool {
 	assumed := map[string]bool{}
-	for _, a := range ag.Assumptions {
-		assumed[terms.Normalize(a)] = true
+	for _, a := range ag.Assumed() {
+		assumed[a] = true
 	}
 	for _, issue := range ag.Issues {
 		found := false
@@ -544,6 +584,48 @@ func (ag *ArgGraph) Inconsistent() bool {
 		}
 	}
 	return false
+}
+
+// substituteParameters replaces each variable of t named in params by its
+// value, once: the values are not substituted again.
+func substituteParameters(t terms.Term, params map[string]terms.Term) terms.Term {
+	switch x := t.(type) {
+	case terms.Variable:
+		if v, ok := params[x.Name]; ok {
+			return v
+		}
+		return x
+	case terms.Compound:
+		args := make([]terms.Term, len(x.Args))
+		for i, a := range x.Args {
+			args[i] = substituteParameters(a, params)
+		}
+		return terms.Compound{Functor: x.Functor, Id: x.Id, Prio: x.Prio, Args: args}
+	case terms.List:
+		l := make(terms.List, len(x))
+		for i, a := range x {
+			l[i] = substituteParameters(a, params)
+		}
+		return l
+	}
+	return t
+}
+
+// negationText words the negation of a statement whose text is inner (or,
+// without a text, whose term is raw).
+func negationText(inner, raw string) string {
+	inner = strings.TrimSpace(inner)
+	if inner == "" || inner == raw {
+		return "¬" + raw
+	}
+	// lower-case a sentence-initial article or pronoun, never a name
+	if sp := strings.IndexByte(inner, ' '); sp > 0 {
+		switch inner[:sp] {
+		case "The", "A", "An", "There", "It", "This", "That", "These", "Those", "Some", "No", "All", "Every", "Each":
+			inner = strings.ToLower(inner[:1]) + inner[1:]
+		}
+	}
+	return "It is not the case that " + inner
 }
 
 // Apply a language to a term to construct a string,
@@ -571,8 +653,9 @@ func (l Language) Apply(term1 terms.Term) string {
 		spec := functor + "/" + strconv.Itoa(arity)
 		template, ok := l[spec]
 		if !ok {
-			if functor == "¬" {
-				return fmt.Sprintf("¬%s", args...)
+			if functor == "¬" && arity == 1 {
+				// the language applies inside a negation (E-NEGTEXT)
+				return negationText(l.Apply(term1.(terms.Compound).Args[0]), args[0].(string))
 			}
 			fmt.Fprintf(os.Stderr, "Functor not defined in the language: %v\n", spec)
 			return term1.String()
@@ -610,12 +693,17 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				return
 			}
 
-			var bindings terms.Bindings
+			// The parameters replace the scheme's variables once, all at the
+			// same time: a value that holds a variable (a fresh one the rule
+			// engine named A1, say) is not substituted again, so a scheme
+			// variable that happens to be called A1 cannot capture it
+			// (E-CAPTURE).
+			bindings := map[string]terms.Term{}
 			for i, varName := range scheme.Variables {
 				// v := terms.NewVariable(varName)
 				t, ok := terms.ReadString(parameters[i])
 				if ok {
-					bindings = terms.AddBinding(terms.NewVariable(varName), t, bindings)
+					bindings[varName] = t
 				} else {
 					fmt.Fprintf(os.Stderr, "Could not parse parameter: %v\n", parameters[i])
 				}
@@ -630,7 +718,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				for i, p := range l {
 					term1, ok := terms.ReadString(p)
 					if ok {
-						term2 := terms.Substitute(term1, bindings)
+						term2 := substituteParameters(term1, bindings)
 						// Leave argument(S,P) premises implicit; Enthymeme!
 						pred, ok := terms.Predicate(term2)
 						if ok && pred == "argument" {
@@ -645,7 +733,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 
 						}
 						if assumptions {
-							ag.AddAssumption(term2.String())
+							ag.addDefault(term2.String())
 						}
 						role := ""
 						if i < len(scheme.Roles) {
@@ -667,7 +755,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 			for _, c := range scheme.Conclusions {
 				term1, ok := terms.ReadString(c)
 				if ok {
-					term2 := terms.Substitute(term1, bindings)
+					term2 := substituteParameters(term1, bindings)
 					stmt, ok := ag.Statements[term2.String()]
 					if !ok {
 						s := Statement{Id: term2.String(),
@@ -717,7 +805,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				for _, e := range scheme.Exceptions {
 					term1, ok := terms.ReadString(e)
 					if ok {
-						term2 := terms.Substitute(term1, bindings)
+						term2 := substituteParameters(term1, bindings)
 						stmt, ok := ag.Statements[term2.String()]
 						if !ok {
 							s := Statement{Id: term2.String(),
@@ -764,6 +852,23 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 func (ag *ArgGraph) AddAssumption(stmt_id string) {
 	ag.assums[stmt_id] = true
 	ag.Assumptions = append(ag.Assumptions, stmt_id)
+}
+
+// addDefault assumes a statement because a scheme lists it under its
+// assumptions, unless the graph already assumes it, and records it as a
+// default (contract 5).
+func (ag *ArgGraph) addDefault(stmt_id string) {
+	n := terms.Normalize(stmt_id)
+	for _, a := range ag.Assumptions {
+		if terms.Normalize(a) == n {
+			return
+		}
+	}
+	if ag.Defaults == nil {
+		ag.Defaults = map[string]bool{}
+	}
+	ag.Defaults[n] = true
+	ag.AddAssumption(stmt_id)
 }
 
 // makeIssue: match the patterns of an issue scheme against the

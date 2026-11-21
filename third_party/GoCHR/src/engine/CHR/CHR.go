@@ -116,6 +116,13 @@ type RuleStore struct {
 	// argument construction, where facts form a set.
 	Unique bool
 	alive  map[string]*Compound // Unique: ground constraint -> the copy in the store
+	// ExplicitNegation makes ¬ a constructor of constraints: a constraint
+	// ¬S is stored and matched like any other, under the functor ¬, which no
+	// predicate name can be, and ¬¬S is read as S, in rule heads and in every
+	// constraint that enters the store, also through a variable. Without it ¬
+	// is a built-in operator, and a negated constraint goes to the built-in
+	// store, out of reach of rule heads. Carneades sets it.
+	ExplicitNegation bool
 	// MaxTermSize, when positive, is the largest size, in nodes, of a
 	// constraint a run may add to the store; a larger one stops the run with
 	// ErrLimit. The rule limit alone does not bound a run whose terms grow
@@ -207,6 +214,16 @@ func (rs *RuleStore) AddRule(name string, keep []string, del []string, guard []s
 
 	cKeepList, cDelList, cGuardList, bodyList, err := parseRule(name, keep, del, guard, body)
 
+	if err == nil && rs.ExplicitNegation {
+		for _, l := range []CList{cKeepList, cDelList} {
+			for i, h := range l {
+				if h.Functor == "¬" {
+					n := foldNegation(*h)
+					l[i] = &n
+				}
+			}
+		}
+	}
 	if err == nil {
 
 		r := &chrRule{name: name, id: rs.nextRuleId,
@@ -480,7 +497,33 @@ func addGoal1(g *Compound, s store) {
 func addConstraintToStore(rs *RuleStore, g Compound) {
 	addRefConstraintToStore(rs, &g)
 }
+// isNegation reports whether g is the constraint ¬S of ExplicitNegation.
+func isNegation(rs *RuleStore, g *Compound) bool {
+	return rs.ExplicitNegation && g.Functor == "¬" && len(g.Args) == 1
+}
+
+// foldNegation reads ¬¬S as S, as often as it occurs at the top.
+func foldNegation(g Compound) Compound {
+	for g.Functor == "¬" && len(g.Args) == 1 {
+		inner, ok := g.Args[0].(Compound)
+		if !ok || inner.Functor != "¬" || len(inner.Args) != 1 {
+			break
+		}
+		next, ok := inner.Args[0].(Compound)
+		if !ok {
+			break
+		}
+		g = next
+	}
+	return g
+}
+
 func addRefConstraintToStore(rs *RuleStore, g *Compound) {
+	if isNegation(rs, g) {
+		n := foldNegation(*g)
+		g = &n
+	}
+	chrConstraint := g.Prio == 0 || isNegation(rs, g)
 	if rs.MaxTermSize > 0 {
 		if n := termSize(*g, rs.MaxTermSize); n > rs.MaxTermSize {
 			if rs.Stopped == nil {
@@ -489,7 +532,7 @@ func addRefConstraintToStore(rs *RuleStore, g *Compound) {
 			return
 		}
 	}
-	if rs.Unique && g.Prio == 0 && len(g.OccurVars()) == 0 {
+	if rs.Unique && chrConstraint && len(g.OccurVars()) == 0 {
 		// set semantics: a ground constraint already alive is not added again
 		// IsDeleted cannot tell whether that copy is still alive: matching
 		// marks the constraints of a rule's heads with it while the rule
@@ -507,7 +550,7 @@ func addRefConstraintToStore(rs *RuleStore, g *Compound) {
 	g.Id = rs.chrCounter
 	rs.chrCounter = new(big.Int).Add(rs.chrCounter, bigOne)
 	// TraceHeadln(3, 3, " b) Counter++ %v , Id: %v \n", chrCounter, g.Id)
-	if g.Prio == 0 {
+	if chrConstraint {
 		addGoal1(g, rs.CHRstore)
 		p2r := rs.pred2rule
 		ruleSlice, _ := p2r[g.Functor]
@@ -699,6 +742,18 @@ func CHRsolver(rs *RuleStore, max int) {
 
 	if CHRtrace != 0 {
 		printCHRStore(rs, "New goal:")
+	}
+	if isPropagationProgram(rs) {
+		// set semantics and propagation rules only (propagate.go)
+		propagationSolver(rs, max)
+		if rs.Stopped != nil {
+			TraceHeadln(1, 1, "GoChr inference engine stopped: ", rs.Stopped)
+		}
+		reduceStore(rs)
+		if CHRtrace > 1 {
+			printCHRStore(rs, "Result:")
+		}
+		return
 	}
 	i := 0
 	ruleFound := true

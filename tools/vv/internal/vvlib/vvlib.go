@@ -327,6 +327,12 @@ func (r *Run) BudgetExhausted() bool { return LimitReached(r.Err, r.Stdout) }
 // Infer builds an argument graph from a language, a set of schemes and ground
 // assumptions, and runs the engine's argument construction and evaluation.
 func Infer(lang caes.Language, extra map[string]string, schemes []*caes.Scheme, assumptions []string) *Run {
+	return InferQuestioned(lang, extra, schemes, assumptions, nil)
+}
+
+// InferQuestioned is Infer on a graph that calls the given statements into
+// question (docs/contracts.md, contract 5).
+func InferQuestioned(lang caes.Language, extra map[string]string, schemes []*caes.Scheme, assumptions, questioned []string) *Run {
 	ResetEngineGlobals()
 	ag := caes.NewArgGraph()
 	th := caes.NewTheory()
@@ -340,6 +346,7 @@ func Infer(lang caes.Language, extra map[string]string, schemes []*caes.Scheme, 
 	th.InitSchemeIndex()
 	ag.Theory = th
 	ag.Assumptions = append([]string{}, assumptions...)
+	ag.Questioned = append([]string{}, questioned...)
 
 	r := &Run{AG: ag}
 	done := make(chan error, 1)
@@ -488,29 +495,13 @@ func StaticChecks(file string, s *caes.Scheme) []Result {
 		out = append(out, fail(file, id, "static/range-restricted", "no premise binds %v", unbound))
 	}
 
-	// GoCHR renames an unbound variable V to V1, V2, ...; a declared variable of
-	// that name then captures it when the engine instantiates the scheme
-	capture := []string{}
-	for _, v := range unbound {
-		re := regexp.MustCompile("^" + regexp.QuoteMeta(v) + `[0-9]+$`)
-		for _, w := range s.Variables {
-			if re.MatchString(w) {
-				capture = append(capture, v+" can be captured by "+w)
-			}
-		}
-	}
-	out = append(out, res(file, id, "static/no-variable-capture", capture))
+	// static/no-variable-capture is removed with PLAN.md 2.6: the engine
+	// substitutes a scheme's parameters once since then, so a declared
+	// variable can no longer capture the fresh name of an unbound one
+	// (unbound-variable-is-not-captured tests the engine).
 
-	// negated premises: GoCHR files ¬p(...) under its built-in constraints, where rule heads never look
-	neg := []string{}
-	for _, p := range append(append([]string{}, s.Premises...), s.Deletions...) {
-		if t, ok := parse(p); ok {
-			if c, isC := t.(terms.Compound); isC && c.Functor == "¬" {
-				neg = append(neg, Norm(p))
-			}
-		}
-	}
-	out = append(out, res(file, id, "static/no-negated-premise", neg))
+	// static/no-negated-premise is removed with PLAN.md 2.4: negated premises
+	// match since then (contract 4), and the book's schemes have them.
 
 	// functors the rule engine treats as built-ins when they appear in a rule body
 	reserved := []string{}
@@ -602,6 +593,17 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 		control = "with every premise asserted the scheme constructs no argument"
 	}
 
+	// Each assumption of the scheme, once called into question and not
+	// supported, leaves the scheme's argument inapplicable (contract 5; the
+	// third review's per-scheme check of a withdrawn assumption, restated for
+	// the questioned state of D2).
+	out = append(out, res(file, id, chk("assumptions-questionable"), questionedProblems(lang, theory, s, in, control)))
+
+	// A second Infer on the finished graph adds nothing and changes no label
+	// (contract 2; E-IDEMP). Ported from the third review's per-scheme check
+	// of a second inference (docs/parity.md).
+	out = append(out, res(file, id, chk("infer-twice"), secondInferProblems(run, control)))
+
 	if ng := run.NonGround(); len(ng) == 0 {
 		out = append(out, pass(file, id, chk("ground")))
 	} else {
@@ -690,6 +692,76 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 	// every premise is needed: without it the scheme must not construct an argument
 	out = append(out, res(file, id, chk("premises-needed"), premiseProblems(lang, theory, s, in, control)))
 	return out, run
+}
+
+// questionedProblems questions each assumption of the scheme in turn and
+// reports the arguments of the scheme that stay applicable.
+func questionedProblems(lang caes.Language, theory []*caes.Scheme, s *caes.Scheme, in *Instance, control string) []string {
+	if len(in.Assumptions) == 0 {
+		return nil
+	}
+	if control != "" {
+		return []string{"not judged: " + control}
+	}
+	probs := []string{}
+	for _, a := range in.Assumptions {
+		r2 := InferQuestioned(lang, in.Synthetic, theory, in.Premises, []string{a})
+		if r2.TimedOut || r2.Err != nil {
+			probs = append(probs, fmt.Sprintf("with %s questioned: inference failed", a))
+			continue
+		}
+		args := r2.ArgsOf(s.Id)
+		if len(args) == 0 {
+			probs = append(probs, fmt.Sprintf("with %s questioned the scheme constructs no argument", a))
+			continue
+		}
+		// The oracle is the argument's own weight: a Carneades argument stays
+		// "applicable" with a premise out, which then weighs it down to 0.
+		// With other schemes loaded, its conclusion may keep other support.
+		for _, arg := range args {
+			if w := arg.GetWeight(r2.L); w > 0 {
+				probs = append(probs, fmt.Sprintf("with %s questioned and unsupported, the argument for %s still weighs %.2f", a, arg.Conclusion.Id, w))
+			}
+		}
+	}
+	return probs
+}
+
+// secondInferProblems runs Infer again on the graph of a finished run.
+func secondInferProblems(run *Run, control string) []string {
+	if control != "" {
+		return []string{"not judged: " + control}
+	}
+	n1 := len(run.AG.Arguments)
+	before := map[string]caes.Label{}
+	for st, l := range run.L {
+		before[st.Id] = l
+	}
+	var panicked any
+	var err error
+	c := StartCapture()
+	func() {
+		defer func() { panicked = recover() }()
+		err = run.AG.Infer()
+	}()
+	c.Stop()
+	if panicked != nil {
+		return []string{fmt.Sprintf("the second Infer panics: %v", panicked)}
+	}
+	if err != nil {
+		return []string{fmt.Sprintf("the second Infer fails: %v", err)}
+	}
+	probs := []string{}
+	if n2 := len(run.AG.Arguments); n2 != n1 {
+		probs = append(probs, fmt.Sprintf("the second Infer raises the number of arguments from %d to %d", n1, n2))
+	}
+	for st, l := range run.AG.GroundedLabelling() {
+		if b, ok := before[st.Id]; ok && b != l {
+			probs = append(probs, fmt.Sprintf("%s was %s and is %s after the second Infer", st.Id, b, l))
+		}
+	}
+	sort.Strings(probs)
+	return probs
 }
 
 // exceptionProblems asserts each exception of the scheme in turn, next to the

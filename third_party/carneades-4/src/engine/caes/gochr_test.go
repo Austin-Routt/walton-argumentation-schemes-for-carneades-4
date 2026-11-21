@@ -15,6 +15,7 @@ import (
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
+	"github.com/carneades/carneades-4/src/engine/terms"
 )
 
 func infer(t *testing.T, src string) *caes.ArgGraph {
@@ -117,15 +118,21 @@ assumptions:
 	}
 }
 
-const counter = `
+// tree derives two new terms from every term: within the profile, it reaches
+// the rule limit long before the term-size limit.
+const tree = `
 language:
-  n/1: "%s is a number"
+  t/1: "%s is a term"
 argument_schemes:
-  - id: count
-    variables: []
-    deletions: [n(X)]
-    conclusions: [n(X+1)]
-assumptions: [n(0)]
+  - id: left
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(l(X))]
+  - id: right
+    variables: [X]
+    premises: [t(X)]
+    conclusions: [t(r(X))]
+assumptions: [t(a)]
 `
 
 const growing = `
@@ -145,7 +152,7 @@ assumptions:
 // A limit is an error and leaves the graph as it was (docs/contracts.md,
 // contract 3), whether the rule limit or the term size ends the run.
 func TestLimitIsAnErrorAndGraphUnchanged(t *testing.T) {
-	for name, src := range map[string]string{"counter": counter, "growing term": growing} {
+	for name, src := range map[string]string{"tree": tree, "growing term": growing} {
 		ag, err := yaml.Import(strings.NewReader(src))
 		if err != nil {
 			t.Fatalf("%s: import: %v", name, err)
@@ -171,7 +178,7 @@ func TestLimitIsAnErrorAndGraphUnchanged(t *testing.T) {
 
 // A cancelled context stops argument construction with ErrCancelled.
 func TestInferContextCancelled(t *testing.T) {
-	ag, err := yaml.Import(strings.NewReader(counter))
+	ag, err := yaml.Import(strings.NewReader(tree))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -223,5 +230,234 @@ assumptions:
 	}
 	if len(ag.Arguments) != 0 {
 		t.Errorf("%d argument(s) added", len(ag.Arguments))
+	}
+}
+
+// The language applies inside a negation (E-NEGTEXT).
+func TestNegationText(t *testing.T) {
+	l := caes.Language{"p/1": "%s is p.", "goal/1": "The goal is %s."}
+	for in, want := range map[string]string{
+		"¬p(a)":    "It is not the case that a is p.",
+		"¬goal(g)": "It is not the case that the goal is g.",
+		"¬z(a)":    "¬z(a)",
+	} {
+		term, ok := terms.ReadString(in)
+		if !ok {
+			t.Fatalf("cannot read %s", in)
+		}
+		if got := l.Apply(term); got != want {
+			t.Errorf("%s: got %q, want %q", in, got, want)
+		}
+	}
+}
+
+// Negated premises match, also through a statement variable (X-NEG).
+func TestNegatedPremises(t *testing.T) {
+	ag := infer(t, `
+language:
+  says/2: "%s says that %s."
+  p/1: "%s is p."
+  r/1: "%s is r."
+argument_schemes:
+  - id: s6a
+    variables: [W,S]
+    premises: ["says(W,S)"]
+    conclusions: [S]
+  - id: s6b
+    variables: [X]
+    premises: ["¬p(X)"]
+    conclusions: [r(X)]
+assumptions: ["says(ann,¬p(a))", "¬p(b)"]
+`)
+	for _, c := range []string{"r(a)", "r(b)"} {
+		if got := argumentsFor(ag, c); len(got) != 1 {
+			t.Errorf("arguments for %s: %v", c, got)
+		}
+	}
+}
+
+// A second Infer adds nothing: arguments are identified by scheme and
+// canonical parameters, and undercutters have no scheme (E-IDEMP).
+func TestInferTwice(t *testing.T) {
+	ag := infer(t, `
+language:
+  p/2: "%s p %s"
+  q/2: "%s q %s"
+  r/1: "%s is r"
+argument_schemes:
+  - id: s
+    variables: [X, Y]
+    premises:
+      - p(X,Y)
+    exceptions:
+      - r(X)
+    conclusions:
+      - q(X,Y)
+assumptions:
+  - p(a,b)
+`)
+	n := len(ag.Arguments)
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if len(ag.Arguments) != n {
+		t.Errorf("a second Infer: %d arguments, then %d", n, len(ag.Arguments))
+	}
+}
+
+// Outside the profile (contract 1): deletions and guards are unsupported, and
+// arithmetic in a statement is invalid input, not computed.
+func TestProfile(t *testing.T) {
+	for _, c := range []struct {
+		src  string
+		kind error
+	}{
+		{`
+language:
+  n/1: "%s is a number"
+argument_schemes:
+  - id: count
+    variables: [X]
+    deletions: [n(X)]
+    conclusions: [m(X)]
+assumptions: [n(0)]
+`, caes.ErrUnsupported},
+		{`
+language:
+  p/2: "%s p %s"
+  q/2: "%s q %s"
+argument_schemes:
+  - id: s4
+    variables: [P,D]
+    premises: ["p(P,D)"]
+    conclusions: ["q(P,D)"]
+assumptions:
+  - p(joe,1990-05-17)
+`, caes.ErrInvalidInput},
+		{`
+language:
+  p/1: "%s p"
+  q/1: "%s q"
+argument_schemes:
+  - id: s
+    variables: [X]
+    premises: ["p(X)"]
+    conclusions: ["q(X+1)"]
+assumptions: [p(1)]
+`, caes.ErrInvalidInput},
+	} {
+		ag, err := yaml.Import(strings.NewReader(c.src))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := ag.Infer(); !errors.Is(err, c.kind) {
+			t.Errorf("want %v, got %v", c.kind, err)
+		}
+		if len(ag.Arguments) != 0 {
+			t.Errorf("%d arguments added", len(ag.Arguments))
+		}
+	}
+	// a quoted date, a hyphenated name and a negative number are constants
+	ag := infer(t, `
+language:
+  p/2: "%s p %s"
+  q/2: "%s q %s"
+argument_schemes:
+  - id: s4
+    variables: [P,D]
+    premises: ["p(P,D)"]
+    conclusions: ["q(P,D)"]
+assumptions:
+  - 'p(joe,"1990-05-17")'
+  - p(opposition-normative,-1)
+  - 'p(joe,"it rains")'
+`)
+	for _, c := range []string{`q(joe,"1990-05-17")`, "q(opposition-normative,-1)", `q(joe,"it rains")`} {
+		if got := argumentsFor(ag, c); len(got) != 1 {
+			t.Errorf("arguments for %s: %v", c, got)
+		}
+	}
+}
+
+// Critical questions under `assumptions:` (contract 5): a questioned default
+// is not assumed, a stipulation stays assumed, support restores the argument.
+func TestQuestioned(t *testing.T) {
+	theory := `
+language:
+  p/1: "%s is p"
+  a/1: "%s is a"
+  c/1: "%s is c"
+  e/1: "%s is e"
+argument_schemes:
+  - id: s10
+    variables: [X]
+    premises: [p(X)]
+    assumptions: [a(X)]
+    conclusions: [c(X)]
+  - id: s11
+    variables: [X]
+    premises: [e(X)]
+    conclusions: [a(X)]
+`
+	for _, c := range []struct {
+		graph string
+		want  caes.Label
+	}{
+		{"assumptions: [p(x)]\n", caes.In},
+		{"assumptions: [p(x)]\nquestioned: [a(x)]\n", caes.Out},
+		{"assumptions: [p(x), a(x)]\nquestioned: [a(x)]\n", caes.In},
+		{"assumptions: [p(x), e(x)]\nquestioned: [a(x)]\n", caes.In},
+	} {
+		ag := infer(t, theory+c.graph)
+		l := ag.GroundedLabelling()
+		if got := l[ag.Statements["c(x)"]]; got != c.want {
+			t.Errorf("%q: c(x) is %v, want %v", c.graph, got, c.want)
+		}
+	}
+}
+
+// A request to instantiate a scheme is carried out (contract 6).
+func TestInstantiationRequest(t *testing.T) {
+	ag, err := yaml.Import(strings.NewReader(`
+language:
+  expert/2: "%s is an expert in %s"
+  asserts/2: "%s asserts %s"
+  untrustworthy/1: "%s is untrustworthy"
+  safe/1: "%s is safe"
+argument_schemes:
+  - id: expert_opinion
+    variables: [W,D,S]
+    premises:
+      - expert(W,D)
+      - asserts(W,S)
+    exceptions: [untrustworthy(W)]
+    conclusions: [S]
+arguments:
+  r1:
+    scheme: expert_opinion
+    parameters:
+      - ann
+      - vaccines
+      - safe(vaccine)
+assumptions:
+  - expert(ann,vaccines)
+  - asserts(ann,safe(vaccine))
+  - untrustworthy(ann)
+`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := argumentsFor(ag, "safe(vaccine)"); len(got) != 1 {
+		t.Fatalf("arguments for safe(vaccine): %v", got)
+	}
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if got := argumentsFor(ag, "safe(vaccine)"); len(got) != 1 {
+		t.Errorf("after Infer: %v", got)
+	}
+	l := ag.GroundedLabelling()
+	if got := l[ag.Statements["safe(vaccine)"]]; got == caes.In {
+		t.Errorf("the instantiated argument is not undercut by its exception: safe(vaccine) is %v", got)
 	}
 }

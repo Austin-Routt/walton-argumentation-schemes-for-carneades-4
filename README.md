@@ -42,19 +42,18 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why: 356 of 5,948, under 16 issues (390 under 24 before the engine fixes of `PLAN.md` phases 1 and 2 began). A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` lists the checks that fail today and why: 291 of 6,407, under 8 issues (390 under 24 before the engine fixes of `PLAN.md` phases 1 and 2 began). A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
 
 ## Known limitations
 
 * **`carneades eval` evaluates nothing for a graph that contains `walton.yml`** today: the engine's validator rejects five schemes and `true/1`, and `eval` prints its problems on stderr and exits 1 (the engine as shipped exited 0). 54 of the 114 schemes can be evaluated from their category file. `PLAN.md` phases 1 to 3 fix this.
-* Negated premises (`ignorance`, `from_antimodel`, `opposition-descriptive_2/3`) never match, and `group_2` is never inferred (`is/2` is a GoCHR built-in). Fixed in `third_party/` (see the changelog): composition with division, and `exeptional`, no longer run to the rule limit; a limit is reported as an error; labelling returns after a second inference adds a position to an issue.
-* A scheme's `assumptions` cannot be called into question from a graph file: every scheme assumption is assumed. The book's model, in which an assumption holds until it is questioned (pp. 373–375), needs the engine change of `PLAN.md` 2.7 (`docs/contracts.md`, contract 5).
+* `group_2` is never inferred (`is/2` is a GoCHR built-in). Fixed in `third_party/` (see the changelog): composition with division, and `exeptional`, no longer run to the rule limit; a limit is reported as an error; labelling returns after a second inference adds a position to an issue; negated premises (`ignorance`, `from_antimodel`, `opposition-descriptive_2/3`) match, and negations are worded with the language.
+* A scheme's `assumptions` hold until they are called into question (pp. 373–375): list a statement under `questioned:` in a graph file (or `ArgGraph.Questioned`), and the default is suspended until an argument supports it. A statement the graph itself stipulates under `assumptions:` stays assumed (`docs/contracts.md`, contract 5).
 * `roles` is documented by Carneades but not read by its importer.
 * Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; no quoted strings with spaces; one term per line in YAML lists).
 * Five schemes (`ad_hominem`, `practical_necessary_condition`, `practical_sufficient_condition`, `regulative_rule`, `sorites_slippery_slope`) have a variable that occurs only in a conclusion, assumption or exception, as in the book; Carneades' own validator reports these as problems because its inference engine needs range-restricted rules. The validator here reports them as warnings (`RANGE_RESTRICTION`).
 * Misspelt identifiers are kept so that existing argument graphs keep working: scheme ids such as `exeption_to_rule`, `epistemic_ignorence`, `exeptional`, predicate names such as `recieves_evaluation`, `oficcial_rulebook`, `succesful_account`, the predicate `true/1` (which Carneades' validator rejects as a boolean), and the file name `5_casual-reasoning.yml`. See `PLAN.md`.
 * Some schemes use 0-ary statements (for example `background`, `being_credible`) where the book's wording has no obvious variables.
-* Negated statements (`¬presents(X,P)`) are printed by Carneades as the raw term; the engine does not apply the language inside a negation.
 
 #### Updates
 ##### 2019-10-08
