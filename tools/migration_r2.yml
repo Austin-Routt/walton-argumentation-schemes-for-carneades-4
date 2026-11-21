@@ -1,0 +1,38 @@
+# The one migration of release R2 (PLAN.md D4, 5.6): every change to a
+# record that alters what a graph file has to state, from old to new. A graph
+# written for 0.1.0 (release R1) is brought to R2 by applying these rows in
+# order. 5.6 adds the renamings of misspelt identifiers and a script that
+# applies the table; until then this file is the record of what changed.
+#
+#   record   the scheme
+#   kind     arguments (the same predicate, other arguments), arity (the
+#            predicate gains or loses an argument), removed (the record no
+#            longer uses the statement), added (a new assumption or exception;
+#            nothing to migrate, listed so that the table is complete)
+#   old/new  the statement as the record writes it
+#   plan     the plan item; page: the compendium's page
+changes:
+  - {record: popular_opinion, kind: removed, old: "generally_accepted(A)", new: "", plan: "5.1", page: 311, note: "repeated the premise generally_true(A)"}
+  - {record: from_example, kind: added, old: "", new: "supports_generalization(A,P1,P2)", plan: "5.2", page: 314}
+  - {record: verbal_classification, kind: added, old: "", new: "doubtful_classification(F,G)", plan: "5.2", page: 319}
+  - {record: verbal_classification_vagueness, kind: arguments, old: "property_precion_needed(F)", new: "property_precion_needed(A)", plan: "5.1", page: 320, note: "the context requiring precision is the argument's"}
+  - {record: verbal_classification_arbitrariness, kind: added, old: "", new: "arbitrariness_harmless(A,F)", plan: "5.2", page: 320}
+  - {record: two_person_practical, kind: arguments, old: "alternative_means(A,X)", new: "alternative_means(X,Y)", plan: "5.1", page: 326, note: "the goal and the action, not the person and the goal"}
+  - {record: two_person_practical, kind: arguments, old: "side_effect_other_act(B,A)", new: "side_effect_other_act(Y,A)", plan: "5.1", page: 326, note: "the action, not the other person"}
+  - {record: two_person_practical, kind: added, old: "", new: "other_actions_required(X,Y)", plan: "5.2", page: 326}
+  - {record: waste, kind: added, old: "", new: "reassessment_against_continuing(A,X)", plan: "5.2", page: 326}
+  - {record: negative_normal_expectations, kind: added, old: "", new: "uninvestigated(A)", plan: "5.2", page: 327}
+  - {record: abductive_backward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
+  - {record: abductive_forward, kind: added, old: "", new: "sufficient_account(C1,D)", plan: "5.2", page: 330}
+  - {record: abductive_forward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
+  - {record: retroductive, kind: added, old: "", new: "not_fit_action(A)", plan: "5.2", page: 331}
+  - {record: evidence_hypothesis_falsification, kind: arguments, old: "sufficient_correlation(A,H)", new: "sufficient_correlation(H,A)", plan: "5.1", page: 332, note: "the order 32.1 uses for the shared question"}
+  - {record: negative_consequences_reasoning, kind: added, old: "", new: "outcome_likely(A,B)", plan: "5.2", page: 332}
+  - {record: help, kind: removed, old: "possible_carry_out(B,X)", new: "", plan: "5.1", page: 334, note: "repeated premise 3, can_carry_out(B,X)"}
+  - {record: help, kind: removed, old: "greater_side_effects(X)", new: "", plan: "5.1", page: 334, note: "repeated premise 4, not_too_costly(B,X)"}
+  - {record: distress, kind: arity, old: "relieve(B,X)", new: "relieve(B,X,A)", plan: "5.1", page: 334, note: "whose distress is relieved"}
+  - {record: distress, kind: removed, old: "really_distress(A)", new: "", plan: "5.1", page: 334, note: "repeated premise 1, distress(A)"}
+  - {record: commitment1, kind: removed, old: "commitment_support_evidence(A,X)", new: "", plan: "5.1", page: 335, note: "repeated the commitment premise"}
+  - {record: commitment1, kind: added, old: "", new: "commitment_linkage_exception(A,X,Y)", plan: "5.2", page: 335}
+  - {record: commitment2, kind: removed, old: "commitment_support_evidence(A,X)", new: "", plan: "5.1", page: 335, note: "repeated the minor premise"}
+  - {record: commitment2, kind: added, old: "", new: "commitment_linkage_exception(A,X,Y)", plan: "5.2", page: 335}

@@ -25,6 +25,7 @@ language:
   hypothesis_event/2: "If hypothesis %s is true, then proposition reporting event %s will be observed to be true."
   in/2: "%s contains %s as a member."
   indicated_true/2: "%s is generally indicated as true when its sign %s is true."
+  inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
   more_reliable/0: "There are other events that would more reliably account for the sign."
   not_character_action/1: "Agent %s has some actions that don't fit into defined character."
@@ -81,6 +82,8 @@ argument_schemes:
       - succesful_account(A1,D)
     assumptions: 
      - sufficient_account(A1,D)
+    exceptions:
+     - inquiry_incomplete(D)
 
   - id: abductive_forward
     meta:
@@ -95,6 +98,10 @@ argument_schemes:
       - data_set(D)
       - diagram_set(G,D,C)
       - succesful_diagram(C1)
+    assumptions:
+      - sufficient_account(C1,D)
+    exceptions:
+      - inquiry_incomplete(D)
 
   - id: abductive_action_to_character
     meta:
@@ -142,6 +149,7 @@ argument_schemes:
       - agent_quality(A,Q)
     assumptions: 
      - quality_defined(A)
+     - not_fit_action(A)
      - reference_class
 
   - id: evidence_hypothesis_verification
@@ -170,7 +178,7 @@ argument_schemes:
       - hypothesis_event(H,A)
       - event_false(A)
     assumptions: 
-     - sufficient_correlation(A,H)   
+     - sufficient_correlation(H,A)
 
   - id: abduction
     variables: [S,T,H]

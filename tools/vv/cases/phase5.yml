@@ -231,3 +231,239 @@ cases:
       - uninvestigated(alarm_silent)
     not_in:
       - not_normal
+
+  # --- batch 3: entries 31 to 40 --------------------------------------------
+  # 31.1, 31.2 (pp. 329-330): CQ3 and CQ4 of the list printed after 31.2, how
+  # far the inquiry has progressed and whether to continue it, are the
+  # exception inquiry_incomplete(D); for 31.2, CQ1 is the assumption 31.1
+  # uses, sufficient_account.
+  - name: abductive_backward/positive
+    source: "31.1, p. 329"
+    assumptions:
+      - data_set(d)
+      - data_account(a1,d)
+      - succesful_account(best,d)
+    arguments:
+      - abductive_backward(a1,best,d)
+    in:
+      - plausible_hypothesis(best)
+  - name: abductive_backward/adverse-inquiry-incomplete
+    source: "31.1, p. 330, CQ3 and CQ4"
+    assumptions:
+      - data_set(d)
+      - data_account(a1,d)
+      - succesful_account(best,d)
+      - inquiry_incomplete(d)
+    not_in:
+      - plausible_hypothesis(best)
+  - name: abductive_forward/positive
+    source: "31.2, pp. 329-330"
+    assumptions:
+      - data_set(d)
+      - diagram_set(g,d,c)
+      - succesful_diagram(c1)
+    arguments:
+      - abductive_forward(d,g,c,c1)
+    in:
+      - plausible_conclusion(c1)
+  - name: abductive_forward/adverse-account-questioned
+    source: "31.2, p. 330, CQ1"
+    assumptions:
+      - data_set(d)
+      - diagram_set(g,d,c)
+      - succesful_diagram(c1)
+    questioned:
+      - sufficient_account(c1,d)
+    not_in:
+      - plausible_conclusion(c1)
+  - name: abductive_forward/adverse-inquiry-incomplete
+    source: "31.2, p. 330, CQ3 and CQ4"
+    assumptions:
+      - data_set(d)
+      - diagram_set(g,d,c)
+      - succesful_diagram(c1)
+      - inquiry_incomplete(d)
+    not_in:
+      - plausible_conclusion(c1)
+
+  # 31.5 retroductive (p. 331): CQ3, whether the action fits the definition
+  # of Q, is the assumption 31.3 uses, not_fit_action(A).
+  - name: retroductive/positive
+    source: "31.5, p. 331"
+    assumptions:
+      - agent_event(ann)
+      - event_quality(greedy)
+      - agent_quality(ann,greedy)
+    arguments:
+      - retroductive(ann,greedy)
+    in:
+      - event_question(ann)
+  - name: retroductive/adverse-fit-questioned
+    source: "31.5, p. 331, CQ3"
+    assumptions:
+      - agent_event(ann)
+      - event_quality(greedy)
+      - agent_quality(ann,greedy)
+    questioned:
+      - not_fit_action(ann)
+    not_in:
+      - event_question(ann)
+
+  # 32.1 and 32.2 (pp. 331-332) share their questions; CQ3 is
+  # sufficient_correlation(H,A) in both, where 32.2 had the arguments the
+  # other way round, so that the two records named two statements.
+  - name: evidence_hypothesis_falsification/positive
+    source: "32.2, pp. 331-332"
+    assumptions:
+      - hypothesis_event(h,e)
+      - event_false(e)
+    arguments:
+      - evidence_hypothesis_falsification(h,e)
+    in:
+      - ¬h
+  - name: evidence_hypothesis_falsification/adverse-correlation-questioned
+    source: "32.2, p. 332, CQ3"
+    assumptions:
+      - hypothesis_event(h,e)
+      - event_false(e)
+    questioned:
+      - sufficient_correlation(h,e)
+    not_in:
+      - ¬h
+  - name: evidence_hypothesis/one-correlation-statement-for-both
+    source: "32.1, 32.2, p. 332, CQ3"
+    assumptions:
+      - hypothesis_event(h,e)
+      - event_true(e)
+      - hypothesis_event(k,f)
+      - event_false(f)
+    questioned:
+      - sufficient_correlation(h,e)
+      - sufficient_correlation(k,f)
+    not_in:
+      - h
+      - ¬k
+
+  # 33.3 negative_consequences_reasoning (p. 332): CQ1 of the list printed
+  # after 33.4, how likely the consequence is, is an assumption, as 33.4 has.
+  - name: negative_consequences_reasoning/positive
+    source: "33.3, p. 332"
+    assumptions:
+      - agent_bring_about(tax,recession)
+      - bad_for_goals(recession)
+    arguments:
+      - negative_consequences_reasoning(tax,recession)
+    in:
+      - should_not_bring_about(tax)
+  - name: negative_consequences_reasoning/adverse-likelihood-questioned
+    source: "33.3, pp. 332-333, CQ1"
+    assumptions:
+      - agent_bring_about(tax,recession)
+      - bad_for_goals(recession)
+    questioned:
+      - outcome_likely(tax,recession)
+    not_in:
+      - should_not_bring_about(tax)
+
+  # 38 help (p. 334): CQ2 and CQ3 restate premises 3 and 4; the assumption
+  # possible_carry_out(B,X) and the exception greater_side_effects(X), which
+  # said them again, go. Questioning premise 3 is arguing its negation.
+  - name: help/positive
+    source: "38, p. 334"
+    assumptions:
+      - help_needed(ann,bob)
+      - situation_help(ann,lift,bob)
+      - can_carry_out(bob,lift)
+      - not_too_costly(bob,lift)
+    arguments:
+      - help(ann,bob,lift)
+    in:
+      - carry_out(bob,lift)
+  - name: help/adverse-help-questioned
+    source: "38, p. 334, CQ1"
+    assumptions:
+      - help_needed(ann,bob)
+      - situation_help(ann,lift,bob)
+      - can_carry_out(bob,lift)
+      - not_too_costly(bob,lift)
+    questioned:
+      - action_will_help(lift,ann)
+    not_in:
+      - carry_out(bob,lift)
+  - name: help/adverse-premise-missing
+    source: "38, p. 334, CQ3"
+    assumptions:
+      - help_needed(ann,bob)
+      - situation_help(ann,lift,bob)
+      - can_carry_out(bob,lift)
+    no_arguments: [help]
+    not_in:
+      - carry_out(bob,lift)
+
+  # 39 distress (pp. 334-335): the relief is of x's distress, relieve(B,X,A);
+  # the record did not say whose. CQ1 restates premise 1; the assumption
+  # really_distress(A), which said it again, goes.
+  - name: distress/positive
+    source: "39, pp. 334-335"
+    assumptions:
+      - distress(ann)
+      - relieve(bob,lift,ann)
+    arguments:
+      - distress(bob,lift,ann)
+    in:
+      - bring_relive(bob,lift)
+  - name: distress/adverse-someone-elses-distress
+    source: "39, p. 334"
+    assumptions:
+      - distress(ann)
+      - relieve(bob,lift,cat)
+    no_arguments: [distress]
+    not_in:
+      - bring_relive(bob,lift)
+  - name: distress/adverse-side-effects
+    source: "39, p. 335, CQ4"
+    assumptions:
+      - distress(ann)
+      - relieve(bob,lift,ann)
+      - great_side_effects(bob,lift)
+    not_in:
+      - bring_relive(bob,lift)
+
+  # 40 commitment1, commitment2 (p. 335): CQ1's first half restates the
+  # commitment premise, and the assumption commitment_support_evidence(A,X),
+  # which said it again, goes; CQ2, an exception to the linkage rule, is the
+  # exception commitment_linkage_exception(A,X,Y).
+  - name: commitment1/positive
+    source: "40, p. 335, version 1"
+    assumptions:
+      - committed(ann,p)
+      - also_committed(p,q)
+    arguments:
+      - commitment1(ann,p,q)
+    in:
+      - committed_to(ann,q)
+  - name: commitment1/adverse-linkage-exception
+    source: "40, p. 335, CQ2"
+    assumptions:
+      - committed(ann,p)
+      - also_committed(p,q)
+      - commitment_linkage_exception(ann,p,q)
+    not_in:
+      - committed_to(ann,q)
+  - name: commitment2/positive
+    source: "40, p. 335, version 2"
+    assumptions:
+      - also_committed_questioned(ann,p,q)
+      - dialog_committed(ann,p)
+    arguments:
+      - commitment2(ann,p,q)
+    in:
+      - commitment_arises(ann,q)
+  - name: commitment2/adverse-contrary-evidence
+    source: "40, p. 335, CQ1"
+    assumptions:
+      - also_committed_questioned(ann,p,q)
+      - dialog_committed(ann,p)
+      - commitment_contrary_evidence(ann,p)
+    not_in:
+      - commitment_arises(ann,q)

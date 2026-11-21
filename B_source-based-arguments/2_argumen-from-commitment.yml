@@ -10,7 +10,7 @@ language:
   also_committed_questioned/3: "If arguer %s has committed herself to proposition %s at some point in a dialogue, then it may be inferred that she is also committed to proposition %s, should the question of whether it is true become an issue later in the dialogue."
   commitment_arises/2: "At some later point in the dialogue, where the issue of %[2]s arises, arguer %[1]s may be said to be committed to it."
   commitment_contrary_evidence/2: "There is contrary evidence indicating that %s might not be committed to %s."
-  commitment_support_evidence/2: "There is evidence that supports the claim that %s is committed to %s."
+  commitment_linkage_exception/3: "In this case there is an exception, for %[1]s, to the general rule that commitment to %[2]s implies commitment to %[3]s."
   committed/2: "In this case it was shown that %s is committed to proposition %s, according to the evidence of what he said or did."
   committed_to/2: "In this case, %s is committed to %s."
   dialog_committed/2: "Arguer %s has committed herself to proposition %s at some point in a dialogue."
@@ -47,8 +47,7 @@ argument_schemes:
       - also_committed(X,Y)
     exceptions:
       - commitment_contrary_evidence(A,X)
-    assumptions: 
-     - commitment_support_evidence(A,X)
+      - commitment_linkage_exception(A,X,Y)
 
   - id: commitment2
     meta:
@@ -66,8 +65,7 @@ argument_schemes:
       - dialog_committed(A,X)
     exceptions:
       - commitment_contrary_evidence(A,X)
-    assumptions: 
-      - commitment_support_evidence(A,X)
+      - commitment_linkage_exception(A,X,Y)
 
   - id: inconsistent_commitment
     meta:

@@ -17,6 +17,16 @@ The printed critical questions are sorted record by record (5.1) into the four k
   * `two_person_practical` (23, pp. 325-326): the exceptions of CQ2 and CQ3 were bound to the persons, so that they read "alternative means of realizing ann other than trip"; they are bound to the goal and the action, `alternative_means(X,Y)` and `side_effect_other_act(Y,A)`. CQ5 is the exception `other_actions_required(X,Y)`.
   * `waste` (24, p. 326): CQ2, a reassessment with past losses set aside, is the exception `reassessment_against_continuing(A,X)`.
   * `negative_normal_expectations` (26.1, p. 327): CQ1 is the exception 26 uses, `uninvestigated(A)`.
+* Entries 31 to 40 (15 records with questions): 48 questions sorted. A statement that only says a premise again, in other words, is the defect `tools/validate_schemes.py` already rejects when the words are the same; four go.
+  * `abductive_backward`, `abductive_forward` (31.1, 31.2, pp. 329-330): CQ3 and CQ4, how far the inquiry has progressed and whether to go on, are the exception `inquiry_incomplete(D)`; for 31.2, CQ1 is the assumption 31.1 uses, `sufficient_account(C1,D)`.
+  * `retroductive` (31.5, p. 331): CQ3 is the assumption 31.3 uses, `not_fit_action(A)`.
+  * `evidence_hypothesis_falsification` (32.2, p. 332): `sufficient_correlation(H,A)`, the order of 32.1, which shares the question; the two records named two statements.
+  * `negative_consequences_reasoning` (33.3, p. 332): CQ1 is the assumption `outcome_likely(A,B)`, as 33.4 has.
+  * `help` (38, p. 334): the assumption `possible_carry_out(B,X)` and the exception `greater_side_effects(X)` repeated premises 3 and 4 and go.
+  * `distress` (39, pp. 334-335): the relief is of x's distress, `relieve(B,X,A)`; the record did not say whose. The assumption `really_distress(A)` repeated premise 1 and goes.
+  * `commitment1`, `commitment2` (40, p. 335): the assumption `commitment_support_evidence(A,X)` repeated the commitment premise and goes; CQ2 is the exception `commitment_linkage_exception(A,X,Y)`.
+  * Recorded for 5.5, not changed: `positive_consequences` and `negative_consequences` (upstream) do not model CQ1, how likely the consequences are.
+* `tools/migration_r2.yml` starts the old-to-new table of R2 (5.6): every change of Phase 5 that alters what a graph has to state. `tools/vv` checks each row against the library (`migration/*`).
 
 ## 2026-11-21 — release R1, a preview (library 0.1.0, engine 4.3.1+walton.1)
 

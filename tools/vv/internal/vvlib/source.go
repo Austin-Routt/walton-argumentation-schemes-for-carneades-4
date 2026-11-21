@@ -528,3 +528,69 @@ func article(kind string) string {
 	}
 	return "a " + kind
 }
+
+// MigrationChecks compares tools/migration_r2.yml, the old-to-new table of
+// release R2 (PLAN.md D4, 5.6), with the library: a row's new statement is in
+// its record, and its old statement, where the row replaces or removes one,
+// is not.
+func MigrationChecks(lib *Library) []Result {
+	const file = "tools/migration_r2.yml"
+	b, err := os.ReadFile(filepath.Join(RepoRoot(), filepath.FromSlash(file)))
+	if err != nil {
+		return []Result{fail(file, "(file)", "migration/readable", "%v", err)}
+	}
+	var t struct {
+		Changes []struct {
+			Record string `yaml:"record"`
+			Kind   string `yaml:"kind"`
+			Old    string `yaml:"old"`
+			New    string `yaml:"new"`
+			Plan   string `yaml:"plan"`
+			Page   int    `yaml:"page"`
+			Note   string `yaml:"note"`
+		} `yaml:"changes"`
+	}
+	if err := yaml.UnmarshalStrict(b, &t); err != nil {
+		return []Result{fail(file, "(file)", "migration/readable", "%v", err)}
+	}
+	out := []Result{pass(file, "(file)", "migration/readable")}
+	for _, c := range t.Changes {
+		probs := []string{}
+		s := lib.Scheme(c.Record)
+		if s == nil {
+			probs = append(probs, "no such record")
+		} else {
+			all := map[string]bool{}
+			for _, l := range [][]string{s.Premises, s.Assumptions, s.Exceptions, s.Conclusions} {
+				for _, st := range l {
+					all[Norm(st)] = true
+				}
+			}
+			switch c.Kind {
+			case "added":
+				if c.Old != "" || c.New == "" || !all[Norm(c.New)] {
+					probs = append(probs, fmt.Sprintf("added: %q should be in the record, with no old statement", c.New))
+				}
+			case "removed":
+				if c.New != "" || c.Old == "" || all[Norm(c.Old)] {
+					probs = append(probs, fmt.Sprintf("removed: %q should no longer be in the record", c.Old))
+				}
+			case "arguments", "arity":
+				if c.Old == "" || c.New == "" || all[Norm(c.Old)] || !all[Norm(c.New)] {
+					probs = append(probs, fmt.Sprintf("%s: %q should have replaced %q in the record", c.Kind, c.New, c.Old))
+				}
+			default:
+				probs = append(probs, fmt.Sprintf("unknown kind %q", c.Kind))
+			}
+		}
+		if c.Plan == "" || c.Page == 0 {
+			probs = append(probs, "a row needs its plan item and page")
+		}
+		st := c.New
+		if st == "" {
+			st = c.Old
+		}
+		out = append(out, res(file, c.Record, "migration/"+c.Kind+" "+st, probs))
+	}
+	return out
+}

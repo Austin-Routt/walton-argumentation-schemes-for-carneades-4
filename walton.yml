@@ -99,7 +99,7 @@ language:
   commited_opposite/2: "%s is personally committed to the opposite of %s, as shown by commitments expressed in her/his personal actions or personal circumstances expressing such commitments."
   commitment_arises/2: "At some later point in the dialogue, where the issue of %[2]s arises, arguer %[1]s may be said to be committed to it."
   commitment_contrary_evidence/2: "There is contrary evidence indicating that %s might not be committed to %s."
-  commitment_support_evidence/2: "There is evidence that supports the claim that %s is committed to %s."
+  commitment_linkage_exception/3: "In this case there is an exception, for %[1]s, to the general rule that commitment to %[2]s implies commitment to %[3]s."
   committed/2: "In this case it was shown that %s is committed to proposition %s, according to the evidence of what he said or did."
   committed_to/2: "In this case, %s is committed to %s."
   compositionally_hereditary/2: "Property %[2]s is compositionally hereditary with regard to %[1]s: if every part has it, the whole has it."
@@ -164,7 +164,6 @@ language:
   great_sacrifice/3: "If a great sacrifice %s has been made for %s, then the value %s of it will be greater."
   great_sacrifice_made/2: "A great sacrifice %s has been made for %s."
   great_side_effects/2: "There will be too great negative side effects of %s bringing about %s."
-  greater_side_effects/1: "There will be greater negative side effects of carrying out %s."
   group_accepted/2: "Everybody in this group %s accepts %s."
   group_action/2: "If you carry out action %s then you will belong to this group %s."
   group_background/1: "I, the speaker, am an ordinary person, that is, I share a common background with the members of this audience, group %s."
@@ -205,6 +204,7 @@ language:
   individuals_propoerty/3: "If %s has %s, then %s has it too."
   initial_commitment/2: "%s has claimed or indicated that he is committed to proposition %s, generally or by virtue of what he has said in the past."
   initial_presumption/1: "Case %s is tentatively acceptable as an initial presumption."
+  inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   instance/2: "%s is an instance of class %s."
   interference/1: "An event has occurred which interferes with event %s."
   internally_consistent/1: "%s is internally consistent."
@@ -280,6 +280,7 @@ language:
   ought_to_bring_about/1: "Therefore, you ought to bring about %s."
   ought_to_continue/2: "Therefore, %s ought to continue trying to realize %s."
   out_group_not_accept/2: "If you do not accept %s, you will be out of this group %s."
+  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   part_is/2: "%s is %s."
   part_propert/2: "%s is %s." 
   part_whole/5: "%[1]s is %[2]s only if %[3]s, %[4]s or %[5]s is."
@@ -308,7 +309,6 @@ language:
   possible_action/1: "%s is possible."
   possible_agent/2: "%s is possible to do for agent %s."
   possible_bring_about/2: "It is possible for %s to bring about %s."
-  possible_carry_out/2: "It is possible for %s to carry out %s." 
   possible_goal/1: "%s is possible."
   practicality_action/1: "Nothing unchangeable prevents me from bringing about %s, as far as I know."
   precedent_series/3: "By case-to-case consistency, holding case %s to be an exception to the rule %s binds us to hold each case of a sequence of similar cases, up to %s, to be an exception too."
@@ -327,7 +327,6 @@ language:
   prudential/1: "Therefore, you ought to reconsider and, other things being equal, you ought prudentially to do %s."
   quality_defined/1: "The character quality attributed to %s is well defined."
   realize_more_effectively/2: "There exists an action that would realize the goal %s more effectively than %s."
-  really_distress/1: "%s is really in distress."
   reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
   reason_in_favor/1: "There is a reason in favor of %s."
   reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s." 
@@ -343,7 +342,7 @@ language:
   relation_with/3: "%s is in relation %s with %s."
   relevant_differences/1: "There are relevant differences between case %s and the current case."
   relevant_differences/2: "There are relevant differences between case %s and case %s."
-  relieve/2: "If %s brings about %s, it will relieve or help to relieve this distress."
+  relieve/3: "If %s brings about %s, it will relieve or help to relieve the distress of %s."
   respondent_member/1: "You, the respondent are a member of this audience, group %s."
   right_to_do/2: "The right thing to do in %s, was to carry out action %s."
   rule_can_waived/1: "If the case of %s is an exception, then the established rule can be waived in that case."
@@ -1269,6 +1268,8 @@ argument_schemes:
       - succesful_account(A1,D)
     assumptions: 
      - sufficient_account(A1,D)
+    exceptions:
+     - inquiry_incomplete(D)
       
   - id: abductive_forward
     meta:
@@ -1283,6 +1284,10 @@ argument_schemes:
       - data_set(D)
       - diagram_set(G,D,C)
       - succesful_diagram(C1)
+    assumptions:
+      - sufficient_account(C1,D)
+    exceptions:
+      - inquiry_incomplete(D)
 
   - id: abductive_action_to_character
     meta:
@@ -1330,6 +1335,7 @@ argument_schemes:
       - agent_quality(A,Q)
     assumptions: 
      - quality_defined(A)
+     - not_fit_action(A)
      - reference_class
 
   - id: evidence_hypothesis_verification
@@ -1358,7 +1364,7 @@ argument_schemes:
       - hypothesis_event(H,A)
       - event_false(A)
     assumptions: 
-     - sufficient_correlation(A,H)   
+     - sufficient_correlation(H,A)
 
   - id: negative_consequences_prudential
     meta:
@@ -1391,6 +1397,8 @@ argument_schemes:
     premises:
       - agent_bring_about(A,B)
       - bad_for_goals(B)
+    assumptions:
+      - outcome_likely(A,B)
 
   - id: pragmatic_alternative
     meta:
@@ -1468,11 +1476,8 @@ argument_schemes:
       - help_needed(A,B)
       - situation_help(A,X,B)
       - can_carry_out(B,X)
-      - not_too_costly(B,X)    
-    exceptions:
-      - greater_side_effects(X)
+      - not_too_costly(B,X)
     assumptions: 
-     - possible_carry_out(B,X)
      - action_will_help(X,A)
 
   - id: distress
@@ -1485,11 +1490,10 @@ argument_schemes:
       - bring_relive(B,X)
     premises:
       - distress(A)
-      - relieve(B,X)
+      - relieve(B,X,A)
     exceptions:
       - great_side_effects(B,X)
     assumptions: 
-     - really_distress(A)
      - possible_bring_about(B,X)
   
   - id: commitment1
@@ -1508,8 +1512,7 @@ argument_schemes:
       - also_committed(X,Y)
     exceptions:
       - commitment_contrary_evidence(A,X)
-    assumptions: 
-     - commitment_support_evidence(A,X)
+      - commitment_linkage_exception(A,X,Y)
 
   - id: commitment2
     meta:
@@ -1527,8 +1530,7 @@ argument_schemes:
       - dialog_committed(A,X)
     exceptions:
       - commitment_contrary_evidence(A,X)
-    assumptions: 
-      - commitment_support_evidence(A,X)
+      - commitment_linkage_exception(A,X,Y)
   
   - id: ad_hominem
     meta:

@@ -427,7 +427,6 @@ A_reasoning/3_practical-reasoning.yml|help|cli/scenario
 A_reasoning/3_practical-reasoning.yml|help|engine-validator
 A_reasoning/3_practical-reasoning.yml|help|full/assumptions-questionable
 A_reasoning/3_practical-reasoning.yml|help|full/conclusions-in
-A_reasoning/3_practical-reasoning.yml|help|full/exceptions-undercut
 A_reasoning/3_practical-reasoning.yml|help|full/fires
 A_reasoning/3_practical-reasoning.yml|help|full/ground
 A_reasoning/3_practical-reasoning.yml|help|full/infer-ok
@@ -436,7 +435,6 @@ A_reasoning/3_practical-reasoning.yml|help|full/premises-needed
 A_reasoning/3_practical-reasoning.yml|help|full/terminates
 A_reasoning/3_practical-reasoning.yml|help|iso/assumptions-questionable
 A_reasoning/3_practical-reasoning.yml|help|iso/conclusions-in
-A_reasoning/3_practical-reasoning.yml|help|iso/exceptions-undercut
 A_reasoning/3_practical-reasoning.yml|help|iso/fires
 A_reasoning/3_practical-reasoning.yml|help|iso/ground
 A_reasoning/3_practical-reasoning.yml|help|iso/infer-ok
@@ -996,6 +994,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_backward|cli/scenario
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|engine-validator
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/assumptions-questionable
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/conclusions-in
+A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/exceptions-undercut
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/fires
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/ground
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/infer-ok
@@ -1004,6 +1003,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/premises-needed
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|full/terminates
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/assumptions-questionable
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/conclusions-in
+A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/exceptions-undercut
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/fires
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/ground
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/infer-ok
@@ -1052,6 +1052,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_forward|cli/scenario
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|engine-validator
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/assumptions-questionable
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/conclusions-in
+A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/exceptions-undercut
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/fires
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/ground
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/infer-ok
@@ -1060,6 +1061,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/premises-needed
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|full/terminates
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/assumptions-questionable
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/conclusions-in
+A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/exceptions-undercut
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/fires
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/ground
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/infer-ok
@@ -3420,12 +3422,52 @@ cases/phase3.yml|value_based_practical_reasoning/positive|case
 cases/phase3.yml|value_based_practical_reasoning/positive|roundtrip
 cases/phase3.yml|value_based_practical_reasoning/possibility-questioned|case
 cases/phase3.yml|value_based_practical_reasoning/possibility-questioned|roundtrip
+cases/phase5.yml|abductive_backward/adverse-inquiry-incomplete|case
+cases/phase5.yml|abductive_backward/adverse-inquiry-incomplete|roundtrip
+cases/phase5.yml|abductive_backward/positive|case
+cases/phase5.yml|abductive_backward/positive|roundtrip
+cases/phase5.yml|abductive_forward/adverse-account-questioned|case
+cases/phase5.yml|abductive_forward/adverse-account-questioned|roundtrip
+cases/phase5.yml|abductive_forward/adverse-inquiry-incomplete|case
+cases/phase5.yml|abductive_forward/adverse-inquiry-incomplete|roundtrip
+cases/phase5.yml|abductive_forward/positive|case
+cases/phase5.yml|abductive_forward/positive|roundtrip
+cases/phase5.yml|commitment1/adverse-linkage-exception|case
+cases/phase5.yml|commitment1/adverse-linkage-exception|roundtrip
+cases/phase5.yml|commitment1/positive|case
+cases/phase5.yml|commitment1/positive|roundtrip
+cases/phase5.yml|commitment2/adverse-contrary-evidence|case
+cases/phase5.yml|commitment2/adverse-contrary-evidence|roundtrip
+cases/phase5.yml|commitment2/positive|case
+cases/phase5.yml|commitment2/positive|roundtrip
+cases/phase5.yml|distress/adverse-side-effects|case
+cases/phase5.yml|distress/adverse-side-effects|roundtrip
+cases/phase5.yml|distress/adverse-someone-elses-distress|case
+cases/phase5.yml|distress/adverse-someone-elses-distress|roundtrip
+cases/phase5.yml|distress/positive|case
+cases/phase5.yml|distress/positive|roundtrip
+cases/phase5.yml|evidence_hypothesis/one-correlation-statement-for-both|case
+cases/phase5.yml|evidence_hypothesis/one-correlation-statement-for-both|roundtrip
+cases/phase5.yml|evidence_hypothesis_falsification/adverse-correlation-questioned|case
+cases/phase5.yml|evidence_hypothesis_falsification/adverse-correlation-questioned|roundtrip
+cases/phase5.yml|evidence_hypothesis_falsification/positive|case
+cases/phase5.yml|evidence_hypothesis_falsification/positive|roundtrip
 cases/phase5.yml|from_example/adverse-support-questioned|case
 cases/phase5.yml|from_example/adverse-support-questioned|roundtrip
 cases/phase5.yml|from_example/positive|case
 cases/phase5.yml|from_example/positive|roundtrip
 cases/phase5.yml|from_example/support-questioned-and-shown|case
 cases/phase5.yml|from_example/support-questioned-and-shown|roundtrip
+cases/phase5.yml|help/adverse-help-questioned|case
+cases/phase5.yml|help/adverse-help-questioned|roundtrip
+cases/phase5.yml|help/adverse-premise-missing|case
+cases/phase5.yml|help/adverse-premise-missing|roundtrip
+cases/phase5.yml|help/positive|case
+cases/phase5.yml|help/positive|roundtrip
+cases/phase5.yml|negative_consequences_reasoning/adverse-likelihood-questioned|case
+cases/phase5.yml|negative_consequences_reasoning/adverse-likelihood-questioned|roundtrip
+cases/phase5.yml|negative_consequences_reasoning/positive|case
+cases/phase5.yml|negative_consequences_reasoning/positive|roundtrip
 cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|case
 cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|roundtrip
 cases/phase5.yml|negative_normal_expectations/positive|case
@@ -3436,6 +3478,10 @@ cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|case
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|roundtrip
 cases/phase5.yml|popular_opinion/positive|case
 cases/phase5.yml|popular_opinion/positive|roundtrip
+cases/phase5.yml|retroductive/adverse-fit-questioned|case
+cases/phase5.yml|retroductive/adverse-fit-questioned|roundtrip
+cases/phase5.yml|retroductive/positive|case
+cases/phase5.yml|retroductive/positive|roundtrip
 cases/phase5.yml|two_person_practical/adverse-alternative-means|case
 cases/phase5.yml|two_person_practical/adverse-alternative-means|roundtrip
 cases/phase5.yml|two_person_practical/adverse-other-actions-required|case
@@ -3533,6 +3579,7 @@ source_ledger.yml|circumstantial_ad_hominem|source/record-row
 source_ledger.yml|claimed_exception/2|source/name-in-language
 source_ledger.yml|commitment1|source/record-row
 source_ledger.yml|commitment2|source/record-row
+source_ledger.yml|commitment_linkage_exception/3|source/name-in-language
 source_ledger.yml|common_folk_ad_populum|source/record-row
 source_ledger.yml|common_folks_group_ad_populum|source/record-row
 source_ledger.yml|composition_generic|source/record-row
@@ -3686,6 +3733,7 @@ source_ledger.yml|help|source/record-row
 source_ledger.yml|ignorance|source/record-row
 source_ledger.yml|illustration|source/record-row
 source_ledger.yml|inconsistent_commitment|source/record-row
+source_ledger.yml|inquiry_incomplete/1|source/name-in-language
 source_ledger.yml|interaction_act_person_1|source/record-row
 source_ledger.yml|interaction_act_person_2|source/record-row
 source_ledger.yml|intolerable_exception/2|source/name-in-language
@@ -3708,6 +3756,7 @@ source_ledger.yml|opposition-descriptive_2|source/record-row
 source_ledger.yml|opposition-descriptive_3|source/record-row
 source_ledger.yml|opposition-normative|source/record-row
 source_ledger.yml|other_actions_required/2|source/name-in-language
+source_ledger.yml|outcome_likely/2|source/name-in-language
 source_ledger.yml|part_in_whole|source/record-row
 source_ledger.yml|perception|source/record-row
 source_ledger.yml|plea_for_excuse|source/record-row
@@ -3736,6 +3785,7 @@ source_ledger.yml|reassessment_against_continuing/2|source/name-in-language
 source_ledger.yml|recognized_exception_category/2|source/name-in-language
 source_ledger.yml|regulative_rule_prohibition|source/record-row
 source_ledger.yml|regulative_rule|source/record-row
+source_ledger.yml|relieve/3|source/name-in-language
 source_ledger.yml|retroductive|source/record-row
 source_ledger.yml|rhetoric_ad_populum|source/record-row
 source_ledger.yml|rhetorical_oppositions_descriptive|source/record-row
@@ -3766,6 +3816,31 @@ source_ledger.yml|waste|source/record-row
 source_ledger.yml|whole_into_parts|source/record-row
 source_ledger.yml|witness_testimony|source/record-row
 source_ledger.yml|worse_consequences/2|source/name-in-language
+tools/migration_r2.yml|(file)|migration/readable
+tools/migration_r2.yml|abductive_backward|migration/added inquiry_incomplete(D)
+tools/migration_r2.yml|abductive_forward|migration/added inquiry_incomplete(D)
+tools/migration_r2.yml|abductive_forward|migration/added sufficient_account(C1,D)
+tools/migration_r2.yml|commitment1|migration/added commitment_linkage_exception(A,X,Y)
+tools/migration_r2.yml|commitment1|migration/removed commitment_support_evidence(A,X)
+tools/migration_r2.yml|commitment2|migration/added commitment_linkage_exception(A,X,Y)
+tools/migration_r2.yml|commitment2|migration/removed commitment_support_evidence(A,X)
+tools/migration_r2.yml|distress|migration/arity relieve(B,X,A)
+tools/migration_r2.yml|distress|migration/removed really_distress(A)
+tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
+tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
+tools/migration_r2.yml|help|migration/removed greater_side_effects(X)
+tools/migration_r2.yml|help|migration/removed possible_carry_out(B,X)
+tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_likely(A,B)
+tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
+tools/migration_r2.yml|popular_opinion|migration/removed generally_accepted(A)
+tools/migration_r2.yml|retroductive|migration/added not_fit_action(A)
+tools/migration_r2.yml|two_person_practical|migration/added other_actions_required(X,Y)
+tools/migration_r2.yml|two_person_practical|migration/arguments alternative_means(X,Y)
+tools/migration_r2.yml|two_person_practical|migration/arguments side_effect_other_act(Y,A)
+tools/migration_r2.yml|verbal_classification_arbitrariness|migration/added arbitrariness_harmless(A,F)
+tools/migration_r2.yml|verbal_classification_vagueness|migration/arguments property_precion_needed(A)
+tools/migration_r2.yml|verbal_classification|migration/added doubtful_classification(F,G)
+tools/migration_r2.yml|waste|migration/added reassessment_against_continuing(A,X)
 walton.yml|(file)|cli/check-clean
 walton.yml|(file)|cli/eval-produces-output
 walton.yml|(file)|engine-validator
@@ -3834,6 +3909,7 @@ walton.yml|abductive_backward|cli/scenario
 walton.yml|abductive_backward|engine-validator
 walton.yml|abductive_backward|full/assumptions-questionable
 walton.yml|abductive_backward|full/conclusions-in
+walton.yml|abductive_backward|full/exceptions-undercut
 walton.yml|abductive_backward|full/fires
 walton.yml|abductive_backward|full/ground
 walton.yml|abductive_backward|full/infer-ok
@@ -3842,6 +3918,7 @@ walton.yml|abductive_backward|full/premises-needed
 walton.yml|abductive_backward|full/terminates
 walton.yml|abductive_backward|iso/assumptions-questionable
 walton.yml|abductive_backward|iso/conclusions-in
+walton.yml|abductive_backward|iso/exceptions-undercut
 walton.yml|abductive_backward|iso/fires
 walton.yml|abductive_backward|iso/ground
 walton.yml|abductive_backward|iso/infer-ok
@@ -3892,6 +3969,7 @@ walton.yml|abductive_forward|cli/scenario
 walton.yml|abductive_forward|engine-validator
 walton.yml|abductive_forward|full/assumptions-questionable
 walton.yml|abductive_forward|full/conclusions-in
+walton.yml|abductive_forward|full/exceptions-undercut
 walton.yml|abductive_forward|full/fires
 walton.yml|abductive_forward|full/ground
 walton.yml|abductive_forward|full/infer-ok
@@ -3900,6 +3978,7 @@ walton.yml|abductive_forward|full/premises-needed
 walton.yml|abductive_forward|full/terminates
 walton.yml|abductive_forward|iso/assumptions-questionable
 walton.yml|abductive_forward|iso/conclusions-in
+walton.yml|abductive_forward|iso/exceptions-undercut
 walton.yml|abductive_forward|iso/fires
 walton.yml|abductive_forward|iso/ground
 walton.yml|abductive_forward|iso/infer-ok
@@ -5234,7 +5313,6 @@ walton.yml|help|cli/scenario
 walton.yml|help|engine-validator
 walton.yml|help|full/assumptions-questionable
 walton.yml|help|full/conclusions-in
-walton.yml|help|full/exceptions-undercut
 walton.yml|help|full/fires
 walton.yml|help|full/ground
 walton.yml|help|full/infer-ok
@@ -5243,7 +5321,6 @@ walton.yml|help|full/premises-needed
 walton.yml|help|full/terminates
 walton.yml|help|iso/assumptions-questionable
 walton.yml|help|iso/conclusions-in
-walton.yml|help|iso/exceptions-undercut
 walton.yml|help|iso/fires
 walton.yml|help|iso/ground
 walton.yml|help|iso/infer-ok

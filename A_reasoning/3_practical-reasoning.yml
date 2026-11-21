@@ -47,7 +47,6 @@ language:
   great_sacrifice/3: "If a great sacrifice %s has been made for %s, then the value %s of it will be greater."
   great_sacrifice_made/2: "A great sacrifice %s has been made for %s."
   great_side_effects/2: "There will be too great negative side effects of %s bringing about %s."
-  greater_side_effects/1: "There will be greater negative side effects of carrying out %s."
   have_goal/1: "I have a goal %s."
   help_needed/2: "If %[1]s needs help and giving help would not be too costly, then %[2]s ought to help."
   incompatible_consequences/2: "Bringing about %s has incompatible consequences with %s."
@@ -75,6 +74,7 @@ language:
   other_goals_conflict/1: "There are other goals that might conflict with %s."
   ought_to_bring_about/1: "Therefore, you ought to bring about %s."
   ought_to_continue/2: "Therefore, %s ought to continue trying to realize %s."
+  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   person_goal/2: "Person %s has goal %s."
   plausibly_case/1: "%s is plausibly the case."
   plausibly_not_case/1: "%s is plausibly not the case."
@@ -84,16 +84,14 @@ language:
   possible_action/1: "%s is possible."
   possible_agent/2: "%s is possible to do for agent %s."
   possible_bring_about/2: "It is possible for %s to bring about %s."
-  possible_carry_out/2: "It is possible for %s to carry out %s."
   possible_goal/1: "%s is possible."
   practicality_action/1: "Nothing unchangeable prevents me from bringing about %s, as far as I know."
   prevent/1: "Therefore, you ought to prevent %s if possible."
   promote_more_effectively/2: "There exists an action that would promote the value %s more effectively than %s."
   prudential/1: "Therefore, you ought to reconsider and, other things being equal, you ought prudentially to do %s."
   realize_more_effectively/2: "There exists an action that would realize the goal %s more effectively than %s."
-  really_distress/1: "%s is really in distress."
   reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
-  relieve/2: "If %s brings about %s, it will relieve or help to relieve this distress."
+  relieve/3: "If %s brings about %s, it will relieve or help to relieve the distress of %s."
   sacrifice_made/2: "For the thing %s, sacrifice %s is made."
   sacrifice_value/2: "%s has a great value %s."
   should_be_performed/1: "Action %s should be performed."
@@ -532,11 +530,8 @@ argument_schemes:
       - help_needed(A,B)
       - situation_help(A,X,B)
       - can_carry_out(B,X)
-      - not_too_costly(B,X)    
-    exceptions:
-      - greater_side_effects(X)
+      - not_too_costly(B,X)
     assumptions: 
-     - possible_carry_out(B,X)
      - action_will_help(X,A)
 
   - id: distress
@@ -549,11 +544,10 @@ argument_schemes:
       - bring_relive(B,X)
     premises:
       - distress(A)
-      - relieve(B,X)
+      - relieve(B,X,A)
     exceptions:
       - great_side_effects(B,X)
     assumptions: 
-     - really_distress(A)
      - possible_bring_about(B,X)
 
   - id: negative_consequences_reasoning
@@ -569,6 +563,8 @@ argument_schemes:
     premises:
       - agent_bring_about(A,B)
       - bad_for_goals(B)
+    assumptions:
+      - outcome_likely(A,B)
 
   - id: sunk_costs
     meta:
