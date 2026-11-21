@@ -140,9 +140,10 @@ const sourceFile = "source_ledger.yml"
 // scheme has exactly one place in the ledger, every id in the ledger exists,
 // and every entry of the compendium has a record that is meant to be that
 // entry. This is a check of the inventory. Whether a record's premises,
-// questions and conclusion say what the book says is not checked here.
+// questions and conclusion say what the book says is not checked here; the
+// reviewed shared-nullary warrant is separately pinned by SharedNullaryCheck.
 func SourceChecks(l *SourceLedger, lib *Library) []Result {
-	out := []Result{}
+	out := []Result{SharedNullaryCheck(lib)}
 	where := map[string][]string{}
 	for _, e := range l.Compendium {
 		for _, id := range e.Schemes {
