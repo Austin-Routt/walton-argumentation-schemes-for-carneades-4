@@ -1615,6 +1615,74 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "ethotic_positive_compendium",
+      "fingerprint": "sha256:72f225f1dc664f597e2ee1247c16eb4990f9a03758954aeec7d49df932c03998",
+      "evidence": [
+        "docs/reviews/closure-supplemental-independent-acceptance.md: ethotic_positive_compendium",
+        "docs/reviews/closure-supplemental-source-changes.md: ethotic_positive_compendium",
+        "tools/vv/source_ledger.yml: ethotic_positive_compendium"
+      ],
+      "examples": [
+        "ethotic_positive_compendium/book"
+      ],
+      "review": {
+        "by": "ChatGPT fresh non-author acceptance reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "ethotic_negative_compendium",
+      "fingerprint": "sha256:4474556111561d207bc702d504ce6efa63cdfaf8bfd74eaf46af7013a3eaf65b",
+      "evidence": [
+        "docs/reviews/closure-supplemental-independent-acceptance.md: ethotic_negative_compendium",
+        "docs/reviews/closure-supplemental-source-changes.md: ethotic_negative_compendium",
+        "tools/vv/source_ledger.yml: ethotic_negative_compendium"
+      ],
+      "examples": [
+        "ethotic_negative_compendium/book"
+      ],
+      "review": {
+        "by": "ChatGPT fresh non-author acceptance reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "slippery_slope_compendium",
+      "fingerprint": "sha256:b46a5075c9c79bcf27417afc02862f13e2e4788e7bc156915da27c19a2b66327",
+      "evidence": [
+        "docs/reviews/closure-supplemental-independent-acceptance.md: slippery_slope_compendium",
+        "docs/reviews/closure-supplemental-source-changes.md: slippery_slope_compendium",
+        "tools/vv/source_ledger.yml: slippery_slope_compendium"
+      ],
+      "examples": [
+        "slippery_slope_compendium/book"
+      ],
+      "review": {
+        "by": "ChatGPT fresh non-author acceptance reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "established_rule_actor",
+      "fingerprint": "sha256:1a621c073ede250c6e7015246a784a7587775cf5ee493021215cbd70e698a2eb",
+      "evidence": [
+        "docs/reviews/closure-supplemental-independent-acceptance.md: established_rule_actor",
+        "docs/reviews/closure-supplemental-source-changes.md: established_rule_actor",
+        "tools/vv/source_ledger.yml: established_rule_actor"
+      ],
+      "examples": [
+        "established_rule_actor/book"
+      ],
+      "review": {
+        "by": "ChatGPT fresh non-author acceptance reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }
