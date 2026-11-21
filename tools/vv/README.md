@@ -137,6 +137,18 @@ it prints. The checks are structural: every scheme has exactly one place in the
 map (`source/mapped`), and every entry has a record (`source/has-record`). The
 file holds numbers and pages only, none of the book's text.
 
+The same file has one row per record (`records:`, PLAN.md 0.6): whether it is
+the book's or one of the 24 upstream ships, the source it cites when that is
+not the compendium, what the record claims to be (a transcription, a
+correction the book supports, an interpretation, a policy, or unchecked), how
+far it has been checked (mapped, transcription checked, interpretation
+approved, questions sorted, example passed), its printed questions once sorted,
+and the changes made to it. `source/record-row` checks each row against
+`walton.yml`, the compendium list and upstream's file, and that its stage has
+what it needs; `source/records-complete` that no row is missing or left over.
+`go run ./cmd/schemecheck -format source` prints them as the worklist of
+Phase 5.
+
 **Engine** (`TestEngine`, `TestEngineToolchain`, and the `command` group of
 `TestCLI`): small experiments stating what practical use needs, such as "two
 schemes that derive each other's premise terminate", "the engine can read the
@@ -148,7 +160,7 @@ works today and has to keep working.
 that can run away (a counter that never stops, a term that keeps growing, a
 fact of the wrong arity, labelling after an issue gains a position) therefore
 run in a process of their own, with a time
-limit and a memory cap of 2 GB, and are killed when they exceed either. If any
+limit and a cap of 4 GB on the address space, and are killed when they exceed either. If any
 other check times out, the run stops there and fails: a worker that could not
 be stopped is still using the engine's global state, and nothing measured after
 it could be trusted.

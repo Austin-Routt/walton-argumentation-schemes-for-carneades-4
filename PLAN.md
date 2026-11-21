@@ -217,7 +217,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 0.3 Ledger with an expected-check list (`tools/vv/expected_checks.txt`) and failure fingerprints (`fingerprint:`)
 - [x] 0.4 README brought up to date
 - [x] 0.5 Contracts `docs/contracts.md` written (each is met when its issues leave the ledger)
-- [ ] 0.6 Source ledger, one row per record
+- [x] 0.6 Source ledger, one row per record (`records:` in `tools/vv/source_ledger.yml`; every row at "mapped" until Phase 5 checks it)
 - [x] 1.1 Exit status by outcome (E-EXIT); a panic exits with 6
 - [x] 1.2 Limits as a typed error, graph unchanged, nothing on stdout (E-BUDGET); a term-size limit; `InferContext`
 - [x] 1.3 Unreadable input is an error (E-PARSE); GoCHR returns the goals when no rule fires

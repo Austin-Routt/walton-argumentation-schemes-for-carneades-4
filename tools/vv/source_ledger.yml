@@ -141,6 +141,154 @@ compendium:
   - {entry: "59.2", page: 345, questions: 2, schemes: [appearance]}
   - {entry: "60", page: 346, questions: 3, schemes: [memory]}
 
+# One row per record of walton.yml (PLAN.md 0.6), in the order of the file.
+#
+#   origin     book: a record of the compendium; upstream: one of the 24 records
+#              of Carneades' own examples/AGs/YAML/walton.yml, which keep their
+#              wording and ids and answer to the source they cite (D5, 5.5).
+#              upstream gives the upstream id where the record was renamed.
+#   entry      the compendium entry the record is filed under (as above)
+#   cites      the record's own citation (meta.source) when it is not the
+#              compendium of 2008
+#   claim      what the record as a whole claims to be: transcription (says what
+#              its source prints), correction (departs from the print where the
+#              book itself supports it), interpretation (an executable reading
+#              the print does not fix), policy (a choice of this application),
+#              unchecked (not yet compared with its source)
+#   stage      how far the row has been checked, in this order: mapped,
+#              transcription-checked, interpretation-approved, questions-sorted,
+#              example-passed. Gate L of the plan wants every released record at
+#              example-passed.
+#   questions  (from PLAN.md 5.1) each question the source prints, sorted:
+#              premise (restates a premise, not modelled), assumption,
+#              exception or rebuttal, with the statement that models it
+#   changes    the changes made to the record, each with its plan item, page
+#              and the kind of claim it makes
+#
+# `go test` checks that every record has one row and every row a record, that
+# the entry agrees with the compendium above and the citation with
+# walton.yml, that the upstream rows are the 24 records upstream ships, and
+# that a row's stage has what it needs (sorted questions, a passing example).
+records:
+  - {record: popular_opinion, origin: book, entry: "4", cites: "Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 91. Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989, p. 89. Douglas Walton, Appeal to Popular Opinion. University Park: Pennsylvania State University Press, 1999, pp. 223-226.", claim: unchecked, stage: mapped}
+  - {record: pop_scheme, origin: book, entry: "4.1", claim: unchecked, stage: mapped, changes: [{plan: "3.5", page: 311, claim: interpretation}]}
+  - {record: position_to_know_ad_populum, origin: book, entry: "4.2", claim: unchecked, stage: mapped}
+  - {record: expert_opinion_ad_populum, origin: book, entry: "4.3", claim: unchecked, stage: mapped}
+  - {record: deliberation_ad_populum, origin: book, entry: "4.4", claim: unchecked, stage: mapped}
+  - {record: moral_justification_ad_populum, origin: book, entry: "4.5", claim: unchecked, stage: mapped}
+  - {record: moral_justification_ad_populum_excuse, origin: book, entry: "4.6", claim: unchecked, stage: mapped}
+  - {record: snob_appeal_ad_populum, origin: book, entry: "4.7", claim: unchecked, stage: mapped}
+  - {record: appeal_to_vanity_ad_populum, origin: book, entry: "4.8", claim: unchecked, stage: mapped}
+  - {record: rhetoric_ad_populum, origin: book, entry: "4.9", claim: unchecked, stage: mapped}
+  - {record: common_folk_ad_populum, origin: book, entry: "4.10", cites: "Argumentation Schemes. Cambridge University Press, p. 312. Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).", claim: unchecked, stage: mapped}
+  - {record: common_folks_group_ad_populum, origin: book, entry: "4.11", cites: "Argumentation Schemes. Cambridge University Press, p. 312. Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).", claim: unchecked, stage: mapped}
+  - {record: popular_practise, origin: book, entry: "5", cites: "Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 93.", claim: unchecked, stage: mapped}
+  - {record: from_example, origin: book, entry: "6.1", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.", claim: unchecked, stage: mapped}
+  - {record: illustration, origin: book, entry: "6.2", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.", claim: unchecked, stage: mapped}
+  - {record: from_model, origin: book, entry: "6.3", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.", claim: unchecked, stage: mapped}
+  - {record: from_antimodel, origin: book, entry: "6.4", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.", claim: unchecked, stage: mapped}
+  - {record: practical_analogy_positive, origin: book, entry: "8.1", cites: "Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989. p.257.", claim: unchecked, stage: mapped}
+  - {record: practical_analogy_negative, origin: book, entry: "8.2", cites: "Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989. p.257.", claim: unchecked, stage: mapped}
+  - {record: composition_generic, origin: book, entry: "9.1", cites: "Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989, p.130.", claim: unchecked, stage: mapped}
+  - {record: part_in_whole, origin: book, entry: "9.2", cites: "Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241.", claim: unchecked, stage: mapped}
+  - {record: division_generic, origin: book, entry: "10.1", cites: "Douglas Walton, Argument: The Logic of Fallacies, Toronto: McGraw-Hill Ryerson, 1982, pp.206-208.", claim: unchecked, stage: mapped}
+  - {record: whole_into_parts, origin: book, entry: "10.2", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 231-233,234-241.", claim: unchecked, stage: mapped}
+  - {record: opposition-descriptive_1, origin: book, entry: "11.1a", claim: unchecked, stage: mapped}
+  - {record: opposition-descriptive_2, origin: book, entry: "11.1b", claim: unchecked, stage: mapped}
+  - {record: opposition-descriptive_3, origin: book, entry: "11.1c", claim: unchecked, stage: mapped}
+  - {record: opposition-normative, origin: book, entry: "11.2", claim: unchecked, stage: mapped}
+  - {record: rhetorical_oppositions_normative, origin: book, entry: "12.1", claim: unchecked, stage: mapped}
+  - {record: rhetorical_oppositions_descriptive, origin: book, entry: "12.2", claim: unchecked, stage: mapped}
+  - {record: alternative_cognitive, origin: book, entry: "13.1", cites: "Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306.", claim: unchecked, stage: mapped}
+  - {record: alternative_normative, origin: book, entry: "13.2", cites: "Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306.", claim: unchecked, stage: mapped}
+  - {record: verbal_classification_vagueness, origin: book, entry: "16", cites: "Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.102-103.", claim: unchecked, stage: mapped}
+  - {record: verbal_classification_arbitrariness, origin: book, entry: "17", cites: "Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.104-105.", claim: unchecked, stage: mapped}
+  - {record: interaction_act_person_1, origin: book, entry: "18.1", cites: "Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305.", claim: unchecked, stage: mapped}
+  - {record: interaction_act_person_2, origin: book, entry: "18.2", cites: "Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305.", claim: unchecked, stage: mapped}
+  - {record: positive_value, origin: book, entry: "19.1", cites: "Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245.", claim: unchecked, stage: mapped}
+  - {record: negative_value, origin: book, entry: "19.2", cites: "Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245.", claim: unchecked, stage: mapped}
+  - {record: sacrifice, origin: book, entry: "20", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254.", claim: unchecked, stage: mapped}
+  - {record: group_1, origin: book, entry: "21.1", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 321-326.", claim: unchecked, stage: mapped}
+  - {record: group_2, origin: book, entry: "21.2", cites: "Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 321-326.", claim: unchecked, stage: mapped, changes: [{plan: "3.6", page: 322, claim: interpretation}]}
+  - {record: practical_inference, origin: book, entry: "22.1", cites: "Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.", claim: unchecked, stage: mapped}
+  - {record: practical_necessary_condition, origin: book, entry: "22.2", cites: "Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.", claim: unchecked, stage: mapped, changes: [{plan: "3.3", page: 323, claim: interpretation}]}
+  - {record: practical_sufficient_condition, origin: book, entry: "22.3", cites: "Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.", claim: unchecked, stage: mapped, changes: [{plan: "3.3", page: 323, claim: interpretation}]}
+  - {record: value_based_practical_reasoning, origin: book, entry: "22.4", claim: unchecked, stage: mapped, changes: [{plan: "3.8", page: 324, claim: interpretation}]}
+  - {record: practical_goal, origin: book, entry: "22.5", cites: "Bart Verheij, \"Dialectical Argumentation with Argumentation Schemes: An Approach to Legal Logic.\" Artificial Intelligence and Law 11 (2003), p. 169.", claim: unchecked, stage: mapped}
+  - {record: end_and_means_1, origin: book, entry: "22.6.1", cites: "Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.", claim: unchecked, stage: mapped}
+  - {record: end_and_means_2, origin: book, entry: "22.6.2", cites: "Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.", claim: unchecked, stage: mapped}
+  - {record: end_and_means_3, origin: book, entry: "22.6.3", cites: "Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.", claim: unchecked, stage: mapped}
+  - {record: two_person_practical, origin: book, entry: "23", cites: "Douglas Walton, Appeal to Expert Opinion. University Park: Pennsylvania State University Press. 1997 p. 163.", claim: unchecked, stage: mapped}
+  - {record: waste, origin: book, entry: "24", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, Tuscaloosa and London: University of Alabama Press, 1995, p. 157. Douglas Walton \"The Sunk Cost Fallacy or Argument from Waste\" Argumentation 16 (2002), p.488.", claim: unchecked, stage: mapped}
+  - {record: negative_normal_expectations, origin: book, entry: "26.1", cites: "Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150.", claim: unchecked, stage: mapped}
+  - {record: negative_practical, origin: book, entry: "26.2", cites: "Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150.", claim: unchecked, stage: mapped}
+  - {record: epistemic_ignorence, origin: book, entry: "27", cites: "Douglas Walton , \"Nonfallacious Arguments from Ignorance.\" American Philosophical Quarterly 29 (1992), p. 386.", claim: unchecked, stage: mapped}
+  - {record: sign, origin: book, entry: "30", cites: "Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, pp. 113-114.", claim: unchecked, stage: mapped}
+  - {record: abductive_backward, origin: book, entry: "31.1", claim: unchecked, stage: mapped}
+  - {record: abductive_forward, origin: book, entry: "31.2", claim: unchecked, stage: mapped}
+  - {record: abductive_action_to_character, origin: book, entry: "31.3", claim: unchecked, stage: mapped}
+  - {record: abductive_character_to_action, origin: book, entry: "31.4", claim: unchecked, stage: mapped}
+  - {record: retroductive, origin: book, entry: "31.5", claim: unchecked, stage: mapped}
+  - {record: evidence_hypothesis_verification, origin: book, entry: "32.1", cites: "Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, pp. 67-70.", claim: unchecked, stage: mapped}
+  - {record: evidence_hypothesis_falsification, origin: book, entry: "32.2", cites: "Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, pp. 67-70.", claim: unchecked, stage: mapped}
+  - {record: negative_consequences_prudential, origin: book, entry: "33.4", cites: "Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155- 156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.", claim: unchecked, stage: mapped}
+  - {record: negative_consequences_reasoning, origin: book, entry: "33.3", cites: "Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.", claim: unchecked, stage: mapped}
+  - {record: pragmatic_alternative, origin: book, entry: "34", cites: "Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 142.", claim: unchecked, stage: mapped}
+  - {record: treat, origin: book, entry: "35", cites: "Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 157.", claim: unchecked, stage: mapped}
+  - {record: ad_baculum, origin: book, entry: "35.1", cites: "Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140.", claim: unchecked, stage: mapped}
+  - {record: fear, origin: book, entry: "36", cites: "Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 22.", claim: unchecked, stage: mapped}
+  - {record: danger, origin: book, entry: "37", cites: "Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 173.", claim: unchecked, stage: mapped}
+  - {record: help, origin: book, entry: "38", cites: "Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 104,155.", claim: unchecked, stage: mapped}
+  - {record: distress, origin: book, entry: "39", cites: "Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1991, pp. 105,155.", claim: unchecked, stage: mapped}
+  - {record: commitment1, origin: book, entry: "40a", cites: "Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 117- 118. Douglas Walton, \"The Sunk Costs Fallacy or Argument from Waste.\" Argumentation 16 (2002), p. 490.", claim: unchecked, stage: mapped}
+  - {record: commitment2, origin: book, entry: "40b", cites: "Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 117- 118. Douglas Walton, \"The Sunk Costs Fallacy or Argument from Waste.\" Argumentation 16 (2002), p. 490.", claim: unchecked, stage: mapped}
+  - {record: ad_hominem, origin: book, entry: "42", cites: "Douglas Walton , Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, p. 123.", claim: unchecked, stage: mapped, changes: [{plan: "3.1", page: 336, claim: interpretation}]}
+  - {record: pragmatic_inconsistency, origin: book, entry: "43", cites: "Douglas Walton , Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, pp. 218, 251.", claim: unchecked, stage: mapped}
+  - {record: inconsistent_commitment, origin: book, entry: "44", cites: "Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 120-121.", claim: unchecked, stage: mapped}
+  - {record: circumstantial_ad_hominem, origin: book, entry: "45", cites: "Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, pp. 255-256. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 125-126.", claim: unchecked, stage: mapped}
+  - {record: bias, origin: book, entry: "46", cites: "Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London : University of Alabama Press, 1995, p. 153.", claim: unchecked, stage: mapped}
+  - {record: bias_ad_hominem, origin: book, entry: "47", cites: "Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, p.255.", claim: unchecked, stage: mapped}
+  - {record: gradualism, origin: book, entry: "48", cites: "Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, p. 96.", claim: unchecked, stage: mapped}
+  - {record: sorites_slippery_slope, origin: book, entry: "51", cites: "Douglas Walton, \"The Argument of the Beard.\" Informal Logic 18 (1996), p. 151.", claim: unchecked, stage: mapped, changes: [{plan: "3.4", page: 340, claim: interpretation}]}
+  - {record: verbal_slippery_slope, origin: book, entry: "52", cites: "Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 160.", claim: unchecked, stage: mapped}
+  - {record: full_slippery_slope, origin: book, entry: "53", cites: "Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 200, 203.", claim: unchecked, stage: mapped}
+  - {record: precedent_slippery_slope, origin: book, entry: "50", claim: unchecked, stage: mapped, changes: [{plan: "3.8", page: 340, claim: interpretation}]}
+  - {record: rule_physical_world_1, origin: book, entry: "54.1", claim: unchecked, stage: mapped, changes: [{plan: "3.6", page: 342, claim: interpretation}]}
+  - {record: rule_physical_world_2, origin: book, entry: "54.2", claim: unchecked, stage: mapped}
+  - {record: rule_mental_world, origin: book, entry: "54.3", cites: "Wayne Grennan, Informal Logic, Montreal: McGill-Queen's University Press, 1997, p. 196.", claim: unchecked, stage: mapped}
+  - {record: rule, origin: book, entry: "55.2", cites: "Peter Jan Schellens and Menno De Jong, \"Argumentation Schemes in Persuasive Brochures. \"Argumentation 18, 2004, p. 311.", claim: unchecked, stage: mapped}
+  - {record: regulative_rule, origin: book, entry: "55.3", cites: "Wayne Grennan, Informal Logic. Montreal: McGill-Queen's University Press, 1997, p. 169.", claim: unchecked, stage: mapped, changes: [{plan: "3.2", page: 343, claim: interpretation}]}
+  - {record: regulative_rule_prohibition, origin: book, entry: "55.3", claim: unchecked, stage: mapped, changes: [{plan: "3.2", page: 343, claim: interpretation}]}
+  - {record: exeptional, origin: book, entry: "56", cites: "Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 148.", claim: unchecked, stage: mapped, changes: [{plan: "3.7", page: 344, claim: interpretation}]}
+  - {record: from_precedent, origin: book, entry: "57", claim: unchecked, stage: mapped, changes: [{plan: "3.8", page: 344, claim: interpretation}]}
+  - {record: plea_for_excuse, origin: book, entry: "58", cites: "Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 154-156.", claim: unchecked, stage: mapped}
+  - {record: perception, origin: book, entry: "59.1", cites: "John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53.", claim: unchecked, stage: mapped}
+  - {record: memory, origin: book, entry: "60", cites: "J.L. Pollock, \"Defeasible Reasoning.\" Cognitive Science 11 (1987), pp. 481-518.", claim: unchecked, stage: mapped}
+  - {record: abduction, origin: upstream, claim: unchecked, stage: mapped}
+  - {record: analogy, origin: upstream, entry: "7", cites: "Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 96-97.", claim: unchecked, stage: mapped}
+  - {record: appearance, origin: upstream, entry: "59.2", cites: "Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006.", claim: unchecked, stage: mapped}
+  - {record: cause_to_effect, origin: upstream, entry: "28", claim: unchecked, stage: mapped}
+  - {record: correlation_to_cause, origin: upstream, entry: "29", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.", claim: unchecked, stage: mapped}
+  - {record: credible_source, origin: upstream, cites: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016.", claim: unchecked, stage: mapped}
+  - {record: definition_to_verbal_classification, origin: upstream, entry: "15", cites: "Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 129.", claim: unchecked, stage: mapped}
+  - {record: defeasible_modus_ponens, origin: upstream, claim: unchecked, stage: mapped}
+  - {record: established_rule, origin: upstream, entry: "55.1", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 147.", claim: unchecked, stage: mapped}
+  - {record: ethotic1, origin: upstream, entry: "41", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.", claim: unchecked, stage: mapped}
+  - {record: ethotic2, origin: upstream, entry: "41", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.", claim: unchecked, stage: mapped}
+  - {record: expert_opinion, origin: upstream, entry: "2", cites: "Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225.", claim: unchecked, stage: mapped}
+  - {record: ignorance, origin: upstream, entry: "26", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150", claim: unchecked, stage: mapped}
+  - {record: negative_consequences, origin: upstream, entry: "33.2", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.", claim: unchecked, stage: mapped}
+  - {record: position_to_know, origin: upstream, entry: "1", cites: "Douglas Walton, Legal Argumentation and Evidence, The Pennsylvania State University Press, University Park, 2002, p.46.", claim: unchecked, stage: mapped}
+  - {record: positive_consequences, origin: upstream, entry: "33.1", cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.", claim: unchecked, stage: mapped}
+  - {record: practical_reasoning1, origin: upstream, cites: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874.", claim: unchecked, stage: mapped}
+  - {record: practical_reasoning2, origin: upstream, cites: "Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press.", claim: unchecked, stage: mapped}
+  - {record: exeption_to_rule, origin: upstream, upstream: precedent, cites: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 148", claim: unchecked, stage: mapped}
+  - {record: slippery_slope_base_case, origin: upstream, entry: "49", cites: "Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.", claim: unchecked, stage: mapped}
+  - {record: slippery_slope_inductive_step, origin: upstream, entry: "49", cites: "Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.", claim: unchecked, stage: mapped}
+  - {record: sunk_costs, origin: upstream, entry: "25", cites: "Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation, 16, 2002, p. 489", claim: unchecked, stage: mapped}
+  - {record: verbal_classification, origin: upstream, entry: "14", claim: unchecked, stage: mapped}
+  - {record: witness_testimony, origin: upstream, entry: "3", cites: "Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008.", claim: unchecked, stage: mapped}
+
 # Records of walton.yml taken over from Carneades' own examples/AGs/YAML/walton.yml
 # that have no entry of their own in the compendium.
 # exeption_to_rule and practical_reasoning1 were filed under 57 and 22.4 until

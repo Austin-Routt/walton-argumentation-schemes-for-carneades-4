@@ -17,7 +17,9 @@ All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*
 * Concurrent use is serialized (contract 1): inference runs wait for one another, as do YAML imports and exports, and GoCHR fills its spelling tables once. Before, two imports at the same time raced on the importer's tables, and two first spellings on GoCHR's. `tools/vv/engine-tests.sh` runs the concurrency tests under `-race`.
 * `carneades eval` cancels the evaluation on an interrupt or a termination signal: nothing is printed and the exit status is 5, as contract 3 says for a run the caller stops.
 * GoCHR refuses a number or a string as a rule body, which it used to accept and then ignore, and no longer prints when it refuses a rule head.
-* The ledger of known failures is empty: all 7,043 checks pass.
+* The source ledger has one row per record (`PLAN.md` 0.6): origin (the book, or one of the 24 records upstream ships, with `exeption_to_rule` as upstream's `precedent`), the record's own citation where it is not the compendium, the kind of claim it makes, how far it has been checked, its sorted questions (from 5.1) and the changes made to it. Every row starts at "mapped" and "unchecked"; the 13 records Phase 3 changed list their change as an interpretation.
+* The probes that run in a process of their own get 4 GB of address space instead of 2 GB: the counter, which runs to the limit of 100,000 rule applications, peaks at about 800 MB resident and ran out of address space on one CI run in four.
+* The ledger of known failures is empty: all 7,162 checks pass.
 
 ## 2026-11-21 — the scheme repairs of release R1 (`PLAN.md` Phase 3)
 

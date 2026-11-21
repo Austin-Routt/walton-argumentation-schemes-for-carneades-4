@@ -106,13 +106,13 @@ func source(repo, path string) {
 		os.Exit(2)
 	}
 	rows := vvlib.SourceRows(l, lib)
-	fmt.Println("entry,page,questions_in_book,list_shared_with_siblings,scheme,assumptions,exceptions,fields,status,note")
+	fmt.Println("entry,page,questions_in_book,list_shared_with_siblings,scheme,assumptions,exceptions,fields,status,origin,claim,stage,questions_sorted,note")
 	for _, r := range rows {
 		page := ""
 		if r.Page > 0 {
 			page = fmt.Sprint(r.Page)
 		}
-		fmt.Printf("%s,%s,%d,%v,%s,%d,%d,%d,%s,%q\n", r.Entry, page, r.Questions, r.Shared, r.Scheme, r.Assumptions, r.Exceptions, r.Fields(), r.Status, r.Note)
+		fmt.Printf("%s,%s,%d,%v,%s,%d,%d,%d,%s,%s,%s,%s,%d,%q\n", r.Entry, page, r.Questions, r.Shared, r.Scheme, r.Assumptions, r.Exceptions, r.Fields(), r.Status, r.Origin, r.Claim, r.Stage, r.Sorted, r.Note)
 	}
 	fmt.Fprintln(os.Stderr, vvlib.SourceSummary(rows))
 }
