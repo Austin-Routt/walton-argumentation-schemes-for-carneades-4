@@ -78,6 +78,8 @@ Nothing that contradicts what release R1 claims. In the library on `master`:
 
 90 rows are approved and at "example passed": 83 records of the book and 7 from Carneades. 13 are held: findings 5 to 9 (eight records) need a change to what a graph has to state, and findings 1 to 4 (five records) a wording fix, proposed in a pull request of its own for the implementer to approve. 16 rows of records from Carneades stay open because the source they cite is not available. `practical_reasoning1` has its row written by the reviewer and waits for a second reviewer.
 
+The wording fixes for findings 1 to 4 are in the library since the pull request that followed the review: six templates, and the two instances of 26.2 with their examples the right way round. With them the five rows held for wording are approved, 95 in all, and eight are held. Finding 12 is met by a paragraph in `docs/using.md`.
+
 ### Left to the owner
 
 * Publish R1. GitHub refused the reviewer's push of the tag as it refused the implementer's (HTTP 403), so the three commands of `PLAN.md` are the owner's to run.

@@ -898,22 +898,22 @@ cases:
   - name: negative_practical/two-questions
     source: "26.2, p. 327, CQ1"
     assumptions:
-      - not_know_true(loaded)
-      - presumption(loaded)
-      - consequences_presumption(loaded,accident)
-      - other_consequences_presumption(loaded,delay)
+      - not_know_true(unloaded)
+      - presumption(unloaded)
+      - consequences_presumption(unloaded,accident)
+      - other_consequences_presumption(unloaded,delay)
       - more_serious_consequences(accident,delay)
-      - not_know_true(poisoned)
-      - presumption(poisoned)
-      - consequences_presumption(poisoned,illness)
-      - other_consequences_presumption(poisoned,waste)
+      - not_know_true(safe_to_eat)
+      - presumption(safe_to_eat)
+      - consequences_presumption(safe_to_eat,illness)
+      - other_consequences_presumption(safe_to_eat,waste)
       - more_serious_consequences(illness,waste)
     questioned:
-      - sufficient_evidence(poisoned)
+      - sufficient_evidence(safe_to_eat)
     in:
-      - act_on_presumption(loaded)
+      - act_on_presumption(unloaded)
     not_in:
-      - act_on_presumption(poisoned)
+      - act_on_presumption(safe_to_eat)
   - name: sign/two-signs
     source: "30, p. 329, CQ2"
     assumptions:

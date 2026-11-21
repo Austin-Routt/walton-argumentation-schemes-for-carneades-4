@@ -6,7 +6,7 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  act_on_presumption/1: "I act on the presumption that %s is not true or true."
+  act_on_presumption/1: "I act on the presumption that %s is not true."
   asserts/2: "%s asserts that %s is true."
   based_on_evidence/1: "The assertion %v is based on evidence."
   based_on_false_belief/1: "%s was originally based on beliefs of which one is false."

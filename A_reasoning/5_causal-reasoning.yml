@@ -36,7 +36,7 @@ language:
   presents/2: "%s presents %s."
   presents_predicate/3: "If %s presents the predicate %s, it cannot present the contradictory, contrary, converse, incompatible, predicate %s at the same time and in the same respect."
   receives_evaluation/2: "%s receives the evaluation %s."
-  relation_converse_relation/4: "If %s is in relation %s with %s they can be in the converse relation %s."
+  relation_converse_relation/4: "If %s is in relation %s with %s, the latter can be in the converse relation %s with the former, and contrariwise."
   relation_with/3: "%s is in relation %s with %s."
   treatment_required/2: "The treatment %[2]s is required for the subject %[1]s."
   will_occur/1: "An event %s will occur."

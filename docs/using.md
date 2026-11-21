@@ -95,6 +95,11 @@ count only once they are shown.
   written under `issues:` with their `positions:` and `standard:` (`PE`,
   preponderance of the evidence, the default; `CCE`, clear and convincing
   evidence; `BRD`, beyond reasonable doubt).
+* **I and you.** Some schemes are printed in the first or second person: the
+  appeals of entries 34 to 37, most subtypes of 4, 26.2 and 58. Their
+  statements name no participant, so a graph holds one proponent and one
+  respondent. Where a scheme names its agent (22.1, 22.4, 22.5, 23, 38, 39),
+  the agent is a constant of your case, such as `me`.
 * **Expected labels** go under `tests:`, with the lists `in`, `out` and
   `undecided`. A statement named there has to be declared under
   `statements:`, with its text; otherwise the command refuses the file.

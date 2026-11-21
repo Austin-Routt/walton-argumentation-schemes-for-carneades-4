@@ -640,15 +640,15 @@ cases:
   - name: negative_practical/book
     source: "26.2, p. 327"
     assumptions:
-      - not_know_true(loaded)
-      - presumption(loaded)
-      - consequences_presumption(loaded,accident)
-      - other_consequences_presumption(loaded,delay)
+      - not_know_true(unloaded)
+      - presumption(unloaded)
+      - consequences_presumption(unloaded,accident)
+      - other_consequences_presumption(unloaded,delay)
       - more_serious_consequences(accident,delay)
     arguments:
-      - negative_practical(loaded,accident,delay)
+      - negative_practical(unloaded,accident,delay)
     in:
-      - act_on_presumption(loaded)
+      - act_on_presumption(unloaded)
     variants: true
   - name: epistemic_ignorance/book
     source: "27, p. 328"
