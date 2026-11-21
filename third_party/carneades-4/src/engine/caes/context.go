@@ -71,7 +71,11 @@ func (ag *ArgGraph) materializeIssues(ctx context.Context) error {
 	for _, a := range ag.Assumptions {
 		n := terms.Normalize(a)
 		if _, ok := ag.Statements[n]; !ok {
-			ag.Statements[n] = &Statement{Id: n, Text: n}
+			text := n
+			if t, ok := terms.ReadString(n); ok && ag.Theory != nil {
+				text = ag.Theory.Language.Apply(t)
+			}
+			ag.Statements[n] = &Statement{Id: n, Text: text}
 		}
 	}
 	if ag.Theory == nil {
