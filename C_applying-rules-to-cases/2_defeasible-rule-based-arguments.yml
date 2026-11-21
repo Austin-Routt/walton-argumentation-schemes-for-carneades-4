@@ -5,27 +5,36 @@ meta:
   title: "Applying Rules to Cases - Defeasible Rule-based Arguments"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  addressee_of/2: "%s is subject to the rule concerning %s."
   case/1: "%s is the case."
   case_exception/1: "The case of %s is an exception."
   correctly_report/0: "Official rulebooks correctly report the rules in force."
   counts_as/2: "%s counts as %s."
   do_obligator/0: "One must not do what is prohibited, and must do what is obligatory."
+  established_rule_property/3: "Generally, according to the established rule %s, if something has property %s, then it also has property %s."
   evaluation/3: "If %s is the case, then an evaluation %s is justified/conduct %s is required."
   evaluation_justified/2: "Therefore, evaluation %s is justified/conduct %s is required."
   excuse/1: "%s falls under one of the recognized categories of excuses for this type of case, and this inclusion can be justified in this case."
-  excuse/0: "There is an adequate excuse or an overriding duty."
+  excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
   exempted/1: "Therefore, in this instance, I ought to be exempted from %s."
+  has_property/2: "%s has property %s."
   implies/2: "%s implies %s."
-  is/2: "%s is %s."
+  is_a/2: "%s is %s."
+  legitimate_case/2: "The case of %s is a legitimate case under the rule %s, not only an apparent violation of it."
   means_same/2: "%s means the same as %s."
   must_do/2: "%s must do %s."
+  must_not_do/2: "%s must not do %s."
   not_excuse/1: "%s does not fall under a recognized category, and this would pose a problem in future cases."
   not_necessarily_true/0: "The premise is not a necessary truth."
-  obligatory/1: "%s is prohibited -obligatory-."
+  obligatory/1: "%s is obligatory."
   oficcial_rulebook/3: "In the official rulebook for %s -a rule governed institution, such as a game- it is stated that %s counts as %s."
   pleader_committed/1: "I -the pleader- have committed %s."
+  prohibited/1: "%s is prohibited."
+  recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
   rule_can_waived/1: "If the case of %s is an exception, then the established rule can be waived in that case."
   rule_changed/0: "The rule has changed since the publication of the rulebook."
+  rule_exception_recognized/2: "An exception to the rule %s must be recognized for the case of %s, and the rule appropriately modified or qualified."
+  rule_inapplicable_to/2: "The established rule %s does not really apply to the case of %s."
   rule_require/3: "Normally, rule %s requires or forbids a type of action or inaction %s, which carries with it a sanction -penalty- %s."
   rule_waived/1: "Therefore, the established rule can be waived in the case of %s."
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
@@ -33,6 +42,12 @@ language:
   special_circumstances/1: "But I can cite special circumstances that constitute an excuse %s."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
   without_correcting/1: "Speakers are able to use the word %s in the correct physical and grammatical context without being correct about the nature of its referent or property."
+
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
 
 argument_schemes:
   - id: rule_physical_world_1
@@ -45,7 +60,7 @@ argument_schemes:
     conclusions:
       - means_same(W,D)
     premises:
-      - is(W,D)
+      - is_a(W,D)
       - synonymous
     exceptions:
       - not_necessarily_true
@@ -103,8 +118,25 @@ argument_schemes:
     premises:
       - obligatory(X)
       - do_obligator
+      - addressee_of(A,X)
     exceptions:
-      - excuse
+      - excuse_or_overriding_duty(A,X)
+
+  - id: regulative_rule_prohibition
+    meta:
+      title: Argumentation From Rules - Regulative Rule Premise Prohibition Claim
+      source: >
+            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 343 (55.3, read for a prohibition).
+            Wayne Grennan, Informal Logic. Montreal: McGill-Queen's University Press, 1997, p. 169.
+    variables: [A,X]
+    conclusions:
+      - must_not_do(A,X)
+    premises:
+      - prohibited(X)
+      - do_obligator
+      - addressee_of(A,X)
+    exceptions:
+      - excuse_or_overriding_duty(A,X)
 
   - id: exeptional
     meta:
@@ -112,14 +144,30 @@ argument_schemes:
       source: >
              Douglas Walton, A Pragmatic Theory of Fallacy. 
              Tuscaloosa and London: University of Alabama Press, 1995, p. 148.
-    variables: [A,X]
+    variables: [A]
     conclusions:
       - rule_waived(A)
     premises:
-      - rule_can_waived(X)
+      - rule_can_waived(A)
       - case_exception(A)
+
+  - id: from_precedent
+    meta:
+      title: Argument From Precedent
+      source: >
+            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 344.
+    variables: [R,F,G,A]
+    conclusions:
+      - rule_exception_recognized(R,A)
+    premises:
+      - established_rule_property(R,F,G)
+      - has_property(A,F)
+      - ¬has_property(A,G)
     assumptions:
-      - case_exception(A)
+      - legitimate_case(A,R)
+    exceptions:
+      - rule_inapplicable_to(R,A)
+      - recognized_exception_category(A,R)
 
   - id: plea_for_excuse
     meta:

@@ -40,6 +40,12 @@ language:
   sufficient_correlation/2: "Correlation between %s and %s is sufficient."
   true_in_situation/1: "%s is true in this situation."
 
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
+
 argument_schemes:
   - id: sign
     meta:

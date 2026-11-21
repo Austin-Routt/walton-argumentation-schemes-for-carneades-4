@@ -61,34 +61,20 @@
 # explicit-argument-without-questions-is-reported, and a request to
 # instantiate is carried out.
 #
+# 2026-11-21, Phase 3 (the library repairs and the reserved names of contract
+# 7): X-RANGE, L-TRUE, X-IS, X-LOOP, X-GATE and L-MISSING are fixed and leave
+# the ledger. is-as-predicate-in-conclusion is restated as
+# reserved-predicate-names-are-rejected. Gate S of the plan: the ledger holds
+# only E-EXPORT and E-ROLES, which Phase 4 fixes.
+#
 # min_checks is the number of checks a complete run produces today. A run with
 # fewer fails: a passing check leaves no entry here, so removing one would
 # otherwise go unnoticed. Raise it when checks are added; lower it only in the
 # change that removes a check, where a reviewer sees it.
 
-min_checks: 6407
+min_checks: 6692
 
 issues:
-  - id: X-GATE
-    where: both
-    severity: blocker
-    title: "`carneades eval` produces nothing for a file with any validator problem; walton.yml and five category files are such files"
-  - id: X-RANGE
-    where: both
-    severity: blocker
-    title: "Five schemes use a variable that no premise binds: the validator rejects them, and when run anyway they yield statements with variables or dead critical questions"
-  - id: L-TRUE
-    where: library
-    severity: blocker
-    title: "The predicate true/1 is rejected by the engine's validator (true is a boolean), which blocks two files"
-  - id: X-IS
-    where: both
-    severity: major
-    title: "is/2 in a conclusion is executed by GoCHR as an assignment; group_2 constructs nothing"
-  - id: X-LOOP
-    where: library
-    severity: minor
-    title: "A scheme whose premise repeats one of its own assumptions (exeptional) feeds itself. Since set semantics in the rule store (PLAN.md 2.2) this no longer loops; the repeated statement is redundant (p. 374) and goes with PLAN.md 3.7"
   - id: E-EXPORT
     where: engine
     severity: major
@@ -97,55 +83,8 @@ issues:
     where: engine
     severity: minor
     title: "Scheme `roles` are documented but not imported"
-  - id: L-MISSING
-    where: library
-    severity: minor
-    title: "Three compendium entries have no record of their own: 50 (precedent slippery slope argument, p. 340) has none; 57 (p. 344) and 22.4 (p. 324) are filed under records taken over from Carneades that hold other schemes"
 
 expected:
   # ------------------------------------------------------------------ engine
   - {issue: E-EXPORT,  scheme: (engine), checks: [export-keeps-compound-parameters, export-keeps-expected-labels]}
-  - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
-
-  # ------------------------------------------------------------------ schemes
-
-  # is/2 as a conclusion
-  - {issue: X-IS, scheme: group_2, checks: [static/no-reserved-functor, iso/fires, iso/conclusions-in, iso/premises-needed, iso/infer-twice, full/fires, full/conclusions-in, full/premises-needed, full/infer-twice, cli/scenario]}
-
-  # schemes that feed themselves or each other
-  - {issue: X-LOOP, scheme: exeptional, checks: [static/not-self-feeding, iso/assumptions-questionable, full/assumptions-questionable]}
-
-  # variables no premise binds
-  - {issue: X-RANGE, scheme: practical_necessary_condition,  checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, iso/assumptions-questionable, full/ground, full/exceptions-undercut, full/assumptions-questionable]}
-  - {issue: X-RANGE, scheme: practical_sufficient_condition, checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, iso/assumptions-questionable, full/ground, full/exceptions-undercut, full/assumptions-questionable]}
-  - {issue: X-RANGE, scheme: ad_hominem,      checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, iso/exceptions-undercut, full/ground, full/conclusions-in, full/exceptions-undercut]}
-  - {issue: X-RANGE, scheme: regulative_rule, checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, full/ground, full/conclusions-in]}
-  - {issue: X-RANGE, scheme: sorites_slippery_slope, checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, full/ground, full/conclusions-in]}
-
-  # the book's compendium
-  - {issue: L-MISSING, file: source_ledger.yml, scheme: entry-50,   checks: [source/has-record]}
-  - {issue: L-MISSING, file: source_ledger.yml, scheme: entry-57,   checks: [source/has-record]}
-  - {issue: L-MISSING, file: source_ledger.yml, scheme: entry-22.4, checks: [source/has-record]}
-
-  # hyphenated ids
-
-
-  # ------------------------------------------------------------------ files
-  - {issue: L-TRUE, file: walton.yml, scheme: (file), checks: [engine-validator]}
-  - {issue: L-TRUE, file: B_source-based-arguments/4_argumen-from-popular-acceptence.yml, scheme: (file), checks: [engine-validator]}
-
-  # Files the command refuses. The wildcard entries come last so that a scheme
-  # with a cause of its own (above) is counted under that cause.
-  - {issue: X-GATE, file: walton.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
-  - {issue: X-GATE, file: walton.yml, scheme: "*",    checks: [cli/scenario]}
-  - {issue: X-GATE, file: A_reasoning/3_practical-reasoning.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
-  - {issue: X-GATE, file: A_reasoning/3_practical-reasoning.yml, scheme: "*",    checks: [cli/scenario]}
-  - {issue: X-GATE, file: B_source-based-arguments/3_attacking-personal-credibility.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
-  - {issue: X-GATE, file: B_source-based-arguments/3_attacking-personal-credibility.yml, scheme: "*",    checks: [cli/scenario]}
-  - {issue: X-GATE, file: B_source-based-arguments/4_argumen-from-popular-acceptence.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
-  - {issue: X-GATE, file: B_source-based-arguments/4_argumen-from-popular-acceptence.yml, scheme: "*",    checks: [cli/scenario]}
-  - {issue: X-GATE, file: C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
-  - {issue: X-GATE, file: C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml, scheme: "*",    checks: [cli/scenario]}
-  - {issue: X-GATE, file: C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
-  - {issue: X-GATE, file: C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml, scheme: "*",    checks: [cli/scenario]}

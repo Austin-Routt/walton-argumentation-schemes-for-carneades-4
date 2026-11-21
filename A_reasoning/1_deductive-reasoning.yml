@@ -10,8 +10,14 @@ language:
   group_member/2: "%s is a member, idea, habit, custom, product or method of %s."
   group_member_quality/3: "If %s has %s, its members, ideas, habits, customs, products or methods %s will have it as well."
   group_quality/2: "Group %s has the quality %s."
+  has/2: "%s has %s."
   has_property/2: "%s has property %s."
-  is/2: "%s is %s."
+
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
 
 argument_schemes:
   - id: group_2
@@ -22,7 +28,7 @@ argument_schemes:
                Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 321-326. 
     variables: [G,Q,M]
     conclusions: 
-      - is(M,Q)
+      - has(M,Q)
     premises: 
       - group_quality(G,Q)
       - group_member(M,G)

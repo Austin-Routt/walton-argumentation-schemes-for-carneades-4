@@ -10,16 +10,22 @@ import (
 	"testing"
 )
 
-// unsupportedExamples are the examples outside the supported profile
-// (docs/contracts.md, contract 1, PLAN.md D3): chr-leq uses CHR deletions and
-// guards, and Infer refuses it as unsupported instead of running it.
-var unsupportedExamples = map[string]bool{"chr-leq.yml": true}
+// refusedExamples are the examples Infer refuses, with the outcome it reports
+// (docs/contracts.md, contract 3): chr-leq uses CHR deletions and guards,
+// outside the supported profile (contract 1, PLAN.md D3); paraconsistency
+// assumes a statement and its negation, an inconsistent context that is
+// reported, not resolved (contract 4, D10).
+var refusedExamples = map[string]error{
+	"chr-leq.yml":         caes.ErrUnsupported,
+	"paraconsistency.yml": caes.ErrInconsistentContext,
+}
 
-// skipUnsupported checks that Infer refuses a listed example as unsupported,
-// and tells the caller to skip it.
+// skipUnsupported checks that Infer refuses a listed example with its
+// outcome, and tells the caller to skip it.
 func skipUnsupported(t *testing.T, name string) bool {
 	t.Helper()
-	if !unsupportedExamples[name] {
+	want, listed := refusedExamples[name]
+	if !listed {
 		return false
 	}
 	f, err := os.Open(yamlDir + name)
@@ -33,8 +39,8 @@ func skipUnsupported(t *testing.T, name string) bool {
 		t.Errorf("%s: %v", name, err)
 		return true
 	}
-	if err := ag.Infer(); !errors.Is(err, caes.ErrUnsupported) {
-		t.Errorf("%s: Infer returned %v, want unsupported", name, err)
+	if err := ag.Infer(); !errors.Is(err, want) {
+		t.Errorf("%s: Infer returned %v, want %v", name, err, want)
 	}
 	return true
 }

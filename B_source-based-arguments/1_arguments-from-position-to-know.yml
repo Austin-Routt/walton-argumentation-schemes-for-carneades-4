@@ -50,6 +50,12 @@ language:
   untrustworthy/1: "%s is untrustworthy."
   would_be_known/1: "%s would be known if it were true."
 
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
+
 argument_schemes:
   - id: position_to_know
     meta:

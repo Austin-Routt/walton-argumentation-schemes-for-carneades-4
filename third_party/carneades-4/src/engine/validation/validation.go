@@ -271,6 +271,9 @@ func validateAssumptions(ag *caes.ArgGraph) []Problem {
 			if d := caes.ArithmeticProblem(k); d != "" {
 				problems = append(problems, Problem{ASSUMPTION, "", "arithmetic the rule engine would compute; quote a constant such as a date", k})
 			}
+			if d := caes.ReservedProblem(k); d != "" {
+				problems = append(problems, Problem{ASSUMPTION, "", "a reserved name (is, true, false) used as a predicate", k})
+			}
 		}
 		// Check that there is a statement for the assumption
 		//		_, ok = ag.Statements[k]
@@ -344,6 +347,11 @@ func validateLanguage(l caes.Language) []Problem {
 			problems = append(problems, p)
 		} else if !isPred(l[0]) {
 			p := Problem{LANGUAGE, k, "not a predicate symbol", l[0]}
+			problems = append(problems, p)
+		} else if caes.ReservedPredicates[l[0]] {
+			// docs/contracts.md, contract 7: in a rule body GoCHR executes
+			// is/2 as an assignment
+			p := Problem{LANGUAGE, k, "a reserved name, not a predicate symbol", l[0]}
 			problems = append(problems, p)
 		} else {
 			var n int
@@ -424,6 +432,9 @@ func validateScheme(s *caes.Scheme, l caes.Language) []Problem {
 			if kind != "guard" {
 				if d := caes.ArithmeticProblem(atm); d != "" {
 					problems = append(problems, Problem{SCHEME, s.Id, "arithmetic the rule engine would compute; quote a constant such as a date", atm})
+				}
+				if d := caes.ReservedProblem(atm); d != "" {
+					problems = append(problems, Problem{SCHEME, s.Id, "a reserved name (is, true, false) used as a predicate", atm})
 				}
 			}
 			// Check that the predicate of the atom, with the given arity, has been declared in the language

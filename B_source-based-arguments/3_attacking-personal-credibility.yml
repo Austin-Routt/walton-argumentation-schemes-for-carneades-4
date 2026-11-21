@@ -27,6 +27,12 @@ language:
   strong_advocate/3: "%s advocates %s in a strong way, indicating her personal commitment to %s."
   stronger_than_character/1: "There is strong evidence that supports %s more than the character issue does."
 
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
+
 argument_schemes:
   - id: ad_hominem
     meta:
@@ -34,11 +40,12 @@ argument_schemes:
       source: >
              Douglas Walton , Fundamentals of Critical Argumentation. 
              Cambridge: Cambridge University Press, 2006, p. 123.
-    variables: [A,S]
+    variables: [A,S,C]
     conclusions:
       - bad_not_accepted(A,S)
     premises:
       - bad_character(A)
+      - advocates_conclusion(A,S,C)
     exceptions:
       - stronger_than_character(S)
     assumptions: 

@@ -169,6 +169,16 @@ func TestLibrary(t *testing.T) {
 // TestSource compares walton.yml with the source ledger: every scheme has one
 // place in the book's compendium (or is marked as taken over from upstream),
 // and every entry of the compendium has a record.
+// TestCases runs the reference cases of tools/vv/cases: graphs written by
+// hand against the library, with the arguments and labels each must produce.
+func TestCases(t *testing.T) {
+	root := vvlib.RepoRoot()
+	for _, f := range vvlib.CaseFiles() {
+		f := f
+		t.Run(f, func(t *testing.T) { judge(t, vvlib.CaseChecks(root, f)) })
+	}
+}
+
 func TestSource(t *testing.T) {
 	l, err := vvlib.LoadSourceLedger("source_ledger.yml")
 	if err != nil {

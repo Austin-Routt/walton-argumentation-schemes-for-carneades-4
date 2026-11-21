@@ -6,8 +6,9 @@ Usage:  python3 tools/build_category_files.py [repo_root]           write the fi
 
 walton.yml is the only hand-edited scheme file. categories.yml says which schemes
 go into which category file. Each generated file contains, verbatim from
-walton.yml, the language templates its schemes use and the scheme blocks
-themselves, so a category file can be loaded into Carneades 4 on its own.
+walton.yml, the language templates its schemes use, the issue schemes, and the
+scheme blocks themselves, so a category file can be loaded into Carneades 4 on
+its own.
 Requires PyYAML.
 """
 import sys, os, re, json
@@ -27,8 +28,15 @@ def read_master(path):
     lines = open(path, encoding="utf-8").read().split("\n")
     lang_start = next(i for i, l in enumerate(lines) if re.match(r"^language:\s*$", l))
     schemes_start = next(i for i, l in enumerate(lines) if re.match(r"^argument_schemes:\s*$", l))
+    # the language ends at the next top-level key
+    lang_end = next(i for i in range(lang_start + 1, len(lines)) if re.match(r"^\S", lines[i]))
+    issues = []
+    if lang_end < schemes_start and re.match(r"^issue_schemes:\s*$", lines[lang_end]):
+        issues = [l.rstrip() for l in lines[lang_end:schemes_start]]
+        while issues and not issues[-1].strip():
+            issues.pop()
     templates = {}
-    for l in lines[lang_start + 1:schemes_start]:
+    for l in lines[lang_start + 1:lang_end]:
         m = re.match(r"^  ([^\s#][^:]*?):\s", l)
         if m:
             templates[m.group(1).strip().strip("'\"")] = l.rstrip()
@@ -43,7 +51,7 @@ def read_master(path):
         while block and not block[-1].strip():
             block.pop()
         blocks[sid] = "\n".join(block)
-    return templates, blocks
+    return templates, blocks, issues
 
 
 def templates_used(block):
@@ -61,7 +69,7 @@ def templates_used(block):
     return keys
 
 
-def render(title, templates, blocks, ids):
+def render(title, templates, blocks, ids, issues):
     used = []
     for sid in ids:
         for k in templates_used(blocks[sid]):
@@ -73,6 +81,8 @@ def render(title, templates, blocks, ids):
     out = [HEADER, "meta:", f"  title: {json.dumps(title, ensure_ascii=False)}",
            f"  source: {json.dumps(SOURCE)}", "language:"]
     out += [templates[k] for k in templates if k in used]      # walton.yml order
+    if issues:                                                 # the issue schemes, verbatim
+        out += [""] + issues
     out += ["", "argument_schemes:"]
     out += [blocks[sid] + "\n" for sid in ids]
     return "\n".join(out)
@@ -81,7 +91,7 @@ def render(title, templates, blocks, ids):
 def main(argv):
     root = next((a for a in argv[1:] if not a.startswith("--")), os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     check = "--check" in argv
-    templates, blocks = read_master(os.path.join(root, "walton.yml"))
+    templates, blocks, issues = read_master(os.path.join(root, "walton.yml"))
     cats = yaml.safe_load(open(os.path.join(root, "categories.yml"), encoding="utf-8"))
     seen = {}
     for rel, spec in cats.items():
@@ -96,7 +106,7 @@ def main(argv):
         raise SystemExit(f"categories.yml does not place these schemes of walton.yml: {unassigned}")
     stale = []
     for rel, spec in cats.items():
-        text = render(spec["title"], templates, blocks, spec["schemes"])
+        text = render(spec["title"], templates, blocks, spec["schemes"], issues)
         path = os.path.join(root, rel)
         current = open(path, encoding="utf-8").read() if os.path.exists(path) else None
         if current == text:

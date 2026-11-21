@@ -16,7 +16,8 @@ A_reasoning/3_practical-reasoning.yml:
   schemes: [practical_reasoning1, practical_reasoning2, negative_consequences,
             positive_consequences, alternative_cognitive, alternative_normative,
             sacrifice, practical_inference, practical_necessary_condition,
-            practical_sufficient_condition, practical_goal, end_and_means_1,
+            practical_sufficient_condition, value_based_practical_reasoning,
+            practical_goal, end_and_means_1,
             end_and_means_2, end_and_means_3, two_person_practical, waste,
             negative_consequences_prudential, pragmatic_alternative, treat,
             ad_baculum, fear, danger, help, distress,
@@ -73,11 +74,13 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml:
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml:
   title: Applying Rules to Cases - Defeasible Rule-based Arguments
   schemes: [rule_physical_world_1, rule_physical_world_2, rule_mental_world, rule,
-            regulative_rule, exeptional, plea_for_excuse, defeasible_modus_ponens]
+            regulative_rule, regulative_rule_prohibition, exeptional,
+            from_precedent, plea_for_excuse, defeasible_modus_ponens]
 
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml:
   title: Applying Rules to Cases - Chained Arguments Connecting Rules and Cases
-  schemes: [gradualism, sorites_slippery_slope, verbal_slippery_slope]
+  schemes: [gradualism, precedent_slippery_slope, sorites_slippery_slope,
+            verbal_slippery_slope]
 
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml:
   title: Applying Rules to Cases - Verbal Classification Arguments

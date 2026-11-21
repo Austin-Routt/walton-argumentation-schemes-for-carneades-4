@@ -37,6 +37,12 @@ language:
   worth_imitated/2: "Then %s is worth being imitated by %s."
   wrong_to_do/2: "The wrong thing to do in %s, was to carry out action %s."
 
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
+
 argument_schemes:
   - id: exeption_to_rule
     meta:

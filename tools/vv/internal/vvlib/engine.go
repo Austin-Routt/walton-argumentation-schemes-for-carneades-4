@@ -542,8 +542,22 @@ argument_schemes:
     conclusions: ["is(X,Y)"]
 assumptions: ["p(a,b)"]
 `)
-		out = append(out, eres("is-as-predicate-in-conclusion", e.usable() && e.Label("is(a,b)") == "in",
-			"a scheme concluding is(X,Y) constructs nothing: is(a,b) is %s %s", e.Label("is(a,b)"), e.why()))
+		// Restated with contract 7 (D11): is, true and false are rejected as
+		// predicate names, in the language and in a scheme. It was
+		// is-as-predicate-in-conclusion, which asked for is/2 to work.
+		inLang, inScheme := false, false
+		if e.AG != nil {
+			for _, p := range validation.Validate(e.AG) {
+				if p.Category == validation.LANGUAGE && p.Id == "is/2" && strings.Contains(p.Description, "reserved") {
+					inLang = true
+				}
+				if p.Category == validation.SCHEME && p.Id == "s7" && strings.Contains(p.Description, "reserved") {
+					inScheme = true
+				}
+			}
+		}
+		out = append(out, eres("reserved-predicate-names-are-rejected", inLang && inScheme,
+			"is/2 is a predicate of the language and of a scheme's conclusion: the validator reports the language: %v, the scheme: %v", inLang, inScheme))
 	}
 	loop := MutualRecursion
 	{
@@ -680,9 +694,11 @@ issues:
     positions: [p, q]
 assumptions: [p, q]
 `)
-		ok := e.usable() && e.AG.Inconsistent()
+		// contract 3: Infer ends a run on an inconsistent context with its own
+		// error, and Inconsistent() says so
+		ok := e.AG != nil && e.AG.Inconsistent() && errors.Is(e.InferErr, caes.ErrInconsistentContext)
 		out = append(out, eres("inconsistent-assumptions-detected", ok,
-			"both positions of an issue are assumed and ArgGraph.Inconsistent() answers false %s", e.why()))
+			"both positions of an issue are assumed: ArgGraph.Inconsistent() answers %v, Infer returns %v (want true and an inconsistent context)", e.AG != nil && e.AG.Inconsistent(), e.InferErr))
 	}
 	{
 		ResetEngineGlobals()

@@ -175,8 +175,9 @@ to the ledger under an issue.
   `explicit-argument-gets-critical-questions` was restated as
   `explicit-argument-without-questions-is-reported` (contract 6);
   `argument-from-scheme-and-parameters` passes (the request is carried out);
-  `is-as-predicate-in-conclusion` and `scheme-roles-are-imported` still state
-  the stronger outcome. Where the decision is to reject, the check is
+  `is-as-predicate-in-conclusion` was restated as
+  `reserved-predicate-names-are-rejected` (contract 7);
+  `scheme-roles-are-imported` still states the stronger outcome. Where the decision is to reject, the check is
   restated in a change of its own, after the contract that says so.
 * A ledger entry names a check, not a cause. Nothing here notices when a known
   failure starts failing for another reason; a fingerprint of each known
@@ -221,3 +222,13 @@ to the ledger under an issue.
   a negation through a statement variable, a user predicate called `neg`, and
   labelling after an issue gains a position. A run with fewer checks than
   `min_checks` fails. 5,947 checks, 390 known failures under 24 issues.
+
+## Reference cases
+
+`tools/vv/cases/*.yml` hold graphs written by hand against the library, each
+with the arguments and labels it must produce (`internal/vvlib/cases.go`
+documents the format). They are the positive and adverse examples the plan asks
+for with every scheme repair (D13), and grow into the reference cases of
+`PLAN.md` 4.4 and the book instances of 5.7. Each case is one check, `case`,
+under its file. Write YAML lists of terms one per line: a flow list splits a
+term at its comma.

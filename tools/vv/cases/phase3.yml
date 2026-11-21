@@ -1,0 +1,348 @@
+# Reference cases for the scheme repairs and additions of PLAN.md Phase 3.
+# Each repair has a positive example (the premises of the book's entry hold,
+# the argument is built and its conclusion is in) and an adverse one (a near
+# miss the repair is meant to rule out), written before the edit (D13). The
+# constants stand for the book's variables; the page is the compendium's.
+cases:
+  # 3.1 ad_hominem (42, p. 336): the attacked argument is the person's own
+  - name: ad_hominem/positive
+    source: "42, p. 336"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+    arguments:
+      - "ad_hominem(bob,arg1,tax_cut)"
+    in:
+      - bad_not_accepted(bob,arg1)
+  - name: ad_hominem/adverse-another-persons-argument
+    source: "42, p. 336"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(ann,arg1,tax_cut)
+    no_arguments: [ad_hominem]
+    not_in:
+      - bad_not_accepted(bob,arg1)
+  - name: ad_hominem/adverse-another-argument-of-the-same-person
+    source: "42, p. 336"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg2,tax_cut)
+    no_arguments:
+      - "ad_hominem(bob,arg1,tax_cut)"
+    not_in:
+      - bad_not_accepted(bob,arg1)
+  - name: ad_hominem/exception
+    source: "42, p. 336"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - stronger_than_character(arg1)
+    arguments:
+      - "ad_hominem(bob,arg1,tax_cut)"
+    not_in:
+      - bad_not_accepted(bob,arg1)
+  - name: ad_hominem/questioned-relevance
+    source: "42, p. 336; pp. 373-375"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+    questioned: [character_revelant]
+    not_in:
+      - bad_not_accepted(bob,arg1)
+
+  # 3.2 the regulative rule (55.3, p. 343): obligation and prohibition, and the addressee
+  - name: regulative_rule/obligation
+    source: "55.3, p. 343"
+    assumptions:
+      - obligatory(pay_tax)
+      - do_obligator
+      - addressee_of(sam,pay_tax)
+    arguments:
+      - "regulative_rule(sam,pay_tax)"
+    in:
+      - must_do(sam,pay_tax)
+    no_arguments: [regulative_rule_prohibition]
+  - name: regulative_rule/adverse-not-an-addressee
+    source: "55.3, p. 343"
+    assumptions:
+      - obligatory(pay_tax)
+      - do_obligator
+      - addressee_of(ann,pay_tax)
+    not_in:
+      - must_do(sam,pay_tax)
+    no_arguments:
+      - "regulative_rule(sam,pay_tax)"
+  - name: regulative_rule/excuse
+    source: "55.3, p. 343"
+    assumptions:
+      - obligatory(pay_tax)
+      - do_obligator
+      - addressee_of(sam,pay_tax)
+      - excuse_or_overriding_duty(sam,pay_tax)
+    not_in:
+      - must_do(sam,pay_tax)
+  - name: regulative_rule_prohibition/prohibition
+    source: "55.3, p. 343"
+    assumptions:
+      - prohibited(smoke)
+      - do_obligator
+      - addressee_of(sam,smoke)
+    arguments:
+      - "regulative_rule_prohibition(sam,smoke)"
+    in:
+      - must_not_do(sam,smoke)
+    no_arguments: [regulative_rule]
+  - name: regulative_rule_prohibition/adverse-obligation-is-no-prohibition
+    source: "55.3, p. 343"
+    assumptions:
+      - obligatory(smoke)
+      - do_obligator
+      - addressee_of(sam,smoke)
+    not_in:
+      - must_not_do(sam,smoke)
+    no_arguments: [regulative_rule_prohibition]
+
+  # 3.3 the practical pair (22.2, 22.3, pp. 323-324): the goal names the agent
+  - name: practical_necessary_condition/positive
+    source: "22.2, p. 323"
+    assumptions:
+      - goal_of_agent(me,a)
+      - alternative_action(b1,a)
+      - necessary_action(b1,a)
+      - practicality_action(b1)
+      - more_acceptable_bringing(a,b1)
+    arguments:
+      - "practical_necessary_condition(b1,a,me)"
+    in:
+      - bringing_about_action(b1)
+  - name: practical_necessary_condition/conflicting-goals
+    source: "22.2, CQ5, p. 324"
+    assumptions:
+      - goal_of_agent(me,a)
+      - alternative_action(b1,a)
+      - necessary_action(b1,a)
+      - practicality_action(b1)
+      - more_acceptable_bringing(a,b1)
+      - conflicting_goals(me,a)
+    not_in:
+      - bringing_about_action(b1)
+  - name: practical_necessary_condition/adverse-another-agents-conflict
+    source: "22.2, CQ5, p. 324"
+    assumptions:
+      - goal_of_agent(me,a)
+      - alternative_action(b1,a)
+      - necessary_action(b1,a)
+      - practicality_action(b1)
+      - more_acceptable_bringing(a,b1)
+      - conflicting_goals(you,a)
+    in:
+      - bringing_about_action(b1)
+  - name: practical_sufficient_condition/positive
+    source: "22.3, p. 323"
+    assumptions:
+      - goal_of_agent(me,a)
+      - alternative_action(b1,a)
+      - sufficient_action(b1,a)
+      - practicality_action(b1)
+      - more_acceptable_bringing(a,b1)
+    arguments:
+      - "practical_sufficient_condition(b1,a,me)"
+    in:
+      - bringing_about_action(b1)
+
+  # 3.4 sorites slippery slope (51, pp. 340-341): the sequence names its ends and its property
+  - name: sorites_slippery_slope/positive
+    source: "51, pp. 340-341"
+    assumptions:
+      - beyond_contetion(a0,bald)
+      - all_has(a0,bald,a1)
+      - reapplication_sequence(a0,an,bald)
+    arguments:
+      - "sorites_slippery_slope(an,bald,a1,a0)"
+    in:
+      - may_have(an,bald)
+  - name: sorites_slippery_slope/adverse-sequence-for-another-property
+    source: "51, pp. 340-341"
+    assumptions:
+      - beyond_contetion(a0,bald)
+      - all_has(a0,bald,a1)
+      - reapplication_sequence(a0,an,tall)
+    no_arguments: [sorites_slippery_slope]
+  - name: sorites_slippery_slope/adverse-sequence-between-other-individuals
+    source: "51, pp. 340-341"
+    assumptions:
+      - beyond_contetion(a0,bald)
+      - all_has(a0,bald,a1)
+      - reapplication_sequence(b0,an,bald)
+    no_arguments: [sorites_slippery_slope]
+    not_in:
+      - may_have(an,bald)
+
+  # 3.5 pop scheme (4.1, p. 311): the conclusion is the statement itself
+  - name: pop_scheme/positive
+    source: "4.1, p. 311"
+    assumptions:
+      - reference_group_accepted(g,has(earth,water))
+    in:
+      - has(earth,water)
+      - should_accept(has(earth,water))
+
+  # 3.6 group and its members, variant 2 (21.2, p. 322)
+  - name: group_2/positive
+    source: "21.2, p. 322"
+    assumptions:
+      - group_quality(g,q)
+      - group_member(m,g)
+      - group_member_quality(g,q,m)
+    arguments:
+      - "group_2(g,q,m)"
+    in:
+      - has(m,q)
+  - name: group_2/adverse-member-of-another-group
+    source: "21.2, p. 322"
+    assumptions:
+      - group_quality(g,q)
+      - group_member(m,h)
+      - group_member_quality(g,q,m)
+    no_arguments: [group_2]
+  - name: rule_physical_world_1/positive
+    source: "54.1, p. 342"
+    assumptions:
+      - is_a(whale,mammal)
+      - synonymous
+    in:
+      - means_same(whale,mammal)
+  - name: rule_physical_world_1/rebuttal-factor
+    source: "54.1, p. 342"
+    assumptions:
+      - is_a(whale,mammal)
+      - synonymous
+      - not_necessarily_true
+    not_in:
+      - means_same(whale,mammal)
+
+  # 3.7 argument for an exceptional case (56, p. 344)
+  - name: exeptional/positive
+    source: "56, p. 344"
+    assumptions:
+      - rule_can_waived(a)
+      - case_exception(a)
+    arguments:
+      - "exeptional(a)"
+    in:
+      - rule_waived(a)
+  - name: exeptional/adverse-rule-for-another-case
+    source: "56, p. 344"
+    assumptions:
+      - rule_can_waived(b)
+      - case_exception(a)
+    no_arguments: [exeptional]
+    not_in:
+      - rule_waived(a)
+
+  # 3.8 the three entries without a record of their own
+  - name: precedent_slippery_slope/positive
+    source: "50, p. 340"
+    assumptions:
+      - claimed_exception(c0,r)
+      - precedent_series(c0,r,cn)
+      - intolerable_exception(c0,r)
+    arguments:
+      - "precedent_slippery_slope(c0,r,cn)"
+    in:
+      - cannot_be_exception(c0,r)
+  - name: precedent_slippery_slope/adverse-tolerable
+    source: "50, p. 340"
+    assumptions:
+      - claimed_exception(c0,r)
+      - precedent_series(c0,r,cn)
+    no_arguments: [precedent_slippery_slope]
+  - name: from_precedent/positive
+    source: "57, p. 344"
+    assumptions:
+      - established_rule_property(r,f,g)
+      - has_property(a,f)
+      - ¬has_property(a,g)
+    arguments:
+      - "from_precedent(r,f,g,a)"
+    in:
+      - rule_exception_recognized(r,a)
+  - name: from_precedent/adverse-the-case-has-g
+    source: "57, p. 344"
+    assumptions:
+      - established_rule_property(r,f,g)
+      - has_property(a,f)
+      - has_property(a,g)
+    no_arguments: [from_precedent]
+  - name: from_precedent/recognized-category
+    source: "57, CQ3, p. 344"
+    assumptions:
+      - established_rule_property(r,f,g)
+      - has_property(a,f)
+      - ¬has_property(a,g)
+      - recognized_exception_category(a,r)
+    not_in:
+      - rule_exception_recognized(r,a)
+  - name: from_precedent/legitimacy-questioned
+    source: "57, CQ2, p. 344"
+    assumptions:
+      - established_rule_property(r,f,g)
+      - has_property(a,f)
+      - ¬has_property(a,g)
+    questioned:
+      - legitimate_case(a,r)
+    not_in:
+      - rule_exception_recognized(r,a)
+  - name: value_based_practical_reasoning/positive
+    source: "22.4, p. 324"
+    assumptions:
+      - goal_of_agent(me,g)
+      - goal_supported_by_values(g,v)
+      - necessary_or_sufficient_for_goal(me,a,g)
+    arguments:
+      - "value_based_practical_reasoning(me,g,v,a)"
+    in:
+      - should_bring_about(me,a)
+  - name: value_based_practical_reasoning/adverse-another-agents-means
+    source: "22.4, p. 324"
+    assumptions:
+      - goal_of_agent(me,g)
+      - goal_supported_by_values(g,v)
+      - necessary_or_sufficient_for_goal(you,a,g)
+    no_arguments: [value_based_practical_reasoning]
+    not_in:
+      - should_bring_about(me,a)
+  - name: value_based_practical_reasoning/negative-consequences
+    source: "22.4, CQ7, p. 324"
+    assumptions:
+      - goal_of_agent(me,g)
+      - goal_supported_by_values(g,v)
+      - necessary_or_sufficient_for_goal(me,a,g)
+      - worse_consequences(a,g)
+    not_in:
+      - should_bring_about(me,a)
+  - name: value_based_practical_reasoning/possibility-questioned
+    source: "22.4, CQ6, p. 324"
+    assumptions:
+      - goal_of_agent(me,g)
+      - goal_supported_by_values(g,v)
+      - necessary_or_sufficient_for_goal(me,a,g)
+    questioned:
+      - possible_action(a)
+    not_in:
+      - should_bring_about(me,a)
+
+  # 3.9 the negation issue scheme: a statement and its negation are one issue
+  - name: negation-issue/statement-and-negation-argued
+    source: "D10; 32.2, pp. 331-332; 4.1, p. 311"
+    assumptions:
+      - reference_group_accepted(g,h)
+      - hypothesis_event(h,e)
+      - event_false(e)
+    issues: [[h, ¬h]]
+  - name: negation-issue/both-assumed-is-inconsistent
+    source: "contract 4"
+    assumptions:
+      - has(m,q)
+      - ¬has(m,q)
+    outcome: inconsistent context

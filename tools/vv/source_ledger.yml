@@ -80,7 +80,7 @@ compendium:
   - {entry: "22.1", page: 323, questions: 5, schemes: [practical_inference]}
   - {entry: "22.2", page: 323, questions: 5, schemes: [practical_necessary_condition], shared: true}
   - {entry: "22.3", page: 323, questions: 5, schemes: [practical_sufficient_condition], shared: true}
-  - {entry: "22.4", page: 324, questions: 7, schemes: [practical_reasoning1], status: other-content, note: "taken over from Carneades: the scheme of Atkinson and Bench-Capon (2007) under the title of this entry, not the three-premise form the compendium prints"}
+  - {entry: "22.4", page: 324, questions: 7, schemes: [value_based_practical_reasoning], note: "added 2026-11-21 (PLAN.md 3.8). The record practical_reasoning1 filed here before holds the scheme of Atkinson and Bench-Capon (2007) under this title; it is now under upstream_only"}
   - {entry: "22.5", page: 325, questions: 0, schemes: [practical_goal]}
   - {entry: "22.6.1", page: 325, questions: 0, schemes: [end_and_means_1]}
   - {entry: "22.6.2", page: 325, questions: 0, schemes: [end_and_means_2]}
@@ -124,7 +124,7 @@ compendium:
   - {entry: "47", page: 338, questions: 2, schemes: [bias_ad_hominem]}
   - {entry: "48", page: 339, questions: 0, schemes: [gradualism]}
   - {entry: "49", page: 339, questions: 3, schemes: [slippery_slope_base_case, slippery_slope_inductive_step], note: "one entry, two records"}
-  - {entry: "50", page: 340, questions: 3, schemes: [], note: "no record in walton.yml"}
+  - {entry: "50", page: 340, questions: 3, schemes: [precedent_slippery_slope], note: "added 2026-11-21 (PLAN.md 3.8)"}
   - {entry: "51", page: 340, questions: 0, schemes: [sorites_slippery_slope]}
   - {entry: "52", page: 341, questions: 0, schemes: [verbal_slippery_slope]}
   - {entry: "53", page: 341, questions: 3, schemes: [full_slippery_slope]}
@@ -133,9 +133,9 @@ compendium:
   - {entry: "54.3", page: 342, questions: 1, schemes: [rule_mental_world]}
   - {entry: "55.1", page: 343, questions: 3, schemes: [established_rule]}
   - {entry: "55.2", page: 343, questions: 0, schemes: [rule]}
-  - {entry: "55.3", page: 343, questions: 1, schemes: [regulative_rule]}
+  - {entry: "55.3", page: 343, questions: 1, schemes: [regulative_rule, regulative_rule_prohibition], note: "one entry, two records: the obligation and the prohibition reading of its paired wording (PLAN.md 3.2)"}
   - {entry: "56", page: 344, questions: 3, schemes: [exeptional]}
-  - {entry: "57", page: 344, questions: 3, schemes: [exeption_to_rule], status: other-content, note: "book title: Argument from Precedent. The record is the precedent scheme of Carneades' own walton.yml under a new id and title (a rule taken from a similar case is applied); the book's entry concludes that an exception to the rule must be recognised. The repository's README dates the new title to 2019 and attributes the change to correspondence with Douglas Walton; that correspondence is not in the repository"}
+  - {entry: "57", page: 344, questions: 3, schemes: [from_precedent], note: "added 2026-11-21 (PLAN.md 3.8). The record exeption_to_rule filed here before is the precedent scheme of Carneades' own walton.yml under a new id and title (a rule taken from a similar case is applied); it is now under upstream_only. The repository's README dates that title to 2019 and attributes it to correspondence with Douglas Walton"}
   - {entry: "58", page: 345, questions: 3, schemes: [plea_for_excuse]}
   - {entry: "59.1", page: 345, questions: 1, schemes: [perception]}
   - {entry: "59.2", page: 345, questions: 2, schemes: [appearance]}
@@ -143,4 +143,44 @@ compendium:
 
 # Records of walton.yml taken over from Carneades' own examples/AGs/YAML/walton.yml
 # that have no entry of their own in the compendium.
-upstream_only: [abduction, credible_source, defeasible_modus_ponens, practical_reasoning2]
+# exeption_to_rule and practical_reasoning1 were filed under 57 and 22.4 until
+# those entries got records of their own (PLAN.md 3.8).
+upstream_only: [abduction, credible_source, defeasible_modus_ponens, exeption_to_rule, practical_reasoning1, practical_reasoning2]
+
+# Names introduced by PLAN.md Phase 3 (D6): a statement the library already had
+# is reused when it says the same thing; otherwise the name measured in the
+# first review's trial; a new record's names describe its statement in the
+# book's words. A name found wrong is changed in the one migration of R2 (D4).
+names:
+  - {name: advocates_conclusion/3, page: 336, entry: "42", how: reused, from: "the premise of 43 and 45 that the person advocates the argument"}
+  - {name: has/2, page: 322, entry: "21.2", how: reused, from: "variant 1's statement that a group has a quality (21.1)"}
+  - {name: goal_of_agent/2, page: 323, entry: "22.2, 22.3, 22.4", how: trial, from: "goal premise in the first person, with the agent named"}
+  - {name: conflicting_goals/2, page: 324, entry: "22.2, 22.3, 22.4", how: trial, from: "CQ5 of 22.2-22.3, CQ1 of 22.4; the other goals are not named, so the statement holds when some goal of the agent conflicts with the one given, which is what evidence for it has to show"}
+  - {name: reapplication_sequence/3, page: 341, entry: "51", how: trial, from: "the reapplication sequence, with its two ends and the property"}
+  - {name: addressee_of/2, page: 343, entry: "55.3", how: trial, from: "not printed: 'S must do A' needs S to be someone the rule applies to (an executable interpretation)"}
+  - {name: excuse_or_overriding_duty/2, page: 343, entry: "55.3", how: trial, from: "rebuttal factor: S has an adequate excuse, or an overriding duty"}
+  - {name: prohibited/1, page: 343, entry: "55.3", how: book, from: "A is prohibited"}
+  - {name: must_not_do/2, page: 343, entry: "55.3", how: book, from: "S must not do A; a duty not to act, not the negation of a duty to act"}
+  - {name: is_a/2, page: 342, entry: "54.1", how: trial, from: "A W is a D; renamed from is/2, which the rule engine executes"}
+  - {name: claimed_exception/2, page: 340, entry: "50", how: book, from: "claim to exceptional status premise"}
+  - {name: precedent_series/3, page: 340, entry: "50", how: book, from: "related cases premise: a sequence of similar pairs binds us by case-to-case consistency"}
+  - {name: intolerable_exception/2, page: 340, entry: "50", how: book, from: "intolerable outcome premise"}
+  - {name: cannot_be_exception/2, page: 340, entry: "50", how: book, from: "conclusion: case C0 cannot be judged to be an exception to the rule"}
+  - {name: established_rule_property/3, page: 344, entry: "57", how: book, from: "major premise: generally, by the established rule, x has G if it has F"}
+  - {name: legitimate_case/2, page: 344, entry: "57", how: book, from: "'in this legitimate case' of the minor premise, as an assumption (CQ2)"}
+  - {name: rule_inapplicable_to/2, page: 344, entry: "57", how: book, from: "CQ1: does the established rule really apply to this case?"}
+  - {name: recognized_exception_category/2, page: 344, entry: "57", how: book, from: "CQ3: a recognized category of exception that needs no change in the rule"}
+  - {name: rule_exception_recognized/2, page: 344, entry: "57", how: book, from: "conclusion: an exception must be recognized and the rule modified or qualified"}
+  - {name: goal_supported_by_values/2, page: 324, entry: "22.4", how: book, from: "premise 2: G is supported by my set of values V"}
+  - {name: necessary_or_sufficient_for_goal/3, page: 324, entry: "22.4", how: book, from: "premise 3: bringing about A is necessary or sufficient for me to bring about G"}
+  - {name: should_bring_about/2, page: 324, entry: "22.4", how: book, from: "conclusion: I should (practically ought to) bring about A"}
+  - {name: more_efficient_alternative/2, page: 324, entry: "22.4", how: book, from: "CQ4, efficiency"}
+  - {name: better_alternative_by_values/2, page: 324, entry: "22.4", how: book, from: "CQ5, in light of the values"}
+  - {name: worse_consequences/2, page: 324, entry: "22.4", how: book, from: "CQ7, consequences of greater negative value"}
+
+# Citations that differ from the compendium, recorded and not changed
+# (PLAN.md 3.11): the compendium cites both works at second hand, and the
+# originals have not been checked.
+citations:
+  - {scheme: sorites_slippery_slope, record: "Informal Logic 18 (1996), p. 151", compendium: "p. 251 (51, p. 341)"}
+  - {scheme: exeptional, record: "A Pragmatic Theory of Fallacy, p. 148", compendium: "p. 147 (56, p. 344)"}
