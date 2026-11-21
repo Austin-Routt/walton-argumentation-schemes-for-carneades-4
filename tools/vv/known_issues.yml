@@ -38,6 +38,10 @@
 # after an issue gains a position (E-ISSUE; it hangs), and a baseline that a
 # user predicate called neg is ordinary.
 #
+# Fixed in this repository (PLAN.md, Implementation status), so no longer
+# listed: E-EXIT, E-GLOBALS, E-ARGVAL, E-INCONS, E-ISSUE, X-LOOP (but for one
+# library check of exeptional, now filed as minor), E-BUDGET.
+#
 # min_checks is the number of checks a complete run produces today. A run with
 # fewer fails: a passing check leaves no entry here, so removing one would
 # otherwise go unnoticed. Raise it when checks are added; lower it only in the
@@ -70,10 +74,6 @@ issues:
     where: library
     severity: minor
     title: "A scheme whose premise repeats one of its own assumptions (exeptional) feeds itself. Since set semantics in the rule store (PLAN.md 2.2) this no longer loops; the repeated statement is redundant (p. 374) and goes with PLAN.md 3.7"
-  - id: E-BUDGET
-    where: engine
-    severity: major
-    title: "Hitting the rule limit is not an error: Infer returns nil and the only sign is a line on stdout, inside the exported graph. The limit counts rule applications only: a theory whose terms keep growing runs out of time or memory before it is reached"
   - id: X-ASSUME
     where: both
     severity: major
@@ -135,7 +135,6 @@ expected:
   - {issue: E-TERMS,   scheme: (engine), checks: [string-constants-survive, hyphenated-constants-are-not-computed]}
   - {issue: X-NEG,     scheme: (engine), checks: [negated-premises-match, negation-through-statement-variable]}
   - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}
-  - {issue: E-BUDGET,  scheme: (engine), checks: [budget-exhaustion-is-reported, engine-keeps-stdout-clean, growing-term-is-bounded]}
   - {issue: E-CAPTURE, scheme: (engine), checks: [unbound-variable-is-not-captured]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
 

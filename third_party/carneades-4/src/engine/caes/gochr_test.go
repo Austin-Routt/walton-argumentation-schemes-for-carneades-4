@@ -6,9 +6,12 @@
 package caes_test
 
 import (
+	"context"
+	"errors"
 	"sort"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
@@ -111,5 +114,74 @@ assumptions:
 	}
 	if got := argumentsFor(ag, "noted(a)"); len(got) != 1 {
 		t.Errorf("the scheme listed last did not fire: arguments for noted(a): %v", got)
+	}
+}
+
+const counter = `
+language:
+  n/1: "%s is a number"
+argument_schemes:
+  - id: count
+    variables: []
+    deletions: [n(X)]
+    conclusions: [n(X+1)]
+assumptions: [n(0)]
+`
+
+const growing = `
+language:
+  t/1: "%s is a term"
+argument_schemes:
+  - id: grow
+    variables: [X]
+    premises:
+      - t(X)
+    conclusions:
+      - t(f(X))
+assumptions:
+  - t(a)
+`
+
+// A limit is an error and leaves the graph as it was (docs/contracts.md,
+// contract 3), whether the rule limit or the term size ends the run.
+func TestLimitIsAnErrorAndGraphUnchanged(t *testing.T) {
+	for name, src := range map[string]string{"counter": counter, "growing term": growing} {
+		ag, err := yaml.Import(strings.NewReader(src))
+		if err != nil {
+			t.Fatalf("%s: import: %v", name, err)
+		}
+		args, stmts := len(ag.Arguments), len(ag.Statements)
+		start := time.Now()
+		err = ag.Infer()
+		if !errors.Is(err, caes.ErrLimitReached) {
+			t.Errorf("%s: Infer returned %v, want an error wrapping ErrLimitReached", name, err)
+		}
+		if caes.ExitStatus(err) != 4 {
+			t.Errorf("%s: exit status %d, want 4", name, caes.ExitStatus(err))
+		}
+		if len(ag.Arguments) != args || len(ag.Statements) != stmts {
+			t.Errorf("%s: the graph changed: %d arguments and %d statements before, %d and %d after",
+				name, args, stmts, len(ag.Arguments), len(ag.Statements))
+		}
+		if d := time.Since(start); d > 20*time.Second {
+			t.Errorf("%s: took %v", name, d)
+		}
+	}
+}
+
+// A cancelled context stops argument construction with ErrCancelled.
+func TestInferContextCancelled(t *testing.T) {
+	ag, err := yaml.Import(strings.NewReader(counter))
+	if err != nil {
+		t.Fatal(err)
+	}
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	err = ag.InferContext(ctx)
+	if !errors.Is(err, caes.ErrCancelled) || caes.ExitStatus(err) != 5 {
+		t.Errorf("InferContext with a cancelled context returned %v (exit %d), want ErrCancelled (exit 5)", err, caes.ExitStatus(err))
+	}
+	if len(ag.Arguments) != 0 {
+		t.Errorf("a cancelled run added %d arguments", len(ag.Arguments))
 	}
 }

@@ -2,6 +2,18 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — engine fixes, first part (`PLAN.md` phases 1 and 2)
+
+No scheme file changed. Each fix is one commit in `third_party/`, with tests in the engine and the suite's ledger updated in the same commit; CI also runs both engines' own unit tests now (`tools/vv/engine-tests.sh`).
+
+* Exit status by outcome: `check` and `eval` exit 1 for invalid input, 3 for an inconsistent context, 4 at a limit, 6 for an internal failure (a panic); `eval` prints no evaluation unless the run completed (E-EXIT, contract 3).
+* Issues: a statement that joins an issue becomes one of its positions, and labelling returns after a second inference (E-ISSUE).
+* The importer keeps no state between calls, and the validator checks an argument against its scheme with one substitution (E-GLOBALS, E-ARGVAL). Export writes the theory (first half of `PLAN.md` 4.1).
+* `Inconsistent()` answers from the current assumptions; `check` and `eval` report a graph that assumes a statement and its negation (E-INCONS).
+* Argument construction treats facts as a set: composition with division, and `exeptional`, terminate instead of running to the rule limit and starving every later scheme (X-LOOP; GoCHR `RuleStore.Unique`).
+* Limits: reaching the rule limit, or deriving a term over 500 nodes, is an error (`caes.ErrLimitReached`, exit 4) that leaves the graph unchanged; nothing is written to stdout; `InferContext` stops a run from outside (E-BUDGET).
+* Gate: 5,948 checks; 360 known failures under 18 issues (390 under 24 before).
+
 ## 2026-11-21 — the reviewed plan, the engine sources and the verification gate
 
 No scheme file changed.

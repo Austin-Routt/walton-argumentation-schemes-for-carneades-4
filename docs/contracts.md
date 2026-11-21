@@ -44,7 +44,7 @@ A run of `check`, `eval` or `Infer` ends in exactly one of seven ways.
 
 **Output.** The engine writes nothing to stdout; diagnostics go to stderr. On any outcome other than complete the command prints no evaluation.
 
-**Limits.** The rule-application limit stays 100,000 by default. A run counts as interrupted only if a rule could still fire when the limit was reached. A limit on the size of derived terms ends runs whose terms grow without end, and a caller's context ends a run from outside.
+**Limits.** The rule-application limit stays 100,000 by default (`caes.MAXRULEAPPS`). A run counts as interrupted only if a rule could still fire when the limit was reached. A limit on the size of derived terms, 500 nodes (`caes.MAXTERMSIZE`), ends runs whose terms grow without end; the library derives none larger than 30. A caller's context ends a run from outside (`ArgGraph.InferContext`). Implemented: GoCHR's `RuleStore.MaxTermSize`, `Done` and `Stopped`, with `ErrLimit` and `ErrCancelled`.
 
 Checked by: `cli-check-exit-status`, `cli-eval-signals-refusal`, `engine-keeps-stdout-clean`, `budget-exhaustion-is-reported`, `growing-term-is-bounded`, `malformed-statement-is-an-error`; issues E-EXIT, E-BUDGET, E-PARSE.
 

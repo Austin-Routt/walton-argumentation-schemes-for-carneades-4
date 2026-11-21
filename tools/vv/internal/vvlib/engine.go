@@ -522,7 +522,7 @@ assumptions: ["p(a,b)"]
 	loop := MutualRecursion
 	{
 		e := EvalYAML(loop)
-		exhausted := strings.Contains(e.Stdout, BudgetMarker)
+		exhausted := LimitReached(e.InferErr, e.Stdout)
 		out = append(out, eres("rederivation-terminates", e.usable() && !exhausted,
 			"two schemes that derive each other's premise run until the limit of %d rule applications %s", caes.MAXRULEAPPS, e.why()))
 		out = append(out, eres("no-scheme-is-starved", e.usable() && e.Label("s(a)") == "in",

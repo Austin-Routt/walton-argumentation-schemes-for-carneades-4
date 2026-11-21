@@ -195,7 +195,7 @@ func probeGrowingTerm() []Result {
 
 func probeWrongArity() []Result {
 	e := EvalYAML(WrongArity)
-	exhausted := strings.Contains(e.Stdout, BudgetMarker)
+	exhausted := LimitReached(e.InferErr, e.Stdout)
 	return []Result{eres("wrong-arity-fact-is-harmless", e.usable() && !exhausted && e.Label("q") == "in",
 		"modus ponens over implies(p,q) and p, with a stray fact implies(x,y,z) in the graph: rule limit hit: %v, q is %s %s",
 		exhausted, e.Label("q"), e.why())}

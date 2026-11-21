@@ -221,7 +221,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 0.5 Contracts `docs/contracts.md` written (each is met when its issues leave the ledger)
 - [ ] 0.6 Source ledger, one row per record
 - [x] 1.1 Exit status by outcome (E-EXIT); a panic exits with 6
-- [ ] 1.2 Limits as a typed error, graph unchanged, nothing on stdout (E-BUDGET)
+- [x] 1.2 Limits as a typed error, graph unchanged, nothing on stdout (E-BUDGET); a term-size limit; `InferContext`
 - [ ] 1.3 Unreadable input is an error (E-PARSE)
 - [x] 1.4 The importer keeps no state between sequential calls (E-GLOBALS)
 - [x] 1.5 The validator checks arguments with one substitution (E-ARGVAL)
