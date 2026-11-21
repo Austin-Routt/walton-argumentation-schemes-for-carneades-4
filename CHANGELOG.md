@@ -13,6 +13,10 @@ The printed critical questions are sorted record by record (5.1) into the four k
   * `verbal_classification_vagueness` (16, pp. 319-320): premise 2 is about the argument, `property_precion_needed(A)`; it was said of the property.
   * `verbal_classification_arbitrariness` (17, p. 320): CQ3 is the exception `arbitrariness_harmless(A,F)`, read as 16's third question is.
   * Found and recorded for 5.5 and 5.9, not changed: `witness_testimony` (upstream) has `in_domain(D,S)` with its arguments in the other order than its template and its siblings; `expert_opinion` and `definition_to_verbal_classification` (upstream) lack one printed question each; `from_example` cites the reference the compendium prints for 6.2 to 6.4.
+* Entries 18 to 30 (12 records with questions): 47 questions sorted. Questions about the burden or the standard of proof (26, CQ2 and CQ3) get a fifth sort, *standard*: Carneades sets them per issue in the graph, not in a scheme.
+  * `two_person_practical` (23, pp. 325-326): the exceptions of CQ2 and CQ3 were bound to the persons, so that they read "alternative means of realizing ann other than trip"; they are bound to the goal and the action, `alternative_means(X,Y)` and `side_effect_other_act(Y,A)`. CQ5 is the exception `other_actions_required(X,Y)`.
+  * `waste` (24, p. 326): CQ2, a reassessment with past losses set aside, is the exception `reassessment_against_continuing(A,X)`.
+  * `negative_normal_expectations` (26.1, p. 327): CQ1 is the exception 26 uses, `uninvestigated(A)`.
 
 ## 2026-11-21 — release R1, a preview (library 0.1.0, engine 4.3.1+walton.1)
 

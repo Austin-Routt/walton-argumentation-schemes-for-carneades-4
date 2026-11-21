@@ -440,6 +440,13 @@ INSTANCES = [
      {"premises": ["vague_defined_property(arg1,heap)", "property_precion_needed(arg1)", "property_vagueness(heap,arg1)"], "exceptions": ["certainity_no_need(arg1,heap)"], "conclusions": ["vaguness_recejted(arg1)"]}),
     ("verbal_classification_arbitrariness", "17, p. 320", {"A": "arg1", "F": "poverty"},
      {"premises": ["arbitrary_defined_property(arg1,poverty)", "needed_nonarbitrary(arg1,poverty)", "arbitrary_property(poverty,arg1)"], "exceptions": ["arbitrariness_harmless(arg1,poverty)"], "conclusions": ["arbitrary_rejected(arg1)"]}),
+    ("two_person_practical", "23, pp. 325-326", {"A": "ann", "B": "bob", "X": "trip", "Y": "ticket"},
+     {"premises": ["tells_intend(ann,trip,bob)", "situation_necessiy(bob,ticket,trip,ann)"], "assumptions": ["possible_action(ticket)"],
+      "exceptions": ["alternative_means(trip,ticket)", "goals_higher_priority(ann,trip)", "side_effect_other_act(ticket,ann)", "other_actions_required(trip,ticket)"], "conclusions": ["should_carry_out(ann,ticket)"]}),
+    ("waste", "24, p. 326", {"A": "ann", "X": "thesis"},
+     {"premises": ["stop_realize_wasted(ann,thesis)", "waste_bad_thing(ann,thesis)"], "assumptions": ["posible(thesis)"], "exceptions": ["reassessment_against_continuing(ann,thesis)"], "conclusions": ["ought_to_continue(ann,thesis)"]}),
+    ("negative_normal_expectations", "26.1, p. 327", {"A": "alarm_silent"},
+     {"premises": ["normal_true(alarm_silent)", "case_not_true(alarm_silent)"], "exceptions": ["uninvestigated(alarm_silent)"], "conclusions": ["not_normal"]}),
 ]
 
 def instantiate(statement, binding):

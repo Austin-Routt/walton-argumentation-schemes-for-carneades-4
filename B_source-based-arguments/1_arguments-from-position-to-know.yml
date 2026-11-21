@@ -139,6 +139,8 @@ argument_schemes:
     premises:
       - normal_true(A)
       - case_not_true(A)
+    exceptions:
+      - uninvestigated(A)
 
   - id: negative_practical
     meta:

@@ -86,8 +86,10 @@ type RecordChange struct {
 var (
 	Claims = map[string]bool{"transcription": true, "correction": true, "interpretation": true, "policy": true, "unchecked": true}
 	Stages = []string{"mapped", "transcription-checked", "interpretation-approved", "questions-sorted", "example-passed"}
-	// QuestionKinds are the four sorts of PLAN.md 5.1.
-	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true}
+	// QuestionKinds are the four sorts of PLAN.md 5.1, and standard: a
+	// question about the burden or the standard of proof, which Carneades
+	// sets for an issue in the graph, not in a scheme.
+	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true, "standard": true}
 )
 
 // StageIndex is the position of a stage in Stages, or -1.
@@ -474,7 +476,7 @@ func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) [
 		}
 		seen[q.N] = true
 		ok := true
-		if q.As == "" && q.Kind != "premise" {
+		if q.As == "" && q.Kind != "premise" && q.Kind != "standard" {
 			// sorted, not modelled yet (a gap of PLAN.md 5.2)
 			if complete {
 				probs = append(probs, fmt.Sprintf("question %d, %s, is not modelled", q.N, article(q.Kind)))
@@ -491,6 +493,8 @@ func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) [
 			ok = in(s.Exceptions, q.As)
 		case "rebuttal":
 			ok = in(negations, q.As)
+		case "standard":
+			ok = q.As == ""
 		default:
 			probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
 			continue

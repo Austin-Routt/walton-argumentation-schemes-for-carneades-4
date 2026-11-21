@@ -144,3 +144,90 @@ cases:
       - verbal_classification_arbitrariness(arg1,poverty)
     not_in:
       - arbitrary_rejected(arg1)
+
+  # --- batch 2: entries 18 to 30 --------------------------------------------
+  # 23 two_person_practical (pp. 325-326): the exceptions of CQ2 and CQ3 were
+  # bound to the persons instead of the goal and the action; CQ5, whether
+  # other actions are required as well, is an exception.
+  - name: two_person_practical/positive
+    source: "23, pp. 325-326"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessiy(bob,ticket,trip,ann)
+    arguments:
+      - two_person_practical(ann,bob,trip,ticket)
+    in:
+      - should_carry_out(ann,ticket)
+  - name: two_person_practical/adverse-alternative-means
+    source: "23, p. 326, CQ2"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessiy(bob,ticket,trip,ann)
+      - alternative_means(trip,ticket)
+    not_in:
+      - should_carry_out(ann,ticket)
+  - name: two_person_practical/old-binding-does-not-undercut
+    source: "23, p. 326, CQ2"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessiy(bob,ticket,trip,ann)
+      - alternative_means(ann,trip)
+    in:
+      - should_carry_out(ann,ticket)
+  - name: two_person_practical/adverse-side-effects
+    source: "23, p. 326, CQ3"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessiy(bob,ticket,trip,ann)
+      - side_effect_other_act(ticket,ann)
+    not_in:
+      - should_carry_out(ann,ticket)
+  - name: two_person_practical/adverse-other-actions-required
+    source: "23, p. 326, CQ5"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessiy(bob,ticket,trip,ann)
+      - other_actions_required(trip,ticket)
+    not_in:
+      - should_carry_out(ann,ticket)
+
+  # 24 waste (p. 326): CQ2, a reassessment from now on with past losses set
+  # aside, is an exception.
+  - name: waste/positive
+    source: "24, p. 326"
+    assumptions:
+      - stop_realize_wasted(ann,thesis)
+      - waste_bad_thing(ann,thesis)
+    arguments:
+      - waste(ann,thesis)
+    in:
+      - ought_to_continue(ann,thesis)
+  - name: waste/adverse-reassessment
+    source: "24, p. 326, CQ2"
+    assumptions:
+      - stop_realize_wasted(ann,thesis)
+      - waste_bad_thing(ann,thesis)
+      - reassessment_against_continuing(ann,thesis)
+    not_in:
+      - ought_to_continue(ann,thesis)
+
+  # 26.1 negative_normal_expectations (p. 327): CQ1 of the list printed after
+  # 26.2, how far the search for evidence has progressed, is the exception
+  # 26 uses, uninvestigated(A).
+  - name: negative_normal_expectations/positive
+    source: "26.1, p. 327"
+    assumptions:
+      - normal_true(alarm_silent)
+      - case_not_true(alarm_silent)
+    arguments:
+      - negative_normal_expectations(alarm_silent)
+    in:
+      - not_normal
+  - name: negative_normal_expectations/adverse-not-investigated
+    source: "26.1, p. 327, CQ1"
+    assumptions:
+      - normal_true(alarm_silent)
+      - case_not_true(alarm_silent)
+      - uninvestigated(alarm_silent)
+    not_in:
+      - not_normal

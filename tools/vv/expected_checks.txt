@@ -906,6 +906,7 @@ A_reasoning/3_practical-reasoning.yml|waste|cli/scenario
 A_reasoning/3_practical-reasoning.yml|waste|engine-validator
 A_reasoning/3_practical-reasoning.yml|waste|full/assumptions-questionable
 A_reasoning/3_practical-reasoning.yml|waste|full/conclusions-in
+A_reasoning/3_practical-reasoning.yml|waste|full/exceptions-undercut
 A_reasoning/3_practical-reasoning.yml|waste|full/fires
 A_reasoning/3_practical-reasoning.yml|waste|full/ground
 A_reasoning/3_practical-reasoning.yml|waste|full/infer-ok
@@ -914,6 +915,7 @@ A_reasoning/3_practical-reasoning.yml|waste|full/premises-needed
 A_reasoning/3_practical-reasoning.yml|waste|full/terminates
 A_reasoning/3_practical-reasoning.yml|waste|iso/assumptions-questionable
 A_reasoning/3_practical-reasoning.yml|waste|iso/conclusions-in
+A_reasoning/3_practical-reasoning.yml|waste|iso/exceptions-undercut
 A_reasoning/3_practical-reasoning.yml|waste|iso/fires
 A_reasoning/3_practical-reasoning.yml|waste|iso/ground
 A_reasoning/3_practical-reasoning.yml|waste|iso/infer-ok
@@ -1747,6 +1749,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_e
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|engine-validator
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/assumptions-questionable
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/conclusions-in
+B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/exceptions-undercut
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/fires
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/ground
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/infer-ok
@@ -1755,6 +1758,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_e
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|full/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/assumptions-questionable
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/conclusions-in
+B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/exceptions-undercut
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/fires
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/ground
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/infer-ok
@@ -3422,12 +3426,26 @@ cases/phase5.yml|from_example/positive|case
 cases/phase5.yml|from_example/positive|roundtrip
 cases/phase5.yml|from_example/support-questioned-and-shown|case
 cases/phase5.yml|from_example/support-questioned-and-shown|roundtrip
+cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|case
+cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|roundtrip
+cases/phase5.yml|negative_normal_expectations/positive|case
+cases/phase5.yml|negative_normal_expectations/positive|roundtrip
 cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|case
 cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|roundtrip
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|case
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|roundtrip
 cases/phase5.yml|popular_opinion/positive|case
 cases/phase5.yml|popular_opinion/positive|roundtrip
+cases/phase5.yml|two_person_practical/adverse-alternative-means|case
+cases/phase5.yml|two_person_practical/adverse-alternative-means|roundtrip
+cases/phase5.yml|two_person_practical/adverse-other-actions-required|case
+cases/phase5.yml|two_person_practical/adverse-other-actions-required|roundtrip
+cases/phase5.yml|two_person_practical/adverse-side-effects|case
+cases/phase5.yml|two_person_practical/adverse-side-effects|roundtrip
+cases/phase5.yml|two_person_practical/old-binding-does-not-undercut|case
+cases/phase5.yml|two_person_practical/old-binding-does-not-undercut|roundtrip
+cases/phase5.yml|two_person_practical/positive|case
+cases/phase5.yml|two_person_practical/positive|roundtrip
 cases/phase5.yml|verbal_classification/adverse-doubtful-usage|case
 cases/phase5.yml|verbal_classification/adverse-doubtful-usage|roundtrip
 cases/phase5.yml|verbal_classification/positive|case
@@ -3442,6 +3460,10 @@ cases/phase5.yml|verbal_classification_vagueness/exception|case
 cases/phase5.yml|verbal_classification_vagueness/exception|roundtrip
 cases/phase5.yml|verbal_classification_vagueness/positive|case
 cases/phase5.yml|verbal_classification_vagueness/positive|roundtrip
+cases/phase5.yml|waste/adverse-reassessment|case
+cases/phase5.yml|waste/adverse-reassessment|roundtrip
+cases/phase5.yml|waste/positive|case
+cases/phase5.yml|waste/positive|roundtrip
 cases/reference.yml|chain-of-schemes|case
 cases/reference.yml|chain-of-schemes|roundtrip
 cases/reference.yml|cycle|case
@@ -3685,6 +3707,7 @@ source_ledger.yml|opposition-descriptive_1|source/record-row
 source_ledger.yml|opposition-descriptive_2|source/record-row
 source_ledger.yml|opposition-descriptive_3|source/record-row
 source_ledger.yml|opposition-normative|source/record-row
+source_ledger.yml|other_actions_required/2|source/name-in-language
 source_ledger.yml|part_in_whole|source/record-row
 source_ledger.yml|perception|source/record-row
 source_ledger.yml|plea_for_excuse|source/record-row
@@ -3709,6 +3732,7 @@ source_ledger.yml|precedent_series/3|source/name-in-language
 source_ledger.yml|precedent_slippery_slope|source/record-row
 source_ledger.yml|prohibited/1|source/name-in-language
 source_ledger.yml|reapplication_sequence/3|source/name-in-language
+source_ledger.yml|reassessment_against_continuing/2|source/name-in-language
 source_ledger.yml|recognized_exception_category/2|source/name-in-language
 source_ledger.yml|regulative_rule_prohibition|source/record-row
 source_ledger.yml|regulative_rule|source/record-row
@@ -5554,6 +5578,7 @@ walton.yml|negative_normal_expectations|cli/scenario
 walton.yml|negative_normal_expectations|engine-validator
 walton.yml|negative_normal_expectations|full/assumptions-questionable
 walton.yml|negative_normal_expectations|full/conclusions-in
+walton.yml|negative_normal_expectations|full/exceptions-undercut
 walton.yml|negative_normal_expectations|full/fires
 walton.yml|negative_normal_expectations|full/ground
 walton.yml|negative_normal_expectations|full/infer-ok
@@ -5562,6 +5587,7 @@ walton.yml|negative_normal_expectations|full/premises-needed
 walton.yml|negative_normal_expectations|full/terminates
 walton.yml|negative_normal_expectations|iso/assumptions-questionable
 walton.yml|negative_normal_expectations|iso/conclusions-in
+walton.yml|negative_normal_expectations|iso/exceptions-undercut
 walton.yml|negative_normal_expectations|iso/fires
 walton.yml|negative_normal_expectations|iso/ground
 walton.yml|negative_normal_expectations|iso/infer-ok
@@ -7054,6 +7080,7 @@ walton.yml|waste|cli/scenario
 walton.yml|waste|engine-validator
 walton.yml|waste|full/assumptions-questionable
 walton.yml|waste|full/conclusions-in
+walton.yml|waste|full/exceptions-undercut
 walton.yml|waste|full/fires
 walton.yml|waste|full/ground
 walton.yml|waste|full/infer-ok
@@ -7062,6 +7089,7 @@ walton.yml|waste|full/premises-needed
 walton.yml|waste|full/terminates
 walton.yml|waste|iso/assumptions-questionable
 walton.yml|waste|iso/conclusions-in
+walton.yml|waste|iso/exceptions-undercut
 walton.yml|waste|iso/fires
 walton.yml|waste|iso/ground
 walton.yml|waste|iso/infer-ok

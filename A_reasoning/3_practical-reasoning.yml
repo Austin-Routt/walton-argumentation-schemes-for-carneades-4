@@ -70,6 +70,7 @@ language:
   not_too_costly/2: "%s's carrying out %s would not be too costly, that is, the negative side effects would not be too great."
   occur/2: "If the respondent brings about %s, then %s will occur."
   only_way_prevent/2: "But the only way for you to prevent %s is to bring about %s."
+  other_actions_required/2: "Actions other than %[2]s are also required to bring about %[1]s."
   other_consequences/1: "There are other good or bad consequences of doing %s that should be taken into account."
   other_goals_conflict/1: "There are other goals that might conflict with %s."
   ought_to_bring_about/1: "Therefore, you ought to bring about %s."
@@ -91,6 +92,7 @@ language:
   prudential/1: "Therefore, you ought to reconsider and, other things being equal, you ought prudentially to do %s."
   realize_more_effectively/2: "There exists an action that would realize the goal %s more effectively than %s."
   really_distress/1: "%s is really in distress."
+  reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
   relieve/2: "If %s brings about %s, it will relieve or help to relieve this distress."
   sacrifice_made/2: "For the thing %s, sacrifice %s is made."
   sacrifice_value/2: "%s has a great value %s."
@@ -411,9 +413,10 @@ argument_schemes:
       - tells_intend(A,X,B)
       - situation_necessiy(B,Y,X,A)
     exceptions:
-      - alternative_means(A,X)
+      - alternative_means(X,Y)
       - goals_higher_priority(A,X)
-      - side_effect_other_act(B,A)
+      - side_effect_other_act(Y,A)
+      - other_actions_required(X,Y)
     assumptions: 
      - possible_action(Y)
 
@@ -432,6 +435,8 @@ argument_schemes:
       - waste_bad_thing(A,X)
     assumptions: 
      - posible(X)
+    exceptions:
+     - reassessment_against_continuing(A,X)
 
   - id: negative_consequences_prudential
     meta:

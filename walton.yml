@@ -272,6 +272,7 @@ language:
   only_way_prevent/2: "But the only way for you to prevent %s is to bring about %s."
   opposed_commitment/2: "Other evidence in this particular case shows that %s is not really committed to %s."
   opposite_action/3: "%[1]s has carried out an action, or set of actions, that imply a personal commitment to %[3]s, contrary to argument %[2]s."
+  other_actions_required/2: "Actions other than %[2]s are also required to bring about %[1]s."
   other_consequences/1: "There are other good or bad consequences of doing %s that should be taken into account."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
@@ -332,6 +333,7 @@ language:
   reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s." 
   reasonable_belive/1: "It is reasonable to believe %s."
   reasonable_case/1: "It is reasonable to believe that %s is the case."
+  reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
   recalls/2: "Person %s recalls %s."
   recieves_evaluation/2: "%s receives the evaluation %s."
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
@@ -1156,9 +1158,10 @@ argument_schemes:
       - tells_intend(A,X,B)
       - situation_necessiy(B,Y,X,A)
     exceptions:
-      - alternative_means(A,X)
+      - alternative_means(X,Y)
       - goals_higher_priority(A,X)
-      - side_effect_other_act(B,A)
+      - side_effect_other_act(Y,A)
+      - other_actions_required(X,Y)
     assumptions: 
      - possible_action(Y)
      
@@ -1177,6 +1180,8 @@ argument_schemes:
       - waste_bad_thing(A,X)
     assumptions: 
      - posible(X)
+    exceptions:
+     - reassessment_against_continuing(A,X)
      
   - id: negative_normal_expectations
     meta:
@@ -1193,6 +1198,8 @@ argument_schemes:
     premises:
       - normal_true(A)
       - case_not_true(A)
+    exceptions:
+      - uninvestigated(A)
  
   - id: negative_practical
     meta:
