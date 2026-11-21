@@ -41,7 +41,7 @@
 # Fixed in this repository (PLAN.md, Implementation status), so no longer
 # listed: E-EXIT, E-GLOBALS, E-ARGVAL, E-INCONS, E-ISSUE, X-LOOP (but for one
 # library check of exeptional, now filed as minor), E-BUDGET, E-PARSE,
-# E-BUILD.
+# E-BUILD, E-MATCH.
 #
 # min_checks is the number of checks a complete run produces today. A run with
 # fewer fails: a passing check leaves no entry here, so removing one would
@@ -99,10 +99,6 @@ issues:
     where: engine
     severity: major
     title: "Running Infer twice on a graph panics when a scheme has an exception, and otherwise duplicates every argument with two or more parameters; the duplicate also assumes again an assumption that had been withdrawn"
-  - id: E-MATCH
-    where: engine
-    severity: major
-    title: "Rule matching depends on things it should not: a fact with a premise's functor at another arity makes a rule fire until the rule limit, and a premise that is a bare variable matches only when it comes after the premise that binds it"
   - id: E-NEGTEXT
     where: engine
     severity: minor
@@ -122,7 +118,6 @@ expected:
   - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
   - {issue: E-IDEMP,   scheme: (engine), checks: [infer-is-idempotent, infer-twice-with-exception, withdrawn-assumption-survives-second-infer]}
   - {issue: X-ASSUME,  scheme: (engine), checks: [questioned-assumption-is-not-assumed]}
-  - {issue: E-MATCH,   scheme: (engine), checks: [wrong-arity-fact-is-harmless, premise-order-does-not-matter]}
   - {issue: E-TERMS,   scheme: (engine), checks: [string-constants-survive, hyphenated-constants-are-not-computed]}
   - {issue: X-NEG,     scheme: (engine), checks: [negated-premises-match, negation-through-statement-variable]}
   - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}

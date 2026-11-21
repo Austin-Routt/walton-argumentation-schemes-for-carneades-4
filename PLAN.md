@@ -204,8 +204,6 @@ The reading and the ledger start now; edits wait for gate S. `go run ./cmd/schem
 * Write a date as a quoted string: `"1990-05-17"` survives. Unquoted it is an arithmetic expression, and the argument is built for `1968`. Use underscores in names for the same reason.
 * No quoted strings containing spaces: `"it rains"` is cut off at the space when the file is read.
 * In YAML, write lists of terms one per line. `[p(a,b)]` is read as the two strings `p(a` and `b)`.
-* A premise that is a bare variable must come after the premise that binds it.
-* Give every fact the arity its predicate has in the schemes: one fact with another arity can stall a rule until the limit.
 * Do not use `is` as a predicate name: in a conclusion the rule engine executes it.
 * Do not assume both a statement and its negation: both are labelled in today.
 
@@ -229,7 +227,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 1.7 Build health (E-BUILD): both modules build, vet and test as shipped; CI runs them
 - [x] 2.1 A statement joining an issue becomes its position; labelling returns (E-ISSUE)
 - [x] 2.2 Set semantics for ground statements (X-LOOP); the engines' own unit tests run in CI
-- [ ] 2.3 Matching (E-MATCH)
+- [x] 2.3 Matching (E-MATCH): a propagation solver with a real propagation history for set-semantics programs
 - [ ] 2.4 Negation (X-NEG, E-NEGTEXT)
 - [ ] 2.5 Repeated inference (E-IDEMP)
 - [ ] 2.6 Names and terms (E-CAPTURE, X-IS, E-TERMS)
