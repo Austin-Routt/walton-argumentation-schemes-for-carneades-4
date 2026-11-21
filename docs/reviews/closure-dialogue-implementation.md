@@ -67,3 +67,30 @@ partition of seven direct, five partial, and five absent mappings leaves
 **ten questions without full-source coverage**. The historical eight-item
 worklist omitted the partial CQ8–9 treatments. Qualified AS1 remains outside
 the source-approved set; full AS2 remains the separately specified extension.
+
+## Follow-up: all ignorance-family allocations
+
+The integration review requested direct actual-engine coverage of the other
+three ignorance-family records. The expanded test now constructs each live
+`ignorance`, `negative_normal_expectations`, `negative_practical`, and
+`negative_practical_true` reference case, validates its exact allocation,
+reevaluates the snapshot, and rejects foreign or absent dialogue, issue,
+probandum, parameters, burden holder, standard, duplicate allocation, or
+missing allocation. A deliberately broader declared dialogue issue is
+accepted as metadata, explicitly demonstrating that logical pertinence and
+fulfillment remain application judgments rather than inferred facts.
+
+The expanded suite passes **13 Python test groups**. Log:
+`scope-audit/dialogue-all-ignorance.log`, SHA-256
+`21ff90e5f97f2b48c11e603271c26df6ac462e011f4ad82d23553ababdfd2da0`.
+
+Two independently authored cases in `closure_ignorance_context.yml` additionally
+test the unchanged normal-expectation formula: a matching case-qualified
+expectation yields its own abnormality conclusion, while a normality
+conditional for case1 and a contrary observation for case2 construct no such
+argument. The corrected API/CLI harness passes **4/4 registered checks**.
+Log: `scope-audit/ignorance-context-corrected.log`, SHA-256
+`5e00240832edc716b29549b7b4f8eb0f669d6866272c5fb6b42686052222bb8f`.
+The initial command selected no Go subtests because its pattern omitted the
+`cases/` prefix; its zero-check output is retained and is not counted as
+verification. No scheme formula or source approval was changed by these tests.

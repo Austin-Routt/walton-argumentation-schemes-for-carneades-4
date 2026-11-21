@@ -11,7 +11,7 @@ import unittest
 import yaml
 ROOT=Path(__file__).resolve().parent.parent
 sys.path.insert(0,str(ROOT/'tools'))
-from dialogue_snapshot import snapshot, DialogueError, SCHEMA, read, CQ_COUNTS, ground
+from dialogue_snapshot import snapshot, DialogueError, SCHEMA, read, CQ_COUNTS, IGNORANCE, ground
 from graph_from_library import graph
 
 class DialogueSnapshotTests(unittest.TestCase):
@@ -209,5 +209,49 @@ class DialogueSnapshotTests(unittest.TestCase):
             with self.subTest(field=field),self.assertRaises(DialogueError):snapshot(base,bad)
         journal['burdens']=[]
         with self.assertRaises(DialogueError):snapshot(base,journal)
+    def test_every_ignorance_family_has_an_actual_checked_allocation(self):
+        cases=[]
+        for path in (ROOT/'tools/vv/cases').glob('*.yml'):
+            document=yaml.safe_load(path.read_text())
+            if isinstance(document,dict):cases.extend(document.get('cases',[]))
+        for sid in sorted(IGNORANCE):
+            with self.subTest(scheme=sid):
+                case=next(c for c in cases if c['name']==sid+'/book')
+                data=yaml.safe_load(graph([sid],str(ROOT/'walton.yml')))
+                data['assumptions']=list(case['assumptions'])
+                conclusion=case['in'][0]
+                if sid=='negative_practical_true':
+                    other=conclusion.replace('act_on_presumption_true(', 'act_on_presumption_false(',1)
+                elif sid=='negative_practical':
+                    other=conclusion.replace('act_on_presumption_false(', 'act_on_presumption_true(',1)
+                else:other=conclusion[1:] if conclusion.startswith('¬') else '¬'+conclusion
+                data['statements']={conclusion:'Target claim.',other:'Opposed position.',
+                                    'ultimate_claim':'Application-declared broader ultimate claim.',
+                                    'ultimate_alternative':'Application-declared alternative.'}
+                data['issues']={'target_issue':{'positions':[conclusion,other],'standard':'PE'},
+                                'broader_issue':{'positions':['ultimate_claim','ultimate_alternative'],'standard':'PE'}}
+                base=self.evaluate(data)
+                aid,arg=next((a,x) for a,x in base['arguments'].items() if x.get('scheme')==sid)
+                issue=next(i for i,x in base['issues'].items() if conclusion in x['positions'])
+                row={'argument':aid,'scheme':sid,'parameters':arg['parameters'],'dialogue':'allocation_review',
+                     'probandum':conclusion,'burden_holder':'designated_proponent','issue':issue,'standard':'PE'}
+                journal={'schema':SCHEMA,'dialogue':'allocation_review','targets':{},'events':[],'burdens':[row]}
+                made=snapshot(base,journal)
+                self.assertEqual(made['arguments'],base['arguments'])
+                self.assertEqual(self.label(self.evaluate(made),conclusion),'in')
+                for field,value in [('dialogue','foreign'),('issue','unknown'),('standard','BRD'),
+                                    ('probandum','absent'),('burden_holder',''),('parameters',['wrong_case']*len(arg['parameters']))]:
+                    bad=copy.deepcopy(journal);bad['burdens'][0][field]=value
+                    with self.subTest(field=field),self.assertRaises(DialogueError):snapshot(base,bad)
+                bad=copy.deepcopy(journal);bad['burdens']=[]
+                with self.assertRaises(DialogueError):snapshot(base,bad)
+                bad=copy.deepcopy(journal);bad['burdens'].append(copy.deepcopy(row))
+                with self.assertRaises(DialogueError):snapshot(base,bad)
+                # Logical relevance to the wider dialogue is explicitly adjudicated
+                # by the application; the checker validates allocation, not that proof.
+                broader=copy.deepcopy(journal)
+                broader['burdens'][0].update(probandum='ultimate_claim',issue='broader_issue')
+                self.assertEqual(snapshot(base,broader)['meta']['dialogue_snapshot']['burden_allocations'][0]['probandum'],
+                                 'ultimate_claim')
 
 if __name__=='__main__':unittest.main()

@@ -182,6 +182,14 @@ be `PE`, `CCE`, or `BRD` and match that issue. A nonempty burden holder and the
 current dialogue are required. Missing or duplicate allocations and foreign
 references are errors. These records are copied into the snapshot metadata.
 
+The ultimate probandum may belong to a broader dialogue issue rather than be
+identical to this argument's conclusion. Its relevance to the target argument,
+and whether the designated party actually fulfills that broader burden, are
+explicit application judgments. The checker verifies the allocation's target
+identity, declared issue membership, and proof standard. It does not establish
+logical pertinence or successful fulfillment merely because those references
+are valid.
+
 This closes a representation/validation gap: a proof standard is an evidence
 threshold, not an identity for the burden holder or the ultimate claim at
 issue. The adapter checks that an application supplies consistent metadata; it
