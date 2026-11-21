@@ -22,7 +22,7 @@ language:
   more_on_point/2: "%s is false in another case which is more on point than case %s."
   not_indicator/1: "The circumstances are such that having a %s image is not a reliable indicator of it."
   prestigious_individual/2: "Individual %s is prestigious for -admired by- individuals %s."
-  reasonable_case/1: "It is reasonable to believe that %s is the case."
+  reasonable_believe/1: "It is reasonable to believe %s."
   relevant_differences/1: "There are relevant differences between case %s and the current case."
   relevant_differences/2: "There are relevant differences between case %s and case %s."
   right_to_do/2: "The right thing to do in %s, was to carry out action %s."
@@ -139,7 +139,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.1, p. 345. John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53."
     variables: [P,I]
     conclusions:
-      - reasonable_case(I)
+      - reasonable_believe(I)
     premises:
       - image(P,I)
       - exemplify(I)

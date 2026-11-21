@@ -1038,7 +1038,7 @@ cases:
     arguments:
       - perception(ann,red)
     in:
-      - reasonable_case(red)
+      - reasonable_believe(red)
     variants: true
   - name: analogy/book
     source: "7, p. 315"

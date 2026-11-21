@@ -12,7 +12,7 @@ language:
   based_on_false_belief/2: "%s originally believed %s on the basis of beliefs of which one is false."
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
-  biased/1: "Arguer %s is biased."
+  biased/1: "%s is biased."
   bivalent/1: "Every proposition in %s is either true or false."
   consequences_presumption/2: "If I act on the presumption that %s is true, and it is not true, consequences %s will follow."
   credible/1: "%s is credible as an expert source."

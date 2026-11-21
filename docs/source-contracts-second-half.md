@@ -122,6 +122,35 @@ or remove any record-specific blocker recorded by the independent audit.
 
 ## Migration
 
+Perception (59.1, p. 345) and memory (60, p. 346) both conclude
+`reasonable_believe(Phi)` when Phi denotes the same proposition about the
+same circumstances. Their premises and defeaters remain distinct. For
+example, `door_closed(case1)` may be supported by both a current perception
+and a remembered observation of that same case. Defeating either argument
+alone does not defeat the other; a memory about `case2` does not rescue a
+defeated perception about `case1`. Do not equate generic property words
+across unrelated circumstances. The former perception name,
+`reasonable_case/1`, is an automatic predicate rename in the migration table.
+This shared conclusion does not resolve the separate observer/context scope
+qualification on perception's `not_indicator(I)` defeater.
+
+If a saved graph defines both names in `language:` or defines both keyed
+statements for the same proposition, automatic renaming would create duplicate
+YAML keys. The migration tool refuses that file without changing it and reports
+the collision. Reconcile those original entries explicitly (or regenerate the
+scheme/template section with `tools/graph_from_library.py`) and rerun migration.
+For statement metadata or asserted labels, inspect both entries before choosing
+the one canonical statement; the tool does not discard either user's text.
+
+`morally_bad(A)` in entry 47 and `bad_character(A)` in entry 42 remain
+distinct. The source expressly specifies moral badness in 47, while 42
+uses the broader character description. Identity of the person does not
+prove identity of those judgments. The library therefore supplies no
+automatic equivalence or projection between them. An application that
+needs such a bridge must state and justify its particular interpretation;
+it must not infer moral badness from bias alone. This is separate from the
+inherited ethotic wording retained under D5.
+
 The changes in entries 31.2–31.5 and 60 require actual diagram, action, event,
 quality or recaller identities. A name replacement cannot infer those facts.
 The migration table therefore reports these changes for manual completion.

@@ -58,7 +58,7 @@ language:
   better_alternative_by_values/2: "In light of the values %[2]s, an alternative to %[1]s is better."
   beyond_contention/2: "It is clearly beyond contention that %s has %s."
   bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
-  biased/1: "Arguer %s is biased."
+  biased/1: "%s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
   bivalent/1: "Every proposition in %s is either true or false."
   bribed/1: "%s was bribed."
@@ -307,7 +307,6 @@ language:
   reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s." 
   reason_retracting_goal/2: "%s is a reason for retracting commitment to goal %s."
   reasonable_believe/1: "It is reasonable to believe %s."
-  reasonable_case/1: "It is reasonable to believe that %s is the case."
   reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
   recaller_doubts/2: "%s, who recalls %s, expresses doubt about it."
   recalls/2: "Person %s recalls %s."
@@ -1625,7 +1624,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.1, p. 345. John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53."
     variables: [P,I]
     conclusions:
-      - reasonable_case(I)
+      - reasonable_believe(I)
     premises:
       - image(P,I)
       - exemplify(I)

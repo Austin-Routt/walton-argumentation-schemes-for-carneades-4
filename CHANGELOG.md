@@ -17,6 +17,28 @@ Baseline `49ad425` was independently rerun from clean copies: 7,994 checks passe
 
 ## Unreleased — Phase 5 of `PLAN.md`: the records against the book (library 0.2.0)
 
+### PR13 source-review follow-up
+
+* Perception (59.1, p. 345) and memory (60, p. 346) now conclude the same
+  `reasonable_believe/1` statement when they concern the identical proposition
+  and circumstances. `reasonable_case/1` migrates to that existing predicate.
+  Five two-scheme cases check convergence, either independent support surviving
+  defeat of the other, both supports defeated, and a different case that must
+  not supply the missing support. Perception remains qualified for its separate
+  observer/context issue; this vocabulary repair does not promote its row.
+* Saved-graph migration is checked through the native CLI. A many-to-one rename
+  that would duplicate `language:` or `statements:` keys is now rejected before
+  writing, with a request to reconcile the original entries. Neither rendering
+  nor statement metadata is silently overwritten.
+* Restored `biased/1` to the original imported Carneades template, "%s is
+  biased." This corrects the declared upstream-wording policy without changing
+  inference or forbidding its use for the arguer in entry 46.
+* Kept entry 47's `morally_bad/1` distinct from entry 42's `bad_character/1`,
+  now with an explicit reason: the former is a moral judgment, the latter a
+  broader character judgment. The source does not establish unconditional
+  equivalence. A bridge needs an application-specific justification; bias alone
+  does not automatically establish moral badness.
+
 ### Independent source review, compendium entries 28–60
 
 The independent review found defects that the previous green examples accepted.

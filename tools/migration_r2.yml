@@ -240,3 +240,6 @@ changes:
   - {record: established_rule, kind: added, old: '', new: 'conflicting_or_overriding_rule(R,C)', plan: independent-review, page: 343, note: Available-book CQ adaptation; original-source verification remains open.}
   - {record: established_rule, kind: added, old: '', new: 'rule_exception_or_excuse(R,C)', plan: independent-review, page: 343, note: Available-book CQ adaptation; original-source verification remains open.}
   - {record: abductive_action_to_character, kind: added, old: "", new: "has_property(A,Q)", plan: independent-review, page: 330, note: "A character quality is also a property; retain the typed character_quality(A,Q) conclusion for character predictions."}
+
+  - {record: perception, kind: rename-predicate, old: "reasonable_case/1", new: "reasonable_believe/1", plan: "peer-review-13", page: 345, note: "the same reasonable-belief conclusion as memory, p. 346; the proposition and case context must be identical"}
+  - {record: bias, kind: wording, old: "biased/1", new: "biased/1", plan: "peer-review-13", page: 338, note: "restore upstream generic template: %s is biased.; no predicate or inference change"}

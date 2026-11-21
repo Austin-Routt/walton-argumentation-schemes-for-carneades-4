@@ -11,7 +11,7 @@ language:
   arguer_not_taken_both/2: "Arguer %s is less likely to have taken the evidence on both sides into account in arriving at conclusion %s."
   bad_character/1: "%s is a person of bad character."
   bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
-  biased/1: "Arguer %s is biased."
+  biased/1: "%s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
   character_issue/1: "Character is an issue in the dialogue, and more specifically, %s's argument depends on his/her credibility."
   character_relevant/1: "In the type of dialogue in which argument %s was used, the issue of character is relevant."
