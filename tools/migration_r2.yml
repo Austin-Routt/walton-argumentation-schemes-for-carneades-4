@@ -294,6 +294,7 @@ changes:
   - {record: two_person_practical, kind: arity, old: 'other_actions_required(X,Y)', new: 'other_actions_required(A,X,Y)', plan: closure-scope, page: 326, note: 'The actor A, not adviser B, must perform the additional actions; retain contextual X/Y terms.'}
 
 # Source-branch closure: explicit context and the legacy acceptance clause.
+  - {record: negative_consequences_prudential, kind: replaced, old: 'strongly_occur(X,C)', new: 'omission_consequence_likelihood_adequate(X,C)', plan: pr16-reconciliation, page: 332, note: 'Manual semantic migration: judge the adequacy of the likelihood of C from NOT doing X. A denial of strong likelihood does not imply inadequacy; an old positive or questioned threshold is not automatically the new assessment. Keep distinct from the likelihood of performing X.'}
   - record: end_and_means_2
     kind: arity
     old: means_end(X)

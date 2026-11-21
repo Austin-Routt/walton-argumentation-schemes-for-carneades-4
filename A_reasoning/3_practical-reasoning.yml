@@ -22,6 +22,7 @@ language:
   more_important_ends/1: "In evaluation context %s, ends are more important than the means used to achieve them."
   ends_important/2: "%s warrants assessment as highly important in evaluation context %s."
   consequence_likelihood_adequate/2: "The assessed likelihood that action %s brings about outcome %s is adequate for the strength of this consequence argument."
+  omission_consequence_likelihood_adequate/2: "The assessed likelihood that not doing action %s brings about outcome %s is adequate for the strength of this prudential consequence argument."
   acceptable_action/2: "For %s, %s is an acceptable action."
   action_will_help/2: "Proposed action %s will really help %s."
   agent_bring_about/3: "If %s, as an agent, brings about %s, then %s will occur."
@@ -93,7 +94,6 @@ language:
   situation_help/3: "%s is in a situation where some action %s by %s would help."
   situation_necessity/4: "As %s sees the situation, %s is a necessary or sufficient condition for carrying out %s; the adviser reports this to %s."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
-  strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
   sufficient_action/4: "%s has selected member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
@@ -486,7 +486,7 @@ argument_schemes:
     exceptions:
       - other_consequences(X)
     assumptions: 
-     -  strongly_occur(X,C)
+     -  omission_consequence_likelihood_adequate(X,C)
 
   - id: pragmatic_alternative
     meta:

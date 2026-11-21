@@ -586,22 +586,6 @@
       }
     },
     {
-      "record": "negative_consequences_prudential",
-      "fingerprint": "sha256:e88a17e03aefc70cafa16baac36b2afab4711ad65415907cdc8156577de1a75c",
-      "evidence": [
-        "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_prudential",
-        "docs/source-contracts-second-half.md"
-      ],
-      "examples": [
-        "negative_consequences_prudential/book"
-      ],
-      "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
-        "date": "2026-11-21",
-        "decision": "approved"
-      }
-    },
-    {
       "record": "negative_consequences_reasoning",
       "fingerprint": "sha256:4aa7238ca3ba620d95c75791cecba651adba56d6a0001cd6936aefcc317c4c56",
       "evidence": [

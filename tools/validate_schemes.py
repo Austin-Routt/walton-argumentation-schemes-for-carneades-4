@@ -500,6 +500,8 @@ INSTANCES = [
      {"premises": ["has_conclusion(traffic_rule,pay_fine)", "applicable(traffic_rule)"], "assumptions": ["valid(traffic_rule)"], "exceptions": ["conflicting_or_overriding_rule(traffic_rule,pay_fine)", "rule_exception_or_excuse(traffic_rule,pay_fine)"], "conclusions": ["pay_fine"]}),
     ("negative_consequences_reasoning", "33.3, p. 332", {"A": "tax", "B": "recession", "P": "me"},
      {"premises": ["agent_bring_about(me,tax,recession)", "bad_for_goals(me,recession)"], "assumptions": ["consequence_likelihood_adequate(tax,recession)"], "conclusions": ["¬should_do(me,tax)"]}),
+    ("negative_consequences_prudential", "33.4, pp. 332-333", {"X": "vaccinate", "C": "illness"},
+     {"premises": ["not_doing(vaccinate)", "bad_consequence(vaccinate,illness)"], "assumptions": ["omission_consequence_likelihood_adequate(vaccinate,illness)"], "exceptions": ["other_consequences(vaccinate)"], "conclusions": ["prudential(vaccinate)"]}),
     ("help", "38, p. 334", {"A": "ann", "B": "bob", "X": "lift"},
      {"premises": ["help_needed(ann,bob)", "situation_help(ann,lift,bob)", "can_carry_out(bob,lift)", "not_too_costly(bob,lift)"], "assumptions": ["action_will_help(lift,ann)"], "conclusions": ["should_do(bob,lift)"]}),
     ("distress", "39, pp. 334-335", {"B": "bob", "X": "lift", "A": "ann"},

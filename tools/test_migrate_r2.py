@@ -166,6 +166,17 @@ class Migrate(unittest.TestCase):
         self.assertIn(("appeal_to_vanity_ad_populum", "ought_to_bring_about(X)"), rows)
         self.assertIn(("position_to_know_ad_populum", "A"), rows)
 
+    def test_prudential_omission_likelihood_requires_semantic_review(self):
+        for key,statement in [('assumptions','strongly_occur(vaccinate,illness)'),
+                              ('assumptions','¬strongly_occur(vaccinate,illness)'),
+                              ('questioned','strongly_occur(vaccinate,illness)')]:
+            with self.subTest(key=key,statement=statement):
+                src=key+': ["'+statement+'"]\n'
+                mig=Migrator()
+                self.assertEqual(mig.text(src),src)
+                rows={(r['record'],r['new']) for r in mig.needs_hand(src)}
+                self.assertIn(('negative_consequences_prudential','omission_consequence_likelihood_adequate(X,C)'),rows)
+
     def test_new_premise_and_role_changes_require_evidence(self):
         src = "assumptions: [is_a(whale,mammal), successful_diagram(c1), based_on_false_belief(p), action_character(ann)]\n"
         mig = Migrator()

@@ -2128,25 +2128,33 @@ records:
   cites: 'Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-
     156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.'
   claim: interpretation
-  stage: example-passed
+  stage: transcription-checked
   questions:
   - n: 1
     kind: assumption
-    as: strongly_occur(X,C)
+    as: omission_consequence_likelihood_adequate(X,C)
+    note: Shared CQ1 asks likelihood strength without a fixed strong-likelihood threshold. In33.4 the consequence follows
+      NOT doingX, so this assessment is distinct from the likelihood of doingX.
   - n: 2
     kind: premise
     as: bad_consequence(X,C)
   - n: 3
     kind: exception
     as: other_consequences(X)
-  note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+  note: PR16 D23 identified a real omission in the earlier closure candidate. The printed33.4 premise permits likely consequences
+    and the shared CQ1 specifies no fixed strong threshold. The revised assumption expresses application-relative adequacy
+    for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception are preserved;
+    old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md.
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: ChatGPT PR16 reconciliation implementation author
     date: '2026-11-21'
-    decision: approved
-    note: 'Approved only within the declared executable interpretation. Evidence: docs/reviews/2026-11-21-second-half-source-review.md:
-      negative_consequences_prudential; docs/source-contracts-second-half.md; docs/reviews/record-dispositions.json: negative_consequences_prudential'
+    decision: hold
+    note: Prior approval withdrawn after the independently identified33.4 threshold gap. Authored omission-specific adequacy
+      repair and migration await a non-author review.
+  changes:
+  - plan: pr16-reconciliation
+    page: 332
+    claim: interpretation
 - record: negative_consequences_reasoning
   origin: book
   entry: '33.3'
@@ -4948,6 +4956,12 @@ names:
   entry: '4.6'
   how: book
   from: Speaker is a person; generic group_member/2 also covers products, ideas and methods and does not establish this role.
+- name: omission_consequence_likelihood_adequate/2
+  page: 332
+  entry: '33.4'
+  how: book
+  from: 'Shared CQ1, pp332-333: adequacy relative to the argument strength, specifically for consequences of not doing the
+    action; see docs/reviews/pr16-source-adjudication.md.'
 citations:
 - scheme: sorites_slippery_slope
   record: Informal Logic 18 (1996), p. 151

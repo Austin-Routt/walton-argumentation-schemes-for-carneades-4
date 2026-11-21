@@ -2,6 +2,12 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — PR16 follow-up, entry33.4 likelihood
+
+* The incoming review correctly identified an omission in the earlier closure candidate: prudential entry33.4 still required consequences to be strongly likely, although its premise permits likelihood without that fixed threshold. Replace `strongly_occur(X,C)` with the explicitly omission-specific `omission_consequence_likelihood_adequate(X,C)`; keep doing and not-doing likelihood judgments distinct.
+* Add nine actual-library cases, a source-grounded validator instance, and manual migration for positive, negative, and questioned old judgments. The same concrete denial-of-strong-likelihood case is out with the frozen old schema and in with the repaired schema using the same corrected engine.
+* The former33.4 source approval is withdrawn pending an independent reviewer of this repair; its author grants no replacement approval. The prior9,959-check acceptance inventory must be refreshed and rerun for the final integrated commit. See `docs/reviews/pr16-source-adjudication.md` for D15–D23 and source-approval overlap decisions.
+
 ## 2026-11-21 — independent PR15 closure (library0.3.0, engine4.3.1+walton.4)
 
 * Reconciled all reviews and reproduced the public baseline. Corrected the dismissed default counterexample, nine-row accounting and Atkinson's ten nonfull CQ mappings; preserved historical failures and decisions.

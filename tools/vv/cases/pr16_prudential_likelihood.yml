@@ -1,0 +1,93 @@
+# Printed entry33.4 is on p332; its shared CQ discussion spans pp332-333.
+# These are constructed applications, not claimed printed narrative examples.
+cases:
+- name: negative_consequences_prudential/pr16-no-fixed-strong-threshold
+  source: '33.4, pp332-333: denying strong likelihood does not deny adequacy for the asserted argument strength'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  - ¬strongly_occur(vaccinate,illness)
+  arguments:
+  - negative_consequences_prudential(vaccinate,illness)
+  in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-adequacy-question
+  source: 'Shared CQ1: the exact omission/outcome adequacy judgment is challengeable'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  questioned:
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  not_in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-adequacy-answer
+  source: 'Shared CQ1: explicit support answers the challenged adequacy judgment'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  questioned:
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-old-threshold-is-not-new-answer
+  source: 'Manual semantic migration: an old threshold assertion is not automatically the new adequacy judgment'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  - strongly_occur(vaccinate,illness)
+  questioned:
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  not_in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-outcome-isolation
+  source: 'Shared CQ1: a challenge to another consequence does not defeat this instance'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  questioned:
+  - omission_consequence_likelihood_adequate(vaccinate,other_outcome)
+  in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-action-isolation
+  source: 'Shared CQ1: a challenge to omitting another action does not defeat this instance'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  questioned:
+  - omission_consequence_likelihood_adequate(other_action,illness)
+  in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-doing-does-not-answer-omission
+  source: '33.3 versus33.4: likelihood of a consequence from doingX does not answer its likelihood from omittingX'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  - consequence_likelihood_adequate(vaccinate,illness)
+  questioned:
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  not_in:
+  - prudential(vaccinate)
+- name: negative_consequences_prudential/pr16-omission-does-not-answer-doing
+  source: '33.3 versus33.4: omission adequacy does not discharge the positive-action assessment'
+  assumptions:
+  - agent_bring_about(me,vaccinate,side_effect)
+  - bad_for_goals(me,side_effect)
+  - omission_consequence_likelihood_adequate(vaccinate,side_effect)
+  questioned:
+  - consequence_likelihood_adequate(vaccinate,side_effect)
+  arguments:
+  - negative_consequences_reasoning(vaccinate,side_effect,me)
+  not_in:
+  - ¬should_do(me,vaccinate)
+- name: negative_consequences_prudential/pr16-other-consequences-remain-effective
+  source: 'Shared CQ3: answering likelihood does not erase an existing supported consequence exception'
+  assumptions:
+  - not_doing(vaccinate)
+  - bad_consequence(vaccinate,illness)
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  - other_consequences(vaccinate)
+  questioned:
+  - omission_consequence_likelihood_adequate(vaccinate,illness)
+  not_in:
+  - prudential(vaccinate)

@@ -72,6 +72,7 @@ language:
   whole_requires_property_part/3: "Whole %[1]s can have property %[3]s only if at least one member of its stated part set %[2]s has that property."
   no_partition_part_property/3: "No member of part set %[2]s of whole %[1]s has property %[3]s; this is supported universal negative evidence, not mere absence of a positive fact."
   consequence_likelihood_adequate/2: "The assessed likelihood that action %s brings about outcome %s is adequate for the strength of this consequence argument."
+  omission_consequence_likelihood_adequate/2: "The assessed likelihood that not doing action %s brings about outcome %s is adequate for the strength of this prudential consequence argument."
   conflicting_or_overriding_rule/2: "Another established rule conflicts with or overrides rule %s in its application to conclusion %s."
   rule_exception_or_excuse/2: "An exceptional case or an adequate excuse defeats rule %s in its application to conclusion %s."
   accept_all_steps/1: "There is a climate of social opinion such that once people come to accept each step from %s on as plausible, they will also be led to accept the next step."
@@ -401,7 +402,6 @@ language:
   strong_advocate/3: "%s advocates %s in a strong way, indicating her personal commitment to %s."
   strong_correlation/2: "Correlation of %s and %s is strong."
   stronger_than_character/1: "There is strong evidence that supports %s more than the character issue does."
-  strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
   subclass/2:  "%s is a subclass of %s."
   successful_account/3: "%s is the member of account set %s that explains data %s most successfully."
   successful_diagram/2: "Among the diagrams in %s, the strongest argument is represented by %s."
@@ -1321,7 +1321,7 @@ argument_schemes:
     exceptions:
       - other_consequences(X)
     assumptions: 
-     -  strongly_occur(X,C)
+     -  omission_consequence_likelihood_adequate(X,C)
 
   - id: negative_consequences_reasoning
     meta:
