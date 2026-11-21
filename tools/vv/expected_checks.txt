@@ -3999,6 +3999,10 @@ cases/reference.yml|undercutter|case
 cases/reference.yml|undercutter|roundtrip
 cases/reference.yml|unrelated-fact|case
 cases/reference.yml|unrelated-fact|roundtrip
+docs/examples/expert_opinion.yml|(file)|docs/example-current
+docs/examples/expert_opinion.yml|(file)|docs/example-labels
+docs/examples/practical_reasoning.yml|(file)|docs/example-current
+docs/examples/practical_reasoning.yml|(file)|docs/example-labels
 source_ledger.yml|(file)|source/records-complete
 source_ledger.yml|abduction|source/record-row
 source_ledger.yml|abductive_action_to_character|source/record-row

@@ -14,6 +14,7 @@ This study was conducted within the scope of the master's thesis titled **Dougla
 * `walton.yml` – the complete list (120 schemes) and the negation issue scheme. **This is the only hand-edited scheme file.**
 * `A_reasoning/`, `B_source-based-arguments/`, `C_applying-rules-to-cases/` – one file per type of argument. These files are **generated** from `walton.yml`: each contains, copied verbatim, the schemes assigned to it in `categories.yml` and exactly the language templates those schemes use, so each file loads into Carneades 4 on its own. Do not edit them; edit `walton.yml` (or the grouping in `categories.yml`) and run `python3 tools/build_category_files.py`.
 * `categories.yml` – which scheme goes into which category file.
+* `docs/using.md` – how to evaluate a case of your own with the library: Carneades 4 has no include mechanism, so a graph carries the schemes and templates it uses; `tools/graph_from_library.py SCHEME...` starts such a graph from `walton.yml`, and `docs/examples/` holds two worked cases that `tools/vv` evaluates on every push.
 * `tools/validate_schemes.py` – checks the files against the rules Carneades 4 applies when it loads a theory (see below); `tools/test_validate_schemes.py` tests it with malformed fixtures and mutated copies of the library.
 * `tools/build_category_files.py` – regenerates the category files; `--check` reports stale files without writing.
 * `third_party/` – the sources of the Carneades 4 engine and of its rule engine GoCHR, imported byte for byte from `carneades-4.zip` and `GoCHR.zip` (see `sources.lock`). Engine fixes are made here, one per commit.
@@ -43,7 +44,7 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,990 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,994 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
 
 ## Versions and releases
 
