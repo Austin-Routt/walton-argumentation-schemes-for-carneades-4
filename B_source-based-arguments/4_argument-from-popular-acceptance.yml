@@ -3,7 +3,7 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Popular Acceptance"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."

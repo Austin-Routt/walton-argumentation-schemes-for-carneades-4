@@ -2,7 +2,7 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
-## Unreleased — Phase 5 of `PLAN.md`: the records against the book (library 0.2.0 when released)
+## Unreleased — Phase 5 of `PLAN.md`: the records against the book (library 0.2.0)
 
 The printed critical questions are sorted record by record (5.1) into the four kinds of D2 (pp. 373-375): a question that restates a premise is not modelled; one that shifts the burden when asked is an assumption; one that needs backing is an exception; one that points to a counter-argument is a rebuttal, weighed against the conclusion in the negation issue. Each sorted question is in the record's row of `tools/vv/source_ledger.yml`, with the statement that models it, and `source/record-row` checks that statement against the record. A question sorted as an assumption or an exception that the record did not model is a gap (5.2) and is added, with a positive and an adverse reference case in `tools/vv/cases/phase5.yml` (D13). The 24 records taken over from Carneades keep upstream's wording (D5): where they lack a question, the row says so and 5.5 decides against their own sources. A row moves to "transcription checked" when its premises and conclusion have been compared with the book; "interpretation approved" is left to a reviewer who did not write the change (D14).
 

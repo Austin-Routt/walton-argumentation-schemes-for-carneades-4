@@ -3,7 +3,7 @@
 
 meta:
   title: "Reasoning - Practical Reasoning"
-  version: "0.1.0"
+  version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   acceptable_action/1: "%s is an acceptable action."

@@ -47,7 +47,7 @@ tools/vv/run.sh      # the two checks above, the engine sources against sources.
 
 ## Versions and releases
 
-The library and the engine carry versions of their own. The library's is `meta.version` of `walton.yml`, which every category file carries too: **0.1.0** at release R1. The engine's is in `third_party/VERSION`, and `carneades` prints it: **4.3.1+walton.1**, that is Carneades 4.3.1 and GoCHR at the commits of `sources.lock`, with the fixes of this repository.
+The library and the engine carry versions of their own. The library's is `meta.version` of `walton.yml`, which every category file carries too: **0.1.0** at release R1, **0.2.0** with the changes of Phase 5 since (not released; see the changelog). The engine's is in `third_party/VERSION`, and `carneades` prints it: **4.3.1+walton.1**, that is Carneades 4.3.1 and GoCHR at the commits of `sources.lock`, with the fixes of this repository.
 
 * **R1, a preview** (`PLAN.md`, gate R): the engine's profile of `docs/contracts.md` is accepted; the library is not yet. Its repairs are interpretations until Phase 5 has checked them against the book, and every record's row in `tools/vv/source_ledger.yml` is still at "mapped".
 * **R2**, the first stable release of the library (1.0.0), follows gate L: every released record at "example passed", and the one migration of identifiers with its old-to-new table.
