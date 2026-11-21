@@ -103,13 +103,26 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		return err
 	}
 	defer releaseEngine()
+	work := ag.copyForInference()
+	if err := work.inferStaged(ctx); err != nil {
+		return err
+	}
+	if ctx.Err() != nil {
+		return NewRunError(ErrCancelled, "cancelled before committing the graph")
+	}
+	ag.commitInference(work)
+	return nil
+}
+
+// inferStaged may mutate only a private graph; any failure discards it.
+func (ag *ArgGraph) inferStaged(ctx context.Context) error {
 	if ag.Theory == nil {
 		return NewRunError(ErrInvalidInput, "argument graph has no theory")
 	}
 	if err := Unsupported(ag.Theory); err != nil {
 		return err
 	}
-	if err := ag.CheckContext(); err != nil {
+	if err := ag.resolveContext(ctx); err != nil {
 		return err
 	}
 	for _, a := range ag.Assumptions {
@@ -178,6 +191,9 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 
 		// fmt.Printf("store:\n")
 		for _, s := range store {
+			if ctx.Err() != nil {
+				return NewRunError(ErrCancelled, "cancelled while constructing arguments")
+			}
 			// fmt.Printf("   %s\n", s)
 			// If the term does not represent an argument already in the graph
 			// then, if the term does represent an argument, use it to
@@ -207,12 +223,11 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 			ag.Statements[a] = &Statement{Id: a, Text: text}
 		}
 	}
-	// Materialize context statements first, so issue schemes also see facts
-	// that no argument happened to use. Patterns were checked before mutation.
-	for issue, patterns := range ag.Theory.IssueSchemes {
-		if err := ag.makeIssue(issue, *patterns); err != nil {
-			return NewRunError(ErrInvalidInput, "issue scheme %s: %v", issue, err)
-		}
+	if err := ag.materializeIssues(ctx); err != nil {
+		return err
+	}
+	if ag.inconsistentPositions() {
+		return NewRunError(ErrInconsistentContext, "constructed issues connect contradictory accepted context")
 	}
 	return nil
 }

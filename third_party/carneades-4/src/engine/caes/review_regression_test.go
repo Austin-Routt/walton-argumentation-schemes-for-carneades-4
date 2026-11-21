@@ -88,3 +88,92 @@ func TestReviewEmptyTheoryRejectsMalformedAssumption(t *testing.T) {
 		t.Fatal("invalid run committed a statement")
 	}
 }
+
+func TestReviewIssueClosureAndLateFailureAreAtomic(t *testing.T) {
+	for _, derived := range []bool{false, true} {
+		ag := NewArgGraph()
+		p, q := IssueScheme{"p(X)", "r(X)"}, IssueScheme{"r(X)", "q(X)"}
+		ag.Theory.IssueSchemes["pr"] = &p
+		ag.Theory.IssueSchemes["rq"] = &q
+		ag.Assumptions = []string{"p(a)", "q(a)"}
+		for _, id := range ag.Assumptions {
+			ag.Statements[id] = &Statement{Id: id, Text: "original " + id}
+		}
+		if derived {
+			ag.Theory.ArgSchemes = []*Scheme{{Id: "bridge", Conclusions: []string{"r(a)"}}}
+			ag.Theory.InitSchemeIndex()
+		} else {
+			ag.Statements["r(a)"] = &Statement{Id: "r(a)", Text: "original bridge"}
+		}
+		originalMap := ag.Statements
+		original := ag.Statements["p(a)"]
+		before := len(ag.Statements)
+		if err := ag.Infer(); !errors.Is(err, ErrInconsistentContext) {
+			t.Fatalf("derived=%v: want inconsistent context, got %v", derived, err)
+		}
+		if len(ag.Issues) != 0 || len(ag.Arguments) != 0 || len(ag.Statements) != before || len(originalMap) != before || ag.Statements["p(a)"] != original || original.Issue != nil || len(original.Args) != 0 || original.Text != "original p(a)" {
+			t.Fatalf("derived=%v: failed transaction changed original graph", derived)
+		}
+	}
+}
+
+func TestReviewSuccessfulCommitPreservesPointers(t *testing.T) {
+	ag := NewArgGraph()
+	p := &Statement{Id: "p(a)", Text: "premise"}
+	q := &Statement{Id: "q(a)", Text: "conclusion"}
+	ag.Statements[p.Id] = p
+	ag.Statements[q.Id] = q
+	ag.Assumptions = []string{p.Id}
+	ag.Theory.ArgSchemes = []*Scheme{{Id: "derive", Variables: []string{"X"}, Premises: []string{"p(X)"}, Conclusions: []string{"q(X)"}}}
+	ag.Theory.InitSchemeIndex()
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if ag.Statements[p.Id] != p || ag.Statements[q.Id] != q || len(q.Args) != 1 || q.Args[0].Conclusion != q || q.Args[0].Premises[0].Stmt != p {
+		t.Fatal("successful commit replaced existing statement identity or links")
+	}
+	a := q.Args[0]
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if q.Args[0] != a || ag.Arguments[a.Id] != a {
+		t.Fatal("second inference replaced existing argument identity")
+	}
+}
+
+func TestReviewIssueMatchingCanStopWithoutChangingInput(t *testing.T) {
+	ag := NewArgGraph()
+	p := IssueScheme{"p(X)", "q(X)"}
+	ag.Statements["p(a)"] = &Statement{Id: "p(a)"}
+	ag.Statements["q(a)"] = &Statement{Id: "q(a)"}
+	work := ag.copyForInference()
+	err := work.makeIssueWithWork("choice", p, &issueWork{ctx: context.Background(), remaining: 1})
+	if !errors.Is(err, ErrLimitReached) || len(ag.Issues) != 0 || ag.Statements["p(a)"].Issue != nil {
+		t.Fatalf("issue quota: %v", err)
+	}
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	err = work.makeIssueWithWork("choice", p, &issueWork{ctx: ctx, remaining: 100})
+	if !errors.Is(err, ErrCancelled) {
+		t.Fatalf("issue cancellation: %v", err)
+	}
+}
+
+func TestReviewDefeatedDefaultCannotSeedAnotherDefault(t *testing.T) {
+	ag := NewArgGraph()
+	p := IssueScheme{"p", "q"}
+	ag.Theory.IssueSchemes["choice"] = &p
+	ag.Assumptions = []string{"p", "q"}
+	ag.Defaults = map[string]bool{"p": true}
+	ag.Theory.ArgSchemes = []*Scheme{
+		{Id: "one", Premises: []string{"p"}, Assumptions: []string{"extra"}, Conclusions: []string{"r"}},
+		{Id: "two", Premises: []string{"extra"}, Conclusions: []string{"s"}},
+	}
+	ag.Theory.InitSchemeIndex()
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if len(ag.Arguments) != 0 || ag.Statements["extra"] != nil || ag.Statements["s"] != nil {
+		t.Fatal("defeated default seeded another scheme's default")
+	}
+}

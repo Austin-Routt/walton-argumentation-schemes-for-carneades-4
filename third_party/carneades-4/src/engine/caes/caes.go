@@ -940,13 +940,20 @@ func readIssuePatterns(patterns []string) ([]terms.Term, error) {
 	return parsed, nil
 }
 
-func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error) {
+func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) error {
+	return ag.makeIssueWithWork(issueScheme, patterns, nil)
+}
+
+func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, work *issueWork) (err error) {
 	parsed, err := readIssuePatterns(patterns)
 	if err != nil {
 		return err
 	}
 	pattern := parsed[0]
 	for wff1, stmt := range ag.Statements {
+		if err := work.step(); err != nil {
+			return err
+		}
 		term1, ok := terms.ReadString(wff1)
 		if !ok {
 			fmt.Fprintf(os.Stderr, "Statement key not a term: %v\n", wff1)
@@ -984,6 +991,9 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 			// issue scheme is an enumeration.
 
 			for wff2, stmt2 := range ag.Statements {
+				if err := work.step(); err != nil {
+					return err
+				}
 				if wff2 == wff1 {
 					// skip the matching statement found previously
 					continue
@@ -1000,6 +1010,9 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 					// and update the bindings and add the statement as
 					// as candidate if any pattern matches
 					for _, pattern2 := range parsed[1:] {
+						if err := work.step(); err != nil {
+							return err
+						}
 						bindings, match = terms.Match(pattern2, term2, bindings)
 						if match {
 							break
@@ -1035,8 +1048,7 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 						issue = c.Issue
 					} else if c.Issue != issue {
 						// found a conflict, due to statements being positions of different issues
-						fmt.Fprintf(os.Stderr, "Statement matching an issue scheme is already a position of different issue: %v\n", c.Id)
-						continue
+						return fmt.Errorf("statement %s connects distinct existing issues; explicit issue resolution is required", c.Id)
 					}
 				}
 				positions = append(positions, c)
