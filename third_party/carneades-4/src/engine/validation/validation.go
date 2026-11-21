@@ -127,78 +127,120 @@ func validateIssues(ag *caes.ArgGraph) []Problem {
 	return problems
 }
 
-// Validate the arguments of an argument graph
+// Validate the arguments of an argument graph. An argument that names a
+// scheme must instantiate it with one substitution: the scheme's variables
+// bound to the argument's parameters, and under those bindings each premise
+// an instance of one of the scheme's premises or assumptions (each used once)
+// and the conclusion an instance of one of its conclusions.
 func validateArguments(ag *caes.ArgGraph) []Problem {
 	problems := []Problem{}
 	for id, arg := range ag.Arguments {
-		if caes.IsBasicScheme(arg.Scheme) {
-			return problems
+		if arg == nil || arg.Scheme == nil || caes.IsBasicScheme(arg.Scheme) {
+			// arguments of the basic schemes (linked, convergent, ...) and
+			// undercutters without a scheme have no pattern to check
+			continue
 		}
-		// check that number of parameters matches the number of variables in the scheme
-		if len(arg.Parameters) != len(arg.Scheme.Variables) {
+		s := arg.Scheme
+		if len(arg.Parameters) != len(s.Variables) {
 			p := Problem{ARGUMENT, id, "number of parameters not the same as declared in the scheme", ""}
+			problems = append(problems, p)
+			continue
+		}
+		// the substitution given by the parameters
+		var b terms.Bindings
+		bound := true
+		for i, name := range s.Variables {
+			v, ok1 := terms.ReadString(name)
+			t, ok2 := terms.ReadString(arg.Parameters[i])
+			if !ok1 || !ok2 || v.Type() != terms.VariableType {
+				p := Problem{ARGUMENT, id, "parameter or scheme variable is not a term", name + " = " + arg.Parameters[i]}
+				problems = append(problems, p)
+				bound = false
+				break
+			}
+			b = terms.AddBinding(v.(terms.Variable), t, b)
+		}
+		if !bound {
+			continue
+		}
+
+		// premises: the scheme's premises and assumptions, each used once
+		patterns := []terms.Term{}
+		for _, ps := range append(append([]string{}, s.Premises...), s.Assumptions...) {
+			if t, ok := terms.ReadString(ps); ok {
+				patterns = append(patterns, t) // patterns of schemes are checked elsewhere
+			}
+		}
+		stmts := []terms.Term{}
+		for _, pr := range arg.Premises {
+			if pr.Stmt == nil {
+				problems = append(problems, Problem{ARGUMENT, id, "premise without a statement", ""})
+				continue
+			}
+			t, ok := terms.ReadString(pr.Stmt.Id)
+			if !ok {
+				problems = append(problems, Problem{ARGUMENT, id, "premise is not a term", pr.Stmt.Id})
+				continue
+			}
+			stmts = append(stmts, t)
+		}
+		if len(arg.Premises) != len(s.Premises)+len(s.Assumptions) {
+			p := Problem{ARGUMENT, id, "number of premises not the same as declared in the scheme, including assumptions", ""}
+			problems = append(problems, p)
+		} else if len(stmts) == len(patterns) && !matchEach(patterns, stmts, b, make([]bool, len(patterns))) {
+			p := Problem{ARGUMENT, id, "premises do not instantiate the scheme's premises and assumptions with the argument's parameters", ""}
 			problems = append(problems, p)
 		}
 
-		// check that the number of premises equals the sum of the number of
-		// premises and assumptions of the argument's scheme
-		if len(arg.Premises) != len(arg.Scheme.Premises)+len(arg.Scheme.Assumptions) {
-			p := Problem{ARGUMENT, id, "number of premises not the same as declared in the scheme, including assumptions", ""}
-			problems = append(problems, p)
-		} else {
-			// Check whether the premises match the scheme
-			for i, pr := range arg.Premises {
-				t1, ok := terms.ReadString(pr.Stmt.Id)
-				if !ok {
-					p := Problem{ARGUMENT, id, "premise is not a term", pr.Stmt.Id}
-					problems = append(problems, p)
-				} else {
-					if i < len(arg.Scheme.Premises)-1 {
-						// the premise is not an assumption
-						t2, _ := terms.ReadString(arg.Scheme.Premises[i])
-						// Premises of schemes are checked elsewhere
-						_, ok := terms.Match(t1, t2, nil)
-						if !ok {
-							p := Problem{ARGUMENT, id, "premise does not match the scheme", pr.Stmt.Id}
-							problems = append(problems, p)
-						}
-					} else {
-						// the premise is an assumption
-						j := i - len(arg.Scheme.Premises)
-						t2, _ := terms.ReadString(arg.Scheme.Assumptions[j])
-						// Assumptions of schemes are checked elsewhere
-						_, ok := terms.Match(t1, t2, nil)
-						if !ok {
-							p := Problem{ARGUMENT, id, "premise does not match its assumption in the scheme", pr.Stmt.Id}
-							problems = append(problems, p)
-						}
-					}
-				}
-			}
+		// conclusion
+		if arg.Conclusion == nil {
+			problems = append(problems, Problem{ARGUMENT, id, "argument without a conclusion", ""})
+			continue
 		}
-		// Check whether the conclusion matches some conclusion of the scheme
 		t3, ok := terms.ReadString(arg.Conclusion.Id)
 		if !ok {
 			p := Problem{ARGUMENT, id, "conclusion is not a term.", arg.Conclusion.Id}
 			problems = append(problems, p)
+			continue
 		}
 		found := false
-		for _, s := range arg.Scheme.Conclusions {
-			t4, _ := terms.ReadString(s)
-			// conclusions of schemes validated elsewhere
-			_, ok := terms.Match(t3, t4, nil)
-			if ok {
-				// matching conclusion found
+		for _, cs := range s.Conclusions {
+			t4, ok := terms.ReadString(cs)
+			if !ok {
+				continue // conclusions of schemes are checked elsewhere
+			}
+			if _, ok := terms.Match(t4, t3, b); ok {
 				found = true
 				break
 			}
 		}
 		if !found {
-			p := Problem{ARGUMENT, id, "conclusion does not match the scheme.", arg.Conclusion.Id}
+			p := Problem{ARGUMENT, id, "conclusion does not instantiate a conclusion of the scheme with the argument's parameters.", arg.Conclusion.Id}
 			problems = append(problems, p)
 		}
 	}
 	return problems
+}
+
+// matchEach reports whether the statements can be paired one to one with the
+// patterns so that every pair matches under one extension of the bindings b.
+func matchEach(patterns, stmts []terms.Term, b terms.Bindings, used []bool) bool {
+	if len(stmts) == 0 {
+		return true
+	}
+	for i, p := range patterns {
+		if used[i] {
+			continue
+		}
+		if b2, ok := terms.Match(p, stmts[0], b); ok {
+			used[i] = true
+			if matchEach(patterns, stmts[1:], b2, used) {
+				return true
+			}
+			used[i] = false
+		}
+	}
+	return false
 }
 
 // Validate the assumptions of an argument graph

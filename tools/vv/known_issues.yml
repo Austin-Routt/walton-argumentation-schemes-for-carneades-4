@@ -82,14 +82,6 @@ issues:
     where: engine
     severity: major
     title: "GoCHR names a fresh variable V1; a scheme variable called V1 captures it and the conclusion comes out wrong but ground"
-  - id: E-GLOBALS
-    where: engine
-    severity: major
-    title: "yaml.Import writes imported schemes into the package-level table caes.BasicSchemes: imports leak into each other and concurrent imports crash the process"
-  - id: E-ARGVAL
-    where: engine
-    severity: major
-    title: "The validator never checks an argument against its scheme (and would panic if it did)"
   - id: E-EXPORT
     where: engine
     severity: major
@@ -138,8 +130,6 @@ issues:
 expected:
   # ------------------------------------------------------------------ engine
   - {issue: E-BUILD,   scheme: (engine), checks: [build-all-packages, go-vet-clean, upstream-tests-pass-as-shipped]}
-  - {issue: E-GLOBALS, scheme: (engine), checks: [yaml-import-keeps-globals-clean]}
-  - {issue: E-ARGVAL,  scheme: (engine), checks: [validator-checks-arguments-against-schemes, validator-accepts-correct-argument, validator-enforces-shared-bindings]}
   - {issue: E-EXPORT,  scheme: (engine), checks: [export-keeps-compound-parameters, export-keeps-expected-labels]}
   - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
   - {issue: E-IDEMP,   scheme: (engine), checks: [infer-is-idempotent, infer-twice-with-exception, withdrawn-assumption-survives-second-infer]}

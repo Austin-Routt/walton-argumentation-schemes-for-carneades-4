@@ -109,8 +109,17 @@ var collOfWF2source map[string]interface{}                   // collection of we
 
 func Import(inFile io.Reader) (*caes.ArgGraph, error) {
 
-	collOfWeighingFunctions = caes.BasicWeighingFunctions
-	collOfSchemes = caes.BasicSchemes
+	// Work on copies of the built-in tables: writing imported schemes and
+	// weighing functions into caes.BasicSchemes and caes.BasicWeighingFunctions
+	// made every later import see them (issue E-GLOBALS of tools/vv).
+	collOfWeighingFunctions = map[string]caes.WeighingFunction{}
+	for k, v := range caes.BasicWeighingFunctions {
+		collOfWeighingFunctions[k] = v
+	}
+	collOfSchemes = map[string]*caes.Scheme{}
+	for k, v := range caes.BasicSchemes {
+		collOfSchemes[k] = v
+	}
 	collOfAssumptions = []string{}
 	collOfWF2source = map[string]interface{}{}
 
