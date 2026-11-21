@@ -6,6 +6,7 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  witness_account_biased/2: "The account by witness %s concerning situated proposition %s has relevant bias."
   act_on_presumption_false/1: "I act on the presumption that %s is not true."
   asserts/2: "%s asserts that %s is true."
   based_on_evidence/1: "The assertion %v is based on evidence."
@@ -77,21 +78,29 @@ argument_schemes:
   - id: witness_testimony
     meta:
       title: Argument from Witness Testimony
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 3, p. 310. Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008."
-    variables: [W,D,S]
-    conclusions: [S]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 3, p. 310. Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations
+        in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and
+        Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge
+        University Press, 2008.'
+    variables:
+    - W
+    - D
+    - S
+    conclusions:
+    - S
     premises:
-      - position_to_know(W,D)
-      - in_domain(S,D)
-      - believes(W,S)
-      - asserts(W,S)
+    - position_to_know(W,D)
+    - in_domain(S,D)
+    - believes(W,S)
+    - asserts(W,S)
     assumptions:
-      - internally_consistent(S)
+    - internally_consistent(S)
     exceptions:
-      - inconsistent_with_known_facts(S)
-      - inconsistent_with_other_witnesses(S)
-      - biased(W)
-      - implausible(S)
+    - inconsistent_with_known_facts(S)
+    - inconsistent_with_other_witnesses(S)
+    - witness_account_biased(W,S)
+    - implausible(S)
 
   - id: position_to_know_ad_populum
     meta:

@@ -19,7 +19,7 @@ cases:
       - has_property(ann,strong)
     no_arguments: [whole_into_parts]
     not_in: ["has_property(team,strong)"]
-  - name: part_in_whole_physical/closure-physical-positive
+  - name: part_in_whole_physical/book
     source: "9.2, p.316: physical-part positive alternative"
     assumptions: ["physical_part_of(fragment,ingot)", "has_property(ingot,gold)"]
     arguments: ["part_in_whole_physical(fragment,ingot,gold)"]
@@ -33,14 +33,14 @@ cases:
     source: "9.2: a physical part is not silently treated as a taxonomic species"
     assumptions: ["physical_part_of(fragment,ingot)", "has_property(ingot,gold)"]
     no_arguments: ["part_in_whole"]
-  - name: part_in_whole_species_degree/closure-species-degree
+  - name: part_in_whole_species_degree/book
     source: "9.2, p.316: the distinct lesser-degree parenthesis, on a declared common scale"
     assumptions: ["species_of(rose,flower)", "has_property(flower,valuable)", "degree_comparable(rose,flower,valuable)"]
     arguments: ["part_in_whole_species_degree(rose,flower,valuable)"]
     in: ["has_property(rose,valuable)", "less_property_than(rose,valuable,flower)"]
     not_in: ["¬has_property(rose,valuable)"]
     variants: true
-  - name: part_in_whole_physical_degree/closure-physical-degree
+  - name: part_in_whole_physical_degree/book
     source: "9.2: lesser degree remains property possession, not an exception to it"
     assumptions: ["physical_part_of(region,country)", "has_property(country,wealthy)", "degree_comparable(region,country,wealthy)"]
     arguments: ["part_in_whole_physical_degree(region,country,wealthy)"]
@@ -57,7 +57,7 @@ cases:
     assumptions: ["physical_part_of(region,country)", "has_property(country,wealthy)", "degree_comparable(region,country,populous)"]
     no_arguments: ["part_in_whole_physical_degree"]
     not_in: ["less_property_than(region,wealthy,country)"]
-  - name: part_in_whole_smaller_degree/closure-smaller-degree
+  - name: part_in_whole_smaller_degree/book
     source: "9.2, p.316: the smaller-part parenthesis needs the relevant smaller-part claim"
     assumptions:
       - physical_part_of(region,country)
@@ -71,7 +71,7 @@ cases:
     source: "9.2: the smaller-part variant does not manufacture relative-size evidence"
     assumptions: ["physical_part_of(region,country)", "has_property(country,wealthy)", "degree_comparable(region,country,wealthy)"]
     no_arguments: ["part_in_whole_smaller_degree"]
-  - name: whole_into_parts_selected/closure-arbitrary-selected-member
+  - name: whole_into_parts_selected/book
     source: "10.2, p.317: any selected member of the specified finite partition, with an explicit sufficient warrant"
     assumptions:
       - whole_partition(machine,seven_components)
@@ -124,7 +124,7 @@ cases:
       - has_property(power_unit,electrically_live)
     no_arguments: ["whole_into_parts_selected"]
     not_in: ["has_property(machine,electrically_live)"]
-  - name: whole_into_parts_negative/closure-negative-only-if
+  - name: whole_into_parts_negative/book
     source: "10.2, p.317: supported universal absence plus the necessary condition gives the negative branch"
     assumptions:
       - whole_partition(machine,components)

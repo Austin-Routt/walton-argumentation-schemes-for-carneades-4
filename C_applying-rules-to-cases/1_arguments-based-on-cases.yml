@@ -6,6 +6,10 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  action_rule_excuse/4: "Case %s supplies an exception, extenuating circumstance or excuse under rule %s for actor %s's noncompliance with action %s."
+  conflicting_action_rule/4: "In case %s, an established rule conflicts with or overrides rule %s for actor %s and action %s."
+  established_action_warrant/4: "In case %s, established rule %s obliges actor %s to perform included action %s unless a relevant exception applies."
+  established_action_rule/4: "In case %s, rule %s is established for actor %s and requires action %s as an instance of its action types."
   conflicting_or_overriding_rule/2: "Another established rule conflicts with or overrides rule %s in its application to conclusion %s."
   rule_exception_or_excuse/2: "An exceptional case or an adequate excuse defeats rule %s in its application to conclusion %s."
   applicable/1: "Argument %s is applicable."
@@ -20,6 +24,7 @@ language:
   in_case/2: "%s is true in case %s."
   inapplicable_rule/1: "Rule %s is inapplicable in this case."
   more_on_point/2: "%s is false in another case which is more on point than case %s."
+  must_do/2: "%s must do %s."
   not_indicator/2: "Under the circumstances of %s's perception, an image of %s is not a reliable indicator of that proposition."
   prestigious_individual/2: "Individual %s is prestigious for -admired by- individuals %s."
   reasonable_believe/1: "It is reasonable to believe %s."
@@ -175,3 +180,24 @@ argument_schemes:
     exceptions:
       - conflicting_or_overriding_rule(R,C)
       - rule_exception_or_excuse(R,C)
+
+  - id: established_rule_actor
+    meta:
+      title: Argument from an Established Rule — Actor and Action Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 55.1, p. 343.
+      note: Explicit actor/action/case interpretation; the separately cited 1995 original remains a provenance obligation
+        on the inherited rule-content record.
+    variables:
+    - C
+    - R
+    - P
+    - A
+    premises:
+    - established_action_rule(C,R,P,A)
+    - established_action_warrant(C,R,P,A)
+    exceptions:
+    - conflicting_action_rule(C,R,P,A)
+    - action_rule_excuse(C,R,P,A)
+    conclusions:
+    - must_do(P,A)

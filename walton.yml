@@ -7,6 +7,23 @@ meta:
        Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
        Argumentation Schemes. Cambridge University Press.
 language: 
+  action_rule_excuse/4: "Case %s supplies an exception, extenuating circumstance or excuse under rule %s for actor %s's noncompliance with action %s."
+  conflicting_action_rule/4: "In case %s, an established rule conflicts with or overrides rule %s for actor %s and action %s."
+  established_action_warrant/4: "In case %s, established rule %s obliges actor %s to perform included action %s unless a relevant exception applies."
+  established_action_rule/4: "In case %s, rule %s is established for actor %s and requires action %s as an instance of its action types."
+  should_not_bring_about/1: "The situated proposal %s should not be brought about."
+  slope_bad_outcome/1: "The situated outcome %s is disastrous or sufficiently bad for this practical assessment."
+  slope_links_warranted/3: "The evidence for the weakest links of the specified sequence from %s through %s to %s warrants the claimed plausibility in this case."
+  slope_chain_complete/3: "The proposed sequence from %s through %s to %s has the needed intervening steps; it is an evidential assessment of this specified sequence."
+  plausible_slope_chain/3: "For situated proposal %s, explicitly identified finite sequence %s gives the intervening steps and plausible conditional links through to outcome %s in this case."
+  initially_acceptable_proposal/1: "The situated proposal %s is under consideration and initially appears worth bringing about."
+  ethos_less_plausible/3: "The assertion by %s of %s merits reduced plausibility on the character evidence in dialogue %s; the proposition's negation is not asserted."
+  ethos_more_plausible/3: "The assertion by %s of %s merits greater plausibility on the character evidence in dialogue %s; no numerical probability or truth verdict is asserted."
+  ethos_presumption_warranted/4: "For speaker %s, assertion %s and dialogue %s, the evidence warrants the claimed qualitative %s adjustment of plausibility."
+  ethos_relevant/3: "The character of %s is relevant to evaluating assertion %s in dialogue %s."
+  ethos_context/3: "The assertion by %s of situated proposition %s is evaluated in dialogue %s."
+  witness_account_biased/2: "The account by witness %s concerning situated proposition %s has relevant bias."
+  reduced_plausibility_from_ethos/2: "The assertion of %s that %s is true has reduced plausibility on the character evidence; this does not assert that the proposition is false."
   means_same_in_language/3: "In language %s, word %s means the same as definition %s."
   member_of_accounts/2: "Account %s is a member of the candidate account set %s."
   selected_part_sufficient_for_whole/3: "For whole %s, the selected part %s having property %s is sufficient for the whole to have that property in this application."
@@ -1839,14 +1856,19 @@ argument_schemes:
   - id: ethotic2
     meta:
       title: Negative Argument from Ethos
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
-    variables: [P,S]
-    conclusions: [¬S]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press,
+        Tuscaloosa and London, 1995, p. 152.
+    variables:
+    - P
+    - S
+    conclusions:
+    - reduced_plausibility_from_ethos(P,S)
     premises:
-      - asserts(P,S)
-      - bad_moral_character(P)
+    - asserts(P,S)
+    - bad_moral_character(P)
     assumptions:
-      - character_is_relevant(S)
+    - character_is_relevant(S)
 
   - id: expert_opinion
     meta:
@@ -2040,22 +2062,29 @@ argument_schemes:
   - id: witness_testimony
     meta:
       title: Argument from Witness Testimony
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 3, p. 310. Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008."
-    variables: [W,D,S]
-    conclusions: [S]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 3, p. 310. Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations
+        in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and
+        Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge
+        University Press, 2008.'
+    variables:
+    - W
+    - D
+    - S
+    conclusions:
+    - S
     premises:
-      - position_to_know(W,D)
-      - in_domain(S,D)
-      - believes(W,S)
-      - asserts(W,S)
+    - position_to_know(W,D)
+    - in_domain(S,D)
+    - believes(W,S)
+    - asserts(W,S)
     assumptions:
-      - internally_consistent(S)
+    - internally_consistent(S)
     exceptions:
-      - inconsistent_with_known_facts(S)
-      - inconsistent_with_other_witnesses(S)
-      - biased(W)
-      - implausible(S)
-
+    - inconsistent_with_known_facts(S)
+    - inconsistent_with_other_witnesses(S)
+    - witness_account_biased(W,S)
+    - implausible(S)
 
   - id: part_in_whole_physical
     meta:
@@ -2152,3 +2181,88 @@ argument_schemes:
     - whole_partition(X,S)
     - whole_requires_property_part(X,S,A)
     - no_partition_part_property(X,S,A)
+
+  - id: ethotic_positive_compendium
+    meta:
+      title: Positive Ethotic Argument — Qualitative Compendium Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 41, p. 336.
+      note: This is a declared interpretation of the supplied compendium; it does not certify the separately cited
+        1995 original.
+    variables:
+    - P
+    - S
+    - D
+    premises:
+    - asserts(P,S)
+    - good_moral_character(P)
+    - ethos_context(P,S,D)
+    assumptions:
+    - ethos_relevant(P,S,D)
+    - ethos_presumption_warranted(P,S,D,positive)
+    conclusions:
+    - ethos_more_plausible(P,S,D)
+
+  - id: ethotic_negative_compendium
+    meta:
+      title: Negative Ethotic Argument — Qualitative Compendium Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 41, p. 336.
+      note: This is a declared interpretation of the supplied compendium; it does not certify the separately cited
+        1995 original.
+    variables:
+    - P
+    - S
+    - D
+    premises:
+    - asserts(P,S)
+    - bad_moral_character(P)
+    - ethos_context(P,S,D)
+    assumptions:
+    - ethos_relevant(P,S,D)
+    - ethos_presumption_warranted(P,S,D,negative)
+    conclusions:
+    - ethos_less_plausible(P,S,D)
+
+  - id: slippery_slope_compendium
+    meta:
+      title: Slippery Slope Argument — Complete Compendium Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 49, p. 339.
+      note: The printed sequence is an explicit evidential witness; this is not the entry 53 full-slope schema or
+        a verification of the cited 1992/1999 book edition.
+    variables:
+    - A
+    - S
+    - Z
+    premises:
+    - initially_acceptable_proposal(A)
+    - plausible_slope_chain(A,S,Z)
+    - slope_bad_outcome(Z)
+    assumptions:
+    - slope_chain_complete(A,S,Z)
+    - slope_links_warranted(A,S,Z)
+    conclusions:
+    - should_not_bring_about(A)
+
+  - id: established_rule_actor
+    meta:
+      title: Argument from an Established Rule — Actor and Action Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 55.1, p. 343.
+      note: Explicit actor/action/case interpretation; the separately cited 1995 original remains a provenance obligation
+        on the inherited rule-content record.
+    variables:
+    - C
+    - R
+    - P
+    - A
+    premises:
+    - established_action_rule(C,R,P,A)
+    - established_action_warrant(C,R,P,A)
+    exceptions:
+    - conflicting_action_rule(C,R,P,A)
+    - action_rule_excuse(C,R,P,A)
+    conclusions:
+    - must_do(P,A)
+

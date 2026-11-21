@@ -36,7 +36,7 @@ A_reasoning/4_abductive-reasoning.yml:
 
 A_reasoning/5_causal-reasoning.yml:
   title: Reasoning - Causal Reasoning
-  schemes: [slippery_slope_base_case, slippery_slope_inductive_step,
+  schemes: [slippery_slope_base_case, slippery_slope_inductive_step, slippery_slope_compendium,
             opposition_descriptive_1, opposition_descriptive_2,
             opposition_descriptive_3, opposition_normative,
             rhetorical_oppositions_normative, rhetorical_oppositions_descriptive,
@@ -67,13 +67,13 @@ B_source-based-arguments/4_argument-from-popular-acceptance.yml:
             moral_justification_ad_populum_excuse, snob_appeal_ad_populum,
             appeal_to_vanity_ad_populum, rhetoric_ad_populum,
             common_folk_ad_populum, common_folks_group_ad_populum,
-            popular_practice, ethotic1, ethotic2]
+            popular_practice, ethotic1, ethotic2, ethotic_positive_compendium, ethotic_negative_compendium]
 
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml:
   title: Applying Rules to Cases - Arguments Based on Cases
   schemes: [exeption_to_rule, from_example, illustration, from_model,
             from_antimodel, practical_analogy_positive,
-            practical_analogy_negative, perception, analogy, established_rule]
+            practical_analogy_negative, perception, analogy, established_rule, established_rule_actor]
 
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml:
   title: Applying Rules to Cases - Defeasible Rule-based Arguments

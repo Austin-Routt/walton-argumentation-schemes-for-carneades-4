@@ -83,6 +83,15 @@ class Migrate(unittest.TestCase):
     def test_idempotent(self):
         self.assertEqual(Migrator().text(self.new), self.new)
 
+    def test_ethotic_strength_change_is_instance_specific_and_manual(self):
+        src = 'arguments:\n  a1:\n    scheme: ethotic2\n    conclusion: "¬claim"\n'
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        self.assertTrue(any(r['record'] == 'ethotic2' for r in mig.needs_hand(src)))
+        unrelated = 'assumptions: ["¬claim"]\n'
+        self.assertEqual(mig.text(unrelated), unrelated)
+        self.assertFalse(any(r['record'] == 'ethotic2' for r in mig.needs_hand(unrelated)))
+
     def test_chains_and_merges(self):
         # posible -> can_be_realized -> possible_goal; part_propert ->
         # part_property -> has_property, which group_2's has/2 also became

@@ -962,7 +962,7 @@ cases:
     arguments:
       - ethotic2(bob,bridge_safe)
     in:
-      - ¬bridge_safe
+      - reduced_plausibility_from_ethos(bob,bridge_safe)
     variants: true
   - name: exeption_to_rule/book
     source: "upstream: A Pragmatic Theory of Fallacy (1995), p. 148"

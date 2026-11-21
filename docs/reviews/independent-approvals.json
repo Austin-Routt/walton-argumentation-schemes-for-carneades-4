@@ -1398,7 +1398,7 @@
         "docs/source-closure-contracts.md"
       ],
       "examples": [
-        "part_in_whole_physical/closure-physical-positive",
+        "part_in_whole_physical/book",
         "part_in_whole_physical/closure-species-is-not-physical"
       ],
       "review": {
@@ -1415,7 +1415,7 @@
         "docs/source-closure-contracts.md"
       ],
       "examples": [
-        "part_in_whole_species_degree/closure-species-degree",
+        "part_in_whole_species_degree/book",
         "part_in_whole_species_degree/closure-no-common-scale"
       ],
       "review": {
@@ -1432,7 +1432,7 @@
         "docs/source-closure-contracts.md"
       ],
       "examples": [
-        "part_in_whole_physical_degree/closure-physical-degree",
+        "part_in_whole_physical_degree/book",
         "part_in_whole_physical_degree/closure-wrong-property-scale"
       ],
       "review": {
@@ -1449,7 +1449,7 @@
         "docs/source-closure-contracts.md"
       ],
       "examples": [
-        "part_in_whole_smaller_degree/closure-smaller-degree",
+        "part_in_whole_smaller_degree/book",
         "part_in_whole_smaller_degree/closure-no-smaller-part-evidence"
       ],
       "review": {
@@ -1484,7 +1484,7 @@
         "docs/source-closure-contracts.md"
       ],
       "examples": [
-        "whole_into_parts_selected/closure-arbitrary-selected-member",
+        "whole_into_parts_selected/book",
         "whole_into_parts_selected/closure-two-parts",
         "whole_into_parts_selected/closure-necessary-is-not-sufficient",
         "whole_into_parts_selected/closure-other-partition-member",
@@ -1504,7 +1504,7 @@
         "docs/source-closure-contracts.md"
       ],
       "examples": [
-        "whole_into_parts_negative/closure-negative-only-if",
+        "whole_into_parts_negative/book",
         "whole_into_parts_negative/closure-not-closed-world",
         "whole_into_parts_negative/closure-one-negative-part-insufficient",
         "whole_into_parts_negative/closure-other-partition-negative",
