@@ -244,7 +244,7 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 			if !ok {
 				continue // conclusions of schemes are checked elsewhere
 			}
-			if _, ok := terms.Match(t4, t3, b); ok {
+			if _, ok := matchInstance(t4, t3, b); ok {
 				found = true
 				break
 			}
@@ -313,7 +313,7 @@ func matchEachWith(patterns, stmts []terms.Term, b terms.Bindings, used []bool, 
 		if used[i] {
 			continue
 		}
-		if b2, ok := terms.Match(p, stmts[0], b); ok {
+		if b2, ok := matchInstance(p, stmts[0], b); ok {
 			used[i] = true
 			if matchEachWith(patterns, stmts[1:], b2, used, accept) {
 				return true
@@ -322,6 +322,34 @@ func matchEachWith(patterns, stmts []terms.Term, b terms.Bindings, used []bool, 
 		}
 	}
 	return false
+}
+
+// matchInstance matches a statement of an argument with a pattern of its
+// scheme. A scheme that concludes ¬S for a negative S gives the statement S
+// itself: ¬¬S is read as S (docs/contracts.md, contract 4), and inference
+// names the statement so. Such an instance does not match its pattern term
+// for term; it is the pattern's instance under the bindings, folded.
+func matchInstance(pattern, stmt terms.Term, b terms.Bindings) (terms.Bindings, bool) {
+	if b2, ok := terms.Match(pattern, stmt, b); ok {
+		return b2, true
+	}
+	// Validation also sees malformed authored input: fold only an instance
+	// whose variables are all bound to ground terms, as carriesExceptions does.
+	for _, v := range pattern.OccurVars() {
+		value, bound := terms.GetBinding(v, b)
+		if !bound || !terms.Ground(value, nil) {
+			return b, false
+		}
+	}
+	instance := terms.Substitute(pattern, b)
+	if !terms.Ground(instance, nil) {
+		return b, false
+	}
+	folded := terms.FoldNegation(instance)
+	if folded.String() == instance.String() {
+		return b, false
+	}
+	return b, terms.Normalize(folded.String()) == terms.Normalize(stmt.String())
 }
 
 func exceptionProblem(id string, s *caes.Scheme) Problem {
@@ -358,7 +386,7 @@ func carriesExceptions(ag *caes.ArgGraph, arg *caes.Argument, b terms.Bindings) 
 				return false
 			}
 		}
-		instance := terms.Substitute(pattern, b)
+		instance := terms.FoldNegation(terms.Substitute(pattern, b))
 		if !terms.Ground(instance, nil) {
 			return false
 		}

@@ -105,6 +105,23 @@ func Normalize(s string) string {
 	}
 }
 
+// FoldNegation reads ¬¬S as S, as often as the double negation occurs at the
+// top of t. The rule store reads constraints this way; the argument graph
+// names its statements the same way, so that S and ¬¬S are one statement.
+func FoldNegation(t Term) Term {
+	for {
+		outer, ok := t.(Compound)
+		if !ok || outer.Functor != "¬" || len(outer.Args) != 1 {
+			return t
+		}
+		inner, ok := outer.Args[0].(Compound)
+		if !ok || inner.Functor != "¬" || len(inner.Args) != 1 {
+			return t
+		}
+		t = inner.Args[0]
+	}
+}
+
 func AddBinding(v Variable, t Term, b Bindings) Bindings {
 	// fmt.Printf(" Add Binding %s-%d == %s \n", v.String(), v.index, t.String())
 	return &BindEle{Var: v, T: t, Next: b}

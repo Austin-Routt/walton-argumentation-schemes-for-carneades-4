@@ -612,6 +612,123 @@ assumptions: ["p(a,b)"]
 		out = append(out, eres("failing-join-completes", e.usable() && e.Label("t(c1,c2,c3)") == "in",
 			"a four-premise join over 120 facts with one match: t(c1,c2,c3) should be in, it is %s %s", e.Label("t(c1,c2,c3)"), e.why()))
 	}
+	{
+		// A scheme that concludes ¬S for a negative S concludes S: the rule
+		// store reads ¬¬S as S and reasons from it, and the graph names the
+		// same statement (docs/contracts.md, contract 4). Before, the store
+		// built the next argument from q(a) while the graph held ¬¬q(a) in
+		// and left q(a), and what followed from it, out.
+		e := EvalYAML(`
+language:
+  denies/1: "It is denied that %s."
+  q/1: "%s is q."
+  p/1: "%s is p."
+issue_schemes:
+  negation: [S, "¬S"]
+argument_schemes:
+  - id: deny
+    variables: [S]
+    premises: ["denies(S)"]
+    conclusions: ["¬S"]
+  - id: next
+    variables: [X]
+    premises: ["q(X)"]
+    conclusions: ["p(X)"]
+statements:
+  q(a): a is q.
+assumptions: ["denies(¬q(a))", "denies(q(b))"]
+`)
+		double, reported := []string{}, []string{}
+		if e.AG != nil {
+			for k := range e.AG.Statements {
+				if strings.HasPrefix(k, "¬¬") {
+					double = append(double, k)
+				}
+			}
+			for _, p := range validation.Validate(e.AG) {
+				if p.Category == validation.ARGUMENT {
+					reported = append(reported, p.Id+": "+p.Description)
+				}
+			}
+		}
+		sort.Strings(double)
+		sort.Strings(reported)
+		out = append(out, eres("derived-double-negation-is-the-statement",
+			e.usable() && len(double) == 0 && len(reported) == 0 && e.Label("q(a)") == "in" && e.Label("p(a)") == "in" && e.Label("¬q(b)") == "in",
+			"denies(¬q(a)) under a scheme that concludes ¬S: want q(a) and p(a) in, ¬q(b) in, no statement ¬¬q(a) and a valid graph; got q(a) %s, p(a) %s, ¬q(b) %s, statements %v, validation %v %s",
+			e.Label("q(a)"), e.Label("p(a)"), e.Label("¬q(b)"), double, reported, e.why()))
+	}
+	{
+		// A statement written with a double negation is refused and names the
+		// statement to write instead: given the key ¬¬q(a), a graph held q(a)
+		// a second time, as a rival position of its own issue.
+		e := EvalYAML(`
+language:
+  q/1: "%s is q."
+issue_schemes:
+  negation: [S, "¬S"]
+statements:
+  q(a): a is q.
+  "¬q(a)": a is not q.
+  "¬¬q(a)": a is not not q.
+assumptions: ["¬¬q(a)"]
+`)
+		refused := e.InferErr != nil && errors.Is(e.InferErr, caes.ErrInvalidInput) && strings.Contains(e.InferErr.Error(), "double negation") && strings.Contains(e.InferErr.Error(), `"q(a)"`)
+		out = append(out, eres("authored-double-negation-is-refused", refused,
+			"a graph with the statement ¬¬q(a) should be refused as invalid input, naming q(a); got %v %s", e.InferErr, e.why()))
+	}
+	{
+		// The same graph gives the same issues on every run. An issue scheme
+		// whose later pattern has a variable of its own takes the first
+		// statement that matches; "first" was the iteration order of a map.
+		text := `
+language:
+  leads/1: "%s leads."
+  trails/1: "%s trails."
+  p/1: "%s is p."
+issue_schemes:
+  negation: [S, "¬S"]
+  open: ["leads(X)", "trails(Y)"]
+statements:
+  leads(a): x
+  leads(b): x
+  leads(c): x
+  trails(u): x
+  trails(v): x
+  trails(w): x
+  trails(x): x
+  p(a): x
+  "¬p(a)": x
+  "¬leads(a)": x
+  "¬trails(w)": x
+assumptions: []
+`
+		describe := func() string {
+			e := EvalYAML(text)
+			if !e.usable() {
+				return "not evaluated: " + e.why()
+			}
+			lines := []string{}
+			for _, i := range e.AG.Issues {
+				ps := []string{}
+				for _, p := range i.Positions {
+					ps = append(ps, p.Id)
+				}
+				sort.Strings(ps)
+				lines = append(lines, strings.Join(ps, " "))
+			}
+			sort.Strings(lines)
+			return strings.Join(lines, "; ")
+		}
+		first, differs := describe(), ""
+		for i := 0; i < 40 && differs == ""; i++ {
+			if got := describe(); got != first {
+				differs = got
+			}
+		}
+		out = append(out, eres("issue-construction-is-repeatable", differs == "" && !strings.HasPrefix(first, "not evaluated"),
+			"41 evaluations of one graph should give the same issues; the first gave [%s], a later one [%s]", first, differs))
+	}
 	// Theories that can run away are evaluated in a process of their own, with a
 	// time limit and a memory limit (isolate.go).
 	// A counter: genuinely infinite, whatever the store semantics, and small.

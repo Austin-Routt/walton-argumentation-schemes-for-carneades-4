@@ -59,11 +59,39 @@ func (ag *ArgGraph) resolveContext(ctx context.Context) error {
 			return NewRunError(ErrInvalidInput, "cannot parse assumption %q", a)
 		}
 	}
+	if err := ag.refuseDoubleNegation(); err != nil {
+		return err
+	}
 	if err := ag.materializeIssues(ctx); err != nil {
 		return err
 	}
 	if ag.inconsistentPositions() {
 		return NewRunError(ErrInconsistentContext, "the accepted context contains two positions of one issue, or a statement and its negation")
+	}
+	return nil
+}
+
+// refuseDoubleNegation reports a statement or an assumption written with a
+// double negation. ¬¬S is read as S (docs/contracts.md, contract 4): the rule
+// store folds it, and so does the graph for the statements inference derives.
+// A graph that was given the key ¬¬S would hold the statement S a second
+// time, as a rival position of its own issue. The keys are visited in order,
+// so that the same graph names the same statement on every run.
+func (ag *ArgGraph) refuseDoubleNegation() error {
+	keys := make([]string, 0, len(ag.Statements)+len(ag.Assumptions))
+	for k := range ag.Statements {
+		keys = append(keys, k)
+	}
+	keys = append(keys, ag.Assumptions...)
+	sort.Strings(keys)
+	for _, k := range keys {
+		t, ok := terms.ReadString(k)
+		if !ok || t == nil {
+			continue
+		}
+		if folded := terms.FoldNegation(t); folded.String() != t.String() {
+			return NewRunError(ErrInvalidInput, "statement %q is written with a double negation: write %q", k, folded.String())
+		}
 	}
 	return nil
 }

@@ -1,0 +1,44 @@
+# A scheme that concludes ¬S, applied to a negative statement, concludes the
+# statement itself: ¬¬S is read as S, in the argument graph as in the rule
+# store (docs/contracts.md, contract 4). Before engine 4.3.1+walton.4 the rule
+# store reasoned from S while the graph labelled another statement, ¬¬S, and
+# left S, and everything that followed from it, out. The schemes are the
+# library's own; the constants are illustrations.
+cases:
+  # 41 (inherited record): bob, of bad character, asserts that al is not
+  # required. The argument is for "al is required", and 13.2 can build on it.
+  - name: negation/negative-assertion-of-a-bad-character
+    source: "41, p. 336, and 13.2, p. 318; contract 4"
+    assumptions:
+      - asserts(bob,¬is_required(al))
+      - bad_moral_character(bob)
+      - can_be_required(al,cy)
+    arguments:
+      - ethotic2(bob,¬is_required(al))
+      - alternative_normative(al,cy)
+    in:
+      - is_required(al)
+      - ¬is_required(cy)
+  # 26 (inherited record): it would be known if al were not required, and it
+  # is not known: al is required.
+  - name: negation/ignorance-of-a-negative-statement
+    source: "26, p. 327; contract 4"
+    assumptions:
+      - would_be_known(¬is_required(al))
+      - ¬known(¬is_required(al))
+    arguments:
+      - ignorance(¬is_required(al))
+    in:
+      - is_required(al)
+  # the control: a positive statement keeps its negation as the conclusion
+  - name: negation/positive-assertion-of-a-bad-character
+    source: "41, p. 336"
+    assumptions:
+      - asserts(bob,is_required(al))
+      - bad_moral_character(bob)
+    arguments:
+      - ethotic2(bob,is_required(al))
+    in:
+      - ¬is_required(al)
+    not_in:
+      - is_required(al)

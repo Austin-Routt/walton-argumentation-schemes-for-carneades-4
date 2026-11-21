@@ -13,6 +13,7 @@ package caes
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -627,6 +628,15 @@ func (ag *ArgGraph) inconsistentPositions() bool {
 	return false
 }
 
+// instantiate gives the statement a pattern of a scheme stands for under the
+// parameters of an argument. A scheme that concludes ¬S for a negative S
+// gives S itself: ¬¬S is read as S, in the graph as in the rule store
+// (docs/contracts.md, contract 4). Otherwise the rule store would reason from
+// S while the graph labelled another statement, ¬¬S, and left S out.
+func instantiate(t terms.Term, params map[string]terms.Term) terms.Term {
+	return terms.FoldNegation(substituteParameters(t, params))
+}
+
 // substituteParameters replaces each variable of t named in params by its
 // value, once: the values are not substituted again.
 func substituteParameters(t terms.Term, params map[string]terms.Term) terms.Term {
@@ -759,7 +769,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				for i, p := range l {
 					term1, ok := terms.ReadString(p)
 					if ok {
-						term2 := substituteParameters(term1, bindings)
+						term2 := instantiate(term1, bindings)
 						// Leave argument(S,P) premises implicit; Enthymeme!
 						pred, ok := terms.Predicate(term2)
 						if ok && pred == "argument" {
@@ -796,7 +806,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 			for _, c := range scheme.Conclusions {
 				term1, ok := terms.ReadString(c)
 				if ok {
-					term2 := substituteParameters(term1, bindings)
+					term2 := instantiate(term1, bindings)
 					stmt, ok := ag.Statements[term2.String()]
 					if !ok {
 						s := Statement{Id: term2.String(),
@@ -846,7 +856,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				for _, e := range scheme.Exceptions {
 					term1, ok := terms.ReadString(e)
 					if ok {
-						term2 := substituteParameters(term1, bindings)
+						term2 := instantiate(term1, bindings)
 						stmt, ok := ag.Statements[term2.String()]
 						if !ok {
 							s := Statement{Id: term2.String(),
@@ -954,7 +964,26 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 		return err
 	}
 	pattern := parsed[0]
-	for wff1, stmt := range ag.Statements {
+	// Statements are visited in the order of their keys, here and in the scan
+	// below. The positions an issue scheme finds, and whether two of its
+	// issues meet in one statement, must not depend on the iteration order of
+	// a map: the same graph has to give the same issues on every run.
+	wffs := make([]string, 0, len(ag.Statements))
+	for wff := range ag.Statements {
+		wffs = append(wffs, wff)
+	}
+	sort.Strings(wffs)
+	// A position is looked up by the normal form of its key. The command and
+	// the YAML reader write keys in normal form; a graph built through the
+	// API, or read from another format, need not.
+	byNormalForm := make(map[string]*Statement, len(wffs))
+	for _, wff := range wffs {
+		if n := terms.Normalize(wff); byNormalForm[n] == nil {
+			byNormalForm[n] = ag.Statements[wff]
+		}
+	}
+	for _, wff1 := range wffs {
+		stmt := ag.Statements[wff1]
 		if err := work.step(); err != nil {
 			return err
 		}
@@ -1005,11 +1034,12 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 						ground = false
 						break
 					}
-					keys = append(keys, terms.Normalize(inst.String()))
+					// ¬S of a negative S is S itself (contract 4)
+					keys = append(keys, terms.Normalize(terms.FoldNegation(inst).String()))
 				}
 			}
 			if ground {
-				seen := map[string]bool{wff1: true}
+				seen := map[string]bool{terms.Normalize(wff1): true}
 				for _, k := range keys {
 					if err := work.step(); err != nil {
 						return err
@@ -1018,7 +1048,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 						continue
 					}
 					seen[k] = true
-					if stmt2, ok := ag.Statements[k]; ok {
+					if stmt2 := byNormalForm[k]; stmt2 != nil && stmt2 != stmt {
 						candidates = append(candidates, stmt2)
 					}
 				}
@@ -1030,10 +1060,11 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			// remaining patterns of the issue scheme and, in particular,
 			// whether or not the issue scheme is an enumeration.
 
-			for wff2, stmt2 := range ag.Statements {
+			for _, wff2 := range wffs {
 				if ground {
 					break
 				}
+				stmt2 := ag.Statements[wff2]
 				if err := work.step(); err != nil {
 					return err
 				}

@@ -2,6 +2,15 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — a double negation is one statement, and issues do not depend on run order (engine 4.3.1+walton.4)
+
+Found and written by the reviewer of 2026-11-21 in the follow-up to the implementer's response (`docs/reviews/2026-11-21-reviewer-follow-up.md`, findings F1 to F3). The reviewer wrote these changes, so someone else checks them before the release is tagged (D14).
+
+* **`¬¬S` is `S` in the argument graph too** (contract 4). A scheme that concludes `¬S`, applied to a negative statement, used to conclude a statement `¬¬S` of its own. The rule store read it as `S` and built further arguments from `S`, while the graph labelled `¬¬S` in and left `S`, and everything those arguments concluded, out. With the library: `ethotic2` on the assertion `¬is_required(al)` gave `¬¬is_required(al)` in, `is_required(al)` out, and `alternative_normative` built on it but out. Instances of a scheme's statements are now folded as the rule store folds them, the validator accepts the folded instance of a pattern and still refuses a wrong one, and issue construction reads `¬S` of a negative `S` as `S`.
+* **A statement or an assumption written with a double negation is refused** as invalid input (exit status 1), with the statement to write instead. Given the key `¬¬q(a)`, a graph held `q(a)` twice: assuming both was reported as an inconsistent context, and assuming `¬¬q(a)` left `q(a)` out.
+* **Issue construction is repeatable.** It visited the statements in the iteration order of a Go map. A graph with `q(a)`, `¬q(a)`, `¬¬q(a)` and `¬¬¬q(a)` ended as invalid input ("connects distinct existing issues") in 13 runs of 40 and as one issue in the other 27; an issue scheme whose later pattern has a variable of its own gave different positions from run to run. Statements are now visited in the order of their keys.
+* **A position is found by the normal form of its key.** The lookup by key of engine 4.3.1+walton.3 missed positions in graphs built through the API or read from another format with keys that are not in normal form (`q( c )`), which the scan it replaced had found.
+* Checks: `derived-double-negation-is-the-statement`, `authored-double-negation-is-refused`, `issue-construction-is-repeatable`, three reference cases `negation/*` with the library's own schemes, and the engines' `TestDerivedDoubleNegationIsTheStatement`, `TestDerivedDoubleNegationJoinsTheIssueOfTheStatement`, `TestAuthoredDoubleNegationIsRefused`, `TestIssueConstructionIsRepeatable`, `TestIssueLookupNormalizesKeys`, `TestFoldNegation` and `TestFoldedInstanceIsAnInstanceOfItsScheme` (8,239). Each fails when its fix is taken out.
 ## 2026-11-21 — reviewer's follow-up: decisions D15 to D23, 88 of 120 rows approved
 
 See `docs/reviews/2026-11-21-reviewer-follow-up.md`. No record, template or engine file changes in this entry.
