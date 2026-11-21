@@ -56,16 +56,16 @@ class Migrate(unittest.TestCase):
         self.new = Migrator().text(OLD)
 
     def test_identifiers(self):
-        for s in ["- id: exceptional", "- all_parts_property(A,b)", "- can_be_realized(A)", "- id: opposition_normative",
-                  "[receives_evaluation(A,good)]", "scheme: threat", "[can_be_realized(x)]", "conclusion: action_fits_quality(x)",
-                  "  - all_parts_property(car,heavy)", "in: [can_be_realized(x)]"]:
+        for s in ["- id: exceptional", "- all_parts_property(A,b)", "- possible_goal(A)", "- id: opposition_normative",
+                  "[receives_evaluation(A,good)]", "scheme: threat", "[possible_goal(x)]", "conclusion: action_fits_quality(x)",
+                  "  - all_parts_property(car,heavy)", "in: [possible_goal(x)]"]:
             self.assertIn(s, self.new, s)
 
     def test_keys_but_not_text(self):
-        self.assertIn('  can_be_realized/1: "treat: %s is posible, said exeptional."', self.new)
+        self.assertIn('  possible_goal/1: "treat: %s is posible, said exeptional."', self.new)
         self.assertIn('  all_parts_property/2: "All the parts of %s have the property %s."', self.new)
         self.assertIn('  "all_parts_property(car,heavy)": "all_parts_propert in text stays"', self.new)
-        self.assertIn('  can_be_realized(x): posible stays here too', self.new)
+        self.assertIn('  possible_goal(x): posible stays here too', self.new)
 
     def test_meta_untouched(self):
         self.assertIn("  title: exeptional cases and the treat of posible waste", self.new)
@@ -79,6 +79,23 @@ class Migrate(unittest.TestCase):
 
     def test_idempotent(self):
         self.assertEqual(Migrator().text(self.new), self.new)
+
+    def test_chains_and_merges(self):
+        # posible -> can_be_realized -> possible_goal; part_propert ->
+        # part_property -> has_property, which group_2's has/2 also became
+        src = "premises: [part_propert(rose,red), has(g,q), posible(x), has_property(y,z)]\n"
+        self.assertEqual(Migrator().text(src),
+                         "premises: [has_property(rose,red), has_property(g,q), possible_goal(x), has_property(y,z)]\n")
+
+    def test_by_hand(self):
+        # a statement whose form changed for one record is listed, not rewritten
+        src = "assumptions:\n  - carry_out_action(go)\n  - plausibly_true(rain)\n"
+        m = Migrator()
+        self.assertEqual(m.text(src), src)
+        rows = {(r["record"], r["new"]) for r in m.needs_hand(src)}
+        self.assertIn(("practical_inference", "should_do(P,A)"), rows)
+        self.assertIn(("appeal_to_vanity_ad_populum", "ought_to_bring_about(X)"), rows)
+        self.assertIn(("position_to_know_ad_populum", "A"), rows)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,6 @@ language:
   argument_not_accepted/2: "%s's argument %s should not be accepted."
   arguer_not_taken_both/2: "Arguer %s is less likely to have taken the evidence on both sides into account in arriving at conclusion %s."
   bad_character/1: "%s is a person of bad character."
-  bad_not_accepted/2: "%s's argument %s should not be accepted."
   bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
   biased/1: "Arguer %s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
@@ -42,7 +41,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 42, p. 336. Douglas Walton , Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, p. 123."
     variables: [A,S,C]
     conclusions:
-      - bad_not_accepted(A,S)
+      - argument_not_accepted(A,S)
     premises:
       - bad_character(A)
       - advocates_conclusion(A,S,C)

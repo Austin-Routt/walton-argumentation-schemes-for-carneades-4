@@ -9,7 +9,6 @@ language:
   arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."
   arbitrary_property/2: "Some property %s that occurs in %s is defined in a way that is arbitrary."
-  arbitrary_rejected/1: "%s ought to be rejected as deficient."
   certainty_no_need/2: "In argument %s, property %s does not need to be certain for the sake of the argument."
   classified_as/2: "Objects which satisfy definition %s are classified as instances of class %s."
   doubtful_classification/2: "Classifying what is %s as %s rests merely on an assumption about word usage that is subject to doubt."
@@ -18,10 +17,10 @@ language:
   needed_nonarbitrary/2: "%s occurs in a context of dialogue that requires a nonarbitrary definition for a key property %s that occurs in the argument."
   precision_needed/1: "%s occurs in a context of dialogue that requires a certain level of precision that is appropriate for that context."
   property_vagueness/2: "Some property %s that occurs in %s is defined in a way that is too vague to meet the requirement of the level of precision appropriate for the context."
+  rejected_as_deficient/1: "%s ought to be rejected as deficient."
   satisfies_definition/2: "%s satisfies definition %s."
   subclass/2:  "%s is a subclass of %s."
   vague_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of precision, but some property %s that occurs in the argument is defined in a way that is too vague to meet the requirement of that level of precision, then the argument ought to be rejected as deficient."
-  vagueness_rejected/1: "%s ought to be rejected as deficient."
 
 issue_schemes:
   # A statement and its explicit negation are the two positions of one issue,
@@ -62,7 +61,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 16, p. 319. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.102-103."
     variables: [A,F]
     conclusions: 
-      -  vagueness_rejected(A)
+      -  rejected_as_deficient(A)
     premises: 
       - vague_defined_property(A,F)
       - precision_needed(A)
@@ -76,7 +75,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 17, p. 320. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.104-105."
     variables: [A,F]
     conclusions:
-      - arbitrary_rejected(A)
+      - rejected_as_deficient(A)
     premises: 
       - arbitrary_defined_property(A,F)
       - needed_nonarbitrary(A,F)

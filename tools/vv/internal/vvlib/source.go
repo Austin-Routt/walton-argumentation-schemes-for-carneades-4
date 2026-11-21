@@ -570,8 +570,8 @@ func MigrationChecks(lib *Library) []Result {
 		return []Result{fail(file, "(file)", "migration/readable", "%v", err)}
 	}
 	out := []Result{pass(file, "(file)", "migration/readable")}
-	// The renames of 5.6 come last in the table and hold for every row before
-	// them: a row names a record and statements as they were then.
+	// The renames of 5.6 hold for every row of the table: a row names a record
+	// and statements as they were then, and the check maps them to today's names.
 	schemeRen, predRen := map[string]string{}, map[string]string{}
 	for _, c := range t.Changes {
 		switch c.Kind {
@@ -581,6 +581,26 @@ func MigrationChecks(lib *Library) []Result {
 			predRen[strings.Split(c.Old, "/")[0]] = strings.Split(c.New, "/")[0]
 		}
 	}
+	// a chain of renames (A to B, then B to C) is followed to its end
+	final := func(m map[string]string, name string) string {
+		seen := map[string]bool{name: true}
+		for {
+			n, ok := m[name]
+			if !ok || seen[n] {
+				return name
+			}
+			seen[n] = true
+			name = n
+		}
+	}
+	for o := range schemeRen {
+		schemeRen[o] = final(schemeRen, o)
+	}
+	finalPred := map[string]string{}
+	for o := range predRen {
+		finalPred[o] = final(predRen, o)
+	}
+	predRen = finalPred
 	renamed := func(st string) string {
 		for o, n := range predRen {
 			st = regexp.MustCompile(`(^|[^\w-])`+regexp.QuoteMeta(o)+`($|[^\w-])`).ReplaceAllString(st, "${1}"+n+"${2}")
@@ -595,10 +615,19 @@ func MigrationChecks(lib *Library) []Result {
 				probs = append(probs, fmt.Sprintf("the library should have %s and no longer %s", c.New, c.Old))
 			}
 		case "rename-predicate":
+			// the name the row gives, after the renames that follow it
+			to := c.New
+			if parts := strings.Split(c.New, "/"); len(parts) == 2 {
+				to = predRen[parts[0]]
+				if to == "" {
+					to = parts[0]
+				}
+				to += "/" + parts[1]
+			}
 			_, hasOld := lib.AG.Theory.Language[c.Old]
-			_, hasNew := lib.AG.Theory.Language[c.New]
+			_, hasNew := lib.AG.Theory.Language[to]
 			if hasOld || !hasNew {
-				probs = append(probs, fmt.Sprintf("the language should define %s and no longer %s", c.New, c.Old))
+				probs = append(probs, fmt.Sprintf("the language should define %s and no longer %s", to, c.Old))
 			}
 		case "rename-file":
 			_, errOld := os.Stat(filepath.Join(RepoRoot(), filepath.FromSlash(c.Old)))

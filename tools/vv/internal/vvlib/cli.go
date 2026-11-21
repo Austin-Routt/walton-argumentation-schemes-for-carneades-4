@@ -261,6 +261,31 @@ assumptions: ["p(a,b)"]
 // after with the command (PLAN.md 5.6: graph fixtures migrated in a test).
 // The migrated graph uses none of the old identifiers, both evaluations
 // complete, and every statement has the same label under its new name.
+// identifierText keeps the parts of a graph file that hold identifiers: it
+// drops comments and the natural-language values of language: and
+// statements:, where an old name may stand as an ordinary word ("has").
+func identifierText(src string) string {
+	var b strings.Builder
+	section := ""
+	keyed := regexp.MustCompile(`^(\s+("(?:[^"\\]|\\.)*"|'[^']*'|[^:"']+?))\s*:`)
+	for _, ln := range strings.Split(src, "\n") {
+		t := strings.TrimSpace(ln)
+		if strings.HasPrefix(t, "#") {
+			continue
+		}
+		if m := regexp.MustCompile(`^([\w-]+)\s*:`).FindStringSubmatch(ln); m != nil {
+			section = m[1]
+		} else if section == "language" || section == "statements" {
+			if m := keyed.FindStringSubmatch(ln); m != nil {
+				ln = m[1]
+			}
+		}
+		b.WriteString(ln)
+		b.WriteString("\n")
+	}
+	return b.String()
+}
+
 func MigrationFixtureChecks(cli *CLI) []Result {
 	root := RepoRoot()
 	b, err := os.ReadFile(filepath.Join(root, "tools", "migration_r2.yml"))
@@ -318,7 +343,7 @@ func MigrationFixtureChecks(cli *CLI) []Result {
 		}
 		migrated := stdout.String()
 		probs := []string{}
-		if rename(migrated) != migrated {
+		if ids := identifierText(migrated); rename(ids) != ids {
 			probs = append(probs, "the migrated graph still uses an old identifier")
 		}
 		before, after := cli.Run(string(src), "eval", "-t", "yaml"), cli.Run(migrated, "eval", "-t", "yaml")

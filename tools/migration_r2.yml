@@ -1,8 +1,10 @@
 # The one migration of release R2 (PLAN.md D4, 5.6): every change to a
 # record that alters what a graph file has to state, from old to new. A graph
 # written for 0.1.0 (release R1) is brought to R2 by applying these rows in
-# order. 5.6 adds the renamings of misspelt identifiers and a script that
-# applies the table; until then this file is the record of what changed.
+# order. 5.6 adds the renamings of misspelt identifiers, the statements shared
+# by meaning and role, and a script that applies the table
+# (tools/migrate_r2.py). A rename holds for every row of the table, before or
+# after it, and a chain of renames (A to B, then B to C) is followed to its end.
 #
 #   record   the scheme
 #   kind     arguments (the same predicate, other arguments), arity (the
@@ -116,3 +118,70 @@ changes:
   - {record: "(library)", kind: rename-file, old: "B_source-based-arguments/2_argumen-from-commitment.yml", new: "B_source-based-arguments/2_argument-from-commitment.yml", plan: "5.6", page: 0}
   - {record: "(library)", kind: rename-file, old: "B_source-based-arguments/4_argumen-from-popular-acceptence.yml", new: "B_source-based-arguments/4_argument-from-popular-acceptance.yml", plan: "5.6", page: 0}
   - {record: "(library)", kind: wording, old: "", new: "", plan: "5.6", page: 0, note: "no template begins with \"Therefore\" any more; 39 did"}
+  # 5.6, statements shared by meaning and role. A predicate that says what
+  # another says, about the same kinds of things in the same places, becomes
+  # that predicate (rename-predicate, applied by the script); a statement that
+  # changes its arguments or its form for one record is listed for the reader
+  # (arity, replaced). "A is true", "A is plausibly the case" and their like
+  # are the statement A itself, as 4.1, 26, 32.1 and 32.2 already have it; "X
+  # is A" is "X has property A", as 21.2 states its premise and conclusion;
+  # "I" of entry 22 is the agent the record names, as 22.2 to 22.4 have it
+  # (p. 95: the first person is the agent who puts the argument forward).
+  - {record: group_1, kind: rename-predicate, old: "has/2", new: "has_property/2", plan: "5.6", page: 322, note: "21.1's conclusion that G has Q is 9.1's that X has property Y"}
+  - {record: group_2, kind: rename-predicate, old: "group_quality/2", new: "has_property/2", plan: "5.6", page: 322, note: "premise 1 of 21.2 is the conclusion of 21.1"}
+  - {record: part_in_whole, kind: rename-predicate, old: "species_property/2", new: "has_property/2", plan: "5.6", page: 316, note: "X is A"}
+  - {record: part_in_whole, kind: rename-predicate, old: "part_property/2", new: "has_property/2", plan: "5.6", page: 316, note: "y is A"}
+  - {record: whole_into_parts, kind: rename-predicate, old: "part_is/2", new: "has_property/2", plan: "5.6", page: 317, note: "x1 is A"}
+  - {record: whole_into_parts, kind: rename-predicate, old: "whole_is/2", new: "has_property/2", plan: "5.6", page: 317, note: "X is A"}
+  - {record: retroductive, kind: rename-predicate, old: "agent_quality/2", new: "has_property/2", plan: "5.6", page: 331, note: "the agent trait premise, a has Q"}
+  - {record: verbal_slippery_slope, kind: rename-predicate, old: "individual_property/2", new: "has_property/2", plan: "5.6", page: 341, note: "individual a0 has property F"}
+  - {record: sorites_slippery_slope, kind: rename-predicate, old: "all_has/3", new: "also_has/3", plan: "5.6", page: 340, note: "if ai has P, then ai+1 has P"}
+  - {record: verbal_slippery_slope, kind: rename-predicate, old: "individuals_property/3", new: "also_has/3", plan: "5.6", page: 341, note: "premise 2, the same conditional as 51's"}
+  - {record: pop_scheme, kind: rename-predicate, old: "reference_group_accepted/2", new: "group_accepted/2", plan: "5.6", page: 311, note: "everybody in the group accepts A, the premise 4.2 to 4.4 and 4.9 repeat"}
+  - {record: ad_hominem, kind: rename-predicate, old: "bad_not_accepted/2", new: "argument_not_accepted/2", plan: "5.6", page: 336, note: "a's argument should not be accepted, 43's conclusion in the same words"}
+  - {record: verbal_classification_arbitrariness, kind: rename-predicate, old: "arbitrary_rejected/1", new: "rejected_as_deficient/1", plan: "5.6", page: 320, note: "a ought to be rejected as deficient"}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "vagueness_rejected/1", new: "rejected_as_deficient/1", plan: "5.6", page: 320, note: "the same conclusion as 17's"}
+  - {record: waste, kind: rename-predicate, old: "can_be_realized/1", new: "possible_goal/1", plan: "5.6", page: 326, note: "CQ1, is bringing about A possible: the goal, as 22.1's possible_goal"}
+  - {record: two_person_practical, kind: rename-predicate, old: "goals_higher_priority/2", new: "conflicting_goals/2", plan: "5.6", page: 326, note: "CQ1, other goals that might conflict with realizing A, as 22.2 CQ5"}
+  - {record: practical_inference, kind: rename-predicate, old: "more_efficient_alternative_actions/2", new: "more_efficient_alternative/2", plan: "5.6", page: 323, note: "CQ2 and CQ3, as 22.4 CQ4"}
+  - {record: practical_inference, kind: rename-predicate, old: "action_realize_goal/2", new: "means_to_end/2", plan: "5.6", page: 323, note: "carrying out A is a means to realize G; x is the means to the end y (22.6)"}
+  - {record: practical_goal, kind: rename-predicate, old: "person_goal/2", new: "goal_of_agent/2", plan: "5.6", page: 325, note: "person P has goal G"}
+  - {record: value_based_practical_reasoning, kind: rename-predicate, old: "should_bring_about/2", new: "should_do/2", plan: "5.6", page: 324, note: "the practical ought, with the agent named (p. 95)"}
+  - {record: two_person_practical, kind: rename-predicate, old: "should_carry_out/2", new: "should_do/2", plan: "5.6", page: 326}
+  - {record: help, kind: rename-predicate, old: "carry_out/2", new: "should_do/2", plan: "5.6", page: 334, note: "y ought to carry out A"}
+  - {record: distress, kind: rename-predicate, old: "bring_relieve/2", new: "should_do/2", plan: "5.6", page: 334, note: "y ought to bring about A"}
+  - {record: pragmatic_alternative, kind: rename-predicate, old: "do_other/1", new: "ought_to_bring_about/1", plan: "5.6", page: 333, note: "you should (ought to, practically speaking) bring about A: 34, 35.1 and 36"}
+  - {record: "(library)", kind: wording, old: "possible_goal/1", new: "possible_goal/1", plan: "5.6", page: 326, note: "'Bringing about %s is possible.', 24's CQ1, for the goal; the old text '%s is possible.' was also possible_action's"}
+  - {record: "(library)", kind: wording, old: "ought_to_bring_about/1", new: "ought_to_bring_about/1", plan: "5.6", page: 333, note: "the words of 34 and 35.1, which include 36's 'you ought to bring about A'"}
+  - {record: practical_inference, kind: replaced, old: "have_goal(G)", new: "goal_of_agent(P,G)", plan: "5.6", page: 323, note: "the agent named, as in 22.2 to 22.4; the parameters are [A,G,P]"}
+  - {record: practical_inference, kind: replaced, old: "other_goals_conflict(G)", new: "conflicting_goals(P,G)", plan: "5.6", page: 323}
+  - {record: practical_inference, kind: replaced, old: "possible_action(A)", new: "possible_bring_about(P,A)", plan: "5.6", page: 323, note: "CQ4, practically possible for me to bring about A"}
+  - {record: practical_inference, kind: replaced, old: "carry_out_action(A)", new: "should_do(P,A)", plan: "5.6", page: 323, note: "I ought to carry out A; carry_out_action was 4.8's 'you should', in the second person"}
+  - {record: practical_necessary_condition, kind: replaced, old: "possible_agent(X,P)", new: "possible_bring_about(P,X)", plan: "5.6", page: 324, note: "CQ3, is it possible for agent a to do Bi, as 39 CQ3"}
+  - {record: practical_necessary_condition, kind: replaced, old: "possible_action(A)", new: "possible_goal(A)", plan: "5.6", page: 323, note: "the assumption is about the goal A, not an action"}
+  - {record: practical_necessary_condition, kind: replaced, old: "bringing_about_action(X)", new: "should_do(P,X)", plan: "5.6", page: 323, note: "it is required that I bring about Bi: the practical ought (p. 95)"}
+  - {record: practical_sufficient_condition, kind: replaced, old: "possible_agent(X,P)", new: "possible_bring_about(P,X)", plan: "5.6", page: 324}
+  - {record: practical_sufficient_condition, kind: replaced, old: "possible_action(A)", new: "possible_goal(A)", plan: "5.6", page: 323}
+  - {record: practical_sufficient_condition, kind: replaced, old: "bringing_about_action(X)", new: "should_do(P,X)", plan: "5.6", page: 323}
+  - {record: value_based_practical_reasoning, kind: replaced, old: "possible_action(A)", new: "possible_bring_about(P,A)", plan: "5.6", page: 324, note: "CQ6, practically possible for me"}
+  - {record: two_person_practical, kind: replaced, old: "possible_action(Y)", new: "possible_bring_about(A,Y)", plan: "5.6", page: 326, note: "CQ4, is it possible for X to bring about B"}
+  - {record: negative_consequences_reasoning, kind: arity, old: "agent_bring_about(A,B)", new: "agent_bring_about(P,A,B)", plan: "5.6", page: 332, note: "the agent named; the parameters are [A,B,P]"}
+  - {record: negative_consequences_reasoning, kind: arity, old: "bad_for_goals(B)", new: "bad_for_goals(P,B)", plan: "5.6", page: 332}
+  - {record: negative_consequences_reasoning, kind: replaced, old: "should_not_bring_about(A)", new: "¬should_do(P,A)", plan: "5.6", page: 332, note: "against 22.1's conclusion, in its negation issue"}
+  - {record: appeal_to_vanity_ad_populum, kind: replaced, old: "carry_out_action(X)", new: "ought_to_bring_about(X)", plan: "5.6", page: 312, note: "you should carry out action x"}
+  - {record: threat, kind: replaced, old: "not_bring_about(X)", new: "¬ought_to_bring_about(X)", plan: "5.6", page: 333, note: "you had better not bring about A"}
+  - {record: danger, kind: replaced, old: "should_not(X)", new: "¬ought_to_bring_about(X)", plan: "5.6", page: 334, note: "you should not bring about A"}
+  - {record: verbal_slippery_slope, kind: replaced, old: "individual_property_false(A,P)", new: "¬has_property(A,P)", plan: "5.6", page: 341, note: "quite clearly it is false that an has F"}
+  - {record: position_to_know_ad_populum, kind: replaced, old: "plausibly_true(A)", new: "A", plan: "5.6", page: 311}
+  - {record: deliberation_ad_populum, kind: replaced, old: "plausibly_true(A)", new: "A", plan: "5.6", page: 312}
+  - {record: expert_opinion_ad_populum, kind: replaced, old: "therefore_true(A)", new: "A", plan: "5.6", page: 312}
+  - {record: alternative_cognitive, kind: replaced, old: "plausibly_not_case(A)", new: "¬A", plan: "5.6", page: 318}
+  - {record: alternative_cognitive, kind: replaced, old: "plausibly_case(B)", new: "B", plan: "5.6", page: 318}
+  - {record: alternative_normative, kind: replaced, old: "not_required(B)", new: "¬is_required(B)", plan: "5.6", page: 318, note: "Y is not required, the negation of the minor premise's statement"}
+  - {record: negative_normal_expectations, kind: replaced, old: "case_not_true(A)", new: "¬A", plan: "5.6", page: 327, note: "it is not the case that A is true, as 26 states 'A is not true'"}
+  - {record: epistemic_ignorance, kind: replaced, old: "plausible_false(D,A)", new: "¬A", plan: "5.6", page: 328}
+  - {record: sign, kind: replaced, old: "finding_true(A)", new: "A", plan: "5.6", page: 329}
+  - {record: sign, kind: replaced, old: "true_in_situation(B)", new: "B", plan: "5.6", page: 329}
+  - {record: gradualism, kind: replaced, old: "true_acceptable(P1)", new: "P1", plan: "5.6", page: 339}
+  - {record: gradualism, kind: replaced, old: "true_acceptable(P4)", new: "P4", plan: "5.6", page: 339}
+  - {record: witness_testimony, kind: arguments, old: "in_domain(D,S)", new: "in_domain(S,D)", plan: "5.6", page: 310, note: "the statement first, as the template and the other source records have it"}

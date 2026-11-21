@@ -10,8 +10,6 @@ language:
   divisionally_hereditary/2: "Property %[2]s is divisionally hereditary with regard to %[1]s: if the whole has it, every part has it."
   group_member/2: "%s is a member, idea, habit, custom, product or method of %s."
   group_member_quality/3: "If %s has %s, its members, ideas, habits, customs, products or methods %s will have it as well."
-  group_quality/2: "Group %s has the quality %s."
-  has/2: "%s has %s."
   has_property/2: "%s has property %s."
 
 issue_schemes:
@@ -27,9 +25,9 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 21.2, p. 322. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 321-326."
     variables: [G,Q,M]
     conclusions: 
-      - has(M,Q)
+      - has_property(M,Q)
     premises: 
-      - group_quality(G,Q)
+      - has_property(G,Q)
       - group_member(M,G)
       - group_member_quality(G,Q,M)
 
