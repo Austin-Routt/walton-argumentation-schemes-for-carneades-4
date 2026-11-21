@@ -22,15 +22,16 @@ go test                  # about 35 seconds
 ```
 
 CI runs `tools/vv/engine-tests.sh`, then `tools/vv/run.sh` with `VV_STRICT=1`, on every
-push and pull request (`.github/workflows/verify.yml`), under Go 1.24 and under the
-current stable Go; its job "toolchains" compares the two runs check by check with
-`compare_results.py`.
+push and pull request (`.github/workflows/verify.yml`), under pinned Go 1.24.13 and
+Go 1.27.4. Both jobs and the `toolchains` comparison are required. The comparator
+rejects duplicate result identities as well as disagreeing results.
 
 Needs Go, `unzip`, Python 3 with PyYAML, and network access to the Go module
 proxy the first time (for `gopkg.in/yaml.v2` and `go-yaml2json`, the engine's
 own dependencies). The suite
-was written and run with Go 1.24.7; its `go.mod`, like the engine's, asks for
-1.18 or newer, and older versions than 1.24 have not been tried. Graphviz `dot`
+was originally written with Go 1.24.7. Release acceptance independently verifies
+Go 1.24.13 and Go 1.27.4; the older module minimum is not a claim that every
+intervening toolchain has been tested. Graphviz `dot`
 is used by one check if it is installed.
 
 The run ends with a summary by issue. A green run means: nothing fails that the
@@ -203,13 +204,14 @@ to the ledger under an issue.
   (`stress`). Interactions that need particular data are exercised only where
   a reference case has them (cyclic `causes` facts in
   `cases/acceptance.yml`, for example).
-* The engine keeps global state and writes to stdout and stderr. The suite
-  resets and captures both, and never runs checks in parallel.
-* A green strict run says that these finite cases pass. It is not a proof for
-  every input, and no check here can tell whether a scheme says what the book
-  says: a flipped negation or two swapped arguments in a scheme pass every
-  check. That needs examples written from the book, with the expected result
-  written by hand (plan items 3.10, 4.4 and 5.7).
+* Legacy engine/parser state is serialized by the supported API entry points.
+  The suite captures diagnostics and verifies output contracts; it does not
+  run its shared-engine checks in parallel.
+* A green strict run establishes these finite cases, not every possible input.
+  Source examples and approval fingerprints now detect many polarity/role
+  changes that the original generic suite missed. Their expected results still
+  require independent source judgment; fingerprints preserve that judgment
+  rather than deriving it automatically.
 * Checks that state one of two outcomes the project could choose, to make an
   input work or to reject it with a message, follow docs/contracts.md:
   `premise-order-does-not-matter` passes (the input works);
@@ -222,8 +224,8 @@ to the ledger under an issue.
   `reserved-predicate-names-are-rejected` (contract 7);
   `scheme-roles-are-imported` still states the stronger outcome. Where the decision is to reject, the check is
   restated in a change of its own, after the contract that says so.
-* Every check of the two other reviews is ported (`docs/parity.md`) but the
-  second review's `shared-0ary`, which comes with `PLAN.md` 5.4.
+* Every check of the two other reviews is ported (`docs/parity.md`), including
+  the second review's `shared-0ary` with its reviewed global-warrant exception.
 * `experiments/` holds the four experiments that came before the work of
   `PLAN.md`: a prototype that gives the rule engine set semantics, trial edits
   to the scheme files on a copy of the repository, the two combined with the
