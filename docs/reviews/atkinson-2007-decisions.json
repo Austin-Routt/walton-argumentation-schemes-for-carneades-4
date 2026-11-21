@@ -101,13 +101,26 @@
       5,
       6,
       7,
+      8,
+      9,
       11,
       12,
       14,
       15,
       17
     ],
-    "qualification": "Dedicated predicates are not required if a documented and tested valid-model/premise-challenge contract discharges CQ12,14,15; that contract is not presently established."
+    "qualification": "Dedicated predicates are not required if a documented and tested valid-model/premise-challenge contract discharges CQ12,14,15; that contract is not presently established.",
+    "historical_narrow_eight_item_worklist": [
+      5,
+      6,
+      7,
+      11,
+      12,
+      14,
+      15,
+      17
+    ],
+    "closure_correction": "The earlier eight-item list excluded CQ8/9 despite their admitted aggregation and missing value comparison. Full-source treatment has ten partial or absent questions; the historical narrower worklist is preserved separately. This does not change the17-question inventory, directCQ10 support or AS1 preview scope."
   },
   "questions": [
     {
@@ -281,7 +294,7 @@
       "classification": "exception",
       "as": "side_effects(A,S1)",
       "coverage": "partial_legacy_policy",
-      "incomplete_full_source_mapping": false,
+      "incomplete_full_source_mapping": true,
       "decision": "pp. 858-859, 862; legacy approximation only: merges same-value and other-value demotion and undercuts unconditionally, without a negative AS1 argument or value comparison.",
       "required_for_full_source_coverage": "Distinguish same-value demotion, generate the negative argument and define its comparison with positive reasons.",
       "regression_fixtures": [
@@ -308,7 +321,7 @@
       "classification": "exception",
       "as": "side_effects(A,S1)",
       "coverage": "partial_legacy_policy",
-      "incomplete_full_source_mapping": false,
+      "incomplete_full_source_mapping": true,
       "decision": "pp. 858-859, 862, 868; legacy approximation only. The paper allows a contrary preference to defeat a negative side-effect argument; this aggregate exception does not.",
       "required_for_full_source_coverage": "Retain the demoted value and an explicit preference/argument comparison; no automatic global priority for any side effect.",
       "regression_fixtures": [

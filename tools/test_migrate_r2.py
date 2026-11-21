@@ -92,6 +92,17 @@ class Migrate(unittest.TestCase):
         self.assertEqual(mig.text(unrelated), unrelated)
         self.assertFalse(any(r['record'] == 'ethotic2' for r in mig.needs_hand(unrelated)))
 
+    def test_historical_renames_cannot_invent_context(self):
+        mig = Migrator()
+        for old, renamed, record in [('popular_practise(tipping)', 'popular_practice(tipping)', 'popular_practice'),
+                                     ('more_efficient_alternative_actions(car,travel)', 'more_efficient_alternative_actions(car,travel)', 'practical_inference')]:
+            src = 'assumptions: [' + old + ']\n'
+            # The historical scheme-id spelling also shares this token. It
+            # may change spelling, but must not manufacture the missing case
+            # or actor; the remaining semantic change is explicitly flagged.
+            self.assertEqual(mig.text(src), 'assumptions: [' + renamed + ']\n')
+            self.assertTrue(any(r['record'] == record for r in mig.needs_hand(src)))
+
     def test_chains_and_merges(self):
         # posible -> can_be_realized -> possible_goal; part_propert ->
         # part_property -> has_property, which group_2's has/2 also became

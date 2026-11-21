@@ -1536,6 +1536,85 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "popular_practice",
+      "fingerprint": "sha256:a708de10221fe8087359774bae688f277fc4ef6f590534c53752183227bbdc51",
+      "evidence": [
+        "docs/reviews/closure-family-independent-acceptance.md: popular_practice",
+        "docs/reviews/closure-family-repairs.md"
+      ],
+      "examples": [
+        "popular_practice/book",
+        "popular_practice/closure-two-cases",
+        "popular_practice/closure-wrong-case-warrant",
+        "popular_practice/closure-questioned-grounds",
+        "popular_practice/closure-other-case-grounds"
+      ],
+      "review": {
+        "by": "closure/root-source-review",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "analogy",
+      "fingerprint": "sha256:551a6066290de7fb4d4ed35ab58ff4d91373a2a98bb406c87ac4770da54bcf70",
+      "evidence": [
+        "docs/reviews/closure-family-independent-acceptance.md: analogy",
+        "docs/reviews/closure-family-repairs.md"
+      ],
+      "examples": [
+        "analogy/book",
+        "analogy/closure-similar-countercase-no-stronger-ranking",
+        "analogy/closure-other-property-countercase",
+        "analogy/closure-other-base-countercase",
+        "analogy/closure-question-is-not-countercase-evidence",
+        "analogy/closure-negative-base-proposition"
+      ],
+      "review": {
+        "by": "closure/root-source-review",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "from_antimodel",
+      "fingerprint": "sha256:0496cc63b57b918eb7c1196816c217d2312245cc35284120f2424eae94efa37b",
+      "evidence": [
+        "docs/reviews/closure-family-independent-acceptance.md: from_antimodel",
+        "docs/reviews/closure-family-repairs.md"
+      ],
+      "examples": [
+        "from_antimodel/book",
+        "from_antimodel/closure-explicit-abstention",
+        "from_antimodel/closure-not-required-does-not-imply-refrain",
+        "from_antimodel/closure-other-recipient"
+      ],
+      "review": {
+        "by": "closure/root-source-review",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "alternative_normative",
+      "fingerprint": "sha256:f46fc8e555ea612726aaf2eac033cd8522e489e5ed892e2bd8ac40b901d0424d",
+      "evidence": [
+        "docs/reviews/closure-family-independent-acceptance.md: alternative_normative",
+        "docs/reviews/closure-family-repairs.md"
+      ],
+      "examples": [
+        "alternative_normative/book",
+        "alternative_normative/closure-exclusive-not-required",
+        "alternative_normative/closure-inclusive-wording-insufficient",
+        "alternative_normative/closure-absence-not-affirmative-requirement"
+      ],
+      "review": {
+        "by": "closure/root-source-review",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }

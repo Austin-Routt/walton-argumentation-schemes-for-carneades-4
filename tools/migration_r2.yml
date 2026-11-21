@@ -26,9 +26,9 @@ changes:
   - {record: verbal_classification, kind: added, old: "", new: "doubtful_classification(F,G)", plan: "5.2", page: 319}
   - {record: verbal_classification_vagueness, kind: arguments, old: "property_precion_needed(F)", new: "property_precion_needed(A)", plan: "5.1", page: 320, note: "the context requiring precision is the argument's"}
   - {record: verbal_classification_arbitrariness, kind: added, old: "", new: "arbitrariness_harmless(A,F)", plan: "5.2", page: 320}
-  - {record: two_person_practical, kind: arguments, old: "alternative_means(A,X)", new: "alternative_means(X,Y)", plan: "5.1", page: 326, note: "the goal and the action, not the person and the goal"}
+  - {record: two_person_practical, kind: arguments, old: 'alternative_means(A,X)', new: 'alternative_means(A,X,Y)', plan: '5.1', page: 326, note: 'the goal and the action, not the person and the goal'}
   - {record: two_person_practical, kind: arguments, old: "side_effect_other_act(B,A)", new: "side_effect_other_act(Y,A)", plan: "5.1", page: 326, note: "the action, not the other person"}
-  - {record: two_person_practical, kind: added, old: "", new: "other_actions_required(X,Y)", plan: "5.2", page: 326}
+  - {record: two_person_practical, kind: added, old: '', new: 'other_actions_required(A,X,Y)', plan: '5.2', page: 326}
   - {record: waste, kind: added, old: "", new: "reassessment_against_continuing(A,X)", plan: "5.2", page: 326}
   - {record: negative_normal_expectations, kind: added, old: "", new: "uninvestigated(A)", plan: "5.2", page: 327}
   - {record: abductive_backward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
@@ -102,7 +102,7 @@ changes:
   - {record: two_person_practical, kind: rename-predicate, old: "situation_necessiy/4", new: "situation_necessity/4", plan: "5.6", page: 0}
   - {record: rule_physical_world_2, kind: rename-predicate, old: "oficcial_rulebook/3", new: "official_rulebook/3", plan: "5.6", page: 0}
   - {record: waste, kind: rename-predicate, old: "posible/1", new: "can_be_realized/1", plan: "5.6", page: 0, note: "possible/1 is upstream's, about an action; this one is about a goal"}
-  - {record: popular_practice, kind: rename-predicate, old: "popular_practise/1", new: "popular_practice/1", plan: "5.6", page: 0}
+  - {record: popular_practice, kind: arity, old: popular_practise(A), new: 'popular_practice(C,A)', plan: '5.6', page: 314, note: The historical spelling change now also needs the actual case. Manual semantic migration; no case is invented.}
   - {record: verbal_classification_vagueness, kind: rename-predicate, old: "property_precion_needed/1", new: "precision_needed/1", plan: "5.6", page: 0}
   - {record: composition_generic, kind: rename-predicate, old: "all_parts_propert/2", new: "all_parts_property/2", plan: "5.6", page: 0}
   - {record: part_in_whole, kind: rename-predicate, old: "part_propert/2", new: "part_property/2", plan: "5.6", page: 0}
@@ -145,7 +145,7 @@ changes:
   - {record: verbal_classification_vagueness, kind: rename-predicate, old: "vagueness_rejected/1", new: "rejected_as_deficient/1", plan: "5.6", page: 320, note: "the same conclusion as 17's"}
   - {record: waste, kind: rename-predicate, old: "can_be_realized/1", new: "possible_goal/1", plan: "5.6", page: 326, note: "CQ1, is bringing about A possible: the goal, as 22.1's possible_goal"}
   - {record: two_person_practical, kind: rename-predicate, old: "goals_higher_priority/2", new: "conflicting_goals/2", plan: "5.6", page: 326, note: "CQ1, other goals that might conflict with realizing A, as 22.2 CQ5"}
-  - {record: practical_inference, kind: rename-predicate, old: "more_efficient_alternative_actions/2", new: "more_efficient_alternative/2", plan: "5.6", page: 323, note: "CQ2 and CQ3, as 22.4 CQ4"}
+  - {record: practical_inference, kind: replaced, old: 'more_efficient_alternative_actions(A,G)', new: 'more_efficient_alternative(P,A,G)', plan: '5.6', page: 323, note: The historical rename now also needs the actual deliberating agent. Manual semantic migration; no owner is invented.}
   - {record: practical_inference, kind: rename-predicate, old: "action_realize_goal/2", new: "means_to_end/2", plan: "5.6", page: 323, note: "carrying out A is a means to realize G; x is the means to the end y (22.6)"}
   - {record: practical_goal, kind: rename-predicate, old: "person_goal/2", new: "goal_of_agent/2", plan: "5.6", page: 325, note: "person P has goal G"}
   - {record: value_based_practical_reasoning, kind: rename-predicate, old: "should_bring_about/2", new: "should_do/2", plan: "5.6", page: 324, note: "the practical ought, with the agent named (p. 95)"}
