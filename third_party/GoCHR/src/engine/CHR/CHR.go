@@ -11,6 +11,8 @@ package chr
 import (
 	"fmt"
 	"math/big"
+	"strconv"
+	"strings"
 
 	//	. "github.com/hfried/GoCHR/src/engine/parser"
 	"time"
@@ -106,6 +108,13 @@ type chrRule struct {
 }
 
 type RuleStore struct {
+	// Unique gives the CHR store set semantics for ground constraints: a
+	// ground constraint equal to one alive in the store is not added again.
+	// The default, false, keeps CHR's multiset semantics, so programs that
+	// count copies of a constraint are unaffected. Carneades sets it for
+	// argument construction, where facts form a set.
+	Unique         bool
+	alive          map[string]*Compound // Unique: ground constraint -> the copy in the store
 	Result         resultType
 	CHRruleStore   []*chrRule
 	QueryVars      Vars
@@ -285,6 +294,7 @@ func InitStore(rs *RuleStore) {
 	rs.chrCounter = big.NewInt(0)
 	rs.nextRuleId = 0
 	rs.CHRruleStore = []*chrRule{}
+	rs.alive = map[string]*Compound{}
 	rs.CHRstore = store{}
 	rs.BuiltInStore = store{}
 	rs.QueryStore = List{}
@@ -296,6 +306,7 @@ func ClearCHRStore(rs *RuleStore) {
 	rs.Result = REmpty
 	InitRenamingVariables()
 	rs.chrCounter = big.NewInt(0)
+	rs.alive = map[string]*Compound{}
 	rs.CHRstore = store{}
 	rs.BuiltInStore = store{}
 	rs.QueryStore = List{}
@@ -322,6 +333,11 @@ func NewArgCHR() *argCHR {
 }
 
 func delConstraint(g *Compound, rs *RuleStore) {
+	if rs.Unique && len(rs.alive) != 0 {
+		if k := groundKey(*g); rs.alive[k] == g {
+			delete(rs.alive, k)
+		}
+	}
 	delGoal1(g, rs.CHRstore)
 }
 
@@ -406,6 +422,20 @@ func addConstraintToStore(rs *RuleStore, g Compound) {
 	addRefConstraintToStore(rs, &g)
 }
 func addRefConstraintToStore(rs *RuleStore, g *Compound) {
+	if rs.Unique && g.Prio == 0 && len(g.OccurVars()) == 0 {
+		// set semantics: a ground constraint already alive is not added again
+		// IsDeleted cannot tell whether that copy is still alive: matching
+		// marks the constraints of a rule's heads with it while the rule
+		// fires. delConstraint removes a deleted copy from rs.alive instead.
+		k := groundKey(*g)
+		if c, ok := rs.alive[k]; ok && Equal(*c, *g) {
+			return
+		}
+		if rs.alive == nil {
+			rs.alive = map[string]*Compound{}
+		}
+		rs.alive[k] = g
+	}
 	// TraceHeadln(3, 3, " a) Counter %v \n", chrCounter)
 	g.Id = rs.chrCounter
 	rs.chrCounter = new(big.Int).Add(rs.chrCounter, bigOne)
@@ -4196,4 +4226,57 @@ func fireRule(rs *RuleStore, rule *chrRule, env Bindings) bool {
 		}
 	}
 	return true
+}
+
+// groundKey is a key for a ground term that two terms share only if they are
+// equal: every atom, string and number carries its type, and every compound
+// its functor and arity.
+func groundKey(t Term) string {
+	var b strings.Builder
+	writeGroundKey(&b, t)
+	return b.String()
+}
+
+func writeGroundKey(b *strings.Builder, t Term) {
+	switch x := t.(type) {
+	case Atom:
+		b.WriteString("a")
+		b.WriteString(strconv.Quote(string(x)))
+	case String:
+		b.WriteString("s")
+		b.WriteString(strconv.Quote(string(x)))
+	case Int:
+		b.WriteString("i")
+		b.WriteString(strconv.FormatInt(int64(x), 10))
+	case Float:
+		b.WriteString("f")
+		b.WriteString(strconv.FormatFloat(float64(x), 'g', -1, 64))
+	case Bool:
+		if x {
+			b.WriteString("T")
+		} else {
+			b.WriteString("F")
+		}
+	case Compound:
+		b.WriteString("c")
+		b.WriteString(strconv.Quote(x.Functor))
+		b.WriteString("/")
+		b.WriteString(strconv.Itoa(len(x.Args)))
+		b.WriteString("(")
+		for _, a := range x.Args {
+			writeGroundKey(b, a)
+			b.WriteString(",")
+		}
+		b.WriteString(")")
+	case List:
+		b.WriteString("l[")
+		for _, a := range x {
+			writeGroundKey(b, a)
+			b.WriteString(",")
+		}
+		b.WriteString("]")
+	default:
+		b.WriteString("?")
+		b.WriteString(strconv.Quote(t.String()))
+	}
 }
