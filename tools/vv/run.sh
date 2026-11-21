@@ -9,6 +9,9 @@ echo "== tools/validate_schemes.py"
 python3 "$repo/tools/validate_schemes.py" "$repo" | tail -1 || status=1
 echo "== tools/build_category_files.py --check"
 python3 "$repo/tools/build_category_files.py" "$repo" --check || status=1
+echo "== tools/test_validate_schemes.py (the validator's probes, mutations and instances)"
+python3 "$repo/tools/test_validate_schemes.py" "$repo" 2>&1 | tail -3
+[ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/vv/setup.sh (engine sources)"
 WALTON_REPO="$repo" "$here/setup.sh" || exit 1
 echo "== go test (engine and library)"

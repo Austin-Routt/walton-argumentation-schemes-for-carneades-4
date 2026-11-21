@@ -213,7 +213,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 
 - [x] 0.1 Engine sources imported into `third_party/`, `sources.lock`, `tools/vv`, CI workflow
 - [x] 0.2 Parity register `docs/parity.md` written
-- [ ] 0.2 Checks marked "to port" in `docs/parity.md` ported
+- [ ] 0.2 Checks marked "to port" in `docs/parity.md` ported (done: the per-scheme second inference and withdrawn assumption, the 20 probes and 2 mutation tests of the validator, the no-rule-fired store)
 - [ ] 0.3 Ledger with an expected-check list and failure fingerprints
 - [x] 0.4 README brought up to date
 - [x] 0.5 Contracts `docs/contracts.md` written (each is met when its issues leave the ledger)
@@ -234,6 +234,6 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 2.7 Questioned statements (X-ASSUME): `questioned:`, defaults kept apart from stipulations; per-scheme check ported
 - [x] 2.8 Arguments that name a scheme (E-EXPLICIT): validated and reported, requests carried out
 - [x] 4.1, first half: export writes the theory (the parameter quoting is still open)
-- [ ] Phase 3: 3.1 to 3.11; gate S
+- [x] Phase 3: 3.1 to 3.11 (nine repairs, the prohibition record, records 50, 57 and 22.4, the negation issue scheme, the validator); X-IS's engine side; gate S reached (every file checks clean, all 118 schemes run through the command, the ledger holds only E-EXPORT and E-ROLES)
 - [ ] Phase 4; gate R; release R1
 - [ ] Phase 5; gate L; release R2

@@ -16,7 +16,17 @@ Checks follow Carneades 4 semantics (github.com/carneades/carneades-4):
     verbs as the arity (Carneades fills templates with Go's Sprintf);
   * the category files agree exactly with walton.yml, every scheme in walton.yml is
     in exactly one category file, and every category scheme is in walton.yml;
-  * regression tests pin the direction of schemes whose logic was once wrong.
+  * regression tests pin the direction of schemes whose logic was once wrong;
+  * the engine's own rules for the supported profile (PLAN.md 3.10, docs/contracts.md)
+    are errors: every variable occurs in a premise (range restriction); is, true and
+    false are no predicate names; no assumption repeats a premise; a template has
+    as many % signs as its predicate has arguments (the engine counts every %);
+    deletions and guards are outside the profile; no YAML key occurs twice;
+  * a conclusion that repeats a premise, and a cycle of schemes that derive each
+    other's premises, are warnings;
+  * one instance per repaired or corrected scheme, taken from the book, with the
+    instantiated statements written out by hand, so that a flipped negation or
+    two swapped arguments fail.
 Requires PyYAML.
 """
 import sys, os, re, glob, json
@@ -25,6 +35,40 @@ try:
     import yaml
 except ImportError:  # pragma: no cover
     sys.exit("PyYAML is required: pip install pyyaml")
+
+class _UniqueKeyLoader(yaml.SafeLoader):
+    """A SafeLoader that records every mapping key that occurs twice: YAML itself
+    keeps the last one silently."""
+    duplicates = None
+
+def _construct_mapping(loader, node, deep=False):
+    seen = {}
+    for key_node, _ in node.value:
+        try:
+            key = loader.construct_object(key_node, deep=deep)
+            hash(key)
+        except Exception:
+            continue
+        if key in seen:
+            loader.duplicates.append((key, seen[key] + 1, key_node.start_mark.line + 1))
+        else:
+            seen[key] = key_node.start_mark.line
+    return yaml.SafeLoader.construct_mapping(loader, node, deep=deep)
+
+_UniqueKeyLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _construct_mapping)
+
+def load_unique(text):
+    """Load YAML; return (data, [(key, first line, second line)] for duplicate keys)."""
+    loader = _UniqueKeyLoader(text)
+    loader.duplicates = []
+    try:
+        return loader.get_single_data(), loader.duplicates
+    finally:
+        loader.dispose()
+
+RESERVED = {"is", "true", "false"}          # docs/contracts.md, contract 7
+WEIGHING_FUNCTIONS = {"linked", "convergent", "cumulative", "factorized"}
+VARIABLE = re.compile(r"[A-Z][A-Za-z0-9_]*")
 
 ALLOWED_KEYS = {"id", "meta", "variables", "premises", "conclusions", "assumptions",
                 "exceptions", "weight", "roles", "deletions", "guards"}
@@ -112,7 +156,9 @@ class Report:
 def raw_duplicate_keys(path, section):
     """YAML silently keeps the last of duplicate mapping keys; find them in the raw text."""
     seen, dups, inside = {}, [], False
-    for n, line in enumerate(open(path, encoding="utf-8"), 1):
+    with open(path, encoding="utf-8") as f:
+        lines = f.readlines()
+    for n, line in enumerate(lines, 1):
         if re.match(rf"^{section}:\s*$", line): inside = True; continue
         if inside and re.match(r"^\S", line): break
         m = re.match(r"^  ([^\s#][^:]*?):\s", line) if inside else None
@@ -130,7 +176,10 @@ def scheme_statements(x):
 
 def check_file(path, rel, rep):
     try:
-        d = yaml.safe_load(open(path, encoding="utf-8"))
+        with open(path, encoding="utf-8") as f:
+            d, dups = load_unique(f.read())
+        for k, a, b in dups:
+            rep.add("ERROR", "YAML_DUPLICATE_KEY", rel, f"key {k!r} at lines {a} and {b}; YAML keeps only the last")
     except yaml.YAMLError as e:
         mark = getattr(e, "problem_mark", None)
         loc = f" (line {mark.line + 1}, column {mark.column + 1})" if mark else ""
@@ -147,9 +196,14 @@ def check_file(path, rel, rep):
         if not re.fullmatch(r"¬?[a-z][A-Za-z0-9_]*/\d+", str(k)):
             rep.add("ERROR", "LANGUAGE_KEY_FORMAT", rel, f"key {k!r} is not name/arity; Carneades never finds it (0-ary predicates need name/0)")
             continue
-        bad, probs = template_args(str(v), int(str(k).split("/")[1]))
+        name, arity = str(k).split("/")
+        if name.lstrip("¬") in RESERVED:
+            rep.add("ERROR", "RESERVED_PREDICATE", rel, f"{k}: {name} is a reserved name and cannot be a predicate (contract 7)")
+        bad, probs = template_args(str(v), int(arity))
         if bad: rep.add("ERROR", "TEMPLATE_BAD_VERB", rel, f"{k}: malformed format verb(s) {bad} in {v!r}")
         for p in probs: rep.add("ERROR", "TEMPLATE_ARITY", rel, f"{k}: template {p}: {v!r}")
+        if str(v).count("%") != int(arity):
+            rep.add("ERROR", "TEMPLATE_PERCENT_COUNT", rel, f"{k}: the engine's validator counts every % sign and finds {str(v).count('%')} for arity {arity}: {v!r}")
     ids, used = {}, set()
     for i, x in enumerate(d["argument_schemes"]):
         where = f"{rel}#{i + 1}"
@@ -166,13 +220,33 @@ def check_file(path, rel, rep):
         meta = x.get("meta")
         if not isinstance(meta, dict) or not meta.get("title"): rep.add("WARNING", "META_TITLE_MISSING", where, "no meta.title")
         elif not str(meta.get("source") or "").strip(): rep.add("WARNING", "META_SOURCE_MISSING", where, "no meta.source")
-        for f in LIST_FIELDS + ("variables",):
+        for f in LIST_FIELDS + ("variables", "deletions", "guards", "roles"):
             if f in x and x[f] is not None and not isinstance(x[f], list):
                 rep.add("ERROR", "FIELD_NOT_LIST", where, f"{f!r} is a {type(x[f]).__name__} ({str(x[f])[:50]!r}), not a list")
+        for f in ("deletions", "guards"):
+            if x.get(f):
+                rep.add("ERROR", "UNSUPPORTED", where, f"{f!r}: CHR deletions and guards are outside the supported profile (PLAN.md D3); the engine refuses the scheme")
+        if isinstance(x.get("variables"), list):
+            names = x["variables"]
+            for v in names:
+                if not isinstance(v, str) or not VARIABLE.fullmatch(v):
+                    rep.add("ERROR", "VARIABLE_NAME", where, f"{v!r} is not a variable name (a capital letter, then letters, digits or _)")
+            hashable = [v for v in names if isinstance(v, str)]
+            for v in sorted({v for v in hashable if hashable.count(v) > 1}):
+                rep.add("ERROR", "VARIABLE_DUPLICATE", where, f"variable {v} is declared more than once")
+        if "weight" in x:
+            w = x["weight"]
+            if not (isinstance(w, dict) or (isinstance(w, str) and w in WEIGHING_FUNCTIONS)):
+                rep.add("ERROR", "WEIGHT_UNKNOWN", where, f"weight {w!r} is neither a basic weighing function {sorted(WEIGHING_FUNCTIONS)} nor a mapping")
+        if "roles" in x and isinstance(x["roles"], list):
+            if not all(isinstance(r, str) for r in x["roles"]) or len(x["roles"]) > len(x.get("premises") or []):
+                rep.add("ERROR", "ROLES", where, "roles must be names, at most one per premise")
         if not (isinstance(x.get("premises"), list) and x["premises"]): rep.add("ERROR", "NO_PREMISES", where, "scheme has no premises")
         if not (isinstance(x.get("conclusions"), list) and x["conclusions"]): rep.add("ERROR", "NO_CONCLUSIONS", where, "scheme has no conclusions")
-        declared = set(x.get("variables") or []) if isinstance(x.get("variables"), list) else set()
+        declared = {v for v in (x.get("variables") or []) if isinstance(v, str)} if isinstance(x.get("variables"), list) else set()
         allvars, premvars = set(), set()
+        norm = lambda s: str(s).replace(" ", "")
+        premises = {norm(s) for s in x.get("premises") or []} if isinstance(x.get("premises"), list) else set()
         for f, s in scheme_statements(x):
             try:
                 neg, fn, ar, vs = parse_statement(str(s))
@@ -180,14 +254,23 @@ def check_file(path, rel, rep):
                 rep.add("ERROR", "STATEMENT_SYNTAX", where, f"{f}: {s!r}: {e}"); continue
             allvars |= vs
             if f == "premises": premvars |= vs
-            if fn is None: continue                      # schema variable
+            if f == "assumptions" and norm(s) in premises:
+                rep.add("ERROR", "ASSUMPTION_IS_PREMISE", where, f"assumption {s!r} repeats a premise: a stipulated premise can never be questioned, and the rule feeds itself")
+            if f == "conclusions" and norm(s) in premises:
+                rep.add("WARNING", "CONCLUSION_IS_PREMISE", where, f"conclusion {s!r} repeats a premise")
+            if fn is None:                               # schema variable
+                if f in ("assumptions", "exceptions"):
+                    rep.add("ERROR", "VARIABLE_STATEMENT", where, f"{f}: {s!r}: an assumption or exception may not be a bare variable (the engine's validator rejects it)")
+                continue
+            if fn in RESERVED:
+                rep.add("ERROR", "RESERVED_PREDICATE", where, f"{f}: {s!r}: {fn} is a reserved name and cannot be a predicate (contract 7)")
             key = f"{fn}/{ar}"; used.add(key)
             if key not in lang:
                 rep.add("ERROR", "TEMPLATE_MISSING", where, f"{f}: {s!r} needs language template {key!r} in this file")
         for v in sorted(allvars - declared): rep.add("ERROR", "VARIABLE_UNDECLARED", where, f"variable {v} is used but not declared in 'variables'")
         for v in sorted(declared - allvars): rep.add("WARNING", "VARIABLE_UNUSED", where, f"variable {v} is declared but never used")
         unbound = sorted((allvars & declared) - premvars)
-        if unbound: rep.add("WARNING", "RANGE_RESTRICTION", where, f"variable(s) {unbound} occur only outside the premises; they are bound only when the scheme is instantiated with parameters")
+        if unbound: rep.add("ERROR", "RANGE_RESTRICTION", where, f"variable(s) {unbound} occur only outside the premises: the engine's validator rejects the scheme, and an argument from it holds statements with variables (contract 1)")
     for k in sorted(set(lang) - used):
         rep.add("WARNING", "TEMPLATE_UNUSED", rel, f"template {k!r} is not used by any scheme in this file")
     return d
@@ -196,7 +279,7 @@ def check_file(path, rel, rep):
 # Each entry pins a scheme whose logic once contradicted its source, so the error cannot return.
 # "WRM 2008" is Walton, Reed & Macagno, Argumentation Schemes, Cambridge University Press, 2008.
 def regression(master, rep):
-    S = {x["id"]: x for x in master["argument_schemes"] if isinstance(x, dict)}
+    S = {x["id"]: x for x in master["argument_schemes"] if isinstance(x, dict) and isinstance(x.get("id"), str)}
     def fns(x, f):
         out = []
         for s in x.get(f) or []:
@@ -239,8 +322,137 @@ def regression(master, rep):
         except Exception: ok = False
         if not ok: rep.add("ERROR", "REGRESSION", f"walton.yml:{sid}", msg)
 
+# ------------------------------------------------------------------ cycles across schemes (warnings)
+def cycles(master, rep):
+    """Warn about schemes that derive each other's premises (or their own). The
+    engine terminates on them since set semantics (PLAN.md 2.2); a cycle is still
+    worth knowing about. Bare-variable statements are left out: they would join
+    everything."""
+    S = [x for x in master["argument_schemes"] if isinstance(x, dict) and isinstance(x.get("id"), str)]
+    def keys(x, fields):
+        out = set()
+        for f in fields:
+            for s in x.get(f) or []:
+                try:
+                    neg, fn, ar, _ = parse_statement(str(s))
+                except TermError:
+                    continue
+                if fn is not None:
+                    out.add(("¬" if neg else "") + f"{fn}/{ar}")
+        return out
+    concl = {x["id"]: keys(x, ("conclusions",)) for x in S}
+    prem = {x["id"]: keys(x, ("premises",)) for x in S}
+    edges = {a: sorted(b for b in prem if concl[a] & prem[b]) for a in concl}
+    index, low, stack, on, sccs, counter = {}, {}, [], set(), [], [0]
+    def strong(v):
+        index[v] = low[v] = counter[0]; counter[0] += 1
+        stack.append(v); on.add(v)
+        for w in edges[v]:
+            if w not in index:
+                strong(w); low[v] = min(low[v], low[w])
+            elif w in on:
+                low[v] = min(low[v], index[w])
+        if low[v] == index[v]:
+            comp = []
+            while True:
+                w = stack.pop(); on.discard(w); comp.append(w)
+                if w == v: break
+            if len(comp) > 1 or v in edges[v]:
+                sccs.append(sorted(comp))
+    sys.setrecursionlimit(10000)
+    for v in sorted(edges):
+        if v not in index:
+            strong(v)
+    for comp in sorted(sccs):
+        rep.add("WARNING", "SCHEME_CYCLE", "walton.yml", f"schemes that derive each other's premises: {comp}")
+
+# ------------------------------------------------------------------ instances from the book (PLAN.md 3.10)
+# One instance per scheme that a changelog entry corrected or PLAN.md Phase 3
+# repaired or added: the variables are bound to constants, and every statement
+# the record should yield is written out by hand from the book's entry. A record
+# that yields anything else fails: a flipped negation, two swapped arguments, a
+# missing or extra statement. Page numbers are those of the compendium (WRM 2008).
+INSTANCES = [
+    # the eleven corrections of the changelog (2026-11-06)
+    ("division_generic", "10.1, p. 317", {"A": "car", "P": "heavy"},
+     {"premises": ["has_property(car,heavy)"], "assumptions": ["divisionally_hereditary(car,heavy)"], "conclusions": ["all_parts_propert(car,heavy)"]}),
+    ("composition_generic", "9.1, p. 316", {"A": "car", "P": "heavy"},
+     {"premises": ["all_parts_propert(car,heavy)"], "assumptions": ["compositionally_hereditary(car,heavy)"], "conclusions": ["has_property(car,heavy)"]}),
+    ("evidence_hypothesis_falsification", "32.2, pp. 331-332", {"H": "h", "A": "e"},
+     {"premises": ["hypothesis_event(h,e)", "event_false(e)"], "assumptions": ["sufficient_correlation(e,h)"], "conclusions": ["¬h"]}),
+    ("from_example", "6.1, p. 314", {"A": "tweety", "P1": "bird", "P2": "flies"},
+     {"premises": ["has_properties(tweety,bird,flies)"], "assumptions": ["typical_example(tweety)"], "exceptions": ["impair_general(tweety)"], "conclusions": ["both_properties(tweety,bird,flies)"]}),
+    ("common_folk_ad_populum", "4.10, p. 313", {},
+     {"premises": ["background"], "conclusions": ["being_credible"]}),
+    ("moral_justification_ad_populum_excuse", "4.6, p. 312", {"G": "g", "X": "speaker", "A": "act"},
+     {"premises": ["group_does(g,speaker,act)", "acceptable_norm(speaker,act,g)", "group_member(g)"], "conclusions": ["morally_acceptable_action(speaker,act)"]}),
+    ("danger", "37, p. 334", {"X": "act", "Y": "harm"},
+     {"premises": ["occur(act,harm)", "danger(harm)"], "conclusions": ["should_not(act)"]}),
+    ("treat", "35, p. 333", {"X": "act", "C": "harm"},
+     {"premises": ["cited_bad_consequences(act,harm)", "position_to_bring_about(harm)", "assert_bad(act,harm)"], "conclusions": ["not_bring_about(act)"]}),
+    ("abductive_backward", "31.1, pp. 329-330", {"A": "a1", "A1": "best", "D": "d"},
+     {"premises": ["data_set(d)", "data_account(a1,d)", "succesful_account(best,d)"], "assumptions": ["sufficient_account(best,d)"], "conclusions": ["plausible_hypothesis(best)"]}),
+    ("opposition-normative", "11.2, p. 318", {"A": "act", "X": "good", "X2": "bad"},
+     {"premises": ["cannot_opposite_evaluation(act,good,bad)", "recieves_evaluation(act,good)"], "conclusions": ["cannot_recieve_evaluation(act,bad)"]}),
+    ("sacrifice", "20, p. 322", {"A": "a", "S": "s", "V": "v"},
+     {"premises": ["sacrifice_made(a,s)", "great_sacrifice(s,a,v)", "great_sacrifice_made(s,a)"], "conclusions": ["sacrifice_value(a,v)"]}),
+    # the repairs of PLAN.md 3.1 to 3.7
+    ("ad_hominem", "42, p. 336", {"A": "bob", "S": "arg1", "C": "tax_cut"},
+     {"premises": ["bad_character(bob)", "advocates_conclusion(bob,arg1,tax_cut)"], "assumptions": ["attack_well_supported", "character_revelant"], "exceptions": ["stronger_than_character(arg1)"], "conclusions": ["bad_not_accepted(bob,arg1)"]}),
+    ("regulative_rule", "55.3, p. 343", {"A": "sam", "X": "pay_tax"},
+     {"premises": ["obligatory(pay_tax)", "do_obligator", "addressee_of(sam,pay_tax)"], "exceptions": ["excuse_or_overriding_duty(sam,pay_tax)"], "conclusions": ["must_do(sam,pay_tax)"]}),
+    ("regulative_rule_prohibition", "55.3, p. 343", {"A": "sam", "X": "smoke"},
+     {"premises": ["prohibited(smoke)", "do_obligator", "addressee_of(sam,smoke)"], "exceptions": ["excuse_or_overriding_duty(sam,smoke)"], "conclusions": ["must_not_do(sam,smoke)"]}),
+    ("practical_necessary_condition", "22.2, p. 323", {"X": "b1", "A": "a", "P": "me"},
+     {"premises": ["goal_of_agent(me,a)", "alternative_action(b1,a)", "necessary_action(b1,a)", "practicality_action(b1)", "more_acceptable_bringing(a,b1)"],
+      "assumptions": ["possible_action(a)", "acceptable_action(b1)", "possible_agent(b1,me)"],
+      "exceptions": ["alternative_means(a,b1)", "side_effect_action(me,b1)", "conflicting_goals(me,a)"], "conclusions": ["bringing_about_action(b1)"]}),
+    ("practical_sufficient_condition", "22.3, p. 323", {"X": "b1", "A": "a", "P": "me"},
+     {"premises": ["goal_of_agent(me,a)", "alternative_action(b1,a)", "sufficient_action(b1,a)", "practicality_action(b1)", "more_acceptable_bringing(a,b1)"],
+      "assumptions": ["possible_action(a)", "acceptable_action(b1)", "possible_agent(b1,me)"],
+      "exceptions": ["alternative_means(a,b1)", "side_effect_action(me,b1)", "conflicting_goals(me,a)"], "conclusions": ["bringing_about_action(b1)"]}),
+    ("sorites_slippery_slope", "51, pp. 340-341", {"A2": "a0", "A1": "a1", "A": "an", "P": "bald"},
+     {"premises": ["beyond_contetion(a0,bald)", "all_has(a0,bald,a1)", "reapplication_sequence(a0,an,bald)"], "conclusions": ["may_have(an,bald)"]}),
+    ("pop_scheme", "4.1, p. 311", {"A": "claim", "G": "g"},
+     {"premises": ["reference_group_accepted(g,claim)"], "conclusions": ["claim", "should_accept(claim)"]}),
+    ("group_2", "21.2, p. 322", {"G": "g", "Q": "q", "M": "m"},
+     {"premises": ["group_quality(g,q)", "group_member(m,g)", "group_member_quality(g,q,m)"], "conclusions": ["has(m,q)"]}),
+    ("rule_physical_world_1", "54.1, p. 342", {"W": "w", "D": "d"},
+     {"premises": ["is_a(w,d)", "synonymous"], "exceptions": ["not_necessarily_true"], "conclusions": ["means_same(w,d)"]}),
+    ("exeptional", "56, p. 344", {"A": "a"},
+     {"premises": ["rule_can_waived(a)", "case_exception(a)"], "conclusions": ["rule_waived(a)"]}),
+    # the records added by PLAN.md 3.8
+    ("precedent_slippery_slope", "50, p. 340", {"C": "c0", "R": "r", "N": "cn"},
+     {"premises": ["claimed_exception(c0,r)", "precedent_series(c0,r,cn)", "intolerable_exception(c0,r)"], "conclusions": ["cannot_be_exception(c0,r)"]}),
+    ("from_precedent", "57, p. 344", {"R": "r", "F": "f", "G": "g", "A": "a"},
+     {"premises": ["established_rule_property(r,f,g)", "has_property(a,f)", "¬has_property(a,g)"], "assumptions": ["legitimate_case(a,r)"],
+      "exceptions": ["rule_inapplicable_to(r,a)", "recognized_exception_category(a,r)"], "conclusions": ["rule_exception_recognized(r,a)"]}),
+    ("value_based_practical_reasoning", "22.4, p. 324", {"P": "me", "G": "g", "V": "v", "A": "a"},
+     {"premises": ["goal_of_agent(me,g)", "goal_supported_by_values(g,v)", "necessary_or_sufficient_for_goal(me,a,g)"], "assumptions": ["possible_action(a)"],
+      "exceptions": ["conflicting_goals(me,g)", "alternative_means(g,a)", "more_efficient_alternative(a,g)", "better_alternative_by_values(a,v)", "worse_consequences(a,g)"],
+      "conclusions": ["should_bring_about(me,a)"]}),
+]
+
+def instantiate(statement, binding):
+    return re.sub(r"\b[A-Z][A-Za-z0-9_]*\b", lambda m: binding.get(m.group(0), m.group(0)), str(statement).replace(" ", ""))
+
+def instances(master, rep):
+    S = {x["id"]: x for x in master["argument_schemes"] if isinstance(x, dict) and isinstance(x.get("id"), str)}
+    for sid, entry, binding, want in INSTANCES:
+        if sid not in S:
+            rep.add("ERROR", "INSTANCE", f"walton.yml:{sid}", f"scheme missing (instance of {entry})"); continue
+        x = S[sid]
+        unbound = sorted(set(x.get("variables") or []) - set(binding))
+        if unbound:
+            rep.add("ERROR", "INSTANCE", f"walton.yml:{sid}", f"the instance of {entry} binds no value to {unbound}"); continue
+        for f in LIST_FIELDS:
+            got = sorted(instantiate(s, binding) for s in x.get(f) or [])
+            exp = sorted(want.get(f, []))
+            if got != exp:
+                rep.add("ERROR", "INSTANCE", f"walton.yml:{sid}", f"{f} of the instance of {entry}: the record yields {got}, the book's reading is {exp}")
+
 def cross_files(root, master, cats, rep):
-    M = {x["id"]: x for x in master["argument_schemes"] if isinstance(x, dict)}
+    M = {x["id"]: x for x in master["argument_schemes"] if isinstance(x, dict) and isinstance(x.get("id"), str)}
     ML = master.get("language") or {}
     home = {}
     for rel, d in cats.items():
@@ -271,6 +483,8 @@ def main(argv):
         if d is not None: cats[rel] = d
     if master is not None:
         regression(master, rep)
+        instances(master, rep)
+        cycles(master, rep)
         cross_files(root, master, cats, rep)
     if "--json" in argv:
         print(json.dumps(rep.items, indent=1, ensure_ascii=False))

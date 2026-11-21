@@ -42,8 +42,13 @@ language:
   respondent_member/1: "You, the respondent are a member of this audience, group %s."
   should_accept/1: "You should accept %s."
   to_think_acceptable/1: "That gives a reason to think that %s is acceptable."
-  true/1: "%s is true."
   valued_to_be_member/1: "Being a member of this group %s is highly valued for you."
+
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
 
 argument_schemes:
   - id: popular_opinion
@@ -72,7 +77,7 @@ argument_schemes:
               Argumentation Schemes. Cambridge University Press, p. 311. 
     variables: [A,G]
     conclusions:
-      - true(A)
+      - A
       - should_accept(A)
     premises:
       - reference_group_accepted(G,A)

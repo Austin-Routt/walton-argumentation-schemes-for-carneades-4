@@ -29,6 +29,22 @@ type SourceEntry struct {
 type SourceLedger struct {
 	Compendium   []SourceEntry `yaml:"compendium"`
 	UpstreamOnly []string      `yaml:"upstream_only"`
+	// Names records each predicate name the plan introduced, with its page
+	// and how it was chosen (D6).
+	Names []struct {
+		Name  string `yaml:"name"`
+		Page  int    `yaml:"page"`
+		Entry string `yaml:"entry"`
+		How   string `yaml:"how"`
+		From  string `yaml:"from"`
+	} `yaml:"names"`
+	// Citations records citations of records that differ from the
+	// compendium's, without changing them (PLAN.md 3.11).
+	Citations []struct {
+		Scheme     string `yaml:"scheme"`
+		Record     string `yaml:"record"`
+		Compendium string `yaml:"compendium"`
+	} `yaml:"citations"`
 }
 
 func LoadSourceLedger(path string) (*SourceLedger, error) {
@@ -89,6 +105,24 @@ func SourceChecks(l *SourceLedger, lib *Library) []Result {
 	for _, id := range ids {
 		if !inLib[id] {
 			out = append(out, fail(sourceFile, id, "source/scheme-exists", "%s names a scheme that %s does not contain", sourceFile, lib.Rel))
+		}
+	}
+	// every recorded name is a predicate of the library's language, with a
+	// page and a way it was chosen
+	for _, n := range l.Names {
+		_, ok := lib.AG.Theory.Language[n.Name]
+		switch {
+		case !ok:
+			out = append(out, fail(sourceFile, n.Name, "source/name-in-language", "%s records %s, which the language of %s does not define", sourceFile, n.Name, lib.Rel))
+		case n.Page == 0 || (n.How != "reused" && n.How != "trial" && n.How != "book"):
+			out = append(out, fail(sourceFile, n.Name, "source/name-in-language", "the row needs a page and how (reused, trial or book)"))
+		default:
+			out = append(out, pass(sourceFile, n.Name, "source/name-in-language"))
+		}
+	}
+	for _, c := range l.Citations {
+		if !inLib[c.Scheme] {
+			out = append(out, fail(sourceFile, c.Scheme, "source/scheme-exists", "a citation row names a scheme that %s does not contain", lib.Rel))
 		}
 	}
 	for _, e := range l.Compendium {

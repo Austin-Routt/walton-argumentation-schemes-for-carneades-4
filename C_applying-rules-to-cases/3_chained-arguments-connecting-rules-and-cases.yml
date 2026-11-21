@@ -7,17 +7,27 @@ meta:
 language:
   all_has/3: "If %s has %s, then %s has it too."
   beyond_contetion/2: "It is clearly beyond contention that %s has %s."
+  cannot_be_exception/2: "Case %s cannot be judged to be an exception to the rule %s."
+  claimed_exception/2: "Case %s is claimed to be an exception to the rule %s, an excusable or exceptional case."
   individual_property/2: "Individual %s has property %s."
   individual_property_false/2: "But quite clearly it is false that %s has %s."
   individuals_propoerty/3: "If %s has %s, then %s has it too."
+  intolerable_exception/2: "Treating case %s as an exception to the rule %s would be intolerable."
   may_have/2: "%s may have %s, for all we know or can prove."
   must_proper/2: "The conditional 'if %s then %s' is not, by itself, acceptable to the respondent, nor are shorter sequences acceptable to the respondent."
   not_has_propery/2: "Therefore, you can't truly say that %s has %s."
+  precedent_series/3: "By case-to-case consistency, holding case %s to be an exception to the rule %s binds us to hold each case of a sequence of similar cases, up to %s, to be an exception too."
   proper_sequence/0: "The sequence of propositions is dealt with in the appropriate order."
-  reapplication_sequence/0: "There is a sequence of modus ponens subarguments linking premises and conclusions from the clear area through the grey area."
+  reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
   sequence/4: "There is an intervening sequence of propositions, %s, %s,...,%s, %s such that the conditionals must be in proper order."
   true_acceptable/1: "Proposition %s is true, acceptable to the respondent."
   vague_property/3: "Property %s is vague, and so generally, if %s has it, then you can't deny that the next closely neighboring individual %s has it."
+
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
 
 argument_schemes:
   - id: gradualism
@@ -36,6 +46,19 @@ argument_schemes:
     assumptions: 
      - proper_sequence
 
+  - id: precedent_slippery_slope
+    meta:
+      title: Precedent Slippery Slope Argument
+      source: >
+            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 340.
+    variables: [C,R,N]
+    conclusions:
+      - cannot_be_exception(C,R)
+    premises:
+      - claimed_exception(C,R)
+      - precedent_series(C,R,N)
+      - intolerable_exception(C,R)
+
   - id: sorites_slippery_slope
     meta:
       title: Sorites Slippery Slope Argument
@@ -47,7 +70,7 @@ argument_schemes:
     premises:
       - beyond_contetion(A2,P)
       - all_has(A2,P,A1)
-      - reapplication_sequence
+      - reapplication_sequence(A2,A,P)
 
   - id: verbal_slippery_slope
     meta:

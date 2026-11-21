@@ -18,6 +18,7 @@ language:
   bad_consequence/2: "But, if you do not do %s, some consequence %s, which will be very bad for you, will occur, or is likely to occur."
   bad_for_goals/1: "%s is a bad outcome, from the point of view of my goals."
   bad_for_you/1: "%s is very bad for you."
+  better_alternative_by_values/2: "In light of the values %[2]s, an alternative to %[1]s is better."
   bring_about_more_effectively/2: "There exists an action that would bring about %s more effectively than %s."
   bring_relive/2: "Therefore, %s ought to bring about %s."
   bringing_about_action/1: "Therefore, it is required that I bring about %s."
@@ -28,7 +29,7 @@ language:
   carry_out/2: "Therefore, %s ought to carry out %s."
   carry_out_action/1: "Therefore, you should carry out action %s."
   cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
-  conflict_goals/3: "%s has some other goals %s that conflict with %s."
+  conflicting_goals/2: "%s has other goals that might conflict with realizing %s."
   contributing_action/2: "Doing act %s contributes to goal %s."
   current_circumstances/1: "%s is the case in the current circumstances."
   danger/1: "%s is a danger to you."
@@ -38,7 +39,8 @@ language:
   ends_important/1: "%s should be regarded as highly important."
   feasible/1: "It is feasible to perform the action %s."
   future_losses_outweigh/1: "Future losses of completing the action %s outweigh its value."
-  goal_is_action/1: "My goal is to bring about %s."
+  goal_of_agent/2: "The goal of %s is to bring about %s."
+  goal_supported_by_values/2: "The goal %s is supported by the set of values %s."
   goals_higher_priority/2: "%s has other goals of higher priority that might conflict with the goal of realizing %s."
   good/1: "%s is good."
   great_sacrifice/3: "If a great sacrifice %s has been made for %s, then the value %s of it will be greater."
@@ -55,9 +57,11 @@ language:
   means_end/1: "Means %s should be regarded as an end."
   means_to_end/2: "%s is means to the end %s."
   more_acceptable_bringing/2: "Bringing about %s is more acceptable to me than not bringing about %s."
+  more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
   more_efficient_alternative_actions/2: "There are more efficient alternative actions to %s that would also bring about %s."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
   necessary_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, necessary condition for %s."
+  necessary_or_sufficient_for_goal/3: "Bringing about %[2]s is necessary or sufficient for %[1]s to bring about %[3]s."
   not_bring_about/1: "Therefore, you had better not bring about %s."
   not_do_appear/2: "If you do not bring about %s, then %s will occur."
   not_doing/1: "You were considering not doing %s."
@@ -90,6 +94,7 @@ language:
   sacrifice_made/2: "For the thing %s, sacrifice %s is made."
   sacrifice_value/2: "%s has a great value %s."
   should_be_performed/1: "Action %s should be performed."
+  should_bring_about/2: "%s should, practically speaking, bring about %s."
   should_carry_out/2: "Therefore, %s should carry out %s, unless he has better reasons not to."
   should_do/2: "%s should do %s."
   should_not/1: "Therefore, you should not bring about %s."
@@ -107,10 +112,17 @@ language:
   too_high_to_waste/1: "The sunk costs of %s are too high to waste."
   undesirable/1: "%s is bad or undesirable, from your point of view."
   waste_bad_thing/2: "If all of %s's previous attempts to realize %s are wasted, that would be a bad thing."
+  worse_consequences/2: "Bringing about %s has consequences whose negative value outweighs the positive value of %s."
   worthy_goal/1: "%s is a worthy goal."
   would_be_realized/2: "%s would be realized in %s."
   would_bring_about/3: "Performing %s in %s would bring about %s."
   would_promote_value/2:  "Achieving the goal %s would promote the value %s."
+
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
 
 argument_schemes:
   - id: practical_reasoning1
@@ -265,11 +277,11 @@ argument_schemes:
              Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
              "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
              Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,A2,P]
+    variables: [X,A,P]
     conclusions:
       - bringing_about_action(X)
     premises:
-      - goal_is_action(A)
+      - goal_of_agent(P,A)
       - alternative_action(X,A)
       - necessary_action(X,A)
       - practicality_action(X)
@@ -277,7 +289,7 @@ argument_schemes:
     exceptions:
       - alternative_means(A,X)
       - side_effect_action(P,X)
-      - conflict_goals(P,A2,A)
+      - conflicting_goals(P,A)
     assumptions: 
      - possible_action(A)
      - acceptable_action(X)
@@ -293,11 +305,11 @@ argument_schemes:
              Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
              "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
              Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,A2,P]
+    variables: [X,A,P]
     conclusions:
       - bringing_about_action(X)
     premises:
-      - goal_is_action(A)
+      - goal_of_agent(P,A)
       - alternative_action(X,A)
       - sufficient_action(X,A)
       - practicality_action(X)
@@ -305,11 +317,32 @@ argument_schemes:
     exceptions:
       - alternative_means(A,X)
       - side_effect_action(P,X)
-      - conflict_goals(P,A2,A)
+      - conflicting_goals(P,A)
     assumptions: 
      - possible_action(A)
      - acceptable_action(X)
      - possible_agent(X,P)
+
+  - id: value_based_practical_reasoning
+    meta:
+      title: Value-Based Practical Reasoning
+      source: >
+            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 324.
+    variables: [P,G,V,A]
+    conclusions:
+      - should_bring_about(P,A)
+    premises:
+      - goal_of_agent(P,G)
+      - goal_supported_by_values(G,V)
+      - necessary_or_sufficient_for_goal(P,A,G)
+    assumptions:
+      - possible_action(A)
+    exceptions:
+      - conflicting_goals(P,G)
+      - alternative_means(G,A)
+      - more_efficient_alternative(A,G)
+      - better_alternative_by_values(A,V)
+      - worse_consequences(A,G)
 
   - id: practical_goal
     meta:

@@ -100,7 +100,7 @@ Checked by: `validator-checks-arguments-against-schemes`, `validator-enforces-sh
 
 As predicate names, at any arity: `is`, `true`, `false`, and the internal functor of negation (contract 4). In a conclusion GoCHR executes `is` as an assignment; `true` and `false` are booleans to the engine's validator. Other operator names (`in`, `or`, `div`, `mod`) work as predicates in premises and conclusions and stay allowed.
 
-Checked by: `static/no-reserved-functor`, `is-as-predicate-in-conclusion`; issues X-IS, L-TRUE.
+Checked by: `static/no-reserved-functor`, `reserved-predicate-names-are-rejected`, `engine-validator`; issues X-IS, L-TRUE.
 
 ## Interchange (Phase 4)
 

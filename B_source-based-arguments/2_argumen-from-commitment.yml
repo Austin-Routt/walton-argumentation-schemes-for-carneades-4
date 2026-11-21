@@ -23,6 +23,12 @@ language:
   positive_affects/3: "The fact that value %s is positive affects the interpretation and therefore the evaluation of goal %s of agent %s, if value is good, it supports commitment to goal."
   reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s."
 
+issue_schemes:
+  # A statement and its explicit negation are the two positions of one issue,
+  # weighed under its proof standard (PLAN.md 3.9, D10; docs/contracts.md,
+  # contract 4). A graph that assumes both is an inconsistent context.
+  negation: ["S", "¬S"]
+
 argument_schemes:
   - id: commitment1
     meta:

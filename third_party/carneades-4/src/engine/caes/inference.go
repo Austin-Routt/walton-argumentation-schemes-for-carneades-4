@@ -91,6 +91,10 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 	if err := Unsupported(ag.Theory); err != nil {
 		return err
 	}
+	if ag.Inconsistent() {
+		// contract 3: an inconsistent context is reported, not resolved
+		return NewRunError(ErrInconsistentContext, "the graph assumes two positions of one issue, or a statement and its negation")
+	}
 	for _, a := range ag.Assumptions {
 		if p := ArithmeticProblem(a); p != "" {
 			return NewRunError(ErrInvalidInput, "assumption %s", p)

@@ -20,7 +20,7 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | per scheme: `label` (conclusions in) | covered | `iso/conclusions-in`, `full/conclusions-in` |
 | per scheme: `exception` (each exception undercuts) | covered | `iso/exceptions-undercut`, `full/exceptions-undercut` |
 | per scheme: `premise` (each premise needed) | covered | `iso/premises-needed`, `full/premises-needed` |
-| per scheme: `assumption` (a withdrawn assumption) | to port | engine level only: `baseline-withdrawn-assumption-stays-withdrawn` |
+| per scheme: `assumption` (a withdrawn assumption) | covered | `iso/assumptions-questionable`, `full/assumptions-questionable`, restated for the questioned state of D2 |
 | per scheme: `roundtrip` (export and import, parameters compared) | to port | engine level only: `export-keeps-compound-parameters`, `cli-reads-its-own-yaml` |
 | per scheme: `negation-text` | covered | `iso/negation-texts` |
 | static: `gochr-name` (built-in names as predicates) | covered | `static/no-reserved-functor`, `is-as-predicate-in-conclusion` |
@@ -48,7 +48,7 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | `TestDefaultAssumptionAndExplicitContraryIssue` | partly | `inconsistent-assumptions-detected`; the case of a default against an explicit contrary argument needs its own check |
 | `TestImportedSchemeIsNotBasic`, `TestImportsAreIsolated` | covered | `yaml-import-keeps-globals-clean` |
 | `TestInferenceRejectsInvalidRule`, `TestMalformedRuleMustBeRejected` | partly | `malformed-statement-is-an-error` covers a statement; GoCHR's own `AddRule` on malformed rule text is not tested directly |
-| `TestMalformedGoalMustBeRejected` | to port | none |
+| `TestMalformedGoalMustBeRejected` | covered | GoCHR `TestInferRefusesMalformedGoal`, run by `tools/vv/engine-tests.sh`; `malformed-statement-is-an-error` |
 | `TestInvalidExpectedLabelDoesNotPanic` | to port | none |
 | `TestIssueExtensionKeepsBidirectionalMembership` | covered | `issue-extension-keeps-positions`, `labelling-returns-after-issue-gains-position` |
 | `TestLinkedEvidenceAndExceptionLabels` | covered | `baseline-scheme-with-exception` |
@@ -60,8 +60,8 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | `TestRolesArePreserved` | covered | `scheme-roles-are-imported` |
 | `TestRoundTripPreservesCompoundParameters`, `...ExpectedLabels`, `...Theory` | covered | `export-keeps-compound-parameters`, `export-keeps-expected-labels`, `yaml-export-can-be-reimported` |
 | `TestSchemeParameterBindingsMustAgreeWithConclusion` | covered | `validator-enforces-shared-bindings` |
-| `run_python_audit.py`: 20 schema probes of `tools/validate_schemes.py` | to port | none; PLAN.md 3.10 |
-| `full_workflow_mutations.py`: two semantic mutations | to port | none; PLAN.md 3.10 |
+| `run_python_audit.py`: 20 schema probes of `tools/validate_schemes.py` | covered | `tools/test_validate_schemes.py`, `SchemaProbes` (ported; the 17 gaps closed) |
+| `full_workflow_mutations.py`: two semantic mutations | covered | `tools/test_validate_schemes.py`, `Mutations` (ported, with three more) |
 | `sources.lock.json` with a hard failure on a hash mismatch | covered | `tools/vv/setup.sh` with `sources.lock` |
 | per scheme: a second inference | covered | `iso/infer-twice`, `full/infer-twice` (ported) |
 | per scheme: a withdrawn assumption | covered | `iso/assumptions-questionable`, `full/assumptions-questionable`: restated for the questioned state of D2 (ported) |
@@ -74,4 +74,6 @@ Each port names its new check here and removes the row's **to port**.
 |---|---|---|
 | third review, per scheme: a second inference | `iso/infer-twice`, `full/infer-twice` (456 checks) | PLAN.md 2.5 |
 | third review, per scheme: a withdrawn assumption | `iso/assumptions-questionable`, `full/assumptions-questionable` (456 checks) | PLAN.md 2.7 |
+| third review, `run_python_audit.py` | `tools/test_validate_schemes.py` | PLAN.md 3.10 |
+| third review, `full_workflow_mutations.py` | `tools/test_validate_schemes.py` | PLAN.md 3.10 |
 | second review, `TestNoRuleFiringMustPreserveStore` | GoCHR `TestNoRuleFiredKeepsGoals` | PLAN.md 1.3 |
