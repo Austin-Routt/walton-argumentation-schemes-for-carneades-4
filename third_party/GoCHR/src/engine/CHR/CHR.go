@@ -298,7 +298,8 @@ func (rs *RuleStore) Infer(goals []string, max int) (bool, []string, error) {
 
 		switch rs.Result {
 		case REmpty:
-			return true, []string{}, err
+			// no rule fired: the store holds the goals as given
+			return true, storeStrings(rs), err
 		case RFalse:
 			return false, []string{}, err
 		case RTrue:
