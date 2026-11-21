@@ -516,20 +516,30 @@ func positionLabels(issue *Issue, l Labelling) string {
 	return string(s)
 }
 
-// An argument graph is inconsistent if more than one position of some
-// issue has been assumed true.
+// An argument graph is inconsistent if it assumes more than one position of
+// some issue, or both a statement and its negation (docs/contracts.md,
+// contract 4). The answer is computed from the assumptions as they are now,
+// not from the index that labelling builds.
 func (ag *ArgGraph) Inconsistent() bool {
+	assumed := map[string]bool{}
+	for _, a := range ag.Assumptions {
+		assumed[terms.Normalize(a)] = true
+	}
 	for _, issue := range ag.Issues {
 		found := false
 		for _, p := range issue.Positions {
-			if ag.assums[terms.Normalize(p.Id)] {
+			if assumed[terms.Normalize(p.Id)] {
 				if found {
-					// inconsistency, because a previous position
-					// of the issue was found to be assumed true
-					return false
-				} else {
-					found = true
+					return true
 				}
+				found = true
+			}
+		}
+	}
+	for a := range assumed {
+		if t, ok := terms.ReadString(a); ok {
+			if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 && assumed[c.Args[0].String()] {
+				return true
 			}
 		}
 	}

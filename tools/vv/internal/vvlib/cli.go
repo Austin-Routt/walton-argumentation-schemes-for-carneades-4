@@ -175,6 +175,15 @@ func CLIEngineChecks(cli *CLI) []Result {
 	out = append(out, eres("cli-check-exit-status", r.Exit == 1,
 		"`carneades check` should exit with status 1 (invalid input) when it reports a problem; it exited with %d (%s)", r.Exit, firstLine(r.Stderr)))
 
+	// docs/contracts.md, contracts 3 and 4: a graph that stipulates a statement
+	// and its negation is an inconsistent context, reported with status 3 and
+	// no evaluation; one that stipulates only the statement evaluates.
+	bad := cli.Run("statements:\n  p: P is the case.\nassumptions: [p, \"¬p\"]\n", "eval", "-t", "yaml")
+	good := cli.Run("statements:\n  p: P is the case.\nassumptions: [p]\n", "eval", "-t", "yaml")
+	out = append(out, eres("cli-reports-inconsistent-context",
+		bad.Exit == 3 && strings.TrimSpace(bad.Stdout) == "" && good.Exit == 0 && strings.TrimSpace(good.Stdout) != "",
+		"assuming p and ¬p should end with status 3 (inconsistent context) and no evaluation, and assuming p alone with status 0: got %d (stdout %d bytes) and %d", bad.Exit, len(bad.Stdout), good.Exit))
+
 	r = cli.Run(MutualRecursion, "eval", "-t", "yaml")
 	_, err := labels(r.Stdout)
 	out = append(out, eres("cli-output-stays-valid", err == nil && strings.TrimSpace(r.Stdout) != "",

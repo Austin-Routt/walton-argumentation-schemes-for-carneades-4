@@ -43,7 +43,7 @@
 # otherwise go unnoticed. Raise it when checks are added; lower it only in the
 # change that removes a check, where a reviewer sees it.
 
-min_checks: 5947
+min_checks: 5948
 
 issues:
   - id: X-GATE
@@ -110,10 +110,6 @@ issues:
     where: engine
     severity: minor
     title: "Negated statements are printed as raw terms; the language templates are not applied inside ¬"
-  - id: E-INCONS
-    where: engine
-    severity: minor
-    title: "ArgGraph.Inconsistent() returns false on every path, and reads a cache that only labelling fills: returning true on the right branch is not enough"
   - id: E-ROLES
     where: engine
     severity: minor
@@ -142,7 +138,6 @@ expected:
   - {issue: X-LOOP,    scheme: (engine), checks: [rederivation-terminates, no-scheme-is-starved]}
   - {issue: E-BUDGET,  scheme: (engine), checks: [budget-exhaustion-is-reported, engine-keeps-stdout-clean, cli-output-stays-valid, growing-term-is-bounded]}
   - {issue: E-CAPTURE, scheme: (engine), checks: [unbound-variable-is-not-captured]}
-  - {issue: E-INCONS,  scheme: (engine), checks: [inconsistent-assumptions-detected, inconsistent-follows-current-assumptions]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
 
   # ------------------------------------------------------------------ schemes
