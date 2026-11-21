@@ -364,7 +364,14 @@
         "Compendium pp.321–322 entries19.1–19.2"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "Agent A's judgment and its effect on A's goal lead to a reason for retaining the goal. The conclusion omits A. No printed CQs. Two people with an identical goal term but different evaluations would share the conclusion's identity. Remaining scope: Require goal terms to identify the owner's goal instance or add the agent to the conclusion before mixed-agent value comparisons."
+      "baseline_review_reason": "Agent A's judgment and its effect on A's goal lead to a reason for retaining the goal. The conclusion omits A. No printed CQs. Two people with an identical goal term but different evaluations would share the conclusion's identity. Remaining scope: Require goal terms to identify the owner's goal instance or add the agent to the conclusion before mixed-agent value comparisons.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "negative_value",
@@ -382,7 +389,14 @@
         "Compendium pp.321–322 entries19.1–19.2"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The corrected conclusion retracts commitment, rather than retaining it. As with the positive record, the conclusion omits the evaluating agent. No printed CQs. Remaining scope: Owner-scoped goal identifiers or an explicit agent argument are necessary for multi-agent use; this is separate from the already corrected sign."
+      "baseline_review_reason": "The corrected conclusion retracts commitment, rather than retaining it. As with the positive record, the conclusion omits the evaluating agent. No printed CQs. Remaining scope: Owner-scoped goal identifiers or an explicit agent argument are necessary for multi-agent use; this is separate from the already corrected sign.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "sacrifice",
@@ -658,7 +672,14 @@
         "Inherited code has no distinct original citation"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The two-premise causal inference and effect conclusion correspond to entry 28. The inherited form makes one occurred event and causal relation explicit; the printed may/might modality is implemented as defeasible support, not a probability value. CQ1–CQ2 challenge the supplied causal generalization; CQ3 is interference(E1). The latter is broad: it must mean an interference with this causal application, not every possible effect of E1. The actual outstanding issue is single-causal-application scope. No distinct original work was cited by the inherited code; the compendium is the declared source."
+      "baseline_review_reason": "The two-premise causal inference and effect conclusion correspond to entry 28. The inherited form makes one occurred event and causal relation explicit; the printed may/might modality is implemented as defeasible support, not a probability value. CQ1–CQ2 challenge the supplied causal generalization; CQ3 is interference(E1). The latter is broad: it must mean an interference with this causal application, not every possible effect of E1. The actual outstanding issue is single-causal-application scope. No distinct original work was cited by the inherited code; the compendium is the declared source.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "correlation_to_cause",
@@ -694,7 +715,14 @@
         "Compendium p.329 entry30"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The sign and indicated event are correctly separated in the ordinary premises and conclusion. The comparative alternative defeater identifies the sign alone. CQ1 is pair-scoped strong_correlation(A,B). CQ2 more_reliable(A) compresses the competing-event comparison; with several candidate events for one sign it may suppress every candidate, including an independently better one. Remaining scope: Before unrestricted multi-interpretation use, scope the comparator to the candidate (A,B) or impose and test a one-candidate-per-sign case contract. Keep below blanket example-passed approval."
+      "baseline_review_reason": "The sign and indicated event are correctly separated in the ordinary premises and conclusion. The comparative alternative defeater identifies the sign alone. CQ1 is pair-scoped strong_correlation(A,B). CQ2 more_reliable(A) compresses the competing-event comparison; with several candidate events for one sign it may suppress every candidate, including an independently better one. Remaining scope: Before unrestricted multi-interpretation use, scope the comparator to the candidate (A,B) or impose and test a one-candidate-per-sign case contract. Keep below blanket example-passed approval.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "abductive_backward",
@@ -713,7 +741,14 @@
         "Compendium pp.329–330 entry31.1"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The selected account, data set and best-explanation conclusion follow 31.1. The available-accounts set A is named, but A1 is not explicitly linked to membership in that set. CQ1 is sufficient_account(A1,D); CQ2 is the comparative best-account premise. CQ3–CQ4 share inquiry_incomplete(D), an explicit aggregate policy about whether to conclude now. Remaining scope: Document and enforce one candidate universe per D or add an explicit membership/comparison link before approving unrestricted multi-inquiry use."
+      "baseline_review_reason": "The selected account, data set and best-explanation conclusion follow 31.1. The available-accounts set A is named, but A1 is not explicitly linked to membership in that set. CQ1 is sufficient_account(A1,D); CQ2 is the comparative best-account premise. CQ3–CQ4 share inquiry_incomplete(D), an explicit aggregate policy about whether to conclude now. Remaining scope: Document and enforce one candidate universe per D or add an explicit membership/comparison link before approving unrestricted multi-inquiry use.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "positive_consequences",
@@ -805,7 +840,14 @@
         "Compendium pp.337–338 entry45"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The practical commitment correctly opposes the argument’s conclusion C, and the final claim is weaker decreased plausibility of argument S. However, credibility_questioned(A) and character_issue(A) omit S. CQ1 and the explained-inconsistency exception are correctly proposition/argument-scoped. CQ3 is still person-only; one argument’s dependence on credibility can be shared unintentionally with another argument by that person. CQ4 selects the weaker conclusion. Remaining scope: Before unrestricted use, bind character_issue and credibility_questioned to (A,S), with adverse wrong-argument controls and migration, or enforce one attacked argument per person/context."
+      "baseline_review_reason": "The practical commitment correctly opposes the argument’s conclusion C, and the final claim is weaker decreased plausibility of argument S. However, credibility_questioned(A) and character_issue(A) omit S. CQ1 and the explained-inconsistency exception are correctly proposition/argument-scoped. CQ3 is still person-only; one argument’s dependence on credibility can be shared unintentionally with another argument by that person. CQ4 selects the weaker conclusion. Remaining scope: Before unrestricted use, bind character_issue and credibility_questioned to (A,S), with adverse wrong-argument controls and migration, or enforce one attacked argument per person/context.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "slippery_slope_base_case",
@@ -863,7 +905,14 @@
         "Compendium p.342 entry54.2"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The institutional rulebook, warrant and changed-rule defeater match 54.2. The conclusion counts_as(D,W) omits institution I. The only printed rebuttal factor is correctly scoped to I/D/W. The rulebook-reporting warrant remains global as a universal warrant, not a claim that every particular rulebook is current. Remaining scope: Use one institution or institution-qualified ground terms. A generally multi-institution release should carry I in the counts-as statement and corresponding consumers."
+      "baseline_review_reason": "The institutional rulebook, warrant and changed-rule defeater match 54.2. The conclusion counts_as(D,W) omits institution I. The only printed rebuttal factor is correctly scoped to I/D/W. The rulebook-reporting warrant remains global as a universal warrant, not a claim that every particular rulebook is current. Remaining scope: Use one institution or institution-qualified ground terms. A generally multi-institution release should carry I in the counts-as statement and corresponding consumers.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "rule_mental_world",
@@ -882,7 +931,14 @@
         "Compendium p.342 entry54.3"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The source language L is present in the speakers’ premise but omitted from means_same(W,D). The counterexample without_correcting(W) is also broader than the particular language/definition. The printed rebuttal concerns competent usage without correct understanding of the referent. The current W-only hook captures a single lexical context, not arbitrary languages or competing definitions. Remaining scope: Retain a single-language/definition context qualification or make language and definition explicit before unrestricted composition across languages."
+      "baseline_review_reason": "The source language L is present in the speakers’ premise but omitted from means_same(W,D). The counterexample without_correcting(W) is also broader than the particular language/definition. The printed rebuttal concerns competent usage without correct understanding of the referent. The current W-only hook captures a single lexical context, not arbitrary languages or competing definitions. Remaining scope: Retain a single-language/definition context qualification or make language and definition explicit before unrestricted composition across languages.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "established_rule",
@@ -919,7 +975,14 @@
         "Compendium p.345 entry58"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The special circumstances now identify the committed action. However the pleader remains implicit and excuse(E)/not_excuse(E) omit the governing rule, action and sanction application. CQ1–CQ2 are a recognized or specially justified excuse aggregate. CQ3 is a future-precedent problem for an unrecognized excuse. The aggregate must encode this conditional meaning for the particular plea. Remaining scope: Use case-specific excuse and sanction terms, or introduce explicit pleader/case scope before approving unrestricted multi-plea graphs."
+      "baseline_review_reason": "The special circumstances now identify the committed action. However the pleader remains implicit and excuse(E)/not_excuse(E) omit the governing rule, action and sanction application. CQ1–CQ2 are a recognized or specially justified excuse aggregate. CQ3 is a future-precedent problem for an unrecognized excuse. The aggregate must encode this conditional meaning for the particular plea. Remaining scope: Use case-specific excuse and sanction terms, or introduce explicit pleader/case scope before approving unrestricted multi-plea graphs.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "perception",
@@ -938,7 +1001,14 @@
         "Compendium p.345 entry59.1"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The perceiver P and perceptible property I follow 59.1, with a prima-facie evidential warrant. The defeater not_indicator(I) omits P and perceptual context. The source undercutter asks about the circumstances in which the image is unreliable. A generic property name alone cannot distinguish one observer’s misleading circumstance from another observer’s reliable one. Remaining scope: Use a context-qualified I or separate graphs; for general multi-observer use, scope the unreliability defeater to observer/context and add independent-support controls like those now used for memory. Follow-up: PR13 follow-up visually compared pp345–346 and canonicalized reasonable_case/1 to memory's reasonable_believe/1 for the same case-qualified proposition. Five new cases establish independent supports, survival of either undefeated support, defeat of both, and protection against another case's memory. The not_indicator(I) observer/context qualification remains; no stage is promoted. The migrator rejects colliding old/canonical keyed entries rather than silently choosing their metadata or labels."
+      "baseline_review_reason": "The perceiver P and perceptible property I follow 59.1, with a prima-facie evidential warrant. The defeater not_indicator(I) omits P and perceptual context. The source undercutter asks about the circumstances in which the image is unreliable. A generic property name alone cannot distinguish one observer’s misleading circumstance from another observer’s reliable one. Remaining scope: Use a context-qualified I or separate graphs; for general multi-observer use, scope the unreliability defeater to observer/context and add independent-support controls like those now used for memory. Follow-up: PR13 follow-up visually compared pp345–346 and canonicalized reasonable_case/1 to memory's reasonable_believe/1 for the same case-qualified proposition. Five new cases establish independent supports, survival of either undefeated support, defeat of both, and protection against another case's memory. The not_indicator(I) observer/context qualification remains; no stage is promoted. The migrator rejects colliding old/canonical keyed entries rather than silently choosing their metadata or labels.",
+      "followup_review": {
+        "decision": "approved_corrected_interpretation",
+        "evidence": "docs/reviews/closure-context-independent-acceptance.md",
+        "reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+        "focused_execution": "31 cases /62 API+CLI checks, all pass",
+        "next_step": "Retain exact approval fingerprint; final combined acceptance gate is owned by integration."
+      }
     },
     {
       "record": "exeption_to_rule",
@@ -996,5 +1066,18 @@
       "remaining_original_source_obligation": "Walton, Goal-Based Reasoning for Argumentation (2015), relevant scheme and critical-question discussion, likely §3.9 pp.92–94 subject to verification.",
       "baseline_review_reason": "Mapping-only. The 2015 source has not been inspected, its actual CQ count has not been inventoried, and the generic Hal/insulin fixture does not establish that source's intended interpretation. Source correctness and burdens remain unapproved."
     }
+  ],
+  "followup_reviewed_commit": "12fc7d3f391cdc0cfdb3742adedb243537e949ae",
+  "followup_approved_records": [
+    "positive_value",
+    "negative_value",
+    "sign",
+    "cause_to_effect",
+    "abductive_backward",
+    "circumstantial_ad_hominem",
+    "rule_physical_world_2",
+    "rule_mental_world",
+    "perception",
+    "plea_for_excuse"
   ]
 }

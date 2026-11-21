@@ -1191,6 +1191,187 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "positive_value",
+      "fingerprint": "sha256:2a257f3de657d0ab4aa225850f9ec70771b4f60d067d7809ddb5f5debaa2b586",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: positive_value",
+        "docs/reviews/closure-context-repairs.md: positive_value"
+      ],
+      "examples": [
+        "positive_value/closure-owner-retained",
+        "positive_value/closure-mixed-owner-premises-refused"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "negative_value",
+      "fingerprint": "sha256:9c7108fa54ef4940e52c8a3550b5fe2b86f790fcdc8d5c5056cd5d65797a18bb",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: negative_value",
+        "docs/reviews/closure-context-repairs.md: negative_value"
+      ],
+      "examples": [
+        "negative_value/closure-owner-retained",
+        "negative_value/closure-opposite-values-different-agents"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "sign",
+      "fingerprint": "sha256:ef4e9482d72904da20f2c5c684bccf36306851050f6b7b5e9d5b4dbddea1f884",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: sign",
+        "docs/reviews/closure-context-repairs.md: sign"
+      ],
+      "examples": [
+        "sign/closure-candidate-specific-comparator",
+        "sign/closure-other-sign-does-not-defeat",
+        "sign/closure-candidate-specific-correlation-question"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "cause_to_effect",
+      "fingerprint": "sha256:ea03b0ae62ae286e6043f99a938e1136f18822d455c4509bb6cb4707d133698e",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: cause_to_effect",
+        "docs/reviews/closure-context-repairs.md: cause_to_effect"
+      ],
+      "examples": [
+        "cause_to_effect/closure-effect-specific-interference",
+        "cause_to_effect/closure-other-causal-case-does-not-defeat"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "abductive_backward",
+      "fingerprint": "sha256:93a4797dd82f224d713ae6a5d2113a7eb15617d93443c9272ee098199f5b4543",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: abductive_backward",
+        "docs/reviews/closure-context-repairs.md: abductive_backward"
+      ],
+      "examples": [
+        "abductive_backward/closure-candidate-membership",
+        "abductive_backward/closure-missing-membership-refused",
+        "abductive_backward/closure-wrong-comparison-universe-refused",
+        "abductive_backward/closure-inquiry-specific-question"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "circumstantial_ad_hominem",
+      "fingerprint": "sha256:fa74662419124445b254c43dcfbcb94d148aae21f922c5627daf5db841750c69",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: circumstantial_ad_hominem",
+        "docs/reviews/closure-context-repairs.md: circumstantial_ad_hominem"
+      ],
+      "examples": [
+        "circumstantial_ad_hominem/closure-credibility-specific-to-argument",
+        "circumstantial_ad_hominem/closure-character-question-isolation",
+        "circumstantial_ad_hominem/closure-explanation-isolation"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "rule_physical_world_2",
+      "fingerprint": "sha256:3b738432c7d85c3cb587bfee9c979990ba638618b30b12dd75f1dcb23dcf68f6",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: rule_physical_world_2",
+        "docs/reviews/closure-context-repairs.md: rule_physical_world_2"
+      ],
+      "examples": [
+        "rule_physical_world_2/closure-institution-retained",
+        "rule_physical_world_2/closure-rule-change-isolation",
+        "rule_physical_world_2/closure-universal-warrant-still-required"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "rule_mental_world",
+      "fingerprint": "sha256:aa3c9c7e8eb2be8db2ff1e45f28da41a23d0a0e5491bd18346f1c4ff471856a7",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: rule_mental_world",
+        "docs/reviews/closure-context-repairs.md: rule_mental_world"
+      ],
+      "examples": [
+        "rule_mental_world/closure-language-and-definition-retained",
+        "rule_mental_world/closure-language-defeater-isolation",
+        "rule_mental_world/closure-other-definition-does-not-defeat"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "perception",
+      "fingerprint": "sha256:8b11beff8e0a5b3a7a421fe71a6a835575514a471d6973c1a81dcfd6001afe0e",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: perception",
+        "docs/reviews/closure-context-repairs.md: perception"
+      ],
+      "examples": [
+        "perception/closure-independent-observer-survives",
+        "perception/closure-both-observers-defeated",
+        "perception/closure-same-observer-other-case-survives"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "plea_for_excuse",
+      "fingerprint": "sha256:bf827275219d928ed7e50934de3362e723cf9bb871d5ab418e269c017b49116b",
+      "evidence": [
+        "docs/reviews/closure-context-independent-acceptance.md: plea_for_excuse",
+        "docs/reviews/closure-context-repairs.md: plea_for_excuse"
+      ],
+      "examples": [
+        "plea_for_excuse/closure-pleader-and-case-retained",
+        "plea_for_excuse/closure-problematic-precedent-isolation",
+        "plea_for_excuse/closure-mixed-pleader-circumstances-refused",
+        "plea_for_excuse/closure-same-pleader-case-isolation",
+        "plea_for_excuse/closure-justification-question-isolation",
+        "plea_for_excuse/closure-supported-justification-answer"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }
