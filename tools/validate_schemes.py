@@ -381,7 +381,7 @@ INSTANCES = [
     ("evidence_hypothesis_falsification", "32.2, pp. 331-332", {"H": "h", "A": "e"},
      {"premises": ["hypothesis_event(h,e)", "event_false(e)"], "assumptions": ["sufficient_correlation(e,h)"], "conclusions": ["¬h"]}),
     ("from_example", "6.1, p. 314", {"A": "tweety", "P1": "bird", "P2": "flies"},
-     {"premises": ["has_properties(tweety,bird,flies)"], "assumptions": ["typical_example(tweety)"], "exceptions": ["impair_general(tweety)"], "conclusions": ["both_properties(tweety,bird,flies)"]}),
+     {"premises": ["has_properties(tweety,bird,flies)"], "assumptions": ["typical_example(tweety)", "supports_generalization(tweety,bird,flies)"], "exceptions": ["impair_general(tweety)"], "conclusions": ["both_properties(tweety,bird,flies)"]}),
     ("common_folk_ad_populum", "4.10, p. 313", {},
      {"premises": ["background"], "conclusions": ["being_credible"]}),
     ("moral_justification_ad_populum_excuse", "4.6, p. 312", {"G": "g", "X": "speaker", "A": "act"},
@@ -431,6 +431,15 @@ INSTANCES = [
      {"premises": ["goal_of_agent(me,g)", "goal_supported_by_values(g,v)", "necessary_or_sufficient_for_goal(me,a,g)"], "assumptions": ["possible_action(a)"],
       "exceptions": ["conflicting_goals(me,g)", "alternative_means(g,a)", "more_efficient_alternative(a,g)", "better_alternative_by_values(a,v)", "worse_consequences(a,g)"],
       "conclusions": ["should_bring_about(me,a)"]}),
+    # the changes of PLAN.md 5.1 and 5.2
+    ("popular_opinion", "4, p. 311", {"A": "tax_cut"},
+     {"premises": ["generally_true(tax_cut)", "favor(tax_cut)"], "exceptions": ["doubting_general(tax_cut)"], "conclusions": ["reason_in_favor(tax_cut)"]}),
+    ("verbal_classification", "14, p. 319", {"O": "rex", "F": "dog", "G": "mammal"},
+     {"premises": ["instance(rex,dog)", "subclass(dog,mammal)"], "exceptions": ["doubtful_classification(dog,mammal)"], "conclusions": ["instance(rex,mammal)"]}),
+    ("verbal_classification_vagueness", "16, pp. 319-320", {"A": "arg1", "F": "heap"},
+     {"premises": ["vague_defined_property(arg1,heap)", "property_precion_needed(arg1)", "property_vagueness(heap,arg1)"], "exceptions": ["certainity_no_need(arg1,heap)"], "conclusions": ["vaguness_recejted(arg1)"]}),
+    ("verbal_classification_arbitrariness", "17, p. 320", {"A": "arg1", "F": "poverty"},
+     {"premises": ["arbitrary_defined_property(arg1,poverty)", "needed_nonarbitrary(arg1,poverty)", "arbitrary_property(poverty,arg1)"], "exceptions": ["arbitrariness_harmless(arg1,poverty)"], "conclusions": ["arbitrary_rejected(arg1)"]}),
 ]
 
 def instantiate(statement, binding):

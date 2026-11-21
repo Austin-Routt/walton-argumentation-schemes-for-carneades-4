@@ -6,11 +6,13 @@ meta:
   version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."
   arbitrary_property/2: "Some property %s that occurs in %s is defined in a way that is arbitrary."
   arbitrary_rejected/1: "Therefore, %s ought to be rejected as deficient."
   certainity_no_need/2: "In argument %s, property %s does not need to be certain for the sake of the argument."
   classified_as/2: "Objects which satisfy definition %s are classified as instances of class %s."
+  doubtful_classification/2: "Classifying what is %s as %s rests merely on an assumption about word usage that is subject to doubt."
   inadequate_definition/2: "%s is an inadequate definition of %s."
   instance/2: "%s is an instance of class %s."
   needed_nonarbitrary/2: "%s occurs in a context of dialogue that requires a nonarbitrary definition for a key property %s that occurs in the argument."
@@ -37,6 +39,8 @@ argument_schemes:
     premises:
       - instance(O,F)
       - subclass(F,G)
+    exceptions:
+      - doubtful_classification(F,G)
 
   - id: definition_to_verbal_classification
     meta:
@@ -64,7 +68,7 @@ argument_schemes:
       -  vaguness_recejted(A)
     premises: 
       - vague_defined_property(A,F)
-      - property_precion_needed(F)
+      - property_precion_needed(A)
       - property_vagueness(F,A)
     exceptions: 
       - certainity_no_need(A,F)
@@ -82,3 +86,5 @@ argument_schemes:
       - arbitrary_defined_property(A,F)
       - needed_nonarbitrary(A,F)
       - arbitrary_property(F,A)
+    exceptions:
+      - arbitrariness_harmless(A,F)

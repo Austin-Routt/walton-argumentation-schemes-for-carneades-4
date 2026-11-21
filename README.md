@@ -43,7 +43,7 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,164 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,201 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
 
 ## Versions and releases
 

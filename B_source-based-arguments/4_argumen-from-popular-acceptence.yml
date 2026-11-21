@@ -21,7 +21,6 @@ language:
   doubting_general/1: "There are some strong reasons for doubting %s is generally true."
   elite_group/1: "This group %s is elite, that is, everyone who belongs to it has prestige."
   favor/1: "If %s is generally accepted as true, that gives a reason in favor of it."
-  generally_accepted/1: "%s is generally accepted as true."
   generally_true/1: "%s is generally accepted as true."
   goal_good_group/1: "Your goal is to be a good person, or a member of a group %s with good qualities."
   goal_prestige/0: "Prestige is an important goal for you."
@@ -65,8 +64,6 @@ argument_schemes:
     premises:
       - generally_true(A)
       - favor(A)
-    assumptions:
-      - generally_accepted(A)
     exceptions:
       - doubting_general(A)
 

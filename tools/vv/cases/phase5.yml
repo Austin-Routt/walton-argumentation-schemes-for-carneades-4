@@ -1,0 +1,146 @@
+# Reference cases for the changes of PLAN.md Phase 5 (5.1 and 5.2: the
+# printed critical questions sorted, and the ones a record did not model added
+# as an assumption or an exception). Each change has a positive example (the
+# premises of the book's entry hold, nothing is questioned or shown, the
+# conclusion is in) and an adverse one (the question raised, or a near miss
+# the change rules out), written before the edit (D13). The constants stand
+# for the book's variables; the page is the compendium's.
+cases:
+  # --- batch 1: entries 1 to 17 ---------------------------------------------
+  # 4 popular_opinion (p. 311): the assumption generally_accepted(A) repeated
+  # the general acceptance premise in other words (CQ1 restates it, p. 374);
+  # it goes. CQ2 stays an exception.
+  - name: popular_opinion/positive
+    source: "4, p. 311"
+    assumptions:
+      - generally_true(tax_cut)
+      - favor(tax_cut)
+    arguments:
+      - popular_opinion(tax_cut)
+    in:
+      - reason_in_favor(tax_cut)
+  - name: popular_opinion/adverse-no-general-acceptance
+    source: "4, p. 311, CQ1"
+    assumptions:
+      - favor(tax_cut)
+    no_arguments: [popular_opinion]
+    not_in:
+      - reason_in_favor(tax_cut)
+  - name: popular_opinion/adverse-reasons-for-doubt
+    source: "4, p. 311, CQ2"
+    assumptions:
+      - generally_true(tax_cut)
+      - favor(tax_cut)
+      - doubting_general(tax_cut)
+    arguments:
+      - popular_opinion(tax_cut)
+    not_in:
+      - reason_in_favor(tax_cut)
+
+  # 6.1 from_example (p. 314): CQ2, whether the example supports the
+  # generalization, is an assumption.
+  - name: from_example/positive
+    source: "6.1, p. 314"
+    assumptions:
+      - has_properties(tweety,bird,flies)
+    arguments:
+      - from_example(tweety,bird,flies)
+    in:
+      - both_properties(tweety,bird,flies)
+  - name: from_example/adverse-support-questioned
+    source: "6.1, p. 314, CQ2"
+    assumptions:
+      - has_properties(tweety,bird,flies)
+    questioned:
+      - supports_generalization(tweety,bird,flies)
+    not_in:
+      - both_properties(tweety,bird,flies)
+  - name: from_example/support-questioned-and-shown
+    source: "6.1, p. 314, CQ2; pp. 373-375"
+    assumptions:
+      - has_properties(tweety,bird,flies)
+      - supports_generalization(tweety,bird,flies)
+    questioned:
+      - supports_generalization(tweety,bird,flies)
+    in:
+      - both_properties(tweety,bird,flies)
+
+  # 14 verbal_classification (p. 319): CQ2, a classification that rests
+  # merely on doubtful word usage, is an exception.
+  - name: verbal_classification/positive
+    source: "14, p. 319"
+    assumptions:
+      - instance(rex,dog)
+      - subclass(dog,mammal)
+    arguments:
+      - verbal_classification(rex,dog,mammal)
+    in:
+      - instance(rex,mammal)
+  - name: verbal_classification/adverse-doubtful-usage
+    source: "14, p. 319, CQ2"
+    assumptions:
+      - instance(rex,dog)
+      - subclass(dog,mammal)
+      - doubtful_classification(dog,mammal)
+    arguments:
+      - verbal_classification(rex,dog,mammal)
+    not_in:
+      - instance(rex,mammal)
+
+  # 16 verbal_classification_vagueness (pp. 319-320): premise 2 says that the
+  # argument occurs in a context that requires precision; the record said it
+  # of the property.
+  - name: verbal_classification_vagueness/positive
+    source: "16, pp. 319-320"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - property_precion_needed(arg1)
+      - property_vagueness(heap,arg1)
+    arguments:
+      - verbal_classification_vagueness(arg1,heap)
+    in:
+      - vaguness_recejted(arg1)
+  - name: verbal_classification_vagueness/adverse-precision-said-of-the-property
+    source: "16, pp. 319-320"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - property_precion_needed(heap)
+      - property_vagueness(heap,arg1)
+    no_arguments: [verbal_classification_vagueness]
+    not_in:
+      - vaguness_recejted(arg1)
+  - name: verbal_classification_vagueness/exception
+    source: "16, p. 320, CQ3"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - property_precion_needed(arg1)
+      - property_vagueness(heap,arg1)
+      - certainity_no_need(arg1,heap)
+    arguments:
+      - verbal_classification_vagueness(arg1,heap)
+    not_in:
+      - vaguness_recejted(arg1)
+
+  # 17 verbal_classification_arbitrariness (p. 320): CQ3, why arbitrariness is
+  # a problem in this dialogue, is an exception, as for 16.
+  - name: verbal_classification_arbitrariness/positive
+    source: "17, p. 320"
+    assumptions:
+      - arbitrary_defined_property(arg1,poverty)
+      - needed_nonarbitrary(arg1,poverty)
+      - arbitrary_property(poverty,arg1)
+    arguments:
+      - verbal_classification_arbitrariness(arg1,poverty)
+    in:
+      - arbitrary_rejected(arg1)
+  - name: verbal_classification_arbitrariness/adverse-arbitrariness-harmless
+    source: "17, p. 320, CQ3"
+    assumptions:
+      - arbitrary_defined_property(arg1,poverty)
+      - needed_nonarbitrary(arg1,poverty)
+      - arbitrary_property(poverty,arg1)
+      - arbitrariness_harmless(arg1,poverty)
+    arguments:
+      - verbal_classification_arbitrariness(arg1,poverty)
+    not_in:
+      - arbitrary_rejected(arg1)

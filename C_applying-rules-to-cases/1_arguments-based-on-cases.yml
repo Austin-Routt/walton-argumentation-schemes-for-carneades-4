@@ -30,6 +30,7 @@ language:
   should_do/2: "%s should do %s."
   similar_case/1: "Case %s is similar to the current case."
   similar_to/2: "%s is similar to %s."
+  supports_generalization/3: "Example %s supports the generalization that whatever has property %s also has property %s."
   typical_example/1: "Example %s is a typical example of the kinds of cases the generalization covers."
   usually_properties/3: "Usually, if %s has property %s it also has property %s."
   valid/1: "Rule %s is valid."
@@ -77,6 +78,7 @@ argument_schemes:
       - impair_general(A)
     assumptions: 
       - typical_example(A)
+      - supports_generalization(A,P1,P2)
 
   - id: illustration
     meta:

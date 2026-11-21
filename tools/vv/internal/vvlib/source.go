@@ -10,6 +10,7 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/carneades/carneades-4/src/engine/caes"
 	"gopkg.in/yaml.v2"
 )
 
@@ -401,18 +402,7 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		if stage >= 1 && r.Claim == "unchecked" {
 			probs = append(probs, "a row past mapped says what the record claims to be")
 		}
-		for _, q := range r.Questions {
-			if !QuestionKinds[q.Kind] {
-				probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
-			} else if q.Kind != "premise" && q.As == "" {
-				probs = append(probs, fmt.Sprintf("question %d is an %s: name the statement that models it", q.N, q.Kind))
-			}
-		}
-		if stage >= StageIndex("questions-sorted") && r.Origin == "book" {
-			if n := entries[r.Entry].Questions; len(r.Questions) != n {
-				probs = append(probs, fmt.Sprintf("questions sorted: %d of the %d the compendium prints for entry %s", len(r.Questions), n, r.Entry))
-			}
-		}
+		probs = append(probs, questionProblems(r, s, entries[r.Entry].Questions, stage >= StageIndex("questions-sorted"))...)
 		if stage >= StageIndex("example-passed") && !cases[r.Record+"/book"] {
 			probs = append(probs, "example passed, but no reference case "+r.Record+"/book")
 		}
@@ -444,4 +434,93 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 	}
 	out = append(out, res(sourceFile, "(file)", "source/records-complete", probs))
 	return out
+}
+
+// questionProblems checks a row's sorted questions (PLAN.md 5.1) against its
+// record: an assumption is one of the record's assumptions, an exception one
+// of its exceptions, a premise (when it names one) one of its premises, and a
+// rebuttal the negation of one of its conclusions, weighed against it in the
+// negation issue. Numbers run from 1 to the count the compendium prints; 0
+// marks a statement the record models although the book prints no question
+// for it. Once the row is at questions-sorted, every printed question is
+// sorted and every assumption and exception of the record is accounted for.
+func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) []string {
+	probs := []string{}
+	in := func(list []string, st string) bool {
+		for _, x := range list {
+			if Norm(x) == Norm(st) {
+				return true
+			}
+		}
+		return false
+	}
+	negations := []string{}
+	for _, c := range s.Conclusions {
+		n := Norm(c)
+		if strings.HasPrefix(n, "¬") {
+			negations = append(negations, strings.TrimPrefix(n, "¬"))
+		} else {
+			negations = append(negations, "¬"+n)
+		}
+	}
+	seen := map[int]bool{}
+	named := map[string]bool{}
+	for _, q := range r.Questions {
+		switch {
+		case q.N < 0 || (printed >= 0 && r.Origin == "book" && q.N > printed):
+			probs = append(probs, fmt.Sprintf("question %d: the compendium prints %d", q.N, printed))
+		case q.N > 0 && seen[q.N]:
+			probs = append(probs, fmt.Sprintf("question %d is sorted twice", q.N))
+		}
+		seen[q.N] = true
+		ok := true
+		if q.As == "" && q.Kind != "premise" {
+			// sorted, not modelled yet (a gap of PLAN.md 5.2)
+			if complete {
+				probs = append(probs, fmt.Sprintf("question %d, %s, is not modelled", q.N, article(q.Kind)))
+			}
+			seen[q.N] = true
+			continue
+		}
+		switch q.Kind {
+		case "premise":
+			ok = q.As == "" || in(s.Premises, q.As)
+		case "assumption":
+			ok = in(s.Assumptions, q.As)
+		case "exception":
+			ok = in(s.Exceptions, q.As)
+		case "rebuttal":
+			ok = in(negations, q.As)
+		default:
+			probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
+			continue
+		}
+		if !ok {
+			probs = append(probs, fmt.Sprintf("question %d, %s, is modelled by %q, which is not one of the record's %ss", q.N, article(q.Kind), q.As, map[string]string{"premise": "premise", "assumption": "assumption", "exception": "exception", "rebuttal": "negated conclusion"}[q.Kind]))
+		}
+		if q.As != "" {
+			named[Norm(q.As)] = true
+		}
+	}
+	if complete {
+		for n := 1; n <= printed; n++ {
+			if !seen[n] {
+				probs = append(probs, fmt.Sprintf("question %d of %d is not sorted", n, printed))
+			}
+		}
+		for _, st := range append(append([]string{}, s.Assumptions...), s.Exceptions...) {
+			if !named[Norm(st)] {
+				probs = append(probs, fmt.Sprintf("%s is modelled but no question names it (use n: 0 for a statement the book prints no question for)", st))
+			}
+		}
+	}
+	return probs
+}
+
+// article puts "a" or "an" before a kind of question.
+func article(kind string) string {
+	if strings.ContainsAny(kind[:1], "aeiou") {
+		return "an " + kind
+	}
+	return "a " + kind
 }

@@ -36,6 +36,7 @@ language:
   alternatives/2: "Either you must bring about %s, or %s will occur."
   another_category/2: "The object may look like it can be classified under %s but it is more justifiable to classify it under another category %s."
   applicable/1: "Argument %s is applicable."
+  arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."
   arbitrary_property/2: "Some property %s that occurs in %s is defined in a way that is arbitrary."
   arbitrary_rejected/1: "Therefore, %s ought to be rejected as deficient."
@@ -126,6 +127,7 @@ language:
   divisionally_hereditary/2: "Property %[2]s is divisionally hereditary with regard to %[1]s: if the whole has it, every part has it."
   do_obligator/0: "One must not do what is prohibited, and must do what is obligatory."
   do_other/1: "Therefore, you should -ought to, practically speaking- bring about %s."
+  doubtful_classification/2: "Classifying what is %s as %s rests merely on an assumption about word usage that is subject to doubt."
   doubting_general/1: "There are some strong reasons for doubting %s is generally true."
   easy_to_achive/1: "%s is easy to achieve."
   elite_group/1: "This group %s is elite, that is, everyone who belongs to it has prestige."
@@ -150,7 +152,6 @@ language:
   feasible/1: "It is feasible to perform the action %s."
   finding_true/1: "Finding %s is true in this situation."
   future_losses_outweigh/1: "Future losses of completing the action %s outweigh its value."
-  generally_accepted/1: "%s is generally accepted as true."
   generally_true/1: "%s is generally accepted as true."
   goal_good_group/1: "Your goal is to be a good person, or a member of a group %s with good qualities."
   goal_of_agent/2: "The goal of %s is to bring about %s."
@@ -391,6 +392,7 @@ language:
   sufficient_correlation/2: "Correlation between %s and %s is sufficient."
   sufficient_evidence/0: "The search for evidence has progressed sufficiently."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
+  supports_generalization/3: "Example %s supports the generalization that whatever has property %s also has property %s."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
   therefore_true/1: "Therefore %s is true."
@@ -451,8 +453,6 @@ argument_schemes:
     premises:
       - generally_true(A)
       - favor(A)
-    assumptions:
-      - generally_accepted(A)
     exceptions:
       - doubting_general(A)
       
@@ -632,6 +632,7 @@ argument_schemes:
       - impair_general(A)
     assumptions: 
       - typical_example(A)
+      - supports_generalization(A,P1,P2)
      
   - id: illustration
     meta:
@@ -869,7 +870,7 @@ argument_schemes:
       -  vaguness_recejted(A)
     premises: 
       - vague_defined_property(A,F)
-      - property_precion_needed(F)
+      - property_precion_needed(A)
       - property_vagueness(F,A)
     exceptions: 
       - certainity_no_need(A,F)
@@ -887,6 +888,8 @@ argument_schemes:
       - arbitrary_defined_property(A,F)
       - needed_nonarbitrary(A,F)
       - arbitrary_property(F,A)
+    exceptions:
+      - arbitrariness_harmless(A,F)
 
   - id: interaction_act_person_1
     meta: 
@@ -2189,6 +2192,8 @@ argument_schemes:
     premises:
       - instance(O,F)
       - subclass(F,G)
+    exceptions:
+      - doubtful_classification(F,G)
 
   - id: witness_testimony
     meta:

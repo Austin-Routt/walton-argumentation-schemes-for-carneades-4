@@ -3251,6 +3251,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|engine-validator
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/assumptions-questionable
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/conclusions-in
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/exceptions-undercut
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/fires
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/ground
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/infer-ok
@@ -3259,6 +3260,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|full/terminates
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/assumptions-questionable
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/conclusions-in
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/exceptions-undercut
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/fires
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/ground
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/infer-ok
@@ -3307,6 +3309,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|engine-validator
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/assumptions-questionable
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/conclusions-in
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/exceptions-undercut
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/fires
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/ground
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/infer-ok
@@ -3315,6 +3318,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|full/terminates
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/assumptions-questionable
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/conclusions-in
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/exceptions-undercut
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/fires
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/ground
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/infer-ok
@@ -3412,6 +3416,32 @@ cases/phase3.yml|value_based_practical_reasoning/positive|case
 cases/phase3.yml|value_based_practical_reasoning/positive|roundtrip
 cases/phase3.yml|value_based_practical_reasoning/possibility-questioned|case
 cases/phase3.yml|value_based_practical_reasoning/possibility-questioned|roundtrip
+cases/phase5.yml|from_example/adverse-support-questioned|case
+cases/phase5.yml|from_example/adverse-support-questioned|roundtrip
+cases/phase5.yml|from_example/positive|case
+cases/phase5.yml|from_example/positive|roundtrip
+cases/phase5.yml|from_example/support-questioned-and-shown|case
+cases/phase5.yml|from_example/support-questioned-and-shown|roundtrip
+cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|case
+cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|roundtrip
+cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|case
+cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|roundtrip
+cases/phase5.yml|popular_opinion/positive|case
+cases/phase5.yml|popular_opinion/positive|roundtrip
+cases/phase5.yml|verbal_classification/adverse-doubtful-usage|case
+cases/phase5.yml|verbal_classification/adverse-doubtful-usage|roundtrip
+cases/phase5.yml|verbal_classification/positive|case
+cases/phase5.yml|verbal_classification/positive|roundtrip
+cases/phase5.yml|verbal_classification_arbitrariness/adverse-arbitrariness-harmless|case
+cases/phase5.yml|verbal_classification_arbitrariness/adverse-arbitrariness-harmless|roundtrip
+cases/phase5.yml|verbal_classification_arbitrariness/positive|case
+cases/phase5.yml|verbal_classification_arbitrariness/positive|roundtrip
+cases/phase5.yml|verbal_classification_vagueness/adverse-precision-said-of-the-property|case
+cases/phase5.yml|verbal_classification_vagueness/adverse-precision-said-of-the-property|roundtrip
+cases/phase5.yml|verbal_classification_vagueness/exception|case
+cases/phase5.yml|verbal_classification_vagueness/exception|roundtrip
+cases/phase5.yml|verbal_classification_vagueness/positive|case
+cases/phase5.yml|verbal_classification_vagueness/positive|roundtrip
 cases/reference.yml|chain-of-schemes|case
 cases/reference.yml|chain-of-schemes|roundtrip
 cases/reference.yml|cycle|case
@@ -3471,6 +3501,7 @@ source_ledger.yml|alternative_normative|source/record-row
 source_ledger.yml|analogy|source/record-row
 source_ledger.yml|appeal_to_vanity_ad_populum|source/record-row
 source_ledger.yml|appearance|source/record-row
+source_ledger.yml|arbitrariness_harmless/2|source/name-in-language
 source_ledger.yml|better_alternative_by_values/2|source/name-in-language
 source_ledger.yml|bias_ad_hominem|source/record-row
 source_ledger.yml|bias|source/record-row
@@ -3492,6 +3523,7 @@ source_ledger.yml|definition_to_verbal_classification|source/record-row
 source_ledger.yml|deliberation_ad_populum|source/record-row
 source_ledger.yml|distress|source/record-row
 source_ledger.yml|division_generic|source/record-row
+source_ledger.yml|doubtful_classification/2|source/name-in-language
 source_ledger.yml|end_and_means_1|source/record-row
 source_ledger.yml|end_and_means_2|source/record-row
 source_ledger.yml|end_and_means_3|source/record-row
@@ -3698,6 +3730,7 @@ source_ledger.yml|slippery_slope_inductive_step|source/record-row
 source_ledger.yml|snob_appeal_ad_populum|source/record-row
 source_ledger.yml|sorites_slippery_slope|source/record-row
 source_ledger.yml|sunk_costs|source/record-row
+source_ledger.yml|supports_generalization/3|source/name-in-language
 source_ledger.yml|treat|source/record-row
 source_ledger.yml|two_person_practical|source/record-row
 source_ledger.yml|value_based_practical_reasoning|source/record-row
@@ -6903,6 +6936,7 @@ walton.yml|verbal_classification_arbitrariness|cli/scenario
 walton.yml|verbal_classification_arbitrariness|engine-validator
 walton.yml|verbal_classification_arbitrariness|full/assumptions-questionable
 walton.yml|verbal_classification_arbitrariness|full/conclusions-in
+walton.yml|verbal_classification_arbitrariness|full/exceptions-undercut
 walton.yml|verbal_classification_arbitrariness|full/fires
 walton.yml|verbal_classification_arbitrariness|full/ground
 walton.yml|verbal_classification_arbitrariness|full/infer-ok
@@ -6911,6 +6945,7 @@ walton.yml|verbal_classification_arbitrariness|full/premises-needed
 walton.yml|verbal_classification_arbitrariness|full/terminates
 walton.yml|verbal_classification_arbitrariness|iso/assumptions-questionable
 walton.yml|verbal_classification_arbitrariness|iso/conclusions-in
+walton.yml|verbal_classification_arbitrariness|iso/exceptions-undercut
 walton.yml|verbal_classification_arbitrariness|iso/fires
 walton.yml|verbal_classification_arbitrariness|iso/ground
 walton.yml|verbal_classification_arbitrariness|iso/infer-ok
@@ -6961,6 +6996,7 @@ walton.yml|verbal_classification|cli/scenario
 walton.yml|verbal_classification|engine-validator
 walton.yml|verbal_classification|full/assumptions-questionable
 walton.yml|verbal_classification|full/conclusions-in
+walton.yml|verbal_classification|full/exceptions-undercut
 walton.yml|verbal_classification|full/fires
 walton.yml|verbal_classification|full/ground
 walton.yml|verbal_classification|full/infer-ok
@@ -6969,6 +7005,7 @@ walton.yml|verbal_classification|full/premises-needed
 walton.yml|verbal_classification|full/terminates
 walton.yml|verbal_classification|iso/assumptions-questionable
 walton.yml|verbal_classification|iso/conclusions-in
+walton.yml|verbal_classification|iso/exceptions-undercut
 walton.yml|verbal_classification|iso/fires
 walton.yml|verbal_classification|iso/ground
 walton.yml|verbal_classification|iso/infer-ok

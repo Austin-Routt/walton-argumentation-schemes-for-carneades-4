@@ -242,4 +242,5 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] Phase 4; gate R: the strict run passes on `master` (8c092b6), 7,164 checks, the same on Go 1.24.13 and 1.27.4; versions recorded (library 0.1.0, engine 4.3.1+walton.1); notes in `docs/releases/r1.md`
 - [ ] Release R1 published: the tag `r1` on 8c092b6 and a GitHub release with the two archives attached. This session can push branches but not tags or releases; the owner runs `git tag -a r1 8c092b6 -m "R1"`, `git push origin r1` and `gh release create r1 --prerelease --title "R1 — preview (library 0.1.0, engine 4.3.1+walton.1)" --notes-file docs/releases/r1.md carneades-4.zip GoCHR.zip`. The archives leave the tree only after that.
 - [ ] D14 at R1: someone who did not write the changes reruns the strict suite from a clean checkout and checks the reference cases against the book by hand (a fresh clone was rerun by the author, with the same result)
+- [ ] 5.1, 5.2 Questions sorted and gaps modelled: entries 1 to 17 done (33 questions of 13 records; 5 records changed)
 - [ ] Phase 5; gate L; release R2
