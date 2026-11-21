@@ -36,7 +36,7 @@ changes:
   - {record: abductive_forward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
   - {record: retroductive, kind: added, old: '', new: 'action_fits_quality(A,E,Q)', plan: '5.2', page: 331}
   - {record: evidence_hypothesis_falsification, kind: arguments, old: "sufficient_correlation(A,H)", new: "sufficient_correlation(H,A)", plan: "5.1", page: 332, note: "the order 32.1 uses for the shared question"}
-  - {record: negative_consequences_reasoning, kind: added, old: "", new: "outcome_likely(A,B)", plan: "5.2", page: 332}
+  - {record: negative_consequences_reasoning, kind: added, old: "", new: "consequence_likelihood_adequate(A,B)", plan: "5.2", page: 332, note: "Originally outcome_likely; closure review replaces the unsupported strong-likelihood threshold with shared CQ1 adequacy."}
   - {record: help, kind: removed, old: "possible_carry_out(B,X)", new: "", plan: "5.1", page: 334, note: "repeated premise 3, can_carry_out(B,X)"}
   - {record: help, kind: removed, old: "greater_side_effects(X)", new: "", plan: "5.1", page: 334, note: "repeated premise 4, not_too_costly(B,X)"}
   - {record: distress, kind: arity, old: "relieve(B,X)", new: "relieve(B,X,A)", plan: "5.1", page: 334, note: "whose distress is relieved"}
@@ -249,3 +249,5 @@ changes:
   - {record: two_person_practical, kind: wording, old: situation_necessity/4, new: situation_necessity/4, plan: independent-review, page: 325, note: 'PR13 reconciliation: sees, not sets; preserve the adviser-to-agent report, corroborated by p97'}
   - {record: illustration, kind: rename-predicate, old: same_properties/3, new: has_properties/3, plan: independent-review, page: 315, note: 'PR13 reconciliation: same individual/property/property roles as entry6.1 p314'}
   - {record: interaction_act_person_2, kind: rename-predicate, old: person_judgment_value/2, new: person_value/2, plan: independent-review, page: 321, note: 'PR13 reconciliation: person P is V is the conclusion of18.1 and premise1 of18.2, with the same judgment-value role'}
+
+  - {record: negative_consequences_reasoning, kind: replaced, old: "outcome_likely(A,B)", new: "consequence_likelihood_adequate(A,B)", plan: closure-review, page: 332, note: "Assess likelihood relative to the claimed argument strength. This is a semantic change requiring manual review: not strongly likely does not imply inadequate, so neither positive nor negative saved judgments are automatically renamed."}

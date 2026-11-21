@@ -364,7 +364,7 @@ cases:
       - agent_bring_about(me,tax,recession)
       - bad_for_goals(me,recession)
     questioned:
-      - outcome_likely(tax,recession)
+      - consequence_likelihood_adequate(tax,recession)
     not_in:
       - ¬should_do(me,tax)
 

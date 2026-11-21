@@ -296,3 +296,15 @@ OCR-style errors in titles and references ("lnformal Logic", "Trtatise", "Wayrw 
 ### Not changed
 
 Misspelt identifiers (scheme ids, predicate names, the file name `5_casual-reasoning.yml`) are kept because renaming them changes the interface for existing argument graphs; see `PLAN.md`.
+# Closure follow-up: consequence likelihood
+
+- Entry 33.3 now shares `consequence_likelihood_adequate/2` with 33.1 and
+  33.2. Their common CQ1 asks about likelihood relative to the asserted
+  strength; the former `outcome_likely/2` wording imposed an unsupported
+  strong-likelihood threshold. Six paired/adverse reference cases and the
+  usage example exercise the corrected question.
+- Saved threshold judgments require manual reassessment. The migration table
+  records a semantic replacement, not an automatic rename of old positive,
+  negative or questioned assertions. No old source approval is renewed by
+  the implementation author; independent review must renew its fingerprint.
+

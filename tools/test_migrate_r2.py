@@ -127,6 +127,15 @@ class Migrate(unittest.TestCase):
                     self.assertEqual(stdout.getvalue(), "")
                     self.assertIn("reconcile the original entries by hand", stderr.getvalue())
 
+    def test_likelihood_threshold_change_requires_review(self):
+        # A denial of strong likelihood need not deny adequacy for a modest
+        # defeasible claim. Do not silently equate the old and new predicates.
+        src = "questioned: [outcome_likely(tax,recession)]\nassumptions: [¬outcome_likely(tax,recession)]\n"
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("negative_consequences_reasoning", "consequence_likelihood_adequate(A,B)"), rows)
+
     def test_by_hand(self):
         # a statement whose form changed for one record is listed, not rewritten
         src = "assumptions:\n  - carry_out_action(go)\n  - plausibly_true(rain)\n"

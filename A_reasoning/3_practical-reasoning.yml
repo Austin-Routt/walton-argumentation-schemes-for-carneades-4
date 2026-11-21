@@ -66,7 +66,6 @@ language:
   other_consequences/1: "There are other good or bad consequences of doing %s that should be taken into account."
   ought_to_bring_about/1: "You should (ought to, practically speaking) bring about %s."
   ought_to_continue/2: "%s ought to continue trying to realize %s."
-  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   position_to_bring_about/1: "I am in a position to bring about %s."
   possible/1: "Action %s is possible."
   possible_bring_about/2: "It is possible for %s to bring about %s."
@@ -485,7 +484,7 @@ argument_schemes:
       - agent_bring_about(P,A,B)
       - bad_for_goals(P,B)
     assumptions:
-      - outcome_likely(A,B)
+      - consequence_likelihood_adequate(A,B)
 
   - id: sunk_costs
     meta:

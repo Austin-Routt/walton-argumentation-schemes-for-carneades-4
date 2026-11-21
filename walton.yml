@@ -264,7 +264,6 @@ language:
   ought_to_bring_about/1: "You should (ought to, practically speaking) bring about %s."
   ought_to_continue/2: "%s ought to continue trying to realize %s."
   out_group_not_accept/2: "If you do not accept %s, you will be out of this group %s."
-  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   part_whole/5: "%[1]s is %[2]s only if %[3]s, %[4]s or %[5]s is."
   person_act/2: "Person %s has done act %s."
   person_acts_value/3: "%s's acts %s will be %s."
@@ -1225,7 +1224,7 @@ argument_schemes:
       - agent_bring_about(P,A,B)
       - bad_for_goals(P,B)
     assumptions:
-      - outcome_likely(A,B)
+      - consequence_likelihood_adequate(A,B)
 
   - id: pragmatic_alternative
     meta:
