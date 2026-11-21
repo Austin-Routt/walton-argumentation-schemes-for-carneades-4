@@ -14,6 +14,8 @@ python3 "$repo/tools/test_validate_schemes.py" "$repo" 2>&1 | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/vv/setup.sh (engine sources)"
 WALTON_REPO="$repo" "$here/setup.sh" || exit 1
+echo "== go vet, and the unit tests of the suite itself"
+(cd "$here" && go vet ./... && go test -count=1 ./internal/...) || status=1
 echo "== go test (engine and library)"
 # No package argument: in that mode `go test` shows the summary by issue even
 # when the run is green.

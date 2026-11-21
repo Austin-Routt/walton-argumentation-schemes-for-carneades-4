@@ -73,11 +73,19 @@ that matches no check that ran fails the run too, and so does a run with fewer
 checks than `min_checks` in the ledger says, because a passing check leaves no
 entry and could otherwise be removed without anyone noticing.
 
-Two limits are worth knowing. Nothing stops a later change from adding entries
-or lowering `min_checks`, so a change to the ledger needs the same review as a
-change to the code. And an entry names a check, not a cause: a check that starts
-failing for a different reason still counts as known. `VV_STRICT=1` is the
-release gate; the ordinary run only says that nothing got worse.
+`expected_checks.txt` lists every check a complete run produces, by name. A
+listed check that did not run fails the run, and so does a check that is not
+listed: `VV_UPDATE_CHECKS=1` rewrites the list, in the change that adds or
+removes checks, where the difference is reviewed with the code.
+
+An entry may carry a `fingerprint:`, a text the failure's message must contain.
+A listed check that fails for another reason is then reported as a new failure,
+not a known one.
+
+One limit is worth knowing. Nothing stops a later change from adding entries,
+lowering `min_checks` or rewriting the list, so a change to any of them needs
+the same review as a change to the code. `VV_STRICT=1` is the release gate; the
+ordinary run only says that nothing got worse.
 
 ## What is checked
 
@@ -179,9 +187,6 @@ to the ledger under an issue.
   `reserved-predicate-names-are-rejected` (contract 7);
   `scheme-roles-are-imported` still states the stronger outcome. Where the decision is to reject, the check is
   restated in a change of its own, after the contract that says so.
-* A ledger entry names a check, not a cause. Nothing here notices when a known
-  failure starts failing for another reason; a fingerprint of each known
-  failure's message would, and is not built yet.
 * Not ported yet from the two other reviews: the second review's six acceptance
   cases; the third review's per-scheme checks of a withdrawn assumption and of
   a second inference (this suite has both only at engine level), its Go

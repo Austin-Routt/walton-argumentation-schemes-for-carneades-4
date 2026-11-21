@@ -214,7 +214,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 0.1 Engine sources imported into `third_party/`, `sources.lock`, `tools/vv`, CI workflow
 - [x] 0.2 Parity register `docs/parity.md` written
 - [ ] 0.2 Checks marked "to port" in `docs/parity.md` ported (done: the per-scheme second inference and withdrawn assumption, the 20 probes and 2 mutation tests of the validator, the no-rule-fired store)
-- [ ] 0.3 Ledger with an expected-check list and failure fingerprints
+- [x] 0.3 Ledger with an expected-check list (`tools/vv/expected_checks.txt`) and failure fingerprints (`fingerprint:`)
 - [x] 0.4 README brought up to date
 - [x] 0.5 Contracts `docs/contracts.md` written (each is met when its issues leave the ledger)
 - [ ] 0.6 Source ledger, one row per record
