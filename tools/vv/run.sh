@@ -18,6 +18,11 @@ python3 "$repo/tools/test_migrate_r2.py" 2>&1 | tail -1
 echo "== tools/test_graph_from_library.py (graphs started from the library)"
 python3 "$repo/tools/test_graph_from_library.py" 2>&1 | tail -1
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1
+echo "== tools/check_source_approvals.py (reviewed source decisions)"
+python3 "$repo/tools/check_source_approvals.py" --repo "$repo" || status=1
+echo "== tools/test_check_source_approvals.py (approval integrity mutations)"
+python3 "$repo/tools/test_check_source_approvals.py" 2>&1 | tail -3
+[ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/vv/setup.sh (engine sources)"
 WALTON_REPO="$repo" "$here/setup.sh" || exit 1
 echo "== go vet, and the unit tests of the suite itself"

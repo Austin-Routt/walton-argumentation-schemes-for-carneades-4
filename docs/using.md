@@ -5,6 +5,12 @@ repository (PLAN.md, Phase 6). The examples under `docs/examples/` are checked
 by `tools/vv` on every push: each is what the tool below makes from the
 library today, and the command gives every label its `tests:` expect.
 
+## Source approval and scope
+
+The full 120-record file is a preview. The independently reviewed 70-record subset is identified by `example-passed` in `tools/vv/source_ledger.yml` and bound to recorded approvals in `docs/reviews/independent-approvals.json`. The other 50 records retain specific source or interpretation holds. The graph generator copies a requested scheme; it does not imply that scheme has passed source approval. Read its ledger row and review scope when selecting it.
+
+API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
+
 ## What to load
 
 * `walton.yml` holds every scheme (120 records) with the language templates
@@ -36,7 +42,7 @@ The engine is kept as source in `third_party/`, with this repository's fixes;
 ```sh
 cd tools/vv
 go build -o ~/bin/carneades github.com/carneades/carneades-4/src/cmd/carneades
-carneades            # prints the engine's version, 4.3.1+walton.1
+carneades            # prints the engine's version, 4.3.1+walton.2
 ```
 
 `carneades check case.yml` reads and validates a graph without evaluating it;
@@ -83,7 +89,7 @@ count only once they are shown.
 * **Arguments** are built by the command from the schemes, one for each way
   the premises of a scheme hold. You can also write an argument out, under
   `arguments:`; one that names a scheme is checked against it (contract 6).
-* **Critical questions** are of two kinds (D2, pp. 373-375). An assumption of
+* **Challengeable defaults and exceptions** have different burdens (D2, pp. 373-375). An assumption of
   a scheme holds until it is questioned: list it under `questioned:`, and the
   argument then needs support for it like an ordinary premise. An exception
   defeats the argument only once it is shown: assume it, or argue for it.
@@ -119,7 +125,7 @@ from different schemes meet in one issue.
 ## Versions
 
 The library's version is `meta.version` in `walton.yml` and the engine's is
-printed by the command (`docs/releases/`). A graph written for release R1
+printed by the command (`docs/releases/`). A graph written for the former R1 candidate
 (library 0.1.0) is brought up to date with
 
 ```sh

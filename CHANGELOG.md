@@ -2,6 +2,18 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — independent acceptance candidate (engine 4.3.1+walton.2)
+
+Baseline `49ad425` was independently rerun from clean copies: 7,994 checks passed on both pinned Go versions. The former R1 pin also reproduced7,164 passing checks, but newly specified counterexamples found gaps that required a corrected candidate.
+
+* Fixed streaming/cancellable matching and quotas, logical repeated-premise fact reuse, strict nested parsing, complete issue closure, default priority before seeding and atomic publication of inferred graph state.
+* Authored argument validation now requires a linked witness for every instantiated exception under the same binding. An arbitrary nonnil undercutter is insufficient.
+* Independently reviewed every book-mapped record and the complete Atkinson 2007 paper. Added discriminating source cases and repaired model/generalization, agent, diagram, trait, event, coextension and recaller identities. See the two exhaustive source reviews and `docs/source-contracts-second-half.md`.
+* Corrected the interpretation of entry31.4's counterevidence: an isolated atypical action does not automatically disprove a likely tendency. The scoped hook requires relevant counterevidence sufficient to defeat the qualitative prediction.
+* Recorded 70 source approvals, 48 transcription-only rows and two mapped rows. The verbal-classification hold based on a nonexistent separately cited original was removed after code-origin and compendium reconciliation. Source stages are not automatically advanced by passing tests.
+* Added an approval registry bound to current semantic fingerprints and mutation tests; stable mode rejects incomplete content. Both pinned toolchains and their result comparison are required CI checks.
+* Replaced the operational plan, preserved the old plan/release proposal as history and superseded tagging `8c092b6`. Original engine ZIPs remain reproducibility inputs, not patched release binaries.
+
 ## Unreleased — Phase 5 of `PLAN.md`: the records against the book (library 0.2.0)
 
 ### Independent source review, compendium entries 28–60

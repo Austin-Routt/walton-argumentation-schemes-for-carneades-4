@@ -235,7 +235,7 @@ language:
   negative_consequences/1: "Performing action %s would have negative consequences."
   normal_true/1: "If the situation were normal, %s would be true."
   not_acceptable_step/1: "%s is not acceptable, contrary to the presumption of the initial premise."
-  not_character_action/2: "Agent %s has actions that do not fit the defined character quality %s."
+  not_character_action/2: "Relevant actions of agent %s provide sufficient counterevidence against predicting future actions from character quality %s."
   not_do_appear/2: "If you do not bring about %s, then %s will occur."
   not_doing/1: "You were considering not doing %s."
   not_excuse/1: "%s does not fall under a recognized category, and this would pose a problem in future cases."

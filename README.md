@@ -44,22 +44,31 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,994 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` records known executable failures. The strict gate allows none. The independent review reproduced the previous 7,994 passing checks on both Go versions, then added cases that exposed and repaired previously untested defects. Use `tools/vv/expected_checks.txt` and the acceptance logs for the current named inventory. Passing executable tests does not automatically approve an interpretation of a source.
 
 ## Versions and releases
 
-The library and the engine carry versions of their own. The library's is `meta.version` of `walton.yml`, which every category file carries too: **0.1.0** at release R1, **0.2.0** with the changes of Phase 5 since (not released; see the changelog). The engine's is in `third_party/VERSION`, and `carneades` prints it: **4.3.1+walton.1**, that is Carneades 4.3.1 and GoCHR at the commits of `sources.lock`, with the fixes of this repository.
+The corrected preview uses library **0.2.0** (`walton.yml` and all category files) and engine **4.3.1+walton.2** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
 
-* **R1, a preview** (`PLAN.md`, gate R): the engine's profile of `docs/contracts.md` is accepted; the library is not yet. Its repairs are interpretations until Phase 5 has checked them against the book, and every record's row in `tools/vv/source_ledger.yml` is still at "mapped".
-* **R2**, the first stable release of the library (1.0.0), follows gate L: every released record at "example passed", and the one migration of identifiers with its old-to-new table.
+The independent review examined all 114 book-mapped records and the attached Atkinson and Bench-Capon paper. **70 of the 120 records are `example-passed`; 48 are `transcription-checked` and two are `mapped`.** The 70 approvals comprise 65 book-origin and five inherited records with explicit scope and provenance. The remaining 50 have record-specific source or interpretation holds. The complete library is a preview; full 1.0.0 requires every row to meet stable gate L.
 
-## Known limitations
+Source approvals are recorded in `docs/reviews/independent-approvals.json` and bound to the reviewed content. Run:
 
-* The library is not released as stable yet. Since R1 (0.1.0), Phase 5 of `PLAN.md` has compared every record filed under a compendium entry with the book, sorted all 189 printed critical questions into premises, assumptions, exceptions, rebuttals and questions of the proof standard, modelled the ones that were missing, and written one instance per record from the book (0.2.0, unreleased). What remains before R2 is a review of these interpretations by someone who did not write them (D14), and the comparison of the records taken over from Carneades with the works they cite (5.5); `tools/vv/source_ledger.yml` shows how far each record has got.
-* A scheme's `assumptions` hold until they are called into question (pp. 373–375): list a statement under `questioned:` in a graph file (or `ArgGraph.Questioned`), and the default is suspended until an argument supports it. A statement the graph itself stipulates under `assumptions:` stays assumed (`docs/contracts.md`, contract 5).
-* Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; one term per line in YAML lists; no `is`, `true` or `false` as predicate names).
-* Release R2 renames the misspelt identifiers once (`PLAN.md` D4, 5.6): scheme ids such as `exeptional` (now `exceptional`), `epistemic_ignorence`, `treat` (now `threat`) and the four ids with a hyphen, predicates such as `recieves_evaluation` and `succesful_account`, and the files `5_casual-reasoning.yml`, `2_argumen-from-commitment.yml` and `4_argumen-from-popular-acceptence.yml`. `tools/migration_r2.yml` lists every change from 0.1.0 (release R1) to R2, and `python3 tools/migrate_r2.py FILE` brings a graph written for R1 up to date; it lists the changes it cannot make without knowing the case (a statement with other arguments, a premise added). `exeption_to_rule`, one of the records taken over from Carneades, keeps its id until the 2019 correspondence is checked (5.5). The same release makes statements that mean the same thing one statement, so that schemes connect: `has_property/2` for "X has property Y", "X is A" and "G has Q" (9, 10, 21, 31.5, 52); the statement A itself for "A is (plausibly) true" (4.2 to 4.4, 13.1, 26.1, 27, 30, 48); `should_do/2` for the practical ought with its agent named (6.3, 22, 23, 33.3, 38, 39) and `ought_to_bring_about/1` for the respondent's (4.8, 34 to 37). The table lists each.
-* Six statements have no variable, by decision (`PLAN.md` 5.4): the general warrants `more_important_ends`, `synonymous`, `correctly_report`, `speakers_correct` and `do_obligator`, and `goal_prestige`, which is about the respondent, whom no ad populum record names.
+```
+python3 tools/check_source_approvals.py --repo .
+python3 tools/check_source_approvals.py --repo . --require-stable
+```
+
+The first checks integrity of current approvals. The second is expected to fail while the 50 content holds remain; it is the complete-library stable gate. Fingerprint inventory does not create an approval. Both pinned Go versions (1.24.13 and 1.27.4) are required CI jobs.
+
+## Known limitations and migration
+
+* Source agreement and successful execution are separate requirements. Original cited books and the attributed 2019 correspondence remain outstanding where individually identified. The Atkinson paper is now reviewed: the inherited AS1 record has eight incomplete question mappings and does not implement the paper's full AS2 transition/value model. See `docs/reviews/atkinson-2007.md`.
+* A scheme default holds until challenged through `questioned:`; a graph-level stipulation remains assumed until withdrawn. Premises, assumptions, exceptions and rebuttals have distinct burdens. Evidence adequacy and application truth are supplied by the caller; the engine does not infer them from natural-language facts.
+* This release supports the offline CLI/API profile. Logical work/storage quotas and cancellation are documented in `docs/contracts.md`; they do not provide a total process-memory or hostile-input service guarantee. API clients must structurally validate authored graphs before inference.
+* Use `tools/migration_r2.yml` and `tools/migrate_r2.py` for previous preview graphs. Participant, event, diagram, coextension and evidence changes can require new facts; the tool reports manual work instead of inventing those facts. Keep the 2019 `exeption_to_rule` provenance hold separate from the compendium's `from_precedent` record.
+* Shared predicates are reused only for equal meanings and roles. `has_property` is generic; typed `character_quality` is needed for character prediction. Personal practical statements use agent-scoped predicates. Nullary universal warrants are retained only with their declared interpretation; other implicit-context records remain qualified.
+* Term syntax, supported names and outcomes are specified in `docs/contracts.md` and `docs/using.md`. Category files are generated; edit `walton.yml` and regenerate them.
 
 #### Updates
 ##### 2019-10-08

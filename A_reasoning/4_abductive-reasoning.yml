@@ -25,7 +25,7 @@ language:
   inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
   more_reliable/1: "There are other events that would more reliably account for the sign %s."
-  not_character_action/2: "Agent %s has actions that do not fit the defined character quality %s."
+  not_character_action/2: "Relevant actions of agent %s provide sufficient counterevidence against predicting future actions from character quality %s."
   action_fits_quality/3: "The description of agent %s's action or event %s actually fits the definition of quality %s."
   observed/1:  "%s has been observed."
   plausible_conclusion/1: "%s is the most plausible conclusion in the case."

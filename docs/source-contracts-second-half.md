@@ -130,3 +130,7 @@ whose use requires a review, while leaving `old` empty because it remains in
 the scheme. The migrator reports the need for coextension without adding it.
 After changing a scheme's parameters or questions, reconstruct persisted
 instances and their undercutters from the reviewed case facts.
+
+## Cross-review clarification: predictive character evidence
+
+For entry 31.4, `not_character_action(A,Q)` means relevant counterevidence sufficient to undermine this qualitative trait-based prediction. One isolated atypical act is not automatically a probability-theoretic refutation of a likely tendency. The evidence adequacy judgment is external; the library provides a scoped defeater hook. This explicit interpretation was selected in the independent integration review after inspecting printed p.330.
