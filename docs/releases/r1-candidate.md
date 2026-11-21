@@ -26,7 +26,7 @@ The supplied Atkinson and Bench-Capon paper was reviewed in full. Its17 question
 
 ## Verification
 
-Both pinned Go versions are required CI jobs. The final package includes clean-checkout engine/race/vet logs, strict results, exact per-check comparison, the expected-check inventory, source-approval mutation tests and the validator output. No known executable failure is waived. Informational validator warnings are explained in the review report; a warning count is not a quality score.
+Both pinned Go versions are required CI jobs. The complete inventory contains 8,206 distinct checks; duplicate emitted identities, duplicate manifest entries and malformed comparator records fail. The final package includes clean-checkout engine/race/vet logs, strict results, exact per-check comparison, the expected-check inventory, source-approval mutation tests and the validator output. No known executable failure is waived. Informational validator warnings are explained in the review report; a warning count is not a quality score.
 
 ## Assets and migration
 
