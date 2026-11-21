@@ -82,10 +82,6 @@ issues:
     where: engine
     severity: major
     title: "GoCHR names a fresh variable V1; a scheme variable called V1 captures it and the conclusion comes out wrong but ground"
-  - id: E-EXIT
-    where: engine
-    severity: major
-    title: "`carneades check` and `carneades eval` exit with status 0 when they find problems or refuse to evaluate"
   - id: E-GLOBALS
     where: engine
     severity: major
@@ -163,7 +159,6 @@ expected:
   - {issue: E-CAPTURE, scheme: (engine), checks: [unbound-variable-is-not-captured]}
   - {issue: E-INCONS,  scheme: (engine), checks: [inconsistent-assumptions-detected, inconsistent-follows-current-assumptions]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
-  - {issue: E-EXIT,    scheme: (engine), checks: [cli-eval-signals-refusal, cli-check-exit-status]}
 
   # ------------------------------------------------------------------ schemes
   # negated premises

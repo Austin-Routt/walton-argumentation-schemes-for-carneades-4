@@ -146,4 +146,8 @@ func checkCmd() {
 			fmt.Fprintf(outFile, "%s: %s: %s: %s\n", p.Category, p.Id, p.Description, p.Expression)
 		}
 	}
+	if len(problems) > 0 {
+		// invalid input (docs/contracts.md, contract 3)
+		os.Exit(caes.ExitStatus(caes.ErrInvalidInput))
+	}
 }

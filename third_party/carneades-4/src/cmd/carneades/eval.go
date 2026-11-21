@@ -186,10 +186,18 @@ func evalCmd() {
 		}
 	}
 
-	if len(problems) == 0 {
+	if len(problems) > 0 {
+		// The graph is not evaluated: invalid input (docs/contracts.md, contract 3).
+		os.Exit(caes.ExitStatus(caes.ErrInvalidInput))
+	}
+	{
 		// Apply the theory of the argument graph, if any, to
-		// derive further arguments
-		ag.Infer()
+		// derive further arguments. A run that does not complete
+		// prints no evaluation, and the exit status says why.
+		if err := ag.Infer(); err != nil {
+			fmt.Fprintf(os.Stderr, "carneades eval: %v\n", err)
+			os.Exit(caes.ExitStatus(err))
+		}
 
 		// evaluate the argument graph, using grounded semantics
 		// and update the labels of the statements in the argument graph

@@ -96,7 +96,7 @@ func (ag *ArgGraph) Infer() error {
 
 		success, store, err := rb.Infer(goals, MAXRULEAPPS)
 		if err != nil {
-			return err
+			return NewRunError(ErrInvalidInput, "the rule engine rejected the theory: %v", err)
 		}
 		if !success {
 			return nil
@@ -125,7 +125,7 @@ func (ag *ArgGraph) Infer() error {
 		for issue, patterns := range ag.Theory.IssueSchemes {
 			err := ag.makeIssue(issue, *patterns)
 			if err != nil {
-				return err
+				return NewRunError(ErrInvalidInput, "issue scheme %s: %v", issue, err)
 			}
 		}
 	}
