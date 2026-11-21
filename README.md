@@ -48,7 +48,7 @@ tools/vv/run.sh      # the two checks above, the engine sources against sources.
 
 ## Versions and releases
 
-The corrected preview uses library **0.2.0** (`walton.yml` and all category files) and engine **4.3.1+walton.2** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
+The corrected preview uses library **0.2.0** (`walton.yml` and all category files) and engine **4.3.1+walton.3** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
 
 The independent review examined all 114 book-mapped records and the attached Atkinson and Bench-Capon paper. **70 of the 120 records are `example-passed`; 48 are `transcription-checked` and two are `mapped`.** The 70 approvals comprise 65 book-origin and five inherited records with explicit scope and provenance. The remaining 50 have record-specific source or interpretation holds. The complete library is a preview; full 1.0.0 requires every row to meet stable gate L.
 

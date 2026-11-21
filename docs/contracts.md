@@ -58,12 +58,12 @@ Inference constructs a private mutable graph copy and publishes it only on succe
 |---|---:|
 | Rule applications (`MAXRULEAPPS`) | 100,000 |
 | Nodes in one term (`MAXTERMSIZE`) | 500 |
-| Matching candidate visits, including failures (`MAXMATCHSTEPS`) | 1,000,000 |
+| Matching candidate visits, including failures (`MAXMATCHSTEPS`) | 50,000,000 |
 | Inserted constraints (`MAXCONSTRAINTS`) | 100,000 |
 | Cumulative inserted term nodes (`MAXSTORENODES`) | 2,000,000 |
-| Issue candidate/pattern visits per materialization phase (`MAXISSUESTEPS`) | 1,000,000 |
+| Issue candidate/pattern visits per materialization phase (`MAXISSUESTEPS`) | 50,000,000 |
 
-An exact rule-application boundary is complete if no further firing remains. Duplicate facts consume no new insertion allowance. A caller's context cancels `ArgGraph.InferContext`; CLI evaluation connects interrupt/termination signals to that context. Cancellation is checked even when there are no rules or no matching rule, and during candidate search, issue construction and argument materialization. A cancelled/deadline context produces cancellation, rather than a successful partial evaluation.
+The two visit budgets are safety valves, not working limits: at 1,000,000 a failing four-way join over 120 facts (about 1.7 million visits) and the issue closure of whole-library graphs of some 700 statements were refused although they complete in well under a second. Issue construction looks positions up by key when the remaining patterns are ground under the bindings of the first, as the negation issue scheme's are; statements with variables, and enumerations, keep the scan. An exact rule-application boundary is complete if no further firing remains. Duplicate facts consume no new insertion allowance. A caller's context cancels `ArgGraph.InferContext`; CLI evaluation connects interrupt/termination signals to that context. Cancellation is checked even when there are no rules or no matching rule, and during candidate search, issue construction and argument materialization. A cancelled/deadline context produces cancellation, rather than a successful partial evaluation.
 
 These are logical work/storage quotas, not a hard byte-memory or end-to-end wall-clock guarantee. Parsing, copying an already supplied graph and grounded labelling are not fully preemptible by these solver checks. Term-node counts do not bound the byte length of a string. Applications exposed to untrusted oversized inputs must impose input-size limits and process resource controls; the present release does not claim that service profile.
 

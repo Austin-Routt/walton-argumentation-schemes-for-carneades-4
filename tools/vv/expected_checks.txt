@@ -8177,6 +8177,7 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|explicit-argument-without-questions-is-reported
 |(engine)|export-keeps-compound-parameters
 |(engine)|export-keeps-expected-labels
+|(engine)|failing-join-completes
 |(engine)|go-vet-clean
 |(engine)|growing-term-is-bounded
 |(engine)|inconsistent-assumptions-detected
@@ -8200,6 +8201,7 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|invalid-rule-is-reported
 |(engine)|issue-extension-keeps-positions
 |(engine)|labelling-returns-after-issue-gains-position
+|(engine)|large-issue-closure-completes
 |(engine)|library-version-recorded
 |(engine)|malformed-statement-is-an-error
 |(engine)|negated-assumption-alone

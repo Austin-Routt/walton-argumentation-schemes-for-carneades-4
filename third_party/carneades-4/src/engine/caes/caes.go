@@ -921,6 +921,10 @@ func (ag *ArgGraph) addDefault(stmt_id string) {
 // If some pattern is not synatically correct and thus cannot be parsed,
 // an error is returned and the argument graph is left unchanged.
 // If all goes well, the argument graph is updated and nil is returned
+// issueLookup lets issue construction look positions up by key when the
+// remaining patterns are ground; tests turn it off to compare with the scan.
+var issueLookup = true
+
 // readIssuePatterns rejects the complete pattern list before any graph write.
 func readIssuePatterns(patterns []string) ([]terms.Term, error) {
 	if len(patterns) < 2 {
@@ -984,13 +988,52 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 				}
 			}
 
-			// For each matching statement, iterate over the statements
-			// again to try to find other positions of the issue. Whether or
-			// not a statement is a position depends on the remaining patterns
-			// of the issue scheme and, in particular, whether or not the
-			// issue scheme is an enumeration.
+			// When every remaining pattern is ground under the bindings of
+			// the first (as "¬S" is once S is bound), its positions are
+			// looked up by key instead of found by a scan of all statements.
+			// The scan made issue construction quadratic in the size of the
+			// graph, so that a graph of some 800 statements exhausted the
+			// issue-visit budget (docs/contracts.md, contract 3).
+			// Only a ground statement gives ground bindings: statement
+			// keys with variables keep the scan, which matches them.
+			ground := !isEnumeration && issueLookup && terms.Ground(term1, nil)
+			keys := []string{}
+			if ground {
+				for _, pattern2 := range parsed[1:] {
+					inst := terms.Substitute(pattern2, bindings)
+					if !terms.Ground(inst, nil) {
+						ground = false
+						break
+					}
+					keys = append(keys, terms.Normalize(inst.String()))
+				}
+			}
+			if ground {
+				seen := map[string]bool{wff1: true}
+				for _, k := range keys {
+					if err := work.step(); err != nil {
+						return err
+					}
+					if seen[k] {
+						continue
+					}
+					seen[k] = true
+					if stmt2, ok := ag.Statements[k]; ok {
+						candidates = append(candidates, stmt2)
+					}
+				}
+			}
+
+			// Otherwise, for each matching statement, iterate over the
+			// statements again to try to find other positions of the issue.
+			// Whether or not a statement is a position depends on the
+			// remaining patterns of the issue scheme and, in particular,
+			// whether or not the issue scheme is an enumeration.
 
 			for wff2, stmt2 := range ag.Statements {
+				if ground {
+					break
+				}
 				if err := work.step(); err != nil {
 					return err
 				}

@@ -373,7 +373,7 @@ func carriesExceptions(ag *caes.ArgGraph, arg *caes.Argument, b terms.Bindings) 
 				continue
 			}
 			p := link.Premises[0].Stmt
-			if p != nil && ag.Statements[terms.Normalize(p.Id)] == p && terms.Normalize(p.Id) == instance.String() {
+			if p != nil && ag.Statements[terms.Normalize(p.Id)] == p && terms.Normalize(p.Id) == terms.Normalize(instance.String()) {
 				found = true
 				break
 			}

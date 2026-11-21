@@ -48,7 +48,7 @@ The engine is kept as source in `third_party/`, with this repository's fixes;
 ```sh
 cd tools/vv
 go build -o ~/bin/carneades github.com/carneades/carneades-4/src/cmd/carneades
-carneades            # prints the engine's version, 4.3.1+walton.2
+carneades            # prints the engine's version, 4.3.1+walton.3
 ```
 
 `carneades check case.yml` reads and validates a graph without evaluating it;
@@ -110,6 +110,13 @@ count only once they are shown.
 * **Expected labels** go under `tests:`, with the lists `in`, `out` and
   `undecided`. A statement named there has to be declared under
   `statements:`, with its text; otherwise the command refuses the file.
+* **I and you.** Some schemes are printed in the first or second person: the
+  subtypes 4.7 to 4.9, 26.2, 33.4, the appeals of entries 34 to 37, 51, 52
+  and 58. Their statements name no participant, so a graph that uses them
+  holds one proponent ("I") and one respondent ("you"); two speakers need two
+  graphs. Where a scheme names its agent (22.1 to 22.5, 23, 33.3, 38, 39), the
+  agent is a constant of your case, such as `me`. (Proposed by the second
+  independent review, pull request #14.)
 
 ## Pro and con in one issue
 

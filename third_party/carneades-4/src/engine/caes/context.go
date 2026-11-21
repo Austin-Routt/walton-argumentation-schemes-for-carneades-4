@@ -15,7 +15,10 @@ func (ag *ArgGraph) Inconsistent() bool {
 }
 
 // MAXISSUESTEPS bounds candidate/pattern visits while materializing issues.
-const MAXISSUESTEPS = 1000000
+// It is a safety valve, not a size limit: with positions looked up by key a
+// graph costs about two visits per statement and issue scheme, and the
+// library's own graphs stay far below it.
+const MAXISSUESTEPS = 50000000
 
 type issueWork struct {
 	ctx       context.Context

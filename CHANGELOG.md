@@ -2,6 +2,17 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — implementer response to the independent reviews (engine 4.3.1+walton.3)
+
+See `docs/reviews/implementer-response.md`.
+
+* The acceptance candidate's work budgets refused ordinary inputs: whole-library graphs of some 700 statements or more ("issue matching exhausted its candidate-visit budget") and a failing four-premise join over 120 facts. Issue construction now looks positions up by key when the remaining patterns are ground; statements with variables and enumerations keep the scan. `MAXISSUESTEPS` and `MAXMATCHSTEPS` are 50,000,000, safety valves rather than working limits. A 1,200-fact library graph takes 0.7 s (master 5.8 s, the candidate refused it) and gives the same 14 issues and labels as the candidate's scan.
+* `terms.Substitute` stops on a binding chain that ends in a variable bound to itself (an upstream defect the lookup reached through an AIF example).
+* The authored-exception check normalizes both keys it compares.
+* Two checks: `large-issue-closure-completes`, `failing-join-completes` (8,230).
+* Library: entry 16's `certainty_no_need/2` takes the wording of pull request #14 (held); the unused `smaller_part_property/3` template is removed. `docs/using.md` states the one-proponent, one-respondent convention for first- and second-person schemes; `docs/reviews.md` finding 14 lists the five commits to split.
+* The implementer, who did not write them, checked the eight changes the first review both made and approved (31.2–31.5, 6.3, 54.1, 56, 60) against the printed pages and concurs; the ledger rows say so. Source approvals remain 70 of 120.
+
 ## 2026-11-21 — independent acceptance candidate (engine 4.3.1+walton.2)
 
 Baseline `49ad425` was independently rerun from clean copies: 7,994 checks passed on both pinned Go versions. The former R1 pin also reproduced 7,164 passing checks, but newly specified counterexamples found gaps that required a corrected candidate.

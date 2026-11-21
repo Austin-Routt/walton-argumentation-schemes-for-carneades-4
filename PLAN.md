@@ -4,7 +4,7 @@ Updated 2026-11-21. Reviewed baseline: `49ad425cbf7afeebcbd9a07ee479d60681ca33ea
 
 ## Decision and present state
 
-Proceed with the corrected **preview**, library **0.2.0** and engine **4.3.1+walton.2**, after its clean acceptance runs. **Do not publish the former R1 commit.** Independent counterexamples exposed engine and source defects its green tests did not cover. **Do not promote the complete library to 1.0.0 because tests pass.**
+Proceed with the corrected **preview**, library **0.2.0** and engine **4.3.1+walton.3**, after its clean acceptance runs. **Do not publish the former R1 commit.** Independent counterexamples exposed engine and source defects its green tests did not cover. **Do not promote the complete library to 1.0.0 because tests pass.**
 
 The author's measurements are reproducible: clean baseline copies pass all 7,994 registered checks on Go 1.24.13 and Go 1.27.4, including the separate engine build, vet, unit and race gate. A separate full clone of former R1 passes 7,164 checks on Go 1.24.13. These results validate the reported executions, not completeness of those tests.
 

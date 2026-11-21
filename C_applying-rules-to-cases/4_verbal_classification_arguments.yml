@@ -9,7 +9,7 @@ language:
   arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
   arbitrary_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of nonarbitrary definition for a key property %s that occurs in the argument, and if the property is defined in an arbitrary way in the argument, then the argument ought to be rejected as deficient."
   arbitrary_property/2: "Some property %s that occurs in %s is defined in a way that is arbitrary."
-  certainty_no_need/2: "In argument %s, property %s does not need to be precise for the sake of the argument."
+  certainty_no_need/2: "In argument %s, the vagueness of property %s is no problem for the dialogue in which it was advanced."
   classified_as/2: "Objects which satisfy definition %s are classified as instances of class %s."
   doubtful_definition/2: "Using definition %s for classification %s rests merely on a stipulative or biased definition that is subject to doubt."
   doubtful_classification/2: "Classifying what is %s as %s rests merely on an assumption about word usage that is subject to doubt."
