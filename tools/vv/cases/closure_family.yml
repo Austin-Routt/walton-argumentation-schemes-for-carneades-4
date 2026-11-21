@@ -1,0 +1,141 @@
+cases:
+  - name: popular_practice/closure-two-cases
+    source: "5 p.314: acceptability and its warrant concern the same case"
+    assumptions:
+      - popular_practice(restaurant,tipping)
+      - to_think_acceptable(restaurant,tipping)
+      - popular_practice(court,tipping)
+    in: ["acceptable_in_case(restaurant,tipping)"]
+    not_in: ["acceptable_in_case(court,tipping)"]
+  - name: popular_practice/closure-wrong-case-warrant
+    source: "5 p.314: a conditional from another situation does not supply this warrant"
+    assumptions: ["popular_practice(court,tipping)", "to_think_acceptable(restaurant,tipping)"]
+    no_arguments: [popular_practice]
+  - name: popular_practice/closure-questioned-grounds
+    source: "5 CQ2: the actual-case justification default requires support when questioned"
+    assumptions: ["popular_practice(restaurant,tipping)", "to_think_acceptable(restaurant,tipping)"]
+    questioned: ["have_grounds_think(restaurant,tipping)"]
+    not_in: ["acceptable_in_case(restaurant,tipping)"]
+  - name: popular_practice/closure-other-case-grounds
+    source: "5 CQ2: questioning another case does not remove this case's grounds"
+    assumptions: ["popular_practice(restaurant,tipping)", "to_think_acceptable(restaurant,tipping)"]
+    questioned: ["have_grounds_think(court,tipping)"]
+    in: ["acceptable_in_case(restaurant,tipping)"]
+  - name: analogy/closure-similar-countercase-no-stronger-ranking
+    source: "7 p.315,2006 pp.96-97: CQ3 does not require a more-on-point alternative"
+    assumptions: ["similar_case(base1)", "in_case(target_claim,base1)", "contrary_similar_case(target_claim,base1)"]
+    arguments: ["analogy(target_claim,base1)"]
+    not_in: [target_claim]
+  - name: analogy/closure-other-property-countercase
+    source: "7 CQ3: contrary evidence for a different claim does not answer this claim"
+    assumptions: ["similar_case(base1)", "in_case(target_claim,base1)", "contrary_similar_case(other_claim,base1)"]
+    in: [target_claim]
+  - name: analogy/closure-other-base-countercase
+    source: "7 CQ3: similarity to another base case is not this comparison"
+    assumptions: ["similar_case(base1)", "in_case(target_claim,base1)", "contrary_similar_case(target_claim,base2)"]
+    in: [target_claim]
+  - name: analogy/closure-question-is-not-countercase-evidence
+    source: "7: static CQ policy distinguishes asking about a counterexample from supporting it"
+    assumptions: ["similar_case(base1)", "in_case(target_claim,base1)"]
+    questioned: ["contrary_similar_case(target_claim,base1)"]
+    in: [target_claim]
+  - name: from_antimodel/closure-explicit-abstention
+    source: "6.4 p.315: should not do is an explicit recommendation to refrain"
+    assumptions: ["¬prestigious_individual(tyrant,citizens)", "carry_out_act(tyrant,lying)", "want_to_be_different(citizens,tyrant)"]
+    in: ["should_refrain(citizens,lying)"]
+    not_in: ["¬should_do(citizens,lying)", "should_do(citizens,lying)"]
+  - name: from_antimodel/closure-not-required-does-not-imply-refrain
+    source: "6.4: explicit non-obligation is distinct from a recommendation to refrain"
+    assumptions: ["¬should_do(citizens,lying)"]
+    no_arguments: [from_antimodel]
+    not_in: ["should_refrain(citizens,lying)"]
+  - name: from_antimodel/closure-other-recipient
+    source: "6.4: the desired distance from the model belongs to the directed people"
+    assumptions: ["¬prestigious_individual(tyrant,citizens)", "carry_out_act(tyrant,lying)", "want_to_be_different(children,tyrant)"]
+    no_arguments: [from_antimodel]
+  - name: alternative_normative/closure-exclusive-not-required
+    source: "13.2 p.318: an exclusive requirement choice yields not-required, not prohibition"
+    assumptions: ["exclusive_requirement_alternatives(stop,go)", "is_required(stop)"]
+    in: ["¬is_required(go)"]
+    not_in: ["prohibited(go)", "must_not_do(actor,go)"]
+  - name: alternative_normative/closure-inclusive-wording-insufficient
+    source: "13.2: an inclusive either/or statement does not establish exclusive requirement"
+    assumptions: ["can_be_required(stop,go)", "is_required(stop)"]
+    no_arguments: [alternative_normative]
+    not_in: ["¬is_required(go)"]
+  - name: alternative_normative/closure-absence-not-affirmative-requirement
+    source: "13.2: lack of information about either duty does not establish one"
+    assumptions: ["exclusive_requirement_alternatives(stop,go)"]
+    no_arguments: [alternative_normative]
+    not_in: ["¬is_required(go)", "is_required(stop)"]
+  - name: value_based_practical_reasoning/closure-other-agent-values-refused
+    source: "22.4 p.324: my values cannot be supplied by another agent"
+    assumptions: ["goal_of_agent(ann,survival)", "goal_supported_by_values(bob,survival,life)", "necessary_or_sufficient_for_goal(ann,treatment,survival)"]
+    no_arguments: [value_based_practical_reasoning]
+  - name: value_based_practical_reasoning/closure-other-agent-alternative
+    source: "22.4: an alternative available to Bob does not defeat Ann's argument"
+    assumptions: ["goal_of_agent(ann,survival)", "goal_supported_by_values(ann,survival,life)", "necessary_or_sufficient_for_goal(ann,treatment,survival)", "alternative_means(bob,survival,treatment)"]
+    in: ["should_do(ann,treatment)"]
+  - name: value_based_practical_reasoning/closure-actual-agent-alternative
+    source: "22.4: the actual agent's alternative is still the selected static undercutter"
+    assumptions: ["goal_of_agent(ann,survival)", "goal_supported_by_values(ann,survival,life)", "necessary_or_sufficient_for_goal(ann,treatment,survival)", "alternative_means(ann,survival,treatment)"]
+    not_in: ["should_do(ann,treatment)"]
+  - name: value_based_practical_reasoning/closure-other-agent-value-and-costs
+    source: "22.4: relative efficiency,value ranking and costs are agent-specific"
+    assumptions:
+      - goal_of_agent(ann,survival)
+      - goal_supported_by_values(ann,survival,life)
+      - necessary_or_sufficient_for_goal(ann,treatment,survival)
+      - more_efficient_alternative(bob,treatment,survival)
+      - better_alternative_by_values(bob,treatment,life)
+      - worse_consequences(bob,treatment,survival)
+    in: ["should_do(ann,treatment)"]
+  - name: value_based_practical_reasoning/closure-same-agent-different-case
+    source: "22.4: compound goal/action terms carry distinct deliberation cases"
+    assumptions:
+      - goal_of_agent(ann,survival(case1))
+      - goal_supported_by_values(ann,survival(case1),life)
+      - necessary_or_sufficient_for_goal(ann,treatment(case1),survival(case1))
+      - goal_of_agent(ann,survival(case2))
+      - goal_supported_by_values(ann,survival(case2),life)
+      - necessary_or_sufficient_for_goal(ann,treatment(case2),survival(case2))
+      - worse_consequences(ann,treatment(case1),survival(case1))
+    in: ["should_do(ann,treatment(case2))"]
+    not_in: ["should_do(ann,treatment(case1))"]
+  - name: practical_inference/closure-other-agent-efficiency
+    arguments: ["practical_inference(car,travel,ann)"]
+    source: "22.1 p.323: available better means are relative to the deliberating agent"
+    assumptions: ["goal_of_agent(ann,travel)", "means_to_end(car,travel)", "more_efficient_alternative(bob,car,travel)"]
+    in: ["should_do(ann,car)"]
+  - name: practical_inference/closure-actual-agent-efficiency
+    arguments: ["practical_inference(car,travel,ann)"]
+    source: "22.1: a supported better alternative for the same agent remains an undercutter"
+    assumptions: ["goal_of_agent(ann,travel)", "means_to_end(car,travel)", "more_efficient_alternative(ann,car,travel)"]
+    not_in: ["should_do(ann,car)"]
+  - name: practical_inference/closure-other-agent-consequence
+    arguments: ["practical_inference(car,travel,ann)"]
+    source: "22.1: another agent's incompatible consequences are not this deliberation"
+    assumptions: ["goal_of_agent(ann,travel)", "means_to_end(car,travel)", "incompatible_consequences(bob,car,travel)"]
+    in: ["should_do(ann,car)"]
+  - name: two_person_practical/closure-other-actor-alternative
+    source: "23 pp.325-326: alternatives concern the advised actor, not another person"
+    assumptions: ["tells_intend(ann,trip,adviser)", "situation_necessity(adviser,ticket,trip,ann)", "alternative_means(bob,trip,ticket)"]
+    in: ["should_do(ann,ticket)"]
+    not_in: ["should_do(adviser,ticket)"]
+  - name: two_person_practical/closure-actual-actor-alternative
+    source: "23 CQ2: the actor's actual supported alternative remains the static undercutter"
+    assumptions: ["tells_intend(ann,trip,adviser)", "situation_necessity(adviser,ticket,trip,ann)", "alternative_means(ann,trip,ticket)"]
+    not_in: ["should_do(ann,ticket)"]
+  - name: two_person_practical/closure-other-actor-additional-action
+    source: "23 CQ5: another person's required additional action does not defeat this actor"
+    assumptions: ["tells_intend(ann,trip,adviser)", "situation_necessity(adviser,ticket,trip,ann)", "other_actions_required(bob,trip,ticket)"]
+    in: ["should_do(ann,ticket)"]
+  - name: two_person_practical/closure-actual-actor-additional-action
+    source: "23 CQ5: the correctly scoped additional-action requirement is still effective"
+    assumptions: ["tells_intend(ann,trip,adviser)", "situation_necessity(adviser,ticket,trip,ann)", "other_actions_required(ann,trip,ticket)"]
+    not_in: ["should_do(ann,ticket)"]
+  - name: analogy/closure-negative-base-proposition
+    source: "7 p.315: the false-value branch remains a negated proposition, not a new positive claim"
+    assumptions: ["similar_case(base1)", "in_case(¬target_claim,base1)"]
+    in: ["¬target_claim"]
+    not_in: [target_claim]

@@ -123,7 +123,7 @@ cases:
   - name: alternative_normative/book
     source: "13.2, p. 318"
     assumptions:
-      - can_be_required(stop,go)
+      - exclusive_requirement_alternatives(stop,go)
       - is_required(stop)
     arguments:
       - alternative_normative(stop,go)
@@ -181,7 +181,7 @@ cases:
     source: "22.4, p. 324; Hal and Carla, p. 322"
     assumptions:
       - goal_of_agent(hal,survival)
-      - goal_supported_by_values(survival,life)
+      - goal_supported_by_values(hal,survival,life)
       - necessary_or_sufficient_for_goal(hal,take_insulin,survival)
     arguments:
       - value_based_practical_reasoning(hal,survival,life,take_insulin)
@@ -937,12 +937,12 @@ cases:
   - name: popular_practice/book
     source: "5, p. 314"
     assumptions:
-      - popular_practice(tipping)
-      - to_think_acceptable(tipping)
+      - popular_practice(restaurant_case,tipping)
+      - to_think_acceptable(restaurant_case,tipping)
     arguments:
-      - popular_practice(tipping)
+      - popular_practice(tipping,restaurant_case)
     in:
-      - acceptable_in_case(tipping)
+      - acceptable_in_case(restaurant_case,tipping)
     variants: true
   - name: ethotic1/book
     source: "41, p. 336"
@@ -1016,7 +1016,7 @@ cases:
     arguments:
       - from_antimodel(tyrant,citizens,lying)
     in:
-      - ¬should_do(citizens,lying)
+      - should_refrain(citizens,lying)
     variants: true
   - name: practical_analogy_positive/book
     source: "8.1, p. 316"

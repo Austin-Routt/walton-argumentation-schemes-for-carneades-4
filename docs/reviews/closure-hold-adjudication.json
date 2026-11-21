@@ -166,7 +166,15 @@
         "Compendium p.314 entry5"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The popular-practice premise and current-case conclusion have the right roles. The minor template is the consequent of an anaphoric warrant, rather than a self-contained conditional. CQ1 is a premise challenge; CQ2 is represented by justified grounds as a default assumption, a defensible interpretation. Remaining scope: Clarify the warrant template and state that each graph has one current case; cases with different circumstances require distinct contextual practice terms."
+      "baseline_review_reason": "The popular-practice premise and current-case conclusion have the right roles. The minor template is the consequent of an anaphoric warrant, rather than a self-contained conditional. CQ1 is a premise challenge; CQ2 is represented by justified grounds as a default assumption, a defensible interpretation. Remaining scope: Clarify the warrant template and state that each graph has one current case; cases with different circumstances require distinct contextual practice terms.",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Independent source/formula review before promotion."
+      }
     },
     {
       "record": "from_example",
@@ -206,7 +214,15 @@
         "Compendium p.315 entry6.4"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "The model, act and would-be imitators are consistently bound. The implementation concludes negated should_do, while the text says should not do. No printed CQs. Under a two-position recommendation policy these can be treated as opposing recommendations, but ordinary deontic logic distinguishes not obligatory from obligatory not. Remaining scope: Document the binary recommendation convention or introduce an explicit refrain-from-action predicate before claiming full deontic equivalence."
+      "baseline_review_reason": "The model, act and would-be imitators are consistently bound. The implementation concludes negated should_do, while the text says should not do. No printed CQs. Under a two-position recommendation policy these can be treated as opposing recommendations, but ordinary deontic logic distinguishes not obligatory from obligatory not. Remaining scope: Document the binary recommendation convention or introduce an explicit refrain-from-action predicate before claiming full deontic equivalence.",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Independent source/formula review before promotion."
+      }
     },
     {
       "record": "analogy",
@@ -226,7 +242,15 @@
         "Walton 2006 pp.96–97 indexed text: S1"
       ],
       "remaining_original_source_obligation": "Cited pages now inspected; no unavailable-original label remains. Implementation/policy comparison still open.",
-      "baseline_review_reason": "The source and current cases are distinguished by an implicit current-case convention. The conclusion is A in that current case. CQ1 relevant differences and CQ2 base premise are present. CQ3 in the book asks about another similar contrary case, whereas more_on_point imposes a stronger relevance condition. Remaining scope: Own-source form may justify the inherited variant, but this is not yet a complete equivalence to the book CQ3; keep that scope difference explicit."
+      "baseline_review_reason": "The source and current cases are distinguished by an implicit current-case convention. The conclusion is A in that current case. CQ1 relevant differences and CQ2 base premise are present. CQ3 in the book asks about another similar contrary case, whereas more_on_point imposes a stronger relevance condition. Remaining scope: Own-source form may justify the inherited variant, but this is not yet a complete equivalence to the book CQ3; keep that scope difference explicit.",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Independent source/formula review before promotion."
+      }
     },
     {
       "record": "part_in_whole",
@@ -305,7 +329,15 @@
         "Compendium pp.318–319 entry13.2"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "A and B remain the same normative alternatives. Required A yields negated required B under the supplied alternative warrant. No printed CQs. This reading requires mutually exclusive normative alternatives; an inclusive A-or-B would not suffice. Remaining scope: Document exclusivity and distinguish not-required(B) from required(not-B)."
+      "baseline_review_reason": "A and B remain the same normative alternatives. Required A yields negated required B under the supplied alternative warrant. No printed CQs. This reading requires mutually exclusive normative alternatives; an inclusive A-or-B would not suffice. Remaining scope: Document exclusivity and distinguish not-required(B) from required(not-B).",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Independent source/formula review before promotion."
+      }
     },
     {
       "record": "definition_to_verbal_classification",
@@ -466,7 +498,15 @@
         "Compendium p.96 narrative burden passage"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "Agent P's goal and means-to-end support should_do(P,A); explicit agent binding makes the shared practical conclusion appropriate. All five printed questions have a ledger route, but other/better means and bad consequences are opponent-proven exceptions. Narrative p.96 says merely asking any of the five questions can provisionally defeat until answered. Remaining scope: A static evidential exception policy is not the book's full dialogue burden behavior. Keep interpretation approval qualified until that mismatch is resolved or explicitly contracted."
+      "baseline_review_reason": "Agent P's goal and means-to-end support should_do(P,A); explicit agent binding makes the shared practical conclusion appropriate. All five printed questions have a ledger route, but other/better means and bad consequences are opponent-proven exceptions. Narrative p.96 says merely asking any of the five questions can provisionally defeat until answered. Remaining scope: A static evidential exception policy is not the book's full dialogue burden behavior. Keep interpretation approval qualified until that mismatch is resolved or explicitly contracted.",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Practical dialogue-suspension profile is a separate adapter contract."
+      }
     },
     {
       "record": "practical_necessary_condition",
@@ -528,7 +568,15 @@
         "Compendium p.96"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "Agent P, goal G, value set V and act A are connected through the means premise; practical conclusion should_do(P,A) is coherent. All seven printed CQs are mapped. Value-based preference and alternative facts omit P and rely on goal/action terms carrying context; practical challenge burden remains a policy interpretation. Remaining scope: Use owner/context-specific goals and value sets, and settle the explicit challenge policy before full mixed-agent semantic approval."
+      "baseline_review_reason": "Agent P, goal G, value set V and act A are connected through the means premise; practical conclusion should_do(P,A) is coherent. All seven printed CQs are mapped. Value-based preference and alternative facts omit P and rely on goal/action terms carrying context; practical challenge burden remains a policy interpretation. Remaining scope: Use owner/context-specific goals and value sets, and settle the explicit challenge policy before full mixed-agent semantic approval.",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Practical dialogue-suspension profile is a separate adapter contract."
+      }
     },
     {
       "record": "end_and_means_1",
@@ -605,7 +653,15 @@
         "Compendium p.97 for the sees wording"
       ],
       "remaining_original_source_obligation": "None for the declared 2008 compendium interpretation.",
-      "baseline_review_reason": "A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act. All five printed questions are sorted. Alternative means and additional actions omit the deliberating agent and assume one current case. Remaining scope: Correct speaker/recipient roles are approved, but practical dialogue burdens and cross-agent availability of alternatives need an explicit contract or scoped facts. Follow-up: PR13 follow-up corrected sets to sees using visually checked printed pp97,325, preserving the adviser-to-agent communication. This closes the wording defect; its separate dialogue and alternative-action scope qualifications remain."
+      "baseline_review_reason": "A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act. All five printed questions are sorted. Alternative means and additional actions omit the deliberating agent and assume one current case. Remaining scope: Correct speaker/recipient roles are approved, but practical dialogue burdens and cross-agent availability of alternatives need an explicit contract or scoped facts. Follow-up: PR13 follow-up corrected sets to sees using visually checked printed pp97,325, preserving the adviser-to-agent communication. This closes the wording defect; its separate dialogue and alternative-action scope qualifications remain.",
+      "followup_review": {
+        "decision": "authored_repair_awaiting_independent_acceptance",
+        "evidence": "docs/reviews/closure-family-repairs.md",
+        "author": "ChatGPT closure scope implementation author",
+        "approval_granted_by_author": false,
+        "focused_execution": "27 cases /54 registered API+CLI checks pass under the preexisting harness; final corrected CLI-harness acceptance required.",
+        "remaining_scope": "Practical dialogue-suspension profile is a separate adapter contract."
+      }
     },
     {
       "record": "sunk_costs",

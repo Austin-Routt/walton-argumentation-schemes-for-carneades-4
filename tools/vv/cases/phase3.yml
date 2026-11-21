@@ -299,7 +299,7 @@ cases:
     source: "22.4, p. 324"
     assumptions:
       - goal_of_agent(me,g)
-      - goal_supported_by_values(g,v)
+      - goal_supported_by_values(me,g,v)
       - necessary_or_sufficient_for_goal(me,a,g)
     arguments:
       - "value_based_practical_reasoning(me,g,v,a)"
@@ -309,7 +309,7 @@ cases:
     source: "22.4, p. 324"
     assumptions:
       - goal_of_agent(me,g)
-      - goal_supported_by_values(g,v)
+      - goal_supported_by_values(me,g,v)
       - necessary_or_sufficient_for_goal(you,a,g)
     no_arguments: [value_based_practical_reasoning]
     not_in:
@@ -318,16 +318,16 @@ cases:
     source: "22.4, CQ7, p. 324"
     assumptions:
       - goal_of_agent(me,g)
-      - goal_supported_by_values(g,v)
+      - goal_supported_by_values(me,g,v)
       - necessary_or_sufficient_for_goal(me,a,g)
-      - worse_consequences(a,g)
+      - worse_consequences(me,a,g)
     not_in:
       - should_do(me,a)
   - name: value_based_practical_reasoning/possibility-questioned
     source: "22.4, CQ6, p. 324"
     assumptions:
       - goal_of_agent(me,g)
-      - goal_supported_by_values(g,v)
+      - goal_supported_by_values(me,g,v)
       - necessary_or_sufficient_for_goal(me,a,g)
     questioned:
       - possible_bring_about(me,a)

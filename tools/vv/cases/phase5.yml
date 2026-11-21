@@ -163,7 +163,7 @@ cases:
     assumptions:
       - tells_intend(ann,trip,bob)
       - situation_necessity(bob,ticket,trip,ann)
-      - alternative_means(trip,ticket)
+      - alternative_means(ann,trip,ticket)
     not_in:
       - should_do(ann,ticket)
   - name: two_person_practical/old-binding-does-not-undercut
@@ -187,7 +187,7 @@ cases:
     assumptions:
       - tells_intend(ann,trip,bob)
       - situation_necessity(bob,ticket,trip,ann)
-      - other_actions_required(trip,ticket)
+      - other_actions_required(ann,trip,ticket)
     not_in:
       - should_do(ann,ticket)
 

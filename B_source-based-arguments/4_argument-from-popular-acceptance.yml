@@ -12,9 +12,12 @@ language:
   ethos_relevant/3: "The character of %s is relevant to evaluating assertion %s in dialogue %s."
   ethos_context/3: "The assertion by %s of situated proposition %s is evaluated in dialogue %s."
   reduced_plausibility_from_ethos/2: "The assertion of %s that %s is true has reduced plausibility on the character evidence; this does not assert that the proposition is false."
+  popular_practice/2: "In case %s, practice %s is popular among people familiar with what is acceptable for that practice in those circumstances."
+  acceptable_in_case/2: "In case %s, practice %s is acceptable."
+  to_think_acceptable/2: "In case %[1]s, if practice %[2]s is popular among those familiar with what is acceptable for it in those circumstances, that is a reason to think the practice acceptable in that case."
+  have_grounds_think/2: "In case %s, the people accepting practice %s have justified grounds for doing so."
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."
   accept_saying/1: "You should accept what %s says."
-  acceptable_in_case/1: "%s is acceptable in this case."
   acceptable_norm/3: "Doing %s or accepting %s shows that they are an acceptable norm of conduct for %s."
   admired_people/2: "Everybody in this group of admired, popular people %s accepts %s."
   asserts/2: "%s asserts that %s is true."
@@ -36,16 +39,13 @@ language:
   group_background/2: "%s, the speaker, is an ordinary person, that is, shares a common background with the members of this audience, group %s."
   group_does/3: "Everybody in a group %s does %s or accepts proposition %s as a policy."
   group_member/1: "The speaker is a member of %s."
-  have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
   morally_acceptable_action/2: "My doing %s or accepting %s is morally justified as an acceptable action or policy."
   ought_to_bring_about/1: "You should (ought to, practically speaking) bring about %s."
   out_group_not_accept/2: "If you do not accept %s, you will be out of this group %s."
-  popular_practice/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
   property_or_object/2: "Everybody in this group %s accepts %s or has some property, or possesses some object."
   reason_in_favor/1: "There is a reason in favor of %s."
   respondent_member/1: "You, the respondent are a member of this audience, group %s."
   should_accept/1: "You should accept %s."
-  to_think_acceptable/1: "That gives a reason to think that %s is acceptable."
   valued_to_be_member/1: "Being a member of this group %s is highly valued for you."
 
 issue_schemes:
@@ -182,15 +182,19 @@ argument_schemes:
   - id: popular_practice
     meta:
       title: Argument From Popular Practice
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 93."
-    variables: [A]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press,
+        2006, p. 93.'
+    variables:
+    - A
+    - C
     conclusions:
-      - acceptable_in_case(A)
+    - acceptable_in_case(C,A)
     premises:
-      - popular_practice(A)
-      - to_think_acceptable(A)
-    assumptions: 
-     - have_grounds_think(A)
+    - popular_practice(C,A)
+    - to_think_acceptable(C,A)
+    assumptions:
+    - have_grounds_think(C,A)
 
   - id: ethotic1
     meta:

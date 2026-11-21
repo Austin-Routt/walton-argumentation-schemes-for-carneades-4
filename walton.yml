@@ -24,6 +24,19 @@ language:
   ethos_context/3: "The assertion by %s of situated proposition %s is evaluated in dialogue %s."
   witness_account_biased/2: "The account by witness %s concerning situated proposition %s has relevant bias."
   reduced_plausibility_from_ethos/2: "The assertion of %s that %s is true has reduced plausibility on the character evidence; this does not assert that the proposition is false."
+  popular_practice/2: "In case %s, practice %s is popular among people familiar with what is acceptable for that practice in those circumstances."
+  acceptable_in_case/2: "In case %s, practice %s is acceptable."
+  to_think_acceptable/2: "In case %[1]s, if practice %[2]s is popular among those familiar with what is acceptable for it in those circumstances, that is a reason to think the practice acceptable in that case."
+  have_grounds_think/2: "In case %s, the people accepting practice %s have justified grounds for doing so."
+  contrary_similar_case/2: "Claim %[1]s has the opposite truth value in another case similar to base case %[2]s; this is supported counterexample evidence for this analogy, without requiring greater similarity."
+  should_refrain/2: "%s should refrain from doing %s."
+  exclusive_requirement_alternatives/2: "At most one of %s and %s can be required in the same stated context; they are exclusive requirement alternatives."
+  goal_supported_by_values/3: "For agent %s, goal %s is supported by that agent’s set of values %s."
+  more_efficient_alternative/3: "For agent %s, another available alternative to %s would bring about goal %s more efficiently."
+  better_alternative_by_values/3: "For agent %s, an available alternative to %s is better in light of that agent’s values %s."
+  worse_consequences/3: "For agent %s, bringing about %s has consequences whose negative value outweighs the positive value of goal %s."
+  incompatible_consequences/3: "For agent %s, bringing about %s has bad consequences incompatible with achieving goal %s."
+  other_actions_required/3: "For agent %s, realizing goal %s requires additional actions besides %s."
   means_same_in_language/3: "In language %s, word %s means the same as definition %s."
   member_of_accounts/2: "Account %s is a member of the candidate account set %s."
   selected_part_sufficient_for_whole/3: "For whole %s, the selected part %s having property %s is sufficient for the whole to have that property in this application."
@@ -43,7 +56,6 @@ language:
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."
   accept_saying/1: "You should accept what %s says."
   acceptable_action/2: "For %s, %s is an acceptable action."
-  acceptable_in_case/1: "%s is acceptable in this case."
   acceptable_norm/3: "Doing %s or accepting %s shows that they are an acceptable norm of conduct for %s."
   act_on_presumption_false/1: "I act on the presumption that %s is not true."
   act_value/2: "Done act %s is attributed the value %s."
@@ -62,7 +74,6 @@ language:
   alternative_action_sufficient/3: "%s reasonably considers on the given information that each one of %s is sufficient to bring about %s."
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
   alternative_means/3: "For %s, there are alternative means of realizing %s other than %s."
-  alternative_means/2: "There are alternative means of realizing %s other than %s." 
   alternatives/2: "Either you must bring about %s, or %s will occur."
   applicable/1: "Argument %s is applicable."
   arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."
@@ -84,7 +95,6 @@ language:
   being_credible/1: "You ought to take what %s says as being more credible or acceptable."
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
-  better_alternative_by_values/2: "In light of the values %[2]s, an alternative to %[1]s is better."
   beyond_contention/2: "It is clearly beyond contention that %s has %s."
   bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
   biased/1: "%s is biased."
@@ -94,7 +104,6 @@ language:
   bring_about_more_effectively/2: "There exists an action that would bring about %s more effectively than %s."
   brings_about/2: "The action %s brings about %s."
   can_be_case/2: "Either %s or %s can be the case."
-  can_be_required/2: "Either %s or %s can be required."
   can_carry_out/2: "%s can carry out %s."
   cannot_be_exception/2: "Case %s cannot be judged to be an exception to the rule %s."
   cannot_opposite_evaluation/3: "If %s receives the evaluation %s, it cannot receive the opposite evaluation %s at the same time and in the same respect."
@@ -177,7 +186,6 @@ language:
   goal_good_group/1: "Your goal is to be a good person, or a member of a group %s with good qualities."
   goal_of_agent/2: "The goal of %s is to bring about %s."
   goal_prestige/0: "Prestige is an important goal for you."
-  goal_supported_by_values/2: "The goal %s is supported by the set of values %s."
   good/1: "%s is good."
   good_group/2: "Everybody who is good, or who represents a group %s with good qualities, accepts policy %s."
   good_moral_character/1: "%s is of good moral character."
@@ -195,7 +203,6 @@ language:
   has_occurred/1: "An event %s has occurred."
   has_properties/3: "In this particular case, the individual %s has property %s and also property %s."
   has_property/2: "%s has property %s."
-  have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
   help_needed/2: "If %[1]s needs help and giving help would not be too costly, then %[2]s ought to help."
   horrible_costs/1: "Event %s would entail horrible costs."
   hypothesis_event/2: "If hypothesis %s is true, then proposition reporting event %s will be observed to be true."
@@ -209,7 +216,6 @@ language:
   in_domain/2: "%s is in the domain of %s."
   inadequate_definition/2: "%s is an inadequate definition of %s."
   inapplicable_rule/1: "Rule %s is inapplicable in this case."
-  incompatible_consequences/2: "Bringing about %s has incompatible consequences with %s."
   incompatible_goal/1: "Another goal is incompatible with %s."
   inconsistency_explained/2: "The practical inconsistency of the commitments of %s can be resolved or explained by further dialogue, so that it does not show a lack of credibility in arguing %s."
   inconsistency_relevant/2: "The pragmatic inconsistency of %s is a relevant reason for not accepting argument %s."
@@ -246,10 +252,8 @@ language:
   morally_bad/1: "%s is a morally bad person."
   more_acceptable_bringing/3: "For %s, bringing about %s is more acceptable than not bringing about %s."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
-  more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
   more_justifiable_category/2: "Although %s may look like it can be classified under %s, there are grounds for classifying it under another category, which is more justifiable."
-  more_on_point/2: "%s is false in another case which is more on point than case %s."
   more_reliable/2: "Another event accounts for sign %s more reliably than candidate %s does."
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   must_do/2: "%s must do %s."
@@ -286,7 +290,6 @@ language:
   only_way_prevent/2: "But the only way for you to prevent %s is to bring about %s."
   opposed_commitment/2: "Other evidence in this particular case shows that %s is not really committed to %s."
   opposite_action/3: "%[1]s has carried out an action, or set of actions, that imply a personal commitment to %[3]s, contrary to argument %[2]s."
-  other_actions_required/2: "Actions other than %[2]s are also required to bring about %[1]s."
   other_consequences/1: "There are other good or bad consequences of doing %s that should be taken into account."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
@@ -302,7 +305,6 @@ language:
   plausible_conclusion/1: "%s is the most plausible conclusion in the case."
   plausible_hypothesis/3: "%s is the most plausible hypothesis among accounts %s for data %s."
   pleader_committed/3: "Pleader %s, in case %s, committed action %s."
-  popular_practice/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
   position_to_bring_about/1: "I am in a position to bring about %s."
   position_to_know/2: "%s is in a position to know about things in a certain subject domain %s."
   position_to_know_group/2: "Group %s is in a special position to know that %s is true."
@@ -394,7 +396,6 @@ language:
   supports_generalization/3: "Example %s supports the generalization that whatever has property %s also has property %s."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
-  to_think_acceptable/1: "That gives a reason to think that %s is acceptable."
   too_high_to_waste/1: "The sunk costs of %s are too high to waste."
   treatment_required/2: "The treatment %[2]s is required for the subject %[1]s."
   true_propositions_contained/2: "It has not been established that all the true propositions in %s are contained in %s."
@@ -414,7 +415,6 @@ language:
   whole_of/4: "%s is the whole of %s, %s and %s."
   will_occur/1: "An event %s will occur."
   without_correcting/3: "Speakers of language %s can use word %s correctly while being wrong about the proposed definition %s."
-  worse_consequences/2: "Bringing about %s has consequences whose negative value outweighs the positive value of %s."
   imitation_warrant/3: "If %s carries out action %s, that action is worth being imitated by %s."
   worthy_goal/1: "%s is a worthy goal."
   would_achieve/2: "Performing action %s would achieve goal %s."
@@ -582,16 +582,20 @@ argument_schemes:
   - id: popular_practice
     meta:
       title: Argument From Popular Practice
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 93."
-    variables: [A]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press,
+        2006, p. 93.'
+    variables:
+    - A
+    - C
     conclusions:
-      - acceptable_in_case(A)
+    - acceptable_in_case(C,A)
     premises:
-      - popular_practice(A)
-      - to_think_acceptable(A)
-    assumptions: 
-     - have_grounds_think(A)
-     
+    - popular_practice(C,A)
+    - to_think_acceptable(C,A)
+    assumptions:
+    - have_grounds_think(C,A)
+
   - id: from_example
     meta:
       title: Argument From Example
@@ -633,15 +637,20 @@ argument_schemes:
   - id: from_antimodel
     meta:
       title: Argument From Anti-Model
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 6.4, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368."
-    variables: [A,B,X]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 6.4, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame,
+        Ind.: University of Notre Dame Press, 1969, pp. 357-368.'
+    variables:
+    - A
+    - B
+    - X
     conclusions:
-      - ¬should_do(B,X)
+    - should_refrain(B,X)
     premises:
-      - ¬prestigious_individual(A,B)
-      - carry_out_act(A,X)
-      - want_to_be_different(B,A)
-      
+    - ¬prestigious_individual(A,B)
+    - carry_out_act(A,X)
+    - want_to_be_different(B,A)
+
   - id: practical_analogy_positive
     meta:
       title: Practical Reasoning From Analogy - Positive Schema
@@ -792,13 +801,17 @@ argument_schemes:
   - id: alternative_normative
     meta:
       title: Argument From Alternatives - Normative Schemes
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 13.2, p. 318. Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306."
-    variables: [A,B]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 13.2, p. 318. Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad
+        Cannstatt: Frommann-Holzboog, 1992, p.306.'
+    variables:
+    - A
+    - B
     conclusions:
-      - ¬is_required(B)
+    - ¬is_required(B)
     premises:
-      - can_be_required(A,B)
-      - is_required(A)
+    - exclusive_requirement_alternatives(A,B)
+    - is_required(A)
 
   - id:  verbal_classification_vagueness
     meta: 
@@ -923,21 +936,29 @@ argument_schemes:
   - id: practical_inference
     meta:
       title: Practical Reasoning - Practical Inference
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.1, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
-    variables: [A,G,P]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 22.1, p. 323. Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks."
+        Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and
+        Littlefield, 1990. Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning. "In Contemporary
+        Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton,
+        Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.'
+    variables:
+    - A
+    - G
+    - P
     conclusions:
-      - should_do(P,A)
+    - should_do(P,A)
     premises:
-      - goal_of_agent(P,G)
-      - means_to_end(A,G)
+    - goal_of_agent(P,G)
+    - means_to_end(A,G)
     exceptions:
-      - conflicting_goals(P,G)
-      - more_efficient_alternative(A,G)
-      - incompatible_consequences(A,G)
-    assumptions: 
-     - possible_bring_about(P,A)
-     - possible_goal(G)
-     
+    - conflicting_goals(P,G)
+    - more_efficient_alternative(P,A,G)
+    - incompatible_consequences(P,A,G)
+    assumptions:
+    - possible_bring_about(P,A)
+    - possible_goal(G)
+
   - id: practical_necessary_condition
     meta:
       title: Practical Reasoning - Necessary Condition Schema
@@ -985,23 +1006,28 @@ argument_schemes:
   - id: value_based_practical_reasoning
     meta:
       title: Value-Based Practical Reasoning
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.4, p. 324."
-    variables: [P,G,V,A]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 22.4, p. 324.
+    variables:
+    - P
+    - G
+    - V
+    - A
     conclusions:
-      - should_do(P,A)
+    - should_do(P,A)
     premises:
-      - goal_of_agent(P,G)
-      - goal_supported_by_values(G,V)
-      - necessary_or_sufficient_for_goal(P,A,G)
+    - goal_of_agent(P,G)
+    - goal_supported_by_values(P,G,V)
+    - necessary_or_sufficient_for_goal(P,A,G)
     assumptions:
-      - possible_bring_about(P,A)
+    - possible_bring_about(P,A)
     exceptions:
-      - conflicting_goals(P,G)
-      - alternative_means(G,A)
-      - more_efficient_alternative(A,G)
-      - better_alternative_by_values(A,V)
-      - worse_consequences(A,G)
-  
+    - conflicting_goals(P,G)
+    - alternative_means(P,G,A)
+    - more_efficient_alternative(P,A,G)
+    - better_alternative_by_values(P,A,V)
+    - worse_consequences(P,A,G)
+
   - id: practical_goal
     meta:
       title: Practical Reasoning - Argument From Goal
@@ -1049,21 +1075,27 @@ argument_schemes:
   - id: two_person_practical
     meta:
       title: Two Person Practical Reasoning
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 23, p. 325. Douglas Walton, Appeal to Expert Opinion. University Park: Pennsylvania State University Press. 1997 p. 163."
-    variables: [A,B,X,Y]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 23, p. 325. Douglas Walton, Appeal to Expert Opinion. University Park: Pennsylvania State University Press.
+        1997 p. 163.'
+    variables:
+    - A
+    - B
+    - X
+    - Y
     conclusions:
-      - should_do(A,Y)
+    - should_do(A,Y)
     premises:
-      - tells_intend(A,X,B)
-      - situation_necessity(B,Y,X,A)
+    - tells_intend(A,X,B)
+    - situation_necessity(B,Y,X,A)
     exceptions:
-      - alternative_means(X,Y)
-      - conflicting_goals(A,X)
-      - side_effect_other_act(Y,A)
-      - other_actions_required(X,Y)
-    assumptions: 
-     - possible_bring_about(A,Y)
-     
+    - alternative_means(A,X,Y)
+    - conflicting_goals(A,X)
+    - side_effect_other_act(Y,A)
+    - other_actions_required(A,X,Y)
+    assumptions:
+    - possible_bring_about(A,Y)
+
   - id: waste
     meta:
       title: Argument From Waste
@@ -1734,15 +1766,20 @@ argument_schemes:
   - id: analogy
     meta:
       title: Argument from Analogy
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 7, p. 315. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 96-97."
-    variables: [A,C]
-    conclusions: [A]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 7, p. 315. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006,
+        p. 96-97.
+    variables:
+    - A
+    - C
+    conclusions:
+    - A
     premises:
-      - similar_case(C)
-      - in_case(A,C)
+    - similar_case(C)
+    - in_case(A,C)
     exceptions:
-      - relevant_differences(C)
-      - more_on_point(A,C)
+    - relevant_differences(C)
+    - contrary_similar_case(A,C)
 
   - id: appearance
     meta:

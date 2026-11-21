@@ -10,6 +10,8 @@ language:
   conflicting_action_rule/4: "In case %s, an established rule conflicts with or overrides rule %s for actor %s and action %s."
   established_action_warrant/4: "In case %s, established rule %s obliges actor %s to perform included action %s unless a relevant exception applies."
   established_action_rule/4: "In case %s, rule %s is established for actor %s and requires action %s as an instance of its action types."
+  contrary_similar_case/2: "Claim %[1]s has the opposite truth value in another case similar to base case %[2]s; this is supported counterexample evidence for this analogy, without requiring greater similarity."
+  should_refrain/2: "%s should refrain from doing %s."
   conflicting_or_overriding_rule/2: "Another established rule conflicts with or overrides rule %s in its application to conclusion %s."
   rule_exception_or_excuse/2: "An exceptional case or an adequate excuse defeats rule %s in its application to conclusion %s."
   applicable/1: "Argument %s is applicable."
@@ -23,7 +25,6 @@ language:
   impair_general/1: "Special circumstances of example %s impair its generalizability."
   in_case/2: "%s is true in case %s."
   inapplicable_rule/1: "Rule %s is inapplicable in this case."
-  more_on_point/2: "%s is false in another case which is more on point than case %s."
   must_do/2: "%s must do %s."
   not_indicator/2: "Under the circumstances of %s's perception, an image of %s is not a reliable indicator of that proposition."
   prestigious_individual/2: "Individual %s is prestigious for -admired by- individuals %s."
@@ -106,14 +107,19 @@ argument_schemes:
   - id: from_antimodel
     meta:
       title: Argument From Anti-Model
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 6.4, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368."
-    variables: [A,B,X]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 6.4, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame,
+        Ind.: University of Notre Dame Press, 1969, pp. 357-368.'
+    variables:
+    - A
+    - B
+    - X
     conclusions:
-      - ¬should_do(B,X)
+    - should_refrain(B,X)
     premises:
-      - ¬prestigious_individual(A,B)
-      - carry_out_act(A,X)
-      - want_to_be_different(B,A)
+    - ¬prestigious_individual(A,B)
+    - carry_out_act(A,X)
+    - want_to_be_different(B,A)
 
   - id: practical_analogy_positive
     meta:
@@ -156,15 +162,20 @@ argument_schemes:
   - id: analogy
     meta:
       title: Argument from Analogy
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 7, p. 315. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 96-97."
-    variables: [A,C]
-    conclusions: [A]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 7, p. 315. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006,
+        p. 96-97.
+    variables:
+    - A
+    - C
+    conclusions:
+    - A
     premises:
-      - similar_case(C)
-      - in_case(A,C)
+    - similar_case(C)
+    - in_case(A,C)
     exceptions:
-      - relevant_differences(C)
-      - more_on_point(A,C)
+    - relevant_differences(C)
+    - contrary_similar_case(A,C)
 
   - id: established_rule
     meta:
