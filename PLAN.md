@@ -243,5 +243,6 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [ ] Release R1 published: the tag `r1` on 8c092b6 and a GitHub release with the two archives attached. This session can push branches but not tags or releases; the owner runs `git tag -a r1 8c092b6 -m "R1"`, `git push origin r1` and `gh release create r1 --prerelease --title "R1 — preview (library 0.1.0, engine 4.3.1+walton.1)" --notes-file docs/releases/r1.md carneades-4.zip GoCHR.zip`. The archives leave the tree only after that.
 - [ ] D14 at R1: someone who did not write the changes reruns the strict suite from a clean checkout and checks the reference cases against the book by hand (a fresh clone was rerun by the author, with the same result)
 - [x] 5.1 Every printed question sorted: 189 questions of the 64 records filed under an entry with questions, each with the statement that models it (`records:` of `tools/vv/source_ledger.yml`)
+- [x] Transcription: every record filed under an entry (112) compared with the book's premises and conclusion, and its row at "transcription checked"; 31 records changed in Phase 5 so far
 - [ ] 5.2 Gaps modelled: done for every record of the book (26 records changed, each with cases and a pinned instance; table in `tools/migration_r2.yml`); nine questions of six upstream records wait for 5.5
 - [ ] Phase 5; gate L; release R2

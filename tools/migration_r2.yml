@@ -6,9 +6,11 @@
 #
 #   record   the scheme
 #   kind     arguments (the same predicate, other arguments), arity (the
-#            predicate gains or loses an argument), removed (the record no
-#            longer uses the statement), added (a new assumption or exception;
-#            nothing to migrate, listed so that the table is complete)
+#            predicate gains or loses an argument), replaced (another
+#            predicate), removed (the record no longer uses the statement),
+#            premise (a premise added: a graph has to state it), added (a new
+#            assumption or exception; nothing to migrate, listed so that the
+#            table is complete)
 #   old/new  the statement as the record writes it
 #   plan     the plan item; page: the compendium's page
 changes:
@@ -51,3 +53,8 @@ changes:
   - {record: memory, kind: added, old: "", new: "based_on_false_belief(M)", plan: "5.2", page: 346}
   - {record: memory, kind: added, old: "", new: "not_originally_believed(M)", plan: "5.2", page: 346}
   - {record: memory, kind: added, old: "", new: "recaller_doubts(P,M)", plan: "5.2", page: 346}
+  - {record: illustration, kind: arity, old: "usually_properties(X,P1,P2)", new: "usually_properties(P1,P2)", plan: "5.1", page: 315, note: "the rule names no individual; the variable X goes, the parameters are [Y,P1,P2]"}
+  - {record: illustration, kind: arity, old: "valid_rule(Y)", new: "valid_rule(P1,P2)", plan: "5.1", page: 315, note: "the conclusion is that the rule is valid"}
+  - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
+  - {record: epistemic_ignorence, kind: premise, old: "", new: "bivalent(D)", plan: "5.5", page: 328, note: "premise 5, which the record left out"}
+  - {record: verbal_slippery_slope, kind: arguments, old: "individuals_propoerty(A1,F,A2)", new: "individuals_propoerty(A1,P,A2)", plan: "5.1", page: 341, note: "one property throughout; the variable F goes, the parameters are [A1,A2,A,P]"}

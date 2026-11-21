@@ -20,7 +20,7 @@ language:
   precedent_series/3: "By case-to-case consistency, holding case %s to be an exception to the rule %s binds us to hold each case of a sequence of similar cases, up to %s, to be an exception too."
   proper_sequence/0: "The sequence of propositions is dealt with in the appropriate order."
   reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
-  sequence/4: "There is an intervening sequence of propositions, %s, %s,...,%s, %s such that the conditionals must be in proper order."
+  sequence/4: "There is an intervening sequence of propositions from %s through %s, ..., %s to %s, such that each proposition in it implies the next."
   true_acceptable/1: "Proposition %s is true, acceptable to the respondent."
   vague_property/3: "Property %s is vague, and so generally, if %s has it, then you can't deny that the next closely neighboring individual %s has it."
 
@@ -79,11 +79,11 @@ argument_schemes:
       source: >
              Douglas Walton, A Pragmatic Theory of Fallacy. 
              Tuscaloosa and London: University of Alabama Press, 1995, p. 160.
-    variables: [A1,A2,A,P,F]
+    variables: [A1,A2,A,P]
     conclusions:
       - not_has_propery(A1,P)
     premises:
       - individual_property(A1,P)
-      - individuals_propoerty(A1,F,A2)
+      - individuals_propoerty(A1,P,A2)
       - vague_property(P,A1,A)
       - individual_property_false(A,P)

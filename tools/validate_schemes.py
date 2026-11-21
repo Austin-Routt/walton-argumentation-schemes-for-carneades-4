@@ -475,6 +475,14 @@ INSTANCES = [
      {"premises": ["rule_require(r,speeding,fine)", "pleader_committed(speeding)", "special_circumstances(emergency,speeding)"], "assumptions": ["excuse(emergency)"], "exceptions": ["not_excuse(emergency)"], "conclusions": ["exempted(fine)"]}),
     ("memory", "60, p. 346", {"P": "ann", "M": "door_locked"},
      {"premises": ["recalls(ann,door_locked)", "believe_it(door_locked)"], "exceptions": ["based_on_false_belief(door_locked)", "not_originally_believed(door_locked)", "recaller_doubts(ann,door_locked)"], "conclusions": ["reasonable_belive(door_locked)"]}),
+    ("illustration", "6.2, p. 315", {"Y": "tweety", "P1": "bird", "P2": "flies"},
+     {"premises": ["usually_properties(bird,flies)", "same_properties(tweety,bird,flies)"], "conclusions": ["valid_rule(bird,flies)"]}),
+    ("negative_value", "19.2, p. 321", {"V": "theft", "A": "hal", "G": "survive"},
+     {"premises": ["judged_negative_value(theft,hal)", "negative_affects(theft,survive,hal)"], "conclusions": ["reason_retracting_goal(theft,survive)"]}),
+    ("epistemic_ignorence", "27, p. 328", {"A": "spy", "D": "staff", "K": "files"},
+     {"premises": ["true_propositions_contained(staff,files)", "special_proposition(spy,files)", "special_in(spy,staff)", "special_not_in(spy,files)", "bivalent(staff)"], "conclusions": ["plausible_false(staff,spy)"]}),
+    ("verbal_slippery_slope", "52, p. 341", {"A1": "a1", "A2": "a2", "A": "an", "P": "bald"},
+     {"premises": ["individual_property(a1,bald)", "individuals_propoerty(a1,bald,a2)", "vague_property(bald,a1,an)", "individual_property_false(an,bald)"], "conclusions": ["not_has_propery(a1,bald)"]}),
 ]
 
 def instantiate(statement, binding):

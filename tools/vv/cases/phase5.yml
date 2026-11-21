@@ -718,3 +718,94 @@ cases:
       - recaller_doubts(ann,door_locked)
     not_in:
       - reasonable_belive(door_locked)
+
+  # --- records without printed questions: transcription ---------------------
+  # 6.2 illustration (p. 315): the rule of premise 1 names no individual, and
+  # the conclusion is that the rule is valid; the record bound the rule to a
+  # stray individual X and concluded that it was valid "for" the example.
+  - name: illustration/positive
+    source: "6.2, p. 315"
+    assumptions:
+      - usually_properties(bird,flies)
+      - same_properties(tweety,bird,flies)
+    arguments:
+      - illustration(tweety,bird,flies)
+    in:
+      - valid_rule(bird,flies)
+  - name: illustration/adverse-other-properties
+    source: "6.2, p. 315"
+    assumptions:
+      - usually_properties(bird,flies)
+      - same_properties(tweety,bird,sings)
+    no_arguments: [illustration]
+    not_in:
+      - valid_rule(bird,flies)
+
+  # 19.2 negative_value (p. 321): a negative value is a reason for retracting
+  # commitment to the goal; the record concluded "retaining", the conclusion
+  # of 19.1.
+  - name: negative_value/positive
+    source: "19.2, p. 321"
+    assumptions:
+      - judged_negative_value(theft,hal)
+      - negative_affects(theft,survive,hal)
+    arguments:
+      - negative_value(theft,hal,survive)
+    in:
+      - reason_retracting_goal(theft,survive)
+  - name: negative_value/adverse-not-a-reason-for-retaining
+    source: "19.2, p. 321"
+    assumptions:
+      - judged_negative_value(theft,hal)
+      - negative_affects(theft,survive,hal)
+    not_in:
+      - reason_retaining_goal(theft,survive)
+
+  # 27 epistemic_ignorence (p. 328): premise 5, that every proposition in D is
+  # true or false, was missing (5.5).
+  - name: epistemic_ignorence/positive
+    source: "27, p. 328"
+    assumptions:
+      - true_propositions_contained(staff,files)
+      - special_proposition(spy,files)
+      - special_in(spy,staff)
+      - special_not_in(spy,files)
+      - bivalent(staff)
+    arguments:
+      - epistemic_ignorence(spy,staff,files)
+    in:
+      - plausible_false(staff,spy)
+  - name: epistemic_ignorence/adverse-premise-5-missing
+    source: "27, p. 328"
+    assumptions:
+      - true_propositions_contained(staff,files)
+      - special_proposition(spy,files)
+      - special_in(spy,staff)
+      - special_not_in(spy,files)
+    no_arguments: [epistemic_ignorence]
+    not_in:
+      - plausible_false(staff,spy)
+
+  # 52 verbal_slippery_slope (p. 341): one property F throughout; premise 2
+  # had a property of its own.
+  - name: verbal_slippery_slope/positive
+    source: "52, p. 341"
+    assumptions:
+      - individual_property(a1,bald)
+      - individuals_propoerty(a1,bald,a2)
+      - vague_property(bald,a1,an)
+      - individual_property_false(an,bald)
+    arguments:
+      - verbal_slippery_slope(a1,a2,an,bald)
+    in:
+      - not_has_propery(a1,bald)
+  - name: verbal_slippery_slope/adverse-another-property-in-premise-2
+    source: "52, p. 341"
+    assumptions:
+      - individual_property(a1,bald)
+      - individuals_propoerty(a1,tall,a2)
+      - vague_property(bald,a1,an)
+      - individual_property_false(an,bald)
+    no_arguments: [verbal_slippery_slope]
+    not_in:
+      - not_has_propery(a1,bald)

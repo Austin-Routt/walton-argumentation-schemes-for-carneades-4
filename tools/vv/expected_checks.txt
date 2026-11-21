@@ -3462,6 +3462,10 @@ cases/phase5.yml|distress/adverse-someone-elses-distress|case
 cases/phase5.yml|distress/adverse-someone-elses-distress|roundtrip
 cases/phase5.yml|distress/positive|case
 cases/phase5.yml|distress/positive|roundtrip
+cases/phase5.yml|epistemic_ignorence/adverse-premise-5-missing|case
+cases/phase5.yml|epistemic_ignorence/adverse-premise-5-missing|roundtrip
+cases/phase5.yml|epistemic_ignorence/positive|case
+cases/phase5.yml|epistemic_ignorence/positive|roundtrip
 cases/phase5.yml|evidence_hypothesis/one-correlation-statement-for-both|case
 cases/phase5.yml|evidence_hypothesis/one-correlation-statement-for-both|roundtrip
 cases/phase5.yml|evidence_hypothesis_falsification/adverse-correlation-questioned|case
@@ -3490,6 +3494,10 @@ cases/phase5.yml|help/adverse-premise-missing|case
 cases/phase5.yml|help/adverse-premise-missing|roundtrip
 cases/phase5.yml|help/positive|case
 cases/phase5.yml|help/positive|roundtrip
+cases/phase5.yml|illustration/adverse-other-properties|case
+cases/phase5.yml|illustration/adverse-other-properties|roundtrip
+cases/phase5.yml|illustration/positive|case
+cases/phase5.yml|illustration/positive|roundtrip
 cases/phase5.yml|inconsistent_commitment/adverse-conflict-questioned|case
 cases/phase5.yml|inconsistent_commitment/adverse-conflict-questioned|roundtrip
 cases/phase5.yml|inconsistent_commitment/positive|case
@@ -3512,6 +3520,10 @@ cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|case
 cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|roundtrip
 cases/phase5.yml|negative_normal_expectations/positive|case
 cases/phase5.yml|negative_normal_expectations/positive|roundtrip
+cases/phase5.yml|negative_value/adverse-not-a-reason-for-retaining|case
+cases/phase5.yml|negative_value/adverse-not-a-reason-for-retaining|roundtrip
+cases/phase5.yml|negative_value/positive|case
+cases/phase5.yml|negative_value/positive|roundtrip
 cases/phase5.yml|plea_for_excuse/adverse-excuse-for-another-action|case
 cases/phase5.yml|plea_for_excuse/adverse-excuse-for-another-action|roundtrip
 cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|case
@@ -3556,6 +3568,10 @@ cases/phase5.yml|verbal_classification_vagueness/exception|case
 cases/phase5.yml|verbal_classification_vagueness/exception|roundtrip
 cases/phase5.yml|verbal_classification_vagueness/positive|case
 cases/phase5.yml|verbal_classification_vagueness/positive|roundtrip
+cases/phase5.yml|verbal_slippery_slope/adverse-another-property-in-premise-2|case
+cases/phase5.yml|verbal_slippery_slope/adverse-another-property-in-premise-2|roundtrip
+cases/phase5.yml|verbal_slippery_slope/positive|case
+cases/phase5.yml|verbal_slippery_slope/positive|roundtrip
 cases/phase5.yml|waste/adverse-reassessment|case
 cases/phase5.yml|waste/adverse-reassessment|roundtrip
 cases/phase5.yml|waste/positive|case
@@ -3625,6 +3641,7 @@ source_ledger.yml|better_alternative_by_values/2|source/name-in-language
 source_ledger.yml|bias_ad_hominem|source/record-row
 source_ledger.yml|bias_relevant/2|source/name-in-language
 source_ledger.yml|bias|source/record-row
+source_ledger.yml|bivalent/1|source/name-in-language
 source_ledger.yml|cannot_be_exception/2|source/name-in-language
 source_ledger.yml|cause_to_effect|source/record-row
 source_ledger.yml|circumstantial_ad_hominem|source/record-row
@@ -3838,6 +3855,7 @@ source_ledger.yml|precedent_series/3|source/name-in-language
 source_ledger.yml|precedent_slippery_slope|source/record-row
 source_ledger.yml|prohibited/1|source/name-in-language
 source_ledger.yml|reapplication_sequence/3|source/name-in-language
+source_ledger.yml|reason_retracting_goal/2|source/name-in-language
 source_ledger.yml|reassessment_against_continuing/2|source/name-in-language
 source_ledger.yml|recaller_doubts/2|source/name-in-language
 source_ledger.yml|recognized_exception_category/2|source/name-in-language
@@ -3866,6 +3884,8 @@ source_ledger.yml|sunk_costs|source/record-row
 source_ledger.yml|supports_generalization/3|source/name-in-language
 source_ledger.yml|treat|source/record-row
 source_ledger.yml|two_person_practical|source/record-row
+source_ledger.yml|usually_properties/2|source/name-in-language
+source_ledger.yml|valid_rule/2|source/name-in-language
 source_ledger.yml|value_based_practical_reasoning|source/record-row
 source_ledger.yml|verbal_classification_arbitrariness|source/record-row
 source_ledger.yml|verbal_classification_vagueness|source/record-row
@@ -3890,12 +3910,15 @@ tools/migration_r2.yml|commitment2|migration/added commitment_linkage_exception(
 tools/migration_r2.yml|commitment2|migration/removed commitment_support_evidence(A,X)
 tools/migration_r2.yml|distress|migration/arity relieve(B,X,A)
 tools/migration_r2.yml|distress|migration/removed really_distress(A)
+tools/migration_r2.yml|epistemic_ignorence|migration/premise bivalent(D)
 tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
 tools/migration_r2.yml|exeptional|migration/added exception_backed(A)
 tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
 tools/migration_r2.yml|full_slippery_slope|migration/removed led_to_step
 tools/migration_r2.yml|help|migration/removed greater_side_effects(X)
 tools/migration_r2.yml|help|migration/removed possible_carry_out(B,X)
+tools/migration_r2.yml|illustration|migration/arity usually_properties(P1,P2)
+tools/migration_r2.yml|illustration|migration/arity valid_rule(P1,P2)
 tools/migration_r2.yml|inconsistent_commitment|migration/added commitments_conflict(A,S)
 tools/migration_r2.yml|inconsistent_commitment|migration/removed evidence_not_commited(A,S)
 tools/migration_r2.yml|memory|migration/added based_on_false_belief(M)
@@ -3903,6 +3926,7 @@ tools/migration_r2.yml|memory|migration/added not_originally_believed(M)
 tools/migration_r2.yml|memory|migration/added recaller_doubts(P,M)
 tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_likely(A,B)
 tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
+tools/migration_r2.yml|negative_value|migration/replaced reason_retracting_goal(V,G)
 tools/migration_r2.yml|plea_for_excuse|migration/arity special_circumstances(E,T)
 tools/migration_r2.yml|popular_opinion|migration/removed generally_accepted(A)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/added inconsistency_relevant(A,S)
@@ -3914,6 +3938,7 @@ tools/migration_r2.yml|two_person_practical|migration/arguments side_effect_othe
 tools/migration_r2.yml|verbal_classification_arbitrariness|migration/added arbitrariness_harmless(A,F)
 tools/migration_r2.yml|verbal_classification_vagueness|migration/arguments property_precion_needed(A)
 tools/migration_r2.yml|verbal_classification|migration/added doubtful_classification(F,G)
+tools/migration_r2.yml|verbal_slippery_slope|migration/arguments individuals_propoerty(A1,P,A2)
 tools/migration_r2.yml|waste|migration/added reassessment_against_continuing(A,X)
 walton.yml|(file)|cli/check-clean
 walton.yml|(file)|cli/eval-produces-output

@@ -62,6 +62,7 @@ language:
   bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
   biased/1: "Arguer %s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
+  bivalent/1: "Every proposition in %s is either true or false."
   both_properties/3: "Therefore, generally, if something has property %[2]s, then it also has property %[3]s (generalizing from %[1]s)."
   bribed/1: "%s was bribed."
   bring_about_more_effectively/2: "There exists an action that would bring about %s more effectively than %s."
@@ -247,7 +248,7 @@ language:
   necessary_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, necessary condition for %s."
   necessary_or_sufficient_for_goal/3: "Bringing about %[2]s is necessary or sufficient for %[1]s to bring about %[3]s."
   needed_nonarbitrary/2: "%s occurs in a context of dialogue that requires a nonarbitrary definition for a key property %s that occurs in the argument."
-  negative_affects/3: "The fact that value %s is negative affects the interpretation and therefore the evaluation of goal %s of agent %s, if value is bad, it supports commitment to goal."
+  negative_affects/3: "The fact that value %s is negative affects the interpretation and therefore the evaluation of goal %s of agent %s: if the value is bad, it goes against commitment to the goal."
   negative_consequences/1: "Performing action %s would have negative consequences."
   normal_true/1: "If the situation were normal, %s would be true."
   not_acceptable_step/1: "%s is not acceptable, contrary to the presumption of the initial premise."
@@ -333,6 +334,7 @@ language:
   reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
   reason_in_favor/1: "There is a reason in favor of %s."
   reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s." 
+  reason_retracting_goal/2: "%s is a reason for retracting commitment to goal %s."
   reasonable_belive/1: "It is reasonable to believe %s."
   reasonable_case/1: "It is reasonable to believe that %s is the case."
   reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
@@ -361,7 +363,7 @@ language:
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
   same_properties/3: "In this case, %s has property %s and %s."
   satisfies_definition/2: "%s satisfies definition %s."
-  sequence/4: "There is an intervening sequence of propositions, %s, %s,...,%s, %s such that the conditionals must be in proper order."
+  sequence/4: "There is an intervening sequence of propositions from %s through %s, ..., %s to %s, such that each proposition in it implies the next."
   should_accept/1: "You should accept %s."
   should_be_performed/1: "Action %s should be performed."
   should_bring_about/2: "%s should, practically speaking, bring about %s."
@@ -413,12 +415,12 @@ language:
   undesirable/1: "%s is bad or undesirable, from your point of view."
   uninvestigated/1: "The truth of %s has not been sufficiently investigated."
   untrustworthy/1: "%s is untrustworthy."
-  usually_properties/3: "Usually, if %s has property %s it also has property %s."
+  usually_properties/2: "Usually, if something has property %s, it also has property %s."
   vague_defined_property/2: "If an argument %s occurs in a context of dialogue that requires a certain level of precision, but some property %s that occurs in the argument is defined in a way that is too vague to meet the requirement of that level of precision, then the argument ought to be rejected as deficient."
   vague_property/3: "Property %s is vague, and so generally, if %s has it, then you can't deny that the next closely neighboring individual %s has it."
   vaguness_recejted/1: "Therefore, %s ought to be rejected as deficient."
   valid/1: "Rule %s is valid."
-  valid_rule/1: "The rule is valid for %s."
+  valid_rule/2: "The rule that whatever has property %s also has property %s is valid."
   valued_to_be_member/1: "Being a member of this group %s is highly valued for you."
   want_to_be_different/2: "%s wants to be different from %s."
   waste_bad_thing/2: "If all of %s's previous attempts to realize %s are wasted, that would be a bad thing."
@@ -645,11 +647,11 @@ argument_schemes:
       source: >
               Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation.
               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.
-    variables: [X,Y,P1,P2]
+    variables: [Y,P1,P2]
     conclusions:
-      - valid_rule(Y)
+      - valid_rule(P1,P2)
     premises:
-      - usually_properties(X,P1,P2)
+      - usually_properties(P1,P2)
       - same_properties(Y,P1,P2)
 
   - id: from_model
@@ -663,7 +665,7 @@ argument_schemes:
       - should_do(B,X)
     premises:
       - prestigious_individual(A,B)
-      - carry_out_act (A,X)
+      - carry_out_act(A,X)
       - worth_imitated(X,B)
 
   - id: from_antimodel
@@ -947,7 +949,7 @@ argument_schemes:
                between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245. 
     variables: [V,A,G]
     conclusions: 
-      - reason_retaining_goal(V,G)
+      - reason_retracting_goal(V,G)
     premises: 
       - judged_negative_value(V,A)
       - negative_affects(V,G,A)
@@ -1238,6 +1240,7 @@ argument_schemes:
       - special_proposition(A,K)
       - special_in(A,D)
       - special_not_in(A,K)
+      - bivalent(D)
       
   - id: sign
     meta:
@@ -1669,12 +1672,12 @@ argument_schemes:
       source: >
              Douglas Walton, A Pragmatic Theory of Fallacy. 
              Tuscaloosa and London: University of Alabama Press, 1995, p. 160.
-    variables: [A1,A2,A,P,F]
+    variables: [A1,A2,A,P]
     conclusions:
       - not_has_propery(A1,P)
     premises:
       - individual_property(A1,P)
-      - individuals_propoerty(A1,F,A2)
+      - individuals_propoerty(A1,P,A2)
       - vague_property(P,A1,A)
       - individual_property_false(A,P)
 

@@ -32,9 +32,9 @@ language:
   similar_to/2: "%s is similar to %s."
   supports_generalization/3: "Example %s supports the generalization that whatever has property %s also has property %s."
   typical_example/1: "Example %s is a typical example of the kinds of cases the generalization covers."
-  usually_properties/3: "Usually, if %s has property %s it also has property %s."
+  usually_properties/2: "Usually, if something has property %s, it also has property %s."
   valid/1: "Rule %s is valid."
-  valid_rule/1: "The rule is valid for %s."
+  valid_rule/2: "The rule that whatever has property %s also has property %s is valid."
   want_to_be_different/2: "%s wants to be different from %s."
   worth_imitated/2: "Then %s is worth being imitated by %s."
   wrong_to_do/2: "The wrong thing to do in %s, was to carry out action %s."
@@ -86,11 +86,11 @@ argument_schemes:
       source: >
               Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation.
               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.
-    variables: [X,Y,P1,P2]
+    variables: [Y,P1,P2]
     conclusions:
-      - valid_rule(Y)
+      - valid_rule(P1,P2)
     premises:
-      - usually_properties(X,P1,P2)
+      - usually_properties(P1,P2)
       - same_properties(Y,P1,P2)
 
   - id: from_model
@@ -104,7 +104,7 @@ argument_schemes:
       - should_do(B,X)
     premises:
       - prestigious_individual(A,B)
-      - carry_out_act (A,X)
+      - carry_out_act(A,X)
       - worth_imitated(X,B)
 
   - id: from_antimodel

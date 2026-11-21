@@ -13,6 +13,7 @@ language:
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
   biased/1: "Arguer %s is biased."
+  bivalent/1: "Every proposition in %s is either true or false."
   case_not_true/1: "It is not the case that %s is true."
   consequences_presumption/2: "If I act on the presumption that %s is true, and it is not true, consequences %s will follow."
   credible_source/2: "Witness %s is a credible source for the domain %s."
@@ -179,6 +180,7 @@ argument_schemes:
       - special_proposition(A,K)
       - special_in(A,D)
       - special_not_in(A,K)
+      - bivalent(D)
 
   - id: memory
     meta:

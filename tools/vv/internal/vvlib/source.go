@@ -567,7 +567,7 @@ func MigrationChecks(lib *Library) []Result {
 				}
 			}
 			switch c.Kind {
-			case "added":
+			case "added", "premise":
 				if c.Old != "" || c.New == "" || !all[Norm(c.New)] {
 					probs = append(probs, fmt.Sprintf("added: %q should be in the record, with no old statement", c.New))
 				}
@@ -575,7 +575,7 @@ func MigrationChecks(lib *Library) []Result {
 				if c.New != "" || c.Old == "" || all[Norm(c.Old)] {
 					probs = append(probs, fmt.Sprintf("removed: %q should no longer be in the record", c.Old))
 				}
-			case "arguments", "arity":
+			case "arguments", "arity", "replaced":
 				if c.Old == "" || c.New == "" || all[Norm(c.Old)] || !all[Norm(c.New)] {
 					probs = append(probs, fmt.Sprintf("%s: %q should have replaced %q in the record", c.Kind, c.New, c.Old))
 				}

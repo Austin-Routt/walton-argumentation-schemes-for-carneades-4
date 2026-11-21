@@ -36,6 +36,12 @@ The printed critical questions are sorted record by record (5.1) into the four k
   * `exeptional` (56, p. 344): its three conditional questions are the assumption `exception_backed(A)`: the exception is of a recognized type, or evidence that the rule does not apply, or comparable cases, can be given (5.3).
   * `plea_for_excuse` (58, p. 345): the excuse is for the action committed, `special_circumstances(E,T)`; CQ1 and CQ2 are the assumption `excuse(E)`, whose text says both.
   * `memory` (60, p. 346): the three undercutters are the exceptions `based_on_false_belief(M)`, `not_originally_believed(M)` and `recaller_doubts(P,M)`.
+* The 48 records filed under an entry without printed questions are compared with the book: 112 records are now at "transcription checked". The six records without an entry of their own, taken from Carneades, wait for 5.5.
+  * `illustration` (6.2, p. 315): the rule of premise 1 names no individual, `usually_properties(P1,P2)`, and the conclusion is that the rule is valid, `valid_rule(P1,P2)`; the record bound the rule to a stray individual and concluded that it was valid "for" the example.
+  * `negative_value` (19.2, p. 321): a negative value is a reason for retracting commitment to the goal, `reason_retracting_goal(V,G)`; the record concluded "retaining", 19.1's conclusion, and its premise said that a bad value "supports" the goal.
+  * `epistemic_ignorence` (27, p. 328): premise 5, `bivalent(D)`, was missing (5.5).
+  * `verbal_slippery_slope` (52, p. 341): one property throughout, `individuals_propoerty(A1,P,A2)`; premise 2 had a property variable of its own.
+  * `gradualism` (48, p. 339): the sequence premise says that each proposition implies the next, as the book does, not that the conditionals "must be in proper order".
 * `tools/migration_r2.yml` starts the old-to-new table of R2 (5.6): every change of Phase 5 that alters what a graph has to state. `tools/vv` checks each row against the library (`migration/*`).
 
 ## 2026-11-21 — release R1, a preview (library 0.1.0, engine 4.3.1+walton.1)
