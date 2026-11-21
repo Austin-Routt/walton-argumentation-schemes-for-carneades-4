@@ -10,7 +10,7 @@ import (
 // added. The parser used to read "broken(" as broken and "p(X) q(Y)" as p(X).
 func TestAddRuleRefusesMalformedText(t *testing.T) {
 	CHRtrace = 0
-	for _, text := range []string{"broken(", "p(X", "p(X))", "p(X),", "p(X) q(Y)", "p(a,)", "p(X).", "p(X); q", ""} {
+	for _, text := range []string{"broken(", "p(X", "p(X))", "p(X),", "p(X) q(Y)", "p(a,)", "p(X).", "p(X); q", "", "42", "1.5", `"s"`} {
 		for _, place := range []string{"head", "body"} {
 			rs := MakeRuleStore()
 			var err error

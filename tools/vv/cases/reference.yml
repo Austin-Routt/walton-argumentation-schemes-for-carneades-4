@@ -1,0 +1,517 @@
+# Reference cases of PLAN.md 4.4, written by hand: what happens to the
+# argument and to the conclusion in each situation the plan lists. The graphs
+# are small and self-contained; the library is not loaded. Each case's comment
+# states the expectation in words; the keys state it for the runner.
+cases:
+  # --- linked support and a missing premise ------------------------------------
+  # Both premises hold: the argument is built and its conclusion is in.
+  - name: linked-support
+    graph: |
+      language:
+        p/1: "%s is p."
+        q/1: "%s is q."
+        r/1: "%s is r."
+      argument_schemes:
+        - id: s
+          variables: [X]
+          premises:
+            - p(X)
+            - q(X)
+          conclusions:
+            - r(X)
+      assumptions:
+        - p(a)
+        - q(a)
+    arguments:
+      - s(a)
+    in:
+      - r(a)
+  # One premise is missing: no argument, and the conclusion is not in.
+  - name: missing-premise
+    graph: |
+      language:
+        p/1: "%s is p."
+        q/1: "%s is q."
+        r/1: "%s is r."
+      argument_schemes:
+        - id: s
+          variables: [X]
+          premises:
+            - p(X)
+            - q(X)
+          conclusions:
+            - r(X)
+      assumptions:
+        - p(a)
+    no_arguments:
+      - s
+    not_in:
+      - r(a)
+
+  # --- the states of a critical question (contract 5) -------------------------
+  # s: from p(X), assuming a(X), unless e(X), conclude c(X). t supports a(X)
+  # from b(X); u supports e(X) from f(X).
+  - name: question/undisputed
+    graph: &questions |
+      language:
+        p/1: "%s is p."
+        a/1: "%s is a."
+        b/1: "%s is b."
+        c/1: "%s is c."
+        e/1: "%s is e."
+        f/1: "%s is f."
+      argument_schemes:
+        - id: s
+          variables: [X]
+          premises:
+            - p(X)
+          assumptions:
+            - a(X)
+          exceptions:
+            - e(X)
+          conclusions:
+            - c(X)
+        - id: t
+          variables: [X]
+          premises:
+            - b(X)
+          conclusions:
+            - a(X)
+        - id: u
+          variables: [X]
+          premises:
+            - f(X)
+          conclusions:
+            - e(X)
+    assumptions:
+      - p(x)
+    arguments:
+      - s(x)
+    in:
+      - a(x)
+      - c(x)
+  # Questioned and unsupported: the assumption is not assumed, the argument
+  # weighs nothing, the conclusion is not in.
+  - name: question/questioned-unsupported
+    graph: *questions
+    assumptions:
+      - p(x)
+    questioned:
+      - a(x)
+    arguments:
+      - s(x)
+    not_in:
+      - a(x)
+      - c(x)
+  # Questioned and supported: the support carries the argument again.
+  - name: question/questioned-supported
+    graph: *questions
+    assumptions:
+      - p(x)
+      - b(x)
+    questioned:
+      - a(x)
+    in:
+      - a(x)
+      - c(x)
+  # Questioning a statement the scheme does not use changes nothing.
+  - name: question/another-statement-questioned
+    graph: *questions
+    assumptions:
+      - p(x)
+    questioned:
+      - a(y)
+    in:
+      - c(x)
+  # An exception that is not shown does not count: as undisputed.
+  - name: exception/not-shown
+    graph: *questions
+    assumptions:
+      - p(x)
+    in:
+      - c(x)
+  # An exception stipulated by the graph undercuts the argument.
+  - name: exception/stipulated
+    graph: *questions
+    assumptions:
+      - p(x)
+      - e(x)
+    arguments:
+      - s(x)
+    in:
+      - e(x)
+    not_in:
+      - c(x)
+  # An exception supported by an argument undercuts it too.
+  - name: exception/supported
+    graph: *questions
+    assumptions:
+      - p(x)
+      - f(x)
+    in:
+      - e(x)
+    not_in:
+      - c(x)
+
+  # --- an undercutter written out by hand --------------------------------------
+  - name: undercutter
+    graph: |
+      statements:
+        p: P holds.
+        q: Q holds.
+        c: C holds.
+        u: The argument for C is undercut.
+      arguments:
+        a1:
+          premises:
+            - p
+          conclusion: c
+          undercutter: u
+        a2:
+          premises:
+            - q
+          conclusion: u
+      assumptions:
+        - p
+        - q
+    in:
+      - u
+    not_in:
+      - c
+
+  # --- a rebuttal inside an issue, and proof standards -------------------------
+  # Two arguments of equal weight for c and for ¬c: neither prevails.
+  - name: rebuttal/equal-weights
+    graph: |
+      statements:
+        p: P holds.
+        q: Q holds.
+        c: C holds.
+        ¬c: C does not hold.
+      issues:
+        i1:
+          positions: [c, ¬c]
+          standard: PE
+      arguments:
+        a1:
+          premises:
+            - p
+          conclusion: c
+        a2:
+          premises:
+            - q
+          conclusion: ¬c
+      assumptions:
+        - p
+        - q
+    not_in:
+      - c
+      - ¬c
+  # Preponderance of the evidence: 0.6 against 0.4 prevails.
+  - name: proof-standard/pe
+    graph: &weighted |
+      statements:
+        p: P holds.
+        q: Q holds.
+        c: C holds.
+        ¬c: C does not hold.
+      issues:
+        i1:
+          positions: [c, ¬c]
+          standard: PE
+      argument_schemes:
+        - id: strong
+          weight:
+            constant: 0.6
+        - id: weak
+          weight:
+            constant: 0.4
+      arguments:
+        a1:
+          scheme: strong
+          premises:
+            - p
+          conclusion: c
+        a2:
+          scheme: weak
+          premises:
+            - q
+          conclusion: ¬c
+      assumptions:
+        - p
+        - q
+    in:
+      - c
+    out:
+      - ¬c
+  # Clear and convincing evidence: a lead of 0.2 is not enough (it needs more
+  # than 0.5).
+  - name: proof-standard/cce
+    graph: |
+      statements:
+        p: P holds.
+        q: Q holds.
+        c: C holds.
+        ¬c: C does not hold.
+      issues:
+        i1:
+          positions: [c, ¬c]
+          standard: CCE
+      argument_schemes:
+        - id: strong
+          weight:
+            constant: 0.6
+        - id: weak
+          weight:
+            constant: 0.4
+      arguments:
+        a1:
+          scheme: strong
+          premises:
+            - p
+          conclusion: c
+        a2:
+          scheme: weak
+          premises:
+            - q
+          conclusion: ¬c
+      assumptions:
+        - p
+        - q
+    not_in:
+      - c
+  # Beyond reasonable doubt: 0.9 against 0.1 is enough (a lead over 0.5, the
+  # other side under 0.3).
+  - name: proof-standard/brd
+    graph: |
+      statements:
+        p: P holds.
+        q: Q holds.
+        c: C holds.
+        ¬c: C does not hold.
+      issues:
+        i1:
+          positions: [c, ¬c]
+          standard: BRD
+      argument_schemes:
+        - id: strong
+          weight:
+            constant: 0.9
+        - id: weak
+          weight:
+            constant: 0.1
+      arguments:
+        a1:
+          scheme: strong
+          premises:
+            - p
+          conclusion: c
+        a2:
+          scheme: weak
+          premises:
+            - q
+          conclusion: ¬c
+      assumptions:
+        - p
+        - q
+    in:
+      - c
+
+  # --- two conclusions share one undercutter -----------------------------------
+  - name: two-conclusions
+    graph: &twoconc |
+      language:
+        p/1: "%s is p."
+        c1/1: "%s is c1."
+        c2/1: "%s is c2."
+        e/1: "%s is e."
+      argument_schemes:
+        - id: s
+          variables: [X]
+          premises:
+            - p(X)
+          exceptions:
+            - e(X)
+          conclusions:
+            - c1(X)
+            - c2(X)
+    assumptions:
+      - p(x)
+    in:
+      - c1(x)
+      - c2(x)
+  - name: two-conclusions/one-exception-undercuts-both
+    graph: *twoconc
+    assumptions:
+      - p(x)
+      - e(x)
+    not_in:
+      - c1(x)
+      - c2(x)
+
+  # --- a cycle: two schemes derive each other's premise -------------------------
+  # The run ends (set semantics), each scheme builds its one argument.
+  - name: cycle
+    graph: |
+      language:
+        part/1: "%s is a part."
+        whole/1: "%s is a whole."
+      argument_schemes:
+        - id: up
+          variables: [X]
+          premises:
+            - part(X)
+          conclusions:
+            - whole(X)
+        - id: down
+          variables: [X]
+          premises:
+            - whole(X)
+          conclusions:
+            - part(X)
+      assumptions:
+        - part(a)
+    arguments:
+      - up(a)
+      - down(a)
+    in:
+      - whole(a)
+
+  # --- each way a run can end (contract 3) -------------------------------------
+  - name: outcome/invalid-input
+    graph: |
+      language:
+        p/2: "%s p %s."
+        q/2: "%s q %s."
+      argument_schemes:
+        - id: s
+          variables: [P,D]
+          premises:
+            - p(P,D)
+          conclusions:
+            - q(P,D)
+      assumptions:
+        - p(joe,1990-05-17)
+    outcome: invalid input
+  - name: outcome/unsupported
+    graph: |
+      language:
+        p/1: "%s is p."
+        q/1: "%s is q."
+      argument_schemes:
+        - id: s
+          variables: [X]
+          deletions:
+            - p(X)
+          conclusions:
+            - q(X)
+      assumptions:
+        - p(a)
+    outcome: unsupported
+  - name: outcome/inconsistent-context
+    graph: |
+      statements:
+        p: P holds.
+        ¬p: P does not hold.
+      assumptions:
+        - p
+        - ¬p
+    outcome: inconsistent context
+  - name: outcome/limit-reached
+    graph: |
+      language:
+        t/1: "%s is a term."
+      argument_schemes:
+        - id: left
+          variables: [X]
+          premises:
+            - t(X)
+          conclusions:
+            - t(l(X))
+        - id: right
+          variables: [X]
+          premises:
+            - t(X)
+          conclusions:
+            - t(r(X))
+      assumptions:
+        - t(a)
+    outcome: limit reached
+
+  # --- two cases side by side in one graph --------------------------------------
+  # The exception shown for y undercuts y's argument only.
+  - name: two-cases-side-by-side
+    graph: *questions
+    assumptions:
+      - p(x)
+      - p(y)
+      - e(y)
+    arguments:
+      - s(x)
+      - s(y)
+    in:
+      - c(x)
+    not_in:
+      - c(y)
+
+  # --- several schemes that feed each other ------------------------------------
+  - name: chain-of-schemes
+    graph: |
+      language:
+        p/1: "%s is p."
+        q/1: "%s is q."
+        r/1: "%s is r."
+        s/1: "%s is s."
+      argument_schemes:
+        - id: s1
+          variables: [X]
+          premises:
+            - p(X)
+          conclusions:
+            - q(X)
+        - id: s2
+          variables: [X]
+          premises:
+            - q(X)
+          conclusions:
+            - r(X)
+        - id: s3
+          variables: [X]
+          premises:
+            - r(X)
+          conclusions:
+            - s(X)
+      assumptions:
+        - p(a)
+    arguments:
+      - s1(a)
+      - s2(a)
+      - s3(a)
+    in:
+      - s(a)
+
+  # --- one unrelated fact -------------------------------------------------------
+  # A fact no scheme uses changes nothing and stays in.
+  - name: unrelated-fact
+    graph: |
+      language:
+        p/1: "%s is p."
+        q/1: "%s is q."
+        z/1: "%s is z."
+      argument_schemes:
+        - id: s
+          variables: [X]
+          premises:
+            - p(X)
+          conclusions:
+            - q(X)
+      assumptions:
+        - p(a)
+        - z(b)
+    arguments:
+      - s(a)
+    no_arguments:
+      - s(b)
+    in:
+      - q(a)
+      - z(b)

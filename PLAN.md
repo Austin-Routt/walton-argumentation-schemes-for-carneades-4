@@ -213,11 +213,11 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 
 - [x] 0.1 Engine sources imported into `third_party/`, `sources.lock`, `tools/vv`, CI workflow
 - [x] 0.2 Parity register `docs/parity.md` written
-- [ ] 0.2 Checks marked "to port" in `docs/parity.md` ported (done: the per-scheme second inference and withdrawn assumption, the 20 probes and 2 mutation tests of the validator, the no-rule-fired store)
-- [ ] 0.3 Ledger with an expected-check list and failure fingerprints
+- [x] 0.2 Checks marked "to port" in `docs/parity.md` ported: the per-scheme second inference, withdrawn assumption and round trip, the 20 probes and 2 mutation tests of the validator, the no-rule-fired store, the six acceptance cases, the stress run, the negated goal, the invalid expected label and rule, a default against an assumed contrary, the concurrency contracts and the race job (`shared-0ary` comes with 5.4)
+- [x] 0.3 Ledger with an expected-check list (`tools/vv/expected_checks.txt`) and failure fingerprints (`fingerprint:`)
 - [x] 0.4 README brought up to date
 - [x] 0.5 Contracts `docs/contracts.md` written (each is met when its issues leave the ledger)
-- [ ] 0.6 Source ledger, one row per record
+- [x] 0.6 Source ledger, one row per record (`records:` in `tools/vv/source_ledger.yml`; every row at "mapped" until Phase 5 checks it)
 - [x] 1.1 Exit status by outcome (E-EXIT); a panic exits with 6
 - [x] 1.2 Limits as a typed error, graph unchanged, nothing on stdout (E-BUDGET); a term-size limit; `InferContext`
 - [x] 1.3 Unreadable input is an error (E-PARSE); GoCHR returns the goals when no rule fires
@@ -233,7 +233,11 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 2.6 Names and terms: E-CAPTURE, E-TERMS; deletions and guards unsupported, arithmetic invalid (contract 1). X-IS's engine side (the validator rejects reserved names) lands with the library repair 3.6
 - [x] 2.7 Questioned statements (X-ASSUME): `questioned:`, defaults kept apart from stipulations; per-scheme check ported
 - [x] 2.8 Arguments that name a scheme (E-EXPLICIT): validated and reported, requests carried out
-- [x] 4.1, first half: export writes the theory (the parameter quoting is still open)
+- [x] 4.1 Export writes the theory, with weights and weighing functions, and quotes parameters (E-EXPORT)
+- [x] 4.2 Expected labels survive (`tests:`), and so do `questioned:` and the origin of assumptions (`defaults:`)
+- [x] 4.3 `roles` are imported (E-ROLES)
+- [x] 4.4 Reference cases written by hand (`tools/vv/cases/reference.yml`, 24 cases: linked support, a missing premise, every state of a critical question, an undercutter, a rebuttal in an issue, three proof standards, two conclusions, a cycle, four ways a run ends, two cases side by side, a chain of schemes, an unrelated fact)
+- [x] 4.5 Property tests: terms mean the same to both readers (400 generated terms), renaming a scheme's variables changes no argument (every scheme), every reference case evaluated by the command and read back in a new process
 - [x] Phase 3: 3.1 to 3.11 (nine repairs, the prohibition record, records 50, 57 and 22.4, the negation issue scheme, the validator); X-IS's engine side; gate S reached (every file checks clean, all 118 schemes run through the command, the ledger holds only E-EXPORT and E-ROLES)
 - [ ] Phase 4; gate R; release R1
 - [ ] Phase 5; gate L; release R2

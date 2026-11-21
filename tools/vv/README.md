@@ -73,11 +73,19 @@ that matches no check that ran fails the run too, and so does a run with fewer
 checks than `min_checks` in the ledger says, because a passing check leaves no
 entry and could otherwise be removed without anyone noticing.
 
-Two limits are worth knowing. Nothing stops a later change from adding entries
-or lowering `min_checks`, so a change to the ledger needs the same review as a
-change to the code. And an entry names a check, not a cause: a check that starts
-failing for a different reason still counts as known. `VV_STRICT=1` is the
-release gate; the ordinary run only says that nothing got worse.
+`expected_checks.txt` lists every check a complete run produces, by name. A
+listed check that did not run fails the run, and so does a check that is not
+listed: `VV_UPDATE_CHECKS=1` rewrites the list, in the change that adds or
+removes checks, where the difference is reviewed with the code.
+
+An entry may carry a `fingerprint:`, a text the failure's message must contain.
+A listed check that fails for another reason is then reported as a new failure,
+not a known one.
+
+One limit is worth knowing. Nothing stops a later change from adding entries,
+lowering `min_checks` or rewriting the list, so a change to any of them needs
+the same review as a change to the code. `VV_STRICT=1` is the release gate; the
+ordinary run only says that nothing got worse.
 
 ## What is checked
 
@@ -105,6 +113,8 @@ and the engine constructs and evaluates the argument, once with the scheme alone
 | `…/exceptions-undercut` | asserting any one exception undercuts the scheme's own argument |
 | `…/premises-needed` | leaving out any one premise stops the scheme: it constructs no argument |
 | `iso/texts`, `iso/negation-texts` | every statement has a text produced by a language template |
+| `iso/roundtrip` | the evaluated graph, exported as YAML and imported with clean globals, has the same arguments (scheme, parameters, premises, undercutter) and the same labels |
+| `stress` (per file) | with the premises of every scheme of the file asserted at once, sharing their constants, the run completes, every scheme constructs its argument and every statement is ground |
 
 `exceptions-undercut` and `premises-needed` judge the scheme's own argument, not
 the label of its conclusion. With other schemes loaded a conclusion can keep the
@@ -127,6 +137,18 @@ it prints. The checks are structural: every scheme has exactly one place in the
 map (`source/mapped`), and every entry has a record (`source/has-record`). The
 file holds numbers and pages only, none of the book's text.
 
+The same file has one row per record (`records:`, PLAN.md 0.6): whether it is
+the book's or one of the 24 upstream ships, the source it cites when that is
+not the compendium, what the record claims to be (a transcription, a
+correction the book supports, an interpretation, a policy, or unchecked), how
+far it has been checked (mapped, transcription checked, interpretation
+approved, questions sorted, example passed), its printed questions once sorted,
+and the changes made to it. `source/record-row` checks each row against
+`walton.yml`, the compendium list and upstream's file, and that its stage has
+what it needs; `source/records-complete` that no row is missing or left over.
+`go run ./cmd/schemecheck -format source` prints them as the worklist of
+Phase 5.
+
 **Engine** (`TestEngine`, `TestEngineToolchain`, and the `command` group of
 `TestCLI`): small experiments stating what practical use needs, such as "two
 schemes that derive each other's premise terminate", "the engine can read the
@@ -138,7 +160,7 @@ works today and has to keep working.
 that can run away (a counter that never stops, a term that keeps growing, a
 fact of the wrong arity, labelling after an issue gains a position) therefore
 run in a process of their own, with a time
-limit and a memory cap of 2 GB, and are killed when they exceed either. If any
+limit and a cap of 4 GB on the address space, and are killed when they exceed either. If any
 other check times out, the run stops there and fails: a worker that could not
 be stopped is still using the engine's global state, and nothing measured after
 it could be trusted.
@@ -157,9 +179,10 @@ to the ledger under an issue.
   how many assumption and exception statements it has; whether a
   scheme's wording and its questions say what the book says has to be judged by
   a person with the book.
-* One generic instance per scheme. Interactions that need particular data
-  (cyclic `causes` facts, for example) are reported by `schemecheck` as cycles
-  of the feeds graph, not exercised.
+* One generic instance per scheme, and one run with all of them together
+  (`stress`). Interactions that need particular data are exercised only where
+  a reference case has them (cyclic `causes` facts in
+  `cases/acceptance.yml`, for example).
 * The engine keeps global state and writes to stdout and stderr. The suite
   resets and captures both, and never runs checks in parallel.
 * A green strict run says that these finite cases pass. It is not a proof for
@@ -179,19 +202,15 @@ to the ledger under an issue.
   `reserved-predicate-names-are-rejected` (contract 7);
   `scheme-roles-are-imported` still states the stronger outcome. Where the decision is to reject, the check is
   restated in a change of its own, after the contract that says so.
-* A ledger entry names a check, not a cause. Nothing here notices when a known
-  failure starts failing for another reason; a fingerprint of each known
-  failure's message would, and is not built yet.
-* Not ported yet from the two other reviews: the second review's six acceptance
-  cases; the third review's per-scheme checks of a withdrawn assumption and of
-  a second inference (this suite has both only at engine level), its Go
-  contracts for concurrency and for the store GoCHR returns when no rule fired,
-  its 20 probes of `tools/validate_schemes.py` and its two mutation tests.
-* `experiments/` holds four experiments, none applied: a prototype that gives
-  the rule engine set semantics, trial edits to the scheme files on a copy of
-  the repository, the two combined with the engine patch of a second review,
-  and a prototype of the `questioned:` list for critical questions. See
-  `experiments/README.md`.
+* Every check of the two other reviews is ported (`docs/parity.md`) but the
+  second review's `shared-0ary`, which comes with `PLAN.md` 5.4.
+* `experiments/` holds the four experiments that came before the work of
+  `PLAN.md`: a prototype that gives the rule engine set semantics, trial edits
+  to the scheme files on a copy of the repository, the two combined with the
+  engine patch of a second review, and a prototype of the `questioned:` list
+  for critical questions. Phases 1 to 3 carried their findings into
+  `third_party/` and the library in their own form; the experiments stay as
+  the record of what was measured. See `experiments/README.md`.
 
 ## History
 

@@ -44,8 +44,11 @@ const ProbeEnv = "VV_PROBE"
 const probeMarker = "VV-PROBE-RESULT "
 
 // ProbeMemKB caps the address space of a probe process (kilobytes, as for
-// `ulimit -v`). The probes need a few megabytes when the engine behaves.
-const ProbeMemKB = 2000000
+// `ulimit -v`). The counter runs to the limit of 100,000 rule applications
+// and peaks at about 800 MB resident; a Go process reserves more address
+// space than it uses, and under a cap of 2 GB the probe ran out of memory on
+// one CI run in four. 4 GB still stops a runaway well before a runner's.
+const ProbeMemKB = 4000000
 
 // Probes are the checks that run in a process of their own.
 var Probes = map[string]func() []Result{

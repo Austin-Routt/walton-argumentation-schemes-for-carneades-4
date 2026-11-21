@@ -15,6 +15,7 @@
 package waltonvv
 
 import (
+	"strings"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -173,10 +174,24 @@ func TestLibrary(t *testing.T) {
 // hand against the library, with the arguments and labels each must produce.
 func TestCases(t *testing.T) {
 	root := vvlib.RepoRoot()
+	cli, err := vvlib.FindCLI()
+	if err != nil {
+		t.Fatalf("no carneades command: %v", err)
+	}
 	for _, f := range vvlib.CaseFiles() {
 		f := f
-		t.Run(f, func(t *testing.T) { judge(t, vvlib.CaseChecks(root, f)) })
+		t.Run(f, func(t *testing.T) {
+			judge(t, vvlib.CaseChecks(root, f))
+			// PLAN.md 4.5: evaluated by the command, written, and read back
+			// in a new process
+			judge(t, vvlib.CaseRoundTrips(cli, root, f))
+		})
 	}
+}
+
+// TestProperties runs the property tests of PLAN.md 4.5.
+func TestProperties(t *testing.T) {
+	judge(t, vvlib.PropertyChecks(vvlib.RepoRoot()))
 }
 
 func TestSource(t *testing.T) {
@@ -231,6 +246,52 @@ func TestLedgerIsUsed(t *testing.T) {
 	if ledger.MinChecks > 0 && len(collect) < ledger.MinChecks {
 		t.Errorf("%d checks ran, and min_checks in known_issues.yml is %d: a check was removed or skipped. If that is intended, lower min_checks in the same change", len(collect), ledger.MinChecks)
 	}
+	// PLAN.md 0.3: the checks a complete run produces are listed by name in
+	// expected_checks.txt, so a check that disappears, or a new one, is seen
+	// by name. VV_UPDATE_CHECKS=1 rewrites the list, in the change that adds
+	// or removes checks, where a reviewer sees the difference.
+	keys := make([]string, 0, len(collect))
+	seen := map[string]bool{}
+	for _, r := range collect {
+		if !seen[r.Key()] {
+			seen[r.Key()] = true
+			keys = append(keys, r.Key())
+		}
+	}
+	sort.Strings(keys)
+	if os.Getenv("VV_UPDATE_CHECKS") != "" {
+		if err := os.WriteFile("expected_checks.txt", []byte(strings.Join(keys, "\n")+"\n"), 0o644); err != nil {
+			t.Fatal(err)
+		}
+		return
+	}
+	b, err := os.ReadFile("expected_checks.txt")
+	if err != nil {
+		t.Fatalf("expected_checks.txt: %v (run with VV_UPDATE_CHECKS=1 to write it)", err)
+	}
+	want := map[string]bool{}
+	for _, k := range strings.Split(strings.TrimSpace(string(b)), "\n") {
+		want[k] = true
+	}
+	missing, added := []string{}, []string{}
+	for k := range want {
+		if !seen[k] {
+			missing = append(missing, k)
+		}
+	}
+	for _, k := range keys {
+		if !want[k] {
+			added = append(added, k)
+		}
+	}
+	sort.Strings(missing)
+	sort.Strings(added)
+	if len(missing) > 0 {
+		t.Errorf("%d listed check(s) did not run, e.g. %v: a check was removed or skipped. If that is intended, rewrite expected_checks.txt with VV_UPDATE_CHECKS=1 in the same change", len(missing), firstFew(missing))
+	}
+	if len(added) > 0 {
+		t.Errorf("%d check(s) ran that expected_checks.txt does not list, e.g. %v: rewrite it with VV_UPDATE_CHECKS=1 in the change that adds them", len(added), firstFew(added))
+	}
 	for n, e := range ledger.Expected {
 		for _, c := range e.Checks {
 			one := vvlib.Expected{Issue: e.Issue, File: e.File, Scheme: e.Scheme, Checks: []string{c}}
@@ -246,4 +307,12 @@ func TestLedgerIsUsed(t *testing.T) {
 			}
 		}
 	}
+}
+
+// firstFew returns at most five names, for a message.
+func firstFew(s []string) []string {
+	if len(s) > 5 {
+		return s[:5]
+	}
+	return s
 }

@@ -6,7 +6,9 @@ package vvlib
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"sort"
+	"strings"
 
 	"gopkg.in/yaml.v2"
 )
@@ -45,7 +47,60 @@ type SourceLedger struct {
 		Record     string `yaml:"record"`
 		Compendium string `yaml:"compendium"`
 	} `yaml:"citations"`
+	// Records has one row per record of walton.yml (PLAN.md 0.6).
+	Records []RecordRow `yaml:"records"`
 }
+
+// RecordRow is the source ledger's row for one record (PLAN.md 0.6).
+type RecordRow struct {
+	Record    string           `yaml:"record"`
+	Origin    string           `yaml:"origin"`
+	Upstream  string           `yaml:"upstream"`
+	Entry     string           `yaml:"entry"`
+	Cites     string           `yaml:"cites"`
+	Claim     string           `yaml:"claim"`
+	Stage     string           `yaml:"stage"`
+	Questions []RecordQuestion `yaml:"questions"`
+	Changes   []RecordChange   `yaml:"changes"`
+	Note      string           `yaml:"note"`
+}
+
+// RecordQuestion is one printed critical question, sorted (PLAN.md 5.1).
+type RecordQuestion struct {
+	N    int    `yaml:"n"`
+	Kind string `yaml:"kind"` // premise, assumption, exception, rebuttal
+	As   string `yaml:"as"`   // the statement that models it ("" for premise)
+	Note string `yaml:"note"`
+}
+
+// RecordChange is one change made to a record, with the claim it makes.
+type RecordChange struct {
+	Plan  string `yaml:"plan"`
+	Page  int    `yaml:"page"`
+	Claim string `yaml:"claim"`
+}
+
+// The kinds of claim a row or a change makes, and the stages of a row in
+// order (PLAN.md 0.6).
+var (
+	Claims = map[string]bool{"transcription": true, "correction": true, "interpretation": true, "policy": true, "unchecked": true}
+	Stages = []string{"mapped", "transcription-checked", "interpretation-approved", "questions-sorted", "example-passed"}
+	// QuestionKinds are the four sorts of PLAN.md 5.1.
+	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true}
+)
+
+// StageIndex is the position of a stage in Stages, or -1.
+func StageIndex(s string) int {
+	for i, x := range Stages {
+		if x == s {
+			return i
+		}
+	}
+	return -1
+}
+
+// CompendiumSource is how walton.yml cites the compendium itself.
+const CompendiumSource = "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008)"
 
 func LoadSourceLedger(path string) (*SourceLedger, error) {
 	b, err := os.ReadFile(path)
@@ -125,6 +180,7 @@ func SourceChecks(l *SourceLedger, lib *Library) []Result {
 			out = append(out, fail(sourceFile, c.Scheme, "source/scheme-exists", "a citation row names a scheme that %s does not contain", lib.Rel))
 		}
 	}
+	out = append(out, RecordChecks(l, lib)...)
 	for _, e := range l.Compendium {
 		name := "entry-" + e.Entry
 		switch {
@@ -151,6 +207,9 @@ type SourceRow struct {
 	Exceptions  int
 	Status      string
 	Note        string
+	// from the record's row (PLAN.md 0.6)
+	Origin, Claim, Stage string
+	Sorted               int // questions sorted
 }
 
 // Fields is the number of assumption and exception statements the record has.
@@ -162,6 +221,17 @@ func (r SourceRow) Fields() int { return r.Assumptions + r.Exceptions }
 // by the upstream-only records (entry "-").
 func SourceRows(l *SourceLedger, lib *Library) []SourceRow {
 	rows := []SourceRow{}
+	defer func() {
+		byId := map[string]RecordRow{}
+		for _, r := range l.Records {
+			byId[r.Record] = r
+		}
+		for i := range rows {
+			if r, ok := byId[rows[i].Scheme]; ok {
+				rows[i].Origin, rows[i].Claim, rows[i].Stage, rows[i].Sorted = r.Origin, r.Claim, r.Stage, len(r.Questions)
+			}
+		}
+	}()
 	count := func(id string) (a, e int) {
 		if s := lib.Scheme(id); s != nil {
 			return len(s.Assumptions), len(s.Exceptions)
@@ -227,4 +297,151 @@ func SourceSummary(rows []SourceRow) string {
 		"records with fewer assumptions and exceptions than the book prints questions: %d; as many: %d; more: %d\n"+
 		"(a count of statements, to size the review; it does not say which questions a record answers)",
 		len(entries), records, missing, other, none, noneBoth, noneBook, fewer, same, more)
+}
+
+// RecordChecks checks the rows of the source ledger, one per record
+// (PLAN.md 0.6): every record has one row and every row a record; the entry
+// agrees with the compendium and the citation with walton.yml; the upstream
+// rows are the records upstream ships; a row's claim and stage are known, and
+// its stage has what it needs.
+func RecordChecks(l *SourceLedger, lib *Library) []Result {
+	out := []Result{}
+	entryOf := map[string]string{}
+	entries := map[string]SourceEntry{}
+	for _, e := range l.Compendium {
+		entries[e.Entry] = e
+		for _, id := range e.Schemes {
+			entryOf[id] = e.Entry
+		}
+	}
+	upstream := map[string]bool{}
+	if b, err := os.ReadFile(filepath.Join(RepoRoot(), "third_party", "carneades-4", "examples", "AGs", "YAML", "walton.yml")); err == nil {
+		var f struct {
+			Schemes []struct {
+				Id string `yaml:"id"`
+			} `yaml:"argument_schemes"`
+		}
+		if yaml.Unmarshal(b, &f) == nil {
+			for _, s := range f.Schemes {
+				upstream[s.Id] = true
+			}
+		}
+	}
+	cases := map[string]bool{}
+	for _, f := range CaseFiles() {
+		cs, _ := LoadCases(f)
+		for _, c := range cs {
+			cases[c.Name] = true
+		}
+	}
+	rows := map[string][]RecordRow{}
+	for _, r := range l.Records {
+		rows[r.Record] = append(rows[r.Record], r)
+	}
+	seenUpstream := map[string]string{}
+	for _, s := range lib.Schemes() {
+		rs := rows[s.Id]
+		if len(rs) != 1 {
+			out = append(out, fail(sourceFile, s.Id, "source/record-row", "%d rows for the record in records:, one expected", len(rs)))
+			continue
+		}
+		r := rs[0]
+		probs := []string{}
+		switch r.Origin {
+		case "upstream":
+			u := r.Upstream
+			if u == "" {
+				u = r.Record
+			}
+			if !upstream[u] {
+				probs = append(probs, fmt.Sprintf("origin upstream, but upstream's walton.yml has no record %s", u))
+			} else if prev, dup := seenUpstream[u]; dup {
+				probs = append(probs, fmt.Sprintf("upstream record %s is also claimed by %s", u, prev))
+			}
+			seenUpstream[u] = r.Record
+		case "book":
+			if r.Upstream != "" {
+				probs = append(probs, "a book record has no upstream id")
+			}
+			if upstream[r.Record] {
+				probs = append(probs, "upstream's walton.yml has a record with this id: origin upstream")
+			}
+			if r.Entry == "" {
+				probs = append(probs, "a book record needs its entry")
+			}
+		default:
+			probs = append(probs, fmt.Sprintf("origin %q is neither book nor upstream", r.Origin))
+		}
+		if r.Entry != entryOf[s.Id] {
+			probs = append(probs, fmt.Sprintf("entry %q, but the compendium list files the record under %q", r.Entry, entryOf[s.Id]))
+		}
+		src := ""
+		if v, ok := s.Metadata["source"]; ok && v != nil {
+			src = strings.Join(strings.Fields(fmt.Sprint(v)), " ")
+		}
+		want := ""
+		if src != "" && !strings.HasPrefix(src, CompendiumSource) {
+			want = src
+		}
+		if r.Cites != want {
+			probs = append(probs, fmt.Sprintf("cites %q, but the record cites %q", r.Cites, want))
+		}
+		if !Claims[r.Claim] {
+			probs = append(probs, fmt.Sprintf("unknown claim %q", r.Claim))
+		}
+		for _, c := range r.Changes {
+			if c.Plan == "" || c.Page == 0 || !Claims[c.Claim] || c.Claim == "unchecked" {
+				probs = append(probs, fmt.Sprintf("change %+v needs a plan item, a page and a claim", c))
+			}
+		}
+		stage := StageIndex(r.Stage)
+		if stage < 0 {
+			probs = append(probs, fmt.Sprintf("unknown stage %q", r.Stage))
+		}
+		if stage >= 1 && r.Claim == "unchecked" {
+			probs = append(probs, "a row past mapped says what the record claims to be")
+		}
+		for _, q := range r.Questions {
+			if !QuestionKinds[q.Kind] {
+				probs = append(probs, fmt.Sprintf("question %d: unknown kind %q", q.N, q.Kind))
+			} else if q.Kind != "premise" && q.As == "" {
+				probs = append(probs, fmt.Sprintf("question %d is an %s: name the statement that models it", q.N, q.Kind))
+			}
+		}
+		if stage >= StageIndex("questions-sorted") && r.Origin == "book" {
+			if n := entries[r.Entry].Questions; len(r.Questions) != n {
+				probs = append(probs, fmt.Sprintf("questions sorted: %d of the %d the compendium prints for entry %s", len(r.Questions), n, r.Entry))
+			}
+		}
+		if stage >= StageIndex("example-passed") && !cases[r.Record+"/book"] {
+			probs = append(probs, "example passed, but no reference case "+r.Record+"/book")
+		}
+		out = append(out, res(sourceFile, s.Id, "source/record-row", probs))
+	}
+	extra := []string{}
+	for id := range rows {
+		if lib.Scheme(id) == nil {
+			extra = append(extra, id)
+		}
+	}
+	missing := []string{}
+	for u := range upstream {
+		if _, ok := seenUpstream[u]; !ok {
+			missing = append(missing, u)
+		}
+	}
+	sort.Strings(extra)
+	sort.Strings(missing)
+	probs := []string{}
+	if len(extra) > 0 {
+		probs = append(probs, fmt.Sprintf("rows for records %s does not contain: %v", lib.Rel, extra))
+	}
+	if len(upstream) == 0 {
+		probs = append(probs, "upstream's walton.yml cannot be read")
+	}
+	if len(missing) > 0 {
+		probs = append(probs, fmt.Sprintf("upstream records with no row: %v", missing))
+	}
+	out = append(out, res(sourceFile, "(file)", "source/records-complete", probs))
+	return out
 }

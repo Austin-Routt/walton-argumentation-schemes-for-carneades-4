@@ -5,6 +5,7 @@
 package vvlib
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"io"
@@ -691,7 +692,98 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 	}
 	// every premise is needed: without it the scheme must not construct an argument
 	out = append(out, res(file, id, chk("premises-needed"), premiseProblems(lang, theory, s, in, control)))
+	// The evaluated graph, written as YAML and read back with clean globals,
+	// has the same arguments, parameters and labels (the second review's
+	// per-scheme roundtrip, docs/parity.md). Last, because it records the
+	// labelling in the graph.
+	out = append(out, res(file, id, chk("roundtrip"), roundTripProblems(run, control)))
 	return out, run
+}
+
+// roundTripProblems exports the run's graph, imports it as a new process
+// would, labels it again and compares.
+func roundTripProblems(run *Run, control string) []string {
+	if control != "" {
+		return []string{"not judged: " + control}
+	}
+	args := func(ag *caes.ArgGraph) map[string]string {
+		m := map[string]string{}
+		for id, a := range ag.Arguments {
+			// an argument without a scheme is weighed as linked (GetWeight),
+			// and the importer gives it that scheme
+			scheme := "linked"
+			if a.Scheme != nil {
+				scheme = a.Scheme.Id
+			}
+			prem := []string{}
+			for _, p := range a.Premises {
+				prem = append(prem, p.Stmt.Id)
+			}
+			sort.Strings(prem)
+			undercutter := ""
+			if a.Undercutter != nil {
+				undercutter = a.Undercutter.Id
+			}
+			conclusion := ""
+			if a.Conclusion != nil {
+				conclusion = a.Conclusion.Id
+			}
+			m[id] = fmt.Sprintf("%s(%s) %s <- [%s] unless %s", scheme, strings.Join(a.Parameters, " | "), conclusion, strings.Join(prem, ", "), undercutter)
+		}
+		return m
+	}
+	labels := func(l caes.Labelling) map[string]caes.Label {
+		m := map[string]caes.Label{}
+		for st, lb := range l {
+			m[st.Id] = lb
+		}
+		return m
+	}
+	l1 := run.AG.GroundedLabelling()
+	before, beforeL := args(run.AG), labels(l1)
+	run.AG.ApplyLabelling(l1)
+	var buf bytes.Buffer
+	var ag2 *caes.ArgGraph
+	var err error
+	var panicked any
+	c := StartCapture()
+	func() {
+		defer func() { panicked = recover() }()
+		cyaml.Export(&buf, run.AG)
+		ResetEngineGlobals() // a new process starts with clean globals
+		ag2, err = cyaml.Import(bytes.NewReader(buf.Bytes()))
+	}()
+	c.Stop()
+	ResetEngineGlobals()
+	switch {
+	case panicked != nil:
+		return []string{fmt.Sprintf("export or import panics: %v", panicked)}
+	case err != nil:
+		return []string{"the exported graph cannot be read back: " + firstLine(err.Error())}
+	}
+	probs := []string{}
+	after, afterL := args(ag2), labels(ag2.GroundedLabelling())
+	for id, a := range before {
+		if b, ok := after[id]; !ok {
+			probs = append(probs, "argument "+id+" is lost")
+		} else if a != b {
+			probs = append(probs, fmt.Sprintf("argument %s was %s and is %s", id, a, b))
+		}
+	}
+	for id := range after {
+		if _, ok := before[id]; !ok {
+			probs = append(probs, "argument "+id+" appears")
+		}
+	}
+	for st, l := range beforeL {
+		if l2, ok := afterL[st]; !ok {
+			probs = append(probs, st+" is lost")
+		} else if l != l2 {
+			probs = append(probs, fmt.Sprintf("%s was %s and is %s", st, l, l2))
+		}
+	}
+	sort.Strings(probs)
+	return probs
 }
 
 // questionedProblems questions each assumption of the scheme in turn and
@@ -861,6 +953,8 @@ func CheckLibrary(lib *Library) []Result {
 		r, _ = DynamicChecks(lib.Rel, "full", lang, all, s)
 		out = append(out, r...)
 	}
+	probs, _ := StressProblems(lib)
+	out = append(out, res(lib.Rel, "(file)", "stress", probs))
 	return out
 }
 
@@ -1008,4 +1102,101 @@ func Cycles(feeds map[string][]string, ids []string) [][]string {
 	}
 	sort.Slice(out, func(i, j int) bool { return strings.Join(out[i], ",") < strings.Join(out[j], ",") })
 	return out
+}
+
+// StressProblems asserts the premises of every scheme of the file at once,
+// with the whole file loaded (the second review's stress probe, docs/parity.md).
+// The instances share their constants, so the schemes feed each other. Where a
+// scheme's premise is the negation of a premise already asserted (from_model
+// and from_antimodel), that scheme's instance gets constants of its own: a
+// context with p and ¬p is refused by contract 3, which is not what this
+// probe tests. The run has to complete, every scheme has to construct its
+// argument and every statement has to be ground.
+func StressProblems(lib *Library) ([]string, time.Duration) {
+	lang := lib.AG.Theory.Language
+	all := lib.Schemes()
+	synthetic := map[string]string{}
+	seen := map[string]bool{}
+	premises := []string{}
+	complement := func(p string) string {
+		if strings.HasPrefix(p, "¬") {
+			return strings.TrimPrefix(p, "¬")
+		}
+		return "¬" + p
+	}
+	for n, s := range all {
+		in := NewInstance(s)
+		for k, v := range in.Synthetic {
+			synthetic[k] = v
+		}
+		own := in.Premises
+		for _, p := range in.Premises {
+			if seen[complement(Norm(p))] {
+				own = nil
+				for _, q := range in.Premises {
+					own = append(own, renameConstants(q, fmt.Sprintf("_%d", n)))
+				}
+				break
+			}
+		}
+		for _, p := range own {
+			if !seen[Norm(p)] {
+				seen[Norm(p)] = true
+				premises = append(premises, p)
+			}
+		}
+	}
+	run := Infer(lang, synthetic, all, premises)
+	switch {
+	case run.TimedOut:
+		return []string{fmt.Sprintf("inference did not return within %v", InferTimeout)}, run.Elapsed
+	case run.BudgetExhausted():
+		return []string{fmt.Sprintf("the rule engine stopped at its limit after %v", run.Elapsed.Round(time.Millisecond))}, run.Elapsed
+	case run.Err != nil:
+		return []string{fmt.Sprintf("Infer: %v", run.Err)}, run.Elapsed
+	}
+	probs := []string{}
+	for _, s := range all {
+		if len(s.Premises) > 0 && len(run.ArgsOf(s.Id)) == 0 {
+			probs = append(probs, s.Id+" constructs no argument")
+		}
+	}
+	if ng := run.NonGround(); len(ng) > 0 {
+		probs = append(probs, "statements with variables: "+strings.Join(ng, " "))
+	}
+	return probs, run.Elapsed
+}
+
+// renameConstants appends suffix to the constants an Instance makes (k_...,
+// and the x of a synthetic proposition) in a ground statement.
+func renameConstants(stmt, suffix string) string {
+	t, ok := parse(stmt)
+	if !ok {
+		return stmt
+	}
+	var walk func(t terms.Term) terms.Term
+	walk = func(t terms.Term) terms.Term {
+		switch v := t.(type) {
+		case terms.Atom:
+			if strings.HasPrefix(string(v), "k_") || v == "x" {
+				return terms.Atom(string(v) + suffix)
+			}
+			return v
+		case terms.Compound:
+			args := make([]terms.Term, len(v.Args))
+			for i, a := range v.Args {
+				args[i] = walk(a)
+			}
+			v.Args = args
+			return v
+		case terms.List:
+			l := make(terms.List, len(v))
+			for i, a := range v {
+				l[i] = walk(a)
+			}
+			return l
+		}
+		return t
+	}
+	return walk(t).String()
 }

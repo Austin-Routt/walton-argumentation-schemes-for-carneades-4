@@ -28,6 +28,10 @@ type Expected struct {
 	File   string   `yaml:"file"`   // "" = every file that contains the scheme
 	Scheme string   `yaml:"scheme"` // scheme id, "(file)" or "(engine)"
 	Checks []string `yaml:"checks"` // exact names; a trailing * matches a prefix
+	// Fingerprint, when set, is a text the failure's detail must contain: a
+	// listed check that fails for another reason is reported as a new failure
+	// (PLAN.md 0.3).
+	Fingerprint string `yaml:"fingerprint"`
 }
 
 type Ledger struct {
@@ -120,6 +124,10 @@ func (l *Ledger) Judge(results []Result) Verdict {
 		switch {
 		case r.Pass && n < 0:
 			v.Passed++
+		case !r.Pass && n >= 0 && l.Expected[n].Fingerprint != "" && !strings.Contains(r.Detail, l.Expected[n].Fingerprint):
+			// listed, but failing for another reason than the one recorded
+			r.Detail = fmt.Sprintf("fails for another reason than %q, the fingerprint in known_issues.yml: %s", l.Expected[n].Fingerprint, r.Detail)
+			v.New = append(v.New, r)
 		case !r.Pass && n >= 0:
 			v.Known = append(v.Known, r)
 		case !r.Pass:

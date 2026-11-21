@@ -788,6 +788,90 @@ argument_schemes:
 			"a(x) is stipulated by the graph and questioned: it should stay assumed, so c(x) holds; a(x) is %s, c(x) is %s %s", e.Label("a(x)"), e.Label("c(x)"), e.why()))
 	}
 	{
+		// contract 5: a default yields to a stipulated contrary, its negation
+		// or another position of its issue (the third review's
+		// TestDefaultAssumptionAndExplicitContraryIssue, docs/parity.md)
+		withB := strings.Replace(questionable, "  e/1: \"%s is e.\"\n", "  e/1: \"%s is e.\"\n  b/1: \"%s is b.\"\n", 1)
+		for _, v := range []struct{ name, contrary, text string }{
+			{"default-yields-to-stipulated-negation", "¬a(x)", questionable + "assumptions: [p(x), ¬a(x)]\n"},
+			{"default-yields-to-stipulated-position", "b(x)", withB + "statements:\n  a(x): x is a.\n  b(x): x is b.\nissues:\n  i1:\n    positions: [a(x), b(x)]\nassumptions: [p(x), b(x)]\n"},
+		} {
+			e := EvalYAML(v.text)
+			out = append(out, eres(v.name, e.usable() && e.Label(v.contrary) == "in" && e.Label("a(x)") != "in" && e.Label("c(x)") != "in",
+				"the scheme assumes a(x) by default and the graph stipulates %s: the default should yield, so c(x) does not hold; %s is %s, a(x) is %s, c(x) is %s %s",
+				v.contrary, v.contrary, e.Label(v.contrary), e.Label("a(x)"), e.Label("c(x)"), e.why()))
+		}
+	}
+	{
+		// contract 5: two defaults that contradict each other are both
+		// suspended; the run completes and no side is picked
+		withF := strings.Replace(questionable, "  e/1: \"%s is e.\"\n", "  e/1: \"%s is e.\"\n  f/1: \"%s is f.\"\n  d/1: \"%s is d.\"\n", 1)
+		e := EvalYAML(withF + `  - id: s12
+    variables: [X]
+    premises: [f(X)]
+    assumptions: [¬a(X)]
+    conclusions: [d(X)]
+assumptions: [p(x), f(x)]
+`)
+		out = append(out, eres("contrary-defaults-suspend-each-other", e.usable() && e.Label("a(x)") != "in" && e.Label("¬a(x)") != "in" && e.Label("c(x)") != "in" && e.Label("d(x)") != "in",
+			"s10 assumes a(x) and s12 assumes ¬a(x) by default: neither should hold, nor c(x) or d(x); a(x) is %s, ¬a(x) is %s, c(x) is %s, d(x) is %s %s",
+			e.Label("a(x)"), e.Label("¬a(x)"), e.Label("c(x)"), e.Label("d(x)"), e.why()))
+	}
+	{
+		// contract 1: an expected label for a statement the reader cannot read
+		// is reported by validation, without a panic (the third review's
+		// TestInvalidExpectedLabelDoesNotPanic)
+		ResetEngineGlobals()
+		ag := caes.NewArgGraph()
+		ag.Statements["p"] = &caes.Statement{Id: "p", Text: "P."}
+		ag.ExpectedLabeling["broken("] = caes.In
+		var probs []validation.Problem
+		var panicked any
+		c := StartCapture()
+		func() {
+			defer func() { panicked = recover() }()
+			probs = validation.Validate(ag)
+		}()
+		c.Stop()
+		out = append(out, eres("invalid-expected-label-is-rejected", panicked == nil && len(probs) > 0,
+			"an expected label for the unreadable statement broken( : validation panics (%v) or reports nothing (%d problems)", panicked, len(probs)))
+	}
+	{
+		// contract 1: a scheme the rule engine cannot read ends the run as
+		// invalid input, through the API too (the third review's
+		// TestInferenceRejectsInvalidRule)
+		ResetEngineGlobals()
+		ag := caes.NewArgGraph()
+		ag.Theory.Language = caes.Language{"q/1": "%s is q."}
+		ag.Theory.ArgSchemes = []*caes.Scheme{{Id: "s", Variables: []string{"X"}, Premises: []string{"broken("}, Conclusions: []string{"q(X)"}, Weight: caes.LinkedWeighingFunction}}
+		ag.Theory.InitSchemeIndex()
+		ag.Assumptions = []string{"q(a)"}
+		var err error
+		var panicked any
+		c := StartCapture()
+		func() {
+			defer func() { panicked = recover() }()
+			err = ag.Infer()
+		}()
+		stdout, _ := c.Stop()
+		out = append(out, eres("invalid-rule-is-reported", panicked == nil && errors.Is(err, caes.ErrInvalidInput) && len(ag.Arguments) == 0 && strings.TrimSpace(stdout) == "",
+			"a scheme with the premise broken( : Infer returns %v (panic %v, %d arguments, stdout %q); invalid input is expected, with the graph unchanged and nothing printed", err, panicked, len(ag.Arguments), stdout))
+	}
+	{
+		// contract 4: a negated statement assumed alone, which no scheme uses,
+		// is in, and the run completes (the second review's negated-goal probe)
+		e := EvalYAML(baseTheory + `
+argument_schemes:
+  - id: s14
+    variables: [X]
+    premises: [p(X)]
+    conclusions: [q(X)]
+assumptions: [¬r(a)]
+`)
+		out = append(out, eres("negated-assumption-alone", e.usable() && e.Label("¬r(a)") == "in" && e.Label("r(a)") != "in",
+			"the graph assumes ¬r(a) and nothing else: ¬r(a) is %s, r(a) is %s %s", e.Label("¬r(a)"), e.Label("r(a)"), e.why()))
+	}
+	{
 		// contract 5: removing a statement from questioned restores the default,
 		// and the questioned list and the defaults survive a second Infer and
 		// export and import

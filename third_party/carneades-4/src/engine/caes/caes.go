@@ -108,6 +108,10 @@ type Scheme struct {
 	Guards    []string // list of atomic formulas
 	// Note that multiple conclusions are allowed, as in CHR
 	Conclusions []string // list of atomic formulas or schema variables
+	// WeightSpec is the weight as written in the input (a weighing function's
+	// name, or a constant, criteria or preference specification), kept so
+	// that an export can write it back (PLAN.md 4.1)
+	WeightSpec interface{}
 }
 
 // Proof Standards
@@ -144,6 +148,9 @@ type Rulebase interface {
 type Theory struct { // aka Knowledge Base
 	Language          Language
 	WeighingFunctions map[string]WeighingFunction
+	// WeighingSpecs are the named weighing functions as written in the input,
+	// kept for export (PLAN.md 4.1)
+	WeighingSpecs     map[string]interface{}
 	ArgSchemes        []*Scheme
 	IssueSchemes      map[string]*IssueScheme
 	schemeIndex       map[string]*Scheme
@@ -225,10 +232,13 @@ func (ag *ArgGraph) IsQuestioned(id string) bool {
 }
 
 // Assumed lists the statements the graph assumes now, normalized: its
-// assumptions, except the defaults that have been called into question
-// (docs/contracts.md, contract 5).
+// assumptions, except the defaults that have been called into question, and
+// the defaults that meet an assumed contrary (docs/contracts.md, contract 5).
+// A contrary is the statement's negation or another position of its issue.
+// A default yields to a stipulated contrary; two defaults that contradict
+// each other are both suspended, and no side is picked.
 func (ag *ArgGraph) Assumed() []string {
-	out := []string{}
+	cand := []string{}
 	seen := map[string]bool{}
 	for _, a := range ag.Assumptions {
 		n := terms.Normalize(a)
@@ -236,9 +246,40 @@ func (ag *ArgGraph) Assumed() []string {
 			continue
 		}
 		seen[n] = true
+		cand = append(cand, n)
+	}
+	out := []string{}
+	for _, n := range cand {
+		if ag.Defaults[n] && ag.meetsContrary(n, seen) {
+			continue
+		}
 		out = append(out, n)
 	}
 	return out
+}
+
+// meetsContrary reports whether a contrary of the statement n is in the set.
+func (ag *ArgGraph) meetsContrary(n string, set map[string]bool) bool {
+	if t, ok := terms.ReadString(n); ok {
+		if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 {
+			if set[terms.Normalize(c.Args[0].String())] {
+				return true
+			}
+		} else if set[terms.Normalize("¬"+n)] {
+			return true
+		}
+	}
+	for k, s := range ag.Statements {
+		if s == nil || s.Issue == nil || terms.Normalize(k) != n {
+			continue
+		}
+		for _, p := range s.Issue.Positions {
+			if pn := terms.Normalize(p.Id); pn != n && set[pn] {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func (l Label) String() string {

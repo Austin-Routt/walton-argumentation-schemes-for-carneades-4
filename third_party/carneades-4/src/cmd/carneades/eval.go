@@ -1,10 +1,13 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/agxml"
@@ -99,6 +102,16 @@ func evalCmd() {
 
 	if err := eval.Parse(os.Args[2:]); err != nil {
 		log.Fatal(err)
+	}
+
+	// An interrupt or a termination signal cancels the evaluation: the run
+	// stops, nothing is printed, and the exit status is 5 (docs/contracts.md,
+	// contract 3).
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
+	cancelled := func() {
+		fmt.Fprintf(os.Stderr, "carneades eval: %v\n", caes.NewRunError(caes.ErrCancelled, "the evaluation was stopped by a signal"))
+		os.Exit(caes.ExitStatus(caes.ErrCancelled))
 	}
 
 	if !contains(inputFormats, *fromFlag) {
@@ -201,8 +214,10 @@ func evalCmd() {
 	{
 		// Apply the theory of the argument graph, if any, to
 		// derive further arguments. A run that does not complete
-		// prints no evaluation, and the exit status says why.
-		if err := ag.Infer(); err != nil {
+		// prints no evaluation, and the exit status says why. An
+		// interrupt or a termination signal cancels the run (exit 5,
+		// docs/contracts.md, contract 3).
+		if err := ag.InferContext(ctx); err != nil {
 			fmt.Fprintf(os.Stderr, "carneades eval: %v\n", err)
 			os.Exit(caes.ExitStatus(err))
 		}
@@ -212,6 +227,9 @@ func evalCmd() {
 		l := ag.GroundedLabelling()
 		// fmt.Printf("labelling=%v\n", l)
 		ag.ApplyLabelling(l)
+		if ctx.Err() != nil {
+			cancelled()
+		}
 
 		switch *toFlag {
 		case "yaml":

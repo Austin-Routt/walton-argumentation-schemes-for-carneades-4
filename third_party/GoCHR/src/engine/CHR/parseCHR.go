@@ -38,13 +38,12 @@ func CHRerr(s *sc.Scanner, parts ...interface{}) {
 
 func toClist(l Term) (CList, bool) {
 	cl := CList{}
+	// the caller reports a failure as an error; nothing is printed
 	if l.Type() != ListType {
-		fmt.Printf("** in toClist - keine Liste\n")
 		return cl, false
 	}
 	for _, t1 := range l.(List) {
 		if t1.Type() != CompoundType {
-			fmt.Printf("** in toClist kein  CompoundType %v \n", t1)
 			return cl, false
 		}
 		t2 := t1.(Compound)
@@ -85,6 +84,14 @@ func parseRule(name string, keep []string, del []string, guard []string, body []
 	cBody, err = parseTexts(ParseRuleBody, body)
 	if err != nil {
 		return nil, nil, nil, nil, fmt.Errorf("rule %s, body: %w", name, err)
+	}
+	// A number or a string is no constraint and no built-in: a body made of
+	// one was accepted and then added nothing when the rule fired.
+	for _, b := range cBody {
+		switch b.Type() {
+		case IntType, FloatType, StringType:
+			return nil, nil, nil, nil, fmt.Errorf("rule %s, body: %s is not a constraint", name, b)
+		}
 	}
 	return
 }

@@ -140,7 +140,25 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 			// undercutters without a scheme have no pattern to check
 			continue
 		}
+		if s := arg.Scheme; len(s.Premises) == 0 && len(s.Assumptions) == 0 && len(s.Conclusions) == 0 && len(s.Deletions) == 0 {
+			// a scheme that only gives a weighing function (upstream's
+			// rebuttal, lex and mcda examples) has no pattern either
+			continue
+		}
 		s := arg.Scheme
+		if len(arg.Parameters) == 0 && len(s.Variables) != 0 {
+			// no parameters written: the substitution is the one that makes
+			// the conclusion and the premises instances of the scheme
+			if !instanceWithoutParameters(s, arg) {
+				p := Problem{ARGUMENT, id, "premises and conclusion do not instantiate the scheme with one substitution", ""}
+				problems = append(problems, p)
+			}
+			if len(s.Exceptions) != 0 && arg.Undercutter == nil {
+				p := Problem{ARGUMENT, id, "does not carry the scheme's exceptions (no undercutter); give it an undercutter, or let inference construct it from the scheme", strings.Join(s.Exceptions, ", ")}
+				problems = append(problems, p)
+			}
+			continue
+		}
 		if len(arg.Parameters) != len(s.Variables) {
 			p := Problem{ARGUMENT, id, "number of parameters not the same as declared in the scheme", ""}
 			problems = append(problems, p)
@@ -229,6 +247,47 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 		}
 	}
 	return problems
+}
+
+// instanceWithoutParameters reports whether an argument written without
+// parameters is an instance of its scheme: one substitution makes its
+// conclusion a conclusion of the scheme and its premises the scheme's
+// premises and assumptions, each used once.
+func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument) bool {
+	if arg.Conclusion == nil || len(arg.Premises) != len(s.Premises)+len(s.Assumptions) {
+		return false
+	}
+	c, ok := terms.ReadString(arg.Conclusion.Id)
+	if !ok {
+		return false
+	}
+	patterns := []terms.Term{}
+	for _, ps := range append(append([]string{}, s.Premises...), s.Assumptions...) {
+		if t, ok := terms.ReadString(ps); ok {
+			patterns = append(patterns, t)
+		}
+	}
+	stmts := []terms.Term{}
+	for _, pr := range arg.Premises {
+		if pr.Stmt == nil {
+			return false
+		}
+		t, ok := terms.ReadString(pr.Stmt.Id)
+		if !ok {
+			return false
+		}
+		stmts = append(stmts, t)
+	}
+	for _, cs := range s.Conclusions {
+		cp, ok := terms.ReadString(cs)
+		if !ok {
+			continue
+		}
+		if b, ok := terms.Match(cp, c, nil); ok && matchEach(patterns, stmts, b, make([]bool, len(patterns))) {
+			return true
+		}
+	}
+	return false
 }
 
 // matchEach reports whether the statements can be paired one to one with the

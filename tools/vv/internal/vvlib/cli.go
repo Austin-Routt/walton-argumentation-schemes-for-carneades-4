@@ -48,6 +48,12 @@ type CLIRun struct {
 }
 
 func (c *CLI) Run(stdin string, args ...string) CLIRun {
+	return c.RunInterrupted(stdin, 0, args...)
+}
+
+// RunInterrupted is Run, with an interrupt sent to the command after the
+// given time (none when it is 0).
+func (c *CLI) RunInterrupted(stdin string, after time.Duration, args ...string) CLIRun {
 	cmd := exec.Command(c.Bin, args...)
 	cmd.Stdin = strings.NewReader(stdin)
 	var o, e bytes.Buffer
@@ -60,6 +66,12 @@ func (c *CLI) Run(stdin string, args ...string) CLIRun {
 	}
 	done := make(chan error, 1)
 	go func() { done <- cmd.Wait() }()
+	if after > 0 {
+		go func() {
+			time.Sleep(after)
+			cmd.Process.Signal(os.Interrupt)
+		}()
+	}
 	select {
 	case err := <-done:
 		if ee, ok := err.(*exec.ExitError); ok {
@@ -184,6 +196,20 @@ func CLIEngineChecks(cli *CLI) []Result {
 		bad.Exit == 3 && strings.TrimSpace(bad.Stdout) == "" && good.Exit == 0 && strings.TrimSpace(good.Stdout) != "",
 		"assuming p and ¬p should end with status 3 (inconsistent context) and no evaluation, and assuming p alone with status 0: got %d (stdout %d bytes) and %d", bad.Exit, len(bad.Stdout), good.Exit))
 
+	// docs/contracts.md, contract 3: an interrupt cancels the evaluation, which
+	// ends with status 5 and prints nothing. The graph has 300 facts and a
+	// scheme over pairs of them: 90,000 arguments, seconds of work.
+	{
+		var b strings.Builder
+		b.WriteString("language:\n  p/1: \"%s is p.\"\n  q/2: \"%s q %s.\"\nargument_schemes:\n  - id: pair\n    variables: [X, Y]\n    premises:\n      - p(X)\n      - p(Y)\n    conclusions:\n      - q(X,Y)\nassumptions:\n")
+		for i := 0; i < 300; i++ {
+			fmt.Fprintf(&b, "  - p(c%d)\n", i)
+		}
+		r := cli.RunInterrupted(b.String(), 300*time.Millisecond, "eval", "-t", "yaml")
+		out = append(out, eres("cli-interrupt-is-cancelled", r.Exit == 5 && strings.TrimSpace(r.Stdout) == "" && strings.Contains(r.Stderr, "cancelled"),
+			"`carneades eval` interrupted 0.3 s into a run of several seconds should print nothing and exit with status 5 (cancelled); it exited with %d, %d bytes on stdout (stderr: %s)", r.Exit, len(r.Stdout), firstLine(r.Stderr)))
+	}
+
 	r = cli.Run(MutualRecursion, "eval", "-t", "yaml")
 	_, err := labels(r.Stdout)
 	out = append(out, eres("cli-output-stays-valid", err == nil && strings.TrimSpace(r.Stdout) != "",
@@ -209,6 +235,21 @@ assumptions: ["p(a,b)"]
 		out = append(out, eres("baseline-cli-upstream-walton-example", ok,
 			"upstream's own Walton example no longer evaluates as before: untrustworthy(joe) %s, ¬caused_by(global_warming,humans) %s (%v)",
 			l["untrustworthy(joe)"], l["¬caused_by(global_warming,humans)"], err))
+
+		// every example upstream ships passes `check`, but the two that are
+		// refused by design: chr-leq is outside the profile (contract 1) and
+		// paraconsistency assumes p and ¬p (contract 4)
+		want := map[string]int{"chr-leq.yml": 2, "paraconsistency.yml": 3}
+		files, _ := filepath.Glob(filepath.Join(dir, "examples", "AGs", "YAML", "*.yml"))
+		probs := []string{}
+		for _, f := range files {
+			b, _ := os.ReadFile(f)
+			r := cli.Run(string(b), "check")
+			if r.Exit != want[filepath.Base(f)] {
+				probs = append(probs, fmt.Sprintf("%s: exit %d, want %d (%s)", filepath.Base(f), r.Exit, want[filepath.Base(f)], firstLine(r.Stderr)))
+			}
+		}
+		out = append(out, eres("cli-upstream-examples-check", len(files) > 0 && len(probs) == 0, "%s", strings.Join(probs, "; ")))
 	}
 	return out
 }
