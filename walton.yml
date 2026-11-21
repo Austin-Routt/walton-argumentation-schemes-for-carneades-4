@@ -121,7 +121,7 @@ language:
   do_obligator/0: "One must not do what is prohibited, and must do what is obligatory."
   doubtful_definition/2: "Using definition %s for classification %s rests merely on a stipulative or biased definition that is subject to doubt."
   doubtful_classification/2: "Classifying what is %s as %s rests merely on an assumption about word usage that is subject to doubt."
-  doubting_general/1: "There are some strong reasons for doubting %s is generally true."
+  doubting_general/1: "There are good reasons for doubting that %s is true."
   easy_to_achieve/1: "%s is easy to achieve."
   elite_group/1: "This group %s is elite, that is, everyone who belongs to it has prestige."
   ends_important/1: "%s should be regarded as highly important."
@@ -268,7 +268,6 @@ language:
   part_whole/5: "%[1]s is %[2]s only if %[3]s, %[4]s or %[5]s is."
   person_act/2: "Person %s has done act %s."
   person_acts_value/3: "%s's acts %s will be %s."
-  person_judgment_value/2: "Person %s has a judgment value %s."
   person_value/2: "Person %s is %s."
   person_value_depending/3: "If a person is %s, his acts %s depending on judgment value, will be %s."
   plausibility_decreased/2: "The plausibility of %s's argument %s is decreased or destroyed."
@@ -314,7 +313,7 @@ language:
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
   reference_class/3: "Few agents other than %s might have brought about event %s and have character quality %s."
   rejected_as_deficient/1: "%s ought to be rejected as deficient."
-  relation_converse_relation/4: "If %s is in relation %s with %s they can be in the converse relation %s."
+  relation_converse_relation/4: "If %s is in relation %s with %s, the latter can be in the converse relation %s with the former, and contrariwise."
   relation_with/3: "%s is in relation %s with %s."
   relevant_differences/1: "There are relevant differences between case %s and the current case."
   relevant_differences/2: "There are relevant differences between case %s and case %s."
@@ -331,7 +330,6 @@ language:
   sacrifice_made/2: "For the thing %s, sacrifice %s is made."
   sacrifice_value/2: "%s has a great value %s."
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
-  same_properties/3: "In this case, %s has property %s and %s."
   satisfies_definition/2: "%s satisfies definition %s."
   sequence/4: "There is an intervening sequence of propositions from %s through %s, ..., %s to %s, such that each proposition in it implies the next."
   should_accept/1: "You should accept %s."
@@ -343,7 +341,7 @@ language:
   similar_case/1: "Case %s is similar to the current case."
   similar_to/2: "%s is similar to %s."
   situation_help/3: "%s is in a situation where some action %s by %s would help."
-  situation_necessity/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
+  situation_necessity/4: "As %s sees the situation, %s is a necessary or sufficient condition for carrying out %s; the adviser reports this to %s."
   smaller_part_property/3: "%s is less %s than %s, because it is a smaller part of it."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
   special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
@@ -591,7 +589,7 @@ argument_schemes:
       - valid_rule(P1,P2)
     premises:
       - usually_properties(P1,P2)
-      - same_properties(Y,P1,P2)
+      - has_properties(Y,P1,P2)
 
   - id: from_model
     meta:
@@ -821,7 +819,7 @@ argument_schemes:
     conclusions: 
       - person_acts_value(A,X,V2)
     premises: 
-      - person_judgment_value(A,V1)
+      - person_value(A,V1)
       - person_value_depending(V1,X,V2)
 
   - id: positive_value

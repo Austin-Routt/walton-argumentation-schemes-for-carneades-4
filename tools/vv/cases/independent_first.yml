@@ -6,7 +6,7 @@ cases:
   assumptions:
   - has_properties(tweety,bird,flies)
   - has_properties(polly,bird,flies)
-  - same_properties(robin,bird,flies)
+  - has_properties(robin,bird,flies)
   arguments:
   - from_example(tweety,bird,flies)
   - from_example(polly,bird,flies)

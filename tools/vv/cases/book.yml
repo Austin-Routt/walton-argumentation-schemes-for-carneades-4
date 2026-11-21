@@ -548,7 +548,7 @@ cases:
   - name: interaction_act_person_2/book
     source: "18.2, p. 321"
     assumptions:
-      - person_judgment_value(ann,honest)
+      - person_value(ann,honest)
       - person_value_depending(honest,report,truthful)
     arguments:
       - interaction_act_person_2(ann,report,honest,truthful)
@@ -639,17 +639,17 @@ cases:
       - not_normal(alarm_silent)
     variants: true
   - name: negative_practical/book
-    source: "26.2, p. 327"
+    source: "26.2, p. 327; illustrative firearm-safety application, not a printed example"
     assumptions:
-      - not_know_true(loaded)
-      - presumption(loaded)
-      - consequences_presumption(loaded,accident)
-      - other_consequences_presumption(loaded,delay)
+      - not_know_true(unloaded)
+      - presumption(unloaded)
+      - consequences_presumption(unloaded,accident)
+      - other_consequences_presumption(unloaded,delay)
       - more_serious_consequences(accident,delay)
     arguments:
-      - negative_practical(loaded,accident,delay)
+      - negative_practical(unloaded,accident,delay)
     in:
-      - act_on_presumption_false(loaded)
+      - act_on_presumption_false(unloaded)
     variants: true
   - name: epistemic_ignorance/book
     source: "27, p. 328"
@@ -982,7 +982,9 @@ cases:
     source: "6.2, p. 315"
     assumptions:
       - usually_properties(bird,flies)
-      - same_properties(tweety,bird,flies)
+      - has_properties(tweety,bird,flies)
+    # The variant helper isolates premise necessity; the normal case and the
+    # separate peer13 case retain the full theory and its valid chaining.
     arguments:
       - illustration(tweety,bird,flies)
     in:

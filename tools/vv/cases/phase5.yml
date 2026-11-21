@@ -731,7 +731,7 @@ cases:
     source: "6.2, p. 315"
     assumptions:
       - usually_properties(bird,flies)
-      - same_properties(tweety,bird,flies)
+      - has_properties(tweety,bird,flies)
     arguments:
       - illustration(tweety,bird,flies)
     in:
@@ -740,8 +740,11 @@ cases:
     source: "6.2, p. 315"
     assumptions:
       - usually_properties(bird,flies)
-      - same_properties(tweety,bird,sings)
-    no_arguments: [illustration]
+      - has_properties(tweety,bird,sings)
+    # A separate sings generalization may now be induced legitimately; it
+    # must not instantiate the argument for the stipulated flies rule.
+    no_arguments:
+      - illustration(tweety,bird,flies)
     not_in:
       - valid_rule(bird,flies)
 

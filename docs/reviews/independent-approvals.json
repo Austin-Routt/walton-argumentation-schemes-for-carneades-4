@@ -5,10 +5,11 @@
   "approvals": [
     {
       "record": "popular_opinion",
-      "fingerprint": "sha256:6a5ff8018c592b55fa012c6d2b8671965690d570a519dd785f2939985bdf8b2e",
+      "fingerprint": "sha256:fdf48d70af555c5d3003be61e9b4b6e97d27743492a39c01121d3ed77da8f136",
       "evidence": [
         "docs/reviews/first-half-complete-adjudication.md: popular_opinion",
-        "tools/vv/source_ledger.yml: popular_opinion"
+        "tools/vv/source_ledger.yml: popular_opinion",
+        "docs/reviews/peer13-first-half-addendum.md: popular_opinion"
       ],
       "examples": [
         "popular_opinion/book"
@@ -165,13 +166,15 @@
     },
     {
       "record": "illustration",
-      "fingerprint": "sha256:8312efd254a9e1f22e6f45b426b04af657ca0f4f6bb12269ff5d4311de5daa74",
+      "fingerprint": "sha256:85d814acc91baa0ab042dce1674c2b8384eebbcdb835edc8d1f1007c67da5066",
       "evidence": [
         "docs/reviews/first-half-complete-adjudication.md: illustration",
-        "tools/vv/source_ledger.yml: illustration"
+        "tools/vv/source_ledger.yml: illustration",
+        "docs/reviews/peer13-first-half-addendum.md: illustration"
       ],
       "examples": [
-        "illustration/book"
+        "illustration/book",
+        "illustration/peer13-shared-conjunction-chains-from-example"
       ],
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
@@ -341,10 +344,11 @@
     },
     {
       "record": "rhetorical_oppositions_descriptive",
-      "fingerprint": "sha256:dfffdd1a9523be364f75588af6249f5ead9ab53b92bd833d428703f41107c8a8",
+      "fingerprint": "sha256:f6269abc3c467861d89d57582b9ca68baffb8c0f75438240f89457ff3d93b9c2",
       "evidence": [
         "docs/reviews/first-half-complete-adjudication.md: rhetorical_oppositions_descriptive",
-        "tools/vv/source_ledger.yml: rhetorical_oppositions_descriptive"
+        "tools/vv/source_ledger.yml: rhetorical_oppositions_descriptive",
+        "docs/reviews/peer13-first-half-addendum.md: rhetorical_oppositions_descriptive"
       ],
       "examples": [
         "rhetorical_oppositions_descriptive/book"
@@ -389,13 +393,15 @@
     },
     {
       "record": "interaction_act_person_2",
-      "fingerprint": "sha256:aa8ae2c82ad3794f22296b62b6ecdd73d5787f818d5d614cf14b9755a8182c68",
+      "fingerprint": "sha256:f529280d3e859e3c070c7ad101ab2fe209636a605bf164cf460a7419674ee93f",
       "evidence": [
         "docs/reviews/first-half-complete-adjudication.md: interaction_act_person_2",
-        "tools/vv/source_ledger.yml: interaction_act_person_2"
+        "tools/vv/source_ledger.yml: interaction_act_person_2",
+        "docs/reviews/peer13-first-half-addendum.md: interaction_act_person_2"
       ],
       "examples": [
-        "interaction_act_person_2/book"
+        "interaction_act_person_2/book",
+        "interaction_act_person_2/peer13-shared-person-valuation-chains"
       ],
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",

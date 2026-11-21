@@ -243,3 +243,9 @@ changes:
 
   - {record: perception, kind: rename-predicate, old: "reasonable_case/1", new: "reasonable_believe/1", plan: "peer-review-13", page: 345, note: "the same reasonable-belief conclusion as memory, p. 346; the proposition and case context must be identical"}
   - {record: bias, kind: wording, old: "biased/1", new: "biased/1", plan: "peer-review-13", page: 338, note: "restore upstream generic template: %s is biased.; no predicate or inference change"}
+  # Source-backed PR13 reconciliation: three wording corrections and two shared statements.
+  - {record: popular_opinion, kind: wording, old: doubting_general/1, new: doubting_general/1, plan: independent-review, page: 311, note: 'PR13 reconciliation: CQ2 doubts the truth of A, not whether A is generally true; good reasons is the source wording'}
+  - {record: rhetorical_oppositions_descriptive, kind: wording, old: relation_converse_relation/4, new: relation_converse_relation/4, plan: independent-review, page: 318, note: 'PR13 reconciliation: explicitly reverse subject and object in the converse relation, and retain contrariwise'}
+  - {record: two_person_practical, kind: wording, old: situation_necessity/4, new: situation_necessity/4, plan: independent-review, page: 325, note: 'PR13 reconciliation: sees, not sets; preserve the adviser-to-agent report, corroborated by p97'}
+  - {record: illustration, kind: rename-predicate, old: same_properties/3, new: has_properties/3, plan: independent-review, page: 315, note: 'PR13 reconciliation: same individual/property/property roles as entry6.1 p314'}
+  - {record: interaction_act_person_2, kind: rename-predicate, old: person_judgment_value/2, new: person_value/2, plan: independent-review, page: 321, note: 'PR13 reconciliation: person P is V is the conclusion of18.1 and premise1 of18.2, with the same judgment-value role'}

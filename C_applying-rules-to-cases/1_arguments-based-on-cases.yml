@@ -27,7 +27,6 @@ language:
   relevant_differences/2: "There are relevant differences between case %s and case %s."
   right_to_do/2: "The right thing to do in %s, was to carry out action %s."
   rule_of_case/2: "Rule %s is the ratio decidendi of case %s."
-  same_properties/3: "In this case, %s has property %s and %s."
   should_do/2: "%s should do %s."
   similar_case/1: "Case %s is similar to the current case."
   similar_to/2: "%s is similar to %s."
@@ -85,7 +84,7 @@ argument_schemes:
       - valid_rule(P1,P2)
     premises:
       - usually_properties(P1,P2)
-      - same_properties(Y,P1,P2)
+      - has_properties(Y,P1,P2)
 
   - id: from_model
     meta:

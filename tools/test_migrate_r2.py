@@ -89,6 +89,9 @@ class Migrate(unittest.TestCase):
         src = "premises: [part_propert(rose,red), has(g,q), posible(x), has_property(y,z)]\n"
         self.assertEqual(Migrator().text(src),
                          "premises: [has_property(rose,red), has_property(g,q), possible_goal(x), has_property(y,z)]\n")
+        shared = "premises: [same_properties(tweety,bird,flies), person_judgment_value(ann,honest)]\n"
+        self.assertEqual(Migrator().text(shared),
+                         "premises: [has_properties(tweety,bird,flies), person_value(ann,honest)]\n")
 
     def test_perception_memory_conclusion_identity(self):
         # Old saved perception keys/terms and the old memory misspelling

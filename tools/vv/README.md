@@ -288,3 +288,20 @@ for with every scheme repair (D13), and grow into the reference cases of
 `PLAN.md` 4.4 and the book instances of 5.7. Each case is one check, `case`,
 under its file. Write YAML lists of terms one per line: a flow list splits a
 term at its comma.
+
+## Premise-necessity controls after source-statement sharing
+
+A premise withdrawn from stipulated facts may still be derived by another loaded
+scheme. The selected scheme's own premise-necessity checks therefore use that
+actual schema in isolation, with a successful isolated positive control before
+withdrawing each premise. This applies to both the registered `premises-needed`
+checks and reference-case `variants` controls. A full-library mode still runs and
+checks the full positive graph; its withdrawal subcheck isolates the selected
+schema rather than claiming that a withdrawn stipulation is absent from closure.
+
+Ordinary reference cases, full-library arguments and grounded labels, premise
+link checks, and exception checks retain their existing theory context. Explicit
+two-scheme cases test legitimate composition. The isolation regression also
+checks that an unnecessary reference premise and a missing positive control
+still fail. See `docs/reviews/peer13-first-half-addendum.md` for the source-backed
+unifications that exposed the old oracle assumption.

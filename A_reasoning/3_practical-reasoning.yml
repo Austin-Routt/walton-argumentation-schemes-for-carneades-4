@@ -87,7 +87,7 @@ language:
   side_effect_other_act/2: "Carrying out %s has known side effects that might conflict with %s's other goals."
   side_effects/2: "Performing %s in %s would have side-effects which demote some value."
   situation_help/3: "%s is in a situation where some action %s by %s would help."
-  situation_necessity/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
+  situation_necessity/4: "As %s sees the situation, %s is a necessary or sufficient condition for carrying out %s; the adviser reports this to %s."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
   strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
   sufficient_action/4: "%s has selected member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."

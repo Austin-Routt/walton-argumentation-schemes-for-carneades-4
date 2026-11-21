@@ -17,7 +17,7 @@ language:
   being_credible/1: "You ought to take what %s says as being more credible or acceptable."
   character_is_relevant/1: "Character is relevant for evaluating the plausibility of the assertion: %s"
   deliberate/2: "Group %s has deliberated intelligently and extensively on whether to accept proposition %s or not."
-  doubting_general/1: "There are some strong reasons for doubting %s is generally true."
+  doubting_general/1: "There are good reasons for doubting that %s is true."
   elite_group/1: "This group %s is elite, that is, everyone who belongs to it has prestige."
   favor/1: "If %s is generally accepted as true, that gives a reason in favor of it."
   generally_true/1: "%s is generally accepted as true."

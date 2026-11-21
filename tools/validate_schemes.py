@@ -488,7 +488,7 @@ INSTANCES = [
     ("memory", "60, p. 346", {"P": "ann", "M": "door_locked"},
      {"premises": ["recalls(ann,door_locked)", "believe_it(door_locked)"], "exceptions": ["based_on_false_belief(ann,door_locked)", "not_originally_believed(ann,door_locked)", "recaller_doubts(ann,door_locked)"], "conclusions": ["reasonable_believe(door_locked)"]}),
     ("illustration", "6.2, p. 315", {"Y": "tweety", "P1": "bird", "P2": "flies"},
-     {"premises": ["usually_properties(bird,flies)", "same_properties(tweety,bird,flies)"], "conclusions": ["valid_rule(bird,flies)"]}),
+     {"premises": ["usually_properties(bird,flies)", "has_properties(tweety,bird,flies)"], "conclusions": ["valid_rule(bird,flies)"]}),
     ("negative_value", "19.2, p. 321", {"V": "theft", "A": "hal", "G": "survive"},
      {"premises": ["judged_negative_value(theft,hal)", "negative_affects(theft,survive,hal)"], "conclusions": ["reason_retracting_goal(theft,survive)"]}),
     ("epistemic_ignorance", "27, p. 328", {"A": "spy", "D": "staff", "K": "files"},

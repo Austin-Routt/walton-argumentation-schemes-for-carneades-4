@@ -30,13 +30,12 @@ language:
   not_presents_predicate/3: "If %s does not present the predicate %s, it must present the contradictory predicate %s at the same time and in the same respect."
   person_act/2: "Person %s has done act %s."
   person_acts_value/3: "%s's acts %s will be %s."
-  person_judgment_value/2: "Person %s has a judgment value %s."
   person_value/2: "Person %s is %s."
   person_value_depending/3: "If a person is %s, his acts %s depending on judgment value, will be %s."
   presents/2: "%s presents %s."
   presents_predicate/3: "If %s presents the predicate %s, it cannot present the contradictory, contrary, converse, incompatible, predicate %s at the same time and in the same respect."
   receives_evaluation/2: "%s receives the evaluation %s."
-  relation_converse_relation/4: "If %s is in relation %s with %s they can be in the converse relation %s."
+  relation_converse_relation/4: "If %s is in relation %s with %s, the latter can be in the converse relation %s with the former, and contrariwise."
   relation_with/3: "%s is in relation %s with %s."
   treatment_required/2: "The treatment %[2]s is required for the subject %[1]s."
   will_occur/1: "An event %s will occur."
@@ -156,7 +155,7 @@ argument_schemes:
     conclusions: 
       - person_acts_value(A,X,V2)
     premises: 
-      - person_judgment_value(A,V1)
+      - person_value(A,V1)
       - person_value_depending(V1,X,V2)
 
   - id: full_slippery_slope
