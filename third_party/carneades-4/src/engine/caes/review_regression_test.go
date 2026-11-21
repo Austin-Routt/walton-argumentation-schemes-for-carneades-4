@@ -54,3 +54,37 @@ func TestReviewInvalidIssueLeavesGraphUnchanged(t *testing.T) {
 		t.Fatal("invalid issue scheme changed the graph")
 	}
 }
+
+func TestReviewGeneratedIssuePreservesDefaultPriority(t *testing.T) {
+	for _, bothDefaults := range []bool{false, true} {
+		ag := NewArgGraph()
+		p := IssueScheme{"accepts(X)", "rejects(X)"}
+		ag.Theory.IssueSchemes["choice"] = &p
+		ag.Assumptions = []string{"accepts(proposal)", "rejects(proposal)"}
+		ag.Defaults = map[string]bool{"accepts(proposal)": true}
+		if bothDefaults {
+			ag.Defaults["rejects(proposal)"] = true
+		}
+		if err := ag.Infer(); err != nil {
+			t.Fatalf("default conflict is not inconsistent stipulation: %v", err)
+		}
+		l := ag.GroundedLabelling()
+		if l[ag.Statements["accepts(proposal)"]] == In {
+			t.Error("default remained accepted")
+		}
+		if got := l[ag.Statements["rejects(proposal)"]] == In; got == bothDefaults {
+			t.Errorf("contrary accepted=%v with bothDefaults=%v", got, bothDefaults)
+		}
+	}
+}
+
+func TestReviewEmptyTheoryRejectsMalformedAssumption(t *testing.T) {
+	ag := NewArgGraph()
+	ag.Assumptions = []string{"p("}
+	if err := ag.Infer(); !errors.Is(err, ErrInvalidInput) {
+		t.Fatalf("want invalid-input: %v", err)
+	}
+	if len(ag.Statements) != 0 {
+		t.Fatal("invalid run committed a statement")
+	}
+}

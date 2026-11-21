@@ -109,31 +109,8 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 	if err := Unsupported(ag.Theory); err != nil {
 		return err
 	}
-	if ag.Inconsistent() {
-		// contract 3: an inconsistent context is reported, not resolved
-		return NewRunError(ErrInconsistentContext, "the graph assumes two positions of one issue, or a statement and its negation")
-	}
-	// Issue patterns also constrain accepted context when their positions
-	// have not yet been materialized as statements or issues in the graph.
-	// Validate on a private context graph, so a rejected run changes nothing.
-	for name, patterns := range ag.Theory.IssueSchemes {
-		if patterns == nil {
-			return NewRunError(ErrInvalidInput, "issue scheme %s has no patterns", name)
-		}
-		if _, err := readIssuePatterns(*patterns); err != nil {
-			return NewRunError(ErrInvalidInput, "issue scheme %s: %v", name, err)
-		}
-		probe := NewArgGraph()
-		probe.Assumptions = ag.Assumed()
-		for _, a := range probe.Assumptions {
-			probe.Statements[a] = &Statement{Id: a, Text: a}
-		}
-		if err := probe.makeIssue(name, *patterns); err != nil {
-			return NewRunError(ErrInvalidInput, "issue scheme %s: %v", name, err)
-		}
-		if probe.Inconsistent() {
-			return NewRunError(ErrInconsistentContext, "accepted context contains two positions of issue scheme %s", name)
-		}
+	if err := ag.CheckContext(); err != nil {
+		return err
 	}
 	for _, a := range ag.Assumptions {
 		if p := ArithmeticProblem(a); p != "" {

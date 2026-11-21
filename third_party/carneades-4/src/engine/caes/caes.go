@@ -601,7 +601,7 @@ func positionLabels(issue *Issue, l Labelling) string {
 // some issue, or both a statement and its negation (docs/contracts.md,
 // contract 4). The answer is computed from the assumptions as they are now,
 // not from the index that labelling builds.
-func (ag *ArgGraph) Inconsistent() bool {
+func (ag *ArgGraph) inconsistentPositions() bool {
 	assumed := map[string]bool{}
 	for _, a := range ag.Assumed() {
 		assumed[a] = true
