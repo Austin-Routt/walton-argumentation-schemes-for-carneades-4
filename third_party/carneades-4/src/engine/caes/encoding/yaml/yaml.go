@@ -361,7 +361,19 @@ func caesArgMapGraph2caes(m *argMapGraph) (caesAg *caes.ArgGraph, err error) {
 	// Arguments
 	// first = true
 	caesAg.Arguments = map[string]*caes.Argument{}
+	// An argument with a scheme and parameters and nothing else is a request
+	// to instantiate the scheme (docs/contracts.md, contract 6): it is carried
+	// out at the end of the import, once the assumptions are in place.
+	type request struct {
+		id, scheme string
+		parameters []string
+	}
+	requests := []request{}
 	for yamlArg_Id, yamlArg_Val := range m.Arguments {
+		if yamlArg_Val.Scheme != "" && yamlArg_Val.Conclusion == "" && len(yamlArg_Val.umpremises) == 0 && yamlArg_Val.Undercutter == "" {
+			requests = append(requests, request{yamlArg_Id, yamlArg_Val.Scheme, normStringVec(yamlArg_Val.Parameters)})
+			continue
+		}
 		// fmt.Printf(" Argument2caes: %s\n", yamlArg_Id)
 		caesArg := &caes.Argument{Id: yamlArg_Id, Metadata: yamlArg_Val.Meta, Weight: yamlArg_Val.Weigth}
 		caesAg.Arguments[yamlArg_Id] = caesArg
@@ -507,6 +519,26 @@ func caesArgMapGraph2caes(m *argMapGraph) (caesAg *caes.ArgGraph, err error) {
 				}
 				return caesAg, errors.New(" *** Semantic Error: " + lbl_str + "- Label: " + lbl_Id + ", is not a Statement-ID\n")
 			}
+		}
+	}
+
+	// requests to instantiate a scheme (contract 6)
+	sort.Slice(requests, func(i, j int) bool { return requests[i].id < requests[j].id })
+	if len(requests) != 0 {
+		caesAg.Theory.InitSchemeIndex()
+	}
+	for _, r := range requests {
+		scheme, ok := collOfSchemes[r.scheme]
+		if !ok || caes.IsBasicScheme(scheme) {
+			return caesAg, errors.New(" *** Semantic Error: Scheme: " + r.scheme + ", from Argument: " + r.id + ", is not a scheme of the theory\n")
+		}
+		if len(r.parameters) != len(scheme.Variables) {
+			return caesAg, fmt.Errorf(" *** Semantic Error: Argument %s gives %d parameters, scheme %s declares %d\n", r.id, len(r.parameters), r.scheme, len(scheme.Variables))
+		}
+		n := len(caesAg.Arguments)
+		caesAg.InstantiateScheme(r.scheme, r.parameters)
+		if len(caesAg.Arguments) == n {
+			return caesAg, errors.New(" *** Semantic Error: Argument " + r.id + ": scheme " + r.scheme + " cannot be instantiated with these parameters\n")
 		}
 	}
 

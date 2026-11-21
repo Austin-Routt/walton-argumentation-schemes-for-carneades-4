@@ -92,7 +92,9 @@ Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds
 
 **A request to instantiate** (a `scheme:` and `parameters:`, nothing else) is carried out, giving the argument the scheme's premises, conclusion and questions, or is refused as **unsupported** until that is implemented. It is never accepted silently as an empty argument.
 
-Checked by: `validator-checks-arguments-against-schemes`, `validator-enforces-shared-bindings`, `validator-accepts-correct-argument`, `explicit-argument-gets-critical-questions`, `argument-from-scheme-and-parameters`; issues E-ARGVAL, E-EXPLICIT.
+Implemented: the validator reports a written-out argument whose scheme has exceptions and which has no undercutter; the importer carries out a request (an argument with `scheme:` and `parameters:` only) by instantiating the scheme.
+
+Checked by: `validator-checks-arguments-against-schemes`, `validator-enforces-shared-bindings`, `validator-accepts-correct-argument`, `explicit-argument-without-questions-is-reported`, `argument-from-scheme-and-parameters`; issues E-ARGVAL, E-EXPLICIT.
 
 ## 7. Names the validator rejects (D11)
 

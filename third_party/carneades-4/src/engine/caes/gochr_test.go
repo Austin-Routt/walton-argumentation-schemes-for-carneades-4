@@ -415,3 +415,41 @@ argument_schemes:
 		}
 	}
 }
+
+// A request to instantiate a scheme is carried out (contract 6).
+func TestInstantiationRequest(t *testing.T) {
+	ag, err := yaml.Import(strings.NewReader(`
+language:
+  expert/2: "%s is an expert in %s"
+  asserts/2: "%s asserts %s"
+  untrustworthy/1: "%s is untrustworthy"
+  safe/1: "%s is safe"
+argument_schemes:
+  - id: expert_opinion
+    variables: [W,D,S]
+    premises: [expert(W,D), asserts(W,S)]
+    exceptions: [untrustworthy(W)]
+    conclusions: [S]
+arguments:
+  r1:
+    scheme: expert_opinion
+    parameters: [ann, vaccines, safe(vaccine)]
+assumptions: [expert(ann,vaccines), asserts(ann,safe(vaccine)), untrustworthy(ann)]
+`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	if got := argumentsFor(ag, "safe(vaccine)"); len(got) != 1 {
+		t.Fatalf("arguments for safe(vaccine): %v", got)
+	}
+	if err := ag.Infer(); err != nil {
+		t.Fatal(err)
+	}
+	if got := argumentsFor(ag, "safe(vaccine)"); len(got) != 1 {
+		t.Errorf("after Infer: %v", got)
+	}
+	l := ag.GroundedLabelling()
+	if got := l[ag.Statements["safe(vaccine)"]]; got == caes.In {
+		t.Errorf("the instantiated argument is not undercut by its exception: safe(vaccine) is %v", got)
+	}
+}

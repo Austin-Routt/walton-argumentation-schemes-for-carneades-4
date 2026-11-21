@@ -192,6 +192,15 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 			problems = append(problems, p)
 		}
 
+		// the scheme's exceptions are critical questions the argument has to
+		// carry: an argument written out without an undercutter could never be
+		// undercut by them (docs/contracts.md, contract 6). It is reported,
+		// not completed: a written-out argument is never rewritten.
+		if len(s.Exceptions) != 0 && arg.Undercutter == nil {
+			p := Problem{ARGUMENT, id, "does not carry the scheme's exceptions (no undercutter); give it an undercutter, or let inference construct it from the scheme", strings.Join(s.Exceptions, ", ")}
+			problems = append(problems, p)
+		}
+
 		// conclusion
 		if arg.Conclusion == nil {
 			problems = append(problems, Problem{ARGUMENT, id, "argument without a conclusion", ""})

@@ -641,9 +641,22 @@ assumptions:
 				}
 			}
 		}
-		out = append(out, eres("explicit-argument-gets-critical-questions", e.usable() && e.Label("safe(vaccine)") == "out",
-			"an argument written out in the file with `scheme: expert_opinion` gets no undercutter, so the exception untrustworthy(ann) does not touch it: safe(vaccine) is %s (the graph now holds %d expert_opinion arguments for the same parameters) %s",
-			e.Label("safe(vaccine)"), n, e.why()))
+		// Restated with contract 6 (D12): a written-out argument is never
+		// rewritten; that it lacks its scheme's critical questions is
+		// reported, and inference adds no second argument with its identity.
+		// It was explicit-argument-gets-critical-questions, which asked the
+		// engine to complete the argument.
+		reported := false
+		if e.AG != nil {
+			for _, p := range validation.Validate(e.AG) {
+				if p.Category == validation.ARGUMENT && p.Id == "a1" && strings.Contains(p.Description, "exceptions") {
+					reported = true
+				}
+			}
+		}
+		out = append(out, eres("explicit-argument-without-questions-is-reported", e.usable() && reported && n == 1,
+			"an argument written out with `scheme: expert_opinion` and no undercutter: the validator reports the missing exceptions: %v; the graph holds %d expert_opinion arguments for its parameters (want 1) %s",
+			reported, n, e.why()))
 	}
 	{
 		e := EvalYAML(expert + `

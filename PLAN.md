@@ -232,7 +232,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 2.5 Repeated inference (E-IDEMP); per-scheme `infer-twice` checks ported
 - [x] 2.6 Names and terms: E-CAPTURE, E-TERMS; deletions and guards unsupported, arithmetic invalid (contract 1). X-IS's engine side (the validator rejects reserved names) lands with the library repair 3.6
 - [x] 2.7 Questioned statements (X-ASSUME): `questioned:`, defaults kept apart from stipulations; per-scheme check ported
-- [ ] 2.8 Arguments that name a scheme (E-EXPLICIT)
+- [x] 2.8 Arguments that name a scheme (E-EXPLICIT): validated and reported, requests carried out
 - [x] 4.1, first half: export writes the theory (the parameter quoting is still open)
 - [ ] Phase 3: 3.1 to 3.11; gate S
 - [ ] Phase 4; gate R; release R1

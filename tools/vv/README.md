@@ -172,9 +172,11 @@ to the ledger under an issue.
   `premise-order-does-not-matter` passes (the input works);
   `hyphenated-constants-are-not-computed` was restated as
   `arithmetic-in-a-statement-is-invalid-input` (contract 1);
-  `is-as-predicate-in-conclusion`, `explicit-argument-gets-critical-questions`,
-  `argument-from-scheme-and-parameters` and `scheme-roles-are-imported` still
-  state the stronger outcome. Where the decision is to reject, the check is
+  `explicit-argument-gets-critical-questions` was restated as
+  `explicit-argument-without-questions-is-reported` (contract 6);
+  `argument-from-scheme-and-parameters` passes (the request is carried out);
+  `is-as-predicate-in-conclusion` and `scheme-roles-are-imported` still state
+  the stronger outcome. Where the decision is to reject, the check is
   restated in a change of its own, after the contract that says so.
 * A ledger entry names a check, not a cause. Nothing here notices when a known
   failure starts failing for another reason; a fingerprint of each known

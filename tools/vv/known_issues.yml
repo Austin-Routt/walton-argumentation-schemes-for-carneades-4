@@ -56,7 +56,10 @@
 # (questioned:, contract 5); every scheme run gained assumptions-questionable
 # (456 checks, the third review's per-scheme check of a withdrawn assumption,
 # restated for the questioned state), and the engine two checks of the
-# contract's table (min_checks 6,407).
+# contract's table (min_checks 6,407). E-EXPLICIT is fixed (contract 6):
+# explicit-argument-gets-critical-questions is restated as
+# explicit-argument-without-questions-is-reported, and a request to
+# instantiate is carried out.
 #
 # min_checks is the number of checks a complete run produces today. A run with
 # fewer fails: a passing check leaves no entry here, so removing one would
@@ -90,10 +93,6 @@ issues:
     where: engine
     severity: major
     title: "YAML export does not round-trip: it splits a parameter that contains a comma, and writes expected labels under a key the importer ignores (the theory is written since PLAN.md 4.1)"
-  - id: E-EXPLICIT
-    where: engine
-    severity: major
-    title: "An argument written by hand that names a scheme gets none of the scheme's critical questions, and inference puts a duplicate beside it"
   - id: E-ROLES
     where: engine
     severity: minor
@@ -106,7 +105,6 @@ issues:
 expected:
   # ------------------------------------------------------------------ engine
   - {issue: E-EXPORT,  scheme: (engine), checks: [export-keeps-compound-parameters, export-keeps-expected-labels]}
-  - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
   - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
 
