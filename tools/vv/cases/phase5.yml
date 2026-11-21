@@ -903,24 +903,24 @@ cases:
     not_in:
       - not_normal(door_closed)
   - name: negative_practical/two-questions
-    source: "26.2, p. 327, CQ1"
+    source: "Illustrative applications of 26.2, p. 327, CQ1; not quoted book examples"
     assumptions:
-      - not_know_true(loaded)
-      - presumption(loaded)
-      - consequences_presumption(loaded,accident)
-      - other_consequences_presumption(loaded,delay)
+      - not_know_true(unloaded)
+      - presumption(unloaded)
+      - consequences_presumption(unloaded,accident)
+      - other_consequences_presumption(unloaded,delay)
       - more_serious_consequences(accident,delay)
-      - not_know_true(poisoned)
-      - presumption(poisoned)
-      - consequences_presumption(poisoned,illness)
-      - other_consequences_presumption(poisoned,waste)
-      - more_serious_consequences(illness,waste)
+      - not_know_true(safe_to_consume)
+      - presumption(safe_to_consume)
+      - consequences_presumption(safe_to_consume,illness)
+      - other_consequences_presumption(safe_to_consume,discard_food)
+      - more_serious_consequences(illness,discard_food)
     questioned:
-      - sufficient_evidence(poisoned)
+      - sufficient_evidence(safe_to_consume)
     in:
-      - act_on_presumption_false(loaded)
+      - act_on_presumption_false(unloaded)
     not_in:
-      - act_on_presumption_false(poisoned)
+      - act_on_presumption_false(safe_to_consume)
   - name: sign/two-signs
     source: "30, p. 329, CQ2"
     assumptions:

@@ -56,6 +56,8 @@ The stages are cumulative evidence states:
 
 `tools/check_source_approvals.py` requires a current recorded approval for every row at or beyond interpretation approval. Its fingerprint covers the complete scheme, statically referenced language, ledger semantics and global issue schemes. It verifies that recorded example IDs exist. This detects stale decisions; it does not automate philosophical judgment, authenticate reviewer identity or verify application facts. `--fingerprints` is inventory only and creates no approvals.
 
+The incoming independent review in PR #13 (`96daf6c`) is merged and preserved under `docs/reviews/peer-13/`. Its reviewer/date/decision validation is retained; a matching attribution snapshot is required in each approval registry entry. `tools/apply_source_review_metadata.py` can reconcile already adjudicated metadata, but refuses stale semantic hashes and cannot promote a row. The complete source and release differences are resolved in `docs/reviews/pr13-reconciliation.md`; its 90 approvals do not supersede the current 70 justified approvals and 50 explicit holds.
+
 For 1.0.0, run both ordinary gates and:
 
 ```
@@ -65,6 +67,12 @@ python3 tools/check_source_approvals.py --repo . --require-stable
 All 120 records must reach `example-passed`. Do not silently shrink the release scope or count qualified interpretations as complete. A selectively approved preview is useful but does not satisfy the complete-library gate.
 
 ## Remaining implementation sequence
+
+### Defaults for the remaining technical decisions
+
+These are implementation directions, not a menu requiring owner approval. Prefer explicit participant, case, inquiry and institutional parameters when a held record must support several contexts in one graph. Preserve the existing limited branch as an honestly named variant while adding a separately tested source alternative; do not silently change its polarity or strength. Keep the current engine's static evidence profile explicit, and implement any question-and-answer dialogue protocol as a separate layer with tests for suspension, answers and withdrawal. Treat numerical likelihood calibration as application input unless the source supplies a particular rule. Keep the inherited AS1 record distinct from any later transition/value model. Never infer missing migration witnesses or claim to have verified an unseen original.
+
+Some per-record actions list more than one technically defensible implementation. The defaults above settle the preferred route; another route requires its own documented source justification and adverse example. No further general review vote or owner approval round is needed.
 
 ### A. Corrected preview
 

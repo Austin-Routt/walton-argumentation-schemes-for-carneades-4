@@ -32,15 +32,25 @@ For a book-mapped inherited record, its declared count is the compendium count. 
 
 ## Snapshot and audit coverage
 
-Repository HEAD at capture: `7f2a2ce4142df3d3bc999006ddd572f05c4e0ed9`. Integration edits may be uncommitted; the actual reviewed content is fixed by these digests:
+Repository HEAD at capture: `15a5e155647f0df098c62aa507ad1a3822fc03dc`. Integration edits may be uncommitted; the actual reviewed content is fixed by these digests:
 
-- Source ledger SHA256: `ff62dd4c005723dee79e1571ee2cb04558cbeaf399cd211de929ba2202c90cef`.
-- `walton.yml` SHA256: `0e6a2f96962d89d6cc8aef881c52418c244e0c880a9da529dd5f74b9408a3b75`.
+- Source ledger SHA256: `6cf5bfcacca1a0629ba88a289a8de16ba40ec9eff0a4b392d21a69757e71e545`.
+- `walton.yml` SHA256: `197c68f249b26012e846fe5a84a53eb6e782511c4d2b8ac87fab8029653d1d47`.
 - Supplied book SHA256: `d010348014e8b80fa561b68e5fac732cce0b3905fb0b1d522dd6fd2578a69634`.
 
 All 120 IDs are unique and accounted for. All known CQ inventories have contiguous complete numbering; this mechanical condition is kept separate from semantic completeness. Variables, premises, assumptions, exceptions and conclusions of all 114 book-mapped records match the independently adjudicated repaired forms. The 31.4 counterevidence wording now explicitly requires evidence sufficient to undermine the qualitative prediction; an isolated atypical act is not automatically a refutation of a likely tendency.
 
 The first-half review inspected 63 records, the second-half review 51, the original Atkinson review one, and the remaining upstream-only dispositions are supported by their specific code/original-source comparisons or retained mapping-only status. Root independently reviewed the original appearance and credible-source articles and the available sunk-cost article text. Those access methods are attributed rather than represented as this consolidator's independent PDF inspection.
+
+## PR13 follow-up and preserved review history
+
+Remote PR13 supplied useful independent findings about an earlier implementation. The reconciliation accepted three wording corrections (`popular_opinion`, `rhetorical_oppositions_descriptive`, `two_person_practical`), two first-half shared-statement opportunities, a remaining error in the original negative-practical application fixture, and the perception/memory shared reasonable-belief conclusion. It also restored the inherited generic biased wording. These concrete corrections do not justify replacing the final record-specific holds with the peer's broader approval count.
+
+The only formula differences between the pre-PR13 adjudications and the current library are the independently approved canonicalizations in `illustration` (`same_properties` to `has_properties`), `interaction_act_person_2` (`person_judgment_value` to `person_value`), and `perception` (`reasonable_case` to `reasonable_believe`). Original adjudication JSONs are preserved as `adjudication-pre-peer13.json` and `per-record-audit-pre-peer13.json`; the active reviewed-form fields were updated only for those three identities, with dated source/evidence notes. The record-by-record sections below append the other wording, fixture and policy clarifications and the new example IDs. All 114 book-mapped formulas match those explicitly reviewed representations, with no additional drift.
+
+The new conjunction sharing permits legitimate rederivation of a withdrawn stipulation. Premise-necessity controls now isolate the actual selected schema after its own successful positive control; the ordinary full-library graph, argument/label assertions, exception checks and explicit two-scheme cases remain in their original contexts. This documented oracle correction preserves the distinction between structural argument construction and acceptance. Intermediate failing logs and the synthetic control for genuinely unnecessary premises are retained in the review evidence.
+
+The complete peer comparisons are `peer13-comparison-first.md/json` (all 63 first-half records), `peer13-comparison-second.md/json` (the second-half scope), and the integrated `docs/reviews/pr13-reconciliation.md`. Exact aliases, preserved-input hashes, per-record follow-up notes and evidence references are embedded in the companion JSON's `peer13_followup` metadata and in `peer13-followup-2026-11-21.json`. The final source populations remain 70 example-passed, 48 transcription-checked and two mapped. A fresh clean acceptance run must use the final merged commit rather than the earlier candidate hashes.
 
 ## Complete record-by-record dispositions
 
@@ -98,7 +108,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 3. **Origin:** upstream. **Current stage:** `transcription-checked`. **Disposition:** qualified; interpretation approval withheld. **Book-form decision:** qualified.
 
-**Approval or hold reason:** W's sincerity is represented by believes(W,S) plus assertion; this is a defensible interpretation, not an exact quotation of knowing truth. A domain fact supplies access. Internal consistency defaults; conflicting facts, other witnesses, bias and implausibility are exceptions. Global biased(W) needs case-specific use, because the question concerns the account. Remaining scope: Make explicit that W denotes this witness in the case and that bias is relevant to this account; own-source verification is separate.
+**Approval or hold reason:** W's sincerity is represented by believes(W,S) plus assertion; this is a defensible interpretation, not an exact quotation of knowing truth. A domain fact supplies access. Internal consistency defaults; conflicting facts, other witnesses, bias and implausibility are exceptions. Global biased(W) needs case-specific use, because the question concerns the account. Remaining scope: Make explicit that W denotes this witness in the case and that bias is relevant to this account; own-source verification is separate. Follow-up: PR13 follow-up restores the generic upstream biased/1 wording instead of the added Arguer restriction. This does not resolve the case/account scope or separately cited original-source holds.
 
 **Source-access obligation:** Obtain and independently compare the separately cited source: Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008.
 
@@ -116,13 +126,13 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** witness_testimony/book
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-second-followup.md.
 
 ### 4. `popular_opinion`
 
 **Entry:** 4. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** The output remains a reason in favor of A, not an assertion that A is true. General acceptance and the acceptance-to-reason warrant are distinct. CQ1 is challenged via the general-acceptance premise; CQ2 is an exception. Both printed questions are accounted for.
+**Approval or hold reason:** The output remains a reason in favor of A, not an assertion that A is true. General acceptance and the acceptance-to-reason warrant are distinct. CQ1 is challenged via the general-acceptance premise; CQ2 is an exception. Both printed questions are accounted for. Follow-up: PR13 follow-up corrected an error missed by the first independent review: printed p311 CQ2 asks for good reasons to doubt that A is true, not that A is generally true. The template now expresses that exact truth question; its exception role and approved scope are retained.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -140,7 +150,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** popular_opinion/book
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 5. `pop_scheme`
 
@@ -266,11 +276,11 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 4.5. **Origin:** book. **Current stage:** `transcription-checked`. **Disposition:** qualified; interpretation approval withheld. **Book-form decision:** qualified.
 
-**Approval or hold reason:** Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented. No printed CQs; respondent identity remains implicit, as in the text. Remaining scope: Document one implicit respondent per graph or encode recipient identity when combining different audiences.
+**Approval or hold reason:** Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented. No printed CQs; respondent identity remains implicit, as in the text. Remaining scope: Document one implicit respondent per graph or encode recipient identity when combining different audiences. Follow-up: PR13 additionally notes that the source's (or should be) alternative is omitted from premise2. That omission must be stated in the selected reading; peer approval alone does not supply the missing branch or close the participant/context qualification.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
-**Next concrete action:** State and test a one-respondent contract, or carry respondent identity in the acceptance and conclusion predicates before mixed-audience use.
+**Next concrete action:** Apply and verify the documented one-respondent contract, or carry respondent identity for mixed audiences; explicitly declare the selected branch and the omitted source alternative (or should be), with a source-grounded example of the chosen interpretation.
 
 **Source reference:** Walton, Reed and Macagno (2008), Argumentation Schemes, supplied complete PDF, entry 4.5, printed pp. 312 (PDF pages +10).
 
@@ -284,7 +294,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** moral_justification_ad_populum/book
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; peer13-comparison-first.md.
 
 ### 11. `moral_justification_ad_populum_excuse`
 
@@ -458,7 +468,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 6.1. **Origin:** book. **Current stage:** `transcription-checked`. **Disposition:** qualified; interpretation approval withheld. **Book-form decision:** qualified.
 
-**Approval or hold reason:** REPAIRED: the generalization now depends on F and G only, using usually_properties(F,G). The example a remains in argument parameters, allowing convergent support and feeding illustration. CQ1 premise, CQ2/CQ3 defaults, CQ5 exception. CQ4 is a supported challenge to the generalization in its negation issue; one exceptional case does not by itself refute a defeasible generalization. Remaining scope: Keep this CQ4 policy explicit. Generic grounded examples are insufficient to calibrate how strong a generalization is; a policy-level strength example remains desirable.
+**Approval or hold reason:** REPAIRED: the generalization now depends on F and G only, using usually_properties(F,G). The example a remains in argument parameters, allowing convergent support and feeding illustration. CQ1 premise, CQ2/CQ3 defaults, CQ5 exception. CQ4 is a supported challenge to the generalization in its negation issue; one exceptional case does not by itself refute a defeasible generalization. Remaining scope: Keep this CQ4 policy explicit. Generic grounded examples are insufficient to calibrate how strong a generalization is; a policy-level strength example remains desirable. Follow-up: The PR13 follow-up additionally unifies illustration's same_properties/3 with this record's has_properties/3, because the same individual and two properties are asserted. The new composed case uses one conjunction fact to support this induction and then illustration. This interoperability improvement does not resolve the independent generalization-strength policy hold.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -474,15 +484,15 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Additional `n: 0` hooks:** None recorded.
 
-**Example evidence:** from_example/book; from_example/independent-two-examples-one-generalization
+**Example evidence:** from_example/book; from_example/independent-two-examples-one-generalization; illustration/peer13-shared-conjunction-chains-from-example
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 19. `illustration`
 
 **Entry:** 6.2. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** The rule premise and validity conclusion depend on F and G rather than on the illustrating individual. The particular case supplies an instance of both properties. No printed CQs. Quantification over x in the rule is represented as an opaque rule proposition, not an inference that enumerates all x.
+**Approval or hold reason:** The rule premise and validity conclusion depend on F and G rather than on the illustrating individual. The particular case supplies an instance of both properties. No printed CQs. Quantification over x in the rule is represented as an opaque rule proposition, not an inference that enumerates all x. Follow-up: PR13 follow-up confirms the individual/F/G conjunction is identical in entries6.1 and6.2. same_properties/3 is now canonically has_properties/3, with migration and an actual two-scheme chain plus wrong-individual/property controls. Generic premise-withdrawal controls isolate the actual selected schema after a positive control; full-library positive, label and exception checks retain their context, so valid rederivation is not forbidden.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -498,15 +508,15 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Additional `n: 0` hooks:** None recorded.
 
-**Example evidence:** illustration/book
+**Example evidence:** illustration/book; illustration/peer13-shared-conjunction-chains-from-example
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 20. `from_model`
 
 **Entry:** 6.3. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** REPAIRED: the third premise is now imitation_warrant(model,action,imitators), preserving the complete conditional and its model. The imitators are the recipients of should_do. No printed CQs. The new adverse case prevents a warrant about one model from licensing a different model's argument.
+**Approval or hold reason:** REPAIRED: the third premise is now imitation_warrant(model,action,imitators), preserving the complete conditional and its model. The imitators are the recipients of should_do. No printed CQs. The new adverse case prevents a warrant about one model from licensing a different model's argument. Follow-up: PR13 approved the older form while noting it retained only the conditional consequent. The independent source-supported model-specific conditional warrant repair and wrong-model case remain required; peer approval of an earlier representation is not a reason to revert them.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -524,7 +534,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** from_model/book; from_model/independent-conditional-warrant
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 21. `from_antimodel`
 
@@ -674,7 +684,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 10.1. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** The whole has a property and, defeasibly, all parts have it. The direction is distinct from composition even though they can form an engine-safe cycle. The divisional-heredity default is the substantive warrant; it is challengeable. The source's reversed explanatory parenthesis is corrected using narrative context.
+**Approval or hold reason:** The whole has a property and, defeasibly, all parts have it. The direction is distinct from composition even though they can form an engine-safe cycle. The divisional-heredity default is the substantive warrant; it is challengeable. The source's reversed explanatory parenthesis is corrected using narrative context. Follow-up: PR13's full-library observation is correct: an undisputed divisional-heredity default can transfer a stipulated whole-property fact to all parts. This is the declared defeasible policy, not evidence of universal heredity. Usage guidance must retain whole/context identity, deliberate scheme selection and questioning conventions.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -692,7 +702,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** division_generic/book
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/using.md; peer13-comparison-first.md.
 
 ### 28. `whole_into_parts`
 
@@ -842,7 +852,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 12.2. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** A's relation to B and the paired converse relation yield B's converse relation to A. Roles are reversed exactly once. No printed CQs. The one implemented direction is warranted by the source's bidirectional description.
+**Approval or hold reason:** A's relation to B and the paired converse relation yield B's converse relation to A. Roles are reversed exactly once. No printed CQs. The one implemented direction is warranted by the source's bidirectional description. Follow-up: PR13 follow-up corrected the ambiguous major-premise template against printed p318: the latter participant bears the converse relation to the former, and contrariwise. The original conclusion already had the correct reversed arguments. Approval applies to the corrected template.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -860,7 +870,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** rhetorical_oppositions_descriptive/book
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 35. `alternative_cognitive`
 
@@ -1010,7 +1020,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 18.1. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** A person's act with value V supports attributing V to that person. Agent, act and value remain separate. No printed CQs.
+**Approval or hold reason:** A person's act with value V supports attributing V to that person. Agent, act and value remain separate. No printed CQs. Follow-up: PR13 follow-up confirms that this record's person_value/2 conclusion and entry18.2's person_judgment_value/2 premise express the same person/judgment-value relation on p321. The consumer is canonicalized to person_value/2; this producer formula is unchanged. A two-scheme case checks chaining without mixing people or values.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -1026,15 +1036,15 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Additional `n: 0` hooks:** None recorded.
 
-**Example evidence:** interaction_act_person_1/book
+**Example evidence:** interaction_act_person_1/book; interaction_act_person_2/peer13-shared-person-valuation-chains
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 42. `interaction_act_person_2`
 
 **Entry:** 18.2. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** A prior judgment of the person's value plus a stated value-to-act evaluation warrant yields the evaluation of that person's act. No printed CQs. The generic warrant is intentionally not tied to one individual unless instantiated through the first premise.
+**Approval or hold reason:** A prior judgment of the person's value plus a stated value-to-act evaluation warrant yields the evaluation of that person's act. No printed CQs. The generic warrant is intentionally not tied to one individual unless instantiated through the first premise. Follow-up: PR13 follow-up canonically replaces person_judgment_value/2 with person_value/2: printed p321 uses the same person/judgment-value assertion as entry18.1's conclusion. Migration and an actual two-scheme case preserve the evaluation-context convention and reject wrong-person/wrong-value instances.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -1050,9 +1060,9 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Additional `n: 0` hooks:** None recorded.
 
-**Example evidence:** interaction_act_person_2/book
+**Example evidence:** interaction_act_person_2/book; interaction_act_person_2/peer13-shared-person-valuation-chains
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 43. `positive_value`
 
@@ -1370,7 +1380,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 23. **Origin:** book. **Current stage:** `transcription-checked`. **Disposition:** qualified; interpretation approval withheld. **Book-form decision:** qualified.
 
-**Approval or hold reason:** A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act. All five printed questions are sorted. Alternative means and additional actions omit the deliberating agent and assume one current case. Remaining scope: Correct speaker/recipient roles are approved, but practical dialogue burdens and cross-agent availability of alternatives need an explicit contract or scoped facts.
+**Approval or hold reason:** A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act. All five printed questions are sorted. Alternative means and additional actions omit the deliberating agent and assume one current case. Remaining scope: Correct speaker/recipient roles are approved, but practical dialogue burdens and cross-agent availability of alternatives need an explicit contract or scoped facts. Follow-up: PR13 follow-up corrected sets to sees using visually checked printed pp97,325, preserving the adviser-to-agent communication. This closes the wording defect; its separate dialogue and alternative-action scope qualifications remain.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -1388,7 +1398,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** two_person_practical/book
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 57. `waste`
 
@@ -1514,7 +1524,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 26.2. **Origin:** book. **Current stage:** `transcription-checked`. **Disposition:** qualified; interpretation approval withheld. **Book-form decision:** qualified.
 
-**Approval or hold reason:** REPAIRED: B>C now yields acting on the false presumption, explicitly. The opposite C>B branch is not silently collapsed into the same ambiguous action. CQ1 is an evidence-progress default. CQ2 burden allocation and CQ3 strength still require distinct external dialogue information. Remaining scope: Negative branch is source-correct and tested; declare the missing true-presumption branch and resolve dialogue metadata before unqualified approval.
+**Approval or hold reason:** REPAIRED: B>C now yields acting on the false presumption, explicitly. The opposite C>B branch is not silently collapsed into the same ambiguous action. CQ1 is an evidence-progress default. CQ2 burden allocation and CQ3 strength still require distinct external dialogue information. Remaining scope: Negative branch is source-correct and tested; declare the missing true-presumption branch and resolve dialogue metadata before unqualified approval. Follow-up: PR13 correctly found that the original /book fixture still paired loaded with reversed accident/delay consequences after the formula repair. It now uses unloaded: assuming unloaded falsely risks an accident; assuming not-unloaded falsely costs delay. The source locator explicitly identifies this as an illustrative application of p327, not a printed example. The source-correct negative branch remains held for the existing branch/burden scope.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -1532,7 +1542,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** negative_practical/book; negative_practical/independent-false-presumption-selected; negative_practical/independent-opposite-ranking-does-not-select-false
 
-**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md.
+**Review reference:** book-first-audit/adjudication.json; first-half-independent-review.md; docs/reviews/peer13-first-half-addendum.md; peer13-comparison-first.md.
 
 ### 63. `epistemic_ignorance`
 
@@ -2162,7 +2172,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 42. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** The source’s stated generic conclusion is strong rejection of the argument. The record identifies the attacked person, argument and conclusion; it does not infer the negation of that conclusion. CQ1 restates the character-attack premise (also discussed by the book at p. 374). CQ2 is argument-relevant character. CQ3 is implemented conservatively by an exception for stronger supporting evidence. This is a selected strong-rejection policy, not numerical downweighting.
+**Approval or hold reason:** The source’s stated generic conclusion is strong rejection of the argument. The record identifies the attacked person, argument and conclusion; it does not infer the negation of that conclusion. CQ1 restates the character-attack premise (also discussed by the book at p. 374). CQ2 is argument-relevant character. CQ3 is implemented conservatively by an exception for stronger supporting evidence. This is a selected strong-rejection policy, not numerical downweighting. Follow-up: PR13 follow-up explicitly retains bad_character/1 separately from morally_bad/1 in entry47. The source does not justify automatic equivalence of generic character criticism and the more specific moral judgment.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -2180,7 +2190,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** ad_hominem/book; ad_hominem/positive; ad_hominem/adverse-another-persons-argument; ad_hominem/adverse-another-argument-of-the-same-person; ad_hominem/exception; ad_hominem/questioned-relevance; ad_hominem/questioning-the-removed-assumption-is-idle; ad_hominem/two-arguments; ad_hominem/one-conclusion-with-pragmatic_inconsistency
 
-**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md.
+**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md; docs/reviews/peer13-second-followup.md.
 
 ### 90. `pragmatic_inconsistency`
 
@@ -2258,7 +2268,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 46. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** The corrected conclusion is a comparative likelihood of incomplete consideration, not a categorical claim that the argument is false or that no contrary evidence was considered. CQ1 is relevance of the bias to this dialogue/conclusion; CQ2 is the ordinary bias premise. The same person is used in the general premise and application.
+**Approval or hold reason:** The corrected conclusion is a comparative likelihood of incomplete consideration, not a categorical claim that the argument is false or that no contrary evidence was considered. CQ1 is relevance of the bias to this dialogue/conclusion; CQ2 is the ordinary bias premise. The same person is used in the general premise and application. Follow-up: PR13 follow-up restores the generic upstream biased/1 wording, which also fits the arguer of this entry. The logical formula and source interpretation are unchanged.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -2276,13 +2286,13 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** bias/book; bias/positive; bias/adverse-another-persons-premise; bias/adverse-dialogue-questioned
 
-**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md.
+**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md; docs/reviews/peer13-second-followup.md.
 
 ### 94. `bias_ad_hominem`
 
 **Entry:** 47. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** The printed bad-bias/honest-participation sequence ends in reduced credibility for argument S. The record retains the printed morally-bad premise as an explicit premise rather than deriving it from any bias whatsoever. The evidence of bias and its inappropriate kind are ordinary premises. No extra printed CQs are invented, and normal permissible bias does not satisfy the inappropriate-bias premise by definition.
+**Approval or hold reason:** The printed bad-bias/honest-participation sequence ends in reduced credibility for argument S. The record retains the printed morally-bad premise as an explicit premise rather than deriving it from any bias whatsoever. The evidence of bias and its inappropriate kind are ordinary premises. No extra printed CQs are invented, and normal permissible bias does not satisfy the inappropriate-bias premise by definition. Follow-up: PR13 follow-up explicitly retains morally_bad/1 separately from generic bad_character/1: moral badness is a more specific source judgment, not an automatic equivalence to every character criticism. An application may supply a justified bridge; the generic library does not assert one.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -2300,7 +2310,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** bias_ad_hominem/book
 
-**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md.
+**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md; docs/reviews/peer13-second-followup.md.
 
 ### 95. `gradualism`
 
@@ -2714,7 +2724,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 59.1. **Origin:** book. **Current stage:** `transcription-checked`. **Disposition:** qualified; interpretation approval withheld. **Book-form decision:** qualified.
 
-**Approval or hold reason:** The perceiver P and perceptible property I follow 59.1, with a prima-facie evidential warrant. The defeater not_indicator(I) omits P and perceptual context. The source undercutter asks about the circumstances in which the image is unreliable. A generic property name alone cannot distinguish one observer’s misleading circumstance from another observer’s reliable one. Remaining scope: Use a context-qualified I or separate graphs; for general multi-observer use, scope the unreliability defeater to observer/context and add independent-support controls like those now used for memory.
+**Approval or hold reason:** The perceiver P and perceptible property I follow 59.1, with a prima-facie evidential warrant. The defeater not_indicator(I) omits P and perceptual context. The source undercutter asks about the circumstances in which the image is unreliable. A generic property name alone cannot distinguish one observer’s misleading circumstance from another observer’s reliable one. Remaining scope: Use a context-qualified I or separate graphs; for general multi-observer use, scope the unreliability defeater to observer/context and add independent-support controls like those now used for memory. Follow-up: PR13 follow-up visually compared pp345–346 and canonicalized reasonable_case/1 to memory's reasonable_believe/1 for the same case-qualified proposition. Five new cases establish independent supports, survival of either undefeated support, defeat of both, and protection against another case's memory. The not_indicator(I) observer/context qualification remains; no stage is promoted. The migrator rejects colliding old/canonical keyed entries rather than silently choosing their metadata or labels.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -2730,9 +2740,9 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Additional `n: 0` hooks:** None recorded.
 
-**Example evidence:** perception/book
+**Example evidence:** perception/book; perception/peer13-converges-with-memory; perception/peer13-unreliable-image-leaves-memory; memory/peer13-false-basis-leaves-perception; memory/peer13-both-supports-defeated; perception/peer13-other-case-memory-does-not-rescue
 
-**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md.
+**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md; docs/reviews/peer13-second-followup.md; peer13-comparison-second.md.
 
 ### 113. `appearance`
 
@@ -2762,7 +2772,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** 60. **Origin:** book. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** approve.
 
-**Approval or hold reason:** Repaired. The belief-history undercutters identify recaller P and remembered proposition M. A false basis or absence of an original belief belonging to Ann does not defeat Bob’s independent recall of M. All three printed undercutters are modeled as exceptions. CQ1–CQ2 now have P/M scope; CQ3 already had it. The source’s unusual wording of CQ2 is preserved rather than silently reinterpreted.
+**Approval or hold reason:** Repaired. The belief-history undercutters identify recaller P and remembered proposition M. A false basis or absence of an original belief belonging to Ann does not defeat Bob’s independent recall of M. All three printed undercutters are modeled as exceptions. CQ1–CQ2 now have P/M scope; CQ3 already had it. The source’s unusual wording of CQ2 is preserved rather than silently reinterpreted. Follow-up: The PR13 follow-up makes perception's reasonable-belief conclusion identical to this record's existing conclusion for the same case-qualified proposition. This record's formula and scoped recaller defeaters remain unchanged. Five composed cases separately defeat each source, both sources and an unrelated case's memory.
 
 **Source-access obligation:** The supplied compendium was directly inspected. No further book acquisition is needed for this declared book interpretation; follow the stated semantic action if held. Bibliographical predecessors are not silently claimed as read.
 
@@ -2778,9 +2788,9 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Additional `n: 0` hooks:** None recorded.
 
-**Example evidence:** memory/book; memory/independent-false-basis-same-recaller; memory/independent-false-basis-other-recaller; memory/independent-support-survives; memory/independent-both-bases-defeated; memory/independent-original-belief-same-recaller; memory/independent-original-belief-other-recaller; memory/positive; memory/adverse-false-basis; memory/adverse-not-originally-believed; memory/adverse-recaller-doubts
+**Example evidence:** memory/book; memory/independent-false-basis-same-recaller; memory/independent-false-basis-other-recaller; memory/independent-support-survives; memory/independent-both-bases-defeated; memory/independent-original-belief-same-recaller; memory/independent-original-belief-other-recaller; memory/positive; memory/adverse-false-basis; memory/adverse-not-originally-believed; memory/adverse-recaller-doubts; perception/peer13-converges-with-memory; perception/peer13-unreliable-image-leaves-memory; memory/peer13-false-basis-leaves-perception; memory/peer13-both-supports-defeated; perception/peer13-other-case-memory-does-not-rescue
 
-**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md; book-first-audit/second-half-cross-review.md.
+**Review reference:** book-second-audit/per-record-audit.json; independent-source-report.md; docs/source-contracts-second-half.md; book-first-audit/second-half-cross-review.md; docs/reviews/peer13-second-followup.md; peer13-comparison-second.md.
 
 ### 115. `abduction`
 
@@ -2810,7 +2820,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Entry:** upstream-only. **Origin:** upstream. **Current stage:** `example-passed`. **Disposition:** approved within declared scope. **Book-form decision:** not a compendium mapping.
 
-**Approval or hold reason:** Root independently compared Wyner (2016) p. 127: the three premises and conclusion match. The source prints no CQs. biased(W), dishonest(W), and other_credible_sources_disagree(S) are openly retained upstream application exceptions, not falsely attributed printed questions. Approval covers that declared adaptation.
+**Approval or hold reason:** Root independently compared Wyner (2016) p. 127: the three premises and conclusion match. The source prints no CQs. biased(W), dishonest(W), and other_credible_sources_disagree(S) are openly retained upstream application exceptions, not falsely attributed printed questions. Approval covers that declared adaptation. Follow-up: PR13 follow-up restores the inherited generic biased/1 wording rather than adding an Arguer restriction. The proposition/exception remains unchanged, and the reviewed fingerprint is refreshed for its language contract.
 
 **Source-access obligation:** No outstanding source-access obligation within the declared scope: the original article was independently checked by root; retain the stated interpretation/policy qualifications.
 
@@ -2828,7 +2838,7 @@ Every record below includes its actual current stage, approval/hold reason, acce
 
 **Example evidence:** credible_source/book
 
-**Review reference:** tools/vv/source_ledger.yml; docs/reviews/own-source-review.md (Wyner 2016 p. 127).
+**Review reference:** tools/vv/source_ledger.yml; docs/reviews/own-source-review.md (Wyner 2016 p. 127); docs/reviews/peer13-second-followup.md.
 
 ### 117. `defeasible_modus_ponens`
 

@@ -1647,7 +1647,7 @@
       ],
       "premises": [
         "usually_properties(P1,P2)",
-        "same_properties(Y,P1,P2)"
+        "has_properties(Y,P1,P2)"
       ],
       "assumptions": [],
       "exceptions": [],
@@ -1672,7 +1672,37 @@
     },
     "new_independent_examples": [],
     "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
-    "source_questions_after_patch": []
+    "source_questions_after_patch": [],
+    "followup_reviews": [
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "illustration",
+        "reviewed_formula_changes": {
+          "premises": {
+            "before": [
+              "usually_properties(P1,P2)",
+              "same_properties(Y,P1,P2)"
+            ],
+            "after": [
+              "usually_properties(P1,P2)",
+              "has_properties(Y,P1,P2)"
+            ]
+          }
+        },
+        "source_pages": [
+          314,
+          315
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      }
+    ]
   },
   {
     "record": "from_model",
@@ -3592,7 +3622,7 @@
         "V2"
       ],
       "premises": [
-        "person_judgment_value(A,V1)",
+        "person_value(A,V1)",
         "person_value_depending(V1,X,V2)"
       ],
       "assumptions": [],
@@ -3618,7 +3648,36 @@
     },
     "new_independent_examples": [],
     "example_judgment": "The existing /book grounding is consistent with the approved reading; it is not evidence for all inputs or all parenthetical source variants.",
-    "source_questions_after_patch": []
+    "source_questions_after_patch": [],
+    "followup_reviews": [
+      {
+        "date": "2026-11-21",
+        "review": "Independent PR13 follow-up canonicalization",
+        "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+        "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+        "record": "interaction_act_person_2",
+        "reviewed_formula_changes": {
+          "premises": {
+            "before": [
+              "person_judgment_value(A,V1)",
+              "person_value_depending(V1,X,V2)"
+            ],
+            "after": [
+              "person_value(A,V1)",
+              "person_value_depending(V1,X,V2)"
+            ]
+          }
+        },
+        "source_pages": [
+          321
+        ],
+        "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+        "evidence": [
+          "docs/reviews/peer13-first-half-addendum.md",
+          "docs/reviews/pr13-reconciliation.md"
+        ]
+      }
+    ]
   },
   {
     "record": "positive_value",

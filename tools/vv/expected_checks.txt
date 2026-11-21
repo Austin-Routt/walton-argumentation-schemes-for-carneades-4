@@ -3785,7 +3785,22 @@ cases/independent_first.yml|practical_sufficient_condition/independent-another-a
 cases/independent_first.yml|practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat|roundtrip
 cases/independent_first.yml|practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another|case
 cases/independent_first.yml|practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another|roundtrip
+cases/independent_peer13.yml|memory/peer13-both-supports-defeated|case
+cases/independent_peer13.yml|memory/peer13-both-supports-defeated|roundtrip
+cases/independent_peer13.yml|memory/peer13-false-basis-leaves-perception|case
+cases/independent_peer13.yml|memory/peer13-false-basis-leaves-perception|roundtrip
+cases/independent_peer13.yml|perception/peer13-converges-with-memory|case
+cases/independent_peer13.yml|perception/peer13-converges-with-memory|roundtrip
+cases/independent_peer13.yml|perception/peer13-other-case-memory-does-not-rescue|case
+cases/independent_peer13.yml|perception/peer13-other-case-memory-does-not-rescue|roundtrip
+cases/independent_peer13.yml|perception/peer13-unreliable-image-leaves-memory|case
+cases/independent_peer13.yml|perception/peer13-unreliable-image-leaves-memory|roundtrip
+cases/migration/perception_conclusion.yml|(file)|migration/fixture
 cases/migration/r1_graph.yml|(file)|migration/fixture
+cases/peer13_source.yml|illustration/peer13-shared-conjunction-chains-from-example|case
+cases/peer13_source.yml|illustration/peer13-shared-conjunction-chains-from-example|roundtrip
+cases/peer13_source.yml|interaction_act_person_2/peer13-shared-person-valuation-chains|case
+cases/peer13_source.yml|interaction_act_person_2/peer13-shared-person-valuation-chains|roundtrip
 cases/phase3.yml|ad_hominem/adverse-another-argument-of-the-same-person|case
 cases/phase3.yml|ad_hominem/adverse-another-argument-of-the-same-person|roundtrip
 cases/phase3.yml|ad_hominem/adverse-another-persons-argument|case
@@ -4498,6 +4513,7 @@ tools/migration_r2.yml|appearance|migration/added old="" trigger="" new="mislead
 tools/migration_r2.yml|appearance|migration/added old="" trigger="" new="more_justifiable_category(O,C)"
 tools/migration_r2.yml|bias|migration/added old="" trigger="" new="bias_relevant(A,C)"
 tools/migration_r2.yml|bias|migration/arguments old="not_taken_both(X,C)" trigger="" new="not_taken_both(A,C)"
+tools/migration_r2.yml|bias|migration/wording old="biased/1" trigger="" new="biased/1"
 tools/migration_r2.yml|circumstantial_ad_hominem|migration/added old="" trigger="" new="inconsistency_explained(A,S)"
 tools/migration_r2.yml|circumstantial_ad_hominem|migration/arguments old="commited_opposite(A,S)" trigger="" new="commited_opposite(A,C)"
 tools/migration_r2.yml|circumstantial_ad_hominem|migration/rename-predicate old="commited_opposite/2" trigger="" new="committed_opposite/2"
@@ -4544,8 +4560,10 @@ tools/migration_r2.yml|help|migration/removed old="possible_carry_out(B,X)" trig
 tools/migration_r2.yml|help|migration/rename-predicate old="carry_out/2" trigger="" new="should_do/2"
 tools/migration_r2.yml|illustration|migration/arity old="usually_properties(X,P1,P2)" trigger="" new="usually_properties(P1,P2)"
 tools/migration_r2.yml|illustration|migration/arity old="valid_rule(Y)" trigger="" new="valid_rule(P1,P2)"
+tools/migration_r2.yml|illustration|migration/rename-predicate old="same_properties/3" trigger="" new="has_properties/3"
 tools/migration_r2.yml|inconsistent_commitment|migration/added old="" trigger="" new="commitments_conflict(A,S)"
 tools/migration_r2.yml|inconsistent_commitment|migration/removed old="evidence_not_commited(A,S)" trigger="" new=""
+tools/migration_r2.yml|interaction_act_person_2|migration/rename-predicate old="person_judgment_value/2" trigger="" new="person_value/2"
 tools/migration_r2.yml|memory|migration/added old="" trigger="" new="based_on_false_belief(P,M)"
 tools/migration_r2.yml|memory|migration/added old="" trigger="" new="not_originally_believed(P,M)"
 tools/migration_r2.yml|memory|migration/added old="" trigger="" new="recaller_doubts(P,M)"
@@ -4573,11 +4591,13 @@ tools/migration_r2.yml|part_in_whole|migration/removed old="smaller_part_propert
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate old="part_propert/2" trigger="" new="part_property/2"
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate old="part_property/2" trigger="" new="has_property/2"
 tools/migration_r2.yml|part_in_whole|migration/rename-predicate old="species_property/2" trigger="" new="has_property/2"
+tools/migration_r2.yml|perception|migration/rename-predicate old="reasonable_case/1" trigger="" new="reasonable_believe/1"
 tools/migration_r2.yml|plea_for_excuse|migration/arity old="special_circumstances(E)" trigger="" new="special_circumstances(E,T)"
 tools/migration_r2.yml|pop_scheme_acceptance|migration/added old="" trigger="" new="should_accept(A)"
 tools/migration_r2.yml|pop_scheme|migration/removed old="should_accept(A)" trigger="" new=""
 tools/migration_r2.yml|pop_scheme|migration/rename-predicate old="reference_group_accepted/2" trigger="" new="group_accepted/2"
 tools/migration_r2.yml|popular_opinion|migration/removed old="generally_accepted(A)" trigger="" new=""
+tools/migration_r2.yml|popular_opinion|migration/wording old="doubting_general/1" trigger="" new="doubting_general/1"
 tools/migration_r2.yml|popular_practice|migration/rename-predicate old="popular_practise/1" trigger="" new="popular_practice/1"
 tools/migration_r2.yml|popular_practice|migration/rename-scheme old="popular_practise" trigger="" new="popular_practice"
 tools/migration_r2.yml|position_to_know_ad_populum|migration/replaced old="plausibly_true(A)" trigger="" new="A"
@@ -4625,6 +4645,7 @@ tools/migration_r2.yml|retroductive|migration/arity old="event_question(A)" trig
 tools/migration_r2.yml|retroductive|migration/arity old="reference_class" trigger="" new="reference_class(A,E,Q)"
 tools/migration_r2.yml|retroductive|migration/arity old="reference_class(A,Q)" trigger="" new="reference_class(A,E,Q)"
 tools/migration_r2.yml|retroductive|migration/rename-predicate old="agent_quality/2" trigger="" new="has_property/2"
+tools/migration_r2.yml|rhetorical_oppositions_descriptive|migration/wording old="relation_converse_relation/4" trigger="" new="relation_converse_relation/4"
 tools/migration_r2.yml|rule_physical_world_1|migration/arity old="not_necessarily_true" trigger="" new="not_necessarily_true(W,D)"
 tools/migration_r2.yml|rule_physical_world_1|migration/premise old="" trigger="is_a(W,D)" new="referentially_coextensive(W,D)"
 tools/migration_r2.yml|rule_physical_world_2|migration/arity old="rule_changed" trigger="" new="rule_changed(I,D,W)"
@@ -4644,6 +4665,7 @@ tools/migration_r2.yml|two_person_practical|migration/rename-predicate old="goal
 tools/migration_r2.yml|two_person_practical|migration/rename-predicate old="should_carry_out/2" trigger="" new="should_do/2"
 tools/migration_r2.yml|two_person_practical|migration/rename-predicate old="situation_necessiy/4" trigger="" new="situation_necessity/4"
 tools/migration_r2.yml|two_person_practical|migration/replaced old="possible_action(Y)" trigger="" new="possible_bring_about(A,Y)"
+tools/migration_r2.yml|two_person_practical|migration/wording old="situation_necessity/4" trigger="" new="situation_necessity/4"
 tools/migration_r2.yml|value_based_practical_reasoning|migration/rename-predicate old="should_bring_about/2" trigger="" new="should_do/2"
 tools/migration_r2.yml|value_based_practical_reasoning|migration/replaced old="possible_action(A)" trigger="" new="possible_bring_about(P,A)"
 tools/migration_r2.yml|verbal_classification_arbitrariness|migration/added old="" trigger="" new="arbitrariness_harmless(A,F)"

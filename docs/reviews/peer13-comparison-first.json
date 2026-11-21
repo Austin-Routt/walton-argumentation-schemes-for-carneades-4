@@ -1,0 +1,1310 @@
+{
+  "metadata": {
+    "scope": "Book entries1–27, 63 records; practical_reasoning1 has a separate original-source reviewer",
+    "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+    "peer_reviewed_implementation": "49ad425cbf7afeebcbd9a07ee479d60681ca33ea",
+    "integration_baseline": "a708add511f52fb3603d92ba368875ef3d3f2c42",
+    "patch_worktree": "/workspace/scratch/372d165f0fc7/release-review/peer13-wording-work",
+    "patch_commit": "71a0d993fab795beeb18897dfc5017205ff08bd6",
+    "peer_first_half_stages": {
+      "transcription-checked": 16,
+      "example-passed": 47
+    },
+    "final_first_half_stages": {
+      "transcription-checked": 31,
+      "example-passed": 32
+    },
+    "comparisons": {
+      "both hold": 14,
+      "peer holds; final approves after correction": 2,
+      "both approve": 30,
+      "peer approves; final holds": 17
+    },
+    "approved_library_records": 70,
+    "held_library_records": 50,
+    "new_wording_corrections": [
+      "popular_opinion",
+      "rhetorical_oppositions_descriptive",
+      "two_person_practical"
+    ],
+    "new_safe_shared_statements": [
+      "same_properties/3 -> has_properties/3",
+      "person_judgment_value/2 -> person_value/2"
+    ],
+    "new_example_correction": "negative_practical/book: loaded -> unloaded, with explicit illustrative-application provenance",
+    "visually_inspected_printed_pages": [
+      97,
+      311,
+      314,
+      315,
+      318,
+      321,
+      325
+    ],
+    "book_pdf_sha256": "d010348014e8b80fa561b68e5fac732cce0b3905fb0b1d522dd6fd2578a69634",
+    "verification": {
+      "go": "1.24.13",
+      "selected_test_groups": [
+        "TestLibrary",
+        "TestCases",
+        "TestSource"
+      ],
+      "registered_checks": 7861,
+      "unique_result_keys": 7861,
+      "all_pass": true,
+      "validator_errors": 0,
+      "validator_warnings": 11,
+      "validator_tests": 5,
+      "migration_tests": 8,
+      "stage_counts": {
+        "example-passed": 70,
+        "transcription-checked": 48,
+        "mapped": 2
+      },
+      "full_gate_owned_by_integration": true
+    }
+  },
+  "records": [
+    {
+      "record": "position_to_know",
+      "entry": "1",
+      "origin": "upstream",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "open",
+        "note": "identical to upstream's file and compared with its entry in the compendium; the book it cites is not available: 5.5"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "No material first-half disagreement beyond the recorded scope/source qualifications.",
+      "final_hold_or_approval_reason": "Domain D links W's access and proposition S; source and assertion roles are coherent. Bare S preserves truth-claim identity. CQ1 and CQ3 are premises, honesty is an opponent-supported exception. This is a reasonable static reading of the three book questions. Book-form approval does not verify its separately cited original; preserve the own-original-source gate.",
+      "next_action": "Obtain and compare the separately cited original formulation and questions; reconcile any differences explicitly before promoting this inherited record.",
+      "source_pages": [
+        309
+      ]
+    },
+    {
+      "record": "expert_opinion",
+      "entry": "2",
+      "origin": "upstream",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "open",
+        "note": "compared with entry 2 and with pp. 374-375, which have the assumption credible(W) added in 5.5; identical to upstream's file otherwise. Its own source, Appeal to Expert Opinion (1997), is not available: 5.5"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "No material first-half disagreement beyond the recorded scope/source qualifications.",
+      "final_hold_or_approval_reason": "Expert W, proposition S and domain D stay linked. Bare S is the correct object proposition, without a second plausibility fact. All six printed questions are represented; credibility as a default is additionally corroborated by the book's own Carneades model, pp.374-375. Book-form approval does not verify its separately cited original; preserve the own-original-source gate.",
+      "next_action": "Obtain and compare the separately cited original formulation and questions; reconcile any differences explicitly before promoting this inherited record.",
+      "source_pages": [
+        310,
+        374,
+        375
+      ]
+    },
+    {
+      "record": "witness_testimony",
+      "entry": "3",
+      "origin": "upstream",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "open",
+        "note": "compared with entry 3; identical to upstream's file but for the order of in_domain's arguments, which its template requires. Its own source (ICAIL 2003) was not found in an open copy: 5.5"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "No material first-half disagreement beyond the recorded scope/source qualifications.",
+      "final_hold_or_approval_reason": "W's sincerity is represented by believes(W,S) plus assertion; this is a defensible interpretation, not an exact quotation of knowing truth. A domain fact supplies access. Internal consistency defaults; conflicting facts, other witnesses, bias and implausibility are exceptions. Global biased(W) needs case-specific use, because the question concerns the account. Remaining scope: Make explicit that W denotes this witness in the case and that bias is relevant to this account; own-source verification is separate.",
+      "next_action": "Adopt and test case-specific witness/account identifiers for bias and sincerity; compare both separately cited witness sources before original-source certification.",
+      "source_pages": [
+        310
+      ]
+    },
+    {
+      "record": "popular_opinion",
+      "entry": "4",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "wording: the exception's template says 'doubting %s is generally true'; the print's second question is about doubting that it is true"
+      },
+      "final_stage": "example-passed",
+      "comparison": "peer holds; final approves after correction",
+      "adjudication": "New missed wording defect accepted and repaired: CQ2 doubts truth of A, not its general truth; use good reasons, printed p311. Retain approval only with the corrected template and reviewed fingerprint.",
+      "final_hold_or_approval_reason": "The output remains a reason in favor of A, not an assertion that A is true. General acceptance and the acceptance-to-reason warrant are distinct. CQ1 is challenged via the general-acceptance premise; CQ2 is an exception. Both printed questions are accounted for.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        311
+      ]
+    },
+    {
+      "record": "pop_scheme",
+      "entry": "4.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The assertive variant concludes A itself. A may be a signed proposition, so accepting a negative proposition does not require an extra truth-wrapper. No printed CQs in this numbered variant; underlying group acceptance is an explicit premise.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        311
+      ]
+    },
+    {
+      "record": "pop_scheme_acceptance",
+      "entry": "4.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The advisory variant concludes that the implicit respondent should accept A. It no longer asserts both truth and acceptance in one inference. No printed CQs; this is the expressly separated acceptance reading.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        311
+      ]
+    },
+    {
+      "record": "position_to_know_ad_populum",
+      "entry": "4.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "G is the same group in consensus and epistemic-position premises; A is the same conclusion proposition. Replacing plausibly_true(A) with A is appropriate for a defeasible argument. No printed CQs for this variant; premise support carries the challenge path.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        311
+      ]
+    },
+    {
+      "record": "expert_opinion_ad_populum",
+      "entry": "4.3",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The expert group and consensus proposition are preserved. The source itself does not bind the proposition to a separate domain variable, so this review does not invent one. No printed CQs in this variant; a stronger domain-sensitive version could be added under a distinct interpretation.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        312
+      ]
+    },
+    {
+      "record": "deliberation_ad_populum",
+      "entry": "4.4",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The deliberating group is also the group accepting A; the output is A, with defeasibility represented by argument evaluation. No printed CQs in this variant.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        312
+      ]
+    },
+    {
+      "record": "moral_justification_ad_populum",
+      "entry": "4.5",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "the template of premise 2 leaves out the print's '(or should be)'"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "Peer approves while noting the omitted (or should be) alternative. Preserve the contextual/participant qualification and disclose that omitted source alternative; the approval vote does not implement it.",
+      "final_hold_or_approval_reason": "Good-group policy acceptance and the respondent's goal support should_accept(P); the positive good-group branch is represented. No printed CQs; respondent identity remains implicit, as in the text. Remaining scope: Document one implicit respondent per graph or encode recipient identity when combining different audiences.",
+      "next_action": "State and test a one-respondent contract, or carry respondent identity in the acceptance and conclusion predicates before mixed-audience use.",
+      "source_pages": [
+        312
+      ]
+    },
+    {
+      "record": "moral_justification_ad_populum_excuse",
+      "entry": "4.6",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Choose the bounded combined action/policy reading explicitly; if both are offered independently, add typed variants and separate examples.",
+      "final_hold_or_approval_reason": "The record retains action and policy alternatives in composite predicates. It does not separately infer morally_acceptable(action) or acceptable(policy). No printed CQs. The speaker is implicit in group_member/1 and the conclusion. Remaining scope: Declare this as an opaque combined action/policy reading; split typed action and policy variants before claiming independent interoperability of each branch.",
+      "next_action": "Choose the bounded combined action/policy reading explicitly; if both are offered independently, add typed variants and separate examples.",
+      "source_pages": [
+        312
+      ]
+    },
+    {
+      "record": "snob_appeal_ad_populum",
+      "entry": "4.7",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Replace the object-as-proposition Rolex acceptance fixture with a typed acceptance proposition; add separately typed property/purchase variants if those source alternatives are claimed.",
+      "final_hold_or_approval_reason": "Group, prestige goal and membership warrant are present, but acceptance, property acquisition and object purchase are compressed. Only should_accept(A) is concluded. No printed CQs. P and O occur in the membership warrant but do not select a conclusion branch. Remaining scope: The Rolex reference case treats an object as A in accept(A); replace with a clearly typed acceptance example, and add property/purchase variants if those alternatives are claimed as covered.",
+      "next_action": "Replace the object-as-proposition Rolex acceptance fixture with a typed acceptance proposition; add separately typed property/purchase variants if those source alternatives are claimed.",
+      "source_pages": [
+        312
+      ]
+    },
+    {
+      "record": "appeal_to_vanity_ad_populum",
+      "entry": "4.8",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The respondent's action X, not admired group G or proposition A, is the conclusion object. Separating the second-person ought from a first-person practical goal is correct. No printed CQs. The source uses one implicit respondent.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        312
+      ]
+    },
+    {
+      "record": "rhetoric_ad_populum",
+      "entry": "4.9",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "Consensus, valued membership and contrasting out-group acceptance refer to the same G and A. The conclusion is acceptance by the implicit respondent. No printed CQs.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        313
+      ]
+    },
+    {
+      "record": "common_folk_ad_populum",
+      "entry": "4.10",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "Speaker S is explicit in background(S) and being_credible(S); removing the old zero-argument forms prevents unrelated speakers from sharing these facts. No printed CQs. The audience remains the current audience of the case.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        313
+      ]
+    },
+    {
+      "record": "common_folks_group_ad_populum",
+      "entry": "4.11",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The speaker belongs to the same background group as the respondent; accept_saying(S) retains the speaker identity. No printed CQs. Group G is consistently bound.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        313
+      ]
+    },
+    {
+      "record": "popular_practice",
+      "entry": "5",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Clarify the anaphoric warrant and require context-qualified practices; add a two-context adverse case demonstrating that one practice context cannot establish another.",
+      "final_hold_or_approval_reason": "The popular-practice premise and current-case conclusion have the right roles. The minor template is the consequent of an anaphoric warrant, rather than a self-contained conditional. CQ1 is a premise challenge; CQ2 is represented by justified grounds as a default assumption, a defensible interpretation. Remaining scope: Clarify the warrant template and state that each graph has one current case; cases with different circumstances require distinct contextual practice terms.",
+      "next_action": "Clarify the anaphoric warrant and require context-qualified practices; add a two-context adverse case demonstrating that one practice context cannot establish another.",
+      "source_pages": [
+        314
+      ]
+    },
+    {
+      "record": "from_example",
+      "entry": "6.1",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "the conclusion both_properties(A,P1,P2) carries the example A, which the print's generalization does not: two examples do not support one generalization, and the conclusion cannot be 6.2's first premise. 6.2 was corrected for the same thing (5.1)"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "The example-dependent conclusion was already repaired to usually_properties(F,G), with separate example provenance. Retain the unresolved strength-policy qualification; the new shared conjunction additionally improves legitimate composition.",
+      "final_hold_or_approval_reason": "REPAIRED: the generalization now depends on F and G only, using usually_properties(F,G). The example a remains in argument parameters, allowing convergent support and feeding illustration. CQ1 premise, CQ2/CQ3 defaults, CQ5 exception. CQ4 is a supported challenge to the generalization in its negation issue; one exceptional case does not by itself refute a defeasible generalization. Remaining scope: Keep this CQ4 policy explicit. Generic grounded examples are insufficient to calibrate how strong a generalization is; a policy-level strength example remains desirable.",
+      "next_action": "Specify how the book's exception question affects the strength of a usually-generalization; add a policy-level example where one counterexample does not automatically refute a statistical generalization.",
+      "source_pages": [
+        314
+      ]
+    },
+    {
+      "record": "illustration",
+      "entry": "6.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "same_properties/3 says what 6.1's has_properties/3 says, under another name"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Peer identified a missed safe shared statement: same_properties/3 and has_properties/3 have the same individual/property/property roles. Canonicalize to has_properties and add a two-scheme positive/adverse case. Its existing approved interpretation is retained with a new fingerprint.",
+      "final_hold_or_approval_reason": "The rule premise and validity conclusion depend on F and G rather than on the illustrating individual. The particular case supplies an instance of both properties. No printed CQs. Quantification over x in the rule is represented as an opaque rule proposition, not an inference that enumerates all x.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        315
+      ]
+    },
+    {
+      "record": "from_model",
+      "entry": "6.3",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Peer approved the old record despite explicitly noting its third premise retained only the conditional consequent. Keep our independently source-supported conditional-warrant repair and wrong-model control; the peer approval is not evidence to revert it.",
+      "final_hold_or_approval_reason": "REPAIRED: the third premise is now imitation_warrant(model,action,imitators), preserving the complete conditional and its model. The imitators are the recipients of should_do. No printed CQs. The new adverse case prevents a warrant about one model from licensing a different model's argument.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        315
+      ]
+    },
+    {
+      "record": "from_antimodel",
+      "entry": "6.4",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "approved as an interpretation: 'Qs should not do A' is the negation of should_do, so that 6.3 and 6.4 meet in one issue (5.6); the claim is changed from transcription"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Adopt and test the binary recommendation convention, or introduce an explicit refrain-from-action conclusion that distinguishes ought-not from not-ought.",
+      "final_hold_or_approval_reason": "The model, act and would-be imitators are consistently bound. The implementation concludes negated should_do, while the text says should not do. No printed CQs. Under a two-position recommendation policy these can be treated as opposing recommendations, but ordinary deontic logic distinguishes not obligatory from obligatory not. Remaining scope: Document the binary recommendation convention or introduce an explicit refrain-from-action predicate before claiming full deontic equivalence.",
+      "next_action": "Adopt and test the binary recommendation convention, or introduce an explicit refrain-from-action conclusion that distinguishes ought-not from not-ought.",
+      "source_pages": [
+        315
+      ]
+    },
+    {
+      "record": "analogy",
+      "entry": "7",
+      "origin": "upstream",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "open",
+        "note": "identical to upstream's file and compared with its entry in the compendium; the book it cites is not available: 5.5"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "No material first-half disagreement beyond the recorded scope/source qualifications.",
+      "final_hold_or_approval_reason": "The source and current cases are distinguished by an implicit current-case convention. The conclusion is A in that current case. CQ1 relevant differences and CQ2 base premise are present. CQ3 in the book asks about another similar contrary case, whereas more_on_point imposes a stronger relevance condition. Remaining scope: Own-source form may justify the inherited variant, but this is not yet a complete equivalence to the book CQ3; keep that scope difference explicit.",
+      "next_action": "Compare the cited 2006 source; decide whether the inherited more-on-point defeater is retained as a variant or supplemented by the book's similar contrary-case CQ3, with an adverse case.",
+      "source_pages": [
+        315
+      ]
+    },
+    {
+      "record": "practical_analogy_positive",
+      "entry": "8.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The action X is preserved while the situation changes from A1 to similar A2. The conclusion remains a normative assessment in A2. No printed CQs in these practical analogy variants.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        316
+      ]
+    },
+    {
+      "record": "practical_analogy_negative",
+      "entry": "8.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The negative assessment of doing X transfers from A1 to similar A2; it does not change the action or assert the opposite descriptive proposition. No printed CQs.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        316
+      ]
+    },
+    {
+      "record": "composition_generic",
+      "entry": "9.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Peer notes broad default composition/division behavior. Preserve approval within the stated same-object/property context and challenge-sensitive hereditary policy; do not imply every arbitrary property really transfers.",
+      "final_hold_or_approval_reason": "All parts have the property; the conclusion attributes it to the whole. Sharing has_property with other schemes is correct when object and property identifiers denote the same things. The compositional-heredity default follows the direction established in the narrative; the compendium parenthesis reverses the direction and is appropriately treated as a supported correction.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        316,
+        113
+      ]
+    },
+    {
+      "record": "part_in_whole",
+      "entry": "9.2",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "the exception smaller_part_property is the parenthesis of the print's conclusion ('y is less A than X ...'), a variant of the conclusion and not a defeater of 'y is A'; the print gives 9.2 no question"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "The false lower-degree defeater was already removed. Keep the explicit positive/species/degree-computation limitation.",
+      "final_hold_or_approval_reason": "REPAIRED: lower degree is no longer an exception defeating possession of the property. The positive species/part-to-property branch concludes has_property(y,A). No printed CQ exists here. The removed exception was a conclusion parenthesis incorrectly promoted to a defeat condition. Remaining scope: The current predicate species_of represents the species reading; physical part and comparative degree variants need explicit scope or separate records. Do not claim the degree parenthesis has been fully computed.",
+      "next_action": "Declare the repaired positive species branch as the supported variant; add separate physical-part and degree variants only if those alternatives are included in release coverage.",
+      "source_pages": [
+        316
+      ]
+    },
+    {
+      "record": "division_generic",
+      "entry": "10.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "The peer's full-library all-parts observation is correct when divisional heredity remains an undisputed default. It is expected defeasible behavior, not universal validity; retain explicit whole/context and challenge conventions in usage guidance.",
+      "final_hold_or_approval_reason": "The whole has a property and, defeasibly, all parts have it. The direction is distinct from composition even though they can form an engine-safe cycle. The divisional-heredity default is the substantive warrant; it is challengeable. The source's reversed explanatory parenthesis is corrected using narrative context.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        317,
+        113
+      ]
+    },
+    {
+      "record": "whole_into_parts",
+      "entry": "10.2",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "only the part listed first can carry the property (has_property(X1,A)), where the print's premise 3 is about any part; the negative reading (no part is A, so X is not A) is not stated"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "Both reviews hold the same substantive limitation: first selected part, three-part restriction and omitted negative/other-cardinality readings.",
+      "final_hold_or_approval_reason": "The implementation fixes three named parts and derives the whole's property from X1 plus the stated whole/part warrant. The source allows x1 through xn and alternative negative branches. No printed CQs. The source itself says only if; treating this as a presumptive argumentative pattern does not establish a deductively valid sufficient condition. Remaining scope: Declare the positive, three-part restricted instance. Arbitrary cardinality, other selected parts, negative branches and the only-if interpretation remain unimplemented or unresolved.",
+      "next_action": "Declare the positive, three-part instance explicitly and test that contract; add or exclude arbitrary cardinality, selected-part, negative and only-if readings separately.",
+      "source_pages": [
+        317
+      ]
+    },
+    {
+      "record": "opposition_descriptive_1",
+      "entry": "11.1a",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The contrary-property warrant and asserted property concern the same subject A; the conclusion is inability to present the opposite at the same time. No printed CQs. Modal cannot-present is kept distinct from a plain negated observation.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        317
+      ]
+    },
+    {
+      "record": "opposition_descriptive_2",
+      "entry": "11.1b",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The negative property premise instantiates the antecedent of the stated opposition warrant; the conclusion names the paired property of the same subject. No printed CQs. The warrant, not absence of any arbitrary property, licenses the inference.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "opposition_descriptive_3",
+      "entry": "11.1c",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "Complementary-or-contrary alternatives and absence of one yield the required other predicate for the same subject and time context. No printed CQs. This is the declared paired-property interpretation, not unrestricted closed-world reasoning.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "opposition_normative",
+      "entry": "11.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The corrected minor premise instantiates the first evaluation in the major warrant; the conclusion excludes the opposite evaluation for the same subject. No printed CQs. The source's inconsistent symbol is corrected coherently rather than reproduced as a swapped role.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "rhetorical_oppositions_normative",
+      "entry": "12.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "Entity and treatment pairs retain the correct direction: the current required treatment triggers the warranted contrary treatment for the contrary entity. No printed CQs.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "rhetorical_oppositions_descriptive",
+      "entry": "12.2",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "wording: the major premise's template says 'they can be in the converse relation'; the print says that Y can be in the converse relation with X, and contrariwise"
+      },
+      "final_stage": "example-passed",
+      "comparison": "peer holds; final approves after correction",
+      "adjudication": "New missed wording defect accepted and repaired: converse relation reverses participants and the warrant includes contrariwise, printed p318.",
+      "final_hold_or_approval_reason": "A's relation to B and the paired converse relation yield B's converse relation to A. Roles are reversed exactly once. No printed CQs. The one implemented direction is warranted by the source's bidirectional description.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "alternative_cognitive",
+      "entry": "13.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "the alternatives are ordered as in the print: the one denied (13.1) or required (13.2) has to be written first"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The chosen alternatives are propositions A and B; negated A and the alternative warrant yield B. Bare propositions allow this output to feed other schemes. No printed CQs. The rule remains a defeasible argument rather than a modal theorem about all possible worlds.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "alternative_normative",
+      "entry": "13.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "the alternatives are ordered as in the print: the one denied (13.1) or required (13.2) has to be written first"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Specify and test an exclusive-alternatives recommendation policy; preserve the distinction between absence of obligation and an obligation to refrain.",
+      "final_hold_or_approval_reason": "A and B remain the same normative alternatives. Required A yields negated required B under the supplied alternative warrant. No printed CQs. This reading requires mutually exclusive normative alternatives; an inclusive A-or-B would not suffice. Remaining scope: Document exclusivity and distinguish not-required(B) from required(not-B).",
+      "next_action": "Specify and test an exclusive-alternatives recommendation policy; preserve the distinction between absence of obligation and an obligation to refrain.",
+      "source_pages": [
+        318
+      ]
+    },
+    {
+      "record": "verbal_classification",
+      "entry": "14",
+      "origin": "upstream",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "upstream's record, which cites no source, compared with its entry in the compendium; identical to upstream's file apart from the changes the row lists"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Peer agrees with our corrected provenance decision: upstream cited no separate work. Declared compendium/code-origin approval is valid without pretending the unseen 2006 book was inspected.",
+      "final_hold_or_approval_reason": "Object O classified under F and F subsumed by G yield O under G. Classification hierarchy and object positions are coherent. CQ1 is the object-class premise; CQ2 is the doubtful-classification exception. Final provenance correction: upstream code has the same O/F/G variables, premises and conclusion, with no cited external source. The added doubtful_classification(F,G) is precisely the compendium's CQ2 and has an existing migration row. The earlier generic unavailable-original hold was mistaken; declared compendium/code-origin approval is now complete, without claiming to have inspected Walton (2006).",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        319
+      ]
+    },
+    {
+      "record": "definition_to_verbal_classification",
+      "entry": "15",
+      "origin": "upstream",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "open",
+        "note": "identical to upstream's file and compared with its entry in the compendium; the book it cites is not available, and the printed questions the row lists stay unmodelled: 5.5, 5.2"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "Peer still leaves the book CQ2 unmapped pending the unavailable original. Our book-supported doubtful_definition(D,G) mapping legitimately closes that operational compendium gap while preserving the separate own-original-source hold.",
+      "final_hold_or_approval_reason": "REPAIRED: the definition satisfaction and definition-to-class link yield the correct object classification; the complete book CQ set is represented. The source's inconsistent x/a in its universal premise is read coherently, not as all objects having G. CQ1 inadequacy remains an exception. CQ2 now has doubtful_definition(D,G), explicitly for a merely stipulative or biased definition subject to doubt. Positive and wrong-definition controls distinguish relevant from unrelated challenges. Book-form approval does not verify its separately cited original; preserve the own-original-source gate.",
+      "next_action": "Obtain and compare the separately cited original formulation and questions; reconcile any differences explicitly before promoting this inherited record.",
+      "source_pages": [
+        319
+      ]
+    },
+    {
+      "record": "verbal_classification_vagueness",
+      "entry": "16",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "wording: the exception's template says the property 'does not need to be certain'; the question is about precision"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "Precision rather than certainty was already corrected. Preserve the unresolved challenge-burden policy.",
+      "final_hold_or_approval_reason": "REPAIRED wording: the counterclaim concerns precision, not certainty. The argument and property roles in the vagueness/precision premises are coherent. CQ1/CQ2 are premises; CQ3 is an opposing exception asserting that precision is not required here. This is an interpretation of a why-question, not the only possible burden policy. Remaining scope: Approve the content correction, but document when an unanswered precision challenge defeats the argument versus requiring an affirmative exception.",
+      "next_action": "Adopt an explicit challenge burden: determine whether an unanswered precision challenge suspends the argument or requires affirmative contrary evidence, and test the chosen behavior.",
+      "source_pages": [
+        319,
+        320
+      ]
+    },
+    {
+      "record": "verbal_classification_arbitrariness",
+      "entry": "17",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Adopt and test the burden for an unanswered arbitrariness challenge, without adding a premise that merely restates the desired conclusion.",
+      "final_hold_or_approval_reason": "The arbitrary property, relevant argument and need for a nonarbitrary definition retain their roles; the conclusion rejects that argument as deficient. CQ1/CQ2 are premises; CQ3 harmless arbitrariness is an exception. The burden choice is a project interpretation. Remaining scope: Keep that burden policy explicit; no extra premise should simply restate the conclusion.",
+      "next_action": "Adopt and test the burden for an unanswered arbitrariness challenge, without adding a premise that merely restates the desired conclusion.",
+      "source_pages": [
+        320
+      ]
+    },
+    {
+      "record": "interaction_act_person_1",
+      "entry": "18.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "18.1's conclusion person_value/2 and 18.2's first premise person_judgment_value/2 both say 'person P is V'; as two predicates they keep the pair from chaining (to decide before R2's migration)"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Peer identified the same person/valuation relationship in entries18.1 and18.2. Canonicalize the second record to this record's person_value/2 and add a two-scheme case; this producer formula itself is unchanged.",
+      "final_hold_or_approval_reason": "A person's act with value V supports attributing V to that person. Agent, act and value remain separate. No printed CQs.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        320
+      ]
+    },
+    {
+      "record": "interaction_act_person_2",
+      "entry": "18.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "18.1's conclusion person_value/2 and 18.2's first premise person_judgment_value/2 both say 'person P is V'; as two predicates they keep the pair from chaining (to decide before R2's migration)"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Peer identified the same person/valuation relationship in entries18.1 and18.2. Rename person_judgment_value/2 to person_value/2 with migration and a two-scheme positive/adverse case; retain approval with a new fingerprint.",
+      "final_hold_or_approval_reason": "A prior judgment of the person's value plus a stated value-to-act evaluation warrant yields the evaluation of that person's act. No printed CQs. The generic warrant is intentionally not tied to one individual unless instantiated through the first premise.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        320,
+        321
+      ]
+    },
+    {
+      "record": "positive_value",
+      "entry": "19.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Use owner-qualified goal terms or add an owner argument to the resulting commitment; add a mixed-agent adverse case.",
+      "final_hold_or_approval_reason": "Agent A's judgment and its effect on A's goal lead to a reason for retaining the goal. The conclusion omits A. No printed CQs. Two people with an identical goal term but different evaluations would share the conclusion's identity. Remaining scope: Require goal terms to identify the owner's goal instance or add the agent to the conclusion before mixed-agent value comparisons.",
+      "next_action": "Use owner-qualified goal terms or add an owner argument to the resulting commitment; add a mixed-agent adverse case.",
+      "source_pages": [
+        321
+      ]
+    },
+    {
+      "record": "negative_value",
+      "entry": "19.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Use owner-qualified goal terms or add an owner argument to the resulting commitment; add a mixed-agent adverse case independently of the repaired polarity.",
+      "final_hold_or_approval_reason": "The corrected conclusion retracts commitment, rather than retaining it. As with the positive record, the conclusion omits the evaluating agent. No printed CQs. Remaining scope: Owner-scoped goal identifiers or an explicit agent argument are necessary for multi-agent use; this is separate from the already corrected sign.",
+      "next_action": "Use owner-qualified goal terms or add an owner argument to the resulting commitment; add a mixed-agent adverse case independently of the repaired polarity.",
+      "source_pages": [
+        321
+      ]
+    },
+    {
+      "record": "sacrifice",
+      "entry": "20",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "only the 'great' variant of the print is stated"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Release only the documented great-sacrifice variant, or add the source's small-sacrifice alternative with separate semantics and examples.",
+      "final_hold_or_approval_reason": "The person, sacrifice and its value are coherent in the great-sacrifice branch. The current record does not encode the small-sacrifice alternative printed parenthetically. No printed CQs. Remaining scope: Approve only the great-sacrifice variant; add or explicitly exclude the small-sacrifice branch from coverage claims.",
+      "next_action": "Release only the documented great-sacrifice variant, or add the source's small-sacrifice alternative with separate semantics and examples.",
+      "source_pages": [
+        322
+      ]
+    },
+    {
+      "record": "group_1",
+      "entry": "21.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "A member's quality plus an explicit transfer warrant yields the group's quality. The has_property(group,quality) identity is the same property statement used elsewhere. No printed CQs. The warrant, not membership alone, supports the transfer.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        321,
+        322
+      ]
+    },
+    {
+      "record": "group_2",
+      "entry": "21.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "A group's quality, membership and explicit downward transfer warrant yield the member's quality. The shared property predicate preserves entity roles. No printed CQs. The membership and transfer premises prevent an unqualified automatic group-to-person inference.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        322
+      ]
+    },
+    {
+      "record": "practical_inference",
+      "entry": "22.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Choose and document static evidential exceptions versus the source's question-induced temporary suspension; test the selected contract and avoid claiming full dialogue behavior if only static evaluation is supported.",
+      "final_hold_or_approval_reason": "Agent P's goal and means-to-end support should_do(P,A); explicit agent binding makes the shared practical conclusion appropriate. All five printed questions have a ledger route, but other/better means and bad consequences are opponent-proven exceptions. Narrative p.96 says merely asking any of the five questions can provisionally defeat until answered. Remaining scope: A static evidential exception policy is not the book's full dialogue burden behavior. Keep interpretation approval qualified until that mismatch is resolved or explicitly contracted.",
+      "next_action": "Choose and document static evidential exceptions versus the source's question-induced temporary suspension; test the selected contract and avoid claiming full dialogue behavior if only static evaluation is supported.",
+      "source_pages": [
+        95,
+        96,
+        323
+      ]
+    },
+    {
+      "record": "practical_necessary_condition",
+      "entry": "22.2",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "the alternatives, selection, practicality and side-effects premises are in the first person and carry no agent, while the goal premise and the conclusion name P: with two agents in one graph one agent's selection serves the other (probe in the review)"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "All personal premises and relevant conditions already carry the same agent, with two-agent adverse controls. The separate question-induced suspension policy remains qualified.",
+      "final_hold_or_approval_reason": "REPAIRED: P now scopes all personal selection, consideration, feasibility and preference premises, plus personal acceptability and alternatives. A second agent sharing a goal cannot inherit another's deliberation. CQ coverage exists; exceptions versus questions retain the practical dialogue-burden discrepancy described for 22.1. Remaining scope: New positive and two-agent adverse cases pass after the patch. Resolve question-induced suspension policy before unqualified source approval.",
+      "next_action": "Retain the repaired agent scope and passing two-agent controls; resolve and test the source's question-induced suspension policy before unqualified interpretation approval.",
+      "source_pages": [
+        95,
+        96,
+        323,
+        324
+      ]
+    },
+    {
+      "record": "practical_sufficient_condition",
+      "entry": "22.3",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "as 22.2; and the alternatives premise should read as p. 96 does, 'each one of [B0..Bn] is sufficient', not 'at least one of'"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "Agent leakage and each-one sufficient wording were already repaired against narrative p96, with adverse controls. The separate question-induced suspension policy remains qualified.",
+      "final_hold_or_approval_reason": "REPAIRED: all personal premises bind the same P; the alternatives template now says each member is sufficient, matching p.96 rather than merely one member. Selected member X is distinct from set S. Same five question routes and extra feasibility defaults as 22.2; dialogue-burden qualification remains. Remaining scope: New positive and two-agent adverse cases pass after the patch. Document the narrative-supported correction and resolve provisional challenge behavior.",
+      "next_action": "Retain the narrative-supported each-one sufficient reading and repaired agent scope; resolve and test provisional challenge behavior before unqualified interpretation approval.",
+      "source_pages": [
+        96,
+        323,
+        324
+      ]
+    },
+    {
+      "record": "value_based_practical_reasoning",
+      "entry": "22.4",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Require owner/context-specific goals and value sets; settle the challenge burden and add a mixed-agent/context adverse example.",
+      "final_hold_or_approval_reason": "Agent P, goal G, value set V and act A are connected through the means premise; practical conclusion should_do(P,A) is coherent. All seven printed CQs are mapped. Value-based preference and alternative facts omit P and rely on goal/action terms carrying context; practical challenge burden remains a policy interpretation. Remaining scope: Use owner/context-specific goals and value sets, and settle the explicit challenge policy before full mixed-agent semantic approval.",
+      "next_action": "Require owner/context-specific goals and value sets; settle the challenge burden and add a mixed-agent/context adverse example.",
+      "source_pages": [
+        95,
+        96,
+        324
+      ]
+    },
+    {
+      "record": "practical_goal",
+      "entry": "22.5",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The same person's goal G and action X's contribution to that goal yield should_do(P,X). The named agent makes vocabulary sharing appropriate. No printed CQs in this variant. This is a defeasible reason to act, not a proof that every contributing action must be jointly performed.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        325
+      ]
+    },
+    {
+      "record": "end_and_means_1",
+      "entry": "22.6.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Declare the positive branch as the released variant; add or explicitly exclude the source's parenthetical alternatives and test any added branch independently.",
+      "final_hold_or_approval_reason": "The record represents the positive branch: X is a means to good end Y, so X is good. The source also prints less-bad and bad alternatives. No printed CQs. Evaluation is context-sensitive; the source is presumptive, not unrestricted moral closure. Remaining scope: Approve only the explicitly positive branch; missing parenthetical variants cannot be counted as tested.",
+      "next_action": "Declare the positive branch as the released variant; add or explicitly exclude the source's parenthetical alternatives and test any added branch independently.",
+      "source_pages": [
+        325
+      ]
+    },
+    {
+      "record": "end_and_means_2",
+      "entry": "22.6.2",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Declare one evaluation context and the positive branch; add scoped warrants for mixed contexts and separate opposite-valuation examples if those are claimed.",
+      "final_hold_or_approval_reason": "The ends-importance warrant and means-to-end premise preserve the positive branch. The record's importance warrant is zero-argument and therefore global within a graph. No printed CQs. Remaining scope: Limit this to one evaluation context and the positive branch; opposite valuation and mixed-context warrants need separate representation.",
+      "next_action": "Declare one evaluation context and the positive branch; add scoped warrants for mixed contexts and separate opposite-valuation examples if those are claimed.",
+      "source_pages": [
+        325
+      ]
+    },
+    {
+      "record": "end_and_means_3",
+      "entry": "22.6.3",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "only the positive variant of the print is stated"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Declare the easy/good branch as the released variant; add or explicitly exclude the source's alternative branch.",
+      "final_hold_or_approval_reason": "Ease of achieving the means supports goodness of the end in the positive branch. Difficult-means/bad-end is not represented. No printed CQs. Remaining scope: Approve only the easy/good branch and record the omitted alternative explicitly.",
+      "next_action": "Declare the easy/good branch as the released variant; add or explicitly exclude the source's alternative branch.",
+      "source_pages": [
+        325
+      ]
+    },
+    {
+      "record": "two_person_practical",
+      "entry": "23",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "wording: the template of premise 2 says 'sets the situation'; the print has 'sees' (pp. 97, 325)"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "New missed wording defect accepted and repaired: sees rather than sets, printed pp97,325. Separate dialogue and alternatives-scope holds remain.",
+      "final_hold_or_approval_reason": "A states an intention to B; B supplies necessity information about action Y for A's intention X; the conclusion directs A, not B, to act. All five printed questions are sorted. Alternative means and additional actions omit the deliberating agent and assume one current case. Remaining scope: Correct speaker/recipient roles are approved, but practical dialogue burdens and cross-agent availability of alternatives need an explicit contract or scoped facts.",
+      "next_action": "Keep the repaired speaker/recipient roles; define practical-dialogue burdens and scope alternative actions to the deliberating parties, with an adverse multi-party example.",
+      "source_pages": [
+        325,
+        326
+      ]
+    },
+    {
+      "record": "waste",
+      "entry": "24",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "Agent A's stopping would waste efforts toward goal X; avoiding that waste supports continuing toward X. Feasibility concerns bringing about X. CQ1 is the possible-goal default; CQ2 is reassessment against continuing, rather than an automatic rule that sunk costs justify every continuation.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        326
+      ]
+    },
+    {
+      "record": "sunk_costs",
+      "entry": "25",
+      "origin": "upstream",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "note": "upstream's own form, kept (D5); Walton (2002) read by the reviewer: p. 489 prints the form of sunk_costs_precommitment, p. 488 the argument from waste, and no form in upstream's terms"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "Both reviews now have original-article access and agree the p489 form differs from upstream. Peer approves the legacy adaptation; our source-certification scope remains qualified for the composite quantity/feasibility/future-loss policy. This is a scope disagreement, not an unavailable-article claim.",
+      "final_hold_or_approval_reason": "The legacy quantity/feasibility form is not the article's printed p. 489 precommitment scheme or the compendium form. Root has now inspected the article and confirmed that distinction. Its quantity/waste, feasibility and future-loss policies draw on separate discussion and practical-inference questions. Keep it a qualified adaptation, distinct from the approved book-form sunk_costs_precommitment; missing article access is no longer a hold reason.",
+      "next_action": "Retain the legacy quantity/feasibility record as a documented adaptation, distinct from sunk_costs_precommitment; settle the selected practical-question and future-loss policy rather than treating the legacy form as the article's printed p. 489 scheme.",
+      "source_pages": [
+        327
+      ]
+    },
+    {
+      "record": "sunk_costs_precommitment",
+      "entry": "25",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "The choice at T2, prior commitment through T1, acting agent P and chosen A retain the roles of both printed premises; should_do(P,A) is the proper practical conclusion. No printed CQs for this numbered form. Earlier/later ordering is part of the precommitted relation's meaning; arbitrary timestamps are not separately reasoned about.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations. This book-form approval does not certify complete practical-question coverage of the entire 2002 article.",
+      "source_pages": [
+        327
+      ]
+    },
+    {
+      "record": "ignorance",
+      "entry": "26",
+      "origin": "upstream",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "open",
+        "note": "identical to upstream's file and compared with its entry in the compendium; the book it cites is not available: 5.5"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "No material first-half disagreement beyond the recorded scope/source qualifications.",
+      "final_hold_or_approval_reason": "Would-be-known(S) and not-known(S) yield not-S. This is the correct negative conclusion and is not a closed-world inference from mere absence. CQ1 investigation is an exception; CQ2 dialogue burden and CQ3 evidential strength are both marked standard. A proof-standard threshold does not itself decide the dialogue's probandum or burden holder. Remaining scope: Own-source approval remains separate; specify how dialogue burden/probandum is supplied by an application before claiming all CQs are operationally implemented.",
+      "next_action": "Compare the cited 1995 source and specify application-supplied dialogue burden/probandum independently of the issue proof standard; add examples for the chosen burden contract.",
+      "source_pages": [
+        327
+      ]
+    },
+    {
+      "record": "negative_normal_expectations",
+      "entry": "26.1",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "peer approves; final holds",
+      "adjudication": "No new source evidence overturns the existing hold. Use one expectation context or add a situation identifier; specify dialogue burden allocation separately from required proof strength and add a mixed-context adverse example.",
+      "final_hold_or_approval_reason": "The warranted normal expectation of A and explicit not-A support a non-normal situation, identified by A in the current encoding. CQ1 investigation is represented. CQ2/CQ3 have the same burden/proof-standard distinction as ignorance. Remaining scope: Document one expectation context or add a situation identifier; distinguish dialogue burden allocation from strength of proof.",
+      "next_action": "Use one expectation context or add a situation identifier; specify dialogue burden allocation separately from required proof strength and add a mixed-context adverse example.",
+      "source_pages": [
+        327
+      ]
+    },
+    {
+      "record": "negative_practical",
+      "entry": "26.2",
+      "origin": "book",
+      "peer_stage": "transcription-checked",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "hold",
+        "note": "wording: the conclusion's template says 'not true or true' and so concludes nothing; with premise 5 as stated (B more serious than C) the print concludes 'not true'. The instance in cases/book.yml has the consequences of its example the wrong way round"
+      },
+      "final_stage": "transcription-checked",
+      "comparison": "both hold",
+      "adjudication": "Peer confirms the already repaired negative-presumption formula. Its separate example criticism is newly accepted: the old loaded/accident/delay fixture was still reversed; use unloaded and explicitly identify this as an application, not a printed book example. The existing branch/burden hold remains.",
+      "final_hold_or_approval_reason": "REPAIRED: B>C now yields acting on the false presumption, explicitly. The opposite C>B branch is not silently collapsed into the same ambiguous action. CQ1 is an evidence-progress default. CQ2 burden allocation and CQ3 strength still require distinct external dialogue information. Remaining scope: Negative branch is source-correct and tested; declare the missing true-presumption branch and resolve dialogue metadata before unqualified approval.",
+      "next_action": "Retain the source-correct negative-presumption branch; explicitly exclude or add the true-presumption branch and supply a separate dialogue-burden/probandum contract.",
+      "source_pages": [
+        327
+      ]
+    },
+    {
+      "record": "epistemic_ignorance",
+      "entry": "27",
+      "origin": "book",
+      "peer_stage": "example-passed",
+      "peer_review": {
+        "by": "Fable (first review)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "final_stage": "example-passed",
+      "comparison": "both approve",
+      "adjudication": "Agreed within the declared source interpretation and scope.",
+      "final_hold_or_approval_reason": "All five premises are present, including the bivalence of domain D. The proposition A and knowledge base K retain their membership roles; the conclusion is not-A. No printed CQs for this separate schema. The awkward predicate name true_propositions_contained has negative natural-language content, but it is an opaque fact, not a computed double negation.",
+      "next_action": "Retain the recorded interpretation and source provenance; include only with a passing complete commit-matched engine/library gate. Re-review semantic or burden changes rather than regenerating expectations.",
+      "source_pages": [
+        328
+      ]
+    }
+  ]
+}

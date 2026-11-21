@@ -1,3 +1,5 @@
+> **Dated follow-up:** this independent audit is preserved in full. Subsequent PR13 corrections and accepted aliases are recorded in `peer13-second-followup.md`; `record-dispositions.md` is the current consolidated decision register.
+
 # Independent source audit: compendium entries 28–60
 
 ## Decision

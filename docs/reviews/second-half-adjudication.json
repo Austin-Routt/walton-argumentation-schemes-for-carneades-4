@@ -5965,7 +5965,7 @@
           "I"
         ],
         "conclusions": [
-          "reasonable_case(I)"
+          "reasonable_believe(I)"
         ],
         "premises": [
           "image(P,I)",
@@ -5997,7 +5997,35 @@
         }
       ],
       "original_source_status": "original cited work not independently certified by this audit; supplied compendium checked",
-      "approval_scope": "source interpretation and declared bounded case semantics; aggregate integration/release checks belong to root review"
+      "approval_scope": "source interpretation and declared bounded case semantics; aggregate integration/release checks belong to root review",
+      "followup_reviews": [
+        {
+          "date": "2026-11-21",
+          "review": "Independent PR13 follow-up canonicalization",
+          "integrated_commit": "15a5e155647f0df098c62aa507ad1a3822fc03dc",
+          "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+          "record": "perception",
+          "reviewed_formula_changes": {
+            "conclusions": {
+              "before": [
+                "reasonable_case(I)"
+              ],
+              "after": [
+                "reasonable_believe(I)"
+              ]
+            }
+          },
+          "source_pages": [
+            345,
+            346
+          ],
+          "decision": "Approve the safe canonical statement identity; retain the record's existing source stage and all other qualifications.",
+          "evidence": [
+            "docs/reviews/peer13-second-followup.md",
+            "docs/reviews/pr13-reconciliation.md"
+          ]
+        }
+      ]
     },
     {
       "record": "appearance",

@@ -1,3 +1,5 @@
+> **Dated follow-up:** this independent audit is preserved in full. The subsequent PR13 corrections and accepted aliases are recorded in `peer13-first-half-addendum.md`; `record-dispositions.md` is the current consolidated decision register.
+
 # Independent review of book entries 1–27
 
 **Review date:** 2026-11-21. **Baseline repository:** `49ad425cbf7afeebcbd9a07ee479d60681ca33ea`.
