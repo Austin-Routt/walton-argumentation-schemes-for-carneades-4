@@ -29,6 +29,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"reflect"
 	"sort"
 	"strings"
 
@@ -253,6 +254,34 @@ func CaseRoundTrip(cli *CLI, root string, c Case) []string {
 		return []string{fmt.Sprintf("output is not YAML: %v %v", err1, err2)}
 	}
 	var probs []string
+	// the exit criterion of PLAN.md Phase 4: the same theory, parameters,
+	// expected labels, questioned statements and defaults, and the graph
+	// read back passes validation
+	var d1, d2 map[string]interface{}
+	_ = yaml.Unmarshal([]byte(first.Stdout), &d1)
+	_ = yaml.Unmarshal([]byte(second.Stdout), &d2)
+	for _, k := range []string{"language", "argument_schemes", "issue_schemes", "weighing_functions", "tests", "questioned", "defaults", "assumptions"} {
+		if !reflect.DeepEqual(d1[k], d2[k]) {
+			probs = append(probs, k+" differs after the round trip")
+		}
+	}
+	params := func(d map[string]interface{}) map[string]interface{} {
+		out := map[string]interface{}{}
+		if args, ok := d["arguments"].(map[interface{}]interface{}); ok {
+			for id, a := range args {
+				if m, ok := a.(map[interface{}]interface{}); ok {
+					out[fmt.Sprint(id)] = m["parameters"]
+				}
+			}
+		}
+		return out
+	}
+	if !reflect.DeepEqual(params(d1), params(d2)) {
+		probs = append(probs, "argument parameters differ after the round trip")
+	}
+	if r := cli.Run(first.Stdout, "check"); r.Exit != 0 {
+		probs = append(probs, "the exported graph does not pass check: "+firstLine(r.Stderr))
+	}
 	for id, a := range l1 {
 		if b, ok := l2[terms.Normalize(id)]; !ok {
 			if b, ok = l2[id]; !ok {
