@@ -172,8 +172,12 @@ func observeCaseGraph(ag *caes.ArgGraph, l caes.Labelling) caseObservation {
 		o.labels[terms.Normalize(id)] = l[s].String()
 	}
 	for _, a := range ag.Arguments {
-		if a != nil && a.Scheme != nil {
-			o.argument(a.Scheme.Id, a.Parameters)
+		if a != nil {
+			scheme := "linked"
+			if a.Scheme != nil {
+				scheme = a.Scheme.Id
+			}
+			o.argument(scheme, a.Parameters)
 		}
 	}
 	for _, is := range ag.Issues {

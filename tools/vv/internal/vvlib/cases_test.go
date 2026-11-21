@@ -101,6 +101,37 @@ questioned: [p, d]
 	}
 }
 
+func TestCaseObservesImplicitLinkedExceptions(t *testing.T) {
+	cli := caseTestCLI(t)
+	c := Case{Name: "observation/generated-linked", Graph: `language:
+  p/0: P
+  q/0: Q
+  e/0: E
+argument_schemes:
+  - id: rule
+    premises: [p]
+    conclusions: [q]
+    exceptions: [e]
+`, Assumptions: []string{"p"}, Arguments: []string{"rule()", "linked()"}, In: []string{"q"}}
+	for _, run := range []struct {
+		name string
+		fn   func(Case) []string
+	}{
+		{"API", func(c Case) []string { return RunCase(RepoRoot(), c) }},
+		{"CLI", func(c Case) []string { return CaseRoundTrip(cli, RepoRoot(), c) }},
+	} {
+		if p := run.fn(c); len(p) != 0 {
+			t.Fatalf("%s positive linked control: %v", run.name, p)
+		}
+		negative := c
+		negative.Arguments = []string{"rule()"}
+		negative.NoArguments = []string{"linked"}
+		if p := run.fn(negative); len(p) == 0 {
+			t.Fatalf("%s accepted forbidden generated linked argument", run.name)
+		}
+	}
+}
+
 const selectionCaseLibrary = `language:
   p/1: "%s has P"
   q/1: "%s has Q"
