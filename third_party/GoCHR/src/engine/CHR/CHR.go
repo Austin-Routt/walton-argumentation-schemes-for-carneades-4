@@ -700,6 +700,18 @@ func CHRsolver(rs *RuleStore, max int) {
 	if CHRtrace != 0 {
 		printCHRStore(rs, "New goal:")
 	}
+	if isPropagationProgram(rs) {
+		// set semantics and propagation rules only (propagate.go)
+		propagationSolver(rs, max)
+		if rs.Stopped != nil {
+			TraceHeadln(1, 1, "GoChr inference engine stopped: ", rs.Stopped)
+		}
+		reduceStore(rs)
+		if CHRtrace > 1 {
+			printCHRStore(rs, "Result:")
+		}
+		return
+	}
 	i := 0
 	ruleFound := true
 	if CHRtrace == 0 {
