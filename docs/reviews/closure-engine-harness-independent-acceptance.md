@@ -61,6 +61,13 @@ native tests passed with both Go 1.24.13 and Go 1.27.4. The logs are
 `fresh-audit/engine-focused-go1.27.4.log` in the review evidence. Full engine
 build, vet, test and race gates remain part of final frozen-commit acceptance.
 
+A subsequent boundary review found a separate public-API origin defect:
+explicitly stipulating an existing questioned default did not promote it out
+of default status. The reproduced finding, repair and independent acceptance
+are recorded in `closure-assumption-origin-independent-acceptance.md`. That
+addendum supersedes any inference that the focused review above established
+the absence of further defects.
+
 ### Case expectations and actual library selection
 
 The new observation layer checks declared `in`, `out`, `not_in`, required
