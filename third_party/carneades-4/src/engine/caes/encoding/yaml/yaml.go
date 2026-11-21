@@ -57,6 +57,7 @@ type (
 		Guards      []string
 		Meta        caes.Metadata
 		Premises    []string
+		Roles       []string // the role of each premise, as USAGE.md documents (PLAN.md 4.3)
 		Variables   []string
 		Weight      interface{}
 		// string
@@ -260,7 +261,11 @@ func scanArgMapGraph(m *argMapGraph) (*argMapGraph, error) {
 	m.caesArgSchemes = []*caes.Scheme{}
 	for _, as := range m.Argument_schemes {
 		id := as.Id
+		if len(as.Roles) > len(as.Premises) {
+			return nil, fmt.Errorf(" *** Semantic Error: scheme %s has %d roles for %d premises\n", id, len(as.Roles), len(as.Premises))
+		}
 		s := caes.Scheme{Id: id, Metadata: as.Meta, Variables: as.Variables, Weight: as.caesWeight,
+			WeightSpec: as.Weight, Roles: normStringVec(as.Roles),
 			Premises: as.Premises, Assumptions: as.Assumptions, Exceptions: as.Exceptions,
 			Deletions: normStringVec(as.Deletions),
 			Guards:    normStringVec(as.Guards), Conclusions: normStringVec(as.Conclusions)}
@@ -293,6 +298,7 @@ func caesArgMapGraph2caes(m *argMapGraph) (caesAg *caes.ArgGraph, err error) {
 	theory := caes.NewTheory()
 	theory.Language = m.Language
 	theory.WeighingFunctions = m.caesWeighingFunctions
+	theory.WeighingSpecs = m.Weighing_functions
 	theory.ArgSchemes = m.caesArgSchemes
 	theory.IssueSchemes = m.Issue_schemes
 
@@ -1800,7 +1806,7 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 	if len(stipulated) != 0 {
 		fmt.Fprintf(f, "assumptions:\n")
 		for _, stat := range stipulated {
-			fmt.Fprintf(f, "%s- %s\n", sp1, stat)
+			fmt.Fprintf(f, "%s- %s\n", sp1, mkYamlString(stat))
 		}
 		/*		fmt.Fprintf(f, "assumptions: [")
 				first := true
@@ -1850,11 +1856,11 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 					if first == true {
 						// fmt.Fprintf(f, "%spremises: [%s", sp2, s)
 						fmt.Fprintf(f, "%spremises:\n", sp2)
-						fmt.Fprintf(f, "%s- %s\n", sp3, s)
+						fmt.Fprintf(f, "%s- %s\n", sp3, mkYamlString(s))
 						first = false
 					} else {
 						// fmt.Fprintf(f, ",%s", s)
-						fmt.Fprintf(f, "%s- %s\n", sp3, s)
+						fmt.Fprintf(f, "%s- %s\n", sp3, mkYamlString(s))
 					}
 				}
 			}
@@ -1862,7 +1868,7 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 				fmt.Fprintf(f, "]\n")
 			}*/
 			if ref_caesAg_Arg.Conclusion != nil {
-				fmt.Fprintf(f, "%sconclusion: %s\n", sp2, ref_caesAg_Arg.Conclusion.Id)
+				fmt.Fprintf(f, "%sconclusion: %s\n", sp2, mkYamlString(ref_caesAg_Arg.Conclusion.Id))
 			}
 			if ref_caesAg_Arg.Weight != 0.0 {
 				fmt.Fprintf(f, "%sweight: %4.2f\n", sp2, ref_caesAg_Arg.Weight)
@@ -1871,18 +1877,15 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 				fmt.Fprintf(f, "%sscheme: %s\n", sp2, ref_caesAg_Arg.Scheme.Id)
 			}
 			if ref_caesAg_Arg.Parameters != nil && len(ref_caesAg_Arg.Parameters) != 0 {
-				fmt.Fprintf(f, "%sparameters: ", sp2)
-				for idx, para := range ref_caesAg_Arg.Parameters {
-					if idx == 0 {
-						fmt.Fprintf(f, "[%s", para)
-					} else {
-						fmt.Fprintf(f, ", %s", para)
-					}
+				// one parameter per line, quoted where YAML needs it: a flow
+				// list split liable(acme,smith) at its comma (E-EXPORT)
+				fmt.Fprintf(f, "%sparameters:\n", sp2)
+				for _, para := range ref_caesAg_Arg.Parameters {
+					fmt.Fprintf(f, "%s- %s\n", sp3, mkYamlString(para))
 				}
-				fmt.Fprintf(f, "]\n")
 			}
 			if ref_caesAg_Arg.Undercutter != nil {
-				fmt.Fprintf(f, "%sundercutter: %s\n", sp2, ref_caesAg_Arg.Undercutter.Id)
+				fmt.Fprintf(f, "%sundercutter: %s\n", sp2, mkYamlString(ref_caesAg_Arg.Undercutter.Id))
 			}
 		}
 	}
@@ -1902,64 +1905,29 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 	writeTheory(f, caesAg.Theory)
 
 	if caesAg.ExpectedLabeling != nil && len(caesAg.ExpectedLabeling) != 0 {
-		fmt.Fprintf(f, "labels:\n")
-		in := []string{}
-		out := []string{}
-		undec := []string{}
+		// under tests:, the key the importer reads (it was labels:, which
+		// the importer ignores; E-EXPORT)
+		fmt.Fprintf(f, "tests:\n")
+		byLabel := map[caes.Label][]string{}
 		for stat, lbl := range caesAg.ExpectedLabeling {
-			switch lbl {
-			case caes.Undecided:
-				undec = append(undec, stat)
-			case caes.In:
-				in = append(in, stat)
-			case caes.Out:
-				out = append(out, stat)
-			}
-
+			byLabel[lbl] = append(byLabel[lbl], stat)
 		}
-		if len(in) != 0 {
-			fmt.Fprintf(f, "%sin: ", sp2)
-			first := true
-			for _, stat := range in {
-				if !first {
-					fmt.Fprintf(f, ", %s", mkYamlString(stat))
-				} else {
-					fmt.Fprintf(f, "[%s", mkYamlString(stat))
-					first = false
-				}
+		for _, k := range []struct {
+			key string
+			lbl caes.Label
+		}{{"in", caes.In}, {"out", caes.Out}, {"undecided", caes.Undecided}} {
+			stats := byLabel[k.lbl]
+			if len(stats) == 0 {
+				continue
 			}
-			fmt.Fprintf(f, "]\n")
-		}
-
-		if len(out) != 0 {
-			fmt.Fprintf(f, "%sout: ", sp2)
-			first := true
-			for _, stat := range out {
-				if !first {
-					fmt.Fprintf(f, ", %s", mkYamlString(stat))
-				} else {
-					fmt.Fprintf(f, "[%s", mkYamlString(stat))
-					first = false
-				}
+			sort.Strings(stats)
+			fmt.Fprintf(f, "%s%s:\n", sp1, k.key)
+			for _, stat := range stats {
+				fmt.Fprintf(f, "%s- %s\n", sp2, mkYamlString(stat))
 			}
-			fmt.Fprintf(f, "]\n")
 		}
-
-		if len(undec) != 0 {
-			fmt.Fprintf(f, "%sundecided: ", sp2)
-			first := true
-			for _, stat := range undec {
-				if !first {
-					fmt.Fprintf(f, ", %s", mkYamlString(stat))
-				} else {
-					fmt.Fprintf(f, "[%s", mkYamlString(stat))
-					first = false
-				}
-			}
-			fmt.Fprintf(f, "]\n")
-		}
-
 	}
+
 
 	//	// Write out the theory, as a YAML comment, for debugging
 	//	t := caesAg.Theory
@@ -2024,6 +1992,26 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 // of a theory, so that an exported graph whose arguments use schemes can be
 // imported again. A scheme's weighing function is not written: only the
 // default one survives a round trip so far.
+// writeSpec writes a value as it was read from YAML (a weight or a weighing
+// function) under a key, indented by sp.
+func writeSpec(f io.Writer, sp, key string, v interface{}) {
+	out, err := yaml.Marshal(v)
+	if err != nil {
+		return
+	}
+	text := strings.TrimRight(string(out), "\n")
+	switch v.(type) {
+	case map[interface{}]interface{}, map[string]interface{}, []interface{}:
+	default:
+		fmt.Fprintf(f, "%s%s: %s\n", sp, key, text)
+		return
+	}
+	fmt.Fprintf(f, "%s%s:\n", sp, key)
+	for _, line := range strings.Split(text, "\n") {
+		fmt.Fprintf(f, "%s%s%s\n", sp, spPlus, line)
+	}
+}
+
 func writeTheory(f io.Writer, t *caes.Theory) {
 	if t == nil {
 		return
@@ -2048,6 +2036,17 @@ func writeTheory(f io.Writer, t *caes.Theory) {
 			fmt.Fprintf(f, "%s%s: %s\n", sp1, mkYamlString(k), mkYamlString(t.Language[k]))
 		}
 	}
+	if len(t.WeighingSpecs) > 0 {
+		keys := make([]string, 0, len(t.WeighingSpecs))
+		for k := range t.WeighingSpecs {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		fmt.Fprintf(f, "weighing_functions:\n")
+		for _, k := range keys {
+			writeSpec(f, sp1, mkYamlString(k), t.WeighingSpecs[k])
+		}
+	}
 	if len(t.ArgSchemes) > 0 {
 		fmt.Fprintf(f, "argument_schemes:\n")
 		for _, s := range t.ArgSchemes {
@@ -2055,6 +2054,10 @@ func writeTheory(f io.Writer, t *caes.Theory) {
 			in := sp1 + "  " // the keys of a list item align with "id"
 			writeMetaData(f, in, in+spPlus, s.Metadata)
 			list(in, "variables", s.Variables)
+			if s.WeightSpec != nil {
+				writeSpec(f, in, "weight", s.WeightSpec)
+			}
+			list(in, "roles", s.Roles)
 			list(in, "premises", s.Premises)
 			list(in, "assumptions", s.Assumptions)
 			list(in, "exceptions", s.Exceptions)

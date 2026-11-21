@@ -104,4 +104,4 @@ Checked by: `static/no-reserved-functor`, `reserved-predicate-names-are-rejected
 
 ## Interchange (Phase 4)
 
-A graph exported and read back in a new process has the same theory, language, schemes, parameters, expected labels, questioned statements and stipulations, and recomputes the same labels. Checked by: `yaml-export-can-be-reimported`, `export-keeps-compound-parameters`, `export-keeps-expected-labels`, `cli-reads-its-own-yaml`, `cli-output-stays-valid`, `scheme-roles-are-imported`; issues E-EXPORT, E-ROLES.
+A graph exported and read back in a new process has the same theory, language, schemes (with their weights and roles), weighing functions, parameters, expected labels (under `tests:`), questioned statements, defaults and stipulations, and recomputes the same labels. Checked by: `yaml-export-can-be-reimported`, `export-keeps-compound-parameters`, `export-keeps-expected-labels`, `cli-reads-its-own-yaml`, `cli-output-stays-valid`, `scheme-roles-are-imported`; issues E-EXPORT, E-ROLES.

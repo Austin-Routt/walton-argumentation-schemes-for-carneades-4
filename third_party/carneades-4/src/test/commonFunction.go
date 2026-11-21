@@ -80,12 +80,12 @@ func checkLabeling(l caes.Labelling, stats map[string]*caes.Statement, expectedL
 }
 
 // exportLoss lists the examples whose expected labels do not survive export
-// and import: export writes weighing functions only as comments, so the
-// constant weights of rebuttal, the criteria of mcda-porsche and the
-// preferences of lex are lost (E-EXPORT in tools/vv/known_issues.yml,
-// PLAN.md 4.1). checkRoundTrip fails for any other example that loses its
-// labels, and for a listed one that keeps them, so the list cannot go stale.
-var exportLoss = map[string]bool{"rebuttal.yml": true, "mcda-porsche.yml": true, "lex.yml": true}
+// and import. It is empty since PLAN.md 4.1 and 4.2: the export writes the
+// weights, the weighing functions and the expected labels (rebuttal,
+// mcda-porsche and lex lost theirs before). checkRoundTrip fails for any
+// example that loses its labels, and for a listed one that keeps them, so
+// the list cannot go stale.
+var exportLoss = map[string]bool{}
 
 func checkRoundTrip(t *testing.T, file string, err error) {
 	t.Helper()

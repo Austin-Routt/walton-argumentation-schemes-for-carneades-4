@@ -2,6 +2,14 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — a file format that round-trips (`PLAN.md` 4.1 to 4.3)
+
+* The YAML export (and the JSON export, which goes through it) writes each argument's parameters one per line and quoted where YAML needs it: a flow list split `liable(acme,smith)` at its comma. Statement ids in premises, conclusions, undercutters and assumptions are quoted the same way.
+* Expected labels are written under `tests:`, the key the importer reads (they were written under `labels:` and lost).
+* The theory is written with each scheme's weight and roles and with the named weighing functions, as they were read: constant weights, criteria and preferences were written only as comments, so `rebuttal`, `mcda-porsche` and `lex` lost their labels on a round trip.
+* Scheme `roles`, which USAGE.md documents, are imported and give each premise its role (E-ROLES); more roles than premises is an import error.
+* The ledger of known failures is empty: all 6,692 checks pass.
+
 ## 2026-11-21 — the scheme repairs of release R1 (`PLAN.md` Phase 3)
 
 Each repair names its page, says how the passage is read, and has a positive and an adverse reference case in `tools/vv/cases/phase3.yml` (D13); `tools/validate_schemes.py` pins the instantiated statements of each one (3.10). The new predicate names follow the rule of D6 and are recorded with their pages in `tools/vv/source_ledger.yml`. All of these are **executable interpretations** of the book until Phase 5 has checked them. Identifiers change only where a scheme had to: none of the nine repaired schemes could be evaluated through the command before.

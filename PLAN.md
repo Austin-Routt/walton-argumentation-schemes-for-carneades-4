@@ -233,7 +233,9 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 2.6 Names and terms: E-CAPTURE, E-TERMS; deletions and guards unsupported, arithmetic invalid (contract 1). X-IS's engine side (the validator rejects reserved names) lands with the library repair 3.6
 - [x] 2.7 Questioned statements (X-ASSUME): `questioned:`, defaults kept apart from stipulations; per-scheme check ported
 - [x] 2.8 Arguments that name a scheme (E-EXPLICIT): validated and reported, requests carried out
-- [x] 4.1, first half: export writes the theory (the parameter quoting is still open)
+- [x] 4.1 Export writes the theory, with weights and weighing functions, and quotes parameters (E-EXPORT)
+- [x] 4.2 Expected labels survive (`tests:`), and so do `questioned:` and the origin of assumptions (`defaults:`)
+- [x] 4.3 `roles` are imported (E-ROLES)
 - [x] Phase 3: 3.1 to 3.11 (nine repairs, the prohibition record, records 50, 57 and 22.4, the negation issue scheme, the validator); X-IS's engine side; gate S reached (every file checks clean, all 118 schemes run through the command, the ledger holds only E-EXPORT and E-ROLES)
 - [ ] Phase 4; gate R; release R1
 - [ ] Phase 5; gate L; release R2

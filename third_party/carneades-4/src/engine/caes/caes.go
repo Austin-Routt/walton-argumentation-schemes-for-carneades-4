@@ -108,6 +108,10 @@ type Scheme struct {
 	Guards    []string // list of atomic formulas
 	// Note that multiple conclusions are allowed, as in CHR
 	Conclusions []string // list of atomic formulas or schema variables
+	// WeightSpec is the weight as written in the input (a weighing function's
+	// name, or a constant, criteria or preference specification), kept so
+	// that an export can write it back (PLAN.md 4.1)
+	WeightSpec interface{}
 }
 
 // Proof Standards
@@ -144,6 +148,9 @@ type Rulebase interface {
 type Theory struct { // aka Knowledge Base
 	Language          Language
 	WeighingFunctions map[string]WeighingFunction
+	// WeighingSpecs are the named weighing functions as written in the input,
+	// kept for export (PLAN.md 4.1)
+	WeighingSpecs     map[string]interface{}
 	ArgSchemes        []*Scheme
 	IssueSchemes      map[string]*IssueScheme
 	schemeIndex       map[string]*Scheme
