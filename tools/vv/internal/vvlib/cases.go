@@ -141,7 +141,9 @@ func importCase(data []byte, c Case) (*caes.ArgGraph, error) {
 	if err := selectCaseSchemes(ag, c.Schemes); err != nil {
 		return nil, err
 	}
-	ag.Assumptions = append(ag.Assumptions, c.Assumptions...)
+	for _, fact := range c.Assumptions {
+		ag.AddAssumption(fact)
+	}
 	ag.Questioned = append(ag.Questioned, c.Questioned...)
 	return ag, nil
 }
@@ -360,7 +362,9 @@ func variantProblems(data []byte, c Case) []string {
 				return nil, nil, nil, err
 			}
 		}
-		ag.Assumptions = append(ag.Assumptions, assumptions...)
+		for _, fact := range assumptions {
+			ag.AddAssumption(fact)
+		}
 		ag.Questioned = append(ag.Questioned, c.Questioned...)
 		if err := ag.Infer(); err != nil {
 			return ag, nil, s, err

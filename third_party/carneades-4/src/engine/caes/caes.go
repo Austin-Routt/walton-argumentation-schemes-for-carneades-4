@@ -888,11 +888,27 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 	}
 }
 
-// Add a statement id to the assumptions of an argument graph.  Assumes a
-// statement with this id has already been declared in the graph
+// AddAssumption explicitly stipulates a statement, including one previously
+// introduced as a scheme default. Questioning does not withdraw a stipulation.
+// Clear aliases too: an API client may not yet have normalized its graph.
 func (ag *ArgGraph) AddAssumption(stmt_id string) {
-	ag.assums[stmt_id] = true
-	ag.Assumptions = append(ag.Assumptions, stmt_id)
+	n := terms.Normalize(stmt_id)
+	for id := range ag.Defaults {
+		if terms.Normalize(id) == n {
+			delete(ag.Defaults, id)
+		}
+	}
+	ag.appendAssumption(n)
+}
+
+// appendAssumption records an already normalized assumption without changing
+// its origin. Scheme defaults must not pass through the stipulating API.
+func (ag *ArgGraph) appendAssumption(id string) {
+	if ag.assums == nil {
+		ag.assums = make(map[string]bool)
+	}
+	ag.assums[id] = true
+	ag.Assumptions = append(ag.Assumptions, id)
 }
 
 // addDefault assumes a statement because a scheme lists it under its
@@ -909,7 +925,7 @@ func (ag *ArgGraph) addDefault(stmt_id string) {
 		ag.Defaults = map[string]bool{}
 	}
 	ag.Defaults[n] = true
-	ag.AddAssumption(stmt_id)
+	ag.appendAssumption(n)
 }
 
 // makeIssue: match the patterns of an issue scheme against the

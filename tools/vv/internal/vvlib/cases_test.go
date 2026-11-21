@@ -62,6 +62,45 @@ questioned: [d]
 	}
 }
 
+func TestCaseFactsPromoteExistingDefaults(t *testing.T) {
+	cli := caseTestCLI(t)
+	for _, fact := range []string{"p", "¬¬p"} {
+		c := Case{
+			Name: "context/stipulate-existing-default",
+			Graph: `language:
+  p/0: P
+  q/0: Q
+  r/0: R
+  d/0: D
+  blocked/0: Blocked
+argument_schemes:
+  - id: joint
+    premises: [p, q]
+    conclusions: [r]
+  - id: still_default
+    premises: [q]
+    assumptions: [d]
+    conclusions: [blocked]
+defaults: [p, d]
+questioned: [p, d]
+`,
+			Assumptions: []string{fact, "q"},
+			Arguments:   []string{"joint()"},
+			In:          []string{"p", "q", "r"},
+			NotIn:       []string{"d", "blocked"},
+		}
+		if probs := RunCase(RepoRoot(), c); len(probs) != 0 {
+			t.Fatalf("API stipulation %q: %v", fact, probs)
+		}
+		if probs := CaseRoundTrip(cli, RepoRoot(), c); len(probs) != 0 {
+			t.Fatalf("CLI stipulation %q: %v", fact, probs)
+		}
+		if probs := variantProblems([]byte(c.Graph), c); len(probs) != 0 {
+			t.Fatalf("case variants %q: %v", fact, probs)
+		}
+	}
+}
+
 const selectionCaseLibrary = `language:
   p/1: "%s has P"
   q/1: "%s has Q"
