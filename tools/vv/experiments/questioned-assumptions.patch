@@ -1,0 +1,106 @@
+--- a/src/engine/caes/caes.go	2024-10-15 10:13:10.000000000 -0500
++++ b/src/engine/caes/caes.go	2026-11-21 02:38:00.814406616 -0600
+@@ -39,6 +39,11 @@
+ 	References       map[string]Metadata // key -> metadata
+ 	Theory           *Theory
+ 	Assumptions      []string         // atomic formulas or statement keys
++	// Questioned lists statements that have been called into question. A
++	// questioned statement is not assumed: neither because a scheme lists it
++	// under its assumptions, nor because Assumptions names it. It then has to
++	// be supported by an argument, like an ordinary premise.
++	Questioned []string
+ 	assums           map[string]bool  // map representation of the assumptions
+ 	ExpectedLabeling map[string]Label // for testing
+ }
+@@ -225,12 +230,39 @@
+ 	return result
+ }
+ 
++// IsQuestioned reports whether a statement has been called into question.
++func (ag *ArgGraph) IsQuestioned(stmt_id string) bool {
++	n := terms.Normalize(stmt_id)
++	for _, q := range ag.Questioned {
++		if terms.Normalize(q) == n {
++			return true
++		}
++	}
++	return false
++}
++
++// dropQuestioned removes the statements that have been called into question
++// from the assumptions of the graph.
++func (ag *ArgGraph) dropQuestioned() {
++	if len(ag.Questioned) == 0 {
++		return
++	}
++	keep := []string{}
++	for _, k := range ag.Assumptions {
++		if !ag.IsQuestioned(k) {
++			keep = append(keep, k)
++		}
++	}
++	ag.Assumptions = keep
++}
++
+ // Initialize a labelling by making all assumptions In
+ // other positions of each issue with an assumption Out,
+ // and unassumed statements without arguments Out.
+ func (l Labelling) init(ag *ArgGraph) {
+ 	// Normalize the assumptions
+ 	s := []string{}
++	ag.dropQuestioned()
+ 	for _, k := range ag.Assumptions {
+ 		s = append(s, terms.Normalize(k))
+ 	}
+@@ -619,7 +651,7 @@
+ 							stmt = &s
+ 
+ 						}
+-						if assumptions {
++						if assumptions && !ag.IsQuestioned(term2.String()) {
+ 							ag.AddAssumption(term2.String())
+ 						}
+ 						role := ""
+--- a/src/engine/caes/inference.go	2024-10-15 10:13:10.000000000 -0500
++++ b/src/engine/caes/inference.go	2026-11-21 02:38:00.812920311 -0600
+@@ -65,6 +65,8 @@
+ // and argument graph is left unchanged. If all goes well, the argument
+ // graph is updated and nil is returned.
+ func (ag *ArgGraph) Infer() error {
++	// a statement that has been called into question is no fact to reason from
++	ag.dropQuestioned()
+ 	if len(ag.Theory.ArgSchemes) != 0 {
+ 		// rb := TheoryToSWIRulebase(ag.Theory)
+ 		rb := TheoryToRuleStore(ag.Theory)
+--- a/src/engine/caes/encoding/yaml/yaml.go	2024-10-15 10:13:10.000000000 -0500
++++ b/src/engine/caes/encoding/yaml/yaml.go	2026-11-21 02:31:45.422882028 -0600
+@@ -29,6 +29,7 @@
+ 		Arguments             map[string]*umArgument
+ 		Argument_schemes      []*umArgScheme
+ 		Assumptions           []string
++		Questioned            []string
+ 		caesArgSchemes        []*caes.Scheme
+ 		caesLabels            map[string]caes.Label
+ 		caesStatements        map[string]*caes.Statement
+@@ -433,6 +434,8 @@
+ 
+ 	}
+ 	// fmt.Printf("   ---  Arguments --- \n %v \n ------End Arguments --- \n", caesAg.Arguments)
++	// Statements called into question
++	caesAg.Questioned = normStringVec(m.Questioned)
+ 	// Assumptions
+ 	caesAg.Assumptions = []string{}
+ 	for _, yamlAss := range collOfAssumptions {
+@@ -1726,6 +1729,12 @@
+ 			}
+ 		}
+ 	}
++	if len(caesAg.Questioned) != 0 {
++		fmt.Fprintf(f, "questioned:\n")
++		for _, stat := range caesAg.Questioned {
++			fmt.Fprintf(f, "%s- %s\n", sp1, mkYamlString(stat))
++		}
++	}
+ 	if caesAg.Assumptions != nil && len(caesAg.Assumptions) != 0 {
+ 		fmt.Fprintf(f, "assumptions:\n")
+ 		for _, stat := range caesAg.Assumptions {

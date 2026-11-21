@@ -1,0 +1,46 @@
+# The verification gate of PLAN.md (D7): the two Python checks of the scheme
+# files, a check of the engine sources against their archives, and the suite in
+# tools/vv, which runs the engine in third_party/ on every scheme.
+#
+# A green run means: no check fails that tools/vv/known_issues.yml does not
+# list, and no listed check has started to pass. It is not a claim that the
+# engine or the library is stable; see PLAN.md for the gates.
+name: verify
+on:
+  push:
+  pull_request:
+jobs:
+  vv:
+    name: tools/vv (Go ${{ matrix.go }})
+    runs-on: ubuntu-latest
+    continue-on-error: ${{ matrix.informational }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - go: "1.24"       # the version the suite and its ledger were measured with
+            informational: false
+          - go: "stable"     # early warning of toolchain changes; does not block
+            informational: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - run: sudo apt-get update && sudo apt-get install -y graphviz unzip
+      - name: tools/vv/run.sh
+        env:
+          GOFLAGS: -mod=mod
+          VV_RESULTS: ${{ github.workspace }}/vv-results.jsonl
+        run: tools/vv/run.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: vv-results-go-${{ matrix.go }}
+          path: vv-results.jsonl
+          if-no-files-found: ignore
