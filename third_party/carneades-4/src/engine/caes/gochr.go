@@ -38,6 +38,10 @@ func RuleStoreOf(t *Theory) (*chr.RuleStore, error) {
 	// fact, or derive each other's premises, run to MAXRULEAPPS.
 	rs.Unique = true
 	rs.MaxTermSize = MAXTERMSIZE
+	// ¬S is the explicit negation of S (docs/contracts.md, contract 4): it is
+	// matched by rule heads like any statement, also when it reaches a rule
+	// through a statement variable, and ¬¬S is read as S.
+	rs.ExplicitNegation = true
 	for _, s := range t.ArgSchemes {
 		// If the scheme has no conclusions, skip the scheme
 		// and assume it only defines a weighing function but no rule

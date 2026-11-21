@@ -501,16 +501,8 @@ func StaticChecks(file string, s *caes.Scheme) []Result {
 	}
 	out = append(out, res(file, id, "static/no-variable-capture", capture))
 
-	// negated premises: GoCHR files ¬p(...) under its built-in constraints, where rule heads never look
-	neg := []string{}
-	for _, p := range append(append([]string{}, s.Premises...), s.Deletions...) {
-		if t, ok := parse(p); ok {
-			if c, isC := t.(terms.Compound); isC && c.Functor == "¬" {
-				neg = append(neg, Norm(p))
-			}
-		}
-	}
-	out = append(out, res(file, id, "static/no-negated-premise", neg))
+	// static/no-negated-premise is removed with PLAN.md 2.4: negated premises
+	// match since then (contract 4), and the book's schemes have them.
 
 	// functors the rule engine treats as built-ins when they appear in a rule body
 	reserved := []string{}

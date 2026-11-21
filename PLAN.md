@@ -205,7 +205,7 @@ The reading and the ledger start now; edits wait for gate S. `go run ./cmd/schem
 * No quoted strings containing spaces: `"it rains"` is cut off at the space when the file is read.
 * In YAML, write lists of terms one per line. `[p(a,b)]` is read as the two strings `p(a` and `b)`.
 * Do not use `is` as a predicate name: in a conclusion the rule engine executes it.
-* Do not assume both a statement and its negation: both are labelled in today.
+* Do not assume both a statement and its negation: `check` and `eval` report such a graph as an inconsistent context (exit 3).
 
 ## Implementation status
 
@@ -228,7 +228,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 2.1 A statement joining an issue becomes its position; labelling returns (E-ISSUE)
 - [x] 2.2 Set semantics for ground statements (X-LOOP); the engines' own unit tests run in CI
 - [x] 2.3 Matching (E-MATCH): a propagation solver with a real propagation history for set-semantics programs
-- [ ] 2.4 Negation (X-NEG, E-NEGTEXT)
+- [x] 2.4 Negation (X-NEG, E-NEGTEXT): GoCHR `ExplicitNegation`; `static/no-negated-premise` removed from the suite
 - [ ] 2.5 Repeated inference (E-IDEMP)
 - [ ] 2.6 Names and terms (E-CAPTURE, X-IS, E-TERMS)
 - [ ] 2.7 Questioned statements (X-ASSUME)

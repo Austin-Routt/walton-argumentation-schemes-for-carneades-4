@@ -14,6 +14,7 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+	"strings"
 
 	"github.com/carneades/carneades-4/src/engine/terms"
 )
@@ -546,6 +547,23 @@ func (ag *ArgGraph) Inconsistent() bool {
 	return false
 }
 
+// negationText words the negation of a statement whose text is inner (or,
+// without a text, whose term is raw).
+func negationText(inner, raw string) string {
+	inner = strings.TrimSpace(inner)
+	if inner == "" || inner == raw {
+		return "¬" + raw
+	}
+	// lower-case a sentence-initial article or pronoun, never a name
+	if sp := strings.IndexByte(inner, ' '); sp > 0 {
+		switch inner[:sp] {
+		case "The", "A", "An", "There", "It", "This", "That", "These", "Those", "Some", "No", "All", "Every", "Each":
+			inner = strings.ToLower(inner[:1]) + inner[1:]
+		}
+	}
+	return "It is not the case that " + inner
+}
+
 // Apply a language to a term to construct a string,
 // usually to represent the term in natural language.
 func (l Language) Apply(term1 terms.Term) string {
@@ -571,8 +589,9 @@ func (l Language) Apply(term1 terms.Term) string {
 		spec := functor + "/" + strconv.Itoa(arity)
 		template, ok := l[spec]
 		if !ok {
-			if functor == "¬" {
-				return fmt.Sprintf("¬%s", args...)
+			if functor == "¬" && arity == 1 {
+				// the language applies inside a negation (E-NEGTEXT)
+				return negationText(l.Apply(term1.(terms.Compound).Args[0]), args[0].(string))
 			}
 			fmt.Fprintf(os.Stderr, "Functor not defined in the language: %v\n", spec)
 			return term1.String()

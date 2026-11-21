@@ -15,6 +15,7 @@ import (
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
+	"github.com/carneades/carneades-4/src/engine/terms"
 )
 
 func infer(t *testing.T, src string) *caes.ArgGraph {
@@ -223,5 +224,48 @@ assumptions:
 	}
 	if len(ag.Arguments) != 0 {
 		t.Errorf("%d argument(s) added", len(ag.Arguments))
+	}
+}
+
+// The language applies inside a negation (E-NEGTEXT).
+func TestNegationText(t *testing.T) {
+	l := caes.Language{"p/1": "%s is p.", "goal/1": "The goal is %s."}
+	for in, want := range map[string]string{
+		"¬p(a)":    "It is not the case that a is p.",
+		"¬goal(g)": "It is not the case that the goal is g.",
+		"¬z(a)":    "¬z(a)",
+	} {
+		term, ok := terms.ReadString(in)
+		if !ok {
+			t.Fatalf("cannot read %s", in)
+		}
+		if got := l.Apply(term); got != want {
+			t.Errorf("%s: got %q, want %q", in, got, want)
+		}
+	}
+}
+
+// Negated premises match, also through a statement variable (X-NEG).
+func TestNegatedPremises(t *testing.T) {
+	ag := infer(t, `
+language:
+  says/2: "%s says that %s."
+  p/1: "%s is p."
+  r/1: "%s is r."
+argument_schemes:
+  - id: s6a
+    variables: [W,S]
+    premises: ["says(W,S)"]
+    conclusions: [S]
+  - id: s6b
+    variables: [X]
+    premises: ["¬p(X)"]
+    conclusions: [r(X)]
+assumptions: ["says(ann,¬p(a))", "¬p(b)"]
+`)
+	for _, c := range []string{"r(a)", "r(b)"} {
+		if got := argumentsFor(ag, c); len(got) != 1 {
+			t.Errorf("arguments for %s: %v", c, got)
+		}
 	}
 }

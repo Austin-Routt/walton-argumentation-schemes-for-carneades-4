@@ -94,7 +94,6 @@ and the engine constructs and evaluates the argument, once with the scheme alone
 | `static/id-round-trips` | the scheme id comes back from the engine's term reader as it was written, and has no number or variable in it that the rule engine would compute or bind |
 | `static/range-restricted` | every variable used after the premises occurs in a premise |
 | `static/no-variable-capture` | no declared variable can capture the fresh name of an unbound one |
-| `static/no-negated-premise` | no premise is negated (GoCHR never matches one) |
 | `static/no-reserved-functor` | no conclusion or assumption uses `is/2`, `=/2`, `:=/2` |
 | `static/not-self-feeding` | the scheme does not derive one of its own premises |
 | `…/infer-ok`, `…/terminates` | argument construction returns without error and without hitting the rule limit |
