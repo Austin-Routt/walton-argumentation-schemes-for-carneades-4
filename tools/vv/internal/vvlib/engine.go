@@ -1041,7 +1041,7 @@ func ToolchainChecks() []Result {
 		}
 	}
 	out = append(out, eres("upstream-tests-pass-as-shipped", err == nil,
-		"`go test ./...` fails in: %s (vet findings stop two packages; the CouchDB test aborts the rest unless a database listens on 127.0.0.1:5984)", strings.Join(failed, ", ")))
+		"`go test ./...` fails in: %s", strings.Join(failed, ", ")))
 
 	o, err = goCmd(dir, mod, append([]string{"test", "-count=1", "-vet=off", "-skip", "TestCouchDB"}, pkgs...)...)
 	out = append(out, eres("baseline-upstream-tests-without-couchdb", err == nil, "upstream tests fail even without vet and CouchDB: %.300s", o))

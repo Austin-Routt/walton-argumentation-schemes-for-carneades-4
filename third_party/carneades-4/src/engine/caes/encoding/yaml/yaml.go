@@ -792,7 +792,6 @@ func iface2preference(pref interface{}) (caes.WeighingFunction, []caes.PropertyO
 		return nil, nil,
 			errors.New("*** ERROR wrong type afer preference: '" + fmt.Sprintf("%v", pT) + "'\n")
 	}
-	return nil, nil, nil // dummy return
 }
 
 func iface2criteria(cr interface{}) (caes.WeighingFunction, *caes.Criteria, error) {
@@ -840,7 +839,6 @@ func iface2criteria(cr interface{}) (caes.WeighingFunction, *caes.Criteria, erro
 		return nil, nil,
 			errors.New("*** Error unknown type after criteria: '" + fmt.Sprintf("%v", subT) + "', expected keys-struct with keys 'hard:' and 'soft'\n")
 	}
-	return caes.CriteriaWeighingFunction(&c), &c, nil
 }
 
 func iface2soft(body interface{}, soft map[string]caes.SoftConstraint) (map[string]caes.SoftConstraint, error) {
@@ -933,12 +931,12 @@ func iface2soft(body interface{}, soft map[string]caes.SoftConstraint) (map[stri
 					soft[key.(string)] = caes.SoftConstraint{Factor: factor, NormalizedValues: normValues} // set the NormelizesValues
 				default:
 					return soft,
-						errors.New("*** Error in criteria: soft: key expected factor: ... values: ...-list not '" + fmt.Sprintf("%v' (type=", value, valT) + ")\n")
+						errors.New("*** Error in criteria: soft: key expected factor: ... values: ...-list not '" + fmt.Sprintf("%v' (type=%v", value, valT) + ")\n")
 
 				}
 			default:
 				return soft,
-					errors.New("*** Error in criteria: soft: expected a string-key and not '" + fmt.Sprintf("%v' (type=", key, keyT) + ")\n")
+					errors.New("*** Error in criteria: soft: expected a string-key and not '" + fmt.Sprintf("%v' (type=%v", key, keyT) + ")\n")
 			}
 		}
 	default:
@@ -1590,9 +1588,9 @@ func writeWF(f io.Writer, key, name string, weight caes.WeighingFunction) {
 			fmt.Fprintf(f, "# %shard: [", sp4)
 			for ix, val := range c.HardConstraints {
 				if ix != 0 {
-					fmt.Fprintf(f, ", %s", val)
+					fmt.Fprintf(f, ", %d", val)
 				} else {
-					fmt.Fprintf(f, "%s", val)
+					fmt.Fprintf(f, "%d", val)
 				}
 			}
 			fmt.Fprintf(f, "]\n")

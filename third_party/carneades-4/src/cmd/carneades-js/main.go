@@ -4,18 +4,19 @@ import (
 	"bytes"
 
 	"github.com/carneades/carneades-4/src/engine/caes"
+	dotout "github.com/carneades/carneades-4/src/engine/caes/encoding/dot"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/graphml"
 	"github.com/carneades/carneades-4/src/engine/caes/encoding/yaml"
 	"github.com/gopherjs/gopherjs/js"
 )
 
-func GraphMLExportToString(ag caes.ArgGraph) (string, error) {
+func GraphMLExportToString(ag *caes.ArgGraph) (string, error) {
 	var b bytes.Buffer
 	var err = graphml.Export(&b, ag)
 	return b.String(), err
 }
 
-func DotExportToString(ag caes.ArgGraph) (string, error) {
+func DotExportToString(ag *caes.ArgGraph) (string, error) {
 	var b bytes.Buffer
 	var err = dotout.Export(&b, ag)
 	return b.String(), err
@@ -62,9 +63,9 @@ func evalJs(input string, inputFormat string, outputFormat string) map[string]in
 		str = YamlExportToString(ag)
 		err = nil
 	case "graphml":
-		str, err = GraphMLExportToString(*ag)
+		str, err = GraphMLExportToString(ag)
 	case "dot":
-		str, err = DotExportToString(*ag)
+		str, err = DotExportToString(ag)
 	default:
 		return map[string]interface{}{
 			"err": "invalid output format",

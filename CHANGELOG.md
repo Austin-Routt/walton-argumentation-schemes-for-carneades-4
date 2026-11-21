@@ -13,7 +13,8 @@ No scheme file changed. Each fix is one commit in `third_party/`, with tests in 
 * Argument construction treats facts as a set: composition with division, and `exeptional`, terminate instead of running to the rule limit and starving every later scheme (X-LOOP; GoCHR `RuleStore.Unique`).
 * Limits: reaching the rule limit, or deriving a term over 500 nodes, is an error (`caes.ErrLimitReached`, exit 4) that leaves the graph unchanged; nothing is written to stdout; `InferContext` stops a run from outside (E-BUDGET).
 * Unreadable rule text is an error: GoCHR refuses a premise, conclusion or goal it cannot read in full (it read `broken(` as `broken` and `p(X) q(Y)` as `p(X)`), and `Infer` reports the scheme as invalid input instead of skipping it. When no rule fires, GoCHR returns the goals instead of an empty store (E-PARSE).
-* Gate: 5,948 checks; 359 known failures under 17 issues (390 under 24 before).
+* Build health: both engine modules build, vet and test as shipped, and CI runs all three (`tools/vv/engine-tests.sh`). The GopherJS front end compiles again; `dung/encoding/yaml`, a 2015 copy of the YAML codec that nothing imported and that no longer compiled, is removed (the archive keeps it); vet findings are fixed (among them GoCHR's parse-error messages, which were garbled, and the export of a criteria's hard constraints, written as `%!s(int=0)`); the CouchDB test skips itself without a server instead of ending the test binary; the YAML and JSON tests assert their labels, with the three examples whose weights export loses listed under E-EXPORT (E-BUILD).
+* Gate: 5,948 checks; 356 known failures under 16 issues (390 under 24 before).
 
 ## 2026-11-21 — the reviewed plan, the engine sources and the verification gate
 

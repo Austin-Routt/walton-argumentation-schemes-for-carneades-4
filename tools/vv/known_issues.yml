@@ -40,7 +40,8 @@
 #
 # Fixed in this repository (PLAN.md, Implementation status), so no longer
 # listed: E-EXIT, E-GLOBALS, E-ARGVAL, E-INCONS, E-ISSUE, X-LOOP (but for one
-# library check of exeptional, now filed as minor), E-BUDGET, E-PARSE.
+# library check of exeptional, now filed as minor), E-BUDGET, E-PARSE,
+# E-BUILD.
 #
 # min_checks is the number of checks a complete run produces today. A run with
 # fewer fails: a passing check leaves no entry here, so removing one would
@@ -110,10 +111,6 @@ issues:
     where: engine
     severity: minor
     title: "Scheme `roles` are documented but not imported"
-  - id: E-BUILD
-    where: engine
-    severity: minor
-    title: "Two packages do not compile, go vet reports findings, and `go test ./...` needs a CouchDB server"
   - id: L-MISSING
     where: library
     severity: minor
@@ -121,7 +118,6 @@ issues:
 
 expected:
   # ------------------------------------------------------------------ engine
-  - {issue: E-BUILD,   scheme: (engine), checks: [build-all-packages, go-vet-clean, upstream-tests-pass-as-shipped]}
   - {issue: E-EXPORT,  scheme: (engine), checks: [export-keeps-compound-parameters, export-keeps-expected-labels]}
   - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
   - {issue: E-IDEMP,   scheme: (engine), checks: [infer-is-idempotent, infer-twice-with-exception, withdrawn-assumption-survives-second-infer]}

@@ -606,7 +606,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 		if ok {
 			// bind each schema variable to its value
 			if len(scheme.Variables) != len(parameters) {
-				fmt.Fprintf(os.Stderr, "Scheme formal (%v) and actual parameters (%v) do not match: %v\n", scheme.Variables, parameters)
+				fmt.Fprintf(os.Stderr, "Scheme formal (%v) and actual parameters (%v) do not match\n", scheme.Variables, parameters)
 				return
 			}
 

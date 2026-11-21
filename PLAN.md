@@ -226,7 +226,7 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 1.4 The importer keeps no state between sequential calls (E-GLOBALS)
 - [x] 1.5 The validator checks arguments with one substitution (E-ARGVAL)
 - [x] 1.6 `Inconsistent()` from current assumptions; inconsistent context as an outcome (E-INCONS)
-- [ ] 1.7 Build health (E-BUILD)
+- [x] 1.7 Build health (E-BUILD): both modules build, vet and test as shipped; CI runs them
 - [x] 2.1 A statement joining an issue becomes its position; labelling returns (E-ISSUE)
 - [x] 2.2 Set semantics for ground statements (X-LOOP); the engines' own unit tests run in CI
 - [ ] 2.3 Matching (E-MATCH)
