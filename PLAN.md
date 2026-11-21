@@ -220,8 +220,22 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 0.4 README brought up to date
 - [x] 0.5 Contracts `docs/contracts.md` written (each is met when its issues leave the ledger)
 - [ ] 0.6 Source ledger, one row per record
-- [ ] Phase 1: 1.1 to 1.7
-- [ ] Phase 2: 2.1 to 2.8
+- [x] 1.1 Exit status by outcome (E-EXIT); a panic exits with 6
+- [x] 1.2 Limits as a typed error, graph unchanged, nothing on stdout (E-BUDGET); a term-size limit; `InferContext`
+- [x] 1.3 Unreadable input is an error (E-PARSE); GoCHR returns the goals when no rule fires
+- [x] 1.4 The importer keeps no state between sequential calls (E-GLOBALS)
+- [x] 1.5 The validator checks arguments with one substitution (E-ARGVAL)
+- [x] 1.6 `Inconsistent()` from current assumptions; inconsistent context as an outcome (E-INCONS)
+- [x] 1.7 Build health (E-BUILD): both modules build, vet and test as shipped; CI runs them
+- [x] 2.1 A statement joining an issue becomes its position; labelling returns (E-ISSUE)
+- [x] 2.2 Set semantics for ground statements (X-LOOP); the engines' own unit tests run in CI
+- [ ] 2.3 Matching (E-MATCH)
+- [ ] 2.4 Negation (X-NEG, E-NEGTEXT)
+- [ ] 2.5 Repeated inference (E-IDEMP)
+- [ ] 2.6 Names and terms (E-CAPTURE, X-IS, E-TERMS)
+- [ ] 2.7 Questioned statements (X-ASSUME)
+- [ ] 2.8 Arguments that name a scheme (E-EXPLICIT)
+- [x] 4.1, first half: export writes the theory (the parameter quoting is still open)
 - [ ] Phase 3: 3.1 to 3.11; gate S
 - [ ] Phase 4; gate R; release R1
 - [ ] Phase 5; gate L; release R2

@@ -488,9 +488,14 @@ func (ag *ArgGraph) GroundedLabelling() Labelling {
 					changed = true
 				} else if stmt.Issue != nil && stmt.Issue.ReadyToBeResolved(l) {
 					// Apply proof standards to label the positions of issues
-					// ready to be resolved
+					// ready to be resolved. Only a label that actually changed
+					// counts as progress: otherwise a statement the issue does
+					// not list would keep the loop running for ever.
+					before := positionLabels(stmt.Issue, l)
 					stmt.Issue.Resolve(l)
-					changed = true
+					if positionLabels(stmt.Issue, l) != before {
+						changed = true
+					}
 				}
 			}
 		}
@@ -501,20 +506,40 @@ func (ag *ArgGraph) GroundedLabelling() Labelling {
 	}
 }
 
-// An argument graph is inconsistent if more than one position of some
-// issue has been assumed true.
+// positionLabels summarizes the labels of the positions of an issue, to see
+// whether resolving the issue changed any of them.
+func positionLabels(issue *Issue, l Labelling) string {
+	s := make([]byte, 0, len(issue.Positions))
+	for _, p := range issue.Positions {
+		s = append(s, byte('0'+int(l[p])))
+	}
+	return string(s)
+}
+
+// An argument graph is inconsistent if it assumes more than one position of
+// some issue, or both a statement and its negation (docs/contracts.md,
+// contract 4). The answer is computed from the assumptions as they are now,
+// not from the index that labelling builds.
 func (ag *ArgGraph) Inconsistent() bool {
+	assumed := map[string]bool{}
+	for _, a := range ag.Assumptions {
+		assumed[terms.Normalize(a)] = true
+	}
 	for _, issue := range ag.Issues {
 		found := false
 		for _, p := range issue.Positions {
-			if ag.assums[terms.Normalize(p.Id)] {
+			if assumed[terms.Normalize(p.Id)] {
 				if found {
-					// inconsistency, because a previous position
-					// of the issue was found to be assumed true
-					return false
-				} else {
-					found = true
+					return true
 				}
+				found = true
+			}
+		}
+	}
+	for a := range assumed {
+		if t, ok := terms.ReadString(a); ok {
+			if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 && assumed[c.Args[0].String()] {
+				return true
 			}
 		}
 	}
@@ -581,7 +606,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 		if ok {
 			// bind each schema variable to its value
 			if len(scheme.Variables) != len(parameters) {
-				fmt.Fprintf(os.Stderr, "Scheme formal (%v) and actual parameters (%v) do not match: %v\n", scheme.Variables, parameters)
+				fmt.Fprintf(os.Stderr, "Scheme formal (%v) and actual parameters (%v) do not match\n", scheme.Variables, parameters)
 				return
 			}
 
@@ -895,10 +920,12 @@ func (ag *ArgGraph) makeIssue(issueScheme string, patterns []string) (err error)
 				issue.Id = id
 				ag.Issues[id] = issue
 			} else {
-				// add new positions to the existing issue
+				// add new positions to the existing issue: link both ways,
+				// so that labelling resolves them with the other positions
 				for _, pos := range positions {
 					if pos.Issue == nil {
 						pos.Issue = issue
+						issue.Positions = append(issue.Positions, pos)
 					}
 				}
 			}

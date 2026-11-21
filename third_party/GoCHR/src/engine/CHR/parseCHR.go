@@ -29,8 +29,11 @@ const (
 	ParseRuleBody // Chr, Built-In, true, false and Variable
 )
 
-func CHRerr(s *sc.Scanner, format string, a ...interface{}) {
-	s.Error(s, fmt.Sprintf(format, a...))
+// CHRerr reports a parse error given in pieces, as fmt.Sprint joins them:
+// CHRerr(s, " unexpected atom ", t, " in head of rule ", name). It passed
+// the pieces to Sprintf as a format and arguments, which garbled them.
+func CHRerr(s *sc.Scanner, parts ...interface{}) {
+	s.Error(s, fmt.Sprint(parts...))
 }
 
 func toClist(l Term) (CList, bool) {
@@ -52,165 +55,93 @@ func toClist(l Term) (CList, bool) {
 }
 
 func parseRule(name string, keep []string, del []string, guard []string, body []string) (cKeep, cDel, cGuard CList, cBody List, err error) {
-	errMsgList := ""
-	Errfunc := func(s *sc.Scanner, str string) {
-		if str != "illegal char literal" {
-			if errMsgList != "" {
-				errMsgList += "\n"
-			}
-			errMsgList += fmt.Sprintf("*** Parse Error before[%v]: %s", s.Pos(), str)
-		}
+	keepList, err := parseTexts(ParseHead, keep)
+	if err != nil {
+		return nil, nil, nil, nil, fmt.Errorf("rule %s, head: %w", name, err)
 	}
-	// var s sc.Scanner
-	var s sc.Scanner
-	// Initialize the scanner.
-	keepList := List{}
-	for _, src := range keep {
-		s.Init(strings.NewReader(src))
-		s.Error = Errfunc
-		t, _, ok := parseConstraints(ParseHead, &s)
-		if !ok {
-			return nil, nil, nil, nil, errors.New(errMsgList)
-		}
-		switch t.Type() {
-		case ListType:
-			if len(keepList) == 0 {
-				keepList = t.(List)
-			} else {
-				for _, e := range t.(List) {
-					keepList = append(keepList, e)
-				}
-			}
-		default:
-			keepList = append(keepList, t)
-		}
-	}
-
 	cKeep, ok := toClist(keepList)
 	if !ok {
 		return nil, nil, nil, nil, errors.New(fmt.Sprintf("Convert Keep-Head in rule %s failed: %s\n", name, keepList))
 	}
 
-	delList := List{}
-	for _, src := range del {
-		s.Init(strings.NewReader(src))
-		s.Error = Errfunc
-		t, _, ok := parseConstraints(ParseHead, &s)
-		if !ok {
-			return nil, nil, nil, nil, errors.New(errMsgList)
-		}
-		switch t.Type() {
-		case ListType:
-			if len(delList) == 0 {
-				delList = t.(List)
-			} else {
-				for _, e := range t.(List) {
-					delList = append(delList, e)
-				}
-			}
-		default:
-			delList = append(delList, t)
-		}
+	delList, err := parseTexts(ParseHead, del)
+	if err != nil {
+		return nil, nil, nil, nil, fmt.Errorf("rule %s, deleted head: %w", name, err)
 	}
-
 	cDel, ok = toClist(delList)
-
 	if !ok {
 		return nil, nil, nil, nil, errors.New(fmt.Sprintf("Convert DEL-Head in rule %s failed: %s\n", name, delList))
 	}
 
-	guardList := List{}
-	for _, src := range guard {
-		s.Init(strings.NewReader(src))
-		s.Error = Errfunc
-		t, _, ok := parseConstraints(ParseBI, &s)
-		if !ok {
-			return nil, nil, nil, nil, errors.New(errMsgList)
-		}
-		switch t.Type() {
-		case ListType:
-			if len(guardList) == 0 {
-				guardList = t.(List)
-			} else {
-				for _, e := range t.(List) {
-					guardList = append(guardList, e)
-				}
-			}
-		default:
-			guardList = append(guardList, t)
-		}
+	guardList, err := parseTexts(ParseBI, guard)
+	if err != nil {
+		return nil, nil, nil, nil, fmt.Errorf("rule %s, guard: %w", name, err)
 	}
-
 	cGuard, ok = toClist(guardList)
-
 	if !ok {
 		return nil, nil, nil, nil, errors.New(fmt.Sprintf("Convert GUARD in rule %s failed: %s\n", name, guardList))
 	}
 
-	cBody = List{}
-	for _, src := range body {
-		s.Init(strings.NewReader(src))
-		s.Error = Errfunc
-		t, _, ok := parseConstraints(ParseRuleBody, &s)
-		if !ok {
-			return nil, nil, nil, nil, errors.New(errMsgList)
-		}
-		switch t.Type() {
-		case ListType:
-			if len(cBody) == 0 {
-				cBody = t.(List)
-			} else {
-				for _, e := range t.(List) {
-					cBody = append(cBody, e)
-				}
-			}
-		default:
-			cBody = append(cBody, t)
-		}
+	cBody, err = parseTexts(ParseRuleBody, body)
+	if err != nil {
+		return nil, nil, nil, nil, fmt.Errorf("rule %s, body: %w", name, err)
 	}
-
-	err = nil
 	return
 }
 
-func parseGoals(goals []string) (CList, error) {
-	var s sc.Scanner
-	errMsgList := ""
-	Errfunc := func(s *sc.Scanner, str string) {
-		if str != "illegal char literal" {
-			if errMsgList != "" {
-				errMsgList += "\n"
-			}
-			errMsgList += fmt.Sprintf("*** Parse Error before[%v]: %s", s.Pos(), str)
-		}
-	}
-
-	gList := List{}
-	for _, src := range goals {
+// parseTexts reads each text as one or more comma-separated constraints of
+// the kind ty and joins them in one list. A text is refused, and nothing is
+// returned, when the scanner or the parser reports a syntax error in it, when
+// text is left after the constraints (the parser used to read "p(X) q(Y)" as
+// p(X) and "broken(" as broken), or when it holds no constraint at all.
+//
+// A well-formed term of the wrong kind (" Not a CHR-predicate" and the like,
+// for example a negation ¬p(X) in a head) is accepted as before: such a rule
+// never fires, but refusing it would refuse every program that has one.
+func parseTexts(ty parseType, texts []string) (List, error) {
+	list := List{}
+	for _, src := range texts {
+		var s sc.Scanner
+		msgs := []string{}
 		s.Init(strings.NewReader(src))
-		s.Error = Errfunc
-		t, _, ok := parseConstraints(ParseGoal, &s)
-		if !ok {
-			fmt.Printf("parseConstraints Fehler !!!\n ")
-			return nil, errors.New(errMsgList)
+		s.Error = func(s *sc.Scanner, str string) {
+			if str != "illegal char literal" && !strings.HasPrefix(str, " Not a ") {
+				msgs = append(msgs, fmt.Sprintf("*** Parse Error before[%v]: %s", s.Pos(), str))
+			}
+		}
+		t, tok, ok := parseConstraints(ty, &s)
+		if ok && len(msgs) == 0 && tok != sc.EOF {
+			msgs = append(msgs, fmt.Sprintf("*** Parse Error before[%v]: %s after the end of the term", s.Pos(), sc.TokenString(tok)))
+		}
+		if ok && len(msgs) == 0 {
+			if l, isList := t.(List); isList && len(l) == 0 {
+				msgs = append(msgs, "*** Parse Error: no term")
+			}
+		}
+		if !ok || len(msgs) != 0 {
+			if len(msgs) == 0 {
+				msgs = append(msgs, "*** Parse Error")
+			}
+			return nil, fmt.Errorf("%q: %s", src, strings.Join(msgs, "; "))
 		}
 		switch t.Type() {
 		case ListType:
-			if len(gList) == 0 {
-				gList = t.(List)
-			} else {
-				for _, e := range t.(List) {
-					gList = append(gList, e)
-				}
-			}
+			list = append(list, t.(List)...)
 		default:
-			gList = append(gList, t)
+			list = append(list, t)
 		}
+	}
+	return list, nil
+}
+
+func parseGoals(goals []string) (CList, error) {
+	gList, err := parseTexts(ParseGoal, goals)
+	if err != nil {
+		return nil, err
 	}
 	cLiBody, ok := toClist(gList)
 	if !ok {
-		fmt.Printf("toClist Fehler !! \n")
-		return nil, errors.New(errMsgList)
+		return nil, fmt.Errorf("goals %s: not constraints", gList)
 	}
 	return cLiBody, nil
 }
@@ -653,14 +584,14 @@ func addChrRule(rs *RuleStore, s *sc.Scanner, name string, keepList, delList, gu
 func addStringGoals(rs *RuleStore, s *sc.Scanner, goals string) bool {
 	goalList, ok := ParseGoalString(goals)
 	if !ok || goalList.Type() != ListType {
-		CHRerr(s, "Scan GOAL-List failed: %s\n", goalList)
+		CHRerr(s, fmt.Sprintf("Scan GOAL-List failed: %s\n", goalList))
 		return false
 	}
 	for _, g := range goalList.(List) {
 		if g.Type() == CompoundType {
 			addConstraintToStore(rs, g.(Compound))
 		} else {
-			CHRerr(s, " GOAL is not a predicate: %s\n", g)
+			CHRerr(s, fmt.Sprintf(" GOAL is not a predicate: %s\n", g))
 			return false
 		}
 

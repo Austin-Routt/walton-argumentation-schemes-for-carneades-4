@@ -5,6 +5,7 @@
 package vvlib
 
 import (
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -21,9 +22,16 @@ import (
 	chr "github.com/hfried/GoCHR/src/engine/CHR"
 )
 
-// BudgetMarker is the only sign GoCHR gives when it stops after the maximum
-// number of rule applications: a line on standard output.
+// BudgetMarker is the line the engine as shipped printed on standard output
+// when it stopped after the maximum number of rule applications, its only
+// sign of it. Since E-BUDGET (PLAN.md 1.2) Infer returns an error wrapping
+// caes.ErrLimitReached instead; LimitReached accepts both.
 const BudgetMarker = "inference engine interrupted"
+
+// LimitReached tells whether a run stopped at a limit of the engine.
+func LimitReached(err error, stdout string) bool {
+	return errors.Is(err, caes.ErrLimitReached) || strings.Contains(stdout, BudgetMarker)
+}
 
 // InferTimeout bounds one inference run. The engine always stops after
 // caes.MAXRULEAPPS rule applications, so this is only a safety net.
@@ -314,7 +322,7 @@ type Run struct {
 	Elapsed  time.Duration
 }
 
-func (r *Run) BudgetExhausted() bool { return strings.Contains(r.Stdout, BudgetMarker) }
+func (r *Run) BudgetExhausted() bool { return LimitReached(r.Err, r.Stdout) }
 
 // Infer builds an argument graph from a language, a set of schemes and ground
 // assumptions, and runs the engine's argument construction and evaluation.
@@ -431,8 +439,9 @@ func ValidatorProblems(lib *Library) map[string][]string {
 }
 
 // RuleError translates one scheme into a GoCHR rule exactly as
-// caes.TheoryToRuleStore does and returns the error that function discards,
-// together with anything GoCHR printed.
+// caes.TheoryToRuleStore does and returns the error GoCHR gives (the engine
+// as shipped discarded it; caes.RuleStoreOf now reports it), together with
+// anything GoCHR printed.
 func RuleError(s *caes.Scheme) (error, string) {
 	rs := chr.MakeRuleStore()
 	prem := s.Premises
@@ -545,7 +554,7 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 	if run.TimedOut {
 		return []Result{fail(file, id, chk("infer-ok"), "inference did not return within %v", InferTimeout)}, run
 	}
-	if run.Err != nil {
+	if run.Err != nil && !run.BudgetExhausted() {
 		out = append(out, fail(file, id, chk("infer-ok"), "Infer: %v", run.Err))
 	} else {
 		out = append(out, pass(file, id, chk("infer-ok")))
@@ -585,10 +594,10 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 	// Without that control a partial graph would count as a successful defeat.
 	control := ""
 	switch {
-	case run.Err != nil:
-		control = "with every premise asserted Infer returns an error"
 	case run.BudgetExhausted():
 		control = "with every premise asserted the run stops at the rule limit"
+	case run.Err != nil:
+		control = "with every premise asserted Infer returns an error"
 	case len(args) == 0:
 		control = "with every premise asserted the scheme constructs no argument"
 	}

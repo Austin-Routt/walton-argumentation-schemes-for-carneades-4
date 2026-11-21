@@ -1,6 +1,7 @@
-# The verification gate of PLAN.md (D7): the two Python checks of the scheme
-# files, a check of the engine sources against their archives, and the suite in
-# tools/vv, which runs the engine in third_party/ on every scheme.
+# The verification gate of PLAN.md (D7): the engines' own unit tests, the two
+# Python checks of the scheme files, a check of the engine sources against
+# their archives, and the suite in tools/vv, which runs the engine in
+# third_party/ on every scheme.
 #
 # A green run means: no check fails that tools/vv/known_issues.yml does not
 # list, and no listed check has started to pass. It is not a claim that the
@@ -33,6 +34,10 @@ jobs:
           go-version: ${{ matrix.go }}
           cache: false
       - run: sudo apt-get update && sudo apt-get install -y graphviz unzip
+      - name: tools/vv/engine-tests.sh (the engines' own unit tests)
+        env:
+          GOFLAGS: -mod=mod
+        run: tools/vv/engine-tests.sh
       - name: tools/vv/run.sh
         env:
           GOFLAGS: -mod=mod

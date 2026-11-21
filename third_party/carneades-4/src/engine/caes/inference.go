@@ -10,14 +10,26 @@
 package caes
 
 import (
-	// "fmt"
+	"context"
+	"errors"
 	"strings"
 
 	"github.com/carneades/carneades-4/src/engine/terms"
+	chr "github.com/hfried/GoCHR/src/engine/CHR"
 )
 
 // maximum number of rule (scheme) applications when deriving arguments
-const MAXRULEAPPS = 100000  
+const MAXRULEAPPS = 100000
+
+// MAXTERMSIZE is the largest size, in nodes, of a statement or argument term
+// that argument construction may derive (docs/contracts.md, contract 3). A
+// scheme whose terms grow on every application reaches it long before
+// MAXRULEAPPS, which alone would let such a run exhaust the memory: GoCHR's
+// cost per application grows with the size of the terms, so a term growing
+// by one node per application needs 0.25 s and 170 MB to reach 500 nodes and
+// 1.3 s and 1.2 GB to reach 1,000. The suite of tools/vv gives the same
+// result on every check with a limit of 30 as with 500.
+const MAXTERMSIZE = 500
 
 // ArgDesc: Structure describing an argument instantiating an
 // argument scheme. Represented in Prolog as argument(Scheme,Values)
@@ -64,10 +76,25 @@ func termToArgDesc(s string) (bool, *ArgDesc) {
 // and thus cannot be parsed by the CHR inference engine, an error is returned
 // and argument graph is left unchanged. If all goes well, the argument
 // graph is updated and nil is returned.
+//
+// A run that reaches MAXRULEAPPS or MAXTERMSIZE while a scheme could still
+// apply returns an error wrapping ErrLimitReached, and leaves the graph
+// unchanged (docs/contracts.md, contract 3).
 func (ag *ArgGraph) Infer() error {
+	return ag.InferContext(context.Background())
+}
+
+// InferContext is Infer, stopped with an error wrapping ErrCancelled when ctx
+// is done before argument construction ends. The graph is then left
+// unchanged.
+func (ag *ArgGraph) InferContext(ctx context.Context) error {
 	if len(ag.Theory.ArgSchemes) != 0 {
 		// rb := TheoryToSWIRulebase(ag.Theory)
-		rb := TheoryToRuleStore(ag.Theory)
+		rb, err := RuleStoreOf(ag.Theory)
+		if err != nil {
+			return NewRunError(ErrInvalidInput, "the rule engine refused the theory: %v", err)
+		}
+		rb.Done = ctx.Done()
 
 		// Create an index of the previous arguments constructed
 		// to avoid constructing equivalent instanstiations of schemes
@@ -95,8 +122,14 @@ func (ag *ArgGraph) Infer() error {
 		}
 
 		success, store, err := rb.Infer(goals, MAXRULEAPPS)
-		if err != nil {
-			return err
+		switch {
+		case errors.Is(err, chr.ErrLimit):
+			return NewRunError(ErrLimitReached, "argument construction stopped at %s",
+				strings.TrimPrefix(err.Error(), chr.ErrLimit.Error()+": "))
+		case errors.Is(err, chr.ErrCancelled):
+			return NewRunError(ErrCancelled, "argument construction was stopped by the caller")
+		case err != nil:
+			return NewRunError(ErrInvalidInput, "the rule engine rejected the theory: %v", err)
 		}
 		if !success {
 			return nil
@@ -125,7 +158,7 @@ func (ag *ArgGraph) Infer() error {
 		for issue, patterns := range ag.Theory.IssueSchemes {
 			err := ag.makeIssue(issue, *patterns)
 			if err != nil {
-				return err
+				return NewRunError(ErrInvalidInput, "issue scheme %s: %v", issue, err)
 			}
 		}
 	}

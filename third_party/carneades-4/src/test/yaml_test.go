@@ -51,9 +51,9 @@ func TestYaml(t *testing.T) {
 
 			err = checkLabeling(l, ag.Statements, ag.ExpectedLabeling)
 			if err != nil {
-				fmt.Printf(" check labeling fail: %s \n", err.Error())
+				t.Errorf("%s: %v", fi.Name(), err)
 			}
-			// check(t, err)
+			expected := ag.ExpectedLabeling
 			//	fmt.Printf("---------- Write ArgGraph 2 Yaml: %s ----------\n", filename1)
 			//	yaml.Export(os.Stdout, ag)
 			//	fmt.Printf("---------- End: Write ArgGraph 2 Yaml: %s ----------\n", filename1)
@@ -77,6 +77,10 @@ func TestYaml(t *testing.T) {
 			// fmt.Printf(" Import-Assumptions: %v \n", ag.Assumptions)
 			fmt.Printf(" -  -  -  -  -  -  End Import %s \n", yamlTmp+filename2)
 			check(t, err)
+			if err := ag.Infer(); err != nil {
+				t.Errorf("%s after export and import: Infer: %v", fi.Name(), err)
+			}
+			checkRoundTrip(t, fi.Name(), checkLabeling(ag.GroundedLabelling(), ag.Statements, expected))
 			// fmt.Printf("---------- WriteArgGraph 02  %s ----------\n", filename2)
 			// yaml.ExportWithReferences(os.Stdout, ag)
 			// fmt.Printf("---------- End: WriteArgGraph 02 %s ----------\n", filename2)

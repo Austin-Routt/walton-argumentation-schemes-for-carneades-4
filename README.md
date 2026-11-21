@@ -42,12 +42,12 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why: 390 of 5,947, under 24 issues. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` lists the checks that fail today and why: 356 of 5,948, under 16 issues (390 under 24 before the engine fixes of `PLAN.md` phases 1 and 2 began). A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
 
 ## Known limitations
 
-* **`carneades eval` evaluates nothing for a graph that contains `walton.yml`** today: the engine's validator rejects five schemes and `true/1`, and `eval` then prints its problems and still exits 0. 54 of the 114 schemes can be evaluated from their category file. `PLAN.md` phases 1 to 3 fix this.
-* Through the Go API, inference can run to its limit of 100,000 rule applications without reporting it, when composition and division both apply or `exeptional` applies; schemes listed after them are then never tried. Negated premises (`ignorance`, `from_antimodel`, `opposition-descriptive_2/3`) never match, and `group_2` is never inferred (`is/2` is a GoCHR built-in). Labelling never returns once a second inference has added a position to an existing issue.
+* **`carneades eval` evaluates nothing for a graph that contains `walton.yml`** today: the engine's validator rejects five schemes and `true/1`, and `eval` prints its problems on stderr and exits 1 (the engine as shipped exited 0). 54 of the 114 schemes can be evaluated from their category file. `PLAN.md` phases 1 to 3 fix this.
+* Negated premises (`ignorance`, `from_antimodel`, `opposition-descriptive_2/3`) never match, and `group_2` is never inferred (`is/2` is a GoCHR built-in). Fixed in `third_party/` (see the changelog): composition with division, and `exeptional`, no longer run to the rule limit; a limit is reported as an error; labelling returns after a second inference adds a position to an issue.
 * A scheme's `assumptions` cannot be called into question from a graph file: every scheme assumption is assumed. The book's model, in which an assumption holds until it is questioned (pp. 373–375), needs the engine change of `PLAN.md` 2.7 (`docs/contracts.md`, contract 5).
 * `roles` is documented by Carneades but not read by its importer.
 * Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; no quoted strings with spaces; one term per line in YAML lists).

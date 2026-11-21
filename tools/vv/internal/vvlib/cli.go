@@ -167,12 +167,22 @@ func CLIEngineChecks(cli *CLI) []Result {
 	broken := baseTheory + "assumptions:\n  - p(X)\n" // not ground: a validation problem
 
 	r := cli.Run(broken, "eval", "-t", "yaml")
-	out = append(out, eres("cli-eval-signals-refusal", r.Exit != 0,
-		"`carneades eval` refuses a file with a validation problem by printing nothing and exiting with status 0 (stderr: %s)", firstLine(r.Stderr)))
+	// docs/contracts.md, contract 3: invalid input exits with status 1 and prints no evaluation
+	out = append(out, eres("cli-eval-signals-refusal", r.Exit == 1 && strings.TrimSpace(r.Stdout) == "",
+		"`carneades eval` on a file with a validation problem should print nothing and exit with status 1 (invalid input); it exited with %d (stderr: %s)", r.Exit, firstLine(r.Stderr)))
 
 	r = cli.Run(broken, "check")
-	out = append(out, eres("cli-check-exit-status", r.Exit != 0,
-		"`carneades check` exits with status 0 although it reports a problem (%s), so a script or CI job cannot use it", firstLine(r.Stderr)))
+	out = append(out, eres("cli-check-exit-status", r.Exit == 1,
+		"`carneades check` should exit with status 1 (invalid input) when it reports a problem; it exited with %d (%s)", r.Exit, firstLine(r.Stderr)))
+
+	// docs/contracts.md, contracts 3 and 4: a graph that stipulates a statement
+	// and its negation is an inconsistent context, reported with status 3 and
+	// no evaluation; one that stipulates only the statement evaluates.
+	bad := cli.Run("statements:\n  p: P is the case.\nassumptions: [p, \"¬p\"]\n", "eval", "-t", "yaml")
+	good := cli.Run("statements:\n  p: P is the case.\nassumptions: [p]\n", "eval", "-t", "yaml")
+	out = append(out, eres("cli-reports-inconsistent-context",
+		bad.Exit == 3 && strings.TrimSpace(bad.Stdout) == "" && good.Exit == 0 && strings.TrimSpace(good.Stdout) != "",
+		"assuming p and ¬p should end with status 3 (inconsistent context) and no evaluation, and assuming p alone with status 0: got %d (stdout %d bytes) and %d", bad.Exit, len(bad.Stdout), good.Exit))
 
 	r = cli.Run(MutualRecursion, "eval", "-t", "yaml")
 	_, err := labels(r.Stdout)

@@ -9,6 +9,7 @@
 package caes
 
 import (
+	"errors"
 	"fmt"
 	// "log"
 	"strings"
@@ -16,10 +17,27 @@ import (
 	chr "github.com/hfried/GoCHR/src/engine/CHR"
 )
 
-// Translate a theory into a GoCHR rulestore
+// Translate a theory into a GoCHR rulestore. A scheme whose rule GoCHR
+// refuses is left out; RuleStoreOf reports it.
 func TheoryToRuleStore(t *Theory) *chr.RuleStore {
+	rs, _ := RuleStoreOf(t)
+	return rs
+}
+
+// RuleStoreOf translates a theory into a GoCHR rule store, one rule per
+// scheme with conclusions. The error names every scheme whose rule GoCHR
+// refuses, for example for a premise it cannot read (E-PARSE); those schemes
+// are left out of the store.
+func RuleStoreOf(t *Theory) (*chr.RuleStore, error) {
 	// log.Printf("TheoryToRuleStore\n") // DEBUG
 	rs := chr.MakeRuleStore()
+	var errs []string
+	// Argument construction is forward chaining over facts, and facts form a
+	// set (docs/contracts.md, contract 2): a fact derived a second time must
+	// not trigger the schemes again. Without this, schemes that re-derive a
+	// fact, or derive each other's premises, run to MAXRULEAPPS.
+	rs.Unique = true
+	rs.MaxTermSize = MAXTERMSIZE
 	for _, s := range t.ArgSchemes {
 		// If the scheme has no conclusions, skip the scheme
 		// and assume it only defines a weighing function but no rule
@@ -34,14 +52,22 @@ func TheoryToRuleStore(t *Theory) *chr.RuleStore {
 				premises = []string{"go"}
 			}
 			argTerm := fmt.Sprintf("argument(%s,[%s])", s.Id, strings.Join(s.Variables, ","))
-			conclusions := append(s.Conclusions, s.Assumptions...)
+			// A new slice: appending to s.Conclusions could write into the
+			// scheme's own backing array.
+			conclusions := make([]string, 0, len(s.Conclusions)+len(s.Assumptions)+1)
+			conclusions = append(conclusions, s.Conclusions...)
+			conclusions = append(conclusions, s.Assumptions...)
 			conclusions = append(conclusions, argTerm)
-			// Errors raised by AddRule are ignored. The rule is just skipped.
 			// Note that the body of the rules includes the assumptions
 			// and conclusions of the scheme.
 			// fmt.Printf("AddRule id=%s, premises=%s, deletions=%s, guards=%s, conclusions=%s\n", s.Id, premises, s.Deletions, s.Guards, conclusions)
-			rs.AddRule(s.Id, premises, s.Deletions, s.Guards, conclusions)
+			if err := rs.AddRule(s.Id, premises, s.Deletions, s.Guards, conclusions); err != nil {
+				errs = append(errs, fmt.Sprintf("scheme %s: %v", s.Id, err))
+			}
 		}
 	}
-	return rs
+	if len(errs) != 0 {
+		return rs, errors.New(strings.Join(errs, "; "))
+	}
+	return rs, nil
 }

@@ -222,7 +222,7 @@ func checkResult(rs *RuleStore, t *testing.T, chr, bi string) {
 
 	chrList, ok := ParseGoalString(chr)
 	if !ok {
-		t.Error(" Scan exspected chr result failed: %s\n", chrList)
+		t.Errorf(" Scan exspected chr result failed: %s\n", chrList)
 		return
 	}
 	compCHR := chr2List(rs)
@@ -230,7 +230,7 @@ func checkResult(rs *RuleStore, t *testing.T, chr, bi string) {
 
 	biList, ok := ParseRuleBodyString(bi)
 	if !ok {
-		t.Error(" Scan exspected bi result failed: %s\n", biList)
+		t.Errorf(" Scan exspected bi result failed: %s\n", biList)
 		return
 	}
 	compBI := bi2List(rs)

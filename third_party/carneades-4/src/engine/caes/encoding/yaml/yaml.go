@@ -15,6 +15,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"sort"
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"github.com/carneades/carneades-4/src/engine/terms"
@@ -108,8 +109,17 @@ var collOfWF2source map[string]interface{}                   // collection of we
 
 func Import(inFile io.Reader) (*caes.ArgGraph, error) {
 
-	collOfWeighingFunctions = caes.BasicWeighingFunctions
-	collOfSchemes = caes.BasicSchemes
+	// Work on copies of the built-in tables: writing imported schemes and
+	// weighing functions into caes.BasicSchemes and caes.BasicWeighingFunctions
+	// made every later import see them (issue E-GLOBALS of tools/vv).
+	collOfWeighingFunctions = map[string]caes.WeighingFunction{}
+	for k, v := range caes.BasicWeighingFunctions {
+		collOfWeighingFunctions[k] = v
+	}
+	collOfSchemes = map[string]*caes.Scheme{}
+	for k, v := range caes.BasicSchemes {
+		collOfSchemes[k] = v
+	}
 	collOfAssumptions = []string{}
 	collOfWF2source = map[string]interface{}{}
 
@@ -782,7 +792,6 @@ func iface2preference(pref interface{}) (caes.WeighingFunction, []caes.PropertyO
 		return nil, nil,
 			errors.New("*** ERROR wrong type afer preference: '" + fmt.Sprintf("%v", pT) + "'\n")
 	}
-	return nil, nil, nil // dummy return
 }
 
 func iface2criteria(cr interface{}) (caes.WeighingFunction, *caes.Criteria, error) {
@@ -830,7 +839,6 @@ func iface2criteria(cr interface{}) (caes.WeighingFunction, *caes.Criteria, erro
 		return nil, nil,
 			errors.New("*** Error unknown type after criteria: '" + fmt.Sprintf("%v", subT) + "', expected keys-struct with keys 'hard:' and 'soft'\n")
 	}
-	return caes.CriteriaWeighingFunction(&c), &c, nil
 }
 
 func iface2soft(body interface{}, soft map[string]caes.SoftConstraint) (map[string]caes.SoftConstraint, error) {
@@ -923,12 +931,12 @@ func iface2soft(body interface{}, soft map[string]caes.SoftConstraint) (map[stri
 					soft[key.(string)] = caes.SoftConstraint{Factor: factor, NormalizedValues: normValues} // set the NormelizesValues
 				default:
 					return soft,
-						errors.New("*** Error in criteria: soft: key expected factor: ... values: ...-list not '" + fmt.Sprintf("%v' (type=", value, valT) + ")\n")
+						errors.New("*** Error in criteria: soft: key expected factor: ... values: ...-list not '" + fmt.Sprintf("%v' (type=%v", value, valT) + ")\n")
 
 				}
 			default:
 				return soft,
-					errors.New("*** Error in criteria: soft: expected a string-key and not '" + fmt.Sprintf("%v' (type=", key, keyT) + ")\n")
+					errors.New("*** Error in criteria: soft: expected a string-key and not '" + fmt.Sprintf("%v' (type=%v", key, keyT) + ")\n")
 			}
 		}
 	default:
@@ -1580,9 +1588,9 @@ func writeWF(f io.Writer, key, name string, weight caes.WeighingFunction) {
 			fmt.Fprintf(f, "# %shard: [", sp4)
 			for ix, val := range c.HardConstraints {
 				if ix != 0 {
-					fmt.Fprintf(f, ", %s", val)
+					fmt.Fprintf(f, ", %d", val)
 				} else {
-					fmt.Fprintf(f, "%s", val)
+					fmt.Fprintf(f, "%d", val)
 				}
 			}
 			fmt.Fprintf(f, "]\n")
@@ -1826,6 +1834,10 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 			writeKeyValue1(f, sp3, md_key, md_val)
 		}
 	}
+	// The theory: without it an exported graph whose arguments use schemes
+	// cannot be read back (issue E-EXPORT of tools/vv).
+	writeTheory(f, caesAg.Theory)
+
 	if caesAg.ExpectedLabeling != nil && len(caesAg.ExpectedLabeling) != 0 {
 		fmt.Fprintf(f, "labels:\n")
 		in := []string{}
@@ -1943,4 +1955,60 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 	//		}
 	//	}
 
+}
+
+// writeTheory writes the language, the argument schemes and the issue schemes
+// of a theory, so that an exported graph whose arguments use schemes can be
+// imported again. A scheme's weighing function is not written: only the
+// default one survives a round trip so far.
+func writeTheory(f io.Writer, t *caes.Theory) {
+	if t == nil {
+		return
+	}
+	list := func(sp, key string, l []string) {
+		if len(l) == 0 {
+			return
+		}
+		fmt.Fprintf(f, "%s%s:\n", sp, key)
+		for _, s := range l {
+			fmt.Fprintf(f, "%s%s- %s\n", sp, spPlus, mkYamlString(s))
+		}
+	}
+	if len(t.Language) > 0 {
+		keys := make([]string, 0, len(t.Language))
+		for k := range t.Language {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		fmt.Fprintf(f, "language:\n")
+		for _, k := range keys {
+			fmt.Fprintf(f, "%s%s: %s\n", sp1, mkYamlString(k), mkYamlString(t.Language[k]))
+		}
+	}
+	if len(t.ArgSchemes) > 0 {
+		fmt.Fprintf(f, "argument_schemes:\n")
+		for _, s := range t.ArgSchemes {
+			fmt.Fprintf(f, "%s- id: %s\n", sp1, mkYamlString(s.Id))
+			in := sp1 + "  " // the keys of a list item align with "id"
+			writeMetaData(f, in, in+spPlus, s.Metadata)
+			list(in, "variables", s.Variables)
+			list(in, "premises", s.Premises)
+			list(in, "assumptions", s.Assumptions)
+			list(in, "exceptions", s.Exceptions)
+			list(in, "deletions", s.Deletions)
+			list(in, "guards", s.Guards)
+			list(in, "conclusions", s.Conclusions)
+		}
+	}
+	if len(t.IssueSchemes) > 0 {
+		keys := make([]string, 0, len(t.IssueSchemes))
+		for k := range t.IssueSchemes {
+			keys = append(keys, k)
+		}
+		sort.Strings(keys)
+		fmt.Fprintf(f, "issue_schemes:\n")
+		for _, k := range keys {
+			list(sp1, mkYamlString(k), []string(*t.IssueSchemes[k]))
+		}
+	}
 }

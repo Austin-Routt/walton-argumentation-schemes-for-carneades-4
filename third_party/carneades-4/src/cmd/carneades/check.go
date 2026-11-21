@@ -146,4 +146,13 @@ func checkCmd() {
 			fmt.Fprintf(outFile, "%s: %s: %s: %s\n", p.Category, p.Id, p.Description, p.Expression)
 		}
 	}
+	if len(problems) > 0 {
+		// invalid input (docs/contracts.md, contract 3)
+		os.Exit(caes.ExitStatus(caes.ErrInvalidInput))
+	}
+	if ag.Inconsistent() {
+		fmt.Fprintf(outFile, "%v\n", caes.NewRunError(caes.ErrInconsistentContext,
+			"the graph assumes two positions of one issue, or a statement and its negation"))
+		os.Exit(caes.ExitStatus(caes.ErrInconsistentContext))
+	}
 }

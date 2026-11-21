@@ -186,10 +186,26 @@ func evalCmd() {
 		}
 	}
 
-	if len(problems) == 0 {
+	if len(problems) > 0 {
+		// The graph is not evaluated: invalid input (docs/contracts.md, contract 3).
+		os.Exit(caes.ExitStatus(caes.ErrInvalidInput))
+	}
+	if ag.Inconsistent() {
+		// The graph stipulates two positions of an issue, or a statement
+		// and its negation: an inconsistent context is reported, not
+		// resolved by picking a side (docs/contracts.md, contracts 3 and 4).
+		fmt.Fprintf(os.Stderr, "carneades eval: %v\n", caes.NewRunError(caes.ErrInconsistentContext,
+			"the graph assumes two positions of one issue, or a statement and its negation"))
+		os.Exit(caes.ExitStatus(caes.ErrInconsistentContext))
+	}
+	{
 		// Apply the theory of the argument graph, if any, to
-		// derive further arguments
-		ag.Infer()
+		// derive further arguments. A run that does not complete
+		// prints no evaluation, and the exit status says why.
+		if err := ag.Infer(); err != nil {
+			fmt.Fprintf(os.Stderr, "carneades eval: %v\n", err)
+			os.Exit(caes.ExitStatus(err))
+		}
 
 		// evaluate the argument graph, using grounded semantics
 		// and update the labels of the statements in the argument graph
