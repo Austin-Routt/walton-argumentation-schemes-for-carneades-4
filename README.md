@@ -3,7 +3,7 @@
 
 This repo contains full lists of **Walton's Argumentation Schemes** in YAML for the use for the [**Carneades Argumentation System** (version 4)](https://github.com/carneades/carneades-4).
 
-25 of the **Walton's argumentation schemes** are already available in YAML at **Carneades 4** as [walton.yml](https://github.com/carneades/carneades-4/blob/master/examples/AGs/YAML/walton.yml). However, in [**Argumentation Schemes (2008)**](https://www.cambridge.org/core/books/argumentation-schemes/9AE7E4E6ABDE690565442B2BD516A8B6), there are a total of **106 argumentation schemes**. We aimed to complete the list and created the remaining 81 argumentation schemes in YAML.
+24 of the **Walton's argumentation schemes** are already available in YAML at **Carneades 4** as [walton.yml](https://github.com/carneades/carneades-4/blob/master/examples/AGs/YAML/walton.yml). [**Argumentation Schemes (2008)**](https://www.cambridge.org/core/books/argumentation-schemes/9AE7E4E6ABDE690565442B2BD516A8B6) prints its compendium of schemes in chapter 9 without a total; counted one way it holds 106 schemes, counted another 109 (`tools/vv/source_ledger.yml` lists every entry with the record filed under it). We aimed to complete the list and created the remaining schemes in YAML: `walton.yml` holds 114 records, 110 filed under 108 compendium entries and 4 taken over from Carneades without an entry of their own. Three entries have no record of their own yet: 50, and 57 and 22.4, whose records hold other formulations (see `PLAN.md`, 3.8).
 
 In addition to our main file [walton.yml](walton.yml) in which a complete list is presented, there are also smaller files which are classified based on the classification system present in [**Argumentation Schemes (2008)**](https://www.cambridge.org/core/books/argumentation-schemes/9AE7E4E6ABDE690565442B2BD516A8B6). First, all the schemes are divided into 3 main categories ([**Reasoning**](A_reasoning), [**Source-based Arguments**](B_source-based-arguments), [**Applying Rules to Cases**](C_applying-rules-to-cases)), and under those categories, different files are created corresponding to different types of arguments falling into each category.
 
@@ -16,6 +16,9 @@ This study was conducted within the scope of the master's thesis titled **Dougla
 * `categories.yml` – which scheme goes into which category file.
 * `tools/validate_schemes.py` – checks the files against the rules Carneades 4 applies when it loads a theory (see below).
 * `tools/build_category_files.py` – regenerates the category files; `--check` reports stale files without writing.
+* `third_party/` – the sources of the Carneades 4 engine and of its rule engine GoCHR, imported byte for byte from `carneades-4.zip` and `GoCHR.zip` (see `sources.lock`). Engine fixes are made here, one per commit.
+* `tools/vv/` – the verification suite: every scheme through the engine's Go API and through the `carneades` command, engine probes, and a map of the book's compendium. CI runs it on every push.
+* `PLAN.md` – the plan agreed by three independent reviews, with its implementation status; `docs/contracts.md` – what the engine and the library promise; `docs/parity.md` – the checks of the reviews' other harnesses against the suite.
 
 ## Checking the files
 
@@ -33,10 +36,21 @@ Both need Python 3 and PyYAML. The validator follows the Carneades 4 source (`sr
 * the category files must agree exactly with `walton.yml`, every scheme must be in exactly one category file, and
 * regression tests pin the direction of the schemes whose logic was once wrong (see `CHANGELOG.md`).
 
-A second, independent check loads every file with the Carneades 4 engine itself (its YAML importer, its `validation` package, scheme instantiation and the GoCHR rule translation). It is not part of this repository because it needs a Go toolchain and the engine sources; `PLAN.md` describes how it was run and what it still reports.
+A second, independent check runs the Carneades 4 engine itself on every scheme:
+
+```
+tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
+```
+
+`tools/vv/known_issues.yml` lists the checks that fail today and why: 390 of 5,947, under 24 issues. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
 
 ## Known limitations
 
+* **`carneades eval` evaluates nothing for a graph that contains `walton.yml`** today: the engine's validator rejects five schemes and `true/1`, and `eval` then prints its problems and still exits 0. 54 of the 114 schemes can be evaluated from their category file. `PLAN.md` phases 1 to 3 fix this.
+* Through the Go API, inference can run to its limit of 100,000 rule applications without reporting it, when composition and division both apply or `exeptional` applies; schemes listed after them are then never tried. Negated premises (`ignorance`, `from_antimodel`, `opposition-descriptive_2/3`) never match, and `group_2` is never inferred (`is/2` is a GoCHR built-in). Labelling never returns once a second inference has added a position to an existing issue.
+* A scheme's `assumptions` cannot be called into question from a graph file: every scheme assumption is assumed. The book's model, in which an assumption holds until it is questioned (pp. 373–375), needs the engine change of `PLAN.md` 2.7 (`docs/contracts.md`, contract 5).
+* `roles` is documented by Carneades but not read by its importer.
+* Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; no quoted strings with spaces; one term per line in YAML lists).
 * Five schemes (`ad_hominem`, `practical_necessary_condition`, `practical_sufficient_condition`, `regulative_rule`, `sorites_slippery_slope`) have a variable that occurs only in a conclusion, assumption or exception, as in the book; Carneades' own validator reports these as problems because its inference engine needs range-restricted rules. The validator here reports them as warnings (`RANGE_RESTRICTION`).
 * Misspelt identifiers are kept so that existing argument graphs keep working: scheme ids such as `exeption_to_rule`, `epistemic_ignorence`, `exeptional`, predicate names such as `recieves_evaluation`, `oficcial_rulebook`, `succesful_account`, the predicate `true/1` (which Carneades' validator rejects as a boolean), and the file name `5_casual-reasoning.yml`. See `PLAN.md`.
 * Some schemes use 0-ary statements (for example `background`, `being_credible`) where the book's wording has no obvious variables.

@@ -2,6 +2,17 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — the reviewed plan, the engine sources and the verification gate
+
+No scheme file changed.
+
+* `PLAN.md` is replaced by the plan agreed by three independent reviews (`docs/reviews.md`), with the owner's instructions applied: the engine is kept as source in this repository and names follow a rule.
+* `third_party/carneades-4` and `third_party/GoCHR`: the engine sources, imported byte for byte from `carneades-4.zip` and `GoCHR.zip` (`sources.lock`). Engine fixes are made here, one per commit.
+* `tools/vv`: the verification suite, 5,947 checks; `tools/vv/known_issues.yml` lists the 390 that fail today. CI runs `tools/vv/run.sh` on every push (`.github/workflows/verify.yml`).
+* `docs/contracts.md` (what the engine and the library promise), `docs/parity.md` (the reviews' other checks against the suite).
+* README: counts corrected (upstream ships 24 records, not 25; the compendium is 106 or 109 entries depending on the count; 114 records), known limitations updated.
+* Correction to the entry of 2026-11-06: `exeptional` (56, p. 344) was not "checked and left unchanged" correctly: its major premise has a variable no premise binds and its assumption repeats the minor premise, which makes the rule feed itself (`PLAN.md` 3.7). And the alternatives premise of `practical_sufficient_condition` still says "necessary", as the compendium prints it (22.3, p. 323); the narrative on p. 96 says "sufficient" (`PLAN.md` 5.3).
+
 ## 2026-11-06 — branch `fix/validate-and-correct-schemes`
 
 Baseline: `master` at a7cde94. Checked by loading every file with the Carneades 4 engine (master d19d543): **6 of the 14 scheme files did not load at all** (`walton.yml`, `A_reasoning/2`, `A_reasoning/5`, `B_source-based-arguments/2`, `C_applying-rules-to-cases/2`, `C_applying-rules-to-cases/4`), and in the 8 that loaded the engine's own validator reported 103 scheme problems and 27 language problems; many statements rendered as empty or garbled text. After the changes all 14 files load, `tools/validate_schemes.py` reports 0 errors, and the engine's validator reports only the five inherited range-restriction cases and `true/1` listed under Known limitations in the README.
