@@ -320,16 +320,59 @@ func matchEachWith(patterns, stmts []terms.Term, b terms.Bindings, used []bool, 
 	if len(stmts) == 0 {
 		return accept(b)
 	}
+	// Ordinarily matching one statement first is order-independent. An
+	// unbound negated variable is different: given(X) may bind X=¬p, making
+	// the deferred pattern ¬X match p. Try another statement first in that
+	// case, without inventing an inverse-negation binding from p alone.
+	choices := 1
 	for i, p := range patterns {
-		if used[i] {
-			continue
+		if !used[i] && negationNeedsBinding(p, b) {
+			choices = len(stmts)
+			break
 		}
-		if b2, ok := terms.MatchFormula(p, stmts[0], b); ok {
-			used[i] = true
-			if matchEachWith(patterns, stmts[1:], b2, used, accept) {
+	}
+	for j := 0; j < choices; j++ {
+		for i, p := range patterns {
+			if used[i] {
+				continue
+			}
+			if b2, ok := terms.MatchFormula(p, stmts[j], b); ok {
+				remaining := stmts[1:]
+				if j != 0 {
+					remaining = append(append([]terms.Term(nil), stmts[:j]...), stmts[j+1:]...)
+				}
+				used[i] = true
+				matched := matchEachWith(patterns, remaining, b2, used, accept)
+				used[i] = false
+				if matched {
+					return true
+				}
+			}
+		}
+	}
+	return false
+}
+
+func negationNeedsBinding(t terms.Term, b terms.Bindings) bool {
+	switch x := t.(type) {
+	case terms.Compound:
+		if x.Functor == "¬" && len(x.Args) == 1 {
+			if v, ok := x.Args[0].(terms.Variable); ok {
+				if _, bound := terms.GetBinding(v, b); !bound {
+					return true
+				}
+			}
+		}
+		for _, a := range x.Args {
+			if negationNeedsBinding(a, b) {
 				return true
 			}
-			used[i] = false
+		}
+	case terms.List:
+		for _, a := range x {
+			if negationNeedsBinding(a, b) {
+				return true
+			}
 		}
 	}
 	return false

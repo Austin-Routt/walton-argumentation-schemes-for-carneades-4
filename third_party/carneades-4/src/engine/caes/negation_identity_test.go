@@ -140,6 +140,52 @@ arguments:
 	}
 }
 
+func TestAuthoredNegatedPremiseOrder(t *testing.T) {
+	for _, patterns := range []string{"[\"¬X\", given(X)]", "[given(X), \"¬X\"]"} {
+		for _, premises := range []string{"[p, \"given(¬p)\"]", "[\"given(¬p)\", p]"} {
+			for _, params := range []string{"", "    parameters: [\"¬p\"]\n"} {
+				text := fmt.Sprintf(`
+language:
+  given/1: "Evidence %%s."
+  e/1: "Exception %%s."
+  p/0: "Proposition p."
+  q/0: "Conclusion q."
+argument_schemes:
+  - id: s
+    variables: [X]
+    premises: %s
+    conclusions: [q]
+    exceptions: [e(X)]
+statements:
+  given(¬p): Evidence.
+  p: Proposition p.
+  q: Conclusion q.
+  e(¬p): Correct witness.
+  e(p): Wrong witness.
+  target: Undercutter.
+arguments:
+  authored:
+    scheme: s
+%s    premises: %s
+    conclusion: q
+    undercutter: target
+  cut:
+    premises: ["e(¬p)"]
+    conclusion: target
+`, patterns, params, premises)
+				ag := readNegationGraph(t, text)
+				if problems := validation.Validate(ag); len(problems) != 0 {
+					t.Fatalf("patterns=%s premises=%s params=%q: %+v", patterns, premises, params, problems)
+				}
+				ag.Arguments["cut"].Premises[0].Stmt = ag.Statements["e(p)"]
+				if problems := validation.Validate(ag); len(problems) == 0 {
+					t.Fatal("premise permutation accepted a mismatched exception witness")
+				}
+			}
+		}
+	}
+}
+
 func TestNormalizeAPIGraphPreservesIdentityAndAtomicity(t *testing.T) {
 	ag := caes.NewArgGraph()
 	original := &caes.Statement{Id: "¬¬p", Text: "Original text."}

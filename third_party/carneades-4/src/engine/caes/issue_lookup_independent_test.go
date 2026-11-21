@@ -43,6 +43,7 @@ func TestIssueLookupPreservesScanVariants(t *testing.T) {
 		{"duplicate_patterns", IssueScheme{"accepts(X)", "rejects(X)", "rejects(X)"}, []string{"accepts(a)", "rejects(a)"}, 2},
 		{"open_pattern", IssueScheme{"accepts(X)", "rejects(X)", "abstains(Y)"}, []string{"accepts(a)", "rejects(a)", "abstains(b)"}, 3},
 		{"enumeration", IssueScheme{"p(X1)", "...", "p(X2)"}, []string{"p( a )", "p(b)", "p(c)", "q(a)"}, 3},
+		{"substituted_double_negation", IssueScheme{"given(X)", "¬X"}, []string{"given(¬p)", "p", "¬p"}, 2},
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
