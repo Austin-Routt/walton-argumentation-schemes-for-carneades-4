@@ -1,5 +1,7 @@
 # Independent adjudication of PR16 source decisions
 
+**Status after integration:** The authored33.4 repair below was subsequently independently approved by `closure/root-source-review`; see `closure-independent-source-acceptance.md`. Author-time127/16 counts and pending language below are preserved as the review history, not current status.
+
 Date: 2026-11-21. Reviewer: ChatGPT closure scope reviewer.
 
 Compared the public continuation `ea46ab5` (PR16), especially

@@ -586,6 +586,32 @@
       }
     },
     {
+      "record": "negative_consequences_prudential",
+      "fingerprint": "sha256:d93906c6b6d65ebdf5879979064fbc042811e33df4a90295b39a0c340e57fc14",
+      "evidence": [
+        "docs/reviews/closure-independent-source-acceptance.md: Entry33.4",
+        "docs/reviews/pr16-source-adjudication.md",
+        "tools/vv/cases/pr16_prudential_likelihood.yml"
+      ],
+      "examples": [
+        "negative_consequences_prudential/book",
+        "negative_consequences_prudential/pr16-no-fixed-strong-threshold",
+        "negative_consequences_prudential/pr16-adequacy-question",
+        "negative_consequences_prudential/pr16-adequacy-answer",
+        "negative_consequences_prudential/pr16-old-threshold-is-not-new-answer",
+        "negative_consequences_prudential/pr16-outcome-isolation",
+        "negative_consequences_prudential/pr16-action-isolation",
+        "negative_consequences_prudential/pr16-doing-does-not-answer-omission",
+        "negative_consequences_prudential/pr16-omission-does-not-answer-doing",
+        "negative_consequences_prudential/pr16-other-consequences-remain-effective"
+      ],
+      "review": {
+        "by": "closure/root-source-review",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
       "record": "negative_consequences_reasoning",
       "fingerprint": "sha256:4aa7238ca3ba620d95c75791cecba651adba56d6a0001cd6936aefcc317c4c56",
       "evidence": [

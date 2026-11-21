@@ -2125,10 +2125,10 @@ records:
 - record: negative_consequences_prudential
   origin: book
   entry: '33.4'
-  cites: 'Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-
-    156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.'
+  cites: 'Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp.
+    155- 156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.'
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   questions:
   - n: 1
     kind: assumption
@@ -2141,16 +2141,17 @@ records:
   - n: 3
     kind: exception
     as: other_consequences(X)
-  note: PR16 D23 identified a real omission in the earlier closure candidate. The printed33.4 premise permits likely consequences
-    and the shared CQ1 specifies no fixed strong threshold. The revised assumption expresses application-relative adequacy
-    for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception are preserved;
-    old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md.
+  note: PR16 D23 identified a real omission in the earlier closure candidate. The printed33.4 premise permits likely
+    consequences and the shared CQ1 specifies no fixed strong threshold. The revised assumption expresses application-relative
+    adequacy for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception
+    are preserved; old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md.
   review:
-    by: ChatGPT PR16 reconciliation implementation author
+    by: closure/root-source-review
     date: '2026-11-21'
-    decision: hold
-    note: Prior approval withdrawn after the independently identified33.4 threshold gap. Authored omission-specific adequacy
-      repair and migration await a non-author review.
+    decision: approved
+    note: 'Independent non-author review of source printed pp.332–333, omission/action distinction, nine live cases,
+      old-threshold counterexample and manual migration. Focused 797/797, migration16 and validator5 groups passed. See
+      docs/reviews/closure-independent-source-acceptance.md: Entry33.4.'
   changes:
   - plan: pr16-reconciliation
     page: 332

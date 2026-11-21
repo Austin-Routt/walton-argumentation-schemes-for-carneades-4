@@ -1,12 +1,12 @@
-# Plan after the PR15 closure review
+# Plan after the PR15 and PR16 closure review
 
-Updated 2026-11-21. Reviewed public baseline: `e6d2d6f427c6ec0447cae514810c256903b15779`. The corrected continuation is **library 0.3.0 / engine 4.3.1+walton.4**. This plan supersedes earlier operational instructions; the preceding plan is preserved in `docs/reviews/plan-before-pr15-closure.md`.
+Updated 2026-11-21. Reviewed public snapshots: original PR15 `e6d2d6f427c6ec0447cae514810c256903b15779` and later PR16 `ea46ab56c5ebd6fe76f409053cc2f008b13f38cc`. The corrected continuation is **library 0.3.0 / engine 4.3.1+walton.5**. This plan supersedes earlier operational instructions; the preceding plan is preserved in `docs/reviews/plan-before-pr15-closure.md`.
 
 ## Decision and current evidence
 
 Proceed with the corrected **preview** only at the exact commit in the final clean acceptance evidence. Do not publish old R1 pin `8c092b6` or the PR15 baseline as this corrected candidate. Do not label the complete library 1.0.0. Fifteen inherited-source holds remain, despite repaired engine behavior and passing executable examples.
 
-The owner decisions are settled: add explicit finite part/whole and source-alternative variants; align entry33.3's likelihood assessment with companion schemes using semantic migration; retain qualified AS1 separately from a future full AS2 model; implement question-induced suspension in a separate finite dialogue layer. No broad opinion round or majority vote is needed. Reopen concrete counterexamples or newly available source evidence.
+The owner decisions are settled: add explicit finite part/whole and source-alternative variants; correct the likelihood assessments in33.3 and33.4 without conflating action and omission using semantic migration; retain qualified AS1 separately from a future full AS2 model; implement question-induced suspension in a separate finite dialogue layer. No broad opinion round or majority vote is needed. Reopen concrete counterexamples or newly available source evidence.
 
 | Item | Current state |
 |---|---|
@@ -17,7 +17,7 @@ The owner decisions are settled: add explicit finite part/whole and source-alter
 | Additions |23 variants, all independently accepted within declared scope |
 | Compendium mapping |137 records under109 entries;6 upstream-only |
 | Entry approval coverage |103 entries have at least one approved record;2,3,26,29,33.1,33.2 retain inherited-source holds |
-| Registered inventory |9,959 distinct checks, plus separate Python/native/unit/vet/race gates |
+| Registered inventory |9,979 distinct checks, plus separate Python/native/unit/vet/race gates |
 | Validator |0 errors;11 warnings:6 unused inherited templates and5 dependency-cycle groups |
 | Stable gateL |Open; every one of the143 rows must reach example-passed |
 
@@ -30,7 +30,8 @@ The current complete register and every original-hold outcome are `docs/reviews/
 3. Strengthened every case expectation through both CLI round trips without re-inference. Preserved existing assumptions/questions and supplied-fact origins. API observation now recognizes implicit linked arguments consistently with exported graphs. The fresh reviewer's probes and all intermediate failures are retained.
 4. Repaired participant/context leakage, conditional reversal, conclusion strength and missing branches. Added six part/whole variants, four supplemental source forms and thirteen source alternatives. Regenerated categories and all four worked examples.
 5. Implemented `tools/dialogue_snapshot.py`: exact argument targeting, question/accepted-answer/reopen states, retained original defeaters and independent support, strict journals and conservative answer-dependency checks. All30 CQs across six families run against the actual engine. Explicit allocation metadata covers four ignorance families.
-6. Recorded non-author source judgments, source locations, adverse examples and current fingerprints. Atkinson's17 questions split into7 direct,5 partial and5 absent treatments: **ten** lack full-source coverage. The historical eight-item worklist omitted partial CQ8–9.
+6. Integrated public PR16 history and its failed-join cancellation fixture, corrected the universal timing claim, and repaired fresh-variable issue matching under the documented per-anchor alternatives contract. Repeated inference is stable and all matching alternatives participate in consistency checks. PR16 D23 also exposed the remaining33.4 threshold defect; its omission-specific repair has a new non-author approval.
+7. Recorded non-author source judgments, source locations, adverse examples and current fingerprints. Atkinson's17 questions split into7 direct,5 partial and5 absent treatments: **ten** lack full-source coverage. The historical eight-item worklist omitted partial CQ8–9.
 
 ## Binding supported profile and decisions
 

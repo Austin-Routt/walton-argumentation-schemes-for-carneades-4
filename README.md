@@ -48,7 +48,7 @@ VV_STRICT=1 tools/vv/run.sh  # required repository, Python, harness and engine/l
 
 ## Versions and releases
 
-The corrected preview uses library **0.3.0** (`walton.yml` and all category files) and engine **4.3.1+walton.4** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
+The corrected preview uses library **0.3.0** (`walton.yml` and all category files) and engine **4.3.1+walton.5** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the corrected release notes](docs/releases/r1-candidate.md) and [the engine contracts](docs/contracts.md).
 
 The closure review has **128 of143 records at `example-passed`:119 book-origin and9 inherited**.13 inherited rows remain `transcription-checked` and2 `mapped`.35 of the original50 holds are closed and all23 new variants independently accepted. All book-origin rows being approved does not certify every inherited record assigned to a compendium entry: entries2,3,26,29,33.1 and33.2 still have no approved record. See the [current complete register](docs/reviews/closure-current-register.md) for every decision. The complete library remains a preview; full1.0.0 requires all143 rows to meet gateL.
 
@@ -63,7 +63,7 @@ The first checks integrity of current approvals. The second is expected to fail 
 
 ## Closure verification and dialogue
 
-The current named inventory contains **9,959 distinct registered checks**, plus separate native/unit/Python/vet/race gates. All declared API/CLI case expectations are checked without re-inference. Final acceptance requires clean copies on both pinned versions and an exact result comparison; the review archive records the exact candidate commit and all outcomes. Validator:0 errors and11 informational warnings, comprising six preserved unused templates and five dependency-cycle groups.
+The current named inventory contains **9,979 distinct registered checks**, plus separate native/unit/Python/vet/race gates. All declared API/CLI case expectations are checked without re-inference. Final acceptance requires clean copies on both pinned versions and an exact result comparison; the review archive records the exact candidate commit and all outcomes. Validator:0 errors and11 informational warnings, comprising six preserved unused templates and five dependency-cycle groups.
 
 [Finite dialogue snapshots](docs/dialogue-snapshots.md) supplies ask, accepted-answer and reopen states for30 CQs across six families, plus explicit burden allocation for four ignorance families. It preserves independent support and original defeaters; appropriateness and answer adequacy are application judgments. It is separate from canonical static exceptions. API callers use `AddAssumption` to promote a default to a stipulation and maintain origin invariants when directly editing public fields.
 

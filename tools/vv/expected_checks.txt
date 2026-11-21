@@ -5087,6 +5087,24 @@ cases/phase5.yml|waste/positive|case
 cases/phase5.yml|waste/positive|roundtrip
 cases/phase5.yml|witness_testimony/domain-shared-with-position_to_know|case
 cases/phase5.yml|witness_testimony/domain-shared-with-position_to_know|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-action-isolation|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-action-isolation|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-adequacy-answer|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-adequacy-answer|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-adequacy-question|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-adequacy-question|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-doing-does-not-answer-omission|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-doing-does-not-answer-omission|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-no-fixed-strong-threshold|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-no-fixed-strong-threshold|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-old-threshold-is-not-new-answer|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-old-threshold-is-not-new-answer|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-omission-does-not-answer-doing|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-omission-does-not-answer-doing|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-other-consequences-remain-effective|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-other-consequences-remain-effective|roundtrip
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-outcome-isolation|case
+cases/pr16_prudential_likelihood.yml|negative_consequences_prudential/pr16-outcome-isolation|roundtrip
 cases/reference.yml|chain-of-schemes|case
 cases/reference.yml|chain-of-schemes|roundtrip
 cases/reference.yml|cycle|case
@@ -5407,6 +5425,7 @@ source_ledger.yml|not_character_action/2|source/name-in-language
 source_ledger.yml|not_necessarily_true/2|source/name-in-language
 source_ledger.yml|not_normal/1|source/name-in-language
 source_ledger.yml|not_originally_believed/2|source/name-in-language
+source_ledger.yml|omission_consequence_likelihood_adequate/2|source/name-in-language
 source_ledger.yml|opposition_descriptive_1|source/record-row
 source_ledger.yml|opposition_descriptive_2|source/record-row
 source_ledger.yml|opposition_descriptive_3|source/record-row
@@ -5622,6 +5641,7 @@ tools/migration_r2.yml|memory|migration/added old="" trigger="" new="recaller_do
 tools/migration_r2.yml|memory|migration/arity old="based_on_false_belief(M)" trigger="" new="based_on_false_belief(P,M)"
 tools/migration_r2.yml|memory|migration/arity old="not_originally_believed(M)" trigger="" new="not_originally_believed(P,M)"
 tools/migration_r2.yml|memory|migration/rename-predicate old="reasonable_belive/1" trigger="" new="reasonable_believe/1"
+tools/migration_r2.yml|negative_consequences_prudential|migration/replaced old="strongly_occur(X,C)" trigger="" new="omission_consequence_likelihood_adequate(X,C)"
 tools/migration_r2.yml|negative_consequences_reasoning|migration/added old="" trigger="" new="consequence_likelihood_adequate(A,B)"
 tools/migration_r2.yml|negative_consequences_reasoning|migration/arity old="agent_bring_about(A,B)" trigger="" new="agent_bring_about(P,A,B)"
 tools/migration_r2.yml|negative_consequences_reasoning|migration/arity old="bad_for_goals(B)" trigger="" new="bad_for_goals(P,B)"

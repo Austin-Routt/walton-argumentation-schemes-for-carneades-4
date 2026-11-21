@@ -1,6 +1,6 @@
 # R1 — corrected closure preview
 
-Library **0.3.0**; engine **4.3.1+walton.4**. Publish only the exact commit identified by the final clean acceptance evidence. Old pin `8c092b6` and public PR15 baseline `e6d2d6f` are superseded as corrected release targets. This file does not assert that a remote tag/release exists.
+Library **0.3.0**; engine **4.3.1+walton.5**. Publish only the exact commit identified by the final clean acceptance evidence. Old pin `8c092b6` and public PR15 baseline `e6d2d6f` / PR16 snapshot `ea46ab5` are superseded as corrected release targets. This file does not assert that a remote tag/release exists.
 
 ## Changes
 
@@ -14,7 +14,9 @@ The143-record library adds23 explicit source variants and repairs participant/co
 
 **128/143 records are independently approved within declared scope**:119 book-origin and9 inherited.35 original holds are closed;15 inherited rows remain held (13 transcription-checked,2 mapped). All book-origin records being approved does not certify every inherited record assigned to a compendium entry. The stable all-record gate deliberately refuses the fifteen current holds.
 
-The inventory contains **9,959 distinct registered checks**, plus separate Python/native/unit/vet/race gates. Both pinned Go1.24.13 and1.27.4 and their exact result comparison are required. The archive records the precise frozen commit, clean states, exits, logs and hashes. Inventory-update development runs are not release acceptance. Validation reports0 errors and11 explained warnings; no executable failure is waived.
+The integrated candidate also repairs PR16 F2 (fresh-variable issue bindings), adopts its corrected cancellation fixture, and independently renews entry33.4 after the omission-specific likelihood correction. Earlier9,959-check acceptance is preserved as historical evidence only.
+
+The inventory contains **9,979 distinct registered checks**, plus separate Python/native/unit/vet/race gates. Both pinned Go1.24.13 and1.27.4 and their exact result comparison are required. The archive records the precise frozen commit, clean states, exits, logs and hashes. Inventory-update development runs are not release acceptance. Validation reports0 errors and11 explained warnings; no executable failure is waived.
 
 Atkinson's17 CQs partition into7 direct,5 partial and5 absent treatments: ten lack full-source coverage. Qualified AS1 remains outside the fully approved set; full AS2 is a separate finite-model task. Original source obligations and the qualified sunk-cost composite remain explicitly listed in the current register.
 

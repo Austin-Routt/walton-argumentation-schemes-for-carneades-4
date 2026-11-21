@@ -1,12 +1,19 @@
 # Changelog
 
+## 2026-11-21 — integrated PR16 closure (engine4.3.1+walton.5)
+
+* Incorporated PR16 history, preserved its policy snapshots, and adjudicated D15–D23 without weakening the complete-library source gate.
+* Corrected fresh-variable issue-pattern binding leakage, with per-anchor alternative matching, deterministic traversal and complete consistency checking. Five substantive native controls and non-author review accompany the repair.
+* Replaced the cancellation fixture that could hit the inserted-constraint quota before its interrupt; its timing claim is expressly empirical.
+* The33.4 omission-specific likelihood repair is independently approved. Library remains0.3.0 with143 records,128 approved and15 held. Final registered count and acceptance are identified in the current plan and exact release evidence.
+
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
 ## 2026-11-21 — PR16 follow-up, entry33.4 likelihood
 
 * The incoming review correctly identified an omission in the earlier closure candidate: prudential entry33.4 still required consequences to be strongly likely, although its premise permits likelihood without that fixed threshold. Replace `strongly_occur(X,C)` with the explicitly omission-specific `omission_consequence_likelihood_adequate(X,C)`; keep doing and not-doing likelihood judgments distinct.
 * Add nine actual-library cases, a source-grounded validator instance, and manual migration for positive, negative, and questioned old judgments. The same concrete denial-of-strong-likelihood case is out with the frozen old schema and in with the repaired schema using the same corrected engine.
-* The former33.4 source approval is withdrawn pending an independent reviewer of this repair; its author grants no replacement approval. The prior9,959-check acceptance inventory must be refreshed and rerun for the final integrated commit. See `docs/reviews/pr16-source-adjudication.md` for D15–D23 and source-approval overlap decisions.
+* The former33.4 source approval was withdrawn by the author and independently renewed by the root source reviewer after source, case and migration review. The prior9,959-check acceptance is superseded by the refreshed final integrated inventory and clean rerun. See `docs/reviews/pr16-source-adjudication.md` for D15–D23 and source-approval overlap decisions.
 
 ## 2026-11-21 — independent PR15 closure (library0.3.0, engine4.3.1+walton.4)
 

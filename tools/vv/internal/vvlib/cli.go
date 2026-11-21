@@ -201,7 +201,7 @@ func CLIEngineChecks(cli *CLI) []Result {
 	// docs/contracts.md, contract 3: an interrupt cancels the evaluation, which
 	// ends with status 5 and prints nothing. The graph has 300 facts and a
 	// scheme that joins three of them with a fourth fact that does not exist:
-	// 27 million candidate visits and no argument. On the pinned review
+	// 27 million candidate triples and no argument. On the pinned review
 	// toolchains this leaves time for the interrupt without consuming the
 	// inserted-constraint quota. This finite, fixed-delay fixture is still
 	// timing-sensitive; it is not a guarantee for every machine or limit.
