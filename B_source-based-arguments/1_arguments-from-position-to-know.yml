@@ -16,6 +16,7 @@ language:
   bivalent/1: "Every proposition in %s is either true or false."
   case_not_true/1: "It is not the case that %s is true."
   consequences_presumption/2: "If I act on the presumption that %s is true, and it is not true, consequences %s will follow."
+  credible/1: "%s is credible as an expert source."
   credible_source/2: "Witness %s is a credible source for the domain %s."
   dishonest/1: "%s is dishonest."
   expert/2: "%s is an expert in the %s domain."
@@ -212,6 +213,7 @@ argument_schemes:
       - untrustworthy(W)
       - inconsistent_with_other_experts(S)
     assumptions:
+      - credible(W)
       - based_on_evidence(asserts(W,S))
     conclusions:
       - S

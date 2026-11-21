@@ -80,6 +80,7 @@ changes:
   - {record: full_slippery_slope, kind: arity, old: "accept_all_steps", new: "accept_all_steps(C0)", plan: "5.4", page: 341}
   - {record: rule_physical_world_1, kind: arity, old: "not_necessarily_true", new: "not_necessarily_true(W,D)", plan: "5.4", page: 342}
   - {record: rule_physical_world_2, kind: arity, old: "rule_changed", new: "rule_changed(I,D,W)", plan: "5.4", page: 342}
+  - {record: expert_opinion, kind: added, old: "", new: "credible(W)", plan: "5.5", page: 375, note: "the book's own Carneades model of the scheme (pp. 374-375)"}
   - {record: exceptional, kind: rename-scheme, old: "exeptional", new: "exceptional", plan: "5.6", page: 0}
   - {record: epistemic_ignorance, kind: rename-scheme, old: "epistemic_ignorence", new: "epistemic_ignorance", plan: "5.6", page: 0}
   - {record: threat, kind: rename-scheme, old: "treat", new: "threat", plan: "5.6", page: 0}

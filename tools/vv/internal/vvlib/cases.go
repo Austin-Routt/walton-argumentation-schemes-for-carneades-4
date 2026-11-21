@@ -21,6 +21,7 @@ package vvlib
 //	    out: [...]                                # labelled out
 //	    issues: [[h, ¬h]]                         # an issue with exactly these positions
 //	    outcome: invalid input                    # Infer ends this way (default: complete)
+//	    variants: true                            # each assumption needed, each exception undercuts
 //
 // Each case is one check, "case", of the case file.
 
@@ -54,6 +55,11 @@ type Case struct {
 	Out         []string   `yaml:"out"`
 	Issues      [][]string `yaml:"issues"`
 	Outcome     string     `yaml:"outcome"`
+	// Variants, for a case with one argument (PLAN.md 5.7): leaving out any
+	// one assumption of the case builds no such argument, and stating any
+	// one exception of its scheme, for the argument's parameters, undercuts
+	// it.
+	Variants bool `yaml:"variants"`
 }
 
 // CaseFiles lists the case files under tools/vv/cases.
@@ -187,6 +193,108 @@ func RunCase(root string, c Case) []string {
 		}
 		if !found {
 			probs = append(probs, fmt.Sprintf("no issue with the positions %v", want))
+		}
+	}
+	if c.Variants {
+		probs = append(probs, variantProblems(data, c)...)
+	}
+	return probs
+}
+
+// variantProblems runs the case once without each of its assumptions, and once
+// with each exception of its argument's scheme stated (PLAN.md 5.7).
+func variantProblems(data []byte, c Case) []string {
+	if len(c.Arguments) != 1 {
+		return []string{"variants need exactly one argument"}
+	}
+	t, ok := parse(c.Arguments[0])
+	call, isC := t.(terms.Compound)
+	if !ok || !isC {
+		return []string{"variants: the argument is not scheme(parameters)"}
+	}
+	run := func(assumptions []string) (*caes.ArgGraph, caes.Labelling, *caes.Scheme, error) {
+		ResetEngineGlobals()
+		cap := StartCapture()
+		defer func() { cap.Stop(); ResetEngineGlobals() }()
+		ag, err := cyaml.Import(strings.NewReader(string(data)))
+		if err != nil {
+			return nil, nil, nil, err
+		}
+		var s *caes.Scheme
+		for _, x := range ag.Theory.ArgSchemes {
+			if x.Id == call.Functor {
+				s = x
+			}
+		}
+		ag.Assumptions = append(ag.Assumptions, assumptions...)
+		ag.Questioned = append(ag.Questioned, c.Questioned...)
+		if err := ag.Infer(); err != nil {
+			return ag, nil, s, err
+		}
+		return ag, ag.GroundedLabelling(), s, nil
+	}
+	find := func(ag *caes.ArgGraph) *caes.Argument {
+		for _, a := range ag.Arguments {
+			if a != nil && a.Scheme != nil && terms.Normalize(a.Scheme.Id+"("+strings.Join(a.Parameters, ",")+")") == terms.Normalize(c.Arguments[0]) {
+				return a
+			}
+		}
+		return nil
+	}
+	probs := []string{}
+	for i := range c.Assumptions {
+		rest := append(append([]string{}, c.Assumptions[:i]...), c.Assumptions[i+1:]...)
+		ag, _, _, err := run(rest)
+		if err != nil {
+			probs = append(probs, fmt.Sprintf("without %s: %v", c.Assumptions[i], err))
+		} else if find(ag) != nil {
+			probs = append(probs, fmt.Sprintf("without %s the argument is still built", c.Assumptions[i]))
+		}
+	}
+	_, _, s, err := run(c.Assumptions)
+	if err != nil || s == nil {
+		return append(probs, fmt.Sprintf("variants: the scheme %s is not in the graph (%v)", call.Functor, err))
+	}
+	if len(s.Variables) != len(call.Args) {
+		return append(probs, fmt.Sprintf("variants: %s has %d variables, the argument %d parameters", s.Id, len(s.Variables), len(call.Args)))
+	}
+	bind := map[string]terms.Term{}
+	for i, v := range s.Variables {
+		bind[v] = call.Args[i]
+	}
+	var subst func(t terms.Term) terms.Term
+	subst = func(t terms.Term) terms.Term {
+		switch v := t.(type) {
+		case terms.Variable:
+			if b, ok := bind[v.Name]; ok {
+				return b
+			}
+		case terms.Compound:
+			args := make([]terms.Term, len(v.Args))
+			for i, a := range v.Args {
+				args[i] = subst(a)
+			}
+			return terms.Compound{Functor: v.Functor, Args: args}
+		}
+		return t
+	}
+	for _, e := range s.Exceptions {
+		et, ok := parse(e)
+		if !ok {
+			probs = append(probs, "variants: cannot read the exception "+e)
+			continue
+		}
+		stated := subst(et).String()
+		ag, l, _, err := run(append(append([]string{}, c.Assumptions...), stated))
+		if err != nil {
+			probs = append(probs, fmt.Sprintf("with %s: %v", stated, err))
+			continue
+		}
+		a := find(ag)
+		if a == nil || a.Undercutter == nil {
+			probs = append(probs, fmt.Sprintf("with %s the argument is not built", stated))
+		} else if l[a.Undercutter] != caes.In {
+			probs = append(probs, fmt.Sprintf("with %s the argument is not undercut", stated))
 		}
 	}
 	return probs

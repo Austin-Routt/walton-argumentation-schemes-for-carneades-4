@@ -1001,3 +1001,28 @@ cases:
       - counts_as(stalemate,draw)
     not_in:
       - counts_as(castling,move)
+
+  # --- 5.5: expert_opinion (2, p. 310; pp. 374-375) ----------------------------
+  # CQ1, how credible the expert is, is the assumption credible(W), as in the
+  # book's own Carneades model of the scheme.
+  - name: expert_opinion/adverse-credibility-questioned
+    source: "2, p. 310, CQ1; pp. 374-375"
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+    questioned:
+      - credible(smith)
+    not_in:
+      - liable(acme)
+  - name: expert_opinion/credibility-questioned-and-shown
+    source: "2, p. 310, CQ1; pp. 374-375"
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+      - credible(smith)
+    questioned:
+      - credible(smith)
+    in:
+      - liable(acme)

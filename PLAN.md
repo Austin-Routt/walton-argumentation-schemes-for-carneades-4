@@ -248,5 +248,8 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 5.4 Statements without variables: 13 get the variable of their participant or case, 6 general warrants stay global; two cases in one graph for each change
 - [x] 5.9 A source for every record: entry and page first in `meta.source`, checked against the ledger; titles and sources for the four records that had none
 - [ ] 5.6 The one migration: misspelt ids, predicates and file names renamed, hyphens gone, "Therefore," gone from every template, `not_fit_action` renamed; the old-to-new table `tools/migration_r2.yml`, the script `tools/migrate_r2.py`, and an R1 graph migrated in a test. Open: predicates shared by meaning and role
+- [x] 5.7 One instance per record, written by hand from the book, with each premise needed and each exception undercutting (`tools/vv/cases/book.yml`, 119 cases)
+- [x] 5.8 Readings against the print marked in the ledger rows: 9.1/10.1, 11.2, 22.3, 55.3
+- [ ] 5.5 Upstream records against their own sources: `epistemic_ignorence`'s premise 5 and `expert_opinion`'s assumption from pp. 374-375 done; the rest need the cited works (A Pragmatic Theory of Fallacy, Appeal to Expert Opinion, Fundamentals of Critical Argumentation, Walton 2006 on appearance, Wyner 2016, Atkinson and Bench-Capon 2007, Walton 2015), which are not in the repository, and the 2019 correspondence for `exeption_to_rule`
 - [ ] 5.2 Gaps modelled: done for every record of the book (26 records changed, each with cases and a pinned instance; table in `tools/migration_r2.yml`); nine questions of six upstream records wait for 5.5
 - [ ] Phase 5; gate L; release R2

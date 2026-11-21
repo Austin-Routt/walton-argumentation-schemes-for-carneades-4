@@ -43,7 +43,7 @@ A second, independent check runs the Carneades 4 engine itself on every scheme:
 tools/vv/run.sh      # the two checks above, the engine sources against sources.lock, then tools/vv (Go 1.24, about 40 seconds)
 ```
 
-`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,564 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
+`tools/vv/known_issues.yml` lists the checks that fail today and why. It is empty: all 7,808 checks pass; 390 of 5,947 under 24 issues failed before the work of `PLAN.md` began. `carneades check` reports nothing for any of the 14 files, and every scheme of every file is evaluated through the command. A run is green when nothing fails that the ledger does not list and nothing listed has started to pass. See `tools/vv/README.md`.
 
 ## Versions and releases
 
@@ -54,11 +54,11 @@ The library and the engine carry versions of their own. The library's is `meta.v
 
 ## Known limitations
 
-* The library is a **preview** (release R1 of `PLAN.md`): every scheme runs, but the repairs of 2026-11-21 are executable interpretations of the book until `PLAN.md` Phase 5 has checked them, and the sorting of critical questions into assumptions and exceptions is still to be done for most records (5.1). The engine as shipped could evaluate no scheme of `walton.yml` through the command and 54 of the 114 from their category file; see the changelog for what changed.
+* The library is not released as stable yet. Since R1 (0.1.0), Phase 5 of `PLAN.md` has compared every record filed under a compendium entry with the book, sorted all 189 printed critical questions into premises, assumptions, exceptions, rebuttals and questions of the proof standard, modelled the ones that were missing, and written one instance per record from the book (0.2.0, unreleased). What remains before R2 is a review of these interpretations by someone who did not write them (D14), and the comparison of the records taken over from Carneades with the works they cite (5.5); `tools/vv/source_ledger.yml` shows how far each record has got.
 * A scheme's `assumptions` hold until they are called into question (pp. 373–375): list a statement under `questioned:` in a graph file (or `ArgGraph.Questioned`), and the default is suspended until an argument supports it. A statement the graph itself stipulates under `assumptions:` stays assumed (`docs/contracts.md`, contract 5).
 * Rules for writing terms with this engine are at the end of `PLAN.md` (quote dates; one term per line in YAML lists; no `is`, `true` or `false` as predicate names).
 * Release R2 renames the misspelt identifiers once (`PLAN.md` D4, 5.6): scheme ids such as `exeptional` (now `exceptional`), `epistemic_ignorence`, `treat` (now `threat`) and the four ids with a hyphen, predicates such as `recieves_evaluation` and `succesful_account`, and the files `5_casual-reasoning.yml`, `2_argumen-from-commitment.yml` and `4_argumen-from-popular-acceptence.yml`. `tools/migration_r2.yml` lists every change from 0.1.0 (release R1) to R2, and `python3 tools/migrate_r2.py FILE` brings a graph written for R1 up to date; it lists the changes it cannot make without knowing the case (a statement with other arguments, a premise added). `exeption_to_rule`, one of the records taken over from Carneades, keeps its id until the 2019 correspondence is checked (5.5).
-* Some schemes use 0-ary statements (for example `background`, `being_credible`) where the book's wording has no obvious variables.
+* Six statements have no variable, by decision (`PLAN.md` 5.4): the general warrants `more_important_ends`, `synonymous`, `correctly_report`, `speakers_correct` and `do_obligator`, and `goal_prestige`, which is about the respondent, whom no ad populum record names.
 
 #### Updates
 ##### 2019-10-08
