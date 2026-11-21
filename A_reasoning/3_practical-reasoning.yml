@@ -6,12 +6,13 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  acceptable_action/1: "%s is an acceptable action."
+  acceptable_action/2: "For %s, %s is an acceptable action."
   action_will_help/2: "Proposed action %s will really help %s."
   agent_bring_about/3: "If %s, as an agent, brings about %s, then %s will occur."
-  alternative_action/2: "I reasonably consider on the given information that bringing about at least one of %s is necessary to bring about %s."
-  alternative_action_sufficient/2: "I reasonably consider on the given information that bringing about at least one of %s is sufficient to bring about %s."
+  alternative_action/3: "%s reasonably considers on the given information that bringing about at least one of %s is necessary to bring about %s."
+  alternative_action_sufficient/3: "%s reasonably considers on the given information that each one of %s is sufficient to bring about %s."
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
+  alternative_means/3: "For %s, there are alternative means of realizing %s other than %s."
   alternative_means/2: "There are alternative means of realizing %s other than %s."
   alternatives/2: "Either you must bring about %s, or %s will occur."
   assert_bad/2: "I hereby assert that in fact I will see to it that %[2]s occurs if you bring about %[1]s."
@@ -50,10 +51,10 @@ language:
   legitimate_value/1: "%s is a legitimate value."
   means_end/1: "Means %s should be regarded as an end."
   means_to_end/2: "%s is means to the end %s."
-  more_acceptable_bringing/2: "Bringing about %s is more acceptable to me than not bringing about %s."
+  more_acceptable_bringing/3: "For %s, bringing about %s is more acceptable than not bringing about %s."
   more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
-  necessary_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, necessary condition for %s."
+  necessary_action/4: "%s has selected member %s of %s as an acceptable, or as the most acceptable, necessary condition for %s."
   necessary_or_sufficient_for_goal/3: "Bringing about %[2]s is necessary or sufficient for %[1]s to bring about %[3]s."
   not_do_appear/2: "If you do not bring about %s, then %s will occur."
   not_doing/1: "You were considering not doing %s."
@@ -69,7 +70,7 @@ language:
   possible/1: "Action %s is possible."
   possible_bring_about/2: "It is possible for %s to bring about %s."
   possible_goal/1: "Bringing about %s is possible."
-  practicality_action/1: "Nothing unchangeable prevents me from bringing about %s, as far as I know."
+  practicality_action/2: "As far as %s knows, nothing unchangeable prevents that agent from bringing about %s."
   precommitted/4: "At %[4]s, %[1]s is precommitted to %[2]s because of what that agent did or committed to at %[3]s."
   prevent/1: "You ought to prevent %s if possible."
   promote_more_effectively/2: "There exists an action that would promote the value %s more effectively than %s."
@@ -88,7 +89,7 @@ language:
   situation_necessity/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
   strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
-  sufficient_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
+  sufficient_action/4: "%s has selected member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
   too_high_to_waste/1: "The sunk costs of %s are too high to waste."
@@ -233,17 +234,17 @@ argument_schemes:
       - should_do(P,X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(S,A)
-      - necessary_action(X,S,A)
-      - practicality_action(X)
-      - more_acceptable_bringing(A,X)
+      - alternative_action(P,S,A)
+      - necessary_action(P,X,S,A)
+      - practicality_action(P,X)
+      - more_acceptable_bringing(P,A,X)
     exceptions:
-      - alternative_means(A,X)
+      - alternative_means(P,A,X)
       - side_effect_action(P,X)
       - conflicting_goals(P,A)
     assumptions: 
      - possible_goal(A)
-     - acceptable_action(X)
+     - acceptable_action(P,X)
      - possible_bring_about(P,X)
 
   - id: practical_sufficient_condition
@@ -255,17 +256,17 @@ argument_schemes:
       - should_do(P,X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action_sufficient(S,A)
-      - sufficient_action(X,S,A)
-      - practicality_action(X)
-      - more_acceptable_bringing(A,X)
+      - alternative_action_sufficient(P,S,A)
+      - sufficient_action(P,X,S,A)
+      - practicality_action(P,X)
+      - more_acceptable_bringing(P,A,X)
     exceptions:
-      - alternative_means(A,X)
+      - alternative_means(P,A,X)
       - side_effect_action(P,X)
       - conflicting_goals(P,A)
     assumptions: 
      - possible_goal(A)
-     - acceptable_action(X)
+     - acceptable_action(P,X)
      - possible_bring_about(P,X)
 
   - id: value_based_practical_reasoning

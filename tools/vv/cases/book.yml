@@ -154,10 +154,10 @@ cases:
     source: "22.2, p. 323"
     assumptions:
       - goal_of_agent(me,pass_exam)
-      - alternative_action(ways_to_pass,pass_exam)
-      - necessary_action(study,ways_to_pass,pass_exam)
-      - practicality_action(study)
-      - more_acceptable_bringing(pass_exam,study)
+      - alternative_action(me,ways_to_pass,pass_exam)
+      - necessary_action(me,study,ways_to_pass,pass_exam)
+      - practicality_action(me,study)
+      - more_acceptable_bringing(me,pass_exam,study)
     arguments:
       - practical_necessary_condition(study,pass_exam,me,ways_to_pass)
     in:
@@ -167,10 +167,10 @@ cases:
     source: "22.3, p. 323"
     assumptions:
       - goal_of_agent(me,pass_exam)
-      - alternative_action_sufficient(ways_to_pass,pass_exam)
-      - sufficient_action(study,ways_to_pass,pass_exam)
-      - practicality_action(study)
-      - more_acceptable_bringing(pass_exam,study)
+      - alternative_action_sufficient(me,ways_to_pass,pass_exam)
+      - sufficient_action(me,study,ways_to_pass,pass_exam)
+      - practicality_action(me,study)
+      - more_acceptable_bringing(me,pass_exam,study)
     arguments:
       - practical_sufficient_condition(study,pass_exam,me,ways_to_pass)
     in:
@@ -648,7 +648,7 @@ cases:
     arguments:
       - negative_practical(loaded,accident,delay)
     in:
-      - act_on_presumption(loaded)
+      - act_on_presumption_false(loaded)
     variants: true
   - name: epistemic_ignorance/book
     source: "27, p. 328"
@@ -975,7 +975,7 @@ cases:
     arguments:
       - from_example(tweety,bird,flies)
     in:
-      - both_properties(tweety,bird,flies)
+      - usually_properties(bird,flies)
     variants: true
   - name: illustration/book
     source: "6.2, p. 315"
@@ -992,7 +992,7 @@ cases:
     assumptions:
       - prestigious_individual(gandhi,students)
       - carry_out_act(gandhi,fasting)
-      - worth_imitated(fasting,students)
+      - imitation_warrant(gandhi,fasting,students)
     arguments:
       - from_model(gandhi,students,fasting)
     in:

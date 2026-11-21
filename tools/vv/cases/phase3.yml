@@ -107,10 +107,10 @@ cases:
     source: "22.2, p. 323"
     assumptions:
       - goal_of_agent(me,a)
-      - alternative_action(alts,a)
-      - necessary_action(b1,alts,a)
-      - practicality_action(b1)
-      - more_acceptable_bringing(a,b1)
+      - alternative_action(me,alts,a)
+      - necessary_action(me,b1,alts,a)
+      - practicality_action(me,b1)
+      - more_acceptable_bringing(me,a,b1)
     arguments:
       - "practical_necessary_condition(b1,a,me,alts)"
     in:
@@ -119,10 +119,10 @@ cases:
     source: "22.2, CQ5, p. 324"
     assumptions:
       - goal_of_agent(me,a)
-      - alternative_action(alts,a)
-      - necessary_action(b1,alts,a)
-      - practicality_action(b1)
-      - more_acceptable_bringing(a,b1)
+      - alternative_action(me,alts,a)
+      - necessary_action(me,b1,alts,a)
+      - practicality_action(me,b1)
+      - more_acceptable_bringing(me,a,b1)
       - conflicting_goals(me,a)
     not_in:
       - should_do(me,b1)
@@ -130,10 +130,10 @@ cases:
     source: "22.2, CQ5, p. 324"
     assumptions:
       - goal_of_agent(me,a)
-      - alternative_action(alts,a)
-      - necessary_action(b1,alts,a)
-      - practicality_action(b1)
-      - more_acceptable_bringing(a,b1)
+      - alternative_action(me,alts,a)
+      - necessary_action(me,b1,alts,a)
+      - practicality_action(me,b1)
+      - more_acceptable_bringing(me,a,b1)
       - conflicting_goals(you,a)
     in:
       - should_do(me,b1)
@@ -141,10 +141,10 @@ cases:
     source: "22.3, p. 323"
     assumptions:
       - goal_of_agent(me,a)
-      - alternative_action_sufficient(alts,a)
-      - sufficient_action(b1,alts,a)
-      - practicality_action(b1)
-      - more_acceptable_bringing(a,b1)
+      - alternative_action_sufficient(me,alts,a)
+      - sufficient_action(me,b1,alts,a)
+      - practicality_action(me,b1)
+      - more_acceptable_bringing(me,a,b1)
     arguments:
       - "practical_sufficient_condition(b1,a,me,alts)"
     in:

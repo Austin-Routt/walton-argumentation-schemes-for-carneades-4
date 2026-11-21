@@ -46,7 +46,7 @@ cases:
     arguments:
       - from_example(tweety,bird,flies)
     in:
-      - both_properties(tweety,bird,flies)
+      - usually_properties(bird,flies)
   - name: from_example/adverse-support-questioned
     source: "6.1, p. 314, CQ2"
     assumptions:
@@ -54,7 +54,7 @@ cases:
     questioned:
       - supports_generalization(tweety,bird,flies)
     not_in:
-      - both_properties(tweety,bird,flies)
+      - usually_properties(bird,flies)
   - name: from_example/support-questioned-and-shown
     source: "6.1, p. 314, CQ2; pp. 373-375"
     assumptions:
@@ -63,7 +63,7 @@ cases:
     questioned:
       - supports_generalization(tweety,bird,flies)
     in:
-      - both_properties(tweety,bird,flies)
+      - usually_properties(bird,flies)
 
   # 14 verbal_classification (p. 319): CQ2, a classification that rests
   # merely on doubtful word usage, is an exception.
@@ -817,10 +817,10 @@ cases:
     source: "22.2, p. 323"
     assumptions:
       - goal_of_agent(me,a)
-      - alternative_action(alts,a)
-      - necessary_action(b1,others,a)
-      - practicality_action(b1)
-      - more_acceptable_bringing(a,b1)
+      - alternative_action(me,alts,a)
+      - necessary_action(me,b1,others,a)
+      - practicality_action(me,b1)
+      - more_acceptable_bringing(me,a,b1)
     no_arguments: [practical_necessary_condition]
     not_in:
       - should_do(me,b1)
@@ -828,10 +828,10 @@ cases:
     source: "22.3, p. 323; p. 96"
     assumptions:
       - goal_of_agent(me,a)
-      - alternative_action(alts,a)
-      - sufficient_action(b1,alts,a)
-      - practicality_action(b1)
-      - more_acceptable_bringing(a,b1)
+      - alternative_action(me,alts,a)
+      - sufficient_action(me,b1,alts,a)
+      - practicality_action(me,b1)
+      - more_acceptable_bringing(me,a,b1)
     no_arguments: [practical_sufficient_condition]
     not_in:
       - should_do(me,b1)
@@ -911,9 +911,9 @@ cases:
     questioned:
       - sufficient_evidence(poisoned)
     in:
-      - act_on_presumption(loaded)
+      - act_on_presumption_false(loaded)
     not_in:
-      - act_on_presumption(poisoned)
+      - act_on_presumption_false(poisoned)
   - name: sign/two-signs
     source: "30, p. 329, CQ2"
     assumptions:
@@ -1226,10 +1226,10 @@ cases:
       - stop_realize_wasted(ann,thesis)
       - waste_bad_thing(ann,thesis)
       - goal_of_agent(ann,thesis)
-      - alternative_action(ways,thesis)
-      - necessary_action(write,ways,thesis)
-      - practicality_action(write)
-      - more_acceptable_bringing(thesis,write)
+      - alternative_action(ann,ways,thesis)
+      - necessary_action(ann,write,ways,thesis)
+      - practicality_action(ann,write)
+      - more_acceptable_bringing(ann,thesis,write)
     questioned:
       - possible_goal(thesis)
     not_in:
@@ -1241,10 +1241,10 @@ cases:
       - tells_intend(ann,trip,bob)
       - situation_necessity(bob,ticket,trip,ann)
       - goal_of_agent(ann,trip)
-      - alternative_action(ways,trip)
-      - necessary_action(ticket,ways,trip)
-      - practicality_action(ticket)
-      - more_acceptable_bringing(trip,ticket)
+      - alternative_action(ann,ways,trip)
+      - necessary_action(ann,ticket,ways,trip)
+      - practicality_action(ann,ticket)
+      - more_acceptable_bringing(ann,trip,ticket)
       - conflicting_goals(ann,trip)
     arguments:
       - two_person_practical(ann,bob,trip,ticket)
