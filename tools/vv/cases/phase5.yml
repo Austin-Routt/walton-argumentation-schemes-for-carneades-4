@@ -222,7 +222,7 @@ cases:
     arguments:
       - negative_normal_expectations(alarm_silent)
     in:
-      - not_normal
+      - not_normal(alarm_silent)
   - name: negative_normal_expectations/adverse-not-investigated
     source: "26.1, p. 327, CQ1"
     assumptions:
@@ -230,7 +230,7 @@ cases:
       - case_not_true(alarm_silent)
       - uninvestigated(alarm_silent)
     not_in:
-      - not_normal
+      - not_normal(alarm_silent)
 
   # --- batch 3: entries 31 to 40 --------------------------------------------
   # 31.1, 31.2 (pp. 329-330): CQ3 and CQ4 of the list printed after 31.2, how
@@ -604,7 +604,7 @@ cases:
     assumptions:
       - initial_presumption(c0)
       - leads_to_next(c0,c1,cn)
-      - accept_all_steps
+      - accept_all_steps(c0)
     arguments:
       - full_slippery_slope(c0,c1,cn)
     in:
@@ -614,7 +614,7 @@ cases:
     assumptions:
       - initial_presumption(c0)
       - leads_to_next(c0,c1,cn)
-      - accept_all_steps
+      - accept_all_steps(c0)
     questioned: [led_to_step]
     in:
       - not_acceptable_step(c0)
@@ -856,3 +856,148 @@ cases:
       - pop_scheme(claim,g)
     in:
       - claim
+
+  # --- 5.4: statements without variables ------------------------------------
+  # A statement about a participant or about the case gets that variable; a
+  # general warrant stays global (goal_prestige, more_important_ends,
+  # synonymous, correctly_report, speakers_correct, do_obligator). Each change
+  # is tested with two cases in one graph, which a statement without a
+  # variable would have mixed up.
+  - name: common_folk_ad_populum/two-speakers
+    source: "4.10, p. 313"
+    assumptions:
+      - background(ann)
+    arguments:
+      - common_folk_ad_populum(ann)
+    in:
+      - being_credible(ann)
+    not_in:
+      - being_credible(bob)
+  - name: common_folks_group_ad_populum/two-speakers
+    source: "4.11, p. 313"
+    assumptions:
+      - group_background(ann,g)
+      - respondent_member(g)
+      - group_background(bob,h)
+    in:
+      - accept_saying(ann)
+    not_in:
+      - accept_saying(bob)
+  - name: negative_normal_expectations/two-expectations
+    source: "26.1, p. 327"
+    assumptions:
+      - normal_true(alarm_silent)
+      - case_not_true(alarm_silent)
+      - normal_true(door_closed)
+      - case_not_true(door_closed)
+      - uninvestigated(door_closed)
+    in:
+      - not_normal(alarm_silent)
+    not_in:
+      - not_normal(door_closed)
+  - name: negative_practical/two-questions
+    source: "26.2, p. 327, CQ1"
+    assumptions:
+      - not_know_true(loaded)
+      - presumption(loaded)
+      - consequences_presumption(loaded,accident)
+      - other_consequences_presumption(loaded,delay)
+      - more_serious_consequences(accident,delay)
+      - not_know_true(poisoned)
+      - presumption(poisoned)
+      - consequences_presumption(poisoned,illness)
+      - other_consequences_presumption(poisoned,waste)
+      - more_serious_consequences(illness,waste)
+    questioned:
+      - sufficient_evidence(poisoned)
+    in:
+      - act_on_presumption(loaded)
+    not_in:
+      - act_on_presumption(poisoned)
+  - name: sign/two-signs
+    source: "30, p. 329, CQ2"
+    assumptions:
+      - finding_true(smoke)
+      - indicated_true(fire,smoke)
+      - finding_true(spots)
+      - indicated_true(measles,spots)
+      - more_reliable(spots)
+    in:
+      - true_in_situation(fire)
+    not_in:
+      - true_in_situation(measles)
+  - name: retroductive/two-agents
+    source: "31.5, p. 331, CQ4"
+    assumptions:
+      - agent_event(ann)
+      - event_quality(greedy)
+      - agent_quality(ann,greedy)
+      - agent_event(bob)
+      - agent_quality(bob,greedy)
+    questioned:
+      - reference_class(bob,greedy)
+    in:
+      - event_question(ann)
+    not_in:
+      - event_question(bob)
+  - name: ad_hominem/two-arguments
+    source: "42, p. 336, CQ2"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+      - advocates_conclusion(bob,arg2,war)
+    questioned:
+      - character_revelant(arg2)
+    in:
+      - bad_not_accepted(bob,arg1)
+    not_in:
+      - bad_not_accepted(bob,arg2)
+  - name: gradualism/two-sequences
+    source: "48, p. 339"
+    assumptions:
+      - true_acceptable(a)
+      - sequence(a,b1,bn,c)
+      - must_proper(a,c)
+      - true_acceptable(x)
+      - sequence(x,y1,yn,z)
+      - must_proper(x,z)
+    questioned:
+      - proper_sequence(x,z)
+    in:
+      - true_acceptable(c)
+    not_in:
+      - true_acceptable(z)
+  - name: full_slippery_slope/two-series
+    source: "53, p. 341"
+    assumptions:
+      - initial_presumption(c0)
+      - leads_to_next(c0,c1,cn)
+      - accept_all_steps(c0)
+      - initial_presumption(d0)
+      - leads_to_next(d0,d1,dn)
+    in:
+      - not_acceptable_step(c0)
+    not_in:
+      - not_acceptable_step(d0)
+  - name: rule_physical_world_1/two-claims
+    source: "54.1, p. 342"
+    assumptions:
+      - is_a(whale,mammal)
+      - is_a(tomato,fruit)
+      - synonymous
+      - not_necessarily_true(tomato,fruit)
+    in:
+      - means_same(whale,mammal)
+    not_in:
+      - means_same(tomato,fruit)
+  - name: rule_physical_world_2/two-rules
+    source: "54.2, p. 342"
+    assumptions:
+      - oficcial_rulebook(chess,stalemate,draw)
+      - oficcial_rulebook(chess,castling,move)
+      - correctly_report
+      - rule_changed(chess,castling,move)
+    in:
+      - counts_as(stalemate,draw)
+    not_in:
+      - counts_as(castling,move)

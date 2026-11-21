@@ -3463,6 +3463,8 @@ cases/phase5.yml|abductive_forward/positive|case
 cases/phase5.yml|abductive_forward/positive|roundtrip
 cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|case
 cases/phase5.yml|ad_hominem/questioning-the-removed-assumption-is-idle|roundtrip
+cases/phase5.yml|ad_hominem/two-arguments|case
+cases/phase5.yml|ad_hominem/two-arguments|roundtrip
 cases/phase5.yml|bias/adverse-another-persons-premise|case
 cases/phase5.yml|bias/adverse-another-persons-premise|roundtrip
 cases/phase5.yml|bias/adverse-dialogue-questioned|case
@@ -3483,6 +3485,10 @@ cases/phase5.yml|commitment2/adverse-contrary-evidence|case
 cases/phase5.yml|commitment2/adverse-contrary-evidence|roundtrip
 cases/phase5.yml|commitment2/positive|case
 cases/phase5.yml|commitment2/positive|roundtrip
+cases/phase5.yml|common_folk_ad_populum/two-speakers|case
+cases/phase5.yml|common_folk_ad_populum/two-speakers|roundtrip
+cases/phase5.yml|common_folks_group_ad_populum/two-speakers|case
+cases/phase5.yml|common_folks_group_ad_populum/two-speakers|roundtrip
 cases/phase5.yml|distress/adverse-side-effects|case
 cases/phase5.yml|distress/adverse-side-effects|roundtrip
 cases/phase5.yml|distress/adverse-someone-elses-distress|case
@@ -3515,6 +3521,10 @@ cases/phase5.yml|full_slippery_slope/positive|case
 cases/phase5.yml|full_slippery_slope/positive|roundtrip
 cases/phase5.yml|full_slippery_slope/questioning-the-removed-assumption-is-idle|case
 cases/phase5.yml|full_slippery_slope/questioning-the-removed-assumption-is-idle|roundtrip
+cases/phase5.yml|full_slippery_slope/two-series|case
+cases/phase5.yml|full_slippery_slope/two-series|roundtrip
+cases/phase5.yml|gradualism/two-sequences|case
+cases/phase5.yml|gradualism/two-sequences|roundtrip
 cases/phase5.yml|help/adverse-help-questioned|case
 cases/phase5.yml|help/adverse-help-questioned|roundtrip
 cases/phase5.yml|help/adverse-premise-missing|case
@@ -3547,6 +3557,10 @@ cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|case
 cases/phase5.yml|negative_normal_expectations/adverse-not-investigated|roundtrip
 cases/phase5.yml|negative_normal_expectations/positive|case
 cases/phase5.yml|negative_normal_expectations/positive|roundtrip
+cases/phase5.yml|negative_normal_expectations/two-expectations|case
+cases/phase5.yml|negative_normal_expectations/two-expectations|roundtrip
+cases/phase5.yml|negative_practical/two-questions|case
+cases/phase5.yml|negative_practical/two-questions|roundtrip
 cases/phase5.yml|negative_value/adverse-not-a-reason-for-retaining|case
 cases/phase5.yml|negative_value/adverse-not-a-reason-for-retaining|roundtrip
 cases/phase5.yml|negative_value/positive|case
@@ -3579,6 +3593,14 @@ cases/phase5.yml|retroductive/adverse-fit-questioned|case
 cases/phase5.yml|retroductive/adverse-fit-questioned|roundtrip
 cases/phase5.yml|retroductive/positive|case
 cases/phase5.yml|retroductive/positive|roundtrip
+cases/phase5.yml|retroductive/two-agents|case
+cases/phase5.yml|retroductive/two-agents|roundtrip
+cases/phase5.yml|rule_physical_world_1/two-claims|case
+cases/phase5.yml|rule_physical_world_1/two-claims|roundtrip
+cases/phase5.yml|rule_physical_world_2/two-rules|case
+cases/phase5.yml|rule_physical_world_2/two-rules|roundtrip
+cases/phase5.yml|sign/two-signs|case
+cases/phase5.yml|sign/two-signs|roundtrip
 cases/phase5.yml|two_person_practical/adverse-alternative-means|case
 cases/phase5.yml|two_person_practical/adverse-alternative-means|roundtrip
 cases/phase5.yml|two_person_practical/adverse-other-actions-required|case
@@ -3661,6 +3683,8 @@ source_ledger.yml|abductive_action_to_character|source/record-row
 source_ledger.yml|abductive_backward|source/record-row
 source_ledger.yml|abductive_character_to_action|source/record-row
 source_ledger.yml|abductive_forward|source/record-row
+source_ledger.yml|accept_all_steps/1|source/name-in-language
+source_ledger.yml|accept_saying/1|source/name-in-language
 source_ledger.yml|ad_baculum|source/record-row
 source_ledger.yml|ad_hominem|source/record-row
 source_ledger.yml|addressee_of/2|source/name-in-language
@@ -3672,7 +3696,9 @@ source_ledger.yml|analogy|source/record-row
 source_ledger.yml|appeal_to_vanity_ad_populum|source/record-row
 source_ledger.yml|appearance|source/record-row
 source_ledger.yml|arbitrariness_harmless/2|source/name-in-language
+source_ledger.yml|background/1|source/name-in-language
 source_ledger.yml|based_on_false_belief/1|source/name-in-language
+source_ledger.yml|being_credible/1|source/name-in-language
 source_ledger.yml|better_alternative_by_values/2|source/name-in-language
 source_ledger.yml|bias_ad_hominem|source/record-row
 source_ledger.yml|bias_relevant/2|source/name-in-language
@@ -3680,6 +3706,7 @@ source_ledger.yml|bias|source/record-row
 source_ledger.yml|bivalent/1|source/name-in-language
 source_ledger.yml|cannot_be_exception/2|source/name-in-language
 source_ledger.yml|cause_to_effect|source/record-row
+source_ledger.yml|character_revelant/1|source/name-in-language
 source_ledger.yml|circumstantial_ad_hominem|source/record-row
 source_ledger.yml|claimed_exception/2|source/name-in-language
 source_ledger.yml|commitment1|source/record-row
@@ -3835,6 +3862,7 @@ source_ledger.yml|goal_supported_by_values/2|source/name-in-language
 source_ledger.yml|gradualism|source/record-row
 source_ledger.yml|group_1|source/record-row
 source_ledger.yml|group_2|source/record-row
+source_ledger.yml|group_background/2|source/name-in-language
 source_ledger.yml|has/2|source/name-in-language
 source_ledger.yml|help|source/record-row
 source_ledger.yml|ignorance|source/record-row
@@ -3852,6 +3880,7 @@ source_ledger.yml|memory|source/record-row
 source_ledger.yml|moral_justification_ad_populum_excuse|source/record-row
 source_ledger.yml|moral_justification_ad_populum|source/record-row
 source_ledger.yml|more_efficient_alternative/2|source/name-in-language
+source_ledger.yml|more_reliable/1|source/name-in-language
 source_ledger.yml|must_not_do/2|source/name-in-language
 source_ledger.yml|necessary_action/3|source/name-in-language
 source_ledger.yml|necessary_or_sufficient_for_goal/3|source/name-in-language
@@ -3861,6 +3890,8 @@ source_ledger.yml|negative_consequences|source/record-row
 source_ledger.yml|negative_normal_expectations|source/record-row
 source_ledger.yml|negative_practical|source/record-row
 source_ledger.yml|negative_value|source/record-row
+source_ledger.yml|not_necessarily_true/2|source/name-in-language
+source_ledger.yml|not_normal/1|source/name-in-language
 source_ledger.yml|not_originally_believed/1|source/name-in-language
 source_ledger.yml|opposition-descriptive_1|source/record-row
 source_ledger.yml|opposition-descriptive_2|source/record-row
@@ -3892,11 +3923,13 @@ source_ledger.yml|pragmatic_inconsistency|source/record-row
 source_ledger.yml|precedent_series/3|source/name-in-language
 source_ledger.yml|precedent_slippery_slope|source/record-row
 source_ledger.yml|prohibited/1|source/name-in-language
+source_ledger.yml|proper_sequence/2|source/name-in-language
 source_ledger.yml|reapplication_sequence/3|source/name-in-language
 source_ledger.yml|reason_retracting_goal/2|source/name-in-language
 source_ledger.yml|reassessment_against_continuing/2|source/name-in-language
 source_ledger.yml|recaller_doubts/2|source/name-in-language
 source_ledger.yml|recognized_exception_category/2|source/name-in-language
+source_ledger.yml|reference_class/2|source/name-in-language
 source_ledger.yml|regulative_rule_prohibition|source/record-row
 source_ledger.yml|regulative_rule|source/record-row
 source_ledger.yml|relieve/3|source/name-in-language
@@ -3904,6 +3937,7 @@ source_ledger.yml|retroductive|source/record-row
 source_ledger.yml|rhetoric_ad_populum|source/record-row
 source_ledger.yml|rhetorical_oppositions_descriptive|source/record-row
 source_ledger.yml|rhetorical_oppositions_normative|source/record-row
+source_ledger.yml|rule_changed/3|source/name-in-language
 source_ledger.yml|rule_exception_recognized/2|source/name-in-language
 source_ledger.yml|rule_inapplicable_to/2|source/name-in-language
 source_ledger.yml|rule_mental_world|source/record-row
@@ -3919,6 +3953,7 @@ source_ledger.yml|snob_appeal_ad_populum|source/record-row
 source_ledger.yml|sorites_slippery_slope|source/record-row
 source_ledger.yml|special_circumstances/2|source/name-in-language
 source_ledger.yml|sufficient_action/3|source/name-in-language
+source_ledger.yml|sufficient_evidence/1|source/name-in-language
 source_ledger.yml|sunk_costs|source/record-row
 source_ledger.yml|supports_generalization/3|source/name-in-language
 source_ledger.yml|treat|source/record-row
@@ -3938,6 +3973,7 @@ tools/migration_r2.yml|(file)|migration/readable
 tools/migration_r2.yml|abductive_backward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_forward|migration/added inquiry_incomplete(D)
 tools/migration_r2.yml|abductive_forward|migration/added sufficient_account(C1,D)
+tools/migration_r2.yml|ad_hominem|migration/arity character_revelant(S)
 tools/migration_r2.yml|ad_hominem|migration/removed attack_well_supported
 tools/migration_r2.yml|bias|migration/added bias_relevant(A,C)
 tools/migration_r2.yml|bias|migration/arguments not_taken_both(A,C)
@@ -3947,13 +3983,19 @@ tools/migration_r2.yml|commitment1|migration/added commitment_linkage_exception(
 tools/migration_r2.yml|commitment1|migration/removed commitment_support_evidence(A,X)
 tools/migration_r2.yml|commitment2|migration/added commitment_linkage_exception(A,X,Y)
 tools/migration_r2.yml|commitment2|migration/removed commitment_support_evidence(A,X)
+tools/migration_r2.yml|common_folk_ad_populum|migration/arity background(S)
+tools/migration_r2.yml|common_folk_ad_populum|migration/arity being_credible(S)
+tools/migration_r2.yml|common_folks_group_ad_populum|migration/arity accept_saying(S)
+tools/migration_r2.yml|common_folks_group_ad_populum|migration/arity group_background(S,G)
 tools/migration_r2.yml|distress|migration/arity relieve(B,X,A)
 tools/migration_r2.yml|distress|migration/removed really_distress(A)
 tools/migration_r2.yml|epistemic_ignorence|migration/premise bivalent(D)
 tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
 tools/migration_r2.yml|exeptional|migration/added exception_backed(A)
 tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
+tools/migration_r2.yml|full_slippery_slope|migration/arity accept_all_steps(C0)
 tools/migration_r2.yml|full_slippery_slope|migration/removed led_to_step
+tools/migration_r2.yml|gradualism|migration/arity proper_sequence(P1,P4)
 tools/migration_r2.yml|help|migration/removed greater_side_effects(X)
 tools/migration_r2.yml|help|migration/removed possible_carry_out(B,X)
 tools/migration_r2.yml|illustration|migration/arity usually_properties(P1,P2)
@@ -3965,6 +4007,8 @@ tools/migration_r2.yml|memory|migration/added not_originally_believed(M)
 tools/migration_r2.yml|memory|migration/added recaller_doubts(P,M)
 tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_likely(A,B)
 tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
+tools/migration_r2.yml|negative_normal_expectations|migration/arity not_normal(A)
+tools/migration_r2.yml|negative_practical|migration/arity sufficient_evidence(A)
 tools/migration_r2.yml|negative_value|migration/replaced reason_retracting_goal(V,G)
 tools/migration_r2.yml|plea_for_excuse|migration/arity special_circumstances(E,T)
 tools/migration_r2.yml|pop_scheme_acceptance|migration/added should_accept(A)
@@ -3977,6 +4021,10 @@ tools/migration_r2.yml|practical_sufficient_condition|migration/replaced alterna
 tools/migration_r2.yml|pragmatic_inconsistency|migration/added inconsistency_relevant(A,S)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/removed descriptions_opposite(A,S)
 tools/migration_r2.yml|retroductive|migration/added not_fit_action(A)
+tools/migration_r2.yml|retroductive|migration/arity reference_class(A,Q)
+tools/migration_r2.yml|rule_physical_world_1|migration/arity not_necessarily_true(W,D)
+tools/migration_r2.yml|rule_physical_world_2|migration/arity rule_changed(I,D,W)
+tools/migration_r2.yml|sign|migration/arity more_reliable(A)
 tools/migration_r2.yml|two_person_practical|migration/added other_actions_required(X,Y)
 tools/migration_r2.yml|two_person_practical|migration/arguments alternative_means(X,Y)
 tools/migration_r2.yml|two_person_practical|migration/arguments side_effect_other_act(Y,A)

@@ -33,7 +33,7 @@ language:
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   normal_true/1: "If the situation were normal, %s would be true."
   not_know_true/1: "I do not know whether %s is true or not."
-  not_normal/0: "Therefore, the situation is not normal."
+  not_normal/1: "Therefore, the situation in which %s was expected is not normal."
   not_originally_believed/1: "%s was not originally believed for other reasons."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
@@ -48,7 +48,7 @@ language:
   special_in/2: "%s is in %s."
   special_not_in/2: "%s is not in %s."
   special_proposition/2: "%s is a special type of proposition such that, if it were true, it would normally or usually be expected to be in %s."
-  sufficient_evidence/0: "The search for evidence has progressed sufficiently."
+  sufficient_evidence/1: "The search for evidence about whether %s is true has progressed sufficiently."
   therefore_true/1: "Therefore %s is true."
   true_propositions_contained/2: "It has not been established that all the true propositions in %s are contained in %s."
   uninvestigated/1: "The truth of %s has not been sufficiently investigated."
@@ -139,7 +139,7 @@ argument_schemes:
              
     variables: [A]
     conclusions:
-      - not_normal
+      - not_normal(A)
     premises:
       - normal_true(A)
       - case_not_true(A)
@@ -164,7 +164,7 @@ argument_schemes:
       - other_consequences_presumption(A,C)
       - more_serious_consequences(B,C)
     assumptions: 
-     - sufficient_evidence   
+     - sufficient_evidence(A)
 
   - id: epistemic_ignorence
     meta:

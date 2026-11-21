@@ -46,7 +46,7 @@ cases:
     assumptions:
       - bad_character(bob)
       - advocates_conclusion(bob,arg1,tax_cut)
-    questioned: [character_revelant]
+    questioned: [character_revelant(arg1)]
     not_in:
       - bad_not_accepted(bob,arg1)
 
@@ -217,7 +217,7 @@ cases:
     assumptions:
       - is_a(whale,mammal)
       - synonymous
-      - not_necessarily_true
+      - not_necessarily_true(whale,mammal)
     not_in:
       - means_same(whale,mammal)
 

@@ -64,3 +64,16 @@ changes:
   - {record: practical_necessary_condition, kind: arity, old: "necessary_action(X,A)", new: "necessary_action(X,S,A)", plan: "5.3", page: 323, note: "the member X selected from the set S"}
   - {record: practical_sufficient_condition, kind: replaced, old: "alternative_action(X,A)", new: "alternative_action_sufficient(S,A)", plan: "5.3", page: 323, note: "sufficient, as p. 96 says; the parameters are [X,A,P,S]"}
   - {record: practical_sufficient_condition, kind: arity, old: "sufficient_action(X,A)", new: "sufficient_action(X,S,A)", plan: "5.3", page: 323, note: "the member X selected from the set S"}
+  - {record: common_folk_ad_populum, kind: arity, old: "background", new: "background(S)", plan: "5.4", page: 313, note: "the speaker; the parameters are [S]"}
+  - {record: common_folk_ad_populum, kind: arity, old: "being_credible", new: "being_credible(S)", plan: "5.4", page: 313}
+  - {record: common_folks_group_ad_populum, kind: arity, old: "group_background(G)", new: "group_background(S,G)", plan: "5.4", page: 313, note: "the speaker; the parameters are [G,S]"}
+  - {record: common_folks_group_ad_populum, kind: arity, old: "accept_saying", new: "accept_saying(S)", plan: "5.4", page: 313}
+  - {record: negative_normal_expectations, kind: arity, old: "not_normal", new: "not_normal(A)", plan: "5.4", page: 327}
+  - {record: negative_practical, kind: arity, old: "sufficient_evidence", new: "sufficient_evidence(A)", plan: "5.4", page: 327}
+  - {record: sign, kind: arity, old: "more_reliable", new: "more_reliable(A)", plan: "5.4", page: 329}
+  - {record: retroductive, kind: arity, old: "reference_class", new: "reference_class(A,Q)", plan: "5.4", page: 331}
+  - {record: ad_hominem, kind: arity, old: "character_revelant", new: "character_revelant(S)", plan: "5.4", page: 336}
+  - {record: gradualism, kind: arity, old: "proper_sequence", new: "proper_sequence(P1,P4)", plan: "5.4", page: 339}
+  - {record: full_slippery_slope, kind: arity, old: "accept_all_steps", new: "accept_all_steps(C0)", plan: "5.4", page: 341}
+  - {record: rule_physical_world_1, kind: arity, old: "not_necessarily_true", new: "not_necessarily_true(W,D)", plan: "5.4", page: 342}
+  - {record: rule_physical_world_2, kind: arity, old: "rule_changed", new: "rule_changed(I,D,W)", plan: "5.4", page: 342}

@@ -6,7 +6,7 @@ meta:
   version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  accept_all_steps/0: "There is a climate of social opinion such that once people come to accept each step as plausible, then they will also be led to accept the next step."
+  accept_all_steps/1: "There is a climate of social opinion such that once people come to accept each step from %s on as plausible, they will also be led to accept the next step."
   act_value/2: "Done act %s is attributed the value %s."
   cannot_opposite_evaluation/3: "If %s receives the evaluation %s, it cannot receive the opposite evaluation %s at the same time and in the same respect."
   cannot_present_sametime/2: "%s cannot present %s at the same time and in the same respect."
@@ -188,7 +188,7 @@ argument_schemes:
     premises:
       - initial_presumption(C0)
       - leads_to_next(C0,C1,C2)
-      - accept_all_steps
+      - accept_all_steps(C0)
 
   - id: cause_to_effect
     meta:

@@ -27,14 +27,14 @@ language:
   indicated_true/2: "%s is generally indicated as true when its sign %s is true."
   inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
-  more_reliable/0: "There are other events that would more reliably account for the sign."
+  more_reliable/1: "There are other events that would more reliably account for the sign %s."
   not_character_action/1: "Agent %s has some actions that don't fit into defined character."
   not_fit_action/1: "The description of agent %s's action actually fits the definition of the quality."
   observed/1:  "%s has been observed."
   plausible_conclusion/1: "Therefore %s is the most plausible conclusion in the case."
   plausible_hypothesis/1: "Therefore, %s is the most plausible hypothesis in the case."
   quality_defined/1: "The character quality attributed to %s is well defined."
-  reference_class/0: "The reference class of other agents who also might have brought about this event and who have the same character quality is small."
+  reference_class/2: "Few agents other than %s might have brought about this event and have the character quality %s."
   strong_correlation/2: "Correlation of %s and %s is strong."
   succesful_account/2: "%s is the account that explains %s most successfully."
   succesful_diagram/1: "The most plausible -strongest- argument is represented by %s."
@@ -62,7 +62,7 @@ argument_schemes:
       - finding_true(A)
       - indicated_true(B,A)
     exceptions:
-      - more_reliable
+      - more_reliable(A)
     assumptions: 
      - strong_correlation(A,B)
 
@@ -150,7 +150,7 @@ argument_schemes:
     assumptions: 
      - quality_defined(A)
      - not_fit_action(A)
-     - reference_class
+     - reference_class(A,Q)
 
   - id: evidence_hypothesis_verification
     meta:

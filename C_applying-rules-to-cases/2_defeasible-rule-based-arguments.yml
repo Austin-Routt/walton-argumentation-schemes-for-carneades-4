@@ -27,14 +27,14 @@ language:
   must_do/2: "%s must do %s."
   must_not_do/2: "%s must not do %s."
   not_excuse/1: "%s does not fall under a recognized category, and this would pose a problem in future cases."
-  not_necessarily_true/0: "The premise is not a necessary truth."
+  not_necessarily_true/2: "That %s is %s is not a necessary truth."
   obligatory/1: "%s is obligatory."
   oficcial_rulebook/3: "In the official rulebook for %s -a rule governed institution, such as a game- it is stated that %s counts as %s."
   pleader_committed/1: "I -the pleader- have committed %s."
   prohibited/1: "%s is prohibited."
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
   rule_can_waived/1: "If the case of %s is an exception, then the established rule can be waived in that case."
-  rule_changed/0: "The rule has changed since the publication of the rulebook."
+  rule_changed/3: "The rule of %s that %s counts as %s has changed since the publication of the rulebook."
   rule_exception_recognized/2: "An exception to the rule %s must be recognized for the case of %s, and the rule appropriately modified or qualified."
   rule_inapplicable_to/2: "The established rule %s does not really apply to the case of %s."
   rule_require/3: "Normally, rule %s requires or forbids a type of action or inaction %s, which carries with it a sanction -penalty- %s."
@@ -65,7 +65,7 @@ argument_schemes:
       - is_a(W,D)
       - synonymous
     exceptions:
-      - not_necessarily_true
+      - not_necessarily_true(W,D)
 
   - id: rule_physical_world_2
     meta:
@@ -80,7 +80,7 @@ argument_schemes:
       - oficcial_rulebook(I,D,W)
       - correctly_report
     exceptions:
-      - rule_changed
+      - rule_changed(I,D,W)
 
   - id: rule_mental_world 
     meta:

@@ -7,14 +7,14 @@ meta:
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."
-  accept_saying/0: "Therefore, you should accept what I say."
+  accept_saying/1: "Therefore, you should accept what %s says."
   acceptable_in_case/1: "Therefore, %s is acceptable in this case."
   acceptable_norm/3: "Doing %s or accepting %s shows that they are an acceptable norm of conduct for %s."
   admired_people/2: "Everybody in this group of admired, popular people %s accepts %s."
   asserts/2: "%s asserts that %s is true."
-  background/0: "The speaker is an ordinary person, that is, shares a common background with the audience."
+  background/1: "%s is an ordinary person, that is, shares a common background with the audience."
   bad_moral_character/1: "%s has bad moral character."
-  being_credible/0: "Therefore, you ought to take what I say as being more credible or acceptable."
+  being_credible/1: "Therefore, you ought to take what %s says as being more credible or acceptable."
   carry_out_action/1: "Therefore, you should carry out action %s."
   character_is_relevant/1: "Character is relevant for evaluating the plausibility of the assertion: %s"
   deliberate/2: "Group %s has deliberated intelligently and extensively on whether to accept proposition %s or not."
@@ -28,7 +28,7 @@ language:
   good_moral_character/1: "%s is of good moral character."
   group_accepted/2: "Everybody in this group %s accepts %s."
   group_action/2: "If you carry out action %s then you will belong to this group %s."
-  group_background/1: "I, the speaker, am an ordinary person, that is, I share a common background with the members of this audience, group %s."
+  group_background/2: "%s, the speaker, is an ordinary person, that is, shares a common background with the members of this audience, group %s."
   group_does/3: "Everybody in a group %s does %s or accepts proposition %s as a policy."
   group_member/1: "The speaker is a member of %s."
   have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
@@ -179,11 +179,11 @@ argument_schemes:
       source: >
               Argumentation Schemes. Cambridge University Press, p. 312.
               Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-    variables: []
+    variables: [S]
     conclusions:
-      - being_credible
+      - being_credible(S)
     premises:
-      - background
+      - background(S)
 
   - id: common_folks_group_ad_populum
     meta:
@@ -191,11 +191,11 @@ argument_schemes:
       source: >
               Argumentation Schemes. Cambridge University Press, p. 312.
               Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-    variables: [G]
+    variables: [G,S]
     conclusions:
-      - accept_saying
+      - accept_saying(S)
     premises:
-      - group_background(G)
+      - group_background(S,G)
       - respondent_member(G)
 
   - id: popular_practise

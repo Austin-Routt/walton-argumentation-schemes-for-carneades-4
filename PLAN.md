@@ -245,5 +245,6 @@ Updated with each change. A box is ticked when its change is on `master` and CI 
 - [x] 5.1 Every printed question sorted: 189 questions of the 64 records filed under an entry with questions, each with the statement that models it (`records:` of `tools/vv/source_ledger.yml`)
 - [x] Transcription: every record filed under an entry (112) compared with the book's premises and conclusion, and its row at "transcription checked"; 31 records changed in Phase 5 so far
 - [x] 5.3 Variants: the practical pair's set and member, 22.3's sufficient alternatives premise, `pop_scheme` split in two, `exeptional`'s conditional questions, `bias`'s stray variable; `ad_hominem` keeps the book's conclusion
+- [x] 5.4 Statements without variables: 13 get the variable of their participant or case, 6 general warrants stay global; two cases in one graph for each change
 - [ ] 5.2 Gaps modelled: done for every record of the book (26 records changed, each with cases and a pinned instance; table in `tools/migration_r2.yml`); nine questions of six upstream records wait for 5.5
 - [ ] Phase 5; gate L; release R2

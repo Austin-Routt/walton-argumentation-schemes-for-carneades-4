@@ -18,7 +18,7 @@ language:
   must_proper/2: "The conditional 'if %s then %s' is not, by itself, acceptable to the respondent, nor are shorter sequences acceptable to the respondent."
   not_has_propery/2: "Therefore, you can't truly say that %s has %s."
   precedent_series/3: "By case-to-case consistency, holding case %s to be an exception to the rule %s binds us to hold each case of a sequence of similar cases, up to %s, to be an exception too."
-  proper_sequence/0: "The sequence of propositions is dealt with in the appropriate order."
+  proper_sequence/2: "The sequence of propositions from %s to %s is dealt with in the appropriate order."
   reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
   sequence/4: "There is an intervening sequence of propositions from %s through %s, ..., %s to %s, such that each proposition in it implies the next."
   true_acceptable/1: "Proposition %s is true, acceptable to the respondent."
@@ -45,7 +45,7 @@ argument_schemes:
       - sequence(P1,P2,P3,P4)
       - must_proper(P1,P4)
     assumptions: 
-     - proper_sequence
+     - proper_sequence(P1,P4)
 
   - id: precedent_slippery_slope
     meta:

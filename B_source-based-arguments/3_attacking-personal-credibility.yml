@@ -15,7 +15,7 @@ language:
   biased/1: "Arguer %s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
   character_issue/1: "Character is an issue in the dialogue, and more specifically, %s's argument depends on his/her credibility."
-  character_revelant/0: "In the type of dialogue in which the argument was used, the issue of character is relevant."
+  character_revelant/1: "In the type of dialogue in which argument %s was used, the issue of character is relevant."
   commited_opposite/2: "%s is personally committed to the opposite of %s, as shown by commitments expressed in her/his personal actions or personal circumstances expressing such commitments."
   credibility_questioned/1: "%s's credibility as a sincere person who believes in his own argument has been put into question by the two premises above."
   inconsistency_explained/2: "The practical inconsistency of the commitments of %s can be resolved or explained by further dialogue, so that it does not show a lack of credibility in arguing %s."
@@ -51,7 +51,7 @@ argument_schemes:
     exceptions:
       - stronger_than_character(S)
     assumptions: 
-     - character_revelant
+     - character_revelant(S)
 
   - id: pragmatic_inconsistency
     meta:

@@ -7,9 +7,9 @@ meta:
        Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
        Argumentation Schemes. Cambridge University Press.
 language: 
-  accept_all_steps/0: "There is a climate of social opinion such that once people come to accept each step as plausible, then they will also be led to accept the next step."
+  accept_all_steps/1: "There is a climate of social opinion such that once people come to accept each step from %s on as plausible, they will also be led to accept the next step."
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."
-  accept_saying/0: "Therefore, you should accept what I say."
+  accept_saying/1: "Therefore, you should accept what %s says."
   acceptable_action/1: "%s is an acceptable action."
   acceptable_in_case/1: "Therefore, %s is acceptable in this case."
   acceptable_norm/3: "Doing %s or accepting %s shows that they are an acceptable norm of conduct for %s."
@@ -45,7 +45,7 @@ language:
   arguer_not_taken_both/2: "Arguer %s is less likely to have taken the evidence on both sides into account in arriving at conclusion %s."
   assert_bad/2: "I hereby assert that in fact I will see to it that %[2]s occurs if you bring about %[1]s."
   asserts/2: "%s asserts that %s is true."
-  background/0: "The speaker is an ordinary person, that is, shares a common background with the audience."
+  background/1: "%s is an ordinary person, that is, shares a common background with the audience."
   bad/1: "%s is bad."
   bad_character/1: "%s is a person of bad character."
   bad_consequence/2: "But, if you do not do %s, some consequence %s, which will be very bad for you, will occur, or is likely to occur."
@@ -55,7 +55,7 @@ language:
   bad_not_accepted/2: "%s's argument %s should not be accepted."
   based_on_evidence/1: "The assertion %v is based on evidence."
   based_on_false_belief/1: "%s was originally based on beliefs of which one is false."
-  being_credible/0: "Therefore, you ought to take what I say as being more credible or acceptable."
+  being_credible/1: "Therefore, you ought to take what %s says as being more credible or acceptable."
   believe_it/1: "Recalling %s is a prima facie reason to believe it."
   believes/2: "%s believes %s to be true."
   better_alternative_by_values/2: "In light of the values %[2]s, an alternative to %[1]s is better."
@@ -94,7 +94,7 @@ language:
   character_is_relevant/1: "Character is relevant for evaluating the plausibility of the assertion: %s"
   character_issue/1: "Character is an issue in the dialogue, and more specifically, %s's argument depends on his/her credibility."
   character_quality/1: "Therefore, %s has this character quality."
-  character_revelant/0: "In the type of dialogue in which the argument was used, the issue of character is relevant."
+  character_revelant/1: "In the type of dialogue in which argument %s was used, the issue of character is relevant."
   cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
   claimed_exception/2: "Case %s is claimed to be an exception to the rule %s, an excusable or exceptional case."
   classified_as/2: "Objects which satisfy definition %s are classified as instances of class %s."
@@ -169,7 +169,7 @@ language:
   great_side_effects/2: "There will be too great negative side effects of %s bringing about %s."
   group_accepted/2: "Everybody in this group %s accepts %s."
   group_action/2: "If you carry out action %s then you will belong to this group %s."
-  group_background/1: "I, the speaker, am an ordinary person, that is, I share a common background with the members of this audience, group %s."
+  group_background/2: "%s, the speaker, is an ordinary person, that is, shares a common background with the members of this audience, group %s."
   group_does/3: "Everybody in a group %s does %s or accepts proposition %s as a policy."
   group_member/1: "The speaker is a member of %s."
   group_member/2: "%s is a member, idea, habit, custom, product or method of %s."
@@ -239,7 +239,7 @@ language:
   more_efficient_alternative_actions/2: "There are more efficient alternative actions to %s that would also bring about %s."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
   more_on_point/2: "%s is false in another case which is more on point than case %s."
-  more_reliable/0: "There are other events that would more reliably account for the sign."
+  more_reliable/1: "There are other events that would more reliably account for the sign %s."
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   must_do/2: "%s must do %s."
   must_not_do/2: "%s must not do %s."
@@ -263,8 +263,8 @@ language:
   not_has_propery/2: "Therefore, you can't truly say that %s has %s."
   not_indicator/1: "The circumstances are such that having a %s image is not a reliable indicator of it."
   not_know_true/1: "I do not know whether %s is true or not."
-  not_necessarily_true/0: "The premise is not a necessary truth."
-  not_normal/0: "Therefore, the situation is not normal."
+  not_necessarily_true/2: "That %s is %s is not a necessary truth."
+  not_normal/1: "Therefore, the situation in which %s was expected is not normal."
   not_originally_believed/1: "%s was not originally believed for other reasons."
   not_presents_predicate/3: "If %s does not present the predicate %s, it must present the contradictory predicate %s at the same time and in the same respect."
   not_required/1: "%s is not required."
@@ -324,7 +324,7 @@ language:
   prevent/1: "Therefore, you ought to prevent %s if possible."
   prohibited/1: "%s is prohibited."
   promote_more_effectively/2: "There exists an action that would promote the value %s more effectively than %s."
-  proper_sequence/0: "The sequence of propositions is dealt with in the appropriate order."
+  proper_sequence/2: "The sequence of propositions from %s to %s is dealt with in the appropriate order."
   property_or_object/2: "Everybody in this group %s accepts %s or has some property, or possesses some object." 
   property_precion_needed/1: "%s occurs in a context of dialogue that requires a certain level of precision that is appropriate for that context."
   property_vagueness/2: "Some property %s that occurs in %s is defined in a way that is too vague to meet the requirement of the level of precision appropriate for the context."    
@@ -343,7 +343,7 @@ language:
   recalls/2: "Person %s recalls %s."
   recieves_evaluation/2: "%s receives the evaluation %s."
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
-  reference_class/0: "The reference class of other agents who also might have brought about this event and who have the same character quality is small."
+  reference_class/2: "Few agents other than %s might have brought about this event and have the character quality %s."
   reference_group_accepted/2: "Everybody in particular group %s accepts %s."
   relation_converse_relation/4: "If %s is in relation %s with %s they can be in the converse relation %s."
   relation_with/3: "%s is in relation %s with %s."
@@ -353,7 +353,7 @@ language:
   respondent_member/1: "You, the respondent are a member of this audience, group %s."
   right_to_do/2: "The right thing to do in %s, was to carry out action %s."
   rule_can_waived/1: "If the case of %s is an exception, then the established rule can be waived in that case."
-  rule_changed/0: "The rule has changed since the publication of the rulebook." 
+  rule_changed/3: "The rule of %s that %s counts as %s has changed since the publication of the rulebook."
   rule_exception_recognized/2: "An exception to the rule %s must be recognized for the case of %s, and the rule appropriately modified or qualified."
   rule_inapplicable_to/2: "The established rule %s does not really apply to the case of %s."
   rule_of_case/2: "Rule %s is the ratio decidendi of case %s."
@@ -398,7 +398,7 @@ language:
   sufficient_account/2: "%s itself, as an explanation of %s apart from other alternative explanations available so far, is sufficient."
   sufficient_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sufficient_correlation/2: "Correlation between %s and %s is sufficient."
-  sufficient_evidence/0: "The search for evidence has progressed sufficiently."
+  sufficient_evidence/1: "The search for evidence about whether %s is true has progressed sufficiently."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
   supports_generalization/3: "Example %s supports the generalization that whatever has property %s also has property %s."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
@@ -602,11 +602,11 @@ argument_schemes:
       source: >
               Argumentation Schemes. Cambridge University Press, p. 312.
               Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-    variables: []
+    variables: [S]
     conclusions:
-      - being_credible
+      - being_credible(S)
     premises:
-      - background
+      - background(S)
 
   - id: common_folks_group_ad_populum
     meta:
@@ -614,11 +614,11 @@ argument_schemes:
       source: >
               Argumentation Schemes. Cambridge University Press, p. 312.
               Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-    variables: [G]
+    variables: [G,S]
     conclusions:
-      - accept_saying
+      - accept_saying(S)
     premises:
-      - group_background(G)
+      - group_background(S,G)
       - respondent_member(G)
       
   - id: popular_practise
@@ -1211,7 +1211,7 @@ argument_schemes:
              
     variables: [A]
     conclusions:
-      - not_normal
+      - not_normal(A)
     premises:
       - normal_true(A)
       - case_not_true(A)
@@ -1236,7 +1236,7 @@ argument_schemes:
       - other_consequences_presumption(A,C)
       - more_serious_consequences(B,C)
     assumptions: 
-     - sufficient_evidence   
+     - sufficient_evidence(A)
      
   - id: epistemic_ignorence
     meta:
@@ -1267,7 +1267,7 @@ argument_schemes:
       - finding_true(A)
       - indicated_true(B,A)
     exceptions:
-      - more_reliable
+      - more_reliable(A)
     assumptions: 
      - strong_correlation(A,B)
      
@@ -1355,7 +1355,7 @@ argument_schemes:
     assumptions: 
      - quality_defined(A)
      - not_fit_action(A)
-     - reference_class
+     - reference_class(A,Q)
 
   - id: evidence_hypothesis_verification
     meta:
@@ -1566,7 +1566,7 @@ argument_schemes:
     exceptions:
       - stronger_than_character(S)
     assumptions: 
-     - character_revelant
+     - character_revelant(S)
 
   - id: pragmatic_inconsistency
     meta:
@@ -1663,7 +1663,7 @@ argument_schemes:
       - sequence(P1,P2,P3,P4)
       - must_proper(P1,P4)
     assumptions: 
-     - proper_sequence
+     - proper_sequence(P1,P4)
      
   - id: sorites_slippery_slope
     meta:
@@ -1704,7 +1704,7 @@ argument_schemes:
     premises:
       - initial_presumption(C0)
       - leads_to_next(C0,C1,C2)
-      - accept_all_steps
+      - accept_all_steps(C0)
 
   - id: precedent_slippery_slope
     meta:
@@ -1732,7 +1732,7 @@ argument_schemes:
       - is_a(W,D)
       - synonymous
     exceptions:
-      - not_necessarily_true
+      - not_necessarily_true(W,D)
       
   - id: rule_physical_world_2
     meta:
@@ -1747,7 +1747,7 @@ argument_schemes:
       - oficcial_rulebook(I,D,W)
       - correctly_report
     exceptions:
-      - rule_changed
+      - rule_changed(I,D,W)
 
   - id: rule_mental_world 
     meta:
