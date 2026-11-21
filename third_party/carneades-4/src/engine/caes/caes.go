@@ -547,6 +547,31 @@ func (ag *ArgGraph) Inconsistent() bool {
 	return false
 }
 
+// substituteParameters replaces each variable of t named in params by its
+// value, once: the values are not substituted again.
+func substituteParameters(t terms.Term, params map[string]terms.Term) terms.Term {
+	switch x := t.(type) {
+	case terms.Variable:
+		if v, ok := params[x.Name]; ok {
+			return v
+		}
+		return x
+	case terms.Compound:
+		args := make([]terms.Term, len(x.Args))
+		for i, a := range x.Args {
+			args[i] = substituteParameters(a, params)
+		}
+		return terms.Compound{Functor: x.Functor, Id: x.Id, Prio: x.Prio, Args: args}
+	case terms.List:
+		l := make(terms.List, len(x))
+		for i, a := range x {
+			l[i] = substituteParameters(a, params)
+		}
+		return l
+	}
+	return t
+}
+
 // negationText words the negation of a statement whose text is inner (or,
 // without a text, whose term is raw).
 func negationText(inner, raw string) string {
@@ -629,12 +654,17 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				return
 			}
 
-			var bindings terms.Bindings
+			// The parameters replace the scheme's variables once, all at the
+			// same time: a value that holds a variable (a fresh one the rule
+			// engine named A1, say) is not substituted again, so a scheme
+			// variable that happens to be called A1 cannot capture it
+			// (E-CAPTURE).
+			bindings := map[string]terms.Term{}
 			for i, varName := range scheme.Variables {
 				// v := terms.NewVariable(varName)
 				t, ok := terms.ReadString(parameters[i])
 				if ok {
-					bindings = terms.AddBinding(terms.NewVariable(varName), t, bindings)
+					bindings[varName] = t
 				} else {
 					fmt.Fprintf(os.Stderr, "Could not parse parameter: %v\n", parameters[i])
 				}
@@ -649,7 +679,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				for i, p := range l {
 					term1, ok := terms.ReadString(p)
 					if ok {
-						term2 := terms.Substitute(term1, bindings)
+						term2 := substituteParameters(term1, bindings)
 						// Leave argument(S,P) premises implicit; Enthymeme!
 						pred, ok := terms.Predicate(term2)
 						if ok && pred == "argument" {
@@ -686,7 +716,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 			for _, c := range scheme.Conclusions {
 				term1, ok := terms.ReadString(c)
 				if ok {
-					term2 := terms.Substitute(term1, bindings)
+					term2 := substituteParameters(term1, bindings)
 					stmt, ok := ag.Statements[term2.String()]
 					if !ok {
 						s := Statement{Id: term2.String(),
@@ -736,7 +766,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				for _, e := range scheme.Exceptions {
 					term1, ok := terms.ReadString(e)
 					if ok {
-						term2 := terms.Substitute(term1, bindings)
+						term2 := substituteParameters(term1, bindings)
 						stmt, ok := ag.Statements[term2.String()]
 						if !ok {
 							s := Statement{Id: term2.String(),

@@ -488,18 +488,10 @@ func StaticChecks(file string, s *caes.Scheme) []Result {
 		out = append(out, fail(file, id, "static/range-restricted", "no premise binds %v", unbound))
 	}
 
-	// GoCHR renames an unbound variable V to V1, V2, ...; a declared variable of
-	// that name then captures it when the engine instantiates the scheme
-	capture := []string{}
-	for _, v := range unbound {
-		re := regexp.MustCompile("^" + regexp.QuoteMeta(v) + `[0-9]+$`)
-		for _, w := range s.Variables {
-			if re.MatchString(w) {
-				capture = append(capture, v+" can be captured by "+w)
-			}
-		}
-	}
-	out = append(out, res(file, id, "static/no-variable-capture", capture))
+	// static/no-variable-capture is removed with PLAN.md 2.6: the engine
+	// substitutes a scheme's parameters once since then, so a declared
+	// variable can no longer capture the fresh name of an unbound one
+	// (unbound-variable-is-not-captured tests the engine).
 
 	// static/no-negated-premise is removed with PLAN.md 2.4: negated premises
 	// match since then (contract 4), and the book's schemes have them.
