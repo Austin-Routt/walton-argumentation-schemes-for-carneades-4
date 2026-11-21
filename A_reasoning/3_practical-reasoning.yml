@@ -130,11 +130,7 @@ argument_schemes:
   - id: practical_reasoning1
     meta:
       title: Argument from Value-Based Practical Reasoning
-      source: >
-        Atkinson, K., and Bench-Capon, T. J. M.
-        Practical reasoning as presumptive argumentation using action
-        based alternating transition systems. Artificial Intelligence 171,
-        10-15 (2007), 855–874.
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874."
     variables: [A,S1,S2,G,V]
     conclusions:
       - should_be_performed(A)
@@ -156,9 +152,7 @@ argument_schemes:
   - id: practical_reasoning2
     meta:
       title: Argument from Instrumental Practical Reasoning
-      source: >
-        Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. 
-        Cambridge University Press.
+      source: "Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press."
     variables: [A,S1,S2,G]
     conclusions:
       - should_be_performed(A)
@@ -179,10 +173,7 @@ argument_schemes:
   - id: negative_consequences
     meta:
       title: Argument from Negative Consequences
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London,
-        1995, pp. 155-156.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.2, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156."
     variables: [A,G]
     conclusions:
       - ¬should_be_performed(A)
@@ -193,10 +184,7 @@ argument_schemes:
   - id: positive_consequences
     meta:
       title: Argument from Positive Consequences
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London,
-        1995, pp. 155-156.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.1, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156."
     variables: [A,G]
     conclusions:
       - should_be_performed(A)
@@ -207,10 +195,7 @@ argument_schemes:
   - id: alternative_cognitive
     meta:
       title: Argument From Alternatives - Cognitive Schemes
-      source: >
-              Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. 
-              Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 13.1, p. 318. Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306."
     variables: [A,B]
     conclusions:
       - plausibly_case(B)
@@ -221,9 +206,7 @@ argument_schemes:
   - id: alternative_normative
     meta:
       title: Argument From Alternatives - Normative Schemes
-      source: >
-              Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. 
-              Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 13.2, p. 318. Manfred Kienpointner, Alltagslogik, Struktur und Funktion von Argumentationsmustern. Stuttgart-Bad Cannstatt: Frommann-Holzboog, 1992, p.306."
     variables: [A,B]
     conclusions:
       - not_required(B)
@@ -234,9 +217,7 @@ argument_schemes:
   - id: sacrifice
     meta:
       title: Argumentation From Sacrifice 
-      source: >
-               Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. 
-               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 20, p. 322. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 248-254."
     variables: [A,S,V]
     conclusions: 
       - sacrifice_value(A,V)
@@ -248,13 +229,7 @@ argument_schemes:
   - id: practical_inference
     meta:
       title: Practical Reasoning - Practical Inference
-      source: >
-             Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-             Journal of Logic and Computation 13 (2003), pp. 429-448.
-             Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990.
-             Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
-             "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.1, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
     variables: [A,G]
     conclusions:
       - carry_out_action(A)
@@ -272,13 +247,7 @@ argument_schemes:
   - id: practical_necessary_condition
     meta:
       title: Practical Reasoning - Necessary Condition Schema
-      source: >
-             Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-             Journal of Logic and Computation 13 (2003), pp. 429-448.
-             Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990.
-             Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
-             "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.2, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
     variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
@@ -300,13 +269,7 @@ argument_schemes:
   - id: practical_sufficient_condition
     meta:
       title: Practical Reasoning - Sufficient Condition Schema
-      source: >
-             Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-             Journal of Logic and Computation 13 (2003), pp. 429-448.
-             Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990.
-             Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
-             "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.3, p. 323. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp. 429-448. Douglas Walton, Practical Reasoning. Savage, Md.: Rowman and Littlefield, 1990. Douglas Walton, \"Actions and Inconsistency: The Closure Problem of Practical Reasoning. \"In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90."
     variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
@@ -328,8 +291,7 @@ argument_schemes:
   - id: value_based_practical_reasoning
     meta:
       title: Value-Based Practical Reasoning
-      source: >
-            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 324.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.4, p. 324."
     variables: [P,G,V,A]
     conclusions:
       - should_bring_about(P,A)
@@ -349,10 +311,7 @@ argument_schemes:
   - id: practical_goal
     meta:
       title: Practical Reasoning - Argument From Goal
-      source: >
-              Bart Verheij, "Dialectical Argumentation with Argumentation Schemes: An Approach to Legal Logic." 
-              Artificial Intelligence and Law 11 (2003), p. 169.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.5, p. 325. Bart Verheij, \"Dialectical Argumentation with Argumentation Schemes: An Approach to Legal Logic.\" Artificial Intelligence and Law 11 (2003), p. 169."
     variables: [P,X,G]
     conclusions:
       - should_do(P,X)
@@ -363,9 +322,7 @@ argument_schemes:
   - id: end_and_means_1
     meta:
       title: Practical Reasoning - Argument From Ends and Means 1
-      source: > 
-              Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation 
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.1, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
     variables: [X,Y]
     conclusions:
       - good(X)
@@ -376,9 +333,7 @@ argument_schemes:
   - id: end_and_means_2
     meta:
       title: Practical Reasoning - Argument From Ends and Means 2
-      source: >
-              Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation 
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.2, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
     variables: [X]
     conclusions:
       - ends_important(X)
@@ -389,9 +344,7 @@ argument_schemes:
   - id: end_and_means_3
     meta:
       title: Practical Reasoning - Argument From Ends and Means 3
-      source: >
-              Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation 
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 22.6.3, p. 325. Chaim Perelman and Lucie Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 273-278."
     variables: [X,Y]
     conclusions:
       - good(Y)
@@ -402,9 +355,7 @@ argument_schemes:
   - id: two_person_practical
     meta:
       title: Two Person Practical Reasoning
-      source: >
-             Douglas Walton, Appeal to Expert Opinion. University Park: 
-             Pennsylvania State University Press. 1997 p. 163.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 23, p. 325. Douglas Walton, Appeal to Expert Opinion. University Park: Pennsylvania State University Press. 1997 p. 163."
     variables: [A,B,X,Y]
     conclusions:
       - should_carry_out(A,Y)
@@ -422,10 +373,7 @@ argument_schemes:
   - id: waste
     meta:
       title: Argument From Waste
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy, Tuscaloosa and London: University
-             of Alabama Press, 1995, p. 157.
-             Douglas Walton "The Sunk Cost Fallacy or Argument from Waste" Argumentation 16 (2002), p.488.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 24, p. 326. Douglas Walton, A Pragmatic Theory of Fallacy, Tuscaloosa and London: University of Alabama Press, 1995, p. 157. Douglas Walton \"The Sunk Cost Fallacy or Argument from Waste\" Argumentation 16 (2002), p.488."
     variables: [A,X]
     conclusions:
       - ought_to_continue(A,X)
@@ -440,10 +388,7 @@ argument_schemes:
   - id: negative_consequences_prudential
     meta:
       title: Argument From Negative Consequences - Prudential Inference
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: 
-             University of Alabama Press, 1995. pp. 155- 156.
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.4, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155- 156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
     variables: [X,C]
     conclusions:
       - prudential(X)
@@ -458,8 +403,7 @@ argument_schemes:
   - id: pragmatic_alternative
     meta:
       title: Pragmatic Argument From Alternatives
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 142.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 34, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 142."
     variables: [A,B]
     conclusions:
       - do_other(A) 
@@ -470,9 +414,7 @@ argument_schemes:
   - id: treat
     meta:
       title: Argument From Threat
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London:
-             University of Alabama Press, 1995, p. 157.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 35, p. 333. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 157."
     variables: [X,C]
     conclusions:
       - not_bring_about(X)
@@ -484,8 +426,7 @@ argument_schemes:
   - id: ad_baculum
     meta:
       title: Argument From Disjunctive Ad Baculum Threat
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 35.1, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140."
     variables: [X,Y]
     conclusions:
       - do_other(X)
@@ -496,8 +437,7 @@ argument_schemes:
   - id: fear
     meta:
       title: Argument From Fear Appeal 
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 22.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 36, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 22."
     variables: [X,Y]
     conclusions:
       - ought_to_bring_about(X)
@@ -510,8 +450,7 @@ argument_schemes:
   - id: danger
     meta:
       title: Argument From Danger Appeal
-      source: >
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 173.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 37, p. 334. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 173."
     variables: [X,Y]
     conclusions:
       - should_not(X)
@@ -522,8 +461,7 @@ argument_schemes:
   - id: help
     meta:
       title: Argument From Need For Help
-      source: >
-             Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 104,155.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 38, p. 334. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 104,155."
     variables: [A,B,X]
     conclusions:
       - carry_out(B,X)
@@ -538,8 +476,7 @@ argument_schemes:
   - id: distress
     meta:
       title: Argument From Distress 
-      source: >
-             Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1991, pp. 105,155.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 39, p. 334. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1991, pp. 105,155."
     variables: [B,X,A]
     conclusions:
       - bring_relive(B,X)
@@ -554,10 +491,7 @@ argument_schemes:
   - id: negative_consequences_reasoning
     meta:
       title: Argument From Consequences - Reasoning From Negative Consequences
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy.
-             Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156.
-             Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
     variables: [A,B]
     conclusions:
       - should_not_bring_about(A)
@@ -570,9 +504,7 @@ argument_schemes:
   - id: sunk_costs
     meta:
       title: Argument from Sunk Costs
-      source: >
-        Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’,
-        Argumentation, 16, 2002, p. 489
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 25, p. 326. Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation, 16, 2002, p. 489"
     variables: [A,C]
     conclusions:
       - should_be_performed(A)

@@ -33,6 +33,7 @@ argument_schemes:
   - id: verbal_classification
     meta:
       title: Argument from Verbal Classification
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 14, p. 319."
     variables: [O,F,G]
     conclusions:
       - instance(O,G)
@@ -45,9 +46,7 @@ argument_schemes:
   - id: definition_to_verbal_classification
     meta:
       title: Argument from Definition to Verbal Classification
-      source: >
-        Douglas Walton, Fundamentals of Critical Argumentation,
-        Cambridge University Press, New York 2006, p. 129.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 15, p. 319. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 129."
     variables: [O,G,D]
     conclusions:
       - instance(O,G)
@@ -60,9 +59,7 @@ argument_schemes:
   - id:  verbal_classification_vagueness
     meta: 
       title: Argument From Vagueness of a Verbal Classification
-      source: >
-                Douglas Walton, Argumentation Schemes for Presumptive Reasoning. 
-                Mahwah, NJ.: Erlbaum, 1996, pp.102-103.       
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 16, p. 319. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.102-103."
     variables: [A,F]
     conclusions: 
       -  vaguness_recejted(A)
@@ -76,9 +73,7 @@ argument_schemes:
   - id: verbal_classification_arbitrariness
     meta:
       title:  Argument From Arbitrariness of a Verbal Classification
-      source: >
-               Douglas Walton, Argumentation Schemes for Presumptive Reasoning. 
-               Mahwah, NJ.: Erlbaum, 1996, pp.104-105.	          
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 17, p. 320. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, NJ.: Erlbaum, 1996, pp.104-105."
     variables: [A,F]
     conclusions:
       - arbitrary_rejected(A)

@@ -35,11 +35,7 @@ argument_schemes:
   - id: commitment1
     meta:
       title: Argument From Commitment - Version 1
-      source: > 
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 117- 118.
-             Douglas Walton, "The Sunk Costs Fallacy or Argument from Waste." 
-             Argumentation 16 (2002), p. 490.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 40a, p. 335. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 117- 118. Douglas Walton, \"The Sunk Costs Fallacy or Argument from Waste.\" Argumentation 16 (2002), p. 490."
     variables: [A,X,Y]
     conclusions:
       - committed_to(A,Y)
@@ -53,11 +49,7 @@ argument_schemes:
   - id: commitment2
     meta:
       title: Argument From Commitment - Version 2
-      source: >
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 117- 118.
-             Douglas Walton, "The Sunk Costs Fallacy or Argument from Waste." 
-             Argumentation 16 (2002), p. 490.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 40b, p. 335. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 117- 118. Douglas Walton, \"The Sunk Costs Fallacy or Argument from Waste.\" Argumentation 16 (2002), p. 490."
     variables: [A,X,Y]
     conclusions:
       - commitment_arises(A,Y)
@@ -71,9 +63,7 @@ argument_schemes:
   - id: inconsistent_commitment
     meta:
       title: Argument From Inconsistent Commitment
-      source: >
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 120-121.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 44, p. 337. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 120-121."
     variables: [A,S]
     conclusions:
       - inconsistent_commitment(A)
@@ -86,11 +76,7 @@ argument_schemes:
   - id: positive_value
     meta: 
       title: "Argument From Values - Variant 1: Positive Value"
-      source: >
-               Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-               Journal of Logic and Computation 13 (2003), pp.429­448. 
-               Trevor Bench-Capon, "Agreeing to Differ: Modelling Persuasive Dialogue
-               between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.1, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
     variables: [V,A,G]
     conclusions: 
       - reason_retaining_goal(V,G)
@@ -101,11 +87,7 @@ argument_schemes:
   - id: negative_value
     meta:
       title: "Argument From Values - Variant 2: Negative Value"
-      source: >
-               Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation Frameworks." 
-               Journal of Logic and Computation 13 (2003), pp.429­448. 
-               Trevor Bench-Capon, "Agreeing to Differ: Modelling Persuasive Dialogue
-               between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.2, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
     variables: [V,A,G]
     conclusions: 
       - reason_retracting_goal(V,G)

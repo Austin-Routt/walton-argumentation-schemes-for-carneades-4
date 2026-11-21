@@ -34,9 +34,7 @@ argument_schemes:
   - id: gradualism
     meta:
       title: Argument From Gradualism
-      source: >
-             Douglas Walton, Argumentation Schemes for Presumptive Reasoning. 
-             Mahwah, N.J.: Erlbaum, 1996, p. 96.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 48, p. 339. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, p. 96."
     variables: [P1,P2,P3,P4]
     conclusions:
       - true_acceptable(P4)
@@ -50,8 +48,7 @@ argument_schemes:
   - id: precedent_slippery_slope
     meta:
       title: Precedent Slippery Slope Argument
-      source: >
-            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 340.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 50, p. 340."
     variables: [C,R,N]
     conclusions:
       - cannot_be_exception(C,R)
@@ -63,8 +60,7 @@ argument_schemes:
   - id: sorites_slippery_slope
     meta:
       title: Sorites Slippery Slope Argument
-      source: >
-             Douglas Walton, "The Argument of the Beard." Informal Logic 18 (1996), p. 151.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 51, p. 340. Douglas Walton, \"The Argument of the Beard.\" Informal Logic 18 (1996), p. 151."
     variables: [A,P,A1,A2]
     conclusions:
       - may_have(A,P)
@@ -76,9 +72,7 @@ argument_schemes:
   - id: verbal_slippery_slope
     meta:
       title: Verbal Slippery Slope
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. 
-             Tuscaloosa and London: University of Alabama Press, 1995, p. 160.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 52, p. 341. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 160."
     variables: [A1,A2,A,P]
     conclusions:
       - not_has_propery(A1,P)

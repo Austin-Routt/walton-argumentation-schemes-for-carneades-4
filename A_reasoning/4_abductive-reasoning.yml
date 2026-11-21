@@ -52,9 +52,7 @@ argument_schemes:
   - id: sign
     meta:
       title: Argument From Sign
-      source: >
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             New York: Cambridge University Press, 2006, pp. 113-114. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 30, p. 329. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, pp. 113-114."
     variables: [A,B]
     conclusions:
       - true_in_situation(B)
@@ -69,10 +67,7 @@ argument_schemes:
   - id: abductive_backward 
     meta:
       title: Abductive Argumentation Scheme - Backward Argumentation Scheme
-      source: >              
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 329.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.1, p. 329."
     variables: [A,A1,D]
     conclusions:
       - plausible_hypothesis(A1)
@@ -88,9 +83,7 @@ argument_schemes:
   - id: abductive_forward
     meta:
       title: Abductive Argumentation Scheme - Forward Argumentation Scheme
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 329-330. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.2, p. 329."
     variables: [D,G,C,C1]
     conclusions:
       - plausible_conclusion(C1) 
@@ -106,9 +99,7 @@ argument_schemes:
   - id: abductive_action_to_character
     meta:
       title: Abductive Argumentation Scheme - From Action to Character
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-             Argumentation Schemes. Cambridge University Press, p. 330.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.3, p. 330."
     variables: [A]
     conclusions:
       - character_quality(A)
@@ -121,9 +112,7 @@ argument_schemes:
   - id: abductive_character_to_action
     meta:
       title: Abductive Argumentation Scheme - From Character to Action (Predictive) 
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-             Argumentation Schemes. Cambridge University Press, p. 330.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.4, p. 330."
     variables: [A]
     conclusions:
       - character_action(A)
@@ -137,9 +126,7 @@ argument_schemes:
   - id: retroductive
     meta:
       title: Retroductive Scheme for Identifying an Agent from Past Action
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).
-             Argumentation Schemes. Cambridge University Press, p. 331.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.5, p. 331."
     variables: [A,Q]
     conclusions:
       - event_question(A)
@@ -155,8 +142,7 @@ argument_schemes:
   - id: evidence_hypothesis_verification
     meta:
       title: Argument From Evidence to Hypothesis - Argument From Verification 
-      source: >
-             Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, pp. 67-70.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 32.1, p. 331. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, pp. 67-70."
     variables: [H,A]
     conclusions:
       - H
@@ -169,8 +155,7 @@ argument_schemes:
   - id: evidence_hypothesis_falsification
     meta:
       title: Argument From Evidence to Hypothesis - Argument From Falsification
-      source: >
-             Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, pp. 67-70.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 32.2, p. 331. Douglas Walton, Argumentation Schemes for Presumptive Reasoning. Mahwah, N.J.: Erlbaum, 1996, pp. 67-70."
     variables: [H,A]
     conclusions:
       - ¬H
@@ -181,6 +166,9 @@ argument_schemes:
      - sufficient_correlation(H,A)
 
   - id: abduction
+    meta:
+      title: Abduction
+      source: "Carneades 4, examples/AGs/YAML/walton.yml (upstream, commit d19d543), where the record cites no source."
     variables: [S,T,H]
     conclusions: [H]
     premises:

@@ -54,10 +54,7 @@ argument_schemes:
   - id: popular_opinion
     meta:
       title: Argument From Popular Opinion
-      source: >
-              Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 91.
-              Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989, p. 89.
-              Douglas Walton, Appeal to Popular Opinion. University Park: Pennsylvania State University Press, 1999, pp. 223-226.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4, p. 311. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 91. Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989, p. 89. Douglas Walton, Appeal to Popular Opinion. University Park: Pennsylvania State University Press, 1999, pp. 223-226."
     variables: [A]
     conclusions:
       - reason_in_favor(A)
@@ -70,9 +67,7 @@ argument_schemes:
   - id: pop_scheme
     meta:
       title: Pop Scheme
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 311. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.1, p. 311."
     variables: [A,G]
     conclusions:
       - A
@@ -82,9 +77,7 @@ argument_schemes:
   - id: pop_scheme_acceptance
     meta:
       title: Pop Scheme (the reading that you should accept A)
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 311. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.1, p. 311."
     variables: [A,G]
     conclusions:
       - should_accept(A)
@@ -94,9 +87,7 @@ argument_schemes:
   - id: deliberation_ad_populum 
     meta:
       title: Deliberation Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.4, p. 312."
     variables: [A,G]
     conclusions:
       - plausibly_true(A)
@@ -107,9 +98,7 @@ argument_schemes:
   - id: moral_justification_ad_populum
     meta:
       title: Moral Justification Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312."
     variables: [G,P]
     conclusions:
       - should_accept(P)
@@ -120,9 +109,7 @@ argument_schemes:
   - id: moral_justification_ad_populum_excuse
     meta:
       title: Moral Justification Ad Populum Argument Excuse Subtype
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312."
     variables: [G,X,A]
     conclusions:
       - morally_acceptable_action(X,A)
@@ -134,9 +121,7 @@ argument_schemes:
   - id: snob_appeal_ad_populum
     meta:
       title: Snob Appeal Ad Populum Argument
-      source: > 
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
     variables: [A,G,O,P]
     conclusions:
       - should_accept(A)
@@ -149,9 +134,7 @@ argument_schemes:
   - id: appeal_to_vanity_ad_populum
     meta:
       title: Appeal to Vanity Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.8, p. 312."
     variables: [G,A,X]
     conclusions:
       - carry_out_action(X)
@@ -162,9 +145,7 @@ argument_schemes:
   - id: rhetoric_ad_populum
     meta:
       title: Rhetoric of Belonging Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.9, p. 313."
     variables: [G,A]
     conclusions:
       - should_accept(A)
@@ -176,9 +157,7 @@ argument_schemes:
   - id: common_folk_ad_populum 
     meta:
       title: Common Folks Ad Populum Argument
-      source: >
-              Argumentation Schemes. Cambridge University Press, p. 312.
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.10, p. 313."
     variables: [S]
     conclusions:
       - being_credible(S)
@@ -188,9 +167,7 @@ argument_schemes:
   - id: common_folks_group_ad_populum
     meta:
       title: Common Folks Ad Populum Group Subtype
-      source: >
-              Argumentation Schemes. Cambridge University Press, p. 312.
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.11, p. 313."
     variables: [G,S]
     conclusions:
       - accept_saying(S)
@@ -201,9 +178,7 @@ argument_schemes:
   - id: popular_practise
     meta:
       title: Argument From Popular Practice
-      source: >
-              Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge
-              University Press, 2006, p. 93.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 93."
     variables: [A]
     conclusions:
       - acceptable_in_case(A)
@@ -216,9 +191,7 @@ argument_schemes:
   - id: ethotic1
     meta:
       title: Positive Argument from Ethos
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
     variables: [P,S]
     conclusions: [S]
     premises:
@@ -230,9 +203,7 @@ argument_schemes:
   - id: ethotic2
     meta:
       title: Negative Argument from Ethos
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
     variables: [P,S]
     conclusions: [¬S]
     premises:

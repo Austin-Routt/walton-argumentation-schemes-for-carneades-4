@@ -55,9 +55,7 @@ argument_schemes:
   - id: rule_physical_world_1
     meta:
       title: Argument For Constitutive Rule Claims - Physical World Premise Version 1 
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 342.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.1, p. 342."
     variables: [W,D]
     conclusions:
       - means_same(W,D)
@@ -70,9 +68,7 @@ argument_schemes:
   - id: rule_physical_world_2
     meta:
       title: Argument For Constitutive Rule Claims - Physical World Premise Version 2
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 342.             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.2, p. 342."
     variables: [I,D,W]
     conclusions:
       - counts_as(D,W)
@@ -85,8 +81,7 @@ argument_schemes:
   - id: rule_mental_world 
     meta:
       title: Argument For Constitutive Rule Claims - Mental World Premise
-      source: >
-             Wayne Grennan, Informal Logic, Montreal: McGill-Queen's University Press, 1997, p. 196.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.3, p. 342. Wayne Grennan, Informal Logic, Montreal: McGill-Queen's University Press, 1997, p. 196."
     variables: [W,D,L]
     conclusions:
       - means_same(W,D)
@@ -99,9 +94,7 @@ argument_schemes:
   - id: rule
     meta:
       title: Argument From Rules - From Rules
-      source: >
-             Peter Jan Schellens and Menno De Jong, "Argumentation Schemes in Persuasive  Brochures.
-             "Argumentation 18, 2004, p. 311.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 55.2, p. 343. Peter Jan Schellens and Menno De Jong, \"Argumentation Schemes in Persuasive Brochures. \"Argumentation 18, 2004, p. 311."
     variables: [E,A,C] 
     conclusions:
       - evaluation_justified(E,C)
@@ -112,8 +105,7 @@ argument_schemes:
   - id: regulative_rule
     meta:
       title: Argumentation From Rules - Regulative Rule Premise Obligation Claim
-      source: >
-            Wayne Grennan, Informal Logic. Montreal: McGill-Queen's University Press, 1997, p. 169.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 55.3, p. 343. Wayne Grennan, Informal Logic. Montreal: McGill-Queen's University Press, 1997, p. 169."
     variables: [A,X]
     conclusions:
       - must_do(A,X)
@@ -127,9 +119,7 @@ argument_schemes:
   - id: regulative_rule_prohibition
     meta:
       title: Argumentation From Rules - Regulative Rule Premise Prohibition Claim
-      source: >
-            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 343 (55.3, read for a prohibition).
-            Wayne Grennan, Informal Logic. Montreal: McGill-Queen's University Press, 1997, p. 169.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 55.3, p. 343. (55.3, read for a prohibition). Wayne Grennan, Informal Logic. Montreal: McGill-Queen's University Press, 1997, p. 169."
     variables: [A,X]
     conclusions:
       - must_not_do(A,X)
@@ -143,9 +133,7 @@ argument_schemes:
   - id: exeptional
     meta:
       title: Argument For An Exceptional Case
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. 
-             Tuscaloosa and London: University of Alabama Press, 1995, p. 148.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 56, p. 344. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 148."
     variables: [A]
     conclusions:
       - rule_waived(A)
@@ -158,8 +146,7 @@ argument_schemes:
   - id: from_precedent
     meta:
       title: Argument From Precedent
-      source: >
-            Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008).  Argumentation Schemes. Cambridge University Press, p. 344.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 57, p. 344."
     variables: [R,F,G,A]
     conclusions:
       - rule_exception_recognized(R,A)
@@ -176,9 +163,7 @@ argument_schemes:
   - id: plea_for_excuse
     meta:
       title: Argument From Plea For Excuse
-      source: >
-             Douglas Walton, Appeal to Pity. 
-             Albany: State University of New York Press, 1997, pp. 154-156.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 58, p. 345. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 154-156."
     variables: [S,R,T,E]
     conclusions:
       - exempted(S)
@@ -194,6 +179,7 @@ argument_schemes:
   - id: defeasible_modus_ponens
     meta:
       title: Defeasible Modus Ponens
+      source: "Carneades 4, examples/AGs/YAML/walton.yml (upstream, commit d19d543), where the record cites no source."
     variables: [A,B]
     premises:
       - implies(A,B)

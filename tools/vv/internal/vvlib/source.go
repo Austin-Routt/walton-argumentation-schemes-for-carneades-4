@@ -378,13 +378,28 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		if r.Entry != entryOf[s.Id] {
 			probs = append(probs, fmt.Sprintf("entry %q, but the compendium list files the record under %q", r.Entry, entryOf[s.Id]))
 		}
-		src := ""
+		// PLAN.md 5.9: every record has a title and a source; a record filed
+		// under an entry names the compendium, the entry and its page first,
+		// and the row's cites holds the rest of its source.
+		src, title := "", ""
 		if v, ok := s.Metadata["source"]; ok && v != nil {
 			src = strings.Join(strings.Fields(fmt.Sprint(v)), " ")
 		}
-		want := ""
-		if src != "" && !strings.HasPrefix(src, CompendiumSource) {
-			want = src
+		if v, ok := s.Metadata["title"]; ok && v != nil {
+			title = strings.TrimSpace(fmt.Sprint(v))
+		}
+		if title == "" {
+			probs = append(probs, "the record has no meta.title")
+		}
+		want := src
+		if r.Entry != "" {
+			std := fmt.Sprintf("%s. Argumentation Schemes. Cambridge University Press, ch. 9, entry %s, p. %d.", CompendiumSource, r.Entry, entries[r.Entry].Page)
+			if !strings.HasPrefix(src, std) {
+				probs = append(probs, fmt.Sprintf("meta.source should begin with %q", std))
+			}
+			want = strings.TrimSpace(strings.TrimPrefix(src, std))
+		} else if src == "" {
+			probs = append(probs, "the record has no meta.source")
 		}
 		if r.Cites != want {
 			probs = append(probs, fmt.Sprintf("cites %q, but the record cites %q", r.Cites, want))

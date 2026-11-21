@@ -52,8 +52,7 @@ argument_schemes:
   - id: slippery_slope_base_case
     meta:
       title: Slippery Slope Argument
-      source: >
-        Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 49, p. 339. Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95."
     variables: [A,E]
     conclusions:
       - negative_consequences(A)
@@ -64,8 +63,7 @@ argument_schemes:
   - id: slippery_slope_inductive_step
     meta:
       title: Slippery Slope Argument
-      source: >
-        Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 49, p. 339. Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95."
     variables: [E1,E2]
     conclusions:
       - horrible_costs(E1)
@@ -76,9 +74,7 @@ argument_schemes:
   - id: opposition-descriptive_1
     meta:
       title: Argument From Opposition - Descriptive Scheme 1
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 317. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1a, p. 317."
     variables: [P,P2,A]
     conclusions:
       - cannot_present_sametime(A,P2)
@@ -89,9 +85,7 @@ argument_schemes:
   - id: opposition-descriptive_2
     meta:
       title: Argument From Opposition - Descriptive Scheme 2
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 317.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1b, p. 317."
     variables: [P,P2,A]
     conclusions:
       - must_present_sametime(A,P2)
@@ -102,9 +96,7 @@ argument_schemes:
   - id: opposition-descriptive_3
     meta:
       title: Argument From Opposition - Descriptive Scheme 3
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1c, p. 318."
     variables: [P,P2,A]
     conclusions:
       - must_present_sametime(A,P2)
@@ -115,9 +107,7 @@ argument_schemes:
   - id: opposition-normative
     meta:
       title: Argument From Opposition - Normative Scheme
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.2, p. 318."
     variables: [A,X,X2]
     conclusions:
       - cannot_recieve_evaluation(A,X2)
@@ -128,9 +118,7 @@ argument_schemes:
   - id: rhetorical_oppositions_normative
     meta:
       title: Rhetorical Argument From Opposition - Normative Schemes
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-             Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 12.1, p. 318."
     variables: [X,X2,A,A2]
     conclusions:
       - contrary_treatment_required(X2,A2)
@@ -141,9 +129,7 @@ argument_schemes:
   - id: rhetorical_oppositions_descriptive
     meta:
       title: Rhetorical Argument From Opposition - Descriptive Schemes
-      source: >
-             Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-             Argumentation Schemes. Cambridge University Press, p. 318.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 12.2, p. 318."
     variables: [A,B,R,R2]
     conclusions:
       - converse_relation(B,R2,A)
@@ -154,9 +140,7 @@ argument_schemes:
   - id: interaction_act_person_1
     meta: 
       title: Argument From Interaction of Act and Person - Variant 1
-      source: >
-               Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. 
-               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 18.1, p. 321. Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305."
     variables: [X,A,V]
     conclusions: 
       - person_value(A,V)
@@ -167,9 +151,7 @@ argument_schemes:
   - id: interaction_act_person_2
     meta: 
       title:  Argument From Interaction of Act and Person - Variant 2
-      source: >
-               Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. 
-               Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 18.2, p. 321. Ch. Perelman, L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 296-305."
     variables: [A,X,V1,V2]
     conclusions: 
       - person_acts_value(A,X,V2)
@@ -180,8 +162,7 @@ argument_schemes:
   - id: full_slippery_slope
     meta:
       title: Full Slippery Slope Argument
-      source: >
-             Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 200, 203.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 53, p. 341. Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 200, 203."
     variables: [C0,C1,C2]
     conclusions:
       - not_acceptable_step(C0)
@@ -193,6 +174,7 @@ argument_schemes:
   - id: cause_to_effect
     meta:
       title: Argument from Cause to Effect
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 28, p. 328."
     variables: [E1,E2]
     conclusions:
       - will_occur(E2)
@@ -205,9 +187,7 @@ argument_schemes:
   - id: correlation_to_cause
     meta:
       title: Argument from Correlation to Cause
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 29, p. 328. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 142."
     variables: [E1,E2]
     conclusions:
       - causes(E1,E2)

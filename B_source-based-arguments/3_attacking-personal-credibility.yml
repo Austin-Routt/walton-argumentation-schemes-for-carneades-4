@@ -39,9 +39,7 @@ argument_schemes:
   - id: ad_hominem
     meta:
       title: Generic Ad Hominem
-      source: >
-             Douglas Walton , Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, p. 123.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 42, p. 336. Douglas Walton , Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, p. 123."
     variables: [A,S,C]
     conclusions:
       - bad_not_accepted(A,S)
@@ -56,9 +54,7 @@ argument_schemes:
   - id: pragmatic_inconsistency
     meta:
       title: Pragmatic Inconsistency
-      source: >
-             Douglas Walton , Ad Hominem Arguments. 
-             Tuscaloosa: University of Alabama Press, 1998, pp. 218, 251.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 43, p. 336. Douglas Walton , Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, pp. 218, 251."
     variables: [A,S,X]
     conclusions:
       - arguement_not_accepted(A,S)
@@ -72,11 +68,7 @@ argument_schemes:
   - id: circumstantial_ad_hominem
     meta:
       title: Circumstantial Ad Hominem
-      source: >
-             Douglas Walton, Ad Hominem Arguments. 
-             Tuscaloosa: University of Alabama Press, 1998, pp. 255-256.
-             Douglas Walton, Fundamentals of Critical Argumentation. 
-             Cambridge: Cambridge University Press, 2006, pp. 125-126.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 45, p. 337. Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, pp. 255-256. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 125-126."
     variables: [A,S,C]
     conclusions:
       - plausibility_decreased(A,S)
@@ -92,9 +84,7 @@ argument_schemes:
   - id: bias
     meta:
       title: Argument From Bias
-      source: >
-             Douglas Walton, A Pragmatic Theory of Fallacy. 
-             Tuscaloosa and London : University of Alabama Press, 1995, p. 153.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 46, p. 338. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London : University of Alabama Press, 1995, p. 153."
     variables: [A,C]
     conclusions:
       - arguer_not_taken_both(A,C)
@@ -107,9 +97,7 @@ argument_schemes:
   - id: bias_ad_hominem
     meta:
       title: Bias Ad Hominem
-      source: >
-             Douglas Walton, Ad Hominem Arguments. 
-             Tuscaloosa: University of Alabama Press, 1998, p.255.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 47, p. 338. Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, p.255."
     variables: [A,S,D]
     conclusions:
       - not_given_credibility(S)

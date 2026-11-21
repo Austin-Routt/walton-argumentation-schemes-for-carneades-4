@@ -65,9 +65,7 @@ argument_schemes:
   - id: position_to_know
     meta:
       title: Argument from Position to Know
-      source: >
-        Douglas Walton, Legal Argumentation and Evidence,
-        The Pennsylvania State University Press, University Park, 2002, p.46.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 1, p. 309. Douglas Walton, Legal Argumentation and Evidence, The Pennsylvania State University Press, University Park, 2002, p.46."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -80,13 +78,7 @@ argument_schemes:
   - id: witness_testimony
     meta:
       title: Argument from Witness Testimony
-      source: >
-        Douglas Walton, Henry Prakken, Chris Reed,
-        Argumentation Schemes and Generalisations in Reasoning about
-        Evidence, Proceedings of the 9th International Conference on
-        Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM
-        Press 2003, pp. 35.  Douglas Walton, Witness Testimony Evidence,
-        Cambridge University Press, 2008.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 3, p. 310. Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -105,9 +97,7 @@ argument_schemes:
   - id: position_to_know_ad_populum
     meta:
       title: Position to Know Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 311. 
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.2, p. 311."
     variables: [A,G]
     conclusions:
       - plausibly_true(A)
@@ -118,9 +108,7 @@ argument_schemes:
   - id: expert_opinion_ad_populum
     meta:
       title: Expert Opinion Ad Populum Argument
-      source: >
-              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
-              Argumentation Schemes. Cambridge University Press, p. 312.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.3, p. 312."
     variables: [A,G]
     conclusions:
       - therefore_true(A)
@@ -131,12 +119,7 @@ argument_schemes:
   - id: negative_normal_expectations
     meta:
       title: Negative Reasoning from Normal Expectations
-      source: >
-             Douglas Walton, Arguments from Ignorance. University Park: 
-             Pennsylvania State University Press, 1996, pp. 84,86.
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: 
-             University of Alabama Press, 1995. p. 150.
-             
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.1, p. 327. Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150."
     variables: [A]
     conclusions:
       - not_normal(A)
@@ -149,11 +132,7 @@ argument_schemes:
   - id: negative_practical
     meta:
       title: Negative Practical Reasoning
-      source: >
-             Douglas Walton, Arguments from Ignorance. University Park: 
-             Pennsylvania State University Press, 1996, pp. 84,86.
-             Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: 
-             University of Alabama Press, 1995. p. 150.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26.2, p. 327. Douglas Walton, Arguments from Ignorance. University Park: Pennsylvania State University Press, 1996, pp. 84,86. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. p. 150."
     variables: [A,B,C]
     conclusions:
       - act_on_presumption(A)
@@ -169,9 +148,7 @@ argument_schemes:
   - id: epistemic_ignorence
     meta:
       title: Epistemic Argument From Ignorance
-      source: >
-              Douglas Walton , "Nonfallacious Arguments from Ignorance." 
-              American Philosophical Quarterly 29 (1992), p. 386.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 27, p. 328. Douglas Walton , \"Nonfallacious Arguments from Ignorance.\" American Philosophical Quarterly 29 (1992), p. 386."
     variables: [A,D,K]
     conclusions:
       - plausible_false(D,A)
@@ -185,8 +162,7 @@ argument_schemes:
   - id: memory
     meta:
       title: Argument From Memory
-      source: >
-             J.L. Pollock, "Defeasible Reasoning." Cognitive Science 11 (1987), pp. 481-518.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 60, p. 346. J.L. Pollock, \"Defeasible Reasoning.\" Cognitive Science 11 (1987), pp. 481-518."
     variables: [P,M]
     conclusions:
       - reasonable_belive(M)
@@ -201,7 +177,7 @@ argument_schemes:
   - id: appearance
     meta:
       title: Argument from Appearance
-      source: "Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.2, p. 345. Douglas Walton, ‘Argument from Appearance: A New Argumentation Scheme’, 2006."
     variables: [O,C]
     conclusions:
       - instance(O,C)
@@ -211,9 +187,7 @@ argument_schemes:
   - id: credible_source
     meta:
       title: "Argument from Credible Source"
-      source: "Wyner, A., A
-              functional perspective on argumentation schemes. 
-              Argument and Computation, vol. 7, pp. 113-133. 2016."
+      source: "Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016."
     variables: [W,D,S]
     conclusions: [S]
     premises:
@@ -228,9 +202,7 @@ argument_schemes:
   - id: expert_opinion
     meta:
       title: Argument from Expert Opinion
-      source: >
-        Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press,
-        University Park, Albany, 1997, p.211-225.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 2, p. 310. Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225."
     variables: [W,D,S]
     premises:
       - expert(W,D)
@@ -247,9 +219,7 @@ argument_schemes:
   - id: ignorance
     meta:
       title: Argument from Ignorance
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 150
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 26, p. 327. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150"
     variables: [S]
     conclusions:
       - ¬S

@@ -49,10 +49,7 @@ argument_schemes:
   - id: exeption_to_rule
     meta:
       title: Argument From Exception to a Rule
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London,
-        1995, p. 148
+      source: "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 148"
     variables: [S,C,R]
     conclusions: [S]
     premises:
@@ -66,9 +63,7 @@ argument_schemes:
   - id: from_example
     meta:
       title: Argument From Example
-      source: >
-              Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation.
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 6.1, p. 314. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 135."
     variables: [A,P1,P2]
     conclusions:
       - both_properties(A,P1,P2)
@@ -83,9 +78,7 @@ argument_schemes:
   - id: illustration
     meta:
       title: Argument From Illustration
-      source: >
-              Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation.
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 6.2, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368."
     variables: [Y,P1,P2]
     conclusions:
       - valid_rule(P1,P2)
@@ -96,9 +89,7 @@ argument_schemes:
   - id: from_model
     meta:
       title: Argument From Model
-      source: >
-              Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation.
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 6.3, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368."
     variables: [A,B,X]
     conclusions:
       - should_do(B,X)
@@ -110,9 +101,7 @@ argument_schemes:
   - id: from_antimodel
     meta:
       title: Argument From Anti-Model
-      source: >
-              Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation.
-              Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 6.4, p. 315. Ch. Perelman and L. Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp. 357-368."
     variables: [A,B,X]
     conclusions:
       - ¬should_do(B,X)
@@ -124,8 +113,7 @@ argument_schemes:
   - id: practical_analogy_positive
     meta:
       title: Practical Reasoning From Analogy - Positive Schema
-      source: >
-              Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989. p.257.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 8.1, p. 316. Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989. p.257."
     variables: [A1,A2,X]
     conclusions:
       - carry_out_right(A2,X)
@@ -136,8 +124,7 @@ argument_schemes:
   - id: practical_analogy_negative
     meta:
       title: Practical Reasoning From Analogy - Negative Schema
-      source: >
-              Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989. p.257.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 8.2, p. 316. Douglas Walton, Informal Logic. New York: Cambridge University Press, 1989. p.257."
     variables: [A1,A2,X]
     conclusions:
       - carry_out_wrong(A2,X)
@@ -148,8 +135,7 @@ argument_schemes:
   - id: perception
     meta:
       title: Argument From Perception
-      source: >
-             John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.1, p. 345. John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53."
     variables: [P,I]
     conclusions:
       - reasonable_case(I)
@@ -162,9 +148,7 @@ argument_schemes:
   - id: analogy
     meta:
       title: Argument from Analogy
-      source: >
-        Douglas Walton, Fundamentals of Critical Argumentation,
-        Cambridge University Press, New York 2006, p. 96-97.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 7, p. 315. Douglas Walton, Fundamentals of Critical Argumentation, Cambridge University Press, New York 2006, p. 96-97."
     variables: [A,C]
     conclusions: [A]
     premises:
@@ -177,9 +161,7 @@ argument_schemes:
   - id: established_rule
     meta:
       title: Argument from an Established Rule
-      source: >
-        Douglas Walton, A Pragmatic Theory of Fallacy,
-        The University of Alabama Press, Tuscaloosa and London, 1995, p. 147.
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 55.1, p. 343. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 147."
     variables: [C,R]
     conclusions: [C]
     premises:
