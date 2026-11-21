@@ -1,0 +1,13 @@
+--- a/carneades-4/src/engine/caes/gochr.go
++++ b/carneades-4/src/engine/caes/gochr.go
+@@ -66,7 +66,9 @@
+ func TheoryToRuleStore(t *Theory) *chr.RuleStore {
+ 	// log.Printf("TheoryToRuleStore\n") // DEBUG
+ 	rs := chr.MakeRuleStore()
+-	preds := dedupRules(t)
++	rs.Unique = true // set semantics in the store itself, instead of one dedup rule per predicate
++	preds := map[string]int{}
++	_ = dedupRules
+ 	names := make([]string, 0, len(preds))
+ 	for p := range preds {
+ 		names = append(names, p)

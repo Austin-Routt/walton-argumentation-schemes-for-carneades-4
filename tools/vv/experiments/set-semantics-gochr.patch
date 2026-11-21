@@ -1,0 +1,69 @@
+--- a/src/engine/CHR/CHR.go	2022-10-18 05:28:14.000000000 -0500
++++ b/src/engine/CHR/CHR.go	2026-11-20 23:06:11.681208904 -0600
+@@ -106,6 +106,10 @@
+ }
+ 
+ type RuleStore struct {
++	// Unique gives the CHR store set semantics for ground constraints: a
++	// constraint equal to one that is already in the store is not added
++	// again. The default, false, keeps CHR's usual multiset semantics.
++	Unique         bool
+ 	Result         resultType
+ 	CHRruleStore   []*chrRule
+ 	QueryVars      Vars
+@@ -402,6 +406,45 @@
+ 	aArg.varArg = append(aArg.varArg, g) // a variable match to all types
+ }
+ 
++// inStore reports whether a ground constraint equal to g is alive in the store.
++// It looks only at the constraints that share g's functor and the kind (and,
++// for atoms and compounds, the name) of its first argument.
++func inStore(s store, g *Compound) bool {
++	aArg, ok := s[g.Functor]
++	if !ok || len(g.OccurVars()) > 0 {
++		return false
++	}
++	var bucket CList
++	if len(g.Args) == 0 {
++		bucket = aArg.noArg
++	} else {
++		switch a := g.Args[0].(type) {
++		case Atom:
++			bucket = aArg.atomArg[string(a)]
++		case Bool:
++			bucket = aArg.boolArg
++		case Int:
++			bucket = aArg.intArg
++		case Float:
++			bucket = aArg.floatArg
++		case String:
++			bucket = aArg.strArg
++		case Compound:
++			bucket = aArg.compArg[a.Functor]
++		case List:
++			bucket = aArg.listArg
++		default:
++			bucket = aArg.varArg
++		}
++	}
++	for _, c := range bucket {
++		if c != nil && !c.IsDeleted && len(c.Args) == len(g.Args) && Equal(*c, *g) {
++			return true
++		}
++	}
++	return false
++}
++
+ func addConstraintToStore(rs *RuleStore, g Compound) {
+ 	addRefConstraintToStore(rs, &g)
+ }
+@@ -411,6 +454,9 @@
+ 	rs.chrCounter = new(big.Int).Add(rs.chrCounter, bigOne)
+ 	// TraceHeadln(3, 3, " b) Counter++ %v , Id: %v \n", chrCounter, g.Id)
+ 	if g.Prio == 0 {
++		if rs.Unique && inStore(rs.CHRstore, g) {
++			return
++		}
+ 		addGoal1(g, rs.CHRstore)
+ 		p2r := rs.pred2rule
+ 		ruleSlice, _ := p2r[g.Functor]

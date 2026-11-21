@@ -1,0 +1,27 @@
+# Provenance of the engine sources in third_party/ (PLAN.md, D1).
+#
+# Each engine was imported byte for byte from the archive named here, in the
+# commit named by imported_in. Every later change to third_party/ is an engine
+# fix of this repository, one per commit, with its test in tools/vv.
+# tools/vv/setup.sh refuses an archive whose SHA-256 or commit differs from
+# this file, and lists every file of third_party/ that differs from its archive.
+carneades-4:
+  upstream: https://github.com/carneades/carneades-4
+  commit: d19d5431b36da16ffdc2c7ebe4dded784e65b49a   # master, 2024-10-15
+  archive: carneades-4.zip
+  sha256: dbac157bb9505e3c48a376f7bc06418cced949144ff2dd6ed91f90fcff611d0b
+  path: third_party/carneades-4
+  imported_in: c7d0eaee5cd95ba86c0c20dfd64efb8aa3c3ff71
+  not_imported: []
+  license: MPL-2.0
+GoCHR:
+  upstream: https://github.com/hfried/GoCHR
+  commit: e1ccd783979baea586d55a1da3c3f465d266a83e   # master, 2022-10-18
+  archive: GoCHR.zip
+  sha256: 6f79056a58183807d907d3536820f48d0a0cfe9bc02233486f4b93f4b5d50851
+  path: third_party/GoCHR
+  imported_in: c7d0eaee5cd95ba86c0c20dfd64efb8aa3c3ff71
+  not_imported:                 # prebuilt Windows executables, never run here
+    - src/cmd/gochr/gochr.exe
+    - src/engine/CHR/CHR.test.exe
+  license: MPL-2.0

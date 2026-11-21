@@ -1,0 +1,221 @@
+# Ledger of known issues.
+#
+# Every entry under `expected` names checks that fail today and the issue the
+# failure belongs to. The suite treats the ledger as a ratchet:
+#
+#   - a listed check that fails            -> reported as known, run stays green
+#   - a check that fails and is not listed -> run fails (regression or new defect)
+#   - a listed check that passes           -> run fails until the entry is removed
+#
+# `where` says where the cause sits: engine (carneades-4 / GoCHR), library (the
+# scheme files) or both (an engine limitation the library can work around).
+# Baseline: carneades-4 d19d543, GoCHR e1ccd78, scheme files at 7ad5617.
+#
+# 2026-11-21: five issues and eight ledger entries were added after comparing
+# this suite with two independent reviews and with the source text (Walton,
+# Reed & Macagno 2008): X-ASSUME, E-ISSUE, E-PARSE, L-OVERLAP and L-MISSING are
+# new; E-EXPORT and E-IDEMP each gained checks for defects the first version of
+# the suite did not exercise.
+#
+# 2026-11-21, second round: the two other reviews examined this suite and its
+# first report. Their corrections are in: E-MATCH is new (a fact of the wrong
+# arity, and the order of premises, decide whether a rule matches); E-ARGVAL,
+# E-INCONS, E-BUDGET and E-IDEMP each gained a check that a partial fix would
+# not pass; X-ASSUME now states the contract decided for critical questions
+# under `assumptions:`. L-OVERLAP is withdrawn as an issue: the checks behind it
+# judged a scheme by the label of its conclusion, which another argument can
+# legitimately keep in; they now judge the scheme's own argument.
+#
+# 2026-11-21, third round: both other reviews examined the second version of
+# this suite, and their corrections are in. A check that adds an exception or
+# leaves a premise out is judged only when the plain run finished and built the
+# scheme's argument, and when its own run finished; before, a partial graph
+# could pass. L-ID is withdrawn as an issue: four ids with a hyphen work, and
+# the check now asks what matters, whether an id comes back from the term
+# reader as it was written. L-MISSING grows from one entry to three: entries
+# 57 and 22.4 are filed under records that hold other schemes. New checks: a
+# negation that reaches a rule through a statement variable (X-NEG), labelling
+# after an issue gains a position (E-ISSUE; it hangs), and a baseline that a
+# user predicate called neg is ordinary.
+#
+# min_checks is the number of checks a complete run produces today. A run with
+# fewer fails: a passing check leaves no entry here, so removing one would
+# otherwise go unnoticed. Raise it when checks are added; lower it only in the
+# change that removes a check, where a reviewer sees it.
+
+min_checks: 5947
+
+issues:
+  - id: X-GATE
+    where: both
+    severity: blocker
+    title: "`carneades eval` produces nothing for a file with any validator problem; walton.yml and five category files are such files"
+  - id: X-RANGE
+    where: both
+    severity: blocker
+    title: "Five schemes use a variable that no premise binds: the validator rejects them, and when run anyway they yield statements with variables or dead critical questions"
+  - id: L-TRUE
+    where: library
+    severity: blocker
+    title: "The predicate true/1 is rejected by the engine's validator (true is a boolean), which blocks two files"
+  - id: X-NEG
+    where: both
+    severity: major
+    title: "A negated premise never matches: GoCHR stores ¬p(...) with its built-in constraints, out of reach of rule heads; four schemes can never fire"
+  - id: X-IS
+    where: both
+    severity: major
+    title: "is/2 in a conclusion is executed by GoCHR as an assignment; group_2 constructs nothing"
+  - id: X-LOOP
+    where: both
+    severity: major
+    title: "No duplicate check in the rule engine: a scheme that re-derives its own premise, or two that derive each other's, run to the limit of 100000 rule applications and starve every scheme listed after them"
+  - id: E-BUDGET
+    where: engine
+    severity: major
+    title: "Hitting the rule limit is not an error: Infer returns nil and the only sign is a line on stdout, inside the exported graph. The limit counts rule applications only: a theory whose terms keep growing runs out of time or memory before it is reached"
+  - id: X-ASSUME
+    where: both
+    severity: major
+    title: "A critical question written under `assumptions:` cannot be called into question from a file: every scheme assumption is assumed when the scheme is instantiated, and assumed statements are labelled in before any argument is looked at. The book has an assumption hold only until it is questioned (pp. 373-375)"
+  - id: E-CAPTURE
+    where: engine
+    severity: major
+    title: "GoCHR names a fresh variable V1; a scheme variable called V1 captures it and the conclusion comes out wrong but ground"
+  - id: E-EXIT
+    where: engine
+    severity: major
+    title: "`carneades check` and `carneades eval` exit with status 0 when they find problems or refuse to evaluate"
+  - id: E-GLOBALS
+    where: engine
+    severity: major
+    title: "yaml.Import writes imported schemes into the package-level table caes.BasicSchemes: imports leak into each other and concurrent imports crash the process"
+  - id: E-ARGVAL
+    where: engine
+    severity: major
+    title: "The validator never checks an argument against its scheme (and would panic if it did)"
+  - id: E-EXPORT
+    where: engine
+    severity: major
+    title: "YAML export cannot be read back: it leaves out the theory, splits a parameter that contains a comma, and writes expected labels under a key the importer ignores"
+  - id: E-TERMS
+    where: engine
+    severity: major
+    title: "Terms do not survive the trip through the two parsers: quoted strings with spaces are cut off, and 1990-05-17 is computed as 1968"
+  - id: E-EXPLICIT
+    where: engine
+    severity: major
+    title: "An argument written by hand that names a scheme gets none of the scheme's critical questions, and inference puts a duplicate beside it"
+  - id: E-IDEMP
+    where: engine
+    severity: major
+    title: "Running Infer twice on a graph panics when a scheme has an exception, and otherwise duplicates every argument with two or more parameters; the duplicate also assumes again an assumption that had been withdrawn"
+  - id: E-ISSUE
+    where: engine
+    severity: major
+    title: "A statement that joins an existing issue is not added to the issue's positions; labelling such a graph never returns"
+  - id: E-PARSE
+    where: engine
+    severity: major
+    title: "A statement the term parser cannot read is dropped with a line on stderr, GoCHR accepts malformed rule text and Carneades discards the errors AddRule returns: a broken scheme silently does nothing"
+  - id: E-MATCH
+    where: engine
+    severity: major
+    title: "Rule matching depends on things it should not: a fact with a premise's functor at another arity makes a rule fire until the rule limit, and a premise that is a bare variable matches only when it comes after the premise that binds it"
+  - id: E-NEGTEXT
+    where: engine
+    severity: minor
+    title: "Negated statements are printed as raw terms; the language templates are not applied inside ¬"
+  - id: E-INCONS
+    where: engine
+    severity: minor
+    title: "ArgGraph.Inconsistent() returns false on every path, and reads a cache that only labelling fills: returning true on the right branch is not enough"
+  - id: E-ROLES
+    where: engine
+    severity: minor
+    title: "Scheme `roles` are documented but not imported"
+  - id: E-BUILD
+    where: engine
+    severity: minor
+    title: "Two packages do not compile, go vet reports findings, and `go test ./...` needs a CouchDB server"
+  - id: L-MISSING
+    where: library
+    severity: minor
+    title: "Three compendium entries have no record of their own: 50 (precedent slippery slope argument, p. 340) has none; 57 (p. 344) and 22.4 (p. 324) are filed under records taken over from Carneades that hold other schemes"
+
+expected:
+  # ------------------------------------------------------------------ engine
+  - {issue: E-BUILD,   scheme: (engine), checks: [build-all-packages, go-vet-clean, upstream-tests-pass-as-shipped]}
+  - {issue: E-GLOBALS, scheme: (engine), checks: [yaml-import-keeps-globals-clean]}
+  - {issue: E-ARGVAL,  scheme: (engine), checks: [validator-checks-arguments-against-schemes, validator-accepts-correct-argument, validator-enforces-shared-bindings]}
+  - {issue: E-EXPORT,  scheme: (engine), checks: [yaml-export-can-be-reimported, cli-reads-its-own-yaml, export-keeps-compound-parameters, export-keeps-expected-labels]}
+  - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
+  - {issue: E-IDEMP,   scheme: (engine), checks: [infer-is-idempotent, infer-twice-with-exception, withdrawn-assumption-survives-second-infer]}
+  - {issue: E-ISSUE,   scheme: (engine), checks: [issue-extension-keeps-positions, labelling-returns-after-issue-gains-position]}
+  - {issue: E-PARSE,   scheme: (engine), checks: [malformed-statement-is-an-error]}
+  - {issue: X-ASSUME,  scheme: (engine), checks: [questioned-assumption-is-not-assumed]}
+  - {issue: E-MATCH,   scheme: (engine), checks: [wrong-arity-fact-is-harmless, premise-order-does-not-matter]}
+  - {issue: E-TERMS,   scheme: (engine), checks: [string-constants-survive, hyphenated-constants-are-not-computed]}
+  - {issue: X-NEG,     scheme: (engine), checks: [negated-premises-match, negation-through-statement-variable]}
+  - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}
+  - {issue: X-LOOP,    scheme: (engine), checks: [rederivation-terminates, no-scheme-is-starved]}
+  - {issue: E-BUDGET,  scheme: (engine), checks: [budget-exhaustion-is-reported, engine-keeps-stdout-clean, cli-output-stays-valid, growing-term-is-bounded]}
+  - {issue: E-CAPTURE, scheme: (engine), checks: [unbound-variable-is-not-captured]}
+  - {issue: E-INCONS,  scheme: (engine), checks: [inconsistent-assumptions-detected, inconsistent-follows-current-assumptions]}
+  - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
+  - {issue: E-EXIT,    scheme: (engine), checks: [cli-eval-signals-refusal, cli-check-exit-status]}
+
+  # ------------------------------------------------------------------ schemes
+  # negated premises
+  - {issue: X-NEG, scheme: from_antimodel,           checks: [static/no-negated-premise, iso/fires, iso/conclusions-in, iso/premises-needed, full/fires, full/conclusions-in, full/premises-needed, cli/scenario]}
+  - {issue: X-NEG, scheme: opposition-descriptive_2, checks: [static/no-negated-premise, iso/fires, iso/conclusions-in, iso/premises-needed, full/fires, full/conclusions-in, full/premises-needed, cli/scenario]}
+  - {issue: X-NEG, scheme: opposition-descriptive_3, checks: [static/no-negated-premise, iso/fires, iso/conclusions-in, iso/premises-needed, full/fires, full/conclusions-in, full/premises-needed, cli/scenario]}
+  - {issue: X-NEG, scheme: ignorance,                checks: [static/no-negated-premise, iso/fires, iso/conclusions-in, iso/exceptions-undercut, iso/premises-needed, full/fires, full/conclusions-in, full/exceptions-undercut, full/premises-needed, cli/scenario]}
+
+  # is/2 as a conclusion
+  - {issue: X-IS, scheme: group_2, checks: [static/no-reserved-functor, iso/fires, iso/conclusions-in, iso/premises-needed, full/fires, full/conclusions-in, full/premises-needed, cli/scenario]}
+
+  # schemes that feed themselves or each other
+  - {issue: X-LOOP, scheme: exeptional, checks: [static/not-self-feeding, iso/terminates, iso/premises-needed, full/terminates, full/premises-needed]}
+  - {issue: X-LOOP, file: walton.yml, scheme: composition_generic, checks: [full/terminates, full/premises-needed]}
+  - {issue: X-LOOP, file: walton.yml, scheme: division_generic,    checks: [full/terminates, full/premises-needed]}
+
+  # variables no premise binds
+  - {issue: X-RANGE, scheme: practical_necessary_condition,  checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, full/ground, full/exceptions-undercut]}
+  - {issue: X-RANGE, scheme: practical_sufficient_condition, checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, full/ground, full/exceptions-undercut]}
+  - {issue: X-RANGE, scheme: ad_hominem,      checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, iso/exceptions-undercut, full/ground, full/conclusions-in, full/exceptions-undercut]}
+  - {issue: X-RANGE, scheme: regulative_rule, checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, full/ground, full/conclusions-in]}
+  - {issue: X-RANGE, scheme: sorites_slippery_slope, checks: [engine-validator, static/range-restricted]}
+  # ... and for this one the unbound A is captured by the scheme's own A1: it concludes may_have(<A1>,P)
+  - {issue: E-CAPTURE, scheme: sorites_slippery_slope, checks: [static/no-variable-capture, iso/conclusions-in, full/conclusions-in]}
+
+  # the book's compendium
+  - {issue: L-MISSING, file: source_ledger.yml, scheme: entry-50,   checks: [source/has-record]}
+  - {issue: L-MISSING, file: source_ledger.yml, scheme: entry-57,   checks: [source/has-record]}
+  - {issue: L-MISSING, file: source_ledger.yml, scheme: entry-22.4, checks: [source/has-record]}
+
+  # hyphenated ids
+
+  # negated conclusions printed raw
+  - {issue: E-NEGTEXT, scheme: evidence_hypothesis_falsification, checks: [iso/negation-texts]}
+  - {issue: E-NEGTEXT, scheme: ethotic2,                          checks: [iso/negation-texts]}
+  - {issue: E-NEGTEXT, scheme: negative_consequences,             checks: [iso/negation-texts]}
+
+  # ------------------------------------------------------------------ files
+  - {issue: L-TRUE, file: walton.yml, scheme: (file), checks: [engine-validator]}
+  - {issue: L-TRUE, file: B_source-based-arguments/4_argumen-from-popular-acceptence.yml, scheme: (file), checks: [engine-validator]}
+
+  # Files the command refuses. The wildcard entries come last so that a scheme
+  # with a cause of its own (above) is counted under that cause.
+  - {issue: X-GATE, file: walton.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
+  - {issue: X-GATE, file: walton.yml, scheme: "*",    checks: [cli/scenario]}
+  - {issue: X-GATE, file: A_reasoning/3_practical-reasoning.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
+  - {issue: X-GATE, file: A_reasoning/3_practical-reasoning.yml, scheme: "*",    checks: [cli/scenario]}
+  - {issue: X-GATE, file: B_source-based-arguments/3_attacking-personal-credibility.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
+  - {issue: X-GATE, file: B_source-based-arguments/3_attacking-personal-credibility.yml, scheme: "*",    checks: [cli/scenario]}
+  - {issue: X-GATE, file: B_source-based-arguments/4_argumen-from-popular-acceptence.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
+  - {issue: X-GATE, file: B_source-based-arguments/4_argumen-from-popular-acceptence.yml, scheme: "*",    checks: [cli/scenario]}
+  - {issue: X-GATE, file: C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
+  - {issue: X-GATE, file: C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml, scheme: "*",    checks: [cli/scenario]}
+  - {issue: X-GATE, file: C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml, scheme: (file), checks: [cli/check-clean, cli/eval-produces-output]}
+  - {issue: X-GATE, file: C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml, scheme: "*",    checks: [cli/scenario]}

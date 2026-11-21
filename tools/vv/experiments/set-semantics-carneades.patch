@@ -1,0 +1,12 @@
+--- a/src/engine/caes/gochr.go	2024-10-15 10:13:10.000000000 -0500
++++ b/src/engine/caes/gochr.go	2026-11-20 23:06:11.684837954 -0600
+@@ -20,6 +20,9 @@
+ func TheoryToRuleStore(t *Theory) *chr.RuleStore {
+ 	// log.Printf("TheoryToRuleStore\n") // DEBUG
+ 	rs := chr.MakeRuleStore()
++	// Argument construction is forward chaining over facts: a fact derived a
++	// second time must not trigger the schemes again.
++	rs.Unique = true
+ 	for _, s := range t.ArgSchemes {
+ 		// If the scheme has no conclusions, skip the scheme
+ 		// and assume it only defines a weighing function but no rule

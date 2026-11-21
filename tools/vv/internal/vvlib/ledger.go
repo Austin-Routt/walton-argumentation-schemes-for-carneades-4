@@ -1,0 +1,145 @@
+package vvlib
+
+import (
+	"fmt"
+	"os"
+	"sort"
+	"strings"
+
+	"gopkg.in/yaml.v2"
+)
+
+// The ledger (known_issues.yml) lists the checks that are known to fail today
+// and the issue each failure belongs to. It turns the suite into a ratchet:
+// a failure that is not in the ledger is a regression, and a ledger entry that
+// stops failing has to be removed. Nothing in the code stops a later change
+// from adding entries or removing checks; min_checks makes the second visible,
+// and both need the same review as a change to the engine.
+
+type Issue struct {
+	Id       string `yaml:"id"`
+	Where    string `yaml:"where"`    // engine, library or both
+	Severity string `yaml:"severity"` // blocker, major, minor
+	Title    string `yaml:"title"`
+}
+
+type Expected struct {
+	Issue  string   `yaml:"issue"`
+	File   string   `yaml:"file"`   // "" = every file that contains the scheme
+	Scheme string   `yaml:"scheme"` // scheme id, "(file)" or "(engine)"
+	Checks []string `yaml:"checks"` // exact names; a trailing * matches a prefix
+}
+
+type Ledger struct {
+	// MinChecks is the number of checks a complete run has to produce. A run
+	// with fewer means that a check was removed or skipped.
+	MinChecks int        `yaml:"min_checks"`
+	Issues    []Issue    `yaml:"issues"`
+	Expected  []Expected `yaml:"expected"`
+	used      map[int]bool
+}
+
+func LoadLedger(path string) (*Ledger, error) {
+	b, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	l := &Ledger{used: map[int]bool{}}
+	if err := yaml.UnmarshalStrict(b, l); err != nil {
+		return nil, err
+	}
+	ids := map[string]bool{}
+	for _, i := range l.Issues {
+		ids[i.Id] = true
+	}
+	for n, e := range l.Expected {
+		if !ids[e.Issue] {
+			return nil, fmt.Errorf("expected entry %d refers to unknown issue %q", n+1, e.Issue)
+		}
+	}
+	return l, nil
+}
+
+func match(pattern, s string) bool {
+	if strings.HasSuffix(pattern, "*") {
+		return strings.HasPrefix(s, strings.TrimSuffix(pattern, "*"))
+	}
+	return pattern == s
+}
+
+// Matches reports whether a ledger entry covers a result. The scheme "*"
+// stands for every scheme of the file (not for "(file)" or "(engine)").
+func (e Expected) Matches(r Result) bool {
+	if e.File != "" && e.File != r.File {
+		return false
+	}
+	if e.Scheme == "*" {
+		if strings.HasPrefix(r.Scheme, "(") {
+			return false
+		}
+	} else if e.Scheme != r.Scheme {
+		return false
+	}
+	for _, c := range e.Checks {
+		if match(c, r.Check) {
+			return true
+		}
+	}
+	return false
+}
+
+func (l *Ledger) find(r Result) int {
+	for n, e := range l.Expected {
+		if e.Matches(r) {
+			return n
+		}
+	}
+	return -1
+}
+
+// Lookup returns the id of the issue a failing result is filed under, or "".
+func (l *Ledger) Lookup(r Result) string {
+	if n := l.find(r); n >= 0 {
+		return l.Expected[n].Issue
+	}
+	return ""
+}
+
+// Verdict sorts results into what the ledger expects and what it does not.
+type Verdict struct {
+	Passed int
+	Known  []Result // fail, listed
+	New    []Result // fail, not listed: a regression or an undiscovered defect
+	Fixed  []Result // pass, but listed: the ledger is out of date
+}
+
+func (l *Ledger) Judge(results []Result) Verdict {
+	v := Verdict{}
+	for _, r := range results {
+		n := l.find(r)
+		switch {
+		case r.Pass && n < 0:
+			v.Passed++
+		case !r.Pass && n >= 0:
+			v.Known = append(v.Known, r)
+		case !r.Pass:
+			v.New = append(v.New, r)
+		default:
+			v.Fixed = append(v.Fixed, r)
+		}
+	}
+	return v
+}
+
+// ByIssue groups known failures by issue id.
+func (l *Ledger) ByIssue(known []Result) map[string][]Result {
+	out := map[string][]Result{}
+	for _, r := range known {
+		id := l.Lookup(r)
+		out[id] = append(out[id], r)
+	}
+	for _, rs := range out {
+		sort.Slice(rs, func(i, j int) bool { return rs[i].Key() < rs[j].Key() })
+	}
+	return out
+}

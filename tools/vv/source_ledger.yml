@@ -1,0 +1,146 @@
+# Where each scheme of walton.yml comes from in the source text:
+# Douglas Walton, Chris Reed and Fabrizio Macagno, Argumentation Schemes,
+# Cambridge University Press 2008, chapter 9, "A User's Compendium of Schemes",
+# pp. 308-346.
+#
+#   entry      the compendium's own number; a, b, c are added where one number
+#              holds several schemas the book does not number separately (11.1
+#              and 40). That gives 109 entries here. The book prints no total,
+#              and 109 is this file's convention, not the book's count. The
+#              README's figure of 106 is reached from it in two ways: by not
+#              splitting 11.1 and 40 (106 distinct numbers), or by leaving out
+#              the three numbers that print a scheme of their own and also
+#              have sub-entries (4, 26 and 35; 106 leaves).
+#   page       the page the entry starts on
+#   questions  how many critical questions, rebuttal factors or undercutters the
+#              compendium prints for the entry
+#   shared     true when the book prints one list of questions after a group of
+#              sub-schemes; the list is then counted for each of them
+#   schemes    the ids in walton.yml (empty: the entry has no record)
+#   status     other-content when the record filed under the entry holds a
+#              different scheme; the note says which. Such an entry counts as
+#              having no record of its own.
+#
+# The file is an inventory: it says where each record is filed. It does not
+# certify that a record's premises, questions and conclusion match the book.
+#
+# Compiled on 2026-11-21 by reading the chapter. The file records facts about
+# the book (numbers and pages) and reproduces none of its text.
+# `go test` checks that every scheme of walton.yml appears here exactly once and
+# that every entry has a record; `go run ./cmd/schemecheck -format source`
+# prints the comparison with what each scheme models.
+
+compendium:
+  - {entry: "1", page: 309, questions: 3, schemes: [position_to_know]}
+  - {entry: "2", page: 310, questions: 6, schemes: [expert_opinion]}
+  - {entry: "3", page: 310, questions: 5, schemes: [witness_testimony]}
+  - {entry: "4", page: 311, questions: 2, schemes: [popular_opinion]}
+  - {entry: "4.1", page: 311, questions: 0, schemes: [pop_scheme]}
+  - {entry: "4.2", page: 311, questions: 0, schemes: [position_to_know_ad_populum]}
+  - {entry: "4.3", page: 312, questions: 0, schemes: [expert_opinion_ad_populum]}
+  - {entry: "4.4", page: 312, questions: 0, schemes: [deliberation_ad_populum]}
+  - {entry: "4.5", page: 312, questions: 0, schemes: [moral_justification_ad_populum]}
+  - {entry: "4.6", page: 312, questions: 0, schemes: [moral_justification_ad_populum_excuse]}
+  - {entry: "4.7", page: 312, questions: 0, schemes: [snob_appeal_ad_populum]}
+  - {entry: "4.8", page: 312, questions: 0, schemes: [appeal_to_vanity_ad_populum]}
+  - {entry: "4.9", page: 313, questions: 0, schemes: [rhetoric_ad_populum]}
+  - {entry: "4.10", page: 313, questions: 0, schemes: [common_folk_ad_populum]}
+  - {entry: "4.11", page: 313, questions: 0, schemes: [common_folks_group_ad_populum]}
+  - {entry: "5", page: 314, questions: 2, schemes: [popular_practise]}
+  - {entry: "6.1", page: 314, questions: 5, schemes: [from_example]}
+  - {entry: "6.2", page: 315, questions: 0, schemes: [illustration]}
+  - {entry: "6.3", page: 315, questions: 0, schemes: [from_model]}
+  - {entry: "6.4", page: 315, questions: 0, schemes: [from_antimodel]}
+  - {entry: "7", page: 315, questions: 3, schemes: [analogy]}
+  - {entry: "8.1", page: 316, questions: 0, schemes: [practical_analogy_positive]}
+  - {entry: "8.2", page: 316, questions: 0, schemes: [practical_analogy_negative]}
+  - {entry: "9.1", page: 316, questions: 1, schemes: [composition_generic]}
+  - {entry: "9.2", page: 316, questions: 0, schemes: [part_in_whole]}
+  - {entry: "10.1", page: 317, questions: 1, schemes: [division_generic]}
+  - {entry: "10.2", page: 317, questions: 0, schemes: [whole_into_parts]}
+  - {entry: "11.1a", page: 317, questions: 0, schemes: [opposition-descriptive_1]}
+  - {entry: "11.1b", page: 317, questions: 0, schemes: [opposition-descriptive_2]}
+  - {entry: "11.1c", page: 318, questions: 0, schemes: [opposition-descriptive_3]}
+  - {entry: "11.2", page: 318, questions: 0, schemes: [opposition-normative]}
+  - {entry: "12.1", page: 318, questions: 0, schemes: [rhetorical_oppositions_normative]}
+  - {entry: "12.2", page: 318, questions: 0, schemes: [rhetorical_oppositions_descriptive]}
+  - {entry: "13.1", page: 318, questions: 0, schemes: [alternative_cognitive]}
+  - {entry: "13.2", page: 318, questions: 0, schemes: [alternative_normative]}
+  - {entry: "14", page: 319, questions: 2, schemes: [verbal_classification]}
+  - {entry: "15", page: 319, questions: 2, schemes: [definition_to_verbal_classification]}
+  - {entry: "16", page: 319, questions: 3, schemes: [verbal_classification_vagueness]}
+  - {entry: "17", page: 320, questions: 3, schemes: [verbal_classification_arbitrariness]}
+  - {entry: "18.1", page: 321, questions: 0, schemes: [interaction_act_person_1]}
+  - {entry: "18.2", page: 321, questions: 0, schemes: [interaction_act_person_2]}
+  - {entry: "19.1", page: 321, questions: 0, schemes: [positive_value]}
+  - {entry: "19.2", page: 321, questions: 0, schemes: [negative_value]}
+  - {entry: "20", page: 322, questions: 0, schemes: [sacrifice]}
+  - {entry: "21.1", page: 322, questions: 0, schemes: [group_1]}
+  - {entry: "21.2", page: 322, questions: 0, schemes: [group_2]}
+  - {entry: "22.1", page: 323, questions: 5, schemes: [practical_inference]}
+  - {entry: "22.2", page: 323, questions: 5, schemes: [practical_necessary_condition], shared: true}
+  - {entry: "22.3", page: 323, questions: 5, schemes: [practical_sufficient_condition], shared: true}
+  - {entry: "22.4", page: 324, questions: 7, schemes: [practical_reasoning1], status: other-content, note: "taken over from Carneades: the scheme of Atkinson and Bench-Capon (2007) under the title of this entry, not the three-premise form the compendium prints"}
+  - {entry: "22.5", page: 325, questions: 0, schemes: [practical_goal]}
+  - {entry: "22.6.1", page: 325, questions: 0, schemes: [end_and_means_1]}
+  - {entry: "22.6.2", page: 325, questions: 0, schemes: [end_and_means_2]}
+  - {entry: "22.6.3", page: 325, questions: 0, schemes: [end_and_means_3]}
+  - {entry: "23", page: 325, questions: 5, schemes: [two_person_practical]}
+  - {entry: "24", page: 326, questions: 2, schemes: [waste]}
+  - {entry: "25", page: 326, questions: 0, schemes: [sunk_costs], note: "taken over from Carneades, in its formulation"}
+  - {entry: "26", page: 327, questions: 3, schemes: [ignorance], shared: true}
+  - {entry: "26.1", page: 327, questions: 3, schemes: [negative_normal_expectations], shared: true}
+  - {entry: "26.2", page: 327, questions: 3, schemes: [negative_practical], shared: true}
+  - {entry: "27", page: 328, questions: 0, schemes: [epistemic_ignorence]}
+  - {entry: "28", page: 328, questions: 3, schemes: [cause_to_effect]}
+  - {entry: "29", page: 328, questions: 3, schemes: [correlation_to_cause]}
+  - {entry: "30", page: 329, questions: 2, schemes: [sign]}
+  - {entry: "31.1", page: 329, questions: 4, schemes: [abductive_backward], shared: true}
+  - {entry: "31.2", page: 329, questions: 4, schemes: [abductive_forward], shared: true}
+  - {entry: "31.3", page: 330, questions: 3, schemes: [abductive_action_to_character]}
+  - {entry: "31.4", page: 330, questions: 3, schemes: [abductive_character_to_action]}
+  - {entry: "31.5", page: 331, questions: 4, schemes: [retroductive]}
+  - {entry: "32.1", page: 331, questions: 3, schemes: [evidence_hypothesis_verification], shared: true}
+  - {entry: "32.2", page: 331, questions: 3, schemes: [evidence_hypothesis_falsification], shared: true}
+  - {entry: "33.1", page: 332, questions: 3, schemes: [positive_consequences], shared: true}
+  - {entry: "33.2", page: 332, questions: 3, schemes: [negative_consequences], shared: true}
+  - {entry: "33.3", page: 332, questions: 3, schemes: [negative_consequences_reasoning], shared: true}
+  - {entry: "33.4", page: 332, questions: 3, schemes: [negative_consequences_prudential], shared: true}
+  - {entry: "34", page: 333, questions: 0, schemes: [pragmatic_alternative]}
+  - {entry: "35", page: 333, questions: 0, schemes: [treat]}
+  - {entry: "35.1", page: 333, questions: 0, schemes: [ad_baculum]}
+  - {entry: "36", page: 333, questions: 0, schemes: [fear]}
+  - {entry: "37", page: 334, questions: 0, schemes: [danger]}
+  - {entry: "38", page: 334, questions: 3, schemes: [help]}
+  - {entry: "39", page: 334, questions: 4, schemes: [distress]}
+  - {entry: "40a", page: 335, questions: 2, schemes: [commitment1], shared: true}
+  - {entry: "40b", page: 335, questions: 2, schemes: [commitment2], shared: true}
+  - {entry: "41", page: 336, questions: 3, schemes: [ethotic1, ethotic2], note: "one entry, two records"}
+  - {entry: "42", page: 336, questions: 3, schemes: [ad_hominem]}
+  - {entry: "43", page: 336, questions: 3, schemes: [pragmatic_inconsistency]}
+  - {entry: "44", page: 337, questions: 3, schemes: [inconsistent_commitment]}
+  - {entry: "45", page: 337, questions: 4, schemes: [circumstantial_ad_hominem]}
+  - {entry: "46", page: 338, questions: 2, schemes: [bias]}
+  - {entry: "47", page: 338, questions: 2, schemes: [bias_ad_hominem]}
+  - {entry: "48", page: 339, questions: 0, schemes: [gradualism]}
+  - {entry: "49", page: 339, questions: 3, schemes: [slippery_slope_base_case, slippery_slope_inductive_step], note: "one entry, two records"}
+  - {entry: "50", page: 340, questions: 3, schemes: [], note: "no record in walton.yml"}
+  - {entry: "51", page: 340, questions: 0, schemes: [sorites_slippery_slope]}
+  - {entry: "52", page: 341, questions: 0, schemes: [verbal_slippery_slope]}
+  - {entry: "53", page: 341, questions: 3, schemes: [full_slippery_slope]}
+  - {entry: "54.1", page: 342, questions: 1, schemes: [rule_physical_world_1]}
+  - {entry: "54.2", page: 342, questions: 1, schemes: [rule_physical_world_2]}
+  - {entry: "54.3", page: 342, questions: 1, schemes: [rule_mental_world]}
+  - {entry: "55.1", page: 343, questions: 3, schemes: [established_rule]}
+  - {entry: "55.2", page: 343, questions: 0, schemes: [rule]}
+  - {entry: "55.3", page: 343, questions: 1, schemes: [regulative_rule]}
+  - {entry: "56", page: 344, questions: 3, schemes: [exeptional]}
+  - {entry: "57", page: 344, questions: 3, schemes: [exeption_to_rule], status: other-content, note: "book title: Argument from Precedent. The record is the precedent scheme of Carneades' own walton.yml under a new id and title (a rule taken from a similar case is applied); the book's entry concludes that an exception to the rule must be recognised. The repository's README dates the new title to 2019 and attributes the change to correspondence with Douglas Walton; that correspondence is not in the repository"}
+  - {entry: "58", page: 345, questions: 3, schemes: [plea_for_excuse]}
+  - {entry: "59.1", page: 345, questions: 1, schemes: [perception]}
+  - {entry: "59.2", page: 345, questions: 2, schemes: [appearance]}
+  - {entry: "60", page: 346, questions: 3, schemes: [memory]}
+
+# Records of walton.yml taken over from Carneades' own examples/AGs/YAML/walton.yml
+# that have no entry of their own in the compendium.
+upstream_only: [abduction, credible_source, defeasible_modus_ponens, practical_reasoning2]
