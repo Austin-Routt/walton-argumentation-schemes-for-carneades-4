@@ -43,6 +43,43 @@ type Ledger struct {
 	used      map[int]bool
 }
 
+// ResultKeys returns the complete, sorted inventory. Repeated identities are
+// invalid even when their outcomes agree: otherwise a count can hide a missing
+// check, or a map can silently overwrite a different outcome.
+func ResultKeys(results []Result) ([]string, error) {
+	keys := make([]string, len(results))
+	for i, r := range results {
+		keys[i] = r.Key()
+	}
+	return uniqueCheckKeys(keys)
+}
+
+// ParseExpectedChecks validates the one-key-per-line manifest, including before
+// it is regenerated. An empty manifest is allowed for initial bootstrapping.
+func ParseExpectedChecks(text string) ([]string, error) {
+	text = strings.TrimSpace(text)
+	if text == "" {
+		return []string{}, nil
+	}
+	keys := strings.Split(text, "\n")
+	for i := range keys {
+		keys[i] = strings.TrimSuffix(keys[i], "\r")
+	}
+	return uniqueCheckKeys(keys)
+}
+
+func uniqueCheckKeys(keys []string) ([]string, error) {
+	seen := map[string]int{}
+	for i, key := range keys {
+		if first, ok := seen[key]; ok {
+			return nil, fmt.Errorf("duplicate check key %q (entries %d and %d)", key, first+1, i+1)
+		}
+		seen[key] = i
+	}
+	sort.Strings(keys)
+	return keys, nil
+}
+
 func LoadLedger(path string) (*Ledger, error) {
 	b, err := os.ReadFile(path)
 	if err != nil {

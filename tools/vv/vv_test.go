@@ -44,6 +44,11 @@ func TestMain(m *testing.M) {
 		os.Exit(2)
 	}
 	code := m.Run()
+	// Also applies to focused runs that do not select TestLedgerIsUsed.
+	if _, err := vvlib.ResultKeys(collect); err != nil {
+		fmt.Fprintln(os.Stderr, "result inventory:", err)
+		code = 1
+	}
 	summary()
 	os.Exit(code)
 }
@@ -243,6 +248,10 @@ func TestCLI(t *testing.T) {
 // fewer checks ran than min_checks says (a check that was removed or skipped
 // would otherwise go unnoticed, because a passing check leaves no entry).
 func TestLedgerIsUsed(t *testing.T) {
+	keys, err := vvlib.ResultKeys(collect)
+	if err != nil {
+		t.Fatal(err)
+	}
 	if os.Getenv("VV_SKIP_TOOLCHAIN") != "" {
 		t.Skip("not all checks ran")
 	}
@@ -253,27 +262,27 @@ func TestLedgerIsUsed(t *testing.T) {
 	// expected_checks.txt, so a check that disappears, or a new one, is seen
 	// by name. VV_UPDATE_CHECKS=1 rewrites the list, in the change that adds
 	// or removes checks, where a reviewer sees the difference.
-	keys := make([]string, 0, len(collect))
 	seen := map[string]bool{}
-	for _, r := range collect {
-		if !seen[r.Key()] {
-			seen[r.Key()] = true
-			keys = append(keys, r.Key())
-		}
+	for _, key := range keys {
+		seen[key] = true
 	}
-	sort.Strings(keys)
-	if os.Getenv("VV_UPDATE_CHECKS") != "" {
+	updating := os.Getenv("VV_UPDATE_CHECKS") != ""
+	b, err := os.ReadFile("expected_checks.txt")
+	if err != nil && !(updating && os.IsNotExist(err)) {
+		t.Fatalf("expected_checks.txt: %v (run with VV_UPDATE_CHECKS=1 to write it)", err)
+	}
+	expected, err := vvlib.ParseExpectedChecks(string(b))
+	if err != nil {
+		t.Fatalf("expected_checks.txt: %v", err)
+	}
+	if updating {
 		if err := os.WriteFile("expected_checks.txt", []byte(strings.Join(keys, "\n")+"\n"), 0o644); err != nil {
 			t.Fatal(err)
 		}
 		return
 	}
-	b, err := os.ReadFile("expected_checks.txt")
-	if err != nil {
-		t.Fatalf("expected_checks.txt: %v (run with VV_UPDATE_CHECKS=1 to write it)", err)
-	}
 	want := map[string]bool{}
-	for _, k := range strings.Split(strings.TrimSpace(string(b)), "\n") {
+	for _, k := range expected {
 		want[k] = true
 	}
 	missing, added := []string{}, []string{}

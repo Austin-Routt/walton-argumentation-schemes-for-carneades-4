@@ -690,6 +690,9 @@ func MigrationChecks(lib *Library) []Result {
 		return st
 	}
 	for _, c := range t.Changes {
+		// Keep the historical spelling: applying the rename chain first can
+		// collapse distinct old forms into the same migration identity.
+		check := fmt.Sprintf("migration/%s old=%q trigger=%q new=%q", c.Kind, c.Old, c.Trigger, c.New)
 		probs := []string{}
 		switch c.Kind {
 		case "rename-scheme":
@@ -726,7 +729,7 @@ func MigrationChecks(lib *Library) []Result {
 			if c.Plan == "" {
 				probs = append(probs, "a row needs its plan item")
 			}
-			out = append(out, res(file, c.Record, "migration/"+c.Kind+" "+c.Old, probs))
+			out = append(out, res(file, c.Record, check, probs))
 			continue
 		}
 		rec := c.Record
@@ -764,11 +767,7 @@ func MigrationChecks(lib *Library) []Result {
 		if c.Plan == "" || c.Page == 0 {
 			probs = append(probs, "a row needs its plan item and page")
 		}
-		st := c.New
-		if st == "" {
-			st = c.Old
-		}
-		out = append(out, res(file, c.Record, "migration/"+c.Kind+" "+st, probs))
+		out = append(out, res(file, c.Record, check, probs))
 	}
 	return out
 }

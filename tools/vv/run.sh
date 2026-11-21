@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# One command for a developer or a CI job: the two Python checks of the
-# repository, then the engine-level suite.
+# One command for a developer or a CI job: repository checks and harness unit
+# tests, then the engine-level suite.
 set -uo pipefail
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo="${WALTON_REPO:-$(cd "$here/../.." && pwd)}"
@@ -22,6 +22,9 @@ echo "== tools/check_source_approvals.py (reviewed source decisions)"
 python3 "$repo/tools/check_source_approvals.py" --repo "$repo" || status=1
 echo "== tools/test_check_source_approvals.py (approval integrity mutations)"
 python3 "$repo/tools/test_check_source_approvals.py" 2>&1 | tail -3
+[ "${PIPESTATUS[0]}" -eq 0 ] || status=1
+echo "== tools/vv/test_compare_results.py (strict result comparison)"
+python3 "$here/test_compare_results.py" 2>&1 | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/vv/setup.sh (engine sources)"
 WALTON_REPO="$repo" "$here/setup.sh" || exit 1

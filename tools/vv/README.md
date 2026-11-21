@@ -26,6 +26,12 @@ push and pull request (`.github/workflows/verify.yml`), under pinned Go 1.24.13 
 Go 1.27.4. Both jobs and the `toolchains` comparison are required. The comparator
 rejects duplicate result identities as well as disagreeing results.
 
+The comparator requires one unique `(file, scheme, check)` identity per JSON
+object and a JSON boolean `pass` value. Duplicate identities, missing or
+malformed fields, and unreadable inputs fail with exit status 2; none are
+silently overwritten or coerced. Agreement describes the outcomes in the two
+files, so matching failed checks still need the strict suite's release gate.
+
 Needs Go, `unzip`, Python 3 with PyYAML, and network access to the Go module
 proxy the first time (for `gopkg.in/yaml.v2` and `go-yaml2json`, the engine's
 own dependencies). The suite
@@ -80,6 +86,13 @@ entry and could otherwise be removed without anyone noticing.
 listed check that did not run fails the run, and so does a check that is not
 listed: `VV_UPDATE_CHECKS=1` rewrites the list, in the change that adds or
 removes checks, where the difference is reviewed with the code.
+
+Each emitted identity and each manifest entry must be unique. Duplicate
+results fail even a focused run; duplicates in either inventory block manifest
+regeneration. A migration check names its kind and its original `old`,
+`trigger`, and `new` fields, before predicate rename normalization. Two old
+forms migrating to one current form therefore remain two independently
+identifiable checks, and reordering migration rows does not change identities.
 
 An entry may carry a `fingerprint:`, a text the failure's message must contain.
 A listed check that fails for another reason is then reported as a new failure,
