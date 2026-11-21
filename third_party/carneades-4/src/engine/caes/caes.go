@@ -954,6 +954,25 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 		return err
 	}
 	pattern := parsed[0]
+	// API-created maps may use valid formula keys with noncanonical spacing.
+	// Index their parsed forms without renaming keys or replacing graph objects.
+	// Keep all aliases, then use Match below to preserve the scan's typed equality.
+	type issueEntry struct {
+		key  string
+		term terms.Term
+		stmt *Statement
+	}
+	byTerm := map[string][]issueEntry{}
+	if issueLookup && !(len(patterns) == 3 && patterns[1] == "...") {
+		for key, stmt := range ag.Statements {
+			if err := work.step(); err != nil {
+				return err
+			}
+			if term, ok := terms.ReadString(key); ok {
+				byTerm[term.String()] = append(byTerm[term.String()], issueEntry{key, term, stmt})
+			}
+		}
+	}
 	for wff1, stmt := range ag.Statements {
 		if err := work.step(); err != nil {
 			return err
@@ -1010,16 +1029,21 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			}
 			if ground {
 				seen := map[string]bool{wff1: true}
-				for _, k := range keys {
+				for j, k := range keys {
 					if err := work.step(); err != nil {
 						return err
 					}
-					if seen[k] {
-						continue
-					}
-					seen[k] = true
-					if stmt2, ok := ag.Statements[k]; ok {
-						candidates = append(candidates, stmt2)
+					for _, entry := range byTerm[k] {
+						if err := work.step(); err != nil {
+							return err
+						}
+						if seen[entry.key] {
+							continue
+						}
+						if _, match := terms.Match(parsed[j+1], entry.term, bindings); match {
+							seen[entry.key] = true
+							candidates = append(candidates, entry.stmt)
+						}
 					}
 				}
 			}

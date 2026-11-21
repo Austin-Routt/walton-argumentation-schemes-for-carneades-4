@@ -15,9 +15,10 @@ func (ag *ArgGraph) Inconsistent() bool {
 }
 
 // MAXISSUESTEPS bounds candidate/pattern visits while materializing issues.
-// It is a safety valve, not a size limit: with positions looked up by key a
-// graph costs about two visits per statement and issue scheme, and the
-// library's own graphs stay far below it.
+// It is a finite safety limit on work. Ground position lookup avoids the
+// former quadratic scan; open patterns and enumerations still scan. Graphs
+// exceeding this quota are refused, even if an unbounded evaluation would
+// eventually finish.
 const MAXISSUESTEPS = 50000000
 
 type issueWork struct {

@@ -572,7 +572,8 @@ assumptions: ["p(a,b)"]
 			"a scheme listed after two mutually recursive schemes never gets its turn: from r(a) it should conclude s(a), which is %s", e.Label("s(a)")))
 	}
 	{
-		// Issue closure over 1,200 statements. The acceptance candidate's scan
+		// Issue closure over 1,200 ordinary statements, plus 600 generated
+		// undercutter statements. The acceptance candidate's scan
 		// visited some 1.4 million candidates and refused the graph at its
 		// budget of 1,000,000; positions are now looked up by key
 		// (docs/contracts.md, contract 3).

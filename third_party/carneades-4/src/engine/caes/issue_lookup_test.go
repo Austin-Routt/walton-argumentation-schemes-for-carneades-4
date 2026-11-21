@@ -10,16 +10,15 @@ import (
 	"github.com/carneades/carneades-4/src/engine/terms"
 )
 
-// A graph of a few thousand statements under the negation issue scheme, which
-// the library always carries, builds its issues: issue construction must not
-// end as limit reached on a graph the unbounded scan completed.
+// A reference graph of 3,000 positive and 750 contrary statements under the
+// negation issue scheme completes within the finite issue-work quota.
 func TestIssueConstructionScales(t *testing.T) {
 	ag := negationGraph(3000)
 	if err := ag.Infer(); err != nil {
-		t.Fatalf("3,000 statements under the negation issue scheme: %v", err)
+		t.Fatalf("3,000 positive and 750 contrary statements under the negation issue scheme: %v", err)
 	}
 	if got := len(ag.Issues); got != 750 {
-		t.Errorf("want 750 issues (one for each statement assumed with a contrary argument), got %d", got)
+		t.Errorf("want 750 issues (one for each positive/contrary statement pair), got %d", got)
 	}
 }
 
@@ -47,7 +46,8 @@ func TestIssueLookupMatchesScan(t *testing.T) {
 			// statements with variables take the scan; one bound to itself
 			// once looped in substitution
 			"u(Y,Y)", "¬u(Y,Y)", "u(Z,W)", "accepts(V)", "rejects(V)"}
-		// and a larger, irregular graph: 600 statements of four shapes
+		// Add 600 entries of four shapes. Repeated keys deliberately collapse
+		// in the statement map, leaving 283 distinct statements in this test.
 		for i := 0; i < 600; i++ {
 			k := (i * 7919) % 97
 			switch i % 4 {
@@ -79,8 +79,9 @@ func TestIssueLookupMatchesScan(t *testing.T) {
 	}
 }
 
-// negationGraph: n statements p(i), every fourth with an argument for its
-// negation, so that 3,000 statements give 750 issues.
+// negationGraph: n statements p(i), every fourth accompanied by its negation.
+// n=3,000 therefore gives 3,750 statements and 750 issues; no arguments are
+// needed for this issue-construction control.
 func negationGraph(n int) *ArgGraph {
 	ag := NewArgGraph()
 	neg := IssueScheme{"S", "¬S"}
