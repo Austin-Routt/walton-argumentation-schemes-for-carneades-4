@@ -212,3 +212,5 @@ argument_schemes:
     - action_rule_excuse(C,R,P,A)
     conclusions:
     - must_do(P,A)
+
+# Typed source alternatives; see docs/source-branch-contracts.md.
