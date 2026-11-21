@@ -134,9 +134,8 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 		// The actual goals in the query with the CHR inference
 		// engine consist of the union of the assumptions of the argument graph
 		// and the assumptions for each of the previous arguments
-		for _, k := range ag.Assumptions {
-			goals = append(goals, k)
-		}
+		// a questioned default is no fact to reason from (contract 5)
+		goals = append(goals, ag.Assumed()...)
 		goals = append(goals, goalArgs...)
 
 		success, store, err := rb.Infer(goals, MAXRULEAPPS)

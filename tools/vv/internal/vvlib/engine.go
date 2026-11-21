@@ -753,6 +753,51 @@ argument_schemes:
 			e.Label("a(x)"), e.Label("c(x)"), e.why()))
 	}
 	{
+		// contract 5: questioning does not withdraw a stipulation
+		e := EvalYAML(questionable + "assumptions: [p(x), a(x)]\nquestioned: [a(x)]\n")
+		out = append(out, eres("questioned-stipulation-stays-assumed", e.usable() && e.Label("a(x)") == "in" && e.Label("c(x)") == "in",
+			"a(x) is stipulated by the graph and questioned: it should stay assumed, so c(x) holds; a(x) is %s, c(x) is %s %s", e.Label("a(x)"), e.Label("c(x)"), e.why()))
+	}
+	{
+		// contract 5: removing a statement from questioned restores the default,
+		// and the questioned list and the defaults survive a second Infer and
+		// export and import
+		e := EvalYAML(questionable + "assumptions: [p(x)]\nquestioned: [a(x)]\n")
+		ok, detail := false, e.why()
+		if e.usable() {
+			c := StartCapture()
+			err := e.AG.Infer()
+			before := e.AG.GroundedLabelling()
+			var buf bytes.Buffer
+			cyaml.Export(&buf, e.AG)
+			c.Stop()
+			ResetEngineGlobals()
+			c = StartCapture()
+			ag2, err2 := cyaml.Import(bytes.NewReader(buf.Bytes()))
+			c.Stop()
+			l2 := ""
+			if err2 == nil {
+				lab := ag2.GroundedLabelling()
+				if st, found := ag2.Statements["c(x)"]; found {
+					l2 = lab[st].String()
+				}
+				ag2.Questioned = nil
+				l3 := ""
+				lab3 := ag2.GroundedLabelling()
+				if st, found := ag2.Statements["c(x)"]; found {
+					l3 = lab3[st].String()
+				}
+				st0 := e.AG.Statements["c(x)"]
+				ok = err == nil && st0 != nil && before[st0] != caes.In && l2 != "in" && l3 == "in"
+				detail = fmt.Sprintf("c(x) after a second Infer %v, after export and import %s, with the question withdrawn %s (want not in, not in, in)", before[st0], l2, l3)
+			} else {
+				detail = "the exported graph cannot be read: " + err2.Error()
+			}
+			ResetEngineGlobals()
+		}
+		out = append(out, eres("questioned-state-survives-export", ok, "%s", detail))
+	}
+	{
 		e := EvalYAML(questionable + "assumptions: [p(x), e(x)]\nquestioned: [a(x)]\n")
 		out = append(out, eres("questioned-assumption-holds-when-supported", e.usable() && e.Label("a(x)") == "in" && e.Label("c(x)") == "in",
 			"a(x) is questioned and an argument from e(x) supports it, so the scheme's conclusion should hold: a(x) is %s, c(x) is %s %s", e.Label("a(x)"), e.Label("c(x)"), e.why()))

@@ -327,6 +327,12 @@ func (r *Run) BudgetExhausted() bool { return LimitReached(r.Err, r.Stdout) }
 // Infer builds an argument graph from a language, a set of schemes and ground
 // assumptions, and runs the engine's argument construction and evaluation.
 func Infer(lang caes.Language, extra map[string]string, schemes []*caes.Scheme, assumptions []string) *Run {
+	return InferQuestioned(lang, extra, schemes, assumptions, nil)
+}
+
+// InferQuestioned is Infer on a graph that calls the given statements into
+// question (docs/contracts.md, contract 5).
+func InferQuestioned(lang caes.Language, extra map[string]string, schemes []*caes.Scheme, assumptions, questioned []string) *Run {
 	ResetEngineGlobals()
 	ag := caes.NewArgGraph()
 	th := caes.NewTheory()
@@ -340,6 +346,7 @@ func Infer(lang caes.Language, extra map[string]string, schemes []*caes.Scheme, 
 	th.InitSchemeIndex()
 	ag.Theory = th
 	ag.Assumptions = append([]string{}, assumptions...)
+	ag.Questioned = append([]string{}, questioned...)
 
 	r := &Run{AG: ag}
 	done := make(chan error, 1)
@@ -586,6 +593,12 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 		control = "with every premise asserted the scheme constructs no argument"
 	}
 
+	// Each assumption of the scheme, once called into question and not
+	// supported, leaves the scheme's argument inapplicable (contract 5; the
+	// third review's per-scheme check of a withdrawn assumption, restated for
+	// the questioned state of D2).
+	out = append(out, res(file, id, chk("assumptions-questionable"), questionedProblems(lang, theory, s, in, control)))
+
 	// A second Infer on the finished graph adds nothing and changes no label
 	// (contract 2; E-IDEMP). Ported from the third review's per-scheme check
 	// of a second inference (docs/parity.md).
@@ -679,6 +692,39 @@ func DynamicChecks(file, mode string, lang caes.Language, theory []*caes.Scheme,
 	// every premise is needed: without it the scheme must not construct an argument
 	out = append(out, res(file, id, chk("premises-needed"), premiseProblems(lang, theory, s, in, control)))
 	return out, run
+}
+
+// questionedProblems questions each assumption of the scheme in turn and
+// reports the arguments of the scheme that stay applicable.
+func questionedProblems(lang caes.Language, theory []*caes.Scheme, s *caes.Scheme, in *Instance, control string) []string {
+	if len(in.Assumptions) == 0 {
+		return nil
+	}
+	if control != "" {
+		return []string{"not judged: " + control}
+	}
+	probs := []string{}
+	for _, a := range in.Assumptions {
+		r2 := InferQuestioned(lang, in.Synthetic, theory, in.Premises, []string{a})
+		if r2.TimedOut || r2.Err != nil {
+			probs = append(probs, fmt.Sprintf("with %s questioned: inference failed", a))
+			continue
+		}
+		args := r2.ArgsOf(s.Id)
+		if len(args) == 0 {
+			probs = append(probs, fmt.Sprintf("with %s questioned the scheme constructs no argument", a))
+			continue
+		}
+		// The oracle is the argument's own weight: a Carneades argument stays
+		// "applicable" with a premise out, which then weighs it down to 0.
+		// With other schemes loaded, its conclusion may keep other support.
+		for _, arg := range args {
+			if w := arg.GetWeight(r2.L); w > 0 {
+				probs = append(probs, fmt.Sprintf("with %s questioned and unsupported, the argument for %s still weighs %.2f", a, arg.Conclusion.Id, w))
+			}
+		}
+	}
+	return probs
 }
 
 // secondInferProblems runs Infer again on the graph of a finished run.

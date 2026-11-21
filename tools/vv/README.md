@@ -95,6 +95,7 @@ and the engine constructs and evaluates the argument, once with the scheme alone
 | `static/range-restricted` | every variable used after the premises occurs in a premise |
 | `static/no-reserved-functor` | no conclusion or assumption uses `is/2`, `=/2`, `:=/2` |
 | `static/not-self-feeding` | the scheme does not derive one of its own premises |
+| `…/assumptions-questionable` | each assumption of the scheme, called into question and unsupported, gives the scheme's argument the weight 0 |
 | `…/infer-twice` | a second `Infer` on the finished graph adds no argument and changes no label |
 | `…/infer-ok`, `…/terminates` | argument construction returns without error and without hitting the rule limit |
 | `…/fires` | one argument per conclusion is constructed, with the expected parameters |

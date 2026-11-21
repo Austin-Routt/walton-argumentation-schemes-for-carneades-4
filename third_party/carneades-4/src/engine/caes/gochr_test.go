@@ -378,3 +378,40 @@ assumptions:
 		}
 	}
 }
+
+// Critical questions under `assumptions:` (contract 5): a questioned default
+// is not assumed, a stipulation stays assumed, support restores the argument.
+func TestQuestioned(t *testing.T) {
+	theory := `
+language:
+  p/1: "%s is p"
+  a/1: "%s is a"
+  c/1: "%s is c"
+  e/1: "%s is e"
+argument_schemes:
+  - id: s10
+    variables: [X]
+    premises: [p(X)]
+    assumptions: [a(X)]
+    conclusions: [c(X)]
+  - id: s11
+    variables: [X]
+    premises: [e(X)]
+    conclusions: [a(X)]
+`
+	for _, c := range []struct {
+		graph string
+		want  caes.Label
+	}{
+		{"assumptions: [p(x)]\n", caes.In},
+		{"assumptions: [p(x)]\nquestioned: [a(x)]\n", caes.Out},
+		{"assumptions: [p(x), a(x)]\nquestioned: [a(x)]\n", caes.In},
+		{"assumptions: [p(x), e(x)]\nquestioned: [a(x)]\n", caes.In},
+	} {
+		ag := infer(t, theory+c.graph)
+		l := ag.GroundedLabelling()
+		if got := l[ag.Statements["c(x)"]]; got != c.want {
+			t.Errorf("%q: c(x) is %v, want %v", c.graph, got, c.want)
+		}
+	}
+}

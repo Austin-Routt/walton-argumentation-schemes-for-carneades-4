@@ -52,14 +52,18 @@
 # statement is invalid input (contract 1); hyphenated-constants-are-not-computed
 # is restated as arithmetic-in-a-statement-is-invalid-input, and the counting
 # theory of budget-exhaustion-is-reported is one of the supported profile. New:
-# deletions-and-guards-are-unsupported (min_checks 5,949).
+# deletions-and-guards-are-unsupported (min_checks 5,949). X-ASSUME is fixed
+# (questioned:, contract 5); every scheme run gained assumptions-questionable
+# (456 checks, the third review's per-scheme check of a withdrawn assumption,
+# restated for the questioned state), and the engine two checks of the
+# contract's table (min_checks 6,407).
 #
 # min_checks is the number of checks a complete run produces today. A run with
 # fewer fails: a passing check leaves no entry here, so removing one would
 # otherwise go unnoticed. Raise it when checks are added; lower it only in the
 # change that removes a check, where a reviewer sees it.
 
-min_checks: 5949
+min_checks: 6407
 
 issues:
   - id: X-GATE
@@ -82,10 +86,6 @@ issues:
     where: library
     severity: minor
     title: "A scheme whose premise repeats one of its own assumptions (exeptional) feeds itself. Since set semantics in the rule store (PLAN.md 2.2) this no longer loops; the repeated statement is redundant (p. 374) and goes with PLAN.md 3.7"
-  - id: X-ASSUME
-    where: both
-    severity: major
-    title: "A critical question written under `assumptions:` cannot be called into question from a file: every scheme assumption is assumed when the scheme is instantiated, and assumed statements are labelled in before any argument is looked at. The book has an assumption hold only until it is questioned (pp. 373-375)"
   - id: E-EXPORT
     where: engine
     severity: major
@@ -107,7 +107,6 @@ expected:
   # ------------------------------------------------------------------ engine
   - {issue: E-EXPORT,  scheme: (engine), checks: [export-keeps-compound-parameters, export-keeps-expected-labels]}
   - {issue: E-EXPLICIT, scheme: (engine), checks: [explicit-argument-gets-critical-questions, argument-from-scheme-and-parameters]}
-  - {issue: X-ASSUME,  scheme: (engine), checks: [questioned-assumption-is-not-assumed]}
   - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
 
@@ -117,11 +116,11 @@ expected:
   - {issue: X-IS, scheme: group_2, checks: [static/no-reserved-functor, iso/fires, iso/conclusions-in, iso/premises-needed, iso/infer-twice, full/fires, full/conclusions-in, full/premises-needed, full/infer-twice, cli/scenario]}
 
   # schemes that feed themselves or each other
-  - {issue: X-LOOP, scheme: exeptional, checks: [static/not-self-feeding]}
+  - {issue: X-LOOP, scheme: exeptional, checks: [static/not-self-feeding, iso/assumptions-questionable, full/assumptions-questionable]}
 
   # variables no premise binds
-  - {issue: X-RANGE, scheme: practical_necessary_condition,  checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, full/ground, full/exceptions-undercut]}
-  - {issue: X-RANGE, scheme: practical_sufficient_condition, checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, full/ground, full/exceptions-undercut]}
+  - {issue: X-RANGE, scheme: practical_necessary_condition,  checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, iso/assumptions-questionable, full/ground, full/exceptions-undercut, full/assumptions-questionable]}
+  - {issue: X-RANGE, scheme: practical_sufficient_condition, checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, iso/assumptions-questionable, full/ground, full/exceptions-undercut, full/assumptions-questionable]}
   - {issue: X-RANGE, scheme: ad_hominem,      checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, iso/exceptions-undercut, full/ground, full/conclusions-in, full/exceptions-undercut]}
   - {issue: X-RANGE, scheme: regulative_rule, checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, full/ground, full/conclusions-in]}
   - {issue: X-RANGE, scheme: sorites_slippery_slope, checks: [engine-validator, static/range-restricted, iso/ground, iso/conclusions-in, full/ground, full/conclusions-in]}

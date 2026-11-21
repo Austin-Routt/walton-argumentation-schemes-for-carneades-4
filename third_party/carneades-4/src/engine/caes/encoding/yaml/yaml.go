@@ -30,6 +30,8 @@ type (
 		Arguments             map[string]*umArgument
 		Argument_schemes      []*umArgScheme
 		Assumptions           []string
+		Questioned            []string // statements called into question (contract 5)
+		Defaults              []string // assumptions a scheme instantiation added (contract 5)
 		caesArgSchemes        []*caes.Scheme
 		caesLabels            map[string]caes.Label
 		caesStatements        map[string]*caes.Statement
@@ -443,6 +445,13 @@ func caesArgMapGraph2caes(m *argMapGraph) (caesAg *caes.ArgGraph, err error) {
 
 	}
 	// fmt.Printf("   ---  Arguments --- \n %v \n ------End Arguments --- \n", caesAg.Arguments)
+	// Statements called into question, and the assumptions that are defaults
+	// of an instantiated scheme rather than stipulations (contract 5)
+	caesAg.Questioned = normStringVec(m.Questioned)
+	for _, d := range normStringVec(m.Defaults) {
+		collOfAssumptions = append(collOfAssumptions, d)
+		caesAg.Defaults[terms.Normalize(d)] = true
+	}
 	// Assumptions
 	caesAg.Assumptions = []string{}
 	for _, yamlAss := range collOfAssumptions {
@@ -1734,9 +1743,31 @@ func writeArgGraph1(noRefs bool, f io.Writer, caesAg *caes.ArgGraph) {
 			}
 		}
 	}
-	if caesAg.Assumptions != nil && len(caesAg.Assumptions) != 0 {
+	// The stipulated assumptions, the defaults of instantiated schemes and the
+	// questioned statements are written apart, so that each keeps its origin
+	// (docs/contracts.md, contract 5).
+	stipulated, defaults := []string{}, []string{}
+	for _, stat := range caesAg.Assumptions {
+		if caesAg.Defaults[terms.Normalize(stat)] {
+			defaults = append(defaults, stat)
+		} else {
+			stipulated = append(stipulated, stat)
+		}
+	}
+	for _, l := range []struct {
+		key   string
+		stats []string
+	}{{"questioned", caesAg.Questioned}, {"defaults", defaults}} {
+		if len(l.stats) != 0 {
+			fmt.Fprintf(f, "%s:\n", l.key)
+			for _, stat := range l.stats {
+				fmt.Fprintf(f, "%s- %s\n", sp1, mkYamlString(stat))
+			}
+		}
+	}
+	if len(stipulated) != 0 {
 		fmt.Fprintf(f, "assumptions:\n")
-		for _, stat := range caesAg.Assumptions {
+		for _, stat := range stipulated {
 			fmt.Fprintf(f, "%s- %s\n", sp1, stat)
 		}
 		/*		fmt.Fprintf(f, "assumptions: [")

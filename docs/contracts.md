@@ -82,7 +82,9 @@ A graph can list **questioned** statements: `questioned:` in YAML, and through t
 
 A contrary argument does not question an assumption by itself; it is weighed against it in an issue (contract 4). The questioned list and the origin of each assumption survive a second `Infer`, export and import.
 
-Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`; issue X-ASSUME.
+**Representation.** `ArgGraph.Questioned` and `questioned:` hold the questioned statements; `ArgGraph.Defaults` records which assumptions a scheme instantiation added; export writes them under `questioned:` and `defaults:`, apart from the stipulated `assumptions:`. `ArgGraph.Assumed()` lists what is assumed now.
+
+Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `questioned-stipulation-stays-assumed`, `questioned-state-survives-export`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`, `iso/assumptions-questionable`; issue X-ASSUME.
 
 ## 6. Arguments in an input file that name a scheme (D12)
 

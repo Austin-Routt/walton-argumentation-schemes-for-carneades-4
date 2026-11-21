@@ -64,7 +64,7 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | `full_workflow_mutations.py`: two semantic mutations | to port | none; PLAN.md 3.10 |
 | `sources.lock.json` with a hard failure on a hash mismatch | covered | `tools/vv/setup.sh` with `sources.lock` |
 | per scheme: a second inference | covered | `iso/infer-twice`, `full/infer-twice` (ported) |
-| per scheme: a withdrawn assumption | to port | engine level only (see the second review's rows); with PLAN.md 2.7 |
+| per scheme: a withdrawn assumption | covered | `iso/assumptions-questionable`, `full/assumptions-questionable`: restated for the questioned state of D2 (ported) |
 
 ## Ported
 
@@ -73,4 +73,5 @@ Each port names its new check here and removes the row's **to port**.
 | Check | Ported as | With |
 |---|---|---|
 | third review, per scheme: a second inference | `iso/infer-twice`, `full/infer-twice` (456 checks) | PLAN.md 2.5 |
+| third review, per scheme: a withdrawn assumption | `iso/assumptions-questionable`, `full/assumptions-questionable` (456 checks) | PLAN.md 2.7 |
 | second review, `TestNoRuleFiringMustPreserveStore` | GoCHR `TestNoRuleFiredKeepsGoals` | PLAN.md 1.3 |

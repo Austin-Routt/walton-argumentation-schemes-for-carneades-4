@@ -42,6 +42,15 @@ type ArgGraph struct {
 	Assumptions      []string         // atomic formulas or statement keys
 	assums           map[string]bool  // map representation of the assumptions
 	ExpectedLabeling map[string]Label // for testing
+	// Questioned lists the statements called into question
+	// (docs/contracts.md, contract 5). A questioned default, an assumption
+	// that only a scheme's `assumptions:` put there, is not assumed: it then
+	// needs support like an ordinary premise. A stipulated statement stays
+	// assumed: questioning does not withdraw a stipulation.
+	Questioned []string
+	// Defaults are the assumptions added by instantiating a scheme, by their
+	// normalized key, as opposed to the stipulated ones of the graph itself.
+	Defaults map[string]bool
 }
 
 type Issue struct {
@@ -200,7 +209,36 @@ func NewArgGraph() *ArgGraph {
 		assums:           make(map[string]bool),
 		Theory:           NewTheory(),
 		ExpectedLabeling: map[string]Label{},
+		Defaults:         map[string]bool{},
 	}
+}
+
+// IsQuestioned reports whether a statement has been called into question.
+func (ag *ArgGraph) IsQuestioned(id string) bool {
+	n := terms.Normalize(id)
+	for _, q := range ag.Questioned {
+		if terms.Normalize(q) == n {
+			return true
+		}
+	}
+	return false
+}
+
+// Assumed lists the statements the graph assumes now, normalized: its
+// assumptions, except the defaults that have been called into question
+// (docs/contracts.md, contract 5).
+func (ag *ArgGraph) Assumed() []string {
+	out := []string{}
+	seen := map[string]bool{}
+	for _, a := range ag.Assumptions {
+		n := terms.Normalize(a)
+		if seen[n] || (ag.Defaults[n] && ag.IsQuestioned(n)) {
+			continue
+		}
+		seen[n] = true
+		out = append(out, n)
+	}
+	return out
 }
 
 func (l Label) String() string {
@@ -238,8 +276,9 @@ func (l Labelling) init(ag *ArgGraph) {
 	ag.Assumptions = s
 
 	// Map representation of the assumptions
-	// to make membership test efficient
-	ag.assums = SliceToMap(ag.Assumptions)
+	// to make membership test efficient; a questioned default is not
+	// assumed (contract 5)
+	ag.assums = SliceToMap(ag.Assumed())
 
 	// Normalize the keys of the statements table
 	m2 := map[string]*Statement{}
@@ -523,8 +562,8 @@ func positionLabels(issue *Issue, l Labelling) string {
 // not from the index that labelling builds.
 func (ag *ArgGraph) Inconsistent() bool {
 	assumed := map[string]bool{}
-	for _, a := range ag.Assumptions {
-		assumed[terms.Normalize(a)] = true
+	for _, a := range ag.Assumed() {
+		assumed[a] = true
 	}
 	for _, issue := range ag.Issues {
 		found := false
@@ -694,7 +733,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 
 						}
 						if assumptions {
-							ag.AddAssumption(term2.String())
+							ag.addDefault(term2.String())
 						}
 						role := ""
 						if i < len(scheme.Roles) {
@@ -813,6 +852,23 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 func (ag *ArgGraph) AddAssumption(stmt_id string) {
 	ag.assums[stmt_id] = true
 	ag.Assumptions = append(ag.Assumptions, stmt_id)
+}
+
+// addDefault assumes a statement because a scheme lists it under its
+// assumptions, unless the graph already assumes it, and records it as a
+// default (contract 5).
+func (ag *ArgGraph) addDefault(stmt_id string) {
+	n := terms.Normalize(stmt_id)
+	for _, a := range ag.Assumptions {
+		if terms.Normalize(a) == n {
+			return
+		}
+	}
+	if ag.Defaults == nil {
+		ag.Defaults = map[string]bool{}
+	}
+	ag.Defaults[n] = true
+	ag.AddAssumption(stmt_id)
 }
 
 // makeIssue: match the patterns of an issue scheme against the
