@@ -1120,7 +1120,7 @@
       "origin": "upstream",
       "current_stage": "transcription-checked",
       "adjudication": "extension_explicitly_deferred_from_preview",
-      "reason": "The full 2007 comparison is available and accurate: legacy flat AS1 gives seven direct treatments, five partial policies and five absent separate mappings. CQ10 is positive support. Eight full-source mappings remain incomplete. AS2 requires an explicit model, not a token additional rule.",
+      "reason": "The full 2007 comparison is available: legacy flat AS1 gives seven direct treatments, five partial policies and five absent separate mappings. CQ10 is positive support. Ten questions lack full-source coverage: CQ5–9,11,12,14,15,17. The historical eight-item worklist excluded the partial CQ8–9 policies and must not be called the full-source incomplete count. AS2 requires an explicit model, not a token additional rule.",
       "next_concrete_action": "Decision: retain legacy AS1 as a qualified preview adapter outside the source-approved set. Do not add AS2 to this preview. Schedule the finite-model AS2 contract in the companion report as a separately reviewed extension; this explicit scope decision does not make the all-record stable gate pass.",
       "minimum_discriminating_tests": [
         "Current Arg8 positive abstraction and conditional Arg6 two-value support.",
