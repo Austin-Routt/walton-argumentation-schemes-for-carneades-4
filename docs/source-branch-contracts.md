@@ -152,6 +152,18 @@ is an ordinary premise supplied for this evaluation, never a global default.
 The reverse record, `end_and_means_reverse(X,C)`, instead requires
 `end_means(X,C)` and concludes `¬ends_important(X,C)` under the same warrant.
 
+These conclusions are comparative evaluative assessments. The positive term
+says that X warrants assessment as highly important in C; its explicit
+negation is a supported rejection of that assessment. This is the declared
+executable reading of the source's “should (should not) be regarded” language,
+given the ordinary premise comparing the importance of ends and means. It is
+not an obligation to perform or refrain from an actor's action, and it does
+not identify not-obligatory with obligatory-not. The reverse conclusion needs
+its own `end_means(X,C)` premise and the same-context importance warrant.
+Failure to establish the positive assessment alone does not yield the
+negative assessment. The shared display template states the evaluative
+meaning explicitly; no new global issue or deontic bridge is installed.
+
 Contrary reclassifications within the same context produce opposed
 arguments in the ordinary negation issue. Equal support does not establish
 either position under the default preponderance standard. Contrary

@@ -59,7 +59,7 @@ language:
   means_end/2: "Means %s should be regarded as an end in evaluation context %s."
   end_means/2: "End %s should be regarded as a means in evaluation context %s."
   more_important_ends/1: "In evaluation context %s, ends are more important than the means used to achieve them."
-  ends_important/2: "%s should be regarded as highly important in evaluation context %s."
+  ends_important/2: "%s warrants assessment as highly important in evaluation context %s."
   act_on_presumption_true/1: "I should act on the presumption that %s is true."
   selected_part_sufficient_for_whole/3: "For whole %s, the selected part %s having property %s is sufficient for the whole to have that property in this application."
   physical_part_of/2: "%s is a physical part of %s."

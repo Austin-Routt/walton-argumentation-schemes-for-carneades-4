@@ -726,7 +726,7 @@
       "source_pages": [
         325
       ],
-      "scope": "Printed reverse reclassification branch; the importance warrant is an ordinary premise about the same evaluation context, and the conclusion directly opposes the positive branch in that context.",
+      "scope": "Evaluative-assessment profile: ends_important(X,C) means X warrants assessment as highly important in C; explicit negation is a supported rejection, never lack of proof. This is not an actor/action obligation calculus. Printed reverse reclassification branch; the importance warrant is an ordinary premise about the same evaluation context, and the conclusion directly opposes the positive branch in that context.",
       "proposal": "approve within the stated scope after independent review",
       "authorship": "authored repair, variant or expanded contract; independent approval required",
       "scheme": {
@@ -751,7 +751,8 @@
         "end_and_means_reverse/book",
         "end_and_means_reverse/closure-distinct-contexts",
         "end_and_means_reverse/closure-opposed-reclassifications",
-        "end_and_means_reverse/closure-warrant-context-isolation"
+        "end_and_means_reverse/closure-warrant-context-isolation",
+        "end_and_means_reverse/closure-absence-is-not-rejection"
       ]
     },
     {
@@ -1004,7 +1005,7 @@
       "source_pages": [
         325
       ],
-      "scope": "Positive reclassification branch now names one evaluation context C in all three statements; the same-context importance warrant is an ordinary premise. The reverse branch is separately executable. Existing graphs need manual context migration.",
+      "scope": "Evaluative-assessment profile: ends_important(X,C) means X warrants assessment as highly important in C; explicit negation is a supported rejection, never lack of proof. This is not an actor/action obligation calculus. Positive reclassification branch now names one evaluation context C in all three statements; the same-context importance warrant is an ordinary premise. The reverse branch is separately executable. Existing graphs need manual context migration.",
       "proposal": "approve within the stated scope after independent review",
       "authorship": "authored repair, variant or expanded contract; independent approval required",
       "scheme": {
