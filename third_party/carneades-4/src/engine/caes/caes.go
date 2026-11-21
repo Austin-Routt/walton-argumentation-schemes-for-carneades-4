@@ -13,6 +13,7 @@ package caes
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -970,6 +971,14 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 		return err
 	}
 	pattern := parsed[0]
+	// Use a stable traversal for anchors, indexed aliases and fallback scans.
+	// Candidate bindings below are local; sorting must not conceal a choice of
+	// only the first value of a variable introduced by a later pattern.
+	wffs := make([]string, 0, len(ag.Statements))
+	for wff := range ag.Statements {
+		wffs = append(wffs, wff)
+	}
+	sort.Strings(wffs)
 	// API-created maps may use valid formula keys with noncanonical spacing.
 	// Index their parsed forms without renaming keys or replacing graph objects.
 	// Keep all aliases, then use Match below to preserve the scan's typed equality.
@@ -980,7 +989,8 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 	}
 	byTerm := map[string][]issueEntry{}
 	if issueLookup && !(len(patterns) == 3 && patterns[1] == "...") {
-		for key, stmt := range ag.Statements {
+		for _, key := range wffs {
+			stmt := ag.Statements[key]
 			if err := work.step(); err != nil {
 				return err
 			}
@@ -989,7 +999,8 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			}
 		}
 	}
-	for wff1, stmt := range ag.Statements {
+	for _, wff1 := range wffs {
+		stmt := ag.Statements[wff1]
 		if err := work.step(); err != nil {
 			return err
 		}
@@ -1070,10 +1081,11 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			// remaining patterns of the issue scheme and, in particular,
 			// whether or not the issue scheme is an enumeration.
 
-			for wff2, stmt2 := range ag.Statements {
+			for _, wff2 := range wffs {
 				if ground {
 					break
 				}
+				stmt2 := ag.Statements[wff2]
 				if err := work.step(); err != nil {
 					return err
 				}
@@ -1089,14 +1101,16 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 
 				match := false
 				if !isEnumeration {
-					// try matching against each of the remaining patterns
-					// and update the bindings and add the statement as
-					// as candidate if any pattern matches
+					// Each remaining pattern supplies alternative positions
+					// under the first pattern's anchor bindings. A candidate's
+					// fresh bindings must not constrain the next candidate or
+					// another alternative pattern. Repeated variables within
+					// one pattern are still checked by that single match.
 					for _, pattern2 := range parsed[1:] {
 						if err := work.step(); err != nil {
 							return err
 						}
-						bindings, match = terms.MatchFormula(pattern2, term2, bindings)
+						_, match = terms.MatchFormula(pattern2, term2, bindings)
 						if match {
 							break
 						}

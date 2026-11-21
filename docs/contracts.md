@@ -81,6 +81,8 @@ The library supplies the opposition of `S` and `¬S` as an issue scheme, so that
 
 Overlapping issue schemes may connect accepted positions through an existing or derived third statement. Inference checks before seeding and again after construction. Connecting two distinct pre-existing issues is rejected as invalid input rather than arbitrarily merging their proof standards. These checks operate on a private copy.
 
+For a non-enumeration issue scheme, the first pattern selects an anchor statement and its bindings. Each remaining pattern independently identifies alternative positions under those anchor bindings. Variables first introduced in a later pattern are local to that candidate match; their values do not carry over to competing statements or another alternative pattern. Thus `[leads(X), trails(Y)]` includes every matching `trails` position for an anchor, while `[leads(X), trails(X,Y)]` retains the anchor's `X`. Repeating `Y` within one pattern still requires equal values. Reusing a fresh `Y` name in two later patterns does not turn the issue scheme into a conjunction requiring both patterns to have a common witness. This is per-anchor pattern matching, not an unrestricted multi-pattern join. Anchors and candidates are visited in sorted key order; sorting alone must not select one arbitrary fresh-variable value and omit the others. Enumeration schemes retain their existing indexed-variable rule.
+
 Checked by: `negated-premises-match`, `negation-through-statement-variable`, `baseline-user-predicate-neg-is-ordinary`, `baseline-negation-issue`, `inconsistent-assumptions-detected`, `inconsistent-follows-current-assumptions`, `iso/negation-texts`; issues X-NEG, E-NEGTEXT, E-INCONS, E-ISSUE.
 
 ## 5. Critical questions and their states (D2)
