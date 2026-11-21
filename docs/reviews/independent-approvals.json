@@ -1994,6 +1994,239 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "practical_inference",
+      "fingerprint": "sha256:d198abf434a0cfcbea5997d0fe566f8d24a67172be2e804a2db22090406b937d",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "practical_inference/book",
+        "practical_inference/against-negative_consequences_reasoning",
+        "practical_inference/means-shared-with-end_and_means_1",
+        "practical_inference/closure-other-agent-efficiency",
+        "practical_inference/closure-actual-agent-efficiency",
+        "practical_inference/closure-other-agent-consequence"
+      ]
+    },
+    {
+      "record": "practical_necessary_condition",
+      "fingerprint": "sha256:4fe7670d6dd492672eb2eb51dba21d313b781c129ce43996e7f7bbf5ab7042a5",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "practical_necessary_condition/book",
+        "practical_necessary_condition/independent-one-agents-selection-does-not-bind-another",
+        "practical_necessary_condition/independent-another-agents-alternative-does-not-defeat",
+        "practical_necessary_condition/adverse-member-of-another-set",
+        "practical_necessary_condition/positive",
+        "practical_necessary_condition/conflicting-goals",
+        "practical_necessary_condition/adverse-another-agents-conflict"
+      ]
+    },
+    {
+      "record": "practical_sufficient_condition",
+      "fingerprint": "sha256:c40f49bf521e7db2eb5308acea9e426289b1b725054a976dcfb926290a1bfa9c",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "practical_sufficient_condition/book",
+        "practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another",
+        "practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat",
+        "practical_sufficient_condition/adverse-necessary-alternatives",
+        "practical_sufficient_condition/positive"
+      ]
+    },
+    {
+      "record": "value_based_practical_reasoning",
+      "fingerprint": "sha256:225882c7ef716db2ae91f20c69390869ba961469e51cf1d0194c25d4ef77ecfe",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "value_based_practical_reasoning/book",
+        "value_based_practical_reasoning/positive",
+        "value_based_practical_reasoning/adverse-another-agents-means",
+        "value_based_practical_reasoning/negative-consequences",
+        "value_based_practical_reasoning/possibility-questioned",
+        "value_based_practical_reasoning/closure-other-agent-values-refused",
+        "value_based_practical_reasoning/closure-other-agent-alternative",
+        "value_based_practical_reasoning/closure-actual-agent-alternative",
+        "value_based_practical_reasoning/closure-other-agent-value-and-costs",
+        "value_based_practical_reasoning/closure-same-agent-different-case"
+      ]
+    },
+    {
+      "record": "two_person_practical",
+      "fingerprint": "sha256:3369054ce119d54dee020899ac2b4952aaaf47b4fce1e6dcc1055dda22284f69",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "two_person_practical/book",
+        "two_person_practical/positive",
+        "two_person_practical/adverse-alternative-means",
+        "two_person_practical/old-binding-does-not-undercut",
+        "two_person_practical/adverse-side-effects",
+        "two_person_practical/adverse-other-actions-required",
+        "two_person_practical/conflicting-goals-for-practical_necessary_condition-too",
+        "two_person_practical/closure-other-actor-alternative",
+        "two_person_practical/closure-actual-actor-alternative",
+        "two_person_practical/closure-other-actor-additional-action",
+        "two_person_practical/closure-actual-actor-additional-action"
+      ]
+    },
+    {
+      "record": "position_to_know",
+      "fingerprint": "sha256:e8edd0fffa869692b5bbfb45b4c111848295a65a111f7d0cf4340cad93bd868f",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "position_to_know/book"
+      ]
+    },
+    {
+      "record": "negative_normal_expectations",
+      "fingerprint": "sha256:2f9875b456fd4a7870382e277026581c195b523f06faf80c1549997050cd61a1",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "negative_normal_expectations/book",
+        "negative_normal_expectations/closure-case-qualified-positive",
+        "negative_normal_expectations/closure-mixed-contexts-do-not-match",
+        "negative_normal_expectations/positive",
+        "negative_normal_expectations/adverse-not-investigated",
+        "negative_normal_expectations/two-expectations"
+      ]
+    },
+    {
+      "record": "negative_practical",
+      "fingerprint": "sha256:c08f34cf2ba0cb0ec173a97e42139f83dbf4b800f51334b041d766d1d58764cf",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "negative_practical/book",
+        "negative_practical/closure-false-ranking",
+        "negative_practical/independent-false-presumption-selected",
+        "negative_practical/independent-opposite-ranking-does-not-select-false",
+        "negative_practical/two-questions"
+      ]
+    },
+    {
+      "record": "negative_practical_true",
+      "fingerprint": "sha256:b44fb3e3dad404ee2d18c086420e9c4e82b3730b46d261a9198061a70e3a2171",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/dialogue-snapshots.md"
+      ],
+      "examples": [
+        "negative_practical_true/book",
+        "negative_practical_true/closure-no-severity-ranking",
+        "negative_practical_true/closure-same-consequence-no-strict-ranking",
+        "negative_practical_true/closure-search-challenge",
+        "negative_practical_true/closure-search-answer",
+        "negative_practical_true/closure-other-search-challenge",
+        "negative_practical_true/closure-opposed-rankings",
+        "negative_practical_true/closure-no-global-choice-negation-bridge",
+        "negative_practical_true/closure-search-not-same-as-truth-evidence"
+      ]
+    },
+    {
+      "record": "end_and_means_2",
+      "fingerprint": "sha256:0ea6af25f4235ae8e74753a62fc79c84d80b85ac855dc0dc4674abea684dcc6a",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/reviews/closure-importance-clarification.md"
+      ],
+      "examples": [
+        "end_and_means_2/book",
+        "end_and_means_2/closure-warrant-context-isolation",
+        "end_and_means_2/closure-no-global-warrant"
+      ]
+    },
+    {
+      "record": "end_and_means_reverse",
+      "fingerprint": "sha256:47c604b4e30ffc542efc035829e3385c998ff7c6408595e659c28f0f1dd7e969",
+      "review": {
+        "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      },
+      "evidence": [
+        "docs/reviews/closure-dialogue-independent-acceptance.md",
+        "docs/reviews/closure-importance-clarification.md"
+      ],
+      "examples": [
+        "end_and_means_reverse/book",
+        "end_and_means_reverse/closure-warrant-context-isolation",
+        "end_and_means_reverse/closure-opposed-reclassifications",
+        "end_and_means_reverse/closure-distinct-contexts",
+        "end_and_means_reverse/closure-absence-is-not-rejection"
+      ]
     }
   ]
 }

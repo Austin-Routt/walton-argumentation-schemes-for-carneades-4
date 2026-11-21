@@ -113,6 +113,27 @@ Issue closure and this priority are resolved before choosing the facts that seed
 
 **Representation.** `ArgGraph.Questioned` and `questioned:` hold the questioned statements; `ArgGraph.Defaults` records which assumptions a scheme instantiation added; export writes them under `questioned:` and `defaults:`, apart from the stipulated `assumptions:`. `ArgGraph.Assumed()` lists what is assumed now.
 
+**API updates.** Use `ArgGraph.AddAssumption(id)` to explicitly stipulate a
+fact, including a fact previously introduced as a default. The operation
+normalizes its identity and clears every equivalent default-origin marker;
+question history and unrelated defaults are retained. A later scheme
+instantiation cannot demote the stipulation back to a default. Direct writes
+to the public `Assumptions` and `Defaults` fields require the caller to maintain
+that origin invariant; appending a fact while retaining its default marker
+does not express promotion. Native tests cover promotion before and after
+inference, equivalent spellings, preserved node identity and repeated runs.
+
+**Dialogue policy.** A request for an answer is distinct from proving an
+exception. For the six explicitly supported practical/position-to-know
+families, `tools/dialogue_snapshot.py` implements the separate finite
+question/accepted-answer/reopening protocol in `docs/dialogue-snapshots.md`.
+It targets an individual constructed argument, retains independent support
+and original defeaters, and requires fresh evaluation of each snapshot.
+Ignorance-family burden-holder/probandum allocations are checked separately
+from the issue's proof threshold. The application supplies the appropriateness
+of questions, adequacy of answers and relevance of the ultimate probandum;
+the engine does not authenticate those judgments or infer them from atom names.
+
 Checked by: `default-yields-to-stipulated-negation`, `default-yields-to-stipulated-position`, `contrary-defaults-suspend-each-other`, `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `questioned-stipulation-stays-assumed`, `questioned-state-survives-export`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`, `iso/assumptions-questionable`; issue X-ASSUME.
 
 ## 6. Arguments in an input file that name a scheme (D12)
