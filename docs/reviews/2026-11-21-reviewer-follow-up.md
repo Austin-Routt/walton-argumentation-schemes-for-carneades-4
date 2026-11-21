@@ -9,7 +9,7 @@ The owner asked three things: is the response accurate, do I agree with the chan
 * **My verdict of this morning is withdrawn.** I wrote that Release 1 at `8c092b6` passed and could be published. It should not be. The third review's counterexamples are real defects of that engine; I reproduced each of them (section 1). My probes had covered two derived positions and two stipulated ones, not a stipulated position against a derived one, and I had accepted the check on authored arguments as described instead of attacking it.
 * **The response is accurate with three exceptions**: two in its table of engine claims and one about why rows are held (section 2).
 * **I agree with the changes** to the engine and to the 19 records, each checked against the printed page (sections 3 and 4).
-* **Reviewing the implementer's engine changes turned up three more defects**, two of them older than the changes (section 3): the argument graph does not read `¬¬S` as `S` although the rule store does; issue construction depends on run order; the new key lookup misses keys that are not in normal form. They are fixed in the branch `engine/negation-identity` (engine 4.3.1+walton.4), which someone else has to check because I wrote it.
+* **Reviewing the implementer's engine changes turned up three more engine defects**, two of them older than the changes, **and one check that fails at random** (section 3): the argument graph does not read `¬¬S` as `S` although the rule store does; issue construction depends on run order; the new key lookup misses keys that are not in normal form. They are fixed in the branch `engine/negation-identity` (engine 4.3.1+walton.4), which someone else has to check because I wrote it.
 * **Decisions D15 to D23 close what the response left to the owner or to a reviewer** (section 5). Under them 18 held rows are approved here (88 of 120) and each of the other 32 has one decided action (section 6).
 
 ## 1. The old Release 1 engine against the candidate
@@ -55,11 +55,13 @@ Eight of the third review's nine regression tests for the argument engine compil
 | `MAXISSUESTEPS` and `MAXMATCHSTEPS` at 50,000,000 | The four-premise join over 120 facts needs about 1.7 million visits | Reasonable as safety valves. Agreed. |
 | The exception check normalizes both keys | Read | Agreed. |
 
-**Three findings**, fixed in `engine/negation-identity`:
+**Four findings.** F1 to F3 are fixed in `engine/negation-identity`; F4 is a defect of one check and is fixed here:
 
 * **F1. The graph does not read `¬¬S` as `S`.** Contract 4 says it does, and the rule store does. A scheme that concludes `¬S`, applied to a negative statement, concludes a statement `¬¬S` of its own. The store reads it as `S` and builds the next argument from `S`; the graph labels `¬¬S` in and leaves `S`, and what that argument concludes, out. With the library and nothing written by hand: `asserts(bob,¬is_required(al))`, `bad_moral_character(bob)` and `can_be_required(al,cy)` give `¬¬is_required(al)` in, `is_required(al)` out, and the `alternative_normative` argument built on it out. Written by hand, `¬¬q(a)` behaves as a rival of `q(a)`: assuming both is reported as an inconsistent context. Both engines do this; the suite had no check for it.
 * **F2. Issue construction depends on run order.** It ranges over a Go map. A graph with `q(a)`, `¬q(a)`, `¬¬q(a)` and `¬¬¬q(a)` under the library's negation scheme ends as invalid input ("connects distinct existing issues") in 13 runs of 40 on the candidate and as one issue in the other 27; the engine of `8c092b6` always exits 0 but builds two issues in 8 runs of 40. An issue scheme whose later pattern has a variable of its own gives different positions from run to run.
 * **F3. The key lookup misses keys that are not in normal form.** For a graph built through the Go API with keys such as `q( c )` and `¬q( c )` the scan found the issue and the lookup finds none. The command and the YAML reader write keys in normal form, so they are not affected.
+
+* **F4. The interrupt check races a limit.** `cli-interrupt-is-cancelled` interrupts a run 0.3 s after it starts and expects "cancelled". Its workload, 300 facts under a scheme over pairs, was seconds of work on the old engine. Since the limits of engine 4.3.1+walton.2 it ends as "limit reached" at 100,000 inserted constraints after 0.76 s on my machine and sooner on the test runners. Of the two runs of the first commit of this pull request, one failed that check on both Go versions (exit status 4 where 5 was expected) and the other passed; the candidate has the same race on master. This is a defect of the check, not of the engine. It is fixed in this pull request, in `tools/vv/internal/vvlib/cli.go`: the workload is now a join of three of the 300 facts with a fourth fact that does not exist, 27 million candidate visits under every limit, 7 s on my machine. What the check asserts is unchanged.
 
 A smaller observation, not changed: the YAML the command writes lists statements in a different order from run to run; the content is the same.
 
@@ -137,6 +139,6 @@ The response lists what it leaves to a reviewer or to the owner; the owner asked
 
 ## 7. What is open after this
 
-* The engine fix (F1 to F3) and the change for D23 are mine, so the implementer or the third review checks them before they are merged.
+* The engine fix (F1 to F3) and the change for D23 are mine, so the implementer or the third review checks them before they are merged. The new workload of the interrupt check (F4) is mine too and is merged with this review, because without it the gate fails at random; it should be read by someone else at the same time.
 * I cannot create the tag: this session's connection refuses tag pushes. The commands for the owner are in the release notes once the engine fix is on master.
 * The 32 rows above are the work for the stable release. None of them needs another round of general review.
