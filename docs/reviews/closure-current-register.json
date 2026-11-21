@@ -2,7 +2,8 @@
   "schema": "walton-closure-register/v1",
   "date": "2026-11-21",
   "public_baseline": "e6d2d6f427c6ec0447cae514810c256903b15779",
-  "source_review_head": "df64bf46d64f1394488b9f614a2cfa1007050c58",
+  "later_public_reviewed": "ea46ab56c5ebd6fe76f409053cc2f008b13f38cc",
+  "source_review_head": "2263d6c755ed7623004a00baf5d8c4e9efdbf041",
   "counts": {
     "records": 143,
     "approved": 128,
@@ -25,14 +26,14 @@
       "33.1",
       "33.2"
     ],
-    "registered_checks": 9959
+    "registered_checks": 9979
   },
   "stable_complete_library_approved": false,
   "binding": {
-    "walton.yml": "59a52cc3e6abd436d2b6311be6c0b88a3e27f16d0de0180d78d1c6b2a53a5f25",
-    "tools/vv/source_ledger.yml": "9e997aa67c04445f7d9cd08945ffcc7d9d4295b70c34df1b32f1637e0a4ddd31",
-    "docs/reviews/independent-approvals.json": "d3287011fc7b75f6075d1f547e12abde71c289affc48114ab134778e593fbc05",
-    "tools/vv/expected_checks.txt": "1bd8b0292dd4b3c52c2e51526cf3b656d699fa08078e166bc3ef4677a107d771"
+    "walton.yml": "e458a698cc7f5e819b110215b832d2d264a3a13060857c72fddda6bf2e597590",
+    "tools/vv/source_ledger.yml": "bef308d78a525c59a6472c66a3dbd422afd177f030bdc7e19fb7216dd448005f",
+    "docs/reviews/independent-approvals.json": "5ef04f9438b1287869ff3296b165f8c4704e992b1583abd1be743d3df124d0ad",
+    "tools/vv/expected_checks.txt": "cc21b8e12090562ba1f2ecd6b0f6011547e92f791ec8e09bff0d51f6efc27bc0"
   },
   "records": [
     {
@@ -3444,7 +3445,8 @@
         {
           "n": 1,
           "kind": "assumption",
-          "as": "strongly_occur(X,C)"
+          "as": "omission_consequence_likelihood_adequate(X,C)",
+          "note": "Shared CQ1 asks likelihood strength without a fixed strong-likelihood threshold. In33.4 the consequence follows NOT doingX, so this assessment is distinct from the likelihood of doingX."
         },
         {
           "n": 2,
@@ -3457,13 +3459,20 @@
           "as": "other_consequences(X)"
         }
       ],
-      "note": " Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.",
+      "note": "PR16 D23 identified a real omission in the earlier closure candidate. The printed33.4 premise permits likely consequences and the shared CQ1 specifies no fixed strong threshold. The revised assumption expresses application-relative adequacy for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception are preserved; old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md.",
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "closure/root-source-review",
         "date": "2026-11-21",
         "decision": "approved",
-        "note": "Approved only within the declared executable interpretation. Evidence: docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_prudential; docs/source-contracts-second-half.md; docs/reviews/record-dispositions.json: negative_consequences_prudential"
+        "note": "Independent non-author review of source printed pp.332–333, omission/action distinction, nine live cases, old-threshold counterexample and manual migration. Focused 797/797, migration16 and validator5 groups passed. See docs/reviews/closure-independent-source-acceptance.md: Entry33.4."
       },
+      "changes": [
+        {
+          "plan": "pr16-reconciliation",
+          "page": 332,
+          "claim": "interpretation"
+        }
+      ],
       "title": "Argument From Negative Consequences - Prudential Inference",
       "source": "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.4, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155- 156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.",
       "was_original_hold": false,
@@ -3471,16 +3480,26 @@
       "disposition": "approved within declared executable interpretation",
       "approval": {
         "record": "negative_consequences_prudential",
-        "fingerprint": "sha256:e88a17e03aefc70cafa16baac36b2afab4711ad65415907cdc8156577de1a75c",
+        "fingerprint": "sha256:d93906c6b6d65ebdf5879979064fbc042811e33df4a90295b39a0c340e57fc14",
         "evidence": [
-          "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_prudential",
-          "docs/source-contracts-second-half.md"
+          "docs/reviews/closure-independent-source-acceptance.md: Entry33.4",
+          "docs/reviews/pr16-source-adjudication.md",
+          "tools/vv/cases/pr16_prudential_likelihood.yml"
         ],
         "examples": [
-          "negative_consequences_prudential/book"
+          "negative_consequences_prudential/book",
+          "negative_consequences_prudential/pr16-no-fixed-strong-threshold",
+          "negative_consequences_prudential/pr16-adequacy-question",
+          "negative_consequences_prudential/pr16-adequacy-answer",
+          "negative_consequences_prudential/pr16-old-threshold-is-not-new-answer",
+          "negative_consequences_prudential/pr16-outcome-isolation",
+          "negative_consequences_prudential/pr16-action-isolation",
+          "negative_consequences_prudential/pr16-doing-does-not-answer-omission",
+          "negative_consequences_prudential/pr16-omission-does-not-answer-doing",
+          "negative_consequences_prudential/pr16-other-consequences-remain-effective"
         ],
         "review": {
-          "by": "ChatGPT independent source-review team (integrated adjudication)",
+          "by": "closure/root-source-review",
           "date": "2026-11-21",
           "decision": "approved"
         }

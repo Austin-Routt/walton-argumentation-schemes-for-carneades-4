@@ -1,6 +1,6 @@
 # Current complete source register
 
-2026-11-21. Library0.3.0 / engine4.3.1+walton.4. **128/143 records approved;15 held.**
+2026-11-21. Library0.3.0 / engine4.3.1+walton.5. **128/143 records approved;15 held.**
 
 This register supersedes historical70/120 and50-hold totals. Every approval concerns the declared source and executable interpretation. The JSON companion includes all source notes, CQ mappings, fingerprints, example references and original-hold outcomes.
 
