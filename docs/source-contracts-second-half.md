@@ -74,7 +74,12 @@ engine does not inspect or authenticate documents behind them.
 
 For inherited positive/negative consequences (33.1–33.2), the default
 `consequence_likelihood_adequate(A,G)` makes CQ1 challengeable for the specific
-action and outcome. Its meaning is that the assessed likelihood is adequate
+action and outcome. Reasoning from negative consequences (33.3) assumes the
+same statement for its action and outcome, and the prudential form (33.4)
+assumes `strongly_occur(X,C)` with the same meaning for an action not done:
+before decision D23 both said "strongly likely", which the printed question
+does not ask and which the second premise of 33.4, "will occur, or is likely to
+occur", does not state. Its meaning is that the assessed likelihood is adequate
 for the strength of this argument. It does not require a fixed numerical
 probability or silently strengthen every consequence claim to "strongly
 likely". Evidence that the consequence follows (CQ2) remains the ordinary

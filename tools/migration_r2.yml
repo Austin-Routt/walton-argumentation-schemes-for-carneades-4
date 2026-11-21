@@ -36,7 +36,7 @@ changes:
   - {record: abductive_forward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
   - {record: retroductive, kind: added, old: '', new: 'action_fits_quality(A,E,Q)', plan: '5.2', page: 331}
   - {record: evidence_hypothesis_falsification, kind: arguments, old: "sufficient_correlation(A,H)", new: "sufficient_correlation(H,A)", plan: "5.1", page: 332, note: "the order 32.1 uses for the shared question"}
-  - {record: negative_consequences_reasoning, kind: added, old: "", new: "outcome_likely(A,B)", plan: "5.2", page: 332}
+  - {record: negative_consequences_reasoning, kind: added, old: "", new: "consequence_likelihood_adequate(A,B)", plan: "5.2", page: 332, note: "the statement 33.1 and 33.2 assume (D23)"}
   - {record: help, kind: removed, old: "possible_carry_out(B,X)", new: "", plan: "5.1", page: 334, note: "repeated premise 3, can_carry_out(B,X)"}
   - {record: help, kind: removed, old: "greater_side_effects(X)", new: "", plan: "5.1", page: 334, note: "repeated premise 4, not_too_costly(B,X)"}
   - {record: distress, kind: arity, old: "relieve(B,X)", new: "relieve(B,X,A)", plan: "5.1", page: 334, note: "whose distress is relieved"}

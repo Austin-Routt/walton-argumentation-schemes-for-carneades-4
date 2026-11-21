@@ -20,6 +20,8 @@ Independent clean runs reproduce baseline master's 7,994 passing checks on both 
 
 ## Library and provenance
 
+Decision D23: reasoning from negative consequences (33.3) and the prudential form (33.4) assume a likelihood adequate for the argument, as 33.1 and 33.2 do, in place of "strongly likely". A graph that names `outcome_likely(...)` names `consequence_likelihood_adequate(...)` instead.
+
 All 114 book-mapped records were independently reviewed. Repairs cover generalization identity, complete model warrants, agent-scoped practical reasoning, sufficient-condition quantification, diagram/conclusion identity, typed character traits, event-scoped retroduction, explicit coextension, recaller-scoped memory and conditional exceptional-case backing. Five formerly deferred questions were modelled from the available compendium with their actual provenance. Migrations report cases requiring new evidence instead of fabricating it.
 
 The supplied Atkinson and Bench-Capon paper was reviewed in full. Its 17 questions have individual dispositions; eight still lack complete mappings in the inherited AS1 record. CQ10 is positive support, and AS2 requires a fuller transition/value model. A falsely attributed example was replaced with the paper's actual example.
@@ -30,7 +32,7 @@ PR #13 was merged and critically reconciled into this candidate. Its valid wordi
 
 ## Verification
 
-Both pinned Go versions are required CI jobs. The complete inventory contains 8,239 distinct checks (8,228 at the acceptance candidate, two added by the implementer response, nine with engine 4.3.1+walton.4); duplicate emitted identities, duplicate manifest entries and malformed comparator records fail. The final package includes clean-checkout engine/race/vet logs, strict results, exact per-check comparison, the expected-check inventory, source-approval mutation tests and the validator output. No known executable failure is waived. Informational validator warnings are explained in the review report; a warning count is not a quality score.
+Both pinned Go versions are required CI jobs. The complete inventory contains 8,238 distinct checks (8,228 at the acceptance candidate, two added by the implementer response, nine with engine 4.3.1+walton.4, and one name check gone with decision D23); duplicate emitted identities, duplicate manifest entries and malformed comparator records fail. The final package includes clean-checkout engine/race/vet logs, strict results, exact per-check comparison, the expected-check inventory, source-approval mutation tests and the validator output. No known executable failure is waived. Informational validator warnings are explained in the review report; a warning count is not a quality score.
 
 ## Assets and migration
 

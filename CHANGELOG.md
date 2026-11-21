@@ -2,6 +2,14 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
+## 2026-11-21 — entries 33.3 and 33.4 take the likelihood reading of 33.1 and 33.2 (D23)
+
+Decision D23 of the reviewer's follow-up. The implementer proposed the change to 33.3 and left it because it could not renew the approval; the reviewer extends it to 33.4 and wrote both, so someone else checks them before the release (D14).
+
+* `negative_consequences_reasoning` (33.3, p. 332): CQ1 is the assumption `consequence_likelihood_adequate(A,B)`, the statement 33.1 and 33.2 share, in place of `outcome_likely(A,B)` ("strongly likely"). The printed question asks how strong the likelihood is and sets no threshold. `outcome_likely/2` leaves the language. A graph that questions or supports `outcome_likely(...)` names `consequence_likelihood_adequate(...)` instead; the migration table says so.
+* `negative_consequences_prudential` (33.4, p. 332): the template of `strongly_occur/2` reads "the likelihood that the consequences occur is adequate for the strength of this consequence argument". The second premise allows "is likely to occur", so "strongly likely" asked for more than the premise states. The statement keeps its name.
+* The approvals of both rows are renewed for the new content. 8,238 checks: the list loses the name check of `outcome_likely/2`.
+
 ## 2026-11-21 — a double negation is one statement, and issues do not depend on run order (engine 4.3.1+walton.4)
 
 Found and written by the reviewer of 2026-11-21 in the follow-up to the implementer's response (`docs/reviews/2026-11-21-reviewer-follow-up.md`, findings F1 to F3). The reviewer wrote these changes, so someone else checks them before the release is tagged (D14).

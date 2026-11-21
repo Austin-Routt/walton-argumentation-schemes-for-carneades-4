@@ -66,7 +66,6 @@ language:
   other_consequences/1: "There are other good or bad consequences of doing %s that should be taken into account."
   ought_to_bring_about/1: "You should (ought to, practically speaking) bring about %s."
   ought_to_continue/2: "%s ought to continue trying to realize %s."
-  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   position_to_bring_about/1: "I am in a position to bring about %s."
   possible/1: "Action %s is possible."
   possible_bring_about/2: "It is possible for %s to bring about %s."
@@ -89,7 +88,7 @@ language:
   situation_help/3: "%s is in a situation where some action %s by %s would help."
   situation_necessity/4: "As %s sees the situation, %s is a necessary or sufficient condition for carrying out %s; the adviser reports this to %s."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
-  strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
+  strongly_occur/2: "If you do not do %s, the likelihood that the consequences %s occur is adequate for the strength of this consequence argument."
   sufficient_action/4: "%s has selected member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
@@ -485,7 +484,7 @@ argument_schemes:
       - agent_bring_about(P,A,B)
       - bad_for_goals(P,B)
     assumptions:
-      - outcome_likely(A,B)
+      - consequence_likelihood_adequate(A,B)
 
   - id: sunk_costs
     meta:

@@ -3,6 +3,7 @@ meta:
   title: "Should I take the job abroad?"
   library: "0.2.0"
 language:
+  consequence_likelihood_adequate/2: "The assessed likelihood that action %s brings about outcome %s is adequate for the strength of this consequence argument."
   agent_bring_about/3: "If %s, as an agent, brings about %s, then %s will occur."
   bad_for_goals/2: "%[2]s is a bad outcome, from the point of view of %[1]s's goals."
   conflicting_goals/2: "%s has other goals that might conflict with realizing %s."
@@ -10,7 +11,6 @@ language:
   incompatible_consequences/2: "Bringing about %s has incompatible consequences with %s."
   means_to_end/2: "%s is means to the end %s."
   more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
-  outcome_likely/2: "If %s is brought about, %s is strongly likely to occur."
   possible_bring_about/2: "It is possible for %s to bring about %s."
   possible_goal/1: "Bringing about %s is possible."
   should_do/2: "%s should do %s."
@@ -51,7 +51,7 @@ argument_schemes:
       - agent_bring_about(P,A,B)
       - bad_for_goals(P,B)
     assumptions:
-      - outcome_likely(A,B)
+      - consequence_likelihood_adequate(A,B)
 
 # --- the case ----------------------------------------------------------------
 # Write the facts of the case below, one term per line (see docs/using.md):
@@ -78,7 +78,7 @@ assumptions:
 # position of the issue is in. Questioning the likelihood of the bad outcome
 # leaves the argument against unsupported.
 questioned:
-  - outcome_likely(take_job,leave_family)
+  - consequence_likelihood_adequate(take_job,leave_family)
 tests:
   in:
     - should_do(me,take_job)

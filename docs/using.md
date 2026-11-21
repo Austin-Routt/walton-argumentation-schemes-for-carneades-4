@@ -124,8 +124,9 @@ count only once they are shown.
 reasoning from negative consequences (33.3) in one graph. The first concludes
 `should_do(me,take_job)`, the second its negation, so they meet in one issue.
 With both arguments standing they weigh the same and neither position is in.
-The example questions the assumption of 33.3 that the bad outcome is likely,
-`outcome_likely(take_job,leave_family)`, which nothing supports: the argument
+The example questions the assumption of 33.3 that the likelihood of the bad
+outcome is adequate for the argument,
+`consequence_likelihood_adequate(take_job,leave_family)`, which nothing supports: the argument
 against falls, and `should_do(me,take_job)` is in.
 
 The library shares a statement between schemes where the book means the same

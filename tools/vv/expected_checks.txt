@@ -4403,7 +4403,6 @@ source_ledger.yml|opposition_descriptive_3|source/record-row
 source_ledger.yml|opposition_normative|source/record-row
 source_ledger.yml|other_actions_required/2|source/name-in-language
 source_ledger.yml|ought_to_bring_about/1|source/name-in-language
-source_ledger.yml|outcome_likely/2|source/name-in-language
 source_ledger.yml|part_in_whole|source/record-row
 source_ledger.yml|perception|source/record-row
 source_ledger.yml|plea_for_excuse|source/record-row
@@ -4576,7 +4575,7 @@ tools/migration_r2.yml|memory|migration/added old="" trigger="" new="recaller_do
 tools/migration_r2.yml|memory|migration/arity old="based_on_false_belief(M)" trigger="" new="based_on_false_belief(P,M)"
 tools/migration_r2.yml|memory|migration/arity old="not_originally_believed(M)" trigger="" new="not_originally_believed(P,M)"
 tools/migration_r2.yml|memory|migration/rename-predicate old="reasonable_belive/1" trigger="" new="reasonable_believe/1"
-tools/migration_r2.yml|negative_consequences_reasoning|migration/added old="" trigger="" new="outcome_likely(A,B)"
+tools/migration_r2.yml|negative_consequences_reasoning|migration/added old="" trigger="" new="consequence_likelihood_adequate(A,B)"
 tools/migration_r2.yml|negative_consequences_reasoning|migration/arity old="agent_bring_about(A,B)" trigger="" new="agent_bring_about(P,A,B)"
 tools/migration_r2.yml|negative_consequences_reasoning|migration/arity old="bad_for_goals(B)" trigger="" new="bad_for_goals(P,B)"
 tools/migration_r2.yml|negative_consequences_reasoning|migration/replaced old="should_not_bring_about(A)" trigger="" new="¬should_do(P,A)"

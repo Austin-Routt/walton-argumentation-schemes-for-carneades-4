@@ -587,32 +587,34 @@
     },
     {
       "record": "negative_consequences_prudential",
-      "fingerprint": "sha256:e88a17e03aefc70cafa16baac36b2afab4711ad65415907cdc8156577de1a75c",
+      "fingerprint": "sha256:6589858a433040557baa2a1c6354a5332dbe507c3f65e84da98818fb567ff4bd",
       "evidence": [
         "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_prudential",
-        "docs/source-contracts-second-half.md"
+        "docs/source-contracts-second-half.md",
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: negative_consequences_prudential"
       ],
       "examples": [
         "negative_consequences_prudential/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
         "date": "2026-11-21",
         "decision": "approved"
       }
     },
     {
       "record": "negative_consequences_reasoning",
-      "fingerprint": "sha256:7e1b1a34b5a0747f1a09e05179fe1103230122d041544af3e1c920c1c8cff257",
+      "fingerprint": "sha256:4aa7238ca3ba620d95c75791cecba651adba56d6a0001cd6936aefcc317c4c56",
       "evidence": [
         "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_reasoning",
-        "docs/source-contracts-second-half.md"
+        "docs/source-contracts-second-half.md",
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: negative_consequences_reasoning"
       ],
       "examples": [
         "negative_consequences_reasoning/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
         "date": "2026-11-21",
         "decision": "approved"
       }
