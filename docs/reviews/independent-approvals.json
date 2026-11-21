@@ -1133,6 +1133,64 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "from_example",
+      "fingerprint": "sha256:4c699f4e524d42f7119eaed7ad5d9f35c67bb12b4c89ea650b009420abd92002",
+      "evidence": [
+        "docs/reviews/closure-source-adjudication.md: from_example",
+        "docs/reviews/closure-hold-adjudication.json: from_example"
+      ],
+      "examples": [
+        "from_example/book",
+        "from_example/closure-one-exception-does-not-refute-usually",
+        "from_example/closure-supported-generalization-rebuttal",
+        "from_example/closure-support-for-generalization-questioned",
+        "from_example/closure-other-generalization-rebuttal-isolated"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "verbal_classification_arbitrariness",
+      "fingerprint": "sha256:9dcb2b16a35290accfa46b590756abf2f8e09e2e005940a75e3bd166848ccdbf",
+      "evidence": [
+        "docs/reviews/closure-source-adjudication.md: verbal_classification_arbitrariness",
+        "docs/reviews/closure-hold-adjudication.json: verbal_classification_arbitrariness"
+      ],
+      "examples": [
+        "verbal_classification_arbitrariness/book",
+        "verbal_classification_arbitrariness/closure-unanswered-harmlessness-query",
+        "verbal_classification_arbitrariness/closure-supported-harmlessness",
+        "verbal_classification_arbitrariness/closure-unestablished-need",
+        "verbal_classification_arbitrariness/closure-other-argument-harmlessness-isolated"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "definition_to_verbal_classification",
+      "fingerprint": "sha256:c5710754472ef919962cb3532ac372121e5d531444662ca5b1e9a456317e593c",
+      "evidence": [
+        "docs/reviews/closure-source-adjudication.md: definition_to_verbal_classification",
+        "docs/reviews/closure-hold-adjudication.json: definition_to_verbal_classification"
+      ],
+      "examples": [
+        "definition_to_verbal_classification/book",
+        "definition_to_verbal_classification/independent-biased-definition-defeats",
+        "definition_to_verbal_classification/independent-other-definition-does-not-defeat"
+      ],
+      "review": {
+        "by": "ChatGPT independent closure scope reviewer",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }
