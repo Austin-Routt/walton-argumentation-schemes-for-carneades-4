@@ -52,11 +52,14 @@ func (ag *ArgGraph) checkContext(ctx context.Context) error {
 // resolveContext is for a private graph: apply issue closure before obtaining
 // effective assumptions, so defeated defaults never seed argument generation.
 func (ag *ArgGraph) resolveContext(ctx context.Context) error {
+	if err := ag.normalizeGraph(); err != nil {
+		return err
+	}
 	for _, a := range ag.Assumptions {
 		if ctx.Err() != nil {
 			return NewRunError(ErrCancelled, "cancelled during context validation")
 		}
-		if t, ok := terms.ReadString(a); !ok || t == nil {
+		if t, ok := terms.ReadFormula(a); !ok || t == nil {
 			return NewRunError(ErrInvalidInput, "cannot parse assumption %q", a)
 		}
 	}
@@ -76,7 +79,7 @@ func (ag *ArgGraph) materializeIssues(ctx context.Context) error {
 		n := terms.Normalize(a)
 		if _, ok := ag.Statements[n]; !ok {
 			text := n
-			if t, ok := terms.ReadString(n); ok && ag.Theory != nil {
+			if t, ok := terms.ReadFormula(n); ok && ag.Theory != nil {
 				text = ag.Theory.Language.Apply(t)
 			}
 			ag.Statements[n] = &Statement{Id: n, Text: text}

@@ -97,7 +97,7 @@ type BindEle struct {
 }
 
 func Normalize(s string) string {
-	t, ok := ReadString(s)
+	t, ok := ReadFormula(s)
 	if ok {
 		return t.String()
 	} else {

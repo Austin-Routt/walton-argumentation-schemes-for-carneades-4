@@ -54,7 +54,7 @@ func termToArgDesc(s string) (bool, *ArgDesc) {
 	if s == "" {
 		return false, nil
 	}
-	t1, ok := terms.ReadString(s)
+	t1, ok := terms.ReadFormula(s)
 	if !ok {
 		return false, nil
 	}
@@ -220,7 +220,7 @@ func (ag *ArgGraph) inferStaged(ctx context.Context) error {
 	for _, a := range ag.Assumed() {
 		if _, ok := ag.Statements[a]; !ok {
 			text := a
-			if t, ok := terms.ReadString(a); ok && ag.Theory != nil {
+			if t, ok := terms.ReadFormula(a); ok && ag.Theory != nil {
 				text = ag.Theory.Language.Apply(t)
 			}
 			ag.Statements[a] = &Statement{Id: a, Text: text}

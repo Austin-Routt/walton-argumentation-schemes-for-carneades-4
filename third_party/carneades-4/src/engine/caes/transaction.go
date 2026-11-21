@@ -1,5 +1,7 @@
 package caes
 
+import "github.com/carneades/carneades-4/src/engine/terms"
+
 // copyForInference copies mutable graph topology. Theory, metadata and
 // weighing functions are shared read-only; inference does not modify them.
 func (ag *ArgGraph) copyForInference() *ArgGraph {
@@ -90,8 +92,18 @@ func (ag *ArgGraph) commitInference(w *ArgGraph) {
 	ss := map[*Statement]*Statement{}
 	aa := map[*Argument]*Argument{}
 	ii := map[*Issue]*Issue{}
+	// A successful private normalization may change a key without changing
+	// the user's statement object. normalizeGraph has already refused any
+	// collision between distinct objects, so this correspondence is unique.
+	originalByKey := map[string]*Statement{}
+	for key, stmt := range ag.Statements {
+		originalByKey[terms.Normalize(key)] = stmt
+	}
 	for k, s := range w.Statements {
 		d := ag.Statements[k]
+		if d == nil {
+			d = originalByKey[k]
+		}
 		if d == nil {
 			d = s
 		}

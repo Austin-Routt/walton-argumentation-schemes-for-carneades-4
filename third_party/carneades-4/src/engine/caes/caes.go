@@ -260,7 +260,7 @@ func (ag *ArgGraph) Assumed() []string {
 
 // meetsContrary reports whether a contrary of the statement n is in the set.
 func (ag *ArgGraph) meetsContrary(n string, set map[string]bool) bool {
-	if t, ok := terms.ReadString(n); ok {
+	if t, ok := terms.ReadFormula(n); ok {
 		if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 {
 			if set[terms.Normalize(c.Args[0].String())] {
 				return true
@@ -407,7 +407,7 @@ func (arg *Argument) Applicable(l Labelling) bool {
 
 func (arg *Argument) PropertyValue(p string, l Labelling) (result terms.Term, ok bool) {
 	for _, pr := range arg.Premises {
-		term1, ok := terms.ReadString(pr.Stmt.Id)
+		term1, ok := terms.ReadFormula(pr.Stmt.Id)
 		if ok {
 			p2, ok := terms.Predicate(term1)
 			if ok && p2 == p {
@@ -418,7 +418,7 @@ func (arg *Argument) PropertyValue(p string, l Labelling) (result terms.Term, ok
 					if i != nil {
 						for _, pos := range i.Positions {
 							if l[pos] == In {
-								term2, ok := terms.ReadString(pos.Id)
+								term2, ok := terms.ReadFormula(pos.Id)
 								if ok {
 									return terms.Object(term2)
 								} else {
@@ -618,7 +618,7 @@ func (ag *ArgGraph) inconsistentPositions() bool {
 		}
 	}
 	for a := range assumed {
-		if t, ok := terms.ReadString(a); ok {
+		if t, ok := terms.ReadFormula(a); ok {
 			if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 && assumed[c.Args[0].String()] {
 				return true
 			}
@@ -742,7 +742,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 			bindings := map[string]terms.Term{}
 			for i, varName := range scheme.Variables {
 				// v := terms.NewVariable(varName)
-				t, ok := terms.ReadString(parameters[i])
+				t, ok := terms.ReadFormula(parameters[i])
 				if ok {
 					bindings[varName] = t
 				} else {
@@ -757,9 +757,9 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 
 			addPremises := func(l []string, assumptions bool) {
 				for i, p := range l {
-					term1, ok := terms.ReadString(p)
+					term1, ok := terms.ReadFormula(p)
 					if ok {
-						term2 := substituteParameters(term1, bindings)
+						term2 := terms.NormalizeNegation(substituteParameters(term1, bindings))
 						// Leave argument(S,P) premises implicit; Enthymeme!
 						pred, ok := terms.Predicate(term2)
 						if ok && pred == "argument" {
@@ -794,9 +794,9 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 
 			// instantiate the conclusions of the scheme
 			for _, c := range scheme.Conclusions {
-				term1, ok := terms.ReadString(c)
+				term1, ok := terms.ReadFormula(c)
 				if ok {
-					term2 := substituteParameters(term1, bindings)
+					term2 := terms.NormalizeNegation(substituteParameters(term1, bindings))
 					stmt, ok := ag.Statements[term2.String()]
 					if !ok {
 						s := Statement{Id: term2.String(),
@@ -844,9 +844,9 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				// instantiate the exceptions of the scheme
 				exceptions := []*Statement{}
 				for _, e := range scheme.Exceptions {
-					term1, ok := terms.ReadString(e)
+					term1, ok := terms.ReadFormula(e)
 					if ok {
-						term2 := substituteParameters(term1, bindings)
+						term2 := terms.NormalizeNegation(substituteParameters(term1, bindings))
 						stmt, ok := ag.Statements[term2.String()]
 						if !ok {
 							s := Statement{Id: term2.String(),
@@ -935,7 +935,7 @@ func readIssuePatterns(patterns []string) ([]terms.Term, error) {
 		if i == 1 && len(patterns) == 3 && p == "..." {
 			continue
 		}
-		t, ok := terms.ReadString(p)
+		t, ok := terms.ReadFormula(p)
 		if !ok {
 			return nil, fmt.Errorf("cannot parse pattern %q", p)
 		}
@@ -968,7 +968,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			if err := work.step(); err != nil {
 				return err
 			}
-			if term, ok := terms.ReadString(key); ok {
+			if term, ok := terms.ReadFormula(key); ok {
 				byTerm[term.String()] = append(byTerm[term.String()], issueEntry{key, term, stmt})
 			}
 		}
@@ -977,13 +977,13 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 		if err := work.step(); err != nil {
 			return err
 		}
-		term1, ok := terms.ReadString(wff1)
+		term1, ok := terms.ReadFormula(wff1)
 		if !ok {
 			fmt.Fprintf(os.Stderr, "Statement key not a term: %v\n", wff1)
 			continue
 		}
 		var bindings terms.Bindings
-		bindings, ok = terms.Match(pattern, term1, bindings)
+		bindings, ok = terms.MatchFormula(pattern, term1, bindings)
 		if !ok {
 			continue // terms do not match
 		} else {
@@ -1040,7 +1040,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 						if seen[entry.key] {
 							continue
 						}
-						if _, match := terms.Match(parsed[j+1], entry.term, bindings); match {
+						if _, match := terms.MatchFormula(parsed[j+1], entry.term, bindings); match {
 							seen[entry.key] = true
 							candidates = append(candidates, entry.stmt)
 						}
@@ -1065,7 +1065,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 					// skip the matching statement found previously
 					continue
 				}
-				term2, ok := terms.ReadString(wff2)
+				term2, ok := terms.ReadFormula(wff2)
 				if !ok {
 					fmt.Fprintf(os.Stderr, "Statement key not a term: %v\n", wff2)
 					continue
@@ -1080,7 +1080,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 						if err := work.step(); err != nil {
 							return err
 						}
-						bindings, match = terms.Match(pattern2, term2, bindings)
+						bindings, match = terms.MatchFormula(pattern2, term2, bindings)
 						if match {
 							break
 						}
@@ -1093,7 +1093,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 						v := env.T
 						b2copy = terms.AddBinding(k, v, b2copy)
 					}
-					b2copy, match = terms.Match(pattern, term2, b2copy)
+					b2copy, match = terms.MatchFormula(pattern, term2, b2copy)
 				}
 				if !match {
 					continue // terms do not match

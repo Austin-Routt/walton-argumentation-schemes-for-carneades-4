@@ -84,7 +84,13 @@ type Problem struct {
 // Validate the statements of an argument graph
 func validateStatements(ag *caes.ArgGraph) []Problem {
 	problems := []Problem{}
+	seen := map[string]*caes.Statement{}
 	for k, _ := range ag.Statements {
+		n := terms.Normalize(k)
+		if old, exists := seen[n]; exists && old != ag.Statements[k] {
+			problems = append(problems, Problem{STATEMENT, "", "multiple statement objects normalize to the same formula", n})
+		}
+		seen[n] = ag.Statements[k]
 
 		// Check that the key is a term
 		t, ok := terms.ReadString(k)
@@ -175,8 +181,8 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 		var b terms.Bindings
 		bound := true
 		for i, name := range s.Variables {
-			v, ok1 := terms.ReadString(name)
-			t, ok2 := terms.ReadString(arg.Parameters[i])
+			v, ok1 := terms.ReadFormula(name)
+			t, ok2 := terms.ReadFormula(arg.Parameters[i])
 			if !ok1 || !ok2 || v.Type() != terms.VariableType {
 				p := Problem{ARGUMENT, id, "parameter or scheme variable is not a term", name + " = " + arg.Parameters[i]}
 				problems = append(problems, p)
@@ -192,7 +198,7 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 		// premises: the scheme's premises and assumptions, each used once
 		patterns := []terms.Term{}
 		for _, ps := range append(append([]string{}, s.Premises...), s.Assumptions...) {
-			if t, ok := terms.ReadString(ps); ok {
+			if t, ok := terms.ReadFormula(ps); ok {
 				patterns = append(patterns, t) // patterns of schemes are checked elsewhere
 			}
 		}
@@ -202,7 +208,7 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 				problems = append(problems, Problem{ARGUMENT, id, "premise without a statement", ""})
 				continue
 			}
-			t, ok := terms.ReadString(pr.Stmt.Id)
+			t, ok := terms.ReadFormula(pr.Stmt.Id)
 			if !ok {
 				problems = append(problems, Problem{ARGUMENT, id, "premise is not a term", pr.Stmt.Id})
 				continue
@@ -232,7 +238,7 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 			problems = append(problems, Problem{ARGUMENT, id, "argument without a conclusion", ""})
 			continue
 		}
-		t3, ok := terms.ReadString(arg.Conclusion.Id)
+		t3, ok := terms.ReadFormula(arg.Conclusion.Id)
 		if !ok {
 			p := Problem{ARGUMENT, id, "conclusion is not a term.", arg.Conclusion.Id}
 			problems = append(problems, p)
@@ -240,11 +246,11 @@ func validateArguments(ag *caes.ArgGraph) []Problem {
 		}
 		found := false
 		for _, cs := range s.Conclusions {
-			t4, ok := terms.ReadString(cs)
+			t4, ok := terms.ReadFormula(cs)
 			if !ok {
 				continue // conclusions of schemes are checked elsewhere
 			}
-			if _, ok := terms.Match(t4, t3, b); ok {
+			if _, ok := terms.MatchFormula(t4, t3, b); ok {
 				found = true
 				break
 			}
@@ -266,13 +272,13 @@ func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument, accept func(t
 	if arg.Conclusion == nil || len(arg.Premises) != len(s.Premises)+len(s.Assumptions) {
 		return false
 	}
-	c, ok := terms.ReadString(arg.Conclusion.Id)
+	c, ok := terms.ReadFormula(arg.Conclusion.Id)
 	if !ok {
 		return false
 	}
 	patterns := []terms.Term{}
 	for _, ps := range append(append([]string{}, s.Premises...), s.Assumptions...) {
-		if t, ok := terms.ReadString(ps); ok {
+		if t, ok := terms.ReadFormula(ps); ok {
 			patterns = append(patterns, t)
 		}
 	}
@@ -281,22 +287,27 @@ func instanceWithoutParameters(s *caes.Scheme, arg *caes.Argument, accept func(t
 		if pr.Stmt == nil {
 			return false
 		}
-		t, ok := terms.ReadString(pr.Stmt.Id)
+		t, ok := terms.ReadFormula(pr.Stmt.Id)
 		if !ok {
 			return false
 		}
 		stmts = append(stmts, t)
 	}
-	for _, cs := range s.Conclusions {
-		cp, ok := terms.ReadString(cs)
-		if !ok {
-			continue
+	// Bind from the premises first. A conclusion ¬X may normalize to p once
+	// a premise binds X to ¬p; comparing that conclusion before the bindings
+	// exist would reject the valid authored instance.
+	return matchEachWith(patterns, stmts, nil, make([]bool, len(patterns)), func(b terms.Bindings) bool {
+		for _, cs := range s.Conclusions {
+			cp, ok := terms.ReadFormula(cs)
+			if !ok {
+				continue
+			}
+			if b2, ok := terms.MatchFormula(cp, c, b); ok && accept(b2) {
+				return true
+			}
 		}
-		if b, ok := terms.Match(cp, c, nil); ok && matchEachWith(patterns, stmts, b, make([]bool, len(patterns)), accept) {
-			return true
-		}
-	}
-	return false
+		return false
+	})
 }
 
 // matchEach reports whether the statements can be paired one to one with the
@@ -313,7 +324,7 @@ func matchEachWith(patterns, stmts []terms.Term, b terms.Bindings, used []bool, 
 		if used[i] {
 			continue
 		}
-		if b2, ok := terms.Match(p, stmts[0], b); ok {
+		if b2, ok := terms.MatchFormula(p, stmts[0], b); ok {
 			used[i] = true
 			if matchEachWith(patterns, stmts[1:], b2, used, accept) {
 				return true
@@ -345,7 +356,7 @@ func carriesExceptions(ag *caes.ArgGraph, arg *caes.Argument, b terms.Bindings) 
 		return false
 	}
 	for _, e := range arg.Scheme.Exceptions {
-		pattern, ok := terms.ReadString(e)
+		pattern, ok := terms.ReadFormula(e)
 		if !ok {
 			return false
 		}
@@ -358,7 +369,7 @@ func carriesExceptions(ag *caes.ArgGraph, arg *caes.Argument, b terms.Bindings) 
 				return false
 			}
 		}
-		instance := terms.Substitute(pattern, b)
+		instance := terms.NormalizeNegation(terms.Substitute(pattern, b))
 		if !terms.Ground(instance, nil) {
 			return false
 		}
