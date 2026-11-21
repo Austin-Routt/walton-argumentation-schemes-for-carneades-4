@@ -3,7 +3,7 @@
 
 meta:
   title: "Reasoning - Practical Reasoning"
-  version: "0.2.0"
+  version: "0.3.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   exclusive_requirement_alternatives/2: "At most one of %s and %s can be required in the same stated context; they are exclusive requirement alternatives."
