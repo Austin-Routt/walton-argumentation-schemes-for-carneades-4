@@ -76,6 +76,17 @@ argument_schemes:
     variables: [A,G]
     conclusions:
       - A
+    premises:
+      - reference_group_accepted(G,A)
+
+  - id: pop_scheme_acceptance
+    meta:
+      title: Pop Scheme (the reading that you should accept A)
+      source: >
+              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
+              Argumentation Schemes. Cambridge University Press, p. 311. 
+    variables: [A,G]
+    conclusions:
       - should_accept(A)
     premises:
       - reference_group_accepted(G,A)

@@ -11,6 +11,7 @@ language:
   action_will_help/2: "Proposed action %s will really help %s."
   agent_bring_about/2: "If I, as an agent, bring about %s, then %s will occur."
   alternative_action/2: "I reasonably consider on the given information that bringing about at least one of %s is necessary to bring about %s."
+  alternative_action_sufficient/2: "I reasonably consider on the given information that bringing about at least one of %s is sufficient to bring about %s."
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
   alternative_means/2: "There are alternative means of realizing %s other than %s."
   alternatives/2: "Either you must bring about %s, or %s will occur."
@@ -60,7 +61,7 @@ language:
   more_efficient_alternative/2: "Among the alternatives to %s, another would bring about %s more efficiently."
   more_efficient_alternative_actions/2: "There are more efficient alternative actions to %s that would also bring about %s."
   more_important_ends/0: "Ends are more important than the means used to achieve them."
-  necessary_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, necessary condition for %s."
+  necessary_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, necessary condition for %s."
   necessary_or_sufficient_for_goal/3: "Bringing about %[2]s is necessary or sufficient for %[1]s to bring about %[3]s."
   not_bring_about/1: "Therefore, you had better not bring about %s."
   not_do_appear/2: "If you do not bring about %s, then %s will occur."
@@ -107,7 +108,7 @@ language:
   situation_necessiy/4: "As %s sets the situation, %s is a necessary or sufficient condition for carrying out %s, and tells %s this."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
   strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
-  sufficient_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, sufficient condition for %s."
+  sufficient_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
   tells_intend/3: "%s intends to realize %s, and tells %s this."
   too_high_to_waste/1: "The sunk costs of %s are too high to waste."
@@ -278,13 +279,13 @@ argument_schemes:
              Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
              "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
              Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,P]
+    variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(X,A)
-      - necessary_action(X,A)
+      - alternative_action(S,A)
+      - necessary_action(X,S,A)
       - practicality_action(X)
       - more_acceptable_bringing(A,X)
     exceptions:
@@ -306,13 +307,13 @@ argument_schemes:
              Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
              "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
              Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,P]
+    variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(X,A)
-      - sufficient_action(X,A)
+      - alternative_action_sufficient(S,A)
+      - sufficient_action(X,S,A)
       - practicality_action(X)
       - more_acceptable_bringing(A,X)
     exceptions:

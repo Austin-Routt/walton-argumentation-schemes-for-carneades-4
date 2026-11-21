@@ -2398,6 +2398,33 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justificati
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|static/no-reserved-functor
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|static/not-self-feeding
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|static/range-restricted
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|chr-translation
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|cli/scenario
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|engine-validator
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/assumptions-questionable
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/conclusions-in
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/fires
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/ground
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/infer-ok
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/infer-twice
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|full/terminates
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/assumptions-questionable
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/conclusions-in
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/fires
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/ground
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/infer-ok
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/infer-twice
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/negation-texts
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/premises
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/roundtrip
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/terminates
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|iso/texts
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|static/id-round-trips
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|static/no-reserved-functor
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|static/not-self-feeding
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme_acceptance|static/range-restricted
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|chr-translation
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|cli/scenario
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|engine-validator
@@ -3530,12 +3557,20 @@ cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|case
 cases/phase5.yml|plea_for_excuse/adverse-precedent-problem|roundtrip
 cases/phase5.yml|plea_for_excuse/positive|case
 cases/phase5.yml|plea_for_excuse/positive|roundtrip
+cases/phase5.yml|pop_scheme/truth-reading-alone|case
+cases/phase5.yml|pop_scheme/truth-reading-alone|roundtrip
+cases/phase5.yml|pop_scheme/two-readings-two-arguments|case
+cases/phase5.yml|pop_scheme/two-readings-two-arguments|roundtrip
 cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|case
 cases/phase5.yml|popular_opinion/adverse-no-general-acceptance|roundtrip
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|case
 cases/phase5.yml|popular_opinion/adverse-reasons-for-doubt|roundtrip
 cases/phase5.yml|popular_opinion/positive|case
 cases/phase5.yml|popular_opinion/positive|roundtrip
+cases/phase5.yml|practical_necessary_condition/adverse-member-of-another-set|case
+cases/phase5.yml|practical_necessary_condition/adverse-member-of-another-set|roundtrip
+cases/phase5.yml|practical_sufficient_condition/adverse-necessary-alternatives|case
+cases/phase5.yml|practical_sufficient_condition/adverse-necessary-alternatives|roundtrip
 cases/phase5.yml|pragmatic_inconsistency/adverse-relevance-questioned|case
 cases/phase5.yml|pragmatic_inconsistency/adverse-relevance-questioned|roundtrip
 cases/phase5.yml|pragmatic_inconsistency/positive|case
@@ -3630,6 +3665,7 @@ source_ledger.yml|ad_baculum|source/record-row
 source_ledger.yml|ad_hominem|source/record-row
 source_ledger.yml|addressee_of/2|source/name-in-language
 source_ledger.yml|advocates_conclusion/3|source/name-in-language
+source_ledger.yml|alternative_action_sufficient/2|source/name-in-language
 source_ledger.yml|alternative_cognitive|source/record-row
 source_ledger.yml|alternative_normative|source/record-row
 source_ledger.yml|analogy|source/record-row
@@ -3817,6 +3853,7 @@ source_ledger.yml|moral_justification_ad_populum_excuse|source/record-row
 source_ledger.yml|moral_justification_ad_populum|source/record-row
 source_ledger.yml|more_efficient_alternative/2|source/name-in-language
 source_ledger.yml|must_not_do/2|source/name-in-language
+source_ledger.yml|necessary_action/3|source/name-in-language
 source_ledger.yml|necessary_or_sufficient_for_goal/3|source/name-in-language
 source_ledger.yml|negative_consequences_prudential|source/record-row
 source_ledger.yml|negative_consequences_reasoning|source/record-row
@@ -3834,6 +3871,7 @@ source_ledger.yml|outcome_likely/2|source/name-in-language
 source_ledger.yml|part_in_whole|source/record-row
 source_ledger.yml|perception|source/record-row
 source_ledger.yml|plea_for_excuse|source/record-row
+source_ledger.yml|pop_scheme_acceptance|source/record-row
 source_ledger.yml|pop_scheme|source/record-row
 source_ledger.yml|popular_opinion|source/record-row
 source_ledger.yml|popular_practise|source/record-row
@@ -3880,6 +3918,7 @@ source_ledger.yml|slippery_slope_inductive_step|source/record-row
 source_ledger.yml|snob_appeal_ad_populum|source/record-row
 source_ledger.yml|sorites_slippery_slope|source/record-row
 source_ledger.yml|special_circumstances/2|source/name-in-language
+source_ledger.yml|sufficient_action/3|source/name-in-language
 source_ledger.yml|sunk_costs|source/record-row
 source_ledger.yml|supports_generalization/3|source/name-in-language
 source_ledger.yml|treat|source/record-row
@@ -3928,7 +3967,13 @@ tools/migration_r2.yml|negative_consequences_reasoning|migration/added outcome_l
 tools/migration_r2.yml|negative_normal_expectations|migration/added uninvestigated(A)
 tools/migration_r2.yml|negative_value|migration/replaced reason_retracting_goal(V,G)
 tools/migration_r2.yml|plea_for_excuse|migration/arity special_circumstances(E,T)
+tools/migration_r2.yml|pop_scheme_acceptance|migration/added should_accept(A)
+tools/migration_r2.yml|pop_scheme|migration/removed should_accept(A)
 tools/migration_r2.yml|popular_opinion|migration/removed generally_accepted(A)
+tools/migration_r2.yml|practical_necessary_condition|migration/arguments alternative_action(S,A)
+tools/migration_r2.yml|practical_necessary_condition|migration/arity necessary_action(X,S,A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/arity sufficient_action(X,S,A)
+tools/migration_r2.yml|practical_sufficient_condition|migration/replaced alternative_action_sufficient(S,A)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/added inconsistency_relevant(A,S)
 tools/migration_r2.yml|pragmatic_inconsistency|migration/removed descriptions_opposite(A,S)
 tools/migration_r2.yml|retroductive|migration/added not_fit_action(A)
@@ -6039,6 +6084,34 @@ walton.yml|plea_for_excuse|static/id-round-trips
 walton.yml|plea_for_excuse|static/no-reserved-functor
 walton.yml|plea_for_excuse|static/not-self-feeding
 walton.yml|plea_for_excuse|static/range-restricted
+walton.yml|pop_scheme_acceptance|chr-translation
+walton.yml|pop_scheme_acceptance|cli/scenario
+walton.yml|pop_scheme_acceptance|engine-validator
+walton.yml|pop_scheme_acceptance|full/assumptions-questionable
+walton.yml|pop_scheme_acceptance|full/conclusions-in
+walton.yml|pop_scheme_acceptance|full/fires
+walton.yml|pop_scheme_acceptance|full/ground
+walton.yml|pop_scheme_acceptance|full/infer-ok
+walton.yml|pop_scheme_acceptance|full/infer-twice
+walton.yml|pop_scheme_acceptance|full/premises-needed
+walton.yml|pop_scheme_acceptance|full/terminates
+walton.yml|pop_scheme_acceptance|iso/assumptions-questionable
+walton.yml|pop_scheme_acceptance|iso/conclusions-in
+walton.yml|pop_scheme_acceptance|iso/fires
+walton.yml|pop_scheme_acceptance|iso/ground
+walton.yml|pop_scheme_acceptance|iso/infer-ok
+walton.yml|pop_scheme_acceptance|iso/infer-twice
+walton.yml|pop_scheme_acceptance|iso/negation-texts
+walton.yml|pop_scheme_acceptance|iso/premises
+walton.yml|pop_scheme_acceptance|iso/premises-needed
+walton.yml|pop_scheme_acceptance|iso/roundtrip
+walton.yml|pop_scheme_acceptance|iso/terminates
+walton.yml|pop_scheme_acceptance|iso/texts
+walton.yml|pop_scheme_acceptance|source/mapped
+walton.yml|pop_scheme_acceptance|static/id-round-trips
+walton.yml|pop_scheme_acceptance|static/no-reserved-functor
+walton.yml|pop_scheme_acceptance|static/not-self-feeding
+walton.yml|pop_scheme_acceptance|static/range-restricted
 walton.yml|pop_scheme|chr-translation
 walton.yml|pop_scheme|cli/scenario
 walton.yml|pop_scheme|engine-validator

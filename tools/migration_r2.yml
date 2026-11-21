@@ -58,3 +58,9 @@ changes:
   - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
   - {record: epistemic_ignorence, kind: premise, old: "", new: "bivalent(D)", plan: "5.5", page: 328, note: "premise 5, which the record left out"}
   - {record: verbal_slippery_slope, kind: arguments, old: "individuals_propoerty(A1,F,A2)", new: "individuals_propoerty(A1,P,A2)", plan: "5.1", page: 341, note: "one property throughout; the variable F goes, the parameters are [A1,A2,A,P]"}
+  - {record: pop_scheme, kind: removed, old: "should_accept(A)", new: "", plan: "5.3", page: 311, note: "the acceptance reading is the record pop_scheme_acceptance"}
+  - {record: pop_scheme_acceptance, kind: added, old: "", new: "should_accept(A)", plan: "5.3", page: 311, note: "a new record, split from pop_scheme"}
+  - {record: practical_necessary_condition, kind: arguments, old: "alternative_action(X,A)", new: "alternative_action(S,A)", plan: "5.3", page: 323, note: "the set of alternatives; the parameters are [X,A,P,S]"}
+  - {record: practical_necessary_condition, kind: arity, old: "necessary_action(X,A)", new: "necessary_action(X,S,A)", plan: "5.3", page: 323, note: "the member X selected from the set S"}
+  - {record: practical_sufficient_condition, kind: replaced, old: "alternative_action(X,A)", new: "alternative_action_sufficient(S,A)", plan: "5.3", page: 323, note: "sufficient, as p. 96 says; the parameters are [X,A,P,S]"}
+  - {record: practical_sufficient_condition, kind: arity, old: "sufficient_action(X,A)", new: "sufficient_action(X,S,A)", plan: "5.3", page: 323, note: "the member X selected from the set S"}

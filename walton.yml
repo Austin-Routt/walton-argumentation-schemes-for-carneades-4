@@ -31,6 +31,7 @@ language:
   also_committed/2: "Generally, when an arguer is committed to %s, it can be inferred that he is also committed to %s."
   also_committed_questioned/3: "If arguer %s has committed herself to proposition %s at some point in a dialogue, then it may be inferred that she is also committed to proposition %s, should the question of whether it is true become an issue later in the dialogue."
   alternative_action/2: "I reasonably consider on the given information that bringing about at least one of %s is necessary to bring about %s."
+  alternative_action_sufficient/2: "I reasonably consider on the given information that bringing about at least one of %s is sufficient to bring about %s."
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
   alternative_means/2: "There are alternative means of realizing %s other than %s." 
   alternatives/2: "Either you must bring about %s, or %s will occur."
@@ -245,7 +246,7 @@ language:
   must_present_complementary_contrary/3: "If %s does not present the predicate %s, it must present the complementary contrary predicate %s at the same time and in the same respect."
   must_present_sametime/2: "%s must present %s at the same time and in the same respect." 
   must_proper/2: "The conditional 'if %s then %s' is not, by itself, acceptable to the respondent, nor are shorter sequences acceptable to the respondent."
-  necessary_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, necessary condition for %s."
+  necessary_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, necessary condition for %s."
   necessary_or_sufficient_for_goal/3: "Bringing about %[2]s is necessary or sufficient for %[1]s to bring about %[3]s."
   needed_nonarbitrary/2: "%s occurs in a context of dialogue that requires a nonarbitrary definition for a key property %s that occurs in the argument."
   negative_affects/3: "The fact that value %s is negative affects the interpretation and therefore the evaluation of goal %s of agent %s: if the value is bad, it goes against commitment to the goal."
@@ -395,7 +396,7 @@ language:
   succesful_account/2: "%s is the account that explains %s most successfully."
   succesful_diagram/1: "The most plausible -strongest- argument is represented by %s."
   sufficient_account/2: "%s itself, as an explanation of %s apart from other alternative explanations available so far, is sufficient."
-  sufficient_action/2: "I have selected one member %s as an acceptable, or as the most acceptable, sufficient condition for %s."
+  sufficient_action/3: "I have selected one member %s of %s as an acceptable, or as the most acceptable, sufficient condition for %s."
   sufficient_correlation/2: "Correlation between %s and %s is sufficient."
   sufficient_evidence/0: "The search for evidence has progressed sufficiently."
   sunk_costs/2:  "The costs incurred performing %s thus far are %s."
@@ -472,6 +473,17 @@ argument_schemes:
     variables: [A,G]
     conclusions:
       - A
+    premises:
+      - reference_group_accepted(G,A)
+
+  - id: pop_scheme_acceptance
+    meta:
+      title: Pop Scheme (the reading that you should accept A)
+      source: >
+              Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
+              Argumentation Schemes. Cambridge University Press, p. 311. 
+    variables: [A,G]
+    conclusions:
       - should_accept(A)
     premises:
       - reference_group_accepted(G,A)
@@ -1030,13 +1042,13 @@ argument_schemes:
              Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
              "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
              Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,P]
+    variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(X,A)
-      - necessary_action(X,A)
+      - alternative_action(S,A)
+      - necessary_action(X,S,A)
       - practicality_action(X)
       - more_acceptable_bringing(A,X)
     exceptions:
@@ -1058,13 +1070,13 @@ argument_schemes:
              Douglas Walton, "Actions and Inconsistency: The Closure Problem of Practical Reasoning.
              "In Contemporary Action Theory, vol.1 , ed. Ghita Holmstrom-Hintikka and Raimo Tuomela. Dordrecht: Kluwer, 1997, p. 164.
              Douglas Walton, Slippery Slope Arguments. Newport News, Va.: Vale Press, 1992, pp. 89-90.
-    variables: [X,A,P]
+    variables: [X,A,P,S]
     conclusions:
       - bringing_about_action(X)
     premises:
       - goal_of_agent(P,A)
-      - alternative_action(X,A)
-      - sufficient_action(X,A)
+      - alternative_action_sufficient(S,A)
+      - sufficient_action(X,S,A)
       - practicality_action(X)
       - more_acceptable_bringing(A,X)
     exceptions:

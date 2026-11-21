@@ -58,7 +58,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml:
 
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml:
   title: Source-based Arguments - Arguments from Popular Acceptance
-  schemes: [popular_opinion, pop_scheme, deliberation_ad_populum,
+  schemes: [popular_opinion, pop_scheme, pop_scheme_acceptance, deliberation_ad_populum,
             moral_justification_ad_populum,
             moral_justification_ad_populum_excuse, snob_appeal_ad_populum,
             appeal_to_vanity_ad_populum, rhetoric_ad_populum,

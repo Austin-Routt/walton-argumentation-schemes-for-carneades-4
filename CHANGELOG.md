@@ -42,6 +42,10 @@ The printed critical questions are sorted record by record (5.1) into the four k
   * `epistemic_ignorence` (27, p. 328): premise 5, `bivalent(D)`, was missing (5.5).
   * `verbal_slippery_slope` (52, p. 341): one property throughout, `individuals_propoerty(A1,P,A2)`; premise 2 had a property variable of its own.
   * `gradualism` (48, p. 339): the sequence premise says that each proposition implies the next, as the book does, not that the conditionals "must be in proper order".
+* 5.3, the variants the R1 repairs left open:
+  * `practical_necessary_condition`, `practical_sufficient_condition` (22.2, 22.3, p. 323): the set of alternatives and the member selected from it are two variables, `alternative_action(S,A)` and `necessary_action(X,S,A)`; the sufficient scheme's alternatives premise says sufficient, `alternative_action_sufficient(S,A)`, as p. 96 does where p. 323 prints necessary (a reading the book supports, 5.8). The parameters are `[X,A,P,S]`.
+  * `pop_scheme` (4.1, p. 311) becomes two records, one for each reading of the conclusion: `pop_scheme` concludes that A is true, the new `pop_scheme_acceptance` that you should accept A. `walton.yml` holds 119 records.
+  * `exeptional`'s conditional questions and `bias`'s stray variable are done above; `ad_hominem` keeps the book's conclusion, that the argument should not be accepted, and the weight it loses against other evidence is the exception `stronger_than_character(S)` and the weighing of the issue (CQ3).
 * `tools/migration_r2.yml` starts the old-to-new table of R2 (5.6): every change of Phase 5 that alters what a graph has to state. `tools/vv` checks each row against the library (`migration/*`).
 
 ## 2026-11-21 — release R1, a preview (library 0.1.0, engine 4.3.1+walton.1)

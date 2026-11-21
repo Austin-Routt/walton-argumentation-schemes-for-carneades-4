@@ -809,3 +809,50 @@ cases:
     no_arguments: [verbal_slippery_slope]
     not_in:
       - not_has_propery(a1,bald)
+
+  # --- 5.3: variants the R1 repairs left open --------------------------------
+  # 22.2, 22.3 (p. 323): the set of alternatives S and the member selected X
+  # are two variables; 22.3's alternatives premise says sufficient (p. 96).
+  - name: practical_necessary_condition/adverse-member-of-another-set
+    source: "22.2, p. 323"
+    assumptions:
+      - goal_of_agent(me,a)
+      - alternative_action(alts,a)
+      - necessary_action(b1,others,a)
+      - practicality_action(b1)
+      - more_acceptable_bringing(a,b1)
+    no_arguments: [practical_necessary_condition]
+    not_in:
+      - bringing_about_action(b1)
+  - name: practical_sufficient_condition/adverse-necessary-alternatives
+    source: "22.3, p. 323; p. 96"
+    assumptions:
+      - goal_of_agent(me,a)
+      - alternative_action(alts,a)
+      - sufficient_action(b1,alts,a)
+      - practicality_action(b1)
+      - more_acceptable_bringing(a,b1)
+    no_arguments: [practical_sufficient_condition]
+    not_in:
+      - bringing_about_action(b1)
+
+  # 4.1 (p. 311): the conclusion's two readings are two records.
+  - name: pop_scheme/two-readings-two-arguments
+    source: "4.1, p. 311"
+    assumptions:
+      - reference_group_accepted(g,claim)
+    arguments:
+      - pop_scheme(claim,g)
+      - pop_scheme_acceptance(claim,g)
+    in:
+      - claim
+      - should_accept(claim)
+  - name: pop_scheme/truth-reading-alone
+    source: "4.1, p. 311"
+    library: B_source-based-arguments/4_argumen-from-popular-acceptence.yml
+    assumptions:
+      - reference_group_accepted(g,claim)
+    arguments:
+      - pop_scheme(claim,g)
+    in:
+      - claim
