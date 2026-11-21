@@ -763,10 +763,11 @@ records:
   entry: '4.7'
   claim: interpretation
   stage: example-passed
-  note: Legacy acceptance branch for one designated respondent. It now requires group_accepted(G,A) as an ordinary premise
+  note: 'Legacy acceptance branch for one designated respondent. It now requires group_accepted(G,A) as an ordinary premise
     selecting the acceptance clause of the inherited disjunctive wording; possession/property evidence alone cannot justify
     acceptance. Separate named respondent acceptance/acquisition/purchase records cover all printed branches. See docs/source-branch-contracts.md;
-    bibliography predecessors are not claimed as inspected.
+    bibliography predecessors are not claimed as inspected. Second check, by the implementer (a different system from the
+    author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -865,6 +866,8 @@ records:
   - plan: closure-scope-repair
     page: 314
     claim: interpretation
+  note: ' Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14),
+    2026-11-21, against the printed p. 314: concurs. See docs/reviews/implementer-second-response.md.'
 - record: from_example
   origin: book
   entry: '6.1'
@@ -965,6 +968,8 @@ records:
   - plan: closure-scope-repair
     page: 315
     claim: interpretation
+  note: ' Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14),
+    2026-11-21, against the printed p. 315: concurs. See docs/reviews/implementer-second-response.md.'
 - record: practical_analogy_positive
   origin: book
   entry: '8.1'
@@ -1060,8 +1065,11 @@ records:
   - plan: '5.6'
     page: 317
     claim: interpretation
-  note: Positive three-part source adaptation now requires an explicit sufficient-direction witness; only-if alone does not
+  note: 'Positive three-part source adaptation now requires an explicit sufficient-direction witness; only-if alone does not
     license the conclusion. General selected-part and universal-negative forms are separate records; see docs/source-closure-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 317: concurs. Remark: the sufficiency premise is stricter than the printed presumptive form, which
+    affirms the whole from one part under an only-if premise; declared, not printed. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -1185,6 +1193,8 @@ records:
     decision: approved
     note: Independently compared the non-author change with source and positive/adverse expectations; docs/reviews/closure-family-independent-acceptance.md.
       Static and context qualifications stated there are part of the accepted interpretation.
+  note: ' Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14),
+    2026-11-21, against the printed p. 318: concurs. See docs/reviews/implementer-second-response.md.'
 - record: verbal_classification_vagueness
   origin: book
   entry: '16'
@@ -1309,7 +1319,8 @@ records:
     page: 321
     claim: interpretation
   note: ' Closure revision: explicit participant/application identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md;
-    independent acceptance is recorded separately.'
+    independent acceptance is recorded separately. Second check, by the implementer (a different system from the author and
+    from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 321: concurs. See docs/reviews/implementer-second-response.md.'
 - record: negative_value
   origin: book
   entry: '19.2'
@@ -1334,7 +1345,8 @@ records:
       not a full dialogue protocol or numeric evidence model. Evidence: docs/reviews/closure-context-independent-acceptance.md:
       negative_value; tools/vv/cases/closure_context.yml.'
   note: ' Closure revision: explicit participant/application identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md;
-    independent acceptance is recorded separately.'
+    independent acceptance is recorded separately. Second check, by the implementer (a different system from the author and
+    from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 321: concurs. See docs/reviews/implementer-second-response.md.'
 - record: sacrifice
   origin: book
   entry: '20'
@@ -1429,9 +1441,11 @@ records:
   - plan: closure-scope-repair
     page: 323
     claim: interpretation
-  note: the first person is the agent P, as in 22.2 to 22.4 (p. 95), and the conclusion is should_do(P,A), which 4.8's second
+  note: 'the first person is the agent P, as in 22.2 to 22.4 (p. 95), and the conclusion is should_do(P,A), which 4.8''s second
     person no longer shares (5.6) Source question-induced suspension is available through the finite, independently reviewed
-    dialogue snapshot profile; canonical exceptions alone do not implement a question utterance.
+    dialogue snapshot profile; canonical exceptions alone do not implement a question utterance. Second check, by the implementer
+    (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 323:
+    concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)
     date: '2026-11-21'
@@ -1586,7 +1600,8 @@ records:
     note: Source and executable profile independently accepted within the declared scope. See docs/reviews/closure-dialogue-independent-acceptance.md;
       canonical static graphs and the finite dialogue adapter have distinct stated burdens.
   note: ' Source question-induced suspension is available through the finite, independently reviewed dialogue snapshot profile;
-    canonical exceptions alone do not implement a question utterance.'
+    canonical exceptions alone do not implement a question utterance. Second check, by the implementer (a different system
+    from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 324: concurs. See docs/reviews/implementer-second-response.md.'
 - record: practical_goal
   origin: book
   entry: '22.5'
@@ -1635,7 +1650,8 @@ records:
     negation is a supported rejection, never lack of proof. This is not an actor/action obligation calculus. Positive reclassification
     branch now names one evaluation context C in all three statements; the same-context importance warrant is an ordinary
     premise. The reverse branch is separately executable. Existing graphs need manual context migration. See docs/source-branch-contracts.md;
-    bibliography predecessors are not claimed as inspected.'
+    bibliography predecessors are not claimed as inspected. Second check, by the implementer (a different system from the
+    author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 325: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)
     date: '2026-11-21'
@@ -1711,7 +1727,8 @@ records:
       canonical static graphs and the finite dialogue adapter have distinct stated burdens.
   note: 'PR13 reconciliation: sees, not sets; preserve the adviser-to-agent report, corroborated by p97. See docs/reviews/peer13-first-half-addendum.md.
     Source question-induced suspension is available through the finite, independently reviewed dialogue snapshot profile;
-    canonical exceptions alone do not implement a question utterance.'
+    canonical exceptions alone do not implement a question utterance. Second check, by the implementer (a different system
+    from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 325: concurs. See docs/reviews/implementer-second-response.md.'
 - record: waste
   origin: book
   entry: '24'
@@ -1879,7 +1896,9 @@ records:
   note: 'more_reliable names the sign since 5.4 Independent source review 2026-11-21: qualified. Before unrestricted multi-interpretation
     use, scope the comparator to the candidate (A,B) or impose and test a one-candidate-per-sign case contract. Keep below
     blanket example-passed approval. Closure revision: explicit participant/application identities and discriminating mixed-context
-    cases in docs/reviews/closure-context-repairs.md; independent acceptance is recorded separately.'
+    cases in docs/reviews/closure-context-repairs.md; independent acceptance is recorded separately. Second check, by the
+    implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed
+    p. 329: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -1918,7 +1937,8 @@ records:
   note: ' Independent source review 2026-11-21: qualified. Document and enforce one candidate universe per D or add an explicit
     membership/comparison link before approving unrestricted multi-inquiry use. Closure revision: explicit participant/application
     identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md; independent acceptance is
-    recorded separately.'
+    recorded separately. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 329: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -2125,8 +2145,8 @@ records:
 - record: negative_consequences_prudential
   origin: book
   entry: '33.4'
-  cites: 'Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp.
-    155- 156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.'
+  cites: 'Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-
+    156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.'
   claim: interpretation
   stage: example-passed
   questions:
@@ -2141,17 +2161,19 @@ records:
   - n: 3
     kind: exception
     as: other_consequences(X)
-  note: PR16 D23 identified a real omission in the earlier closure candidate. The printed33.4 premise permits likely
-    consequences and the shared CQ1 specifies no fixed strong threshold. The revised assumption expresses application-relative
-    adequacy for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception
-    are preserved; old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md.
+  note: 'PR16 D23 identified a real omission in the earlier closure candidate. The printed33.4 premise permits likely consequences
+    and the shared CQ1 specifies no fixed strong threshold. The revised assumption expresses application-relative adequacy
+    for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception are preserved;
+    old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md. Second check, by the implementer
+    (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 332:
+    concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: closure/root-source-review
     date: '2026-11-21'
     decision: approved
-    note: 'Independent non-author review of source printed pp.332–333, omission/action distinction, nine live cases,
-      old-threshold counterexample and manual migration. Focused 797/797, migration16 and validator5 groups passed. See
-      docs/reviews/closure-independent-source-acceptance.md: Entry33.4.'
+    note: 'Independent non-author review of source printed pp.332–333, omission/action distinction, nine live cases, old-threshold
+      counterexample and manual migration. Focused 797/797, migration16 and validator5 groups passed. See docs/reviews/closure-independent-source-acceptance.md:
+      Entry33.4.'
   changes:
   - plan: pr16-reconciliation
     page: 332
@@ -2184,7 +2206,9 @@ records:
     page: 332
     claim: interpretation
   note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 332: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: closure/root-source-review
     date: '2026-11-21'
@@ -2548,7 +2572,8 @@ records:
   note: ' Independent source review 2026-11-21: qualified. Before unrestricted use, bind character_issue and credibility_questioned
     to (A,S), with adverse wrong-argument controls and migration, or enforce one attacked argument per person/context. Closure
     revision: explicit participant/application identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md;
-    independent acceptance is recorded separately.'
+    independent acceptance is recorded separately. Second check, by the implementer (a different system from the author and
+    from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 337: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -2794,7 +2819,8 @@ records:
     2026-11-21: qualified. Use one institution or institution-qualified ground terms. A generally multi-institution release
     should carry I in the counts-as statement and corresponding consumers. Closure revision: explicit participant/application
     identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md; independent acceptance is
-    recorded separately.'
+    recorded separately. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 342: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -2816,7 +2842,8 @@ records:
   note: 'the warrant speakers_correct stays global (5.4) Independent source review 2026-11-21: qualified. Retain a single-language/definition
     context qualification or make language and definition explicit before unrestricted composition across languages. Closure
     revision: explicit participant/application identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md;
-    independent acceptance is recorded separately.'
+    independent acceptance is recorded separately. Second check, by the implementer (a different system from the author and
+    from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 342: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -2990,7 +3017,8 @@ records:
   note: ' Independent source review 2026-11-21: qualified. Use case-specific excuse and sanction terms, or introduce explicit
     pleader/case scope before approving unrestricted multi-plea graphs. Closure revision: explicit participant/application
     identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md; independent acceptance is
-    recorded separately.'
+    recorded separately. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 345: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3014,7 +3042,8 @@ records:
     memory. PR13 follow-up: the conclusion is now the shared reasonable_believe(I), meaning the same proposition/circumstance
     as memory. The observer/context qualification remains; this rename does not promote the row. Closure revision: explicit
     participant/application identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md;
-    independent acceptance is recorded separately.'
+    independent acceptance is recorded separately. Second check, by the implementer (a different system from the author and
+    from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 345: concurs. See docs/reviews/implementer-second-response.md.'
   changes:
   - plan: peer-review-13
     page: 345
@@ -3110,6 +3139,8 @@ records:
   - plan: closure-scope-repair
     page: 315
     claim: interpretation
+  note: ' Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14),
+    2026-11-21, against the printed p. 315: concurs. See docs/reviews/implementer-second-response.md.'
 - record: appearance
   origin: upstream
   entry: '59.2'
@@ -3161,7 +3192,8 @@ records:
     the single causal-context interpretation. The stale ledger note saying no meta.source is historical: the current record
     does have a compendium source. No separate original book was independently verified here. Closure revision: explicit participant/application
     identities and discriminating mixed-context cases in docs/reviews/closure-context-repairs.md; independent acceptance is
-    recorded separately.'
+    recorded separately. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 328: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3350,7 +3382,8 @@ records:
     (D5, 5.5) Independent source review 2026-11-21: block. Do not approve as exact entry 41. Retain as an explicitly qualified
     legacy variant outside a fully source-certified release, or replace/add a scoped reduced-plausibility formulation and
     cases. The cited 1995 work remains unverified. Closure correction supersedes the old behavior: reduced plausibility is
-    explicit and no longer concludes the negation of the assertion.'
+    explicit and no longer concludes the negation of the assertion. Second check, by the implementer (a different system from
+    the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -3808,8 +3841,9 @@ records:
   - plan: closure-review
     page: 316
     claim: interpretation
-  note: Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
-    independent approval.
+  note: 'Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
+    independent approval. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 316: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3829,8 +3863,11 @@ records:
   - plan: closure-review
     page: 316
     claim: interpretation
-  note: Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
-    independent approval.
+  note: 'Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
+    independent approval. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 316: concurs. Remark: the degree variants conclude both that y is
+    A and that it is less A than X; the print offers the lesser degree in place of the plain conclusion, so the first conclusion
+    is a reading, not a transcription. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3855,8 +3892,10 @@ records:
   - plan: closure-review
     page: 316
     claim: interpretation
-  note: Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
-    independent approval.
+  note: 'Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
+    independent approval. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 316: concurs. Remark: as for part_in_whole_species_degree, the plain
+    conclusion beside the lesser degree is a reading. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3881,8 +3920,10 @@ records:
   - plan: closure-review
     page: 316
     claim: interpretation
-  note: Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
-    independent approval.
+  note: 'Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
+    independent approval. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 316: concurs. Remark: as for part_in_whole_species_degree, the plain
+    conclusion beside the lesser degree is a reading. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3907,8 +3948,9 @@ records:
   - plan: closure-review
     page: 317
     claim: interpretation
-  note: Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
-    independent approval.
+  note: 'Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
+    independent approval. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 317: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3933,8 +3975,9 @@ records:
   - plan: closure-review
     page: 317
     claim: interpretation
-  note: Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
-    independent approval.
+  note: 'Explicit source alternative with the contract in docs/source-closure-contracts.md; proposed implementation awaits
+    independent approval. Second check, by the implementer (a different system from the author and from the closure''s own
+    reviewers; D14), 2026-11-21, against the printed p. 317: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3952,9 +3995,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: The source actual-goal branch, with a named respondent and acceptance represented as an action; no bridge from an
+  note: 'The source actual-goal branch, with a named respondent and acceptance represented as an action; no bridge from an
     ought-goal to an actual goal. Source claim is the supplied compendium, not independent inspection of its bibliographical
-    predecessors. See docs/source-branch-contracts.md.
+    predecessors. See docs/source-branch-contracts.md. Second check, by the implementer (a different system from the author
+    and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3970,8 +4014,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: The parenthetical ought-goal branch; recommending this goal does not assert that the respondent actually has it. Source
-    claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+  note: 'The parenthetical ought-goal branch; recommending this goal does not assert that the respondent actually has it.
+    Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -3987,8 +4033,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: Separate action branch; group practice, the same action norm and this speaker's membership are explicit premises.
+  note: 'Separate action branch; group practice, the same action norm and this speaker''s membership are explicit premises.
     Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4004,8 +4052,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: Separate policy-acceptance branch; it does not infer the policy's truth or confuse accepting it with any associated
+  note: 'Separate policy-acceptance branch; it does not infer the policy''s truth or confuse accepting it with any associated
     action. Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4021,8 +4071,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: Matched acceptance branch with named respondent; objects are not conclusions asserted as propositions. Source claim
+  note: 'Matched acceptance branch with named respondent; objects are not conclusions asserted as propositions. Source claim
     is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4038,8 +4090,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: Matched property-acquisition branch; every member having a property is distinct from the group collectively having
+  note: 'Matched property-acquisition branch; every member having a property is distinct from the group collectively having
     it. Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4055,9 +4109,10 @@ records:
   - plan: closure-review
     page: 312
     claim: interpretation
-  note: Matched purchase branch; possession of a kind of object and the respondent's purchase-to-membership warrant are both
-    required. Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See
-    docs/source-branch-contracts.md.
+  note: 'Matched purchase branch; possession of a kind of object and the respondent''s purchase-to-membership warrant are
+    both required. Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors.
+    See docs/source-branch-contracts.md. Second check, by the implementer (a different system from the author and from the
+    closure''s own reviewers; D14), 2026-11-21, against the printed p. 312: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4073,9 +4128,10 @@ records:
   - plan: closure-review
     page: 322
     claim: interpretation
-  note: Source small-sacrifice alternative with its conditional supplied explicitly as an application premise; no invalid
+  note: 'Source small-sacrifice alternative with its conditional supplied explicitly as an application premise; no invalid
     converse from the great-sacrifice conditional. Source claim is the supplied compendium, not independent inspection of
-    its bibliographical predecessors. See docs/source-branch-contracts.md.
+    its bibliographical predecessors. See docs/source-branch-contracts.md. Second check, by the implementer (a different system
+    from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 322: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4099,8 +4155,10 @@ records:
   - plan: closure-review
     page: 325
     claim: interpretation
-  note: Printed bad-end/bad-means branch; this supplies a defeasible valuation argument, not a universal moral truth. Source
+  note: 'Printed bad-end/bad-means branch; this supplies a defeasible valuation argument, not a universal moral truth. Source
     claim is the supplied compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 325: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4118,9 +4176,11 @@ records:
   - plan: closure-review
     page: 325
     claim: interpretation
-  note: Printed less-bad alternative interpreted qualitatively relative to evaluating the same means without the good purpose;
+  note: 'Printed less-bad alternative interpreted qualitatively relative to evaluating the same means without the good purpose;
     prior badness is an explicit application precondition. It is not goodness or numerical utility. Source claim is the supplied
-    compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md.
+    compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md. Second
+    check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 325: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4148,7 +4208,9 @@ records:
     negation is a supported rejection, never lack of proof. This is not an actor/action obligation calculus. Printed reverse
     reclassification branch; the importance warrant is an ordinary premise about the same evaluation context, and the conclusion
     directly opposes the positive branch in that context. Source claim is the supplied compendium, not independent inspection
-    of its bibliographical predecessors. See docs/source-branch-contracts.md.'
+    of its bibliographical predecessors. See docs/source-branch-contracts.md. Second check, by the implementer (a different
+    system from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 325: concurs. See
+    docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)
     date: '2026-11-21'
@@ -4166,9 +4228,10 @@ records:
   - plan: closure-review
     page: 325
     claim: interpretation
-  note: Printed not-easy branch, requiring explicit negative evidence; absence of evidence that a means is easy does not establish
-    it is not easy. Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors.
-    See docs/source-branch-contracts.md.
+  note: 'Printed not-easy branch, requiring explicit negative evidence; absence of evidence that a means is easy does not
+    establish it is not easy. Source claim is the supplied compendium, not independent inspection of its bibliographical predecessors.
+    See docs/source-branch-contracts.md. Second check, by the implementer (a different system from the author and from the
+    closure''s own reviewers; D14), 2026-11-21, against the printed p. 325: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -4186,11 +4249,14 @@ records:
   - plan: closure-review
     page: 327
     claim: interpretation
-  note: The opposite printed seriousness ranking and true-presumption conclusion. Search adequacy is a challengeable assumption;
+  note: 'The opposite printed seriousness ranking and true-presumption conclusion. Search adequacy is a challengeable assumption;
     burden/probandum and proof standard are declared graph policy, not inferred dialogue states. Source claim is the supplied
     compendium, not independent inspection of its bibliographical predecessors. See docs/source-branch-contracts.md. Current
     approval requires case-qualified propositions or one declared situation, with explicit application burden/probandum/standard
-    metadata; see docs/dialogue-snapshots.md. The cited 1995/1996 predecessors are not claimed independently verified.
+    metadata; see docs/dialogue-snapshots.md. The cited 1995/1996 predecessors are not claimed independently verified. Second
+    check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
+    against the printed p. 327: concurs. Remark: the conclusion template says "I should act", the print "I act", as in negative_practical.
+    See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)
     date: '2026-11-21'
@@ -4231,8 +4297,9 @@ records:
   - plan: closure-supplemental
     page: 336
     claim: interpretation
-  note: Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
-    holds on inherited records.
+  note: 'Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
+    holds on inherited records. Second check, by the implementer (a different system from the author and from the closure''s
+    own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT fresh non-author acceptance reviewer
     date: '2026-11-21'
@@ -4260,8 +4327,9 @@ records:
   - plan: closure-supplemental
     page: 336
     claim: interpretation
-  note: Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
-    holds on inherited records.
+  note: 'Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
+    holds on inherited records. Second check, by the implementer (a different system from the author and from the closure''s
+    own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT fresh non-author acceptance reviewer
     date: '2026-11-21'
@@ -4288,8 +4356,9 @@ records:
   - plan: closure-supplemental
     page: 339
     claim: interpretation
-  note: Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
-    holds on inherited records.
+  note: 'Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
+    holds on inherited records. Second check, by the implementer (a different system from the author and from the closure''s
+    own reviewers; D14), 2026-11-21, against the printed p. 339: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT fresh non-author acceptance reviewer
     date: '2026-11-21'
@@ -4316,8 +4385,9 @@ records:
   - plan: closure-supplemental
     page: 343
     claim: interpretation
-  note: Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
-    holds on inherited records.
+  note: 'Explicit source-targeted variant. See docs/reviews/closure-supplemental-source-changes.md. Does not discharge provenance
+    holds on inherited records. Second check, by the implementer (a different system from the author and from the closure''s
+    own reviewers; D14), 2026-11-21, against the printed p. 343: concurs. See docs/reviews/implementer-second-response.md.'
   review:
     by: ChatGPT fresh non-author acceptance reviewer
     date: '2026-11-21'

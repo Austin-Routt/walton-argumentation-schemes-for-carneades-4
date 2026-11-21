@@ -150,3 +150,34 @@ candidate. #14 can be closed as superseded once this branch is merged.
 * **Owner:** the original sources other than the compendium and Atkinson 2007
   (the 1995, 1996 and 2006 books and the 2019 correspondence) remain
   unavailable; the holds that depend on them stand.
+
+## Corrections (added 2026-11-21, evening)
+
+Both follow-up reviews found errors in this response. Each was checked again
+and is corrected here; the text above is left as it was written.
+
+* **"Seven of the eight."** The table in section 1 lists nine claims and
+  marks eight reproduced. The count was wrong.
+* **The defeated default.** My probe stipulated nothing against the default:
+  it supported a contrary by an argument, which tests a different rule. The
+  first review's exact probe (a stipulated contrary) gives two arguments and
+  `p`, `q`, `extra` assumed on `96daf6c`, and no argument with `p` out on
+  `fccec4f`. It was a ninth real defect, fixed by the acceptance candidate.
+* **"Safety valves, not working limits."** Too strong. The budgets of
+  50,000,000 are finite limits; a larger finite input is still refused, with
+  the documented outcome.
+* **The timings.** The 500-, 800- and 1,200-fact graphs were not kept in the
+  repository, so those figures cannot be checked from it. The first review's
+  follow-up keeps its own fixtures and timings; use those.
+* **"Held for scope, not errors."** For seven of the 25 records (entries 22.4,
+  28, 30, 31.1, 45, 58, 59.1) the hold named a real defect: an exception or a
+  conclusion that names too few participants, so that one instance can
+  defeat or feed another. All seven are repaired in library 0.3.0.
+* **"The books are unavailable."** Overbroad: relevant pages of Walton 2002
+  and 2006 and an author-hosted 2003 paper were found by the first review.
+  Other originals remain unavailable.
+* **My key lookup** missed statements whose keys a program spelled
+  differently from the engine (`accepts( a )`); files read by the command
+  were not affected. Engine walton.5 fixes it.
+
+See `docs/reviews/implementer-second-response.md`.

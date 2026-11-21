@@ -7,7 +7,7 @@ library today, and the command gives every label its `tests:` expect.
 
 ## Source approval and scope
 
-The full143-record file is a preview.128 records have independently approved interpretations, recorded as `example-passed` and bound to current fingerprints.15 inherited records retain source or interpretation holds. The [current register](reviews/closure-current-register.md) gives every disposition. Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
+The full 143-record file is a preview. 128 records have independently approved interpretations, recorded as `example-passed` and bound to current fingerprints. 15 inherited records retain source or interpretation holds. The [current register](reviews/closure-current-register.md) gives every disposition. Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
 
 API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
 
@@ -110,7 +110,7 @@ count only once they are shown.
 * **Expected labels** go under `tests:`, with the lists `in`, `out` and
   `undecided`. A statement named there has to be declared under
   `statements:`, with its text; otherwise the command refuses the file.
-* **I and you.** Legacy unqualified forms in entries4.5–4.9,26.2,33.4,34–37,51 and52 use one declared proponent/respondent context. Several entries now also have named-participant variants; choose those for several actors, or use separate graphs or context-qualified terms where the record's contract supports them. The named practical schemes carry the acting agent as a case constant. Entry58 now explicitly names pleader P and case C; it is no longer an example of an unqualified speaker.
+* **I and you.** Legacy unqualified forms in entries 4.5–4.9,26.2,33.4,34–37,51 and 52 use one declared proponent/respondent context. Several entries now also have named-participant variants; choose those for several actors, or use separate graphs or context-qualified terms where the record's contract supports them. The named practical schemes carry the acting agent as a case constant. Entry 58 now explicitly names pleader P and case C; it is no longer an example of an unqualified speaker.
 
 ## Pro and con in one issue
 
@@ -124,10 +124,10 @@ against falls, and `should_do(me,take_job)` is in.
 
 The library shares a statement between schemes where the book means the same
 thing by it (the shared-vocabulary contract): `should_do/2` is the practical ought of entry 22,
-of 6.3, 23, 25, 38 and39; `has_property/2` the property of entries 9,
+of 6.3, 23, 25, 38 and 39; `has_property/2` the property of entries 9,
 10, 21, 31.5 and 52; and "A is (plausibly) true" is the statement A itself. So
 the conclusion of one scheme can be the premise of another, and arguments
-from different schemes meet in one issue. Entry6.4 instead concludes `should_refrain/2`; it has no automatic bridge to `¬should_do/2`, preserving the source distinction between recommending restraint and merely lacking an obligation to act.
+from different schemes meet in one issue. Entry 6.4 instead concludes `should_refrain/2`; it has no automatic bridge to `¬should_do/2`, preserving the source distinction between recommending restraint and merely lacking an obligation to act.
 
 ## Versions
 

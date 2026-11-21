@@ -4778,6 +4778,12 @@ cases/independent_peer13.yml|perception/peer13-unreliable-image-leaves-memory|ca
 cases/independent_peer13.yml|perception/peer13-unreliable-image-leaves-memory|roundtrip
 cases/migration/perception_conclusion.yml|(file)|migration/fixture
 cases/migration/r1_graph.yml|(file)|migration/fixture
+cases/negation.yml|negation/falsification-of-a-negative-hypothesis|case
+cases/negation.yml|negation/falsification-of-a-negative-hypothesis|roundtrip
+cases/negation.yml|negation/ignorance-of-a-negative-statement|case
+cases/negation.yml|negation/ignorance-of-a-negative-statement|roundtrip
+cases/negation.yml|negation/ignorance-of-a-positive-statement|case
+cases/negation.yml|negation/ignorance-of-a-positive-statement|roundtrip
 cases/peer13_source.yml|illustration/peer13-shared-conjunction-chains-from-example|case
 cases/peer13_source.yml|illustration/peer13-shared-conjunction-chains-from-example|roundtrip
 cases/peer13_source.yml|interaction_act_person_2/peer13-shared-person-valuation-chains|case
@@ -9900,6 +9906,7 @@ walton.yml|witness_testimony|static/not-self-feeding
 walton.yml|witness_testimony|static/range-restricted
 |(engine)|argument-from-scheme-and-parameters
 |(engine)|arithmetic-in-a-statement-is-invalid-input
+|(engine)|authored-double-negation-collision-is-refused
 |(engine)|baseline-cli-upstream-walton-example
 |(engine)|baseline-dot-export-renders
 |(engine)|baseline-negation-issue
@@ -9921,6 +9928,8 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|default-yields-to-stipulated-negation
 |(engine)|default-yields-to-stipulated-position
 |(engine)|deletions-and-guards-are-unsupported
+|(engine)|derived-double-negation-is-the-statement
+|(engine)|derived-nested-double-negation-is-the-statement
 |(engine)|engine-keeps-stdout-clean
 |(engine)|engine-version-recorded
 |(engine)|explicit-argument-without-questions-is-reported
@@ -9948,6 +9957,7 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|infer-twice-with-exception
 |(engine)|invalid-expected-label-is-rejected
 |(engine)|invalid-rule-is-reported
+|(engine)|issue-construction-is-repeatable
 |(engine)|issue-extension-keeps-positions
 |(engine)|labelling-returns-after-issue-gains-position
 |(engine)|large-issue-closure-completes

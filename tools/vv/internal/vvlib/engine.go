@@ -613,6 +613,177 @@ assumptions: ["p(a,b)"]
 		out = append(out, eres("failing-join-completes", e.usable() && e.Label("t(c1,c2,c3)") == "in",
 			"a four-premise join over 120 facts with one match: t(c1,c2,c3) should be in, it is %s %s", e.Label("t(c1,c2,c3)"), e.why()))
 	}
+	{
+		// From pull request #17 (finding F1 of the second review's follow-up):
+		// a scheme that concludes ¬S for a negative S concludes S. The rule
+		// store reads ¬¬S as S and reasons from it; the graph names the same
+		// statement (docs/contracts.md, contract 4). Before engine walton.4/.5
+		// the store built the next argument from q(a) while the graph held
+		// ¬¬q(a) in and left q(a), and what followed from it, out.
+		e := EvalYAML(`
+language:
+  denies/1: "It is denied that %s."
+  q/1: "%s is q."
+  p/1: "%s is p."
+issue_schemes:
+  negation: [S, "¬S"]
+argument_schemes:
+  - id: deny
+    variables: [S]
+    premises: ["denies(S)"]
+    conclusions: ["¬S"]
+  - id: next
+    variables: [X]
+    premises: ["q(X)"]
+    conclusions: ["p(X)"]
+statements:
+  q(a): a is q.
+assumptions: ["denies(¬q(a))", "denies(q(b))"]
+`)
+		double, reported := []string{}, []string{}
+		if e.AG != nil {
+			for k := range e.AG.Statements {
+				if strings.Contains(k, "¬¬") {
+					double = append(double, k)
+				}
+			}
+			for _, p := range validation.Validate(e.AG) {
+				if p.Category == validation.ARGUMENT {
+					reported = append(reported, p.Id+": "+p.Description)
+				}
+			}
+		}
+		sort.Strings(double)
+		sort.Strings(reported)
+		out = append(out, eres("derived-double-negation-is-the-statement",
+			e.usable() && len(double) == 0 && len(reported) == 0 && e.Label("q(a)") == "in" && e.Label("p(a)") == "in" && e.Label("¬q(b)") == "in",
+			"denies(¬q(a)) under a scheme that concludes ¬S: want q(a) and p(a) in, ¬q(b) in, no statement with ¬¬ and a valid graph; got q(a) %s, p(a) %s, ¬q(b) %s, statements %v, validation %v %s",
+			e.Label("q(a)"), e.Label("p(a)"), e.Label("¬q(b)"), double, reported, e.why()))
+	}
+	{
+		// The same identity inside a term: q(¬X) with X = ¬a is q(a), and a
+		// scheme with the premise q(a) builds on it. With only the top level
+		// folded, the graph held q(¬¬a) in, q(a) and t out, although the
+		// argument for t had been built.
+		e := EvalYAML(`
+language:
+  p/1: "%s is p."
+  q/1: "%s is q."
+  t/0: "t holds."
+argument_schemes:
+  - id: s1
+    variables: [X]
+    premises: ["p(X)"]
+    conclusions: ["q(¬X)"]
+  - id: s2
+    variables: []
+    premises: ["q(a)"]
+    conclusions: ["t"]
+assumptions: ["p(¬a)"]
+`)
+		nested := false
+		if e.AG != nil {
+			for k := range e.AG.Statements {
+				nested = nested || strings.Contains(k, "¬¬")
+			}
+		}
+		out = append(out, eres("derived-nested-double-negation-is-the-statement",
+			e.usable() && !nested && e.Label("q(a)") == "in" && e.Label("t") == "in",
+			"p(¬a) under p(X) => q(¬X) and q(a) => t: want q(a) and t in and no statement with ¬¬; got q(a) %s, t %s, such a statement %v %s",
+			e.Label("q(a)"), e.Label("t"), nested, e.why()))
+	}
+	{
+		// Two statement keys that name one formula, q(a) and ¬¬q(a), are
+		// refused as invalid input rather than one silently replacing the
+		// other (contract 4). From pull request #17, which refused every key
+		// with a double negation; engine walton.5 reads a lone ¬¬q(a) as q(a)
+		// and refuses only the collision.
+		e := EvalYAML(`
+language:
+  q/1: "%s is q."
+issue_schemes:
+  negation: [S, "¬S"]
+statements:
+  q(a): a is q.
+  "¬q(a)": a is not q.
+  "¬¬q(a)": a is not not q.
+assumptions: ["¬¬q(a)"]
+`)
+		refused := !e.usable() && strings.Contains(e.why(), "normalize to the same formula")
+		lone := EvalYAML(`
+language:
+  q/1: "%s is q."
+issue_schemes:
+  negation: [S, "¬S"]
+statements:
+  "¬q(a)": a is not q.
+  "¬¬q(a)": a is not not q.
+assumptions: ["¬¬q(a)"]
+`)
+		out = append(out, eres("authored-double-negation-collision-is-refused",
+			refused && lone.usable() && lone.Label("q(a)") == "in" && lone.Label("¬q(a)") == "out",
+			"keys q(a) and ¬¬q(a) together should be refused as naming one formula, and a lone ¬¬q(a) read as q(a); got %s; lone: q(a) %s, ¬q(a) %s %s",
+			e.why(), lone.Label("q(a)"), lone.Label("¬q(a)"), lone.why()))
+	}
+	{
+		// From pull request #17 (finding F2): the same graph gives the same
+		// issues, or the same refusal, on every run. Statements used to be
+		// visited in the order of a map, and a later pattern with a variable
+		// of its own kept the first statement it met. Under engine walton.5
+		// every statement that matches a later pattern is a position of the
+		// anchor's issue (contract 4), so the second graph, whose ¬trails(w)
+		// joins two issues, is refused, and refused every time.
+		base := `
+language:
+  leads/1: "%s leads."
+  trails/1: "%s trails."
+  p/1: "%s is p."
+issue_schemes:
+  negation: [S, "¬S"]
+  open: ["leads(X)", "trails(Y)"]
+statements:
+  leads(a): x
+  leads(b): x
+  leads(c): x
+  trails(u): x
+  trails(v): x
+  trails(w): x
+  trails(x): x
+  p(a): x
+  "¬p(a)": x
+`
+		texts := []string{base + "assumptions: []\n", base + "  \"¬leads(a)\": x\n  \"¬trails(w)\": x\nassumptions: []\n"}
+		describe := func(text string) string {
+			e := EvalYAML(text)
+			if !e.usable() {
+				return "not evaluated: " + e.why()
+			}
+			lines := []string{}
+			for _, i := range e.AG.Issues {
+				ps := []string{}
+				for _, p := range i.Positions {
+					ps = append(ps, p.Id)
+				}
+				sort.Strings(ps)
+				lines = append(lines, strings.Join(ps, " "))
+			}
+			sort.Strings(lines)
+			return strings.Join(lines, "; ")
+		}
+		firsts, differs := []string{}, ""
+		for _, text := range texts {
+			first := describe(text)
+			firsts = append(firsts, first)
+			for i := 0; i < 40 && differs == ""; i++ {
+				if got := describe(text); got != first {
+					differs = got
+				}
+			}
+		}
+		want := "leads(a) leads(b) leads(c) trails(u) trails(v) trails(w) trails(x); p(a) ¬p(a)"
+		out = append(out, eres("issue-construction-is-repeatable", differs == "" && firsts[0] == want && strings.HasPrefix(firsts[1], "not evaluated"),
+			"41 evaluations of each of two graphs should give the same result: the first [%s] (want [%s]), the second a refusal [%s]; a later run gave [%s]", firsts[0], want, firsts[1], differs))
+	}
 	// Theories that can run away are evaluated in a process of their own, with a
 	// time limit and a memory limit (isolate.go).
 	// A counter: genuinely infinite, whatever the store semantics, and small.

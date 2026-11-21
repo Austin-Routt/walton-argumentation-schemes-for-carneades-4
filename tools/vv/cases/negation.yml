@@ -1,0 +1,44 @@
+# A scheme that concludes ¬S, applied to a negative statement, concludes the
+# statement itself: ¬¬S is read as S, in the argument graph as in the rule
+# store (docs/contracts.md, contract 4). Before engine 4.3.1+walton.5 the rule
+# store reasoned from S while the graph labelled another statement, ¬¬S, and
+# left S, and everything that followed from it, out. The schemes are the
+# library's own; the constants are illustrations. Adapted from pull request
+# #17 (the second review's finding F1) to the records of library 0.3.0.
+cases:
+  # 26 (inherited record): it would be known if al were not required, and it
+  # is not known; so al is required, and 13.2 builds on that.
+  - name: negation/ignorance-of-a-negative-statement
+    source: "26, p. 327, and 13.2, p. 318; contract 4"
+    assumptions:
+      - would_be_known(¬is_required(al))
+      - ¬known(¬is_required(al))
+      - exclusive_requirement_alternatives(al,cy)
+    arguments:
+      - ignorance(¬is_required(al))
+      - alternative_normative(al,cy)
+    in:
+      - is_required(al)
+      - ¬is_required(cy)
+  # 32.2 (book record, falsification), concluding ¬H for a negative H
+  - name: negation/falsification-of-a-negative-hypothesis
+    source: "32.2, p. 331; contract 4"
+    assumptions:
+      - hypothesis_event(¬guilty(al),alibi_false)
+      - event_false(alibi_false)
+    arguments:
+      - evidence_hypothesis_falsification(¬guilty(al),alibi_false)
+    in:
+      - guilty(al)
+  # the control: a positive statement keeps its negation as the conclusion
+  - name: negation/ignorance-of-a-positive-statement
+    source: "26, p. 327"
+    assumptions:
+      - would_be_known(is_required(al))
+      - ¬known(is_required(al))
+    arguments:
+      - ignorance(is_required(al))
+    in:
+      - ¬is_required(al)
+    not_in:
+      - is_required(al)

@@ -1,27 +1,37 @@
 # Changelog
 
-## 2026-11-21 — integrated PR16 closure (engine4.3.1+walton.5)
+## 2026-11-21 — implementer's second response (engine 4.3.1+walton.5, library 0.3.0)
+
+See `docs/reviews/implementer-second-response.md`. Based on the closure candidate `fcccbba`; supersedes pull request #17.
+
+* Kept from #17: the comparison of key lookup and scan on 400 random graphs, the folded-instance validation test, and the checks `derived-double-negation-is-the-statement` and `issue-construction-is-repeatable` (rewritten for walton.5's issue contract).
+* New checks `derived-nested-double-negation-is-the-statement` and `authored-double-negation-collision-is-refused`, and three library cases in `tools/vv/cases/negation.yml`. 9,989 checks.
+* `PLAN.md` has its decision register D1 to D23 again, with the status of D15 to D23 in this repository; contract 4 says that inference leaves statement keys in normal form; words fused to numbers in README, plan, release notes, change log and user guide are separated.
+* The implementer checked the 46 new or changed records of library 0.3.0 against the printed pages (a reviewer outside the system that wrote and approved them) and concurs; three readings are noted in the ledger.
+* Corrections to the implementer's first response, from both follow-ups.
+
+## 2026-11-21 — integrated PR16 closure (engine 4.3.1+walton.5)
 
 * Incorporated PR16 history, preserved its policy snapshots, and adjudicated D15–D23 without weakening the complete-library source gate.
 * Corrected fresh-variable issue-pattern binding leakage, with per-anchor alternative matching, deterministic traversal and complete consistency checking. Five substantive native controls and non-author review accompany the repair.
 * Replaced the cancellation fixture that could hit the inserted-constraint quota before its interrupt; its timing claim is expressly empirical.
-* The33.4 omission-specific likelihood repair is independently approved. Library remains0.3.0 with143 records,128 approved and15 held. Final registered count and acceptance are identified in the current plan and exact release evidence.
+* The 33.4 omission-specific likelihood repair is independently approved. Library remains 0.3.0 with 143 records, 128 approved and 15 held. Final registered count and acceptance are identified in the current plan and exact release evidence.
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
-## 2026-11-21 — PR16 follow-up, entry33.4 likelihood
+## 2026-11-21 — PR16 follow-up, entry 33.4 likelihood
 
-* The incoming review correctly identified an omission in the earlier closure candidate: prudential entry33.4 still required consequences to be strongly likely, although its premise permits likelihood without that fixed threshold. Replace `strongly_occur(X,C)` with the explicitly omission-specific `omission_consequence_likelihood_adequate(X,C)`; keep doing and not-doing likelihood judgments distinct.
+* The incoming review correctly identified an omission in the earlier closure candidate: prudential entry 33.4 still required consequences to be strongly likely, although its premise permits likelihood without that fixed threshold. Replace `strongly_occur(X,C)` with the explicitly omission-specific `omission_consequence_likelihood_adequate(X,C)`; keep doing and not-doing likelihood judgments distinct.
 * Add nine actual-library cases, a source-grounded validator instance, and manual migration for positive, negative, and questioned old judgments. The same concrete denial-of-strong-likelihood case is out with the frozen old schema and in with the repaired schema using the same corrected engine.
-* The former33.4 source approval was withdrawn by the author and independently renewed by the root source reviewer after source, case and migration review. The prior9,959-check acceptance is superseded by the refreshed final integrated inventory and clean rerun. See `docs/reviews/pr16-source-adjudication.md` for D15–D23 and source-approval overlap decisions.
+* The former 33.4 source approval was withdrawn by the author and independently renewed by the root source reviewer after source, case and migration review. The prior 9,959-check acceptance is superseded by the refreshed final integrated inventory and clean rerun. See `docs/reviews/pr16-source-adjudication.md` for D15–D23 and source-approval overlap decisions.
 
-## 2026-11-21 — independent PR15 closure (library0.3.0, engine4.3.1+walton.4)
+## 2026-11-21 — independent PR15 closure (library 0.3.0, engine 4.3.1+walton.4)
 
 * Reconciled all reviews and reproduced the public baseline. Corrected the dismissed default counterexample, nine-row accounting and Atkinson's ten nonfull CQ mappings; preserved historical failures and decisions.
 * Repaired normalized API lookup, double negation, authored-premise order and explicit default-origin promotion. Strengthened all API/CLI oracles, context preservation and linked-argument observation; fresh non-author controls verify the repairs.
-* Added23 explicit source variants and repaired participants, cases, warrants, polarity and strength. Approvals now128/143;35 of50 original holds closed. Fifteen inherited rows remain held with exact source/model obligations.
-* Added finite dialogue snapshots:13 actual-engine Python groups cover30 CQs in six families and four ignorance allocations. External adequacy/relevance judgments remain inputs.
-* Reviewed inventory:9,959 distinct checks. Complete clean acceptance requires both pinned Go versions and exact comparison without update mode. Validator0 errors/11 warnings. Regenerated all four examples; intermediate stale-prefix failure is retained in evidence.
+* Added 23 explicit source variants and repaired participants, cases, warrants, polarity and strength. Approvals now 128/143;35 of 50 original holds closed. Fifteen inherited rows remain held with exact source/model obligations.
+* Added finite dialogue snapshots: 13 actual-engine Python groups cover 30 CQs in six families and four ignorance allocations. External adequacy/relevance judgments remain inputs.
+* Reviewed inventory: 9,959 distinct checks. Complete clean acceptance requires both pinned Go versions and exact comparison without update mode. Validator 0 errors/11 warnings. Regenerated all four examples; intermediate stale-prefix failure is retained in evidence.
 * Original engine archives remain unchanged. Reviewed snapshots, Git bundle and source-root patches carry corrections. Local preparation does not imply remote release or outside contact.
 
 ## 2026-11-21 — implementer response to the independent reviews (engine 4.3.1+walton.3)
