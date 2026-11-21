@@ -492,24 +492,14 @@ func CaseRoundTrip(cli *CLI, root string, c Case) []string {
 		}
 		text = string(data)
 	}
-	if c.Schemes != nil {
-		selected, err := selectedCaseText(text, c)
-		if err != nil {
-			return []string{"case preparation: " + err.Error()}
-		}
-		text = selected
-	} else {
-		for _, l := range []struct {
-			key   string
-			items []string
-		}{{"assumptions", c.Assumptions}, {"questioned", c.Questioned}} {
-			if len(l.items) == 0 {
-				continue
-			}
-			b, _ := yaml.Marshal(map[string][]string{l.key: l.items})
-			text = strings.TrimRight(text, "\n") + "\n" + string(b)
-		}
+	// Always merge the context structurally. Appending another assumptions
+	// or questioned YAML key would replace the graph's original context in
+	// the CLI reader while RunCase correctly appends to that context.
+	prepared, err := selectedCaseText(text, c)
+	if err != nil {
+		return []string{"case preparation: " + err.Error()}
 	}
+	text = prepared
 	first := cli.Run(text, "eval", "-t", "yaml")
 	if first.Exit != 0 {
 		return []string{fmt.Sprintf("first run: exit %d: %s", first.Exit, firstLine(first.Stderr))}

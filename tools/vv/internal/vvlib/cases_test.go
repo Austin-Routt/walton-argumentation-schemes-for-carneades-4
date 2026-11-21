@@ -21,6 +21,47 @@ func caseTestCLI(t *testing.T) *CLI {
 	return cli
 }
 
+func TestCaseRoundTripPreservesExistingContext(t *testing.T) {
+	cli := caseTestCLI(t)
+	c := Case{
+		Name: "context/append-not-overwrite",
+		Graph: `language:
+  p/0: P
+  q/0: Q
+  r/0: R
+  d/0: D
+  e/0: E
+  blocked_d/0: Blocked D
+  blocked_e/0: Blocked E
+argument_schemes:
+  - id: joint
+    premises: [p, q]
+    conclusions: [r]
+  - id: default_d
+    premises: [p]
+    assumptions: [d]
+    conclusions: [blocked_d]
+  - id: default_e
+    premises: [q]
+    assumptions: [e]
+    conclusions: [blocked_e]
+assumptions: [p]
+questioned: [d]
+`,
+		Assumptions: []string{"q"},
+		Questioned:  []string{"e"},
+		Arguments:   []string{"joint()"},
+		In:          []string{"p", "q", "r"},
+		NotIn:       []string{"blocked_d", "blocked_e"},
+	}
+	if probs := RunCase(RepoRoot(), c); len(probs) != 0 {
+		t.Fatalf("API context: %v", probs)
+	}
+	if probs := CaseRoundTrip(cli, RepoRoot(), c); len(probs) != 0 {
+		t.Fatalf("CLI context: %v", probs)
+	}
+}
+
 const selectionCaseLibrary = `language:
   p/1: "%s has P"
   q/1: "%s has Q"
