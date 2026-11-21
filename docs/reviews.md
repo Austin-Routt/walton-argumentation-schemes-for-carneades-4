@@ -1,5 +1,8 @@
 > **Independent implementation acceptance, 2026-11-21:** see `reviews/record-dispositions.md`, `reviews/atkinson-2007.md`, `reviews/independent-engine-cross-review.md`, `reviews/pr13-reconciliation.md` and the revised `PLAN.md`. The historical convergence below established a development plan; later counterexamples required additional repairs. PR #13 arrived during this audit and is preserved below and under `reviews/peer-13/`. Its recommendation to publish the old R1 pin and its 90-row approval population are superseded by the reconciled evidence. The corrected preview has 70 approved records and 50 explicit content holds.
 
+
+Current status: the dated reviewer findings and release recommendations below are preserved as history. The PR15 closure decisions,128/143 source approvals, fifteen retained holds and superseded release pins are in `reviews/closure-current-register.md`, `reviews/closure-response-adjudication.md` and the current `PLAN.md`. Historical recommendation to publish the old R1 does not apply.
+
 # The three reviews, 2026-11-20 and 21
 
 Three independent reviews examined this repository, the two engine archives and the source text, Walton, Reed and Macagno, *Argumentation Schemes* (2008): "Fable" (first review), Claude (second) and ChatGPT (third). Each round, every reviewer checked the others' work against the engine and the book. Their full reports, evidence and patches are in their own archives, which are not part of this repository.
@@ -73,7 +76,7 @@ Nothing that contradicts what release R1 claims. In the library on `master`:
 11. The template of `biased/1` is upstream's predicate with the book's wording ("Arguer %s is biased."); D5 keeps upstream's ("%s is biased."), which also serves entry 46.
 12. Records in the first or second person ("I", "you") name no participant. That is a workable convention, one proponent and one respondent in a graph, but `docs/using.md` does not state it.
 13. With the whole library loaded, any `has_property` fact gives an accepted "all the parts of X have the property": the heredity question of 10.1 is an assumption, which holds until it is questioned. The validator's cycle warning names the five records involved.
-14. Of the 28 commits that change the engine up to R1, 22 are titled for one engine fix and two hold a test file only. Five need splitting or a new title before they are offered upstream (D1): 5bb648a (porting checks; changes both engines), e65e715 (the scheme repairs; also changes the engine test helper), 7187d2a (reference cases and property tests; also changes `caes/inference.go` and `validation/validation.go`), 770a383 (the release; the version string), and 93ca9d0 (titled for GoCHR; also deletes a file of Carneades). There was no engine change between R1 and the review; the engine changes of the acceptance candidate and of the implementer response came later and are listed in `CHANGELOG.md`. (Completed from pull request #14; the implementer checked each commit with `git show --stat`.)
+14. Of the 28 commits that change the engine up to R1, 22 are titled for one engine fix and two hold a test file only. Five need splitting or a new title before they are offered upstream (D1): 5bb648a (porting checks; changes both engines), e65e715 (the scheme repairs; also changes inference, validation and the engine test helper), 7187d2a (reference cases and property tests; also changes `caes/inference.go` and `validation/validation.go`), 770a383 (the release; the version string), and 93ca9d0 (titled for GoCHR; also deletes a file of Carneades). There was no engine change between R1 and the review; the engine changes of the acceptance candidate and of the implementer response came later and are listed in `CHANGELOG.md`. (Completed from pull request #14; the implementer checked each commit with `git show --stat`.)
 15. "90 of 119 records share a statement with another instead of 73" (changelog, 5.6): a recount gives 89 of 119, 72 before, and 90 of 120 on `master`. No tool in the repository computes the figure.
 
 ### Decisions on the rows
@@ -85,13 +88,3 @@ Nothing that contradicts what release R1 claims. In the library on `master`:
 * Publish R1. GitHub refused the reviewer's push of the tag as it refused the implementer's (HTTP 403), so the three commands of `PLAN.md` are the owner's to run.
 * Decide whether a record from Carneades that is filed under an entry may be closed against that entry when the book it cites cannot be had. The reviewer recommends it, with the row saying so; the five questions of 5.2 can then be modelled from the compendium.
 * Offer the engine fixes upstream and write to the book's authors. The reviewer prepared the patch series and a draft letter and sent neither.
-
-
-## The reviewer's follow-up of 2026-11-21
-
-After the implementer's response (`reviews/implementer-response.md`), the reviewer of 2026-11-21 checked the response and the corrected candidate at `e6d2d6f`: `reviews/2026-11-21-reviewer-follow-up.md`.
-
-* It withdraws the sentence "Nothing that contradicts what release R1 claims" in the section above, and with it the verdict that `8c092b6` could be released: the third review's counterexamples are defects of that engine, reproduced one by one.
-* It confirms the response except for three statements, and agrees with the changes to the engine and to the 19 records.
-* It reports three more engine defects (the graph did not read `¬¬S` as `S`; issue construction depended on run order; the key lookup missed keys not in normal form) and fixes them as engine 4.3.1+walton.4 in a pull request of its own, for someone else to check.
-* It makes decisions D15 to D23 (`PLAN.md`), approves 18 held rows under them (88 of 120) and gives each of the other 32 one action.

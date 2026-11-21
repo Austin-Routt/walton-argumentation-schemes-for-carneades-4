@@ -3,12 +3,34 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Popular Acceptance"
-  version: "0.2.0"
+  version: "0.3.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  ethos_less_plausible/3: "The assertion by %s of %s merits reduced plausibility on the character evidence in dialogue %s; the proposition's negation is not asserted."
+  ethos_more_plausible/3: "The assertion by %s of %s merits greater plausibility on the character evidence in dialogue %s; no numerical probability or truth verdict is asserted."
+  ethos_presumption_warranted/4: "For speaker %s, assertion %s and dialogue %s, the evidence warrants the claimed qualitative %s adjustment of plausibility."
+  ethos_relevant/3: "The character of %s is relevant to evaluating assertion %s in dialogue %s."
+  ethos_context/3: "The assertion by %s of situated proposition %s is evaluated in dialogue %s."
+  reduced_plausibility_from_ethos/2: "The assertion of %s that %s is true has reduced plausibility on the character evidence; this does not assert that the proposition is false."
+  popular_practice/2: "In case %s, practice %s is popular among people familiar with what is acceptable for that practice in those circumstances."
+  acceptable_in_case/2: "In case %s, practice %s is acceptable."
+  to_think_acceptable/2: "In case %[1]s, if practice %[2]s is popular among those familiar with what is acceptable for it in those circumstances, that is a reason to think the practice acceptable in that case."
+  have_grounds_think/2: "In case %s, the people accepting practice %s have justified grounds for doing so."
+  goal_good_group_for/2: "%s has the goal of being a good person or a member of group %s with good qualities."
+  ought_goal_good_group/2: "%s ought to have the goal of being a good person or a member of group %s with good qualities."
+  group_acts/2: "Everybody in group %s performs action %s."
+  action_norm/2: "Performing action %s is an acceptable norm of conduct for group %s."
+  policy_norm/2: "Accepting policy %s is an acceptable norm of conduct for group %s."
+  person_group_member/2: "Person %s, the speaker of this excuse, is a member of group %s."
+  morally_justified/2: "For the stated group norm, %s is morally justified in performing action %s."
+  goal_prestige_for/1: "Prestige is an important goal for %s."
+  all_have_property/2: "Every member of group %s has property %s."
+  all_possess_object/2: "Every member of group %s possesses an object of the specified kind %s."
+  membership_if_accepts/3: "If %s accepts proposition or policy %s, then that person will be a member of group %s."
+  membership_if_acquires/3: "If %s acquires property %s, then that person will be a member of group %s."
+  membership_if_buys/3: "If %s buys an object of kind %s, then that person will be a member of group %s."
   accept_property_object/4: "If you accept %s, acquire property %s or buy object %s, then you will be a member of the group %s."
   accept_saying/1: "You should accept what %s says."
-  acceptable_in_case/1: "%s is acceptable in this case."
   acceptable_norm/3: "Doing %s or accepting %s shows that they are an acceptable norm of conduct for %s."
   admired_people/2: "Everybody in this group of admired, popular people %s accepts %s."
   asserts/2: "%s asserts that %s is true."
@@ -30,16 +52,14 @@ language:
   group_background/2: "%s, the speaker, is an ordinary person, that is, shares a common background with the members of this audience, group %s."
   group_does/3: "Everybody in a group %s does %s or accepts proposition %s as a policy."
   group_member/1: "The speaker is a member of %s."
-  have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
   morally_acceptable_action/2: "My doing %s or accepting %s is morally justified as an acceptable action or policy."
   ought_to_bring_about/1: "You should (ought to, practically speaking) bring about %s."
   out_group_not_accept/2: "If you do not accept %s, you will be out of this group %s."
-  popular_practice/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
   property_or_object/2: "Everybody in this group %s accepts %s or has some property, or possesses some object."
   reason_in_favor/1: "There is a reason in favor of %s."
   respondent_member/1: "You, the respondent are a member of this audience, group %s."
   should_accept/1: "You should accept %s."
-  to_think_acceptable/1: "That gives a reason to think that %s is acceptable."
+  should_do/2: "%s should do %s."
   valued_to_be_member/1: "Being a member of this group %s is highly valued for you."
 
 issue_schemes:
@@ -104,6 +124,34 @@ argument_schemes:
       - good_group(G,P)
       - goal_good_group(G)
 
+  - id: moral_justification_actual_goal
+    meta:
+      title: Moral Justification Ad Populum - Named Respondent with an Actual Goal
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312.
+    variables:
+    - R
+    - G
+    - P
+    conclusions:
+    - should_do(R,accept(P))
+    premises:
+    - good_group(G,P)
+    - goal_good_group_for(R,G)
+
+  - id: moral_justification_ought_goal
+    meta:
+      title: Moral Justification Ad Populum - Named Respondent with an Ought-Goal
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.5, p. 312.
+    variables:
+    - R
+    - G
+    - P
+    conclusions:
+    - should_do(R,accept(P))
+    premises:
+    - good_group(G,P)
+    - ought_goal_good_group(R,G)
+
   - id: moral_justification_ad_populum_excuse
     meta:
       title: Moral Justification Ad Populum Argument Excuse Subtype
@@ -116,18 +164,101 @@ argument_schemes:
       - acceptable_norm(X,A,G)
       - group_member(G)
 
+  - id: moral_excuse_action
+    meta:
+      title: Moral Justification Excuse - Named Speaker and Action
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312.
+    variables:
+    - S
+    - G
+    - X
+    conclusions:
+    - morally_justified(S,X)
+    premises:
+    - group_acts(G,X)
+    - action_norm(X,G)
+    - person_group_member(S,G)
+
+  - id: moral_excuse_policy
+    meta:
+      title: Moral Justification Excuse - Named Speaker and Policy Acceptance
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.6, p. 312.
+    variables:
+    - S
+    - G
+    - A
+    conclusions:
+    - morally_justified(S,accept(A))
+    premises:
+    - group_accepted(G,A)
+    - policy_norm(A,G)
+    - person_group_member(S,G)
+
   - id: snob_appeal_ad_populum
     meta:
       title: Snob Appeal Ad Populum Argument
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312."
-    variables: [A,G,O,P]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - A
+    - G
+    - O
+    - P
     conclusions:
-      - should_accept(A)
+    - should_accept(A)
     premises:
-      - property_or_object(G,A)
-      - elite_group(G)
-      - goal_prestige
-      - accept_property_object(A,P,O,G)
+    - property_or_object(G,A)
+    - group_accepted(G,A)
+    - elite_group(G)
+    - goal_prestige
+    - accept_property_object(A,P,O,G)
+
+  - id: snob_appeal_acceptance
+    meta:
+      title: Snob Appeal - Named Respondent Accepting a Proposition
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - R
+    - G
+    - A
+    conclusions:
+    - should_do(R,accept(A))
+    premises:
+    - group_accepted(G,A)
+    - elite_group(G)
+    - goal_prestige_for(R)
+    - membership_if_accepts(R,A,G)
+
+  - id: snob_appeal_property
+    meta:
+      title: Snob Appeal - Named Respondent Acquiring a Property
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - R
+    - G
+    - P
+    conclusions:
+    - should_do(R,acquire(P))
+    premises:
+    - all_have_property(G,P)
+    - elite_group(G)
+    - goal_prestige_for(R)
+    - membership_if_acquires(R,P,G)
+
+  - id: snob_appeal_purchase
+    meta:
+      title: Snob Appeal - Named Respondent Buying an Object
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 4.7, p. 312.
+    variables:
+    - R
+    - G
+    - O
+    conclusions:
+    - should_do(R,buy(O))
+    premises:
+    - all_possess_object(G,O)
+    - elite_group(G)
+    - goal_prestige_for(R)
+    - membership_if_buys(R,O,G)
 
   - id: appeal_to_vanity_ad_populum
     meta:
@@ -176,15 +307,19 @@ argument_schemes:
   - id: popular_practice
     meta:
       title: Argument From Popular Practice
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, p. 93."
-    variables: [A]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press,
+        ch. 9, entry 5, p. 314. Douglas Walton , Fundamentals of Critical Argumentation. New York: Cambridge University Press,
+        2006, p. 93.'
+    variables:
+    - A
+    - C
     conclusions:
-      - acceptable_in_case(A)
+    - acceptable_in_case(C,A)
     premises:
-      - popular_practice(A)
-      - to_think_acceptable(A)
-    assumptions: 
-     - have_grounds_think(A)
+    - popular_practice(C,A)
+    - to_think_acceptable(C,A)
+    assumptions:
+    - have_grounds_think(C,A)
 
   - id: ethotic1
     meta:
@@ -201,11 +336,58 @@ argument_schemes:
   - id: ethotic2
     meta:
       title: Negative Argument from Ethos
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
-    variables: [P,S]
-    conclusions: [¬S]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 41, p. 336. Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press,
+        Tuscaloosa and London, 1995, p. 152.
+    variables:
+    - P
+    - S
+    conclusions:
+    - reduced_plausibility_from_ethos(P,S)
     premises:
-      - asserts(P,S)
-      - bad_moral_character(P)
+    - asserts(P,S)
+    - bad_moral_character(P)
     assumptions:
-      - character_is_relevant(S)
+    - character_is_relevant(S)
+
+  - id: ethotic_positive_compendium
+    meta:
+      title: Positive Ethotic Argument — Qualitative Compendium Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 41, p. 336.
+      note: This is a declared interpretation of the supplied compendium; it does not certify the separately cited
+        1995 original.
+    variables:
+    - P
+    - S
+    - D
+    premises:
+    - asserts(P,S)
+    - good_moral_character(P)
+    - ethos_context(P,S,D)
+    assumptions:
+    - ethos_relevant(P,S,D)
+    - ethos_presumption_warranted(P,S,D,positive)
+    conclusions:
+    - ethos_more_plausible(P,S,D)
+
+  - id: ethotic_negative_compendium
+    meta:
+      title: Negative Ethotic Argument — Qualitative Compendium Form
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 41, p. 336.
+      note: This is a declared interpretation of the supplied compendium; it does not certify the separately cited
+        1995 original.
+    variables:
+    - P
+    - S
+    - D
+    premises:
+    - asserts(P,S)
+    - bad_moral_character(P)
+    - ethos_context(P,S,D)
+    assumptions:
+    - ethos_relevant(P,S,D)
+    - ethos_presumption_warranted(P,S,D,negative)
+    conclusions:
+    - ethos_less_plausible(P,S,D)

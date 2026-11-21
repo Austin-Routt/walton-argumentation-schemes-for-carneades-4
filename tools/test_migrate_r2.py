@@ -83,6 +83,26 @@ class Migrate(unittest.TestCase):
     def test_idempotent(self):
         self.assertEqual(Migrator().text(self.new), self.new)
 
+    def test_ethotic_strength_change_is_instance_specific_and_manual(self):
+        src = 'arguments:\n  a1:\n    scheme: ethotic2\n    conclusion: "¬claim"\n'
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        self.assertTrue(any(r['record'] == 'ethotic2' for r in mig.needs_hand(src)))
+        unrelated = 'assumptions: ["¬claim"]\n'
+        self.assertEqual(mig.text(unrelated), unrelated)
+        self.assertFalse(any(r['record'] == 'ethotic2' for r in mig.needs_hand(unrelated)))
+
+    def test_historical_renames_cannot_invent_context(self):
+        mig = Migrator()
+        for old, renamed, record in [('popular_practise(tipping)', 'popular_practice(tipping)', 'popular_practice'),
+                                     ('more_efficient_alternative_actions(car,travel)', 'more_efficient_alternative_actions(car,travel)', 'practical_inference')]:
+            src = 'assumptions: [' + old + ']\n'
+            # The historical scheme-id spelling also shares this token. It
+            # may change spelling, but must not manufacture the missing case
+            # or actor; the remaining semantic change is explicitly flagged.
+            self.assertEqual(mig.text(src), 'assumptions: [' + renamed + ']\n')
+            self.assertTrue(any(r['record'] == record for r in mig.needs_hand(src)))
+
     def test_chains_and_merges(self):
         # posible -> can_be_realized -> possible_goal; part_propert ->
         # part_property -> has_property, which group_2's has/2 also became
@@ -127,6 +147,15 @@ class Migrate(unittest.TestCase):
                     self.assertEqual(stdout.getvalue(), "")
                     self.assertIn("reconcile the original entries by hand", stderr.getvalue())
 
+    def test_likelihood_threshold_change_requires_review(self):
+        # A denial of strong likelihood need not deny adequacy for a modest
+        # defeasible claim. Do not silently equate the old and new predicates.
+        src = "questioned: [outcome_likely(tax,recession)]\nassumptions: [¬outcome_likely(tax,recession)]\n"
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("negative_consequences_reasoning", "consequence_likelihood_adequate(A,B)"), rows)
+
     def test_by_hand(self):
         # a statement whose form changed for one record is listed, not rewritten
         src = "assumptions:\n  - carry_out_action(go)\n  - plausibly_true(rain)\n"
@@ -136,6 +165,17 @@ class Migrate(unittest.TestCase):
         self.assertIn(("practical_inference", "should_do(P,A)"), rows)
         self.assertIn(("appeal_to_vanity_ad_populum", "ought_to_bring_about(X)"), rows)
         self.assertIn(("position_to_know_ad_populum", "A"), rows)
+
+    def test_prudential_omission_likelihood_requires_semantic_review(self):
+        for key,statement in [('assumptions','strongly_occur(vaccinate,illness)'),
+                              ('assumptions','¬strongly_occur(vaccinate,illness)'),
+                              ('questioned','strongly_occur(vaccinate,illness)')]:
+            with self.subTest(key=key,statement=statement):
+                src=key+': ["'+statement+'"]\n'
+                mig=Migrator()
+                self.assertEqual(mig.text(src),src)
+                rows={(r['record'],r['new']) for r in mig.needs_hand(src)}
+                self.assertIn(('negative_consequences_prudential','omission_consequence_likelihood_adequate(X,C)'),rows)
 
     def test_new_premise_and_role_changes_require_evidence(self):
         src = "assumptions: [is_a(whale,mammal), successful_diagram(c1), based_on_false_belief(p), action_character(ann)]\n"
@@ -147,6 +187,27 @@ class Migrate(unittest.TestCase):
         self.assertIn(("abductive_forward", "diagram_conclusion(G1,C1)"), rows)
         self.assertIn(("memory", "based_on_false_belief(P,M)"), rows)
         self.assertIn(("abductive_action_to_character", "action_character(A,X,Q)"), rows)
+
+    def test_general_partition_witnesses_are_not_manufactured(self):
+        src = "assumptions: ['whole_of(team,ann,bob,cy)', 'part_whole(team,strong,ann,bob,cy)']\n"
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("whole_into_parts_selected", "whole_partition(X,S)"), rows)
+        self.assertIn(("whole_into_parts_selected", "some_part_sufficient_for_whole(X,S,A)"), rows)
+        self.assertIn(("whole_into_parts", "selected_part_sufficient_for_whole(X,X1,A)"), rows)
+
+    def test_source_branch_context_and_acceptance_are_not_invented(self):
+        src = ("assumptions: ['means_end(money)', 'more_important_ends', "
+               "'property_or_object(elite,watch_policy)']\n"
+               "tests:\n  in: ['ends_important(money)']\n")
+        mig = Migrator()
+        self.assertEqual(mig.text(src), src)
+        rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+        self.assertIn(("end_and_means_2", "means_end(X,C)"), rows)
+        self.assertIn(("end_and_means_2", "more_important_ends(C)"), rows)
+        self.assertIn(("end_and_means_2", "ends_important(X,C)"), rows)
+        self.assertIn(("snob_appeal_ad_populum", "group_accepted(G,A)"), rows)
 
 
 if __name__ == "__main__":

@@ -1,16 +1,38 @@
 # Changelog
 
+## 2026-11-21 — implementer's second response (engine 4.3.1+walton.5, library 0.3.0)
+
+See `docs/reviews/implementer-second-response.md`. Based on the closure candidate `fcccbba`; supersedes pull request #17.
+
+* Kept from #17: the comparison of key lookup and scan on 400 random graphs, the folded-instance validation test, and the checks `derived-double-negation-is-the-statement` and `issue-construction-is-repeatable` (rewritten for walton.5's issue contract).
+* New checks `derived-nested-double-negation-is-the-statement` and `authored-double-negation-collision-is-refused`, and three library cases in `tools/vv/cases/negation.yml`. 9,989 checks.
+* `PLAN.md` has its decision register D1 to D23 again, with the status of D15 to D23 in this repository; contract 4 says that inference leaves statement keys in normal form; words fused to numbers in README, plan, release notes, change log and user guide are separated.
+* The implementer checked the 46 new or changed records of library 0.3.0 against the printed pages (a reviewer outside the system that wrote and approved them) and concurs; three readings are noted in the ledger.
+* Corrections to the implementer's first response, from both follow-ups.
+
+## 2026-11-21 — integrated PR16 closure (engine 4.3.1+walton.5)
+
+* Incorporated PR16 history, preserved its policy snapshots, and adjudicated D15–D23 without weakening the complete-library source gate.
+* Corrected fresh-variable issue-pattern binding leakage, with per-anchor alternative matching, deterministic traversal and complete consistency checking. Five substantive native controls and non-author review accompany the repair.
+* Replaced the cancellation fixture that could hit the inserted-constraint quota before its interrupt; its timing claim is expressly empirical.
+* The 33.4 omission-specific likelihood repair is independently approved. Library remains 0.3.0 with 143 records, 128 approved and 15 held. Final registered count and acceptance are identified in the current plan and exact release evidence.
+
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
-## 2026-11-21 — reviewer's follow-up: decisions D15 to D23, 88 of 120 rows approved
+## 2026-11-21 — PR16 follow-up, entry 33.4 likelihood
 
-See `docs/reviews/2026-11-21-reviewer-follow-up.md`. No record, template or engine file changes in this entry.
+* The incoming review correctly identified an omission in the earlier closure candidate: prudential entry 33.4 still required consequences to be strongly likely, although its premise permits likelihood without that fixed threshold. Replace `strongly_occur(X,C)` with the explicitly omission-specific `omission_consequence_likelihood_adequate(X,C)`; keep doing and not-doing likelihood judgments distinct.
+* Add nine actual-library cases, a source-grounded validator instance, and manual migration for positive, negative, and questioned old judgments. The same concrete denial-of-strong-likelihood case is out with the frozen old schema and in with the repaired schema using the same corrected engine.
+* The former 33.4 source approval was withdrawn by the author and independently renewed by the root source reviewer after source, case and migration review. The prior 9,959-check acceptance is superseded by the refreshed final integrated inventory and clean rerun. See `docs/reviews/pr16-source-adjudication.md` for D15–D23 and source-approval overlap decisions.
 
-* The review merged as pull request #13 concluded that `8c092b6` could be released. That is withdrawn: the third review's counterexamples are defects of that engine.
-* Decisions D15 to D23 in `PLAN.md` settle the release, the reading of critical questions (static, as the book formalizes them on pp. 33 and 373–375; no dialogue), variants, participants, polarity, the compendium as the source of record, three legacy records, outside contacts, and the likelihood reading of 33.3 and 33.4. `docs/contracts.md` contract 5 states the reading of questions and of negated recommendations.
-* 18 rows move from hold to `example-passed` under those decisions: five inherited rows that were held only for the older work they cite (1, 2, 15, 33.1, 33.2) and thirteen whose condition was a decision (4.6, 6.4, 9.2, 13.2, 17, 20, 22.1, 22.2, 22.3, 22.6.1 to 22.6.3, 26.2). 88 of 120 are approved; each of the other 32 has one action.
-* The reviewer withdraws seven of its own approvals of this morning (30, 28, 59.1, 45, 58, 22.4, 31.1), where the third review's hold names a statement identified by too few of its participants.
-* `tools/vv`: the check `cli-interrupt-is-cancelled` interrupted a run that, since the limits of engine 4.3.1+walton.2, ends as "limit reached" in a few tenths of a second; on a fast machine the interrupt came too late and the check failed (one of the two runs of this change's first commit, on both Go versions). Its workload is now a join that takes seconds under every limit. The assertion is unchanged.
+## 2026-11-21 — independent PR15 closure (library 0.3.0, engine 4.3.1+walton.4)
+
+* Reconciled all reviews and reproduced the public baseline. Corrected the dismissed default counterexample, nine-row accounting and Atkinson's ten nonfull CQ mappings; preserved historical failures and decisions.
+* Repaired normalized API lookup, double negation, authored-premise order and explicit default-origin promotion. Strengthened all API/CLI oracles, context preservation and linked-argument observation; fresh non-author controls verify the repairs.
+* Added 23 explicit source variants and repaired participants, cases, warrants, polarity and strength. Approvals now 128/143;35 of 50 original holds closed. Fifteen inherited rows remain held with exact source/model obligations.
+* Added finite dialogue snapshots: 13 actual-engine Python groups cover 30 CQs in six families and four ignorance allocations. External adequacy/relevance judgments remain inputs.
+* Reviewed inventory: 9,959 distinct checks. Complete clean acceptance requires both pinned Go versions and exact comparison without update mode. Validator 0 errors/11 warnings. Regenerated all four examples; intermediate stale-prefix failure is retained in evidence.
+* Original engine archives remain unchanged. Reviewed snapshots, Git bundle and source-root patches carry corrections. Local preparation does not imply remote release or outside contact.
 
 ## 2026-11-21 — implementer response to the independent reviews (engine 4.3.1+walton.3)
 
@@ -306,3 +328,61 @@ OCR-style errors in titles and references ("lnformal Logic", "Trtatise", "Wayrw 
 ### Not changed
 
 Misspelt identifiers (scheme ids, predicate names, the file name `5_casual-reasoning.yml`) are kept because renaming them changes the interface for existing argument graphs; see `PLAN.md`.
+## Closure follow-up: consequence likelihood
+
+- Entry 33.3 now shares `consequence_likelihood_adequate/2` with 33.1 and
+  33.2. Their common CQ1 asks about likelihood relative to the asserted
+  strength; the former `outcome_likely/2` wording imposed an unsupported
+  strong-likelihood threshold. Six paired/adverse reference cases and the
+  usage example exercise the corrected question.
+- Saved threshold judgments require manual reassessment. The migration table
+  records a semantic replacement, not an automatic rename of old positive,
+  negative or questioned assertions. No old source approval is renewed by
+  the implementation author; independent review must renew its fingerprint.
+
+
+## Closure follow-up: part/whole alternatives and vagueness burden
+
+- Added four separately named physical/degree alternatives for entry 9.2, with explicit comparison-scale evidence for qualitative degree. Lower degree remains compatible with possession of the property.
+- Added two arbitrary finite-partition forms for entry 10.2: a selected positive member with an explicit sufficient warrant, and a universal-negative form retaining the necessary only-if direction. Neither cardinality nor universal negatives are inferred from absent facts; the legacy three-part identifier is preserved, with an explicit sufficient-direction premise now required as well.
+- Documented the static evidence burden of entry 16 and independently concurred with the implementer's problem-for-dialogue wording. Added premise, affirmative-exception, mere-question and scope-isolation controls. New variants and changed interpretations await separate source approval.
+
+- Independent review of the new variants also required repairing the legacy three-part positive form: it now requires `selected_part_sufficient_for_whole(X,X1,A)` as an ordinary premise. The source only-if condition alone cannot license the positive conclusion. The old example, validator instance, adverse cases and manual migration now state that distinction.
+
+## Closure follow-up: explicit printed branches
+
+- Entries 4.5–4.7 now have named-respondent actual-goal/ought-goal forms,
+  named-speaker action/policy excuses, and separate acceptance, property and
+  purchase snob appeals. The old snob identifier additionally requires
+  `group_accepted(G,A)` to select the acceptance branch it concludes; its
+  reference example uses a proposition instead of a Rolex object. Saved
+  graphs need explicit acceptance evidence.
+- Entry 20 adds the small-sacrifice branch with its own ordinary conditional
+  warrant. It never infers that warrant from the great-sacrifice conditional.
+  Entry 22.6 adds bad, qualitatively less-bad, reverse-reclassification and
+  not-easy alternatives. Less-bad is distinct from good, and not-easy needs
+  explicit negative evidence. Both reclassification forms now name one
+  evaluation context; the old positive form requires manual context migration.
+- Entry 26.2 adds the true-presumption branch under the opposite seriousness
+  ranking. Two worked examples explicitly declare a binary issue of the two
+  positive practical choice statements, with PE. A proposed global issue was
+  withdrawn after independent review found that merging choice and negation
+  issues would conflate compatible statements. The three CQs have an explicit
+  static evidence/issue-standard contract; no dynamic dialogue controller is
+  claimed and no automatic global choice issue is installed.
+- The change adds 13 records and 49 hand-specified cases. Each new record has
+  an exact `<id>/book` positive case, missing-premise controls and targeted
+  adverse cases. Full-library composition and selected-live-record controls
+  distinguish an argument's own consequence from support supplied by another
+  scheme. The expected check inventory remains for final integrated review.
+- Category and selected-graph generation now retain language dependencies of
+  copied issue patterns. The earlier omission failed actual engine validation
+  during the initial fixed-presumption-issue proposal. A synthetic fixed-issue
+  mutation test rejects the missing-template case even though the global issue
+  was withdrawn. Generated categories and usage examples were regenerated.
+  The additional bad-end propagation cycle is reported openly as
+  one more validator warning; it is not suppressed.
+- Source formulas, branch/adaptation decisions, migration requirements and
+  all three critical-question responsibilities are documented in
+  `docs/source-branch-contracts.md` and the source proposals. New and revised
+  rows remain held for separate independent approval.

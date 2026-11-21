@@ -1,0 +1,11 @@
+cases:
+- name: end_and_means_reverse/closure-absence-is-not-rejection
+  source: '22.6.2, p.325: explicit negative assessment requires the reverse reclassification; mere lack of positive proof is insufficient'
+  assumptions:
+  - more_important_ends(retirement)
+  not_in:
+  - ends_important(money,retirement)
+  - ¬ends_important(money,retirement)
+  no_arguments:
+  - end_and_means_2
+  - end_and_means_reverse

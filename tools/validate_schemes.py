@@ -127,6 +127,27 @@ def parse_statement(s):
         return neg, None, 0, vs                    # schema variable: no functor, no template needed
     return neg, t[1], len(t[2]), vs
 
+
+def issue_template_keys(issue_schemes):
+    """Language dependencies of fixed or enumerated issue patterns."""
+    if issue_schemes is None:
+        return set()
+    if not isinstance(issue_schemes, dict):
+        raise TermError("issue_schemes must be a mapping")
+    keys = set()
+    for sid, patterns in issue_schemes.items():
+        if not isinstance(patterns, list):
+            raise TermError(f"issue {sid}: patterns must be a list")
+        for pattern in patterns:
+            if pattern == "...":
+                continue
+            if not isinstance(pattern, str):
+                raise TermError(f"issue {sid}: pattern must be text")
+            _, functor, arity, _ = parse_statement(pattern)
+            if functor is not None:
+                keys.add(f"{functor}/{arity}")
+    return keys
+
 VERB = re.compile(r"%(?:%|(\[\d+\])?([sv])|.?)")
 
 def template_args(tpl, arity):
@@ -271,6 +292,14 @@ def check_file(path, rel, rep):
         for v in sorted(declared - allvars): rep.add("WARNING", "VARIABLE_UNUSED", where, f"variable {v} is declared but never used")
         unbound = sorted((allvars & declared) - premvars)
         if unbound: rep.add("ERROR", "RANGE_RESTRICTION", where, f"variable(s) {unbound} occur only outside the premises: the engine's validator rejects the scheme, and an argument from it holds statements with variables (contract 1)")
+    try:
+        issue_used = issue_template_keys(d.get("issue_schemes"))
+    except TermError as error:
+        rep.add("ERROR", "ISSUE_PATTERN_SYNTAX", rel, str(error))
+    else:
+        used |= issue_used
+        for key in sorted(issue_used - set(lang)):
+            rep.add("ERROR", "ISSUE_TEMPLATE_MISSING", rel, f"issue pattern needs language template {key!r} in this file")
     for k in sorted(set(lang) - used):
         rep.add("WARNING", "TEMPLATE_UNUSED", rel, f"template {k!r} is not used by any scheme in this file")
     return d
@@ -373,6 +402,12 @@ def cycles(master, rep):
 # that yields anything else fails: a flipped negation, two swapped arguments, a
 # missing or extra statement. Page numbers are those of the compendium (WRM 2008).
 INSTANCES = [
+    ("end_and_means_2", "22.6.2, p.325; one evaluation context", {"X": "money", "C": "retirement"},
+     {"premises": ["means_end(money,retirement)", "more_important_ends(retirement)"], "conclusions": ["ends_important(money,retirement)"]}),
+    ("snob_appeal_ad_populum", "4.7, p.312; explicit acceptance branch", {"A": "luxury_watches_are_desirable", "G": "jet_set", "O": "watch", "P": "wealth"},
+     {"premises": ["property_or_object(jet_set,luxury_watches_are_desirable)", "group_accepted(jet_set,luxury_watches_are_desirable)", "elite_group(jet_set)", "goal_prestige", "accept_property_object(luxury_watches_are_desirable,wealth,watch,jet_set)"], "conclusions": ["should_accept(luxury_watches_are_desirable)"]}),
+    ("whole_into_parts", "10.2, p.317; explicit sufficient-direction adaptation", {"X": "machine", "X1": "power_unit", "X2": "control_unit", "X3": "motor", "A": "electrically_live"},
+     {"premises": ["whole_of(machine,power_unit,control_unit,motor)", "part_whole(machine,electrically_live,power_unit,control_unit,motor)", "selected_part_sufficient_for_whole(machine,power_unit,electrically_live)", "has_property(power_unit,electrically_live)"], "conclusions": ["has_property(machine,electrically_live)"]}),
     # the eleven corrections of the changelog (2026-11-06)
     ("division_generic", "10.1, p. 317", {"A": "car", "P": "heavy"},
      {"premises": ["has_property(car,heavy)"], "assumptions": ["divisionally_hereditary(car,heavy)"], "conclusions": ["all_parts_property(car,heavy)"]}),
@@ -391,7 +426,7 @@ INSTANCES = [
     ("threat", "35, p. 333", {"X": "act", "C": "harm"},
      {"premises": ["cited_bad_consequences(act,harm)", "position_to_bring_about(harm)", "assert_bad(act,harm)"], "conclusions": ["¬ought_to_bring_about(act)"]}),
     ("abductive_backward", "31.1, pp. 329-330", {"A": "a1", "A1": "best", "D": "d"},
-     {"premises": ["data_set(d)", "data_account(a1,d)", "successful_account(best,d)"], "assumptions": ["sufficient_account(best,d)"], "exceptions": ["inquiry_incomplete(d)"], "conclusions": ["plausible_hypothesis(best)"]}),
+     {"premises": ["data_set(d)", "data_account(a1,d)", "member_of_accounts(best,a1)", "successful_account(best,a1,d)"], "assumptions": ["sufficient_account(best,d)"], "exceptions": ["inquiry_incomplete(d)"], "conclusions": ["plausible_hypothesis(best,a1,d)"]}),
     ("opposition_normative", "11.2, p. 318", {"A": "act", "X": "good", "X2": "bad"},
      {"premises": ["cannot_opposite_evaluation(act,good,bad)", "receives_evaluation(act,good)"], "conclusions": ["cannot_receive_evaluation(act,bad)"]}),
     ("sacrifice", "20, p. 322", {"A": "a", "S": "s", "V": "v"},
@@ -430,8 +465,8 @@ INSTANCES = [
      {"premises": ["established_rule_property(r,f,g)", "has_property(a,f)", "¬has_property(a,g)"], "assumptions": ["legitimate_case(a,r)"],
       "exceptions": ["rule_inapplicable_to(r,a)", "recognized_exception_category(a,r)"], "conclusions": ["rule_exception_recognized(r,a)"]}),
     ("value_based_practical_reasoning", "22.4, p. 324", {"P": "me", "G": "g", "V": "v", "A": "a"},
-     {"premises": ["goal_of_agent(me,g)", "goal_supported_by_values(g,v)", "necessary_or_sufficient_for_goal(me,a,g)"], "assumptions": ["possible_bring_about(me,a)"],
-      "exceptions": ["conflicting_goals(me,g)", "alternative_means(g,a)", "more_efficient_alternative(a,g)", "better_alternative_by_values(a,v)", "worse_consequences(a,g)"],
+     {"premises": ["goal_of_agent(me,g)", "goal_supported_by_values(me,g,v)", "necessary_or_sufficient_for_goal(me,a,g)"], "assumptions": ["possible_bring_about(me,a)"],
+      "exceptions": ["conflicting_goals(me,g)", "alternative_means(me,g,a)", "more_efficient_alternative(me,a,g)", "better_alternative_by_values(me,a,v)", "worse_consequences(me,a,g)"],
       "conclusions": ["should_do(me,a)"]}),
     # the changes of PLAN.md 5.1 and 5.2
     ("popular_opinion", "4, p. 311", {"A": "tax_cut"},
@@ -444,7 +479,7 @@ INSTANCES = [
      {"premises": ["arbitrary_defined_property(arg1,poverty)", "needed_nonarbitrary(arg1,poverty)", "arbitrary_property(poverty,arg1)"], "exceptions": ["arbitrariness_harmless(arg1,poverty)"], "conclusions": ["rejected_as_deficient(arg1)"]}),
     ("two_person_practical", "23, pp. 325-326", {"A": "ann", "B": "bob", "X": "trip", "Y": "ticket"},
      {"premises": ["tells_intend(ann,trip,bob)", "situation_necessity(bob,ticket,trip,ann)"], "assumptions": ["possible_bring_about(ann,ticket)"],
-      "exceptions": ["alternative_means(trip,ticket)", "conflicting_goals(ann,trip)", "side_effect_other_act(ticket,ann)", "other_actions_required(trip,ticket)"], "conclusions": ["should_do(ann,ticket)"]}),
+      "exceptions": ["alternative_means(ann,trip,ticket)", "conflicting_goals(ann,trip)", "side_effect_other_act(ticket,ann)", "other_actions_required(ann,trip,ticket)"], "conclusions": ["should_do(ann,ticket)"]}),
     ("waste", "24, p. 326", {"A": "ann", "X": "thesis"},
      {"premises": ["stop_realize_wasted(ann,thesis)", "waste_bad_thing(ann,thesis)"], "assumptions": ["possible_goal(thesis)"], "exceptions": ["reassessment_against_continuing(ann,thesis)"], "conclusions": ["ought_to_continue(ann,thesis)"]}),
     ("negative_normal_expectations", "26.1, p. 327", {"A": "alarm_silent"},
@@ -464,7 +499,9 @@ INSTANCES = [
     ("established_rule", "55.1, p. 343; book-supported CQ adaptation of inherited form", {"C": "pay_fine", "R": "traffic_rule"},
      {"premises": ["has_conclusion(traffic_rule,pay_fine)", "applicable(traffic_rule)"], "assumptions": ["valid(traffic_rule)"], "exceptions": ["conflicting_or_overriding_rule(traffic_rule,pay_fine)", "rule_exception_or_excuse(traffic_rule,pay_fine)"], "conclusions": ["pay_fine"]}),
     ("negative_consequences_reasoning", "33.3, p. 332", {"A": "tax", "B": "recession", "P": "me"},
-     {"premises": ["agent_bring_about(me,tax,recession)", "bad_for_goals(me,recession)"], "assumptions": ["outcome_likely(tax,recession)"], "conclusions": ["¬should_do(me,tax)"]}),
+     {"premises": ["agent_bring_about(me,tax,recession)", "bad_for_goals(me,recession)"], "assumptions": ["consequence_likelihood_adequate(tax,recession)"], "conclusions": ["¬should_do(me,tax)"]}),
+    ("negative_consequences_prudential", "33.4, pp. 332-333", {"X": "vaccinate", "C": "illness"},
+     {"premises": ["not_doing(vaccinate)", "bad_consequence(vaccinate,illness)"], "assumptions": ["omission_consequence_likelihood_adequate(vaccinate,illness)"], "exceptions": ["other_consequences(vaccinate)"], "conclusions": ["prudential(vaccinate)"]}),
     ("help", "38, p. 334", {"A": "ann", "B": "bob", "X": "lift"},
      {"premises": ["help_needed(ann,bob)", "situation_help(ann,lift,bob)", "can_carry_out(bob,lift)", "not_too_costly(bob,lift)"], "assumptions": ["action_will_help(lift,ann)"], "conclusions": ["should_do(bob,lift)"]}),
     ("distress", "39, pp. 334-335", {"B": "bob", "X": "lift", "A": "ann"},
@@ -478,19 +515,19 @@ INSTANCES = [
     ("inconsistent_commitment", "44, p. 337", {"A": "bob", "S": "tax_cut"},
      {"premises": ["initial_commitment(bob,tax_cut)", "opposed_commitment(bob,tax_cut)"], "assumptions": ["commitments_conflict(bob,tax_cut)"], "conclusions": ["inconsistent_commitment(bob)"]}),
     ("circumstantial_ad_hominem", "45, pp. 337-338", {"A": "bob", "S": "arg1", "C": "tax_cut"},
-     {"premises": ["advocates_conclusion(bob,arg1,tax_cut)", "committed_opposite(bob,tax_cut)", "credibility_questioned(bob)"], "assumptions": ["character_issue(bob)"], "exceptions": ["inconsistency_explained(bob,arg1)"], "conclusions": ["plausibility_decreased(bob,arg1)"]}),
+     {"premises": ["advocates_conclusion(bob,arg1,tax_cut)", "committed_opposite(bob,tax_cut)", "credibility_questioned(bob,arg1)"], "assumptions": ["character_issue(bob,arg1)"], "exceptions": ["inconsistency_explained(bob,arg1)"], "conclusions": ["plausibility_decreased(bob,arg1)"]}),
     ("bias", "46, p. 338", {"A": "bob", "C": "tax_cut"},
      {"premises": ["not_taken_both(bob,tax_cut)", "biased(bob)"], "assumptions": ["bias_relevant(bob,tax_cut)"], "conclusions": ["arguer_not_taken_both(bob,tax_cut)"]}),
     ("full_slippery_slope", "53, p. 341", {"C0": "c0", "C1": "c1", "C2": "cn"},
      {"premises": ["initial_presumption(c0)", "leads_to_next(c0,c1,cn)", "accept_all_steps(c0)"], "conclusions": ["not_acceptable_step(c0)"]}),
-    ("plea_for_excuse", "58, p. 345", {"S": "fine", "R": "r", "T": "speeding", "E": "emergency"},
-     {"premises": ["rule_require(r,speeding,fine)", "pleader_committed(speeding)", "special_circumstances(emergency,speeding)"], "assumptions": ["excuse(emergency)"], "exceptions": ["not_excuse(emergency)"], "conclusions": ["exempted(fine)"]}),
+    ("plea_for_excuse", "58, p. 345", {"P": "ann", "C": "case1", "S": "fine", "R": "r", "T": "speeding", "E": "emergency"},
+     {"premises": ["rule_require(r,speeding,fine)", "pleader_committed(ann,case1,speeding)", "special_circumstances(ann,case1,emergency,speeding)"], "assumptions": ["excuse(ann,case1,r,speeding,fine,emergency)"], "exceptions": ["not_excuse(ann,case1,r,speeding,fine,emergency)"], "conclusions": ["exempted(ann,case1,r,speeding,fine)"]}),
     ("memory", "60, p. 346", {"P": "ann", "M": "door_locked"},
      {"premises": ["recalls(ann,door_locked)", "believe_it(door_locked)"], "exceptions": ["based_on_false_belief(ann,door_locked)", "not_originally_believed(ann,door_locked)", "recaller_doubts(ann,door_locked)"], "conclusions": ["reasonable_believe(door_locked)"]}),
     ("illustration", "6.2, p. 315", {"Y": "tweety", "P1": "bird", "P2": "flies"},
      {"premises": ["usually_properties(bird,flies)", "has_properties(tweety,bird,flies)"], "conclusions": ["valid_rule(bird,flies)"]}),
     ("negative_value", "19.2, p. 321", {"V": "theft", "A": "hal", "G": "survive"},
-     {"premises": ["judged_negative_value(theft,hal)", "negative_affects(theft,survive,hal)"], "conclusions": ["reason_retracting_goal(theft,survive)"]}),
+     {"premises": ["judged_negative_value(theft,hal)", "negative_affects(theft,survive,hal)"], "conclusions": ["reason_retracting_goal(hal,theft,survive)"]}),
     ("epistemic_ignorance", "27, p. 328", {"A": "spy", "D": "staff", "K": "files"},
      {"premises": ["true_propositions_contained(staff,files)", "special_proposition(spy,files)", "special_in(spy,staff)", "special_not_in(spy,files)", "bivalent(staff)"], "conclusions": ["¬spy"]}),
     # the record added by PLAN.md 5.5

@@ -15,9 +15,10 @@ func (ag *ArgGraph) Inconsistent() bool {
 }
 
 // MAXISSUESTEPS bounds candidate/pattern visits while materializing issues.
-// It is a safety valve, not a size limit: with positions looked up by key a
-// graph costs about two visits per statement and issue scheme, and the
-// library's own graphs stay far below it.
+// It is a finite safety limit on work. Ground position lookup avoids the
+// former quadratic scan; open patterns and enumerations still scan. Graphs
+// exceeding this quota are refused, even if an unbounded evaluation would
+// eventually finish.
 const MAXISSUESTEPS = 50000000
 
 type issueWork struct {
@@ -51,11 +52,14 @@ func (ag *ArgGraph) checkContext(ctx context.Context) error {
 // resolveContext is for a private graph: apply issue closure before obtaining
 // effective assumptions, so defeated defaults never seed argument generation.
 func (ag *ArgGraph) resolveContext(ctx context.Context) error {
+	if err := ag.normalizeGraph(); err != nil {
+		return err
+	}
 	for _, a := range ag.Assumptions {
 		if ctx.Err() != nil {
 			return NewRunError(ErrCancelled, "cancelled during context validation")
 		}
-		if t, ok := terms.ReadString(a); !ok || t == nil {
+		if t, ok := terms.ReadFormula(a); !ok || t == nil {
 			return NewRunError(ErrInvalidInput, "cannot parse assumption %q", a)
 		}
 	}
@@ -75,7 +79,7 @@ func (ag *ArgGraph) materializeIssues(ctx context.Context) error {
 		n := terms.Normalize(a)
 		if _, ok := ag.Statements[n]; !ok {
 			text := n
-			if t, ok := terms.ReadString(n); ok && ag.Theory != nil {
+			if t, ok := terms.ReadFormula(n); ok && ag.Theory != nil {
 				text = ag.Theory.Language.Apply(t)
 			}
 			ag.Statements[n] = &Statement{Id: n, Text: text}

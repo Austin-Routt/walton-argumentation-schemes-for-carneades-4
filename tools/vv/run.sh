@@ -28,6 +28,9 @@ python3 "$here/test_compare_results.py" 2>&1 | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/vv/setup.sh (engine sources)"
 WALTON_REPO="$repo" "$here/setup.sh" || exit 1
+echo "== tools/test_dialogue_snapshot.py (finite dialogue snapshots against the actual engine)"
+python3 "$repo/tools/test_dialogue_snapshot.py" 2>&1 | tail -5
+[ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== go vet, and the unit tests of the suite itself"
 (cd "$here" && go vet ./... && go test -count=1 ./internal/...) || status=1
 echo "== go test (engine and library)"

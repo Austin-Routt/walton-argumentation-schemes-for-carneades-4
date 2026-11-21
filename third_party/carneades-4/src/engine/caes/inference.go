@@ -34,10 +34,9 @@ const MAXTERMSIZE = 500
 // Logical work and storage quotas for the supported propagation profile.
 // These also bound unsuccessful joins and broad, shallow stores; they do
 // not replace input-size limits or operating-system memory isolation.
-// MAXMATCHSTEPS is a safety valve as well: a join that fails over 120 facts
-// of one predicate visits some 1.7 million candidates in well under a second,
-// and an evaluation the unbounded matcher completed must not end as limit
-// reached for want of budget.
+// MAXMATCHSTEPS admits the reference four-premise join over 120 facts, which
+// exceeds one million visits. Runtime depends on the machine and theory.
+// Larger finite searches can still be refused at this explicit work quota.
 const MAXMATCHSTEPS = 50000000
 const MAXCONSTRAINTS = 100000
 const MAXSTORENODES = 2000000
@@ -55,7 +54,7 @@ func termToArgDesc(s string) (bool, *ArgDesc) {
 	if s == "" {
 		return false, nil
 	}
-	t1, ok := terms.ReadString(s)
+	t1, ok := terms.ReadFormula(s)
 	if !ok {
 		return false, nil
 	}
@@ -221,7 +220,7 @@ func (ag *ArgGraph) inferStaged(ctx context.Context) error {
 	for _, a := range ag.Assumed() {
 		if _, ok := ag.Statements[a]; !ok {
 			text := a
-			if t, ok := terms.ReadString(a); ok && ag.Theory != nil {
+			if t, ok := terms.ReadFormula(a); ok && ag.Theory != nil {
 				text = ag.Theory.Language.Apply(t)
 			}
 			ag.Statements[a] = &Statement{Id: a, Text: text}

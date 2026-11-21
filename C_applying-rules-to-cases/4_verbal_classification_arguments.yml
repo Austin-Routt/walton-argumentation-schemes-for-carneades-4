@@ -3,7 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Verbal Classification Arguments"
-  version: "0.2.0"
+  version: "0.3.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   arbitrariness_harmless/2: "In argument %s, defining property %s in an arbitrary way is no problem for the dialogue in which it was advanced."

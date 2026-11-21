@@ -1,5 +1,8 @@
 # Independent checks of inherited-source provenance
 
+
+> Current closure correction (2026-11-21): seven direct, five partial and five absent mappings leave **ten** questions without full-source coverage. The historical eight-item/blank-hook worklist below omitted partial CQ8–9 and is preserved as history, not the current completeness count. Current stages and obligations are in `closure-current-register.md`.
+
 Review date: 2026-11-21. Baseline: `49ad425cbf7afeebcbd9a07ee479d60681ca33ea`. This record distinguishes inspection of a source, agreement with its printed form, and acceptance of an executable interpretation. The final source ledger and complete per-record dispositions are authoritative for stage counts.
 
 ## abduction

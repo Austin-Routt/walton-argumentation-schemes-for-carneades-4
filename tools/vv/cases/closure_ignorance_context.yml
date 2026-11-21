@@ -1,0 +1,25 @@
+# Independently authored context controls for the unchanged normal-expectation
+# schema. Case-qualified propositions identify distinct situations explicitly.
+cases:
+- name: negative_normal_expectations/closure-case-qualified-positive
+  source: '26.1, p.327: the same situation and expected proposition occur in the conditional and contrary observation'
+  assumptions:
+  - normal_true(expectation(case1))
+  - ¬expectation(case1)
+  arguments:
+  - negative_normal_expectations(expectation(case1))
+  in:
+  - not_normal(expectation(case1))
+  not_in:
+  - not_normal(expectation(case2))
+  variants: true
+- name: negative_normal_expectations/closure-mixed-contexts-do-not-match
+  source: '26.1: absence of the expected proposition in another situation does not show this situation abnormal'
+  assumptions:
+  - normal_true(expectation(case1))
+  - ¬expectation(case2)
+  not_in:
+  - not_normal(expectation(case1))
+  - not_normal(expectation(case2))
+  no_arguments:
+  - negative_normal_expectations

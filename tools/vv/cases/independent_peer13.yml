@@ -18,18 +18,19 @@ cases:
       - reasonable_case(door_closed(case1))
       - reasonable_believe(door_closed(case2))
   - name: perception/peer13-unreliable-image-leaves-memory
-    source: "59.1 CQ1 and 60: an unreliable image does not defeat independent recall"
+    source: '59.1 CQ1 and 60: an unreliable image does not defeat independent recall'
     assumptions:
-      - image(ann,door_closed(case1))
-      - exemplify(door_closed(case1))
-      - recalls(bob,door_closed(case1))
-      - believe_it(door_closed(case1))
-      - not_indicator(door_closed(case1))
+    - image(ann,door_closed(case1))
+    - exemplify(door_closed(case1))
+    - recalls(bob,door_closed(case1))
+    - believe_it(door_closed(case1))
+    - not_indicator(ann,door_closed(case1))
     arguments:
-      - perception(ann,door_closed(case1))
-      - memory(bob,door_closed(case1))
+    - perception(ann,door_closed(case1))
+    - memory(bob,door_closed(case1))
     in:
-      - reasonable_believe(door_closed(case1))
+    - reasonable_believe(door_closed(case1))
+
   - name: memory/peer13-false-basis-leaves-perception
     source: "60 CQ1 and 59.1: a defective memory basis does not defeat independent perception"
     assumptions:
@@ -44,31 +45,32 @@ cases:
     in:
       - reasonable_believe(door_closed(case1))
   - name: memory/peer13-both-supports-defeated
-    source: "59.1 CQ1 and 60 CQ1: defeating both grounds removes their shared support"
+    source: '59.1 CQ1 and 60 CQ1: defeating both grounds removes their shared support'
     assumptions:
-      - image(ann,door_closed(case1))
-      - exemplify(door_closed(case1))
-      - recalls(bob,door_closed(case1))
-      - believe_it(door_closed(case1))
-      - not_indicator(door_closed(case1))
-      - based_on_false_belief(bob,door_closed(case1))
+    - image(ann,door_closed(case1))
+    - exemplify(door_closed(case1))
+    - recalls(bob,door_closed(case1))
+    - believe_it(door_closed(case1))
+    - not_indicator(ann,door_closed(case1))
+    - based_on_false_belief(bob,door_closed(case1))
     arguments:
-      - perception(ann,door_closed(case1))
-      - memory(bob,door_closed(case1))
+    - perception(ann,door_closed(case1))
+    - memory(bob,door_closed(case1))
     not_in:
-      - reasonable_believe(door_closed(case1))
+    - reasonable_believe(door_closed(case1))
+
   - name: perception/peer13-other-case-memory-does-not-rescue
-    source: "59.1 and 60: distinct case propositions must not acquire each other's support"
+    source: '59.1 and 60: distinct case propositions must not acquire each other''s support'
     assumptions:
-      - image(ann,door_closed(case1))
-      - exemplify(door_closed(case1))
-      - not_indicator(door_closed(case1))
-      - recalls(bob,door_closed(case2))
-      - believe_it(door_closed(case2))
+    - image(ann,door_closed(case1))
+    - exemplify(door_closed(case1))
+    - not_indicator(ann,door_closed(case1))
+    - recalls(bob,door_closed(case2))
+    - believe_it(door_closed(case2))
     arguments:
-      - perception(ann,door_closed(case1))
-      - memory(bob,door_closed(case2))
+    - perception(ann,door_closed(case1))
+    - memory(bob,door_closed(case2))
     in:
-      - reasonable_believe(door_closed(case2))
+    - reasonable_believe(door_closed(case2))
     not_in:
-      - reasonable_believe(door_closed(case1))
+    - reasonable_believe(door_closed(case1))

@@ -1,0 +1,361 @@
+# Explicit source-grounded identity and isolation controls.
+cases:
+- name: positive_value/closure-owner-retained
+  source: 'Compendium p.321: the reason concerns the same agent whose value and goal were evaluated'
+  assumptions:
+  - judged_positive_value(life,ann)
+  - positive_affects(life,survival,ann)
+  - judged_positive_value(life,bob)
+  in:
+  - reason_retaining_goal(ann,life,survival)
+  not_in:
+  - reason_retaining_goal(bob,life,survival)
+  - reason_retaining_goal(life,survival)
+- name: positive_value/closure-mixed-owner-premises-refused
+  source: 'Compendium p.321: a value judgment of one agent cannot supply another agent''s evaluation'
+  assumptions:
+  - judged_positive_value(life,ann)
+  - positive_affects(life,survival,bob)
+  no_arguments:
+  - positive_value
+- name: negative_value/closure-owner-retained
+  source: 'Compendium p.321: retracting commitment is also relative to the judging agent'
+  assumptions:
+  - judged_negative_value(theft,ann)
+  - negative_affects(theft,survival,ann)
+  - judged_negative_value(theft,bob)
+  in:
+  - reason_retracting_goal(ann,theft,survival)
+  not_in:
+  - reason_retracting_goal(bob,theft,survival)
+  - reason_retracting_goal(theft,survival)
+- name: negative_value/closure-opposite-values-different-agents
+  source: 'Compendium p.321: opposite evaluations by different agents retain their separate owners'
+  assumptions:
+  - judged_positive_value(privacy,ann)
+  - positive_affects(privacy,reporting,ann)
+  - judged_negative_value(privacy,bob)
+  - negative_affects(privacy,reporting,bob)
+  in:
+  - reason_retaining_goal(ann,privacy,reporting)
+  - reason_retracting_goal(bob,privacy,reporting)
+  not_in:
+  - reason_retracting_goal(ann,privacy,reporting)
+  - reason_retaining_goal(bob,privacy,reporting)
+- name: sign/closure-candidate-specific-comparator
+  source: 'Compendium p.329: CQ2 compares another explanation with the selected candidate, not every use of the sign'
+  assumptions:
+  - rash(patient1)
+  - indicated_true(infection(patient1),rash(patient1))
+  - indicated_true(allergy(patient1),rash(patient1))
+  - more_reliable(rash(patient1),infection(patient1))
+  in:
+  - allergy(patient1)
+  not_in:
+  - infection(patient1)
+- name: sign/closure-other-sign-does-not-defeat
+  source: 'Compendium p.329: the comparison is scoped to both the finding and candidate'
+  assumptions:
+  - rash(patient1)
+  - indicated_true(infection(patient1),rash(patient1))
+  - indicated_true(allergy(patient1),rash(patient1))
+  - more_reliable(rash(patient2),infection(patient1))
+  in:
+  - infection(patient1)
+  - allergy(patient1)
+- name: sign/closure-candidate-specific-correlation-question
+  source: 'Compendium p.329: CQ1 remains a separate challenge about the selected sign/event correlation'
+  assumptions:
+  - rash(patient1)
+  - indicated_true(infection(patient1),rash(patient1))
+  - indicated_true(allergy(patient1),rash(patient1))
+  in:
+  - allergy(patient1)
+  not_in:
+  - infection(patient1)
+  questioned:
+  - strong_correlation(rash(patient1),infection(patient1))
+- name: cause_to_effect/closure-effect-specific-interference
+  source: 'Compendium p.328: CQ3 is interference with production of the particular effect'
+  assumptions:
+  - has_occurred(lightning(storm1))
+  - causes(lightning(storm1),fire(storm1))
+  - causes(lightning(storm1),power_loss(storm1))
+  - interference(lightning(storm1),fire(storm1))
+  in:
+  - will_occur(power_loss(storm1))
+  not_in:
+  - will_occur(fire(storm1))
+- name: cause_to_effect/closure-other-causal-case-does-not-defeat
+  source: 'Compendium p.328: a separate event application does not defeat this case'
+  assumptions:
+  - has_occurred(lightning(storm1))
+  - causes(lightning(storm1),fire(storm1))
+  - causes(lightning(storm1),power_loss(storm1))
+  - interference(lightning(storm2),fire(storm1))
+  in:
+  - will_occur(fire(storm1))
+  - will_occur(power_loss(storm1))
+- name: abductive_backward/closure-candidate-membership
+  source: 'Compendium p.329: the selected account belongs to the displayed candidate set and comparison'
+  assumptions:
+  - data_set(clues)
+  - data_account(accounts1,clues)
+  - member_of_accounts(butler,accounts1)
+  - successful_account(butler,accounts1,clues)
+  arguments:
+  - abductive_backward(accounts1,butler,clues)
+  in:
+  - plausible_hypothesis(butler,accounts1,clues)
+  not_in:
+  - plausible_hypothesis(butler,accounts2,clues)
+  - plausible_hypothesis(butler)
+- name: abductive_backward/closure-missing-membership-refused
+  source: 'Compendium p.329: an external candidate cannot become the best member without membership evidence'
+  assumptions:
+  - data_set(clues)
+  - data_account(accounts1,clues)
+  - successful_account(butler,accounts1,clues)
+  no_arguments:
+  - abductive_backward
+- name: abductive_backward/closure-wrong-comparison-universe-refused
+  source: 'Compendium p.329: best in one account set does not mean best in another'
+  assumptions:
+  - data_set(clues)
+  - data_account(accounts1,clues)
+  - member_of_accounts(butler,accounts1)
+  - successful_account(butler,accounts2,clues)
+  no_arguments:
+  - abductive_backward
+- name: abductive_backward/closure-inquiry-specific-question
+  source: 'Compendium p.329: the same hypothesis in another inquiry retains independent support'
+  assumptions:
+  - data_set(clues)
+  - data_account(accounts1,clues)
+  - member_of_accounts(butler,accounts1)
+  - successful_account(butler,accounts1,clues)
+  - data_set(other_clues)
+  - data_account(accounts2,other_clues)
+  - member_of_accounts(butler,accounts2)
+  - successful_account(butler,accounts2,other_clues)
+  in:
+  - plausible_hypothesis(butler,accounts2,other_clues)
+  not_in:
+  - plausible_hypothesis(butler,accounts1,clues)
+  questioned:
+  - sufficient_account(butler,clues)
+- name: circumstantial_ad_hominem/closure-credibility-specific-to-argument
+  source: 'Compendium p.337: the credibility question concerns sincerity in this advocated argument'
+  assumptions:
+  - advocates_conclusion(bob,arg1,claim1)
+  - advocates_conclusion(bob,arg2,claim2)
+  - committed_opposite(bob,claim1)
+  - committed_opposite(bob,claim2)
+  - credibility_questioned(bob,arg1)
+  no_arguments:
+  - circumstantial_ad_hominem(bob,arg2,claim2)
+  in:
+  - plausibility_decreased(bob,arg1)
+  not_in:
+  - plausibility_decreased(bob,arg2)
+- name: circumstantial_ad_hominem/closure-character-question-isolation
+  source: 'Compendium p.337: CQ3 asks whether this argument depends on the speaker''s credibility'
+  assumptions:
+  - advocates_conclusion(bob,arg1,claim1)
+  - advocates_conclusion(bob,arg2,claim2)
+  - committed_opposite(bob,claim1)
+  - committed_opposite(bob,claim2)
+  - credibility_questioned(bob,arg1)
+  - credibility_questioned(bob,arg2)
+  in:
+  - plausibility_decreased(bob,arg2)
+  not_in:
+  - plausibility_decreased(bob,arg1)
+  questioned:
+  - character_issue(bob,arg1)
+- name: circumstantial_ad_hominem/closure-explanation-isolation
+  source: 'Compendium p.337: explaining one inconsistency does not explain another argument'
+  assumptions:
+  - advocates_conclusion(bob,arg1,claim1)
+  - advocates_conclusion(bob,arg2,claim2)
+  - committed_opposite(bob,claim1)
+  - committed_opposite(bob,claim2)
+  - credibility_questioned(bob,arg1)
+  - credibility_questioned(bob,arg2)
+  - inconsistency_explained(bob,arg1)
+  in:
+  - plausibility_decreased(bob,arg2)
+  not_in:
+  - plausibility_decreased(bob,arg1)
+- name: rule_physical_world_2/closure-institution-retained
+  source: 'Compendium p.342: the constitutive rule has the institution of its official rulebook'
+  assumptions:
+  - official_rulebook(chess_standard,stalemate,draw)
+  - official_rulebook(chess_variant,stalemate,win)
+  - correctly_report
+  in:
+  - counts_as(chess_standard,stalemate,draw)
+  - counts_as(chess_variant,stalemate,win)
+  not_in:
+  - counts_as(chess_standard,stalemate,win)
+  - counts_as(chess_variant,stalemate,draw)
+  - counts_as(stalemate,draw)
+- name: rule_physical_world_2/closure-rule-change-isolation
+  source: 'Compendium p.342: a changed rule in one institution does not invalidate another rulebook'
+  assumptions:
+  - official_rulebook(chess_standard,stalemate,draw)
+  - official_rulebook(chess_variant,stalemate,win)
+  - correctly_report
+  - rule_changed(chess_standard,stalemate,draw)
+  in:
+  - counts_as(chess_variant,stalemate,win)
+  not_in:
+  - counts_as(chess_standard,stalemate,draw)
+- name: rule_physical_world_2/closure-universal-warrant-still-required
+  source: 'Compendium p.342: the universal official-rulebook warrant remains an explicit premise'
+  assumptions:
+  - official_rulebook(chess_standard,stalemate,draw)
+  - official_rulebook(chess_variant,stalemate,win)
+  no_arguments:
+  - rule_physical_world_2
+- name: rule_mental_world/closure-language-and-definition-retained
+  source: 'Compendium p.342: the language of the speakers carries into the word-definition conclusion'
+  assumptions:
+  - same_meaning(english,gift,present)
+  - same_meaning(german,gift,poison)
+  - speakers_correct
+  in:
+  - means_same_in_language(english,gift,present)
+  - means_same_in_language(german,gift,poison)
+  not_in:
+  - means_same(gift,present)
+  - means_same_in_language(german,gift,present)
+- name: rule_mental_world/closure-language-defeater-isolation
+  source: 'Compendium p.342: the failure of referential knowledge belongs to the particular language and definition'
+  assumptions:
+  - same_meaning(english,gift,present)
+  - same_meaning(german,gift,poison)
+  - speakers_correct
+  - without_correcting(german,gift,poison)
+  in:
+  - means_same_in_language(english,gift,present)
+  not_in:
+  - means_same_in_language(german,gift,poison)
+- name: rule_mental_world/closure-other-definition-does-not-defeat
+  source: 'Compendium p.342: a different proposed definition is a separate interpretation'
+  assumptions:
+  - same_meaning(english,gift,present)
+  - same_meaning(german,gift,poison)
+  - speakers_correct
+  - without_correcting(english,gift,poison)
+  in:
+  - means_same_in_language(english,gift,present)
+- name: perception/closure-independent-observer-survives
+  source: 'Compendium p.345: an unreliable observation does not defeat another observer''s independent image'
+  assumptions:
+  - image(ann,door_closed(case1))
+  - image(bob,door_closed(case1))
+  - exemplify(door_closed(case1))
+  - not_indicator(ann,door_closed(case1))
+  arguments:
+  - perception(ann,door_closed(case1))
+  - perception(bob,door_closed(case1))
+  in:
+  - reasonable_believe(door_closed(case1))
+- name: perception/closure-both-observers-defeated
+  source: 'Compendium p.345: when both observation grounds fail their common conclusion loses support'
+  assumptions:
+  - image(ann,door_closed(case1))
+  - image(bob,door_closed(case1))
+  - exemplify(door_closed(case1))
+  - not_indicator(ann,door_closed(case1))
+  - not_indicator(bob,door_closed(case1))
+  not_in:
+  - reasonable_believe(door_closed(case1))
+- name: perception/closure-same-observer-other-case-survives
+  source: 'Compendium p.345: the proposition retains its observation context as well as its observer'
+  assumptions:
+  - image(ann,door_closed(case1))
+  - exemplify(door_closed(case1))
+  - image(ann,door_closed(case2))
+  - exemplify(door_closed(case2))
+  - not_indicator(ann,door_closed(case1))
+  in:
+  - reasonable_believe(door_closed(case2))
+  not_in:
+  - reasonable_believe(door_closed(case1))
+- name: plea_for_excuse/closure-pleader-and-case-retained
+  source: 'Compendium p.345: the requested exemption is for the same pleader, case, rule, action and sanction'
+  assumptions:
+  - rule_require(speed_rule,speeding,fine)
+  - pleader_committed(ann,case1,speeding)
+  - special_circumstances(ann,case1,emergency,speeding)
+  - pleader_committed(bob,case2,speeding)
+  - special_circumstances(bob,case2,emergency,speeding)
+  in:
+  - exempted(ann,case1,speed_rule,speeding,fine)
+  - exempted(bob,case2,speed_rule,speeding,fine)
+  not_in:
+  - exempted(fine)
+  - exempted(ann,case2,speed_rule,speeding,fine)
+- name: plea_for_excuse/closure-problematic-precedent-isolation
+  source: 'Compendium p.345: CQ3 is a supported problematic precedent for this unrecognized excuse in this plea'
+  assumptions:
+  - rule_require(speed_rule,speeding,fine)
+  - pleader_committed(ann,case1,speeding)
+  - special_circumstances(ann,case1,emergency,speeding)
+  - pleader_committed(bob,case2,speeding)
+  - special_circumstances(bob,case2,emergency,speeding)
+  - not_excuse(ann,case1,speed_rule,speeding,fine,emergency)
+  in:
+  - exempted(bob,case2,speed_rule,speeding,fine)
+  not_in:
+  - exempted(ann,case1,speed_rule,speeding,fine)
+- name: plea_for_excuse/closure-mixed-pleader-circumstances-refused
+  source: 'Compendium p.345: circumstances cited by another pleader do not establish this pleader''s plea'
+  assumptions:
+  - rule_require(speed_rule,speeding,fine)
+  - pleader_committed(ann,case1,speeding)
+  - special_circumstances(bob,case1,emergency,speeding)
+  no_arguments:
+  - plea_for_excuse
+- name: plea_for_excuse/closure-same-pleader-case-isolation
+  source: 'Compendium p.345: repeated instances of the same action by one person remain separate cases'
+  assumptions:
+  - rule_require(speed_rule,speeding,fine)
+  - pleader_committed(ann,case1,speeding)
+  - special_circumstances(ann,case1,emergency,speeding)
+  - pleader_committed(ann,case2,speeding)
+  - special_circumstances(ann,case2,emergency,speeding)
+  - not_excuse(ann,case1,speed_rule,speeding,fine,emergency)
+  in:
+  - exempted(ann,case2,speed_rule,speeding,fine)
+  not_in:
+  - exempted(ann,case1,speed_rule,speeding,fine)
+- name: plea_for_excuse/closure-justification-question-isolation
+  source: 'Compendium p.345: CQ1/CQ2 justification is an explicit challengeable application judgment for this plea'
+  assumptions:
+  - rule_require(speed_rule,speeding,fine)
+  - pleader_committed(ann,case1,speeding)
+  - special_circumstances(ann,case1,emergency,speeding)
+  - pleader_committed(bob,case2,speeding)
+  - special_circumstances(bob,case2,emergency,speeding)
+  in:
+  - exempted(bob,case2,speed_rule,speeding,fine)
+  not_in:
+  - exempted(ann,case1,speed_rule,speeding,fine)
+  questioned:
+  - excuse(ann,case1,speed_rule,speeding,fine,emergency)
+- name: plea_for_excuse/closure-supported-justification-answer
+  source: 'Compendium p.345: an expressly supplied case justification answers the challenged default'
+  assumptions:
+  - rule_require(speed_rule,speeding,fine)
+  - pleader_committed(ann,case1,speeding)
+  - special_circumstances(ann,case1,emergency,speeding)
+  - pleader_committed(bob,case2,speeding)
+  - special_circumstances(bob,case2,emergency,speeding)
+  - excuse(ann,case1,speed_rule,speeding,fine,emergency)
+  in:
+  - exempted(ann,case1,speed_rule,speeding,fine)
+  questioned:
+  - excuse(ann,case1,speed_rule,speeding,fine,emergency)

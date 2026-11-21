@@ -1,5 +1,8 @@
 # Independent review of Atkinson and Bench-Capon (2007)
 
+
+> Current closure correction (2026-11-21): seven direct, five partial and five absent mappings leave **ten** questions without full-source coverage. The historical eight-item/blank-hook worklist below omitted partial CQ8–9 and is preserved as history, not the current completeness count. Current stages and obligations are in `closure-current-register.md`.
+
 **Review date:** 2026-11-21. **Repository examined:** commit `49ad425cbf7afeebcbd9a07ee479d60681ca33ea`. **Record:** `practical_reasoning1`. **Decision:** the original-source comparison is completed, the incorrect reference-case attribution is repaired, and focused regression tests pass. Full source-fidelity approval of the inherited record is withheld. Its formulas remain the legacy Carneades adaptation of AS1; they do not implement the paper's complete action-based alternating transition system (AATS) account or all 17 critical questions.
 
 This review was performed independently of the author of the merged scheme and engine changes. The reviewer subsequently authored the narrowly scoped ledger, validation and fixture changes described here. These changes therefore still require the main integration gate's clean rerun. They are not represented as independently reviewed by a second person after their creation.

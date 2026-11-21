@@ -81,6 +81,19 @@ likely". Evidence that the consequence follows (CQ2) remains the ordinary
 `brings_about(A,G)` premise. An application must justify any quantitative
 threshold it adopts; the generic scheme imposes none.
 
+The same likelihood-strength reading applies to prudential entry33.4
+(printed pp.332–333). Its premise concerns consequences of **not doing** the
+action, so its default is
+`omission_consequence_likelihood_adequate(X,C)`. This differs from the
+doing-action assessment `consequence_likelihood_adequate(X,C)` used by33.1–33.3.
+Neither judgment answers a challenge to the other. The former
+`strongly_occur(X,C)` imposed an unsupported uniform strength threshold;
+positive, negative, and questioned saved judgments require manual semantic
+migration. The ordinary `bad_consequence(X,C)` premise and the supported
+`other_consequences(X)` exception retain their existing roles. This repair
+was identified during PR16 reconciliation and requires renewed independent
+approval; see `docs/reviews/pr16-source-adjudication.md`.
+
 The inherited `established_rule` form now has exceptions for conflicting or
 overriding rules and for exceptional/excusing cases, scoped to (R,C), based on
 55.1 CQ2–CQ3. C must identify the particular conclusion/application being

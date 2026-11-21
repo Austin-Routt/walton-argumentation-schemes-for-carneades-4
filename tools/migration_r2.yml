@@ -26,9 +26,9 @@ changes:
   - {record: verbal_classification, kind: added, old: "", new: "doubtful_classification(F,G)", plan: "5.2", page: 319}
   - {record: verbal_classification_vagueness, kind: arguments, old: "property_precion_needed(F)", new: "property_precion_needed(A)", plan: "5.1", page: 320, note: "the context requiring precision is the argument's"}
   - {record: verbal_classification_arbitrariness, kind: added, old: "", new: "arbitrariness_harmless(A,F)", plan: "5.2", page: 320}
-  - {record: two_person_practical, kind: arguments, old: "alternative_means(A,X)", new: "alternative_means(X,Y)", plan: "5.1", page: 326, note: "the goal and the action, not the person and the goal"}
+  - {record: two_person_practical, kind: arguments, old: 'alternative_means(A,X)', new: 'alternative_means(A,X,Y)', plan: '5.1', page: 326, note: 'the goal and the action, not the person and the goal'}
   - {record: two_person_practical, kind: arguments, old: "side_effect_other_act(B,A)", new: "side_effect_other_act(Y,A)", plan: "5.1", page: 326, note: "the action, not the other person"}
-  - {record: two_person_practical, kind: added, old: "", new: "other_actions_required(X,Y)", plan: "5.2", page: 326}
+  - {record: two_person_practical, kind: added, old: '', new: 'other_actions_required(A,X,Y)', plan: '5.2', page: 326}
   - {record: waste, kind: added, old: "", new: "reassessment_against_continuing(A,X)", plan: "5.2", page: 326}
   - {record: negative_normal_expectations, kind: added, old: "", new: "uninvestigated(A)", plan: "5.2", page: 327}
   - {record: abductive_backward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
@@ -36,7 +36,7 @@ changes:
   - {record: abductive_forward, kind: added, old: "", new: "inquiry_incomplete(D)", plan: "5.2", page: 330}
   - {record: retroductive, kind: added, old: '', new: 'action_fits_quality(A,E,Q)', plan: '5.2', page: 331}
   - {record: evidence_hypothesis_falsification, kind: arguments, old: "sufficient_correlation(A,H)", new: "sufficient_correlation(H,A)", plan: "5.1", page: 332, note: "the order 32.1 uses for the shared question"}
-  - {record: negative_consequences_reasoning, kind: added, old: "", new: "outcome_likely(A,B)", plan: "5.2", page: 332}
+  - {record: negative_consequences_reasoning, kind: added, old: "", new: "consequence_likelihood_adequate(A,B)", plan: "5.2", page: 332, note: "Originally outcome_likely; closure review replaces the unsupported strong-likelihood threshold with shared CQ1 adequacy."}
   - {record: help, kind: removed, old: "possible_carry_out(B,X)", new: "", plan: "5.1", page: 334, note: "repeated premise 3, can_carry_out(B,X)"}
   - {record: help, kind: removed, old: "greater_side_effects(X)", new: "", plan: "5.1", page: 334, note: "repeated premise 4, not_too_costly(B,X)"}
   - {record: distress, kind: arity, old: "relieve(B,X)", new: "relieve(B,X,A)", plan: "5.1", page: 334, note: "whose distress is relieved"}
@@ -56,13 +56,13 @@ changes:
   - {record: bias, kind: added, old: "", new: "bias_relevant(A,C)", plan: "5.2", page: 338}
   - {record: full_slippery_slope, kind: removed, old: "led_to_step", new: "", plan: "5.1", page: 341, note: "restated the group opinion premise"}
   - {record: exeptional, kind: added, old: "", new: "exception_backed(A)", plan: "5.3", page: 344}
-  - {record: plea_for_excuse, kind: arity, old: "special_circumstances(E)", new: "special_circumstances(E,T)", plan: "5.1", page: 345, note: "the excuse is for the action committed"}
+  - {record: plea_for_excuse, kind: arity, old: "special_circumstances(E)", new: "special_circumstances(P,C,E,T)", plan: "5.1", page: 345, note: "the excuse is for the action committed"}
   - {record: memory, kind: added, old: '', new: 'based_on_false_belief(P,M)', plan: '5.2', page: 346}
   - {record: memory, kind: added, old: '', new: 'not_originally_believed(P,M)', plan: '5.2', page: 346}
   - {record: memory, kind: added, old: "", new: "recaller_doubts(P,M)", plan: "5.2", page: 346}
   - {record: illustration, kind: arity, old: "usually_properties(X,P1,P2)", new: "usually_properties(P1,P2)", plan: "5.1", page: 315, note: "the rule names no individual; the variable X goes, the parameters are [Y,P1,P2]"}
   - {record: illustration, kind: arity, old: "valid_rule(Y)", new: "valid_rule(P1,P2)", plan: "5.1", page: 315, note: "the conclusion is that the rule is valid"}
-  - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
+  - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(A,V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
   - {record: epistemic_ignorence, kind: premise, old: "", new: "bivalent(D)", plan: "5.5", page: 328, note: "premise 5, which the record left out"}
   - {record: verbal_slippery_slope, kind: arguments, old: "individuals_propoerty(A1,F,A2)", new: "individuals_propoerty(A1,P,A2)", plan: "5.1", page: 341, note: "one property throughout; the variable F goes, the parameters are [A1,A2,A,P]"}
   - {record: pop_scheme, kind: removed, old: "should_accept(A)", new: "", plan: "5.3", page: 311, note: "the acceptance reading is the record pop_scheme_acceptance"}
@@ -77,7 +77,7 @@ changes:
   - {record: common_folks_group_ad_populum, kind: arity, old: "accept_saying", new: "accept_saying(S)", plan: "5.4", page: 313}
   - {record: negative_normal_expectations, kind: arity, old: "not_normal", new: "not_normal(A)", plan: "5.4", page: 327}
   - {record: negative_practical, kind: arity, old: "sufficient_evidence", new: "sufficient_evidence(A)", plan: "5.4", page: 327}
-  - {record: sign, kind: arity, old: "more_reliable", new: "more_reliable(A)", plan: "5.4", page: 329}
+  - {record: sign, kind: arity, old: "more_reliable", new: "more_reliable(A,B)", plan: "5.4", page: 329}
   - {record: retroductive, kind: arity, old: reference_class, new: 'reference_class(A,E,Q)', plan: '5.4', page: 331}
   - {record: ad_hominem, kind: arity, old: "character_revelant", new: "character_revelant(S)", plan: "5.4", page: 336}
   - {record: gradualism, kind: arity, old: "proper_sequence", new: "proper_sequence(P1,P4)", plan: "5.4", page: 339}
@@ -102,7 +102,7 @@ changes:
   - {record: two_person_practical, kind: rename-predicate, old: "situation_necessiy/4", new: "situation_necessity/4", plan: "5.6", page: 0}
   - {record: rule_physical_world_2, kind: rename-predicate, old: "oficcial_rulebook/3", new: "official_rulebook/3", plan: "5.6", page: 0}
   - {record: waste, kind: rename-predicate, old: "posible/1", new: "can_be_realized/1", plan: "5.6", page: 0, note: "possible/1 is upstream's, about an action; this one is about a goal"}
-  - {record: popular_practice, kind: rename-predicate, old: "popular_practise/1", new: "popular_practice/1", plan: "5.6", page: 0}
+  - {record: popular_practice, kind: arity, old: popular_practise(A), new: 'popular_practice(C,A)', plan: '5.6', page: 314, note: The historical spelling change now also needs the actual case. Manual semantic migration; no case is invented.}
   - {record: verbal_classification_vagueness, kind: rename-predicate, old: "property_precion_needed/1", new: "precision_needed/1", plan: "5.6", page: 0}
   - {record: composition_generic, kind: rename-predicate, old: "all_parts_propert/2", new: "all_parts_property/2", plan: "5.6", page: 0}
   - {record: part_in_whole, kind: rename-predicate, old: "part_propert/2", new: "part_property/2", plan: "5.6", page: 0}
@@ -113,7 +113,7 @@ changes:
   - {record: opposition_normative, kind: rename-predicate, old: "cannot_recieve_evaluation/2", new: "cannot_receive_evaluation/2", plan: "5.6", page: 0}
   - {record: distress, kind: rename-predicate, old: "bring_relive/2", new: "bring_relieve/2", plan: "5.6", page: 0}
   - {record: ad_hominem, kind: rename-predicate, old: "character_revelant/1", new: "character_relevant/1", plan: "5.6", page: 0}
-  - {record: abductive_backward, kind: rename-predicate, old: "succesful_account/2", new: "successful_account/2", plan: "5.6", page: 0}
+  - {record: abductive_backward, kind: arity, old: "succesful_account(A1,D)", new: "successful_account(A1,A,D)", plan: "5.6", page: 329, note: "The historical spelling change now also requires the explicit candidate account set; migration is manual."}
   - {record: abductive_forward, kind: arity, old: succesful_diagram(C1), new: 'successful_diagram(G,G1)', plan: '5.6', page: 330, note: Independent review also separates diagram G1 from conclusion C1. This spelling-plus-role change requires manual migration.}
   - {record: abductive_action_to_character, kind: arity, old: not_fit_action(A), new: 'action_fits_quality(A,X,Q)', plan: '5.6', page: 330, note: 'The old text was positive. Independent review also names the action and quality, so this migration requires those missing roles.'}
   - {record: "(library)", kind: rename-file, old: "A_reasoning/5_casual-reasoning.yml", new: "A_reasoning/5_causal-reasoning.yml", plan: "5.6", page: 0}
@@ -145,7 +145,7 @@ changes:
   - {record: verbal_classification_vagueness, kind: rename-predicate, old: "vagueness_rejected/1", new: "rejected_as_deficient/1", plan: "5.6", page: 320, note: "the same conclusion as 17's"}
   - {record: waste, kind: rename-predicate, old: "can_be_realized/1", new: "possible_goal/1", plan: "5.6", page: 326, note: "CQ1, is bringing about A possible: the goal, as 22.1's possible_goal"}
   - {record: two_person_practical, kind: rename-predicate, old: "goals_higher_priority/2", new: "conflicting_goals/2", plan: "5.6", page: 326, note: "CQ1, other goals that might conflict with realizing A, as 22.2 CQ5"}
-  - {record: practical_inference, kind: rename-predicate, old: "more_efficient_alternative_actions/2", new: "more_efficient_alternative/2", plan: "5.6", page: 323, note: "CQ2 and CQ3, as 22.4 CQ4"}
+  - {record: practical_inference, kind: replaced, old: 'more_efficient_alternative_actions(A,G)', new: 'more_efficient_alternative(P,A,G)', plan: '5.6', page: 323, note: The historical rename now also needs the actual deliberating agent. Manual semantic migration; no owner is invented.}
   - {record: practical_inference, kind: rename-predicate, old: "action_realize_goal/2", new: "means_to_end/2", plan: "5.6", page: 323, note: "carrying out A is a means to realize G; x is the means to the end y (22.6)"}
   - {record: practical_goal, kind: rename-predicate, old: "person_goal/2", new: "goal_of_agent/2", plan: "5.6", page: 325, note: "person P has goal G"}
   - {record: value_based_practical_reasoning, kind: rename-predicate, old: "should_bring_about/2", new: "should_do/2", plan: "5.6", page: 324, note: "the practical ought, with the agent named (p. 95)"}
@@ -249,3 +249,78 @@ changes:
   - {record: two_person_practical, kind: wording, old: situation_necessity/4, new: situation_necessity/4, plan: independent-review, page: 325, note: 'PR13 reconciliation: sees, not sets; preserve the adviser-to-agent report, corroborated by p97'}
   - {record: illustration, kind: rename-predicate, old: same_properties/3, new: has_properties/3, plan: independent-review, page: 315, note: 'PR13 reconciliation: same individual/property/property roles as entry6.1 p314'}
   - {record: interaction_act_person_2, kind: rename-predicate, old: person_judgment_value/2, new: person_value/2, plan: independent-review, page: 321, note: 'PR13 reconciliation: person P is V is the conclusion of18.1 and premise1 of18.2, with the same judgment-value role'}
+
+  - {record: negative_consequences_reasoning, kind: replaced, old: "outcome_likely(A,B)", new: "consequence_likelihood_adequate(A,B)", plan: closure-review, page: 332, note: "Assess likelihood relative to the claimed argument strength. This is a semantic change requiring manual review: not strongly likely does not imply inadequate, so neither positive nor negative saved judgments are automatically renamed."}
+  - {record: positive_value, kind: arity, old: 'reason_retaining_goal(V,G)', new: 'reason_retaining_goal(A,V,G)', plan: closure-context, page: 321, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: negative_value, kind: arity, old: 'reason_retracting_goal(V,G)', new: 'reason_retracting_goal(A,V,G)', plan: closure-context, page: 321, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: sign, kind: arity, old: more_reliable(A), new: 'more_reliable(A,B)', plan: closure-context, page: 329, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: cause_to_effect, kind: arity, old: interference(E1), new: 'interference(E1,E2)', plan: closure-context, page: 328, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: abductive_backward, kind: arity, old: 'successful_account(A1,D)', new: 'successful_account(A1,A,D)', plan: closure-context, page: 329, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: abductive_backward, kind: arity, old: plausible_hypothesis(A1), new: 'plausible_hypothesis(A1,A,D)', plan: closure-context, page: 329, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: circumstantial_ad_hominem, kind: arity, old: credibility_questioned(A), new: 'credibility_questioned(A,S)', plan: closure-context, page: 337, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: circumstantial_ad_hominem, kind: arity, old: character_issue(A), new: 'character_issue(A,S)', plan: closure-context, page: 337, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: rule_physical_world_2, kind: arity, old: 'counts_as(D,W)', new: 'counts_as(I,D,W)', plan: closure-context, page: 342, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: rule_mental_world, kind: replaced, old: 'means_same(W,D)', new: 'means_same_in_language(L,W,D)', plan: closure-context, page: 342, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: rule_mental_world, kind: arity, old: without_correcting(W), new: 'without_correcting(L,W,D)', plan: closure-context, page: 342, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: perception, kind: arity, old: not_indicator(I), new: 'not_indicator(P,I)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: pleader_committed(T), new: 'pleader_committed(P,C,T)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: 'special_circumstances(E,T)', new: 'special_circumstances(P,C,E,T)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: excuse(E), new: 'excuse(P,C,R,T,S,E)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: not_excuse(E), new: 'not_excuse(P,C,R,T,S,E)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: exempted(S), new: 'exempted(P,C,R,T,S)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: abductive_backward, kind: premise, old: '', trigger: 'data_account(A,D)', new: 'member_of_accounts(A1,A)', plan: closure-context, page: 329, note: Supply an explicit witness that the selected account belongs to this candidate universe; a different account set is insufficient.}
+
+  - {record: whole_into_parts_selected, kind: premise, old: "", trigger: "whole_of(X,X1,X2,X3)", new: "whole_partition(X,S)", plan: closure-review, page: 317, note: "For the new arbitrary-cardinality form, identify the complete finite partition explicitly; saved three-part records remain unchanged."}
+  - {record: whole_into_parts_selected, kind: premise, old: "", trigger: "part_whole(X,A,X1,X2,X3)", new: "some_part_sufficient_for_whole(X,S,A)", plan: closure-review, page: 317, note: "Only-if is necessary, not sufficient; the positive general form requires this separately justified sufficient warrant. Do not manufacture it by renaming."}
+
+  - {record: whole_into_parts, kind: premise, old: "", trigger: "part_whole(X,A,X1,X2,X3)", new: "selected_part_sufficient_for_whole(X,X1,A)", plan: closure-review, page: 317, note: "The three-part positive form also needs an explicitly justified sufficient direction; the source only-if premise alone cannot support this inference. Supply the actual warrant; do not infer or automatically assume it."}
+  - {record: ethotic2, kind: replaced, trigger: ethotic2, old: ¬S, new: 'reduced_plausibility_from_ethos(P,S)', plan: closure-supplemental, page: 336, note: Manual semantic migration of this scheme instance only. Reduced plausibility does not establish falsity; never globally rewrite all negated statements.}
+  - {record: witness_testimony, kind: replaced, old: biased(W), new: 'witness_account_biased(W,S)', plan: closure-supplemental, page: 310, note: Supply the actual situated account/proposition. A generic bias attribution must not automatically attack every account; biased/1 remains used by other schemes.}
+  - {record: popular_practice, kind: arity, old: 'popular_practice(A)', new: 'popular_practice(C,A)', plan: closure-scope, page: 314, note: 'Supply the actual case C. Each application and warrant must retain that same case; it cannot be inferred from a global practice atom.'}
+  - {record: popular_practice, kind: arity, old: 'to_think_acceptable(A)', new: 'to_think_acceptable(C,A)', plan: closure-scope, page: 314, note: 'Manual semantic migration: supply the case and verify the complete conditional warrant, not merely its anaphoric consequent.'}
+  - {record: popular_practice, kind: arity, old: 'have_grounds_think(A)', new: 'have_grounds_think(C,A)', plan: closure-scope, page: 314, note: 'The default or its supported answer belongs to this practice in this case.'}
+  - {record: popular_practice, kind: arity, old: 'acceptable_in_case(A)', new: 'acceptable_in_case(C,A)', plan: closure-scope, page: 314, note: 'Recover the actual case before migrating conclusions and explicit argument parameters [A,C].'}
+  - {record: analogy, kind: replaced, old: 'more_on_point(A,C)', new: 'contrary_similar_case(A,C)', plan: closure-scope, page: 315, note: 'Review counterexample evidence: source CQ3 needs another similar contrary case, not a stronger more-on-point requirement. Positive/negative stored judgments are not automatically equivalent.'}
+  - {record: from_antimodel, kind: replaced, old: '¬should_do(B,X)', new: 'should_refrain(B,X)', plan: closure-scope, page: 315, note: 'Manual polarity migration: a recommendation to refrain is not absence of a positive obligation. No automatic bridge or global exclusive issue is introduced.'}
+  - {record: alternative_normative, kind: replaced, old: 'can_be_required(A,B)', new: 'exclusive_requirement_alternatives(A,B)', plan: closure-scope, page: 318, note: 'Verify exclusivity in the actual normative context; inclusive alternatives do not license not-required(B). No prohibition is inferred.'}
+  - {record: value_based_practical_reasoning, kind: arity, old: 'goal_supported_by_values(G,V)', new: 'goal_supported_by_values(P,G,V)', plan: closure-scope, page: 324, note: 'Supply the agent whose goal is supported by that set of values; contextual goal/action terms distinguish repeated cases.'}
+  - {record: value_based_practical_reasoning, kind: arity, old: 'alternative_means(G,A)', new: 'alternative_means(P,G,A)', plan: closure-scope, page: 324, note: 'Supply the actor to whom the alternative is available; reuse the existing same-meaning three-argument relation.'}
+  - {record: value_based_practical_reasoning, kind: arity, old: 'more_efficient_alternative(A,G)', new: 'more_efficient_alternative(P,A,G)', plan: closure-scope, page: 324, note: 'Supply the actor whose available alternative is more efficient.'}
+  - {record: value_based_practical_reasoning, kind: arity, old: 'better_alternative_by_values(A,V)', new: 'better_alternative_by_values(P,A,V)', plan: closure-scope, page: 324, note: 'Value ordering and available alternative belong to the named actor.'}
+  - {record: value_based_practical_reasoning, kind: arity, old: 'worse_consequences(A,G)', new: 'worse_consequences(P,A,G)', plan: closure-scope, page: 324, note: 'Costs are assessed against the same actor’s goal in the identified case.'}
+  - {record: practical_inference, kind: arity, old: 'more_efficient_alternative(A,G)', new: 'more_efficient_alternative(P,A,G)', plan: closure-scope, page: 323, note: 'Use the same agent-relative alternative relation as22.4; do not inherit another actor’s options.'}
+  - {record: practical_inference, kind: arity, old: 'incompatible_consequences(A,G)', new: 'incompatible_consequences(P,A,G)', plan: closure-scope, page: 323, note: 'Supply the actor whose goal is affected by these consequences.'}
+  - {record: two_person_practical, kind: arity, old: 'alternative_means(X,Y)', new: 'alternative_means(A,X,Y)', plan: closure-scope, page: 326, note: 'The actor A, not adviser B, owns the available alternative.'}
+  - {record: two_person_practical, kind: arity, old: 'other_actions_required(X,Y)', new: 'other_actions_required(A,X,Y)', plan: closure-scope, page: 326, note: 'The actor A, not adviser B, must perform the additional actions; retain contextual X/Y terms.'}
+
+# Source-branch closure: explicit context and the legacy acceptance clause.
+  - {record: negative_consequences_prudential, kind: replaced, old: 'strongly_occur(X,C)', new: 'omission_consequence_likelihood_adequate(X,C)', plan: pr16-reconciliation, page: 332, note: 'Manual semantic migration: judge the adequacy of the likelihood of C from NOT doing X. A denial of strong likelihood does not imply inadequacy; an old positive or questioned threshold is not automatically the new assessment. Keep distinct from the likelihood of performing X.'}
+  - record: end_and_means_2
+    kind: arity
+    old: means_end(X)
+    new: means_end(X,C)
+    plan: closure-review
+    page: 325
+    note: The evaluator must supply the applicable context; no context can be invented by a rename.
+  - record: end_and_means_2
+    kind: arity
+    old: more_important_ends
+    new: more_important_ends(C)
+    plan: closure-review
+    page: 325
+    note: Ordinary warrant applies to the same declared evaluation context, not every context in the graph.
+  - record: end_and_means_2
+    kind: arity
+    old: ends_important(X)
+    new: ends_important(X,C)
+    plan: closure-review
+    page: 325
+    note: Conclusion and scheme parameters now include context C.
+  - record: snob_appeal_ad_populum
+    kind: premise
+    old: ''
+    new: group_accepted(G,A)
+    trigger: property_or_object(G,A)
+    plan: closure-review
+    page: 312
+    note: Support the specific acceptance branch; possession of an object is not acceptance of a proposition. No membership/acceptance evidence is manufactured.

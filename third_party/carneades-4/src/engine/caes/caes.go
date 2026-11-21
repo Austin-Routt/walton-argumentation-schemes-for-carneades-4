@@ -13,6 +13,7 @@ package caes
 import (
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 
@@ -260,7 +261,7 @@ func (ag *ArgGraph) Assumed() []string {
 
 // meetsContrary reports whether a contrary of the statement n is in the set.
 func (ag *ArgGraph) meetsContrary(n string, set map[string]bool) bool {
-	if t, ok := terms.ReadString(n); ok {
+	if t, ok := terms.ReadFormula(n); ok {
 		if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 {
 			if set[terms.Normalize(c.Args[0].String())] {
 				return true
@@ -407,7 +408,7 @@ func (arg *Argument) Applicable(l Labelling) bool {
 
 func (arg *Argument) PropertyValue(p string, l Labelling) (result terms.Term, ok bool) {
 	for _, pr := range arg.Premises {
-		term1, ok := terms.ReadString(pr.Stmt.Id)
+		term1, ok := terms.ReadFormula(pr.Stmt.Id)
 		if ok {
 			p2, ok := terms.Predicate(term1)
 			if ok && p2 == p {
@@ -418,7 +419,7 @@ func (arg *Argument) PropertyValue(p string, l Labelling) (result terms.Term, ok
 					if i != nil {
 						for _, pos := range i.Positions {
 							if l[pos] == In {
-								term2, ok := terms.ReadString(pos.Id)
+								term2, ok := terms.ReadFormula(pos.Id)
 								if ok {
 									return terms.Object(term2)
 								} else {
@@ -618,7 +619,7 @@ func (ag *ArgGraph) inconsistentPositions() bool {
 		}
 	}
 	for a := range assumed {
-		if t, ok := terms.ReadString(a); ok {
+		if t, ok := terms.ReadFormula(a); ok {
 			if c, ok := t.(terms.Compound); ok && c.Functor == "¬" && len(c.Args) == 1 && assumed[c.Args[0].String()] {
 				return true
 			}
@@ -742,7 +743,7 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 			bindings := map[string]terms.Term{}
 			for i, varName := range scheme.Variables {
 				// v := terms.NewVariable(varName)
-				t, ok := terms.ReadString(parameters[i])
+				t, ok := terms.ReadFormula(parameters[i])
 				if ok {
 					bindings[varName] = t
 				} else {
@@ -757,9 +758,9 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 
 			addPremises := func(l []string, assumptions bool) {
 				for i, p := range l {
-					term1, ok := terms.ReadString(p)
+					term1, ok := terms.ReadFormula(p)
 					if ok {
-						term2 := substituteParameters(term1, bindings)
+						term2 := terms.NormalizeNegation(substituteParameters(term1, bindings))
 						// Leave argument(S,P) premises implicit; Enthymeme!
 						pred, ok := terms.Predicate(term2)
 						if ok && pred == "argument" {
@@ -794,9 +795,9 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 
 			// instantiate the conclusions of the scheme
 			for _, c := range scheme.Conclusions {
-				term1, ok := terms.ReadString(c)
+				term1, ok := terms.ReadFormula(c)
 				if ok {
-					term2 := substituteParameters(term1, bindings)
+					term2 := terms.NormalizeNegation(substituteParameters(term1, bindings))
 					stmt, ok := ag.Statements[term2.String()]
 					if !ok {
 						s := Statement{Id: term2.String(),
@@ -844,9 +845,9 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 				// instantiate the exceptions of the scheme
 				exceptions := []*Statement{}
 				for _, e := range scheme.Exceptions {
-					term1, ok := terms.ReadString(e)
+					term1, ok := terms.ReadFormula(e)
 					if ok {
-						term2 := substituteParameters(term1, bindings)
+						term2 := terms.NormalizeNegation(substituteParameters(term1, bindings))
 						stmt, ok := ag.Statements[term2.String()]
 						if !ok {
 							s := Statement{Id: term2.String(),
@@ -888,11 +889,27 @@ func (ag *ArgGraph) InstantiateScheme(id string, parameters []string) {
 	}
 }
 
-// Add a statement id to the assumptions of an argument graph.  Assumes a
-// statement with this id has already been declared in the graph
+// AddAssumption explicitly stipulates a statement, including one previously
+// introduced as a scheme default. Questioning does not withdraw a stipulation.
+// Clear aliases too: an API client may not yet have normalized its graph.
 func (ag *ArgGraph) AddAssumption(stmt_id string) {
-	ag.assums[stmt_id] = true
-	ag.Assumptions = append(ag.Assumptions, stmt_id)
+	n := terms.Normalize(stmt_id)
+	for id := range ag.Defaults {
+		if terms.Normalize(id) == n {
+			delete(ag.Defaults, id)
+		}
+	}
+	ag.appendAssumption(n)
+}
+
+// appendAssumption records an already normalized assumption without changing
+// its origin. Scheme defaults must not pass through the stipulating API.
+func (ag *ArgGraph) appendAssumption(id string) {
+	if ag.assums == nil {
+		ag.assums = make(map[string]bool)
+	}
+	ag.assums[id] = true
+	ag.Assumptions = append(ag.Assumptions, id)
 }
 
 // addDefault assumes a statement because a scheme lists it under its
@@ -909,7 +926,7 @@ func (ag *ArgGraph) addDefault(stmt_id string) {
 		ag.Defaults = map[string]bool{}
 	}
 	ag.Defaults[n] = true
-	ag.AddAssumption(stmt_id)
+	ag.appendAssumption(n)
 }
 
 // makeIssue: match the patterns of an issue scheme against the
@@ -935,7 +952,7 @@ func readIssuePatterns(patterns []string) ([]terms.Term, error) {
 		if i == 1 && len(patterns) == 3 && p == "..." {
 			continue
 		}
-		t, ok := terms.ReadString(p)
+		t, ok := terms.ReadFormula(p)
 		if !ok {
 			return nil, fmt.Errorf("cannot parse pattern %q", p)
 		}
@@ -954,17 +971,46 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 		return err
 	}
 	pattern := parsed[0]
-	for wff1, stmt := range ag.Statements {
+	// Use a stable traversal for anchors, indexed aliases and fallback scans.
+	// Candidate bindings below are local; sorting must not conceal a choice of
+	// only the first value of a variable introduced by a later pattern.
+	wffs := make([]string, 0, len(ag.Statements))
+	for wff := range ag.Statements {
+		wffs = append(wffs, wff)
+	}
+	sort.Strings(wffs)
+	// API-created maps may use valid formula keys with noncanonical spacing.
+	// Index their parsed forms without renaming keys or replacing graph objects.
+	// Keep all aliases, then use Match below to preserve the scan's typed equality.
+	type issueEntry struct {
+		key  string
+		term terms.Term
+		stmt *Statement
+	}
+	byTerm := map[string][]issueEntry{}
+	if issueLookup && !(len(patterns) == 3 && patterns[1] == "...") {
+		for _, key := range wffs {
+			stmt := ag.Statements[key]
+			if err := work.step(); err != nil {
+				return err
+			}
+			if term, ok := terms.ReadFormula(key); ok {
+				byTerm[term.String()] = append(byTerm[term.String()], issueEntry{key, term, stmt})
+			}
+		}
+	}
+	for _, wff1 := range wffs {
+		stmt := ag.Statements[wff1]
 		if err := work.step(); err != nil {
 			return err
 		}
-		term1, ok := terms.ReadString(wff1)
+		term1, ok := terms.ReadFormula(wff1)
 		if !ok {
 			fmt.Fprintf(os.Stderr, "Statement key not a term: %v\n", wff1)
 			continue
 		}
 		var bindings terms.Bindings
-		bindings, ok = terms.Match(pattern, term1, bindings)
+		bindings, ok = terms.MatchFormula(pattern, term1, bindings)
 		if !ok {
 			continue // terms do not match
 		} else {
@@ -1010,16 +1056,21 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			}
 			if ground {
 				seen := map[string]bool{wff1: true}
-				for _, k := range keys {
+				for j, k := range keys {
 					if err := work.step(); err != nil {
 						return err
 					}
-					if seen[k] {
-						continue
-					}
-					seen[k] = true
-					if stmt2, ok := ag.Statements[k]; ok {
-						candidates = append(candidates, stmt2)
+					for _, entry := range byTerm[k] {
+						if err := work.step(); err != nil {
+							return err
+						}
+						if seen[entry.key] {
+							continue
+						}
+						if _, match := terms.MatchFormula(parsed[j+1], entry.term, bindings); match {
+							seen[entry.key] = true
+							candidates = append(candidates, entry.stmt)
+						}
 					}
 				}
 			}
@@ -1030,10 +1081,11 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 			// remaining patterns of the issue scheme and, in particular,
 			// whether or not the issue scheme is an enumeration.
 
-			for wff2, stmt2 := range ag.Statements {
+			for _, wff2 := range wffs {
 				if ground {
 					break
 				}
+				stmt2 := ag.Statements[wff2]
 				if err := work.step(); err != nil {
 					return err
 				}
@@ -1041,7 +1093,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 					// skip the matching statement found previously
 					continue
 				}
-				term2, ok := terms.ReadString(wff2)
+				term2, ok := terms.ReadFormula(wff2)
 				if !ok {
 					fmt.Fprintf(os.Stderr, "Statement key not a term: %v\n", wff2)
 					continue
@@ -1049,14 +1101,16 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 
 				match := false
 				if !isEnumeration {
-					// try matching against each of the remaining patterns
-					// and update the bindings and add the statement as
-					// as candidate if any pattern matches
+					// Each remaining pattern supplies alternative positions
+					// under the first pattern's anchor bindings. A candidate's
+					// fresh bindings must not constrain the next candidate or
+					// another alternative pattern. Repeated variables within
+					// one pattern are still checked by that single match.
 					for _, pattern2 := range parsed[1:] {
 						if err := work.step(); err != nil {
 							return err
 						}
-						bindings, match = terms.Match(pattern2, term2, bindings)
+						_, match = terms.MatchFormula(pattern2, term2, bindings)
 						if match {
 							break
 						}
@@ -1069,7 +1123,7 @@ func (ag *ArgGraph) makeIssueWithWork(issueScheme string, patterns []string, wor
 						v := env.T
 						b2copy = terms.AddBinding(k, v, b2copy)
 					}
-					b2copy, match = terms.Match(pattern, term2, b2copy)
+					b2copy, match = terms.MatchFormula(pattern, term2, b2copy)
 				}
 				if !match {
 					continue // terms do not match

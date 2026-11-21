@@ -1,0 +1,167 @@
+# The same source distinguishes alternative readings. These fixtures assert
+# witnesses and conditional direction explicitly; no aggregate is inferred
+# from missing facts. See docs/source-closure-contracts.md.
+cases:
+  - name: whole_into_parts/closure-legacy-only-if-insufficient
+    source: "10.2: the three-part form also refuses to turn a necessary condition into a sufficient one"
+    assumptions:
+      - whole_of(team,ann,bob,cy)
+      - part_whole(team,strong,ann,bob,cy)
+      - has_property(ann,strong)
+    no_arguments: [whole_into_parts]
+    not_in: ["has_property(team,strong)"]
+  - name: whole_into_parts/closure-legacy-other-part-warrant
+    source: "10.2: sufficiency for a different selected part does not license this argument"
+    assumptions:
+      - whole_of(team,ann,bob,cy)
+      - part_whole(team,strong,ann,bob,cy)
+      - selected_part_sufficient_for_whole(team,bob,strong)
+      - has_property(ann,strong)
+    no_arguments: [whole_into_parts]
+    not_in: ["has_property(team,strong)"]
+  - name: part_in_whole_physical/book
+    source: "9.2, p.316: physical-part positive alternative"
+    assumptions: ["physical_part_of(fragment,ingot)", "has_property(ingot,gold)"]
+    arguments: ["part_in_whole_physical(fragment,ingot,gold)"]
+    in: ["has_property(fragment,gold)"]
+    variants: true
+  - name: part_in_whole_physical/closure-species-is-not-physical
+    source: "9.2: a taxonomic inclusion does not establish physical parthood"
+    assumptions: ["species_of(rose,flower)", "has_property(flower,beautiful)"]
+    no_arguments: ["part_in_whole_physical"]
+  - name: part_in_whole/closure-physical-is-not-species
+    source: "9.2: a physical part is not silently treated as a taxonomic species"
+    assumptions: ["physical_part_of(fragment,ingot)", "has_property(ingot,gold)"]
+    no_arguments: ["part_in_whole"]
+  - name: part_in_whole_species_degree/book
+    source: "9.2, p.316: the distinct lesser-degree parenthesis, on a declared common scale"
+    assumptions: ["species_of(rose,flower)", "has_property(flower,valuable)", "degree_comparable(rose,flower,valuable)"]
+    arguments: ["part_in_whole_species_degree(rose,flower,valuable)"]
+    in: ["has_property(rose,valuable)", "less_property_than(rose,valuable,flower)"]
+    not_in: ["¬has_property(rose,valuable)"]
+    variants: true
+  - name: part_in_whole_physical_degree/book
+    source: "9.2: lesser degree remains property possession, not an exception to it"
+    assumptions: ["physical_part_of(region,country)", "has_property(country,wealthy)", "degree_comparable(region,country,wealthy)"]
+    arguments: ["part_in_whole_physical_degree(region,country,wealthy)"]
+    in: ["has_property(region,wealthy)", "less_property_than(region,wealthy,country)"]
+    not_in: ["¬has_property(region,wealthy)"]
+    variants: true
+  - name: part_in_whole_species_degree/closure-no-common-scale
+    source: "9.2: the degree variant needs its explicit comparison-scale witness"
+    assumptions: ["species_of(rose,flower)", "has_property(flower,valuable)"]
+    no_arguments: ["part_in_whole_species_degree"]
+    not_in: ["less_property_than(rose,valuable,flower)"]
+  - name: part_in_whole_physical_degree/closure-wrong-property-scale
+    source: "9.2: a scale for another property does not supply this comparison"
+    assumptions: ["physical_part_of(region,country)", "has_property(country,wealthy)", "degree_comparable(region,country,populous)"]
+    no_arguments: ["part_in_whole_physical_degree"]
+    not_in: ["less_property_than(region,wealthy,country)"]
+  - name: part_in_whole_smaller_degree/book
+    source: "9.2, p.316: the smaller-part parenthesis needs the relevant smaller-part claim"
+    assumptions:
+      - physical_part_of(region,country)
+      - has_property(country,wealthy)
+      - smaller_in_relevant_measure(region,country)
+      - degree_comparable(region,country,wealthy)
+    arguments: ["part_in_whole_smaller_degree(region,country,wealthy)"]
+    in: ["less_property_than(region,wealthy,country)"]
+    variants: true
+  - name: part_in_whole_smaller_degree/closure-no-smaller-part-evidence
+    source: "9.2: the smaller-part variant does not manufacture relative-size evidence"
+    assumptions: ["physical_part_of(region,country)", "has_property(country,wealthy)", "degree_comparable(region,country,wealthy)"]
+    no_arguments: ["part_in_whole_smaller_degree"]
+  - name: whole_into_parts_selected/book
+    source: "10.2, p.317: any selected member of the specified finite partition, with an explicit sufficient warrant"
+    assumptions:
+      - whole_partition(machine,seven_components)
+      - partition_member(c1,seven_components)
+      - partition_member(c2,seven_components)
+      - partition_member(c3,seven_components)
+      - partition_member(c4,seven_components)
+      - partition_member(c5,seven_components)
+      - partition_member(c6,seven_components)
+      - partition_member(c7,seven_components)
+      - some_part_sufficient_for_whole(machine,seven_components,electrically_live)
+      - has_property(c7,electrically_live)
+    arguments: ["whole_into_parts_selected(machine,seven_components,c7,electrically_live)"]
+    in: ["has_property(machine,electrically_live)"]
+    no_arguments: ["whole_into_parts"]
+  - name: whole_into_parts_selected/closure-two-parts
+    source: "10.2: the positive form has no fixed three-part cardinality"
+    assumptions:
+      - whole_partition(machine,two_components)
+      - partition_member(power_unit,two_components)
+      - some_part_sufficient_for_whole(machine,two_components,electrically_live)
+      - has_property(power_unit,electrically_live)
+    arguments: ["whole_into_parts_selected(machine,two_components,power_unit,electrically_live)"]
+    in: ["has_property(machine,electrically_live)"]
+    variants: true
+  - name: whole_into_parts_selected/closure-necessary-is-not-sufficient
+    source: "10.2: only-if does not permit the positive inference by itself"
+    assumptions:
+      - whole_partition(machine,components)
+      - partition_member(power_unit,components)
+      - whole_requires_property_part(machine,components,electrically_live)
+      - has_property(power_unit,electrically_live)
+    no_arguments: ["whole_into_parts_selected"]
+    not_in: ["has_property(machine,electrically_live)"]
+  - name: whole_into_parts_selected/closure-other-partition-member
+    source: "10.2: a member of a different partition is not a selected part of this whole"
+    assumptions:
+      - whole_partition(machine,components)
+      - partition_member(power_unit,other_components)
+      - some_part_sufficient_for_whole(machine,components,electrically_live)
+      - has_property(power_unit,electrically_live)
+    no_arguments: ["whole_into_parts_selected"]
+    not_in: ["has_property(machine,electrically_live)"]
+  - name: whole_into_parts_selected/closure-other-whole-warrant
+    source: "10.2: the sufficient warrant is scoped to its whole and partition"
+    assumptions:
+      - whole_partition(machine,components)
+      - partition_member(power_unit,components)
+      - some_part_sufficient_for_whole(other_machine,components,electrically_live)
+      - has_property(power_unit,electrically_live)
+    no_arguments: ["whole_into_parts_selected"]
+    not_in: ["has_property(machine,electrically_live)"]
+  - name: whole_into_parts_negative/book
+    source: "10.2, p.317: supported universal absence plus the necessary condition gives the negative branch"
+    assumptions:
+      - whole_partition(machine,components)
+      - whole_requires_property_part(machine,components,electrically_live)
+      - no_partition_part_property(machine,components,electrically_live)
+    arguments: ["whole_into_parts_negative(machine,components,electrically_live)"]
+    in: ["¬has_property(machine,electrically_live)"]
+    variants: true
+  - name: whole_into_parts_negative/closure-not-closed-world
+    source: "10.2: no asserted positive part is not a supported universal negative"
+    assumptions:
+      - whole_partition(machine,components)
+      - whole_requires_property_part(machine,components,electrically_live)
+    no_arguments: ["whole_into_parts_negative"]
+    not_in: ["¬has_property(machine,electrically_live)"]
+  - name: whole_into_parts_negative/closure-one-negative-part-insufficient
+    source: "10.2: one negative part does not establish that no part has the property"
+    assumptions:
+      - whole_partition(machine,components)
+      - whole_requires_property_part(machine,components,electrically_live)
+      - partition_member(c1,components)
+      - ¬has_property(c1,electrically_live)
+    no_arguments: ["whole_into_parts_negative"]
+    not_in: ["¬has_property(machine,electrically_live)"]
+  - name: whole_into_parts_negative/closure-other-partition-negative
+    source: "10.2: universal negative evidence must concern this complete partition"
+    assumptions:
+      - whole_partition(machine,components)
+      - whole_requires_property_part(machine,components,electrically_live)
+      - no_partition_part_property(machine,other_components,electrically_live)
+    no_arguments: ["whole_into_parts_negative"]
+    not_in: ["¬has_property(machine,electrically_live)"]
+  - name: whole_into_parts_negative/closure-sufficient-is-not-necessary
+    source: "10.2: the sufficient direction cannot replace only-if in the negative branch"
+    assumptions:
+      - whole_partition(machine,components)
+      - some_part_sufficient_for_whole(machine,components,electrically_live)
+      - no_partition_part_property(machine,components,electrically_live)
+    no_arguments: ["whole_into_parts_negative"]
+    not_in: ["¬has_property(machine,electrically_live)"]

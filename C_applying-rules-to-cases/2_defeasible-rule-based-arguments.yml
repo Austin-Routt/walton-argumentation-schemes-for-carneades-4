@@ -3,22 +3,23 @@
 
 meta:
   title: "Applying Rules to Cases - Defeasible Rule-based Arguments"
-  version: "0.2.0"
+  version: "0.3.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  means_same_in_language/3: "In language %s, word %s means the same as definition %s."
   addressee_of/2: "%s is subject to the rule concerning %s."
   case/1: "%s is the case."
   case_exception/1: "The case of %s is an exception."
   correctly_report/0: "Official rulebooks correctly report the rules in force."
-  counts_as/2: "%s counts as %s."
+  counts_as/3: "In institution %s, %s counts as %s."
   do_obligator/0: "One must not do what is prohibited, and must do what is obligatory."
   established_rule_property/3: "Generally, according to the established rule %s, if something has property %s, then it also has property %s."
   evaluation/3: "If %s is the case, then an evaluation %s is justified/conduct %s is required."
   evaluation_justified/2: "Evaluation %s is justified/conduct %s is required."
   exception_backed/1: "The case of %s has an applicable recognized exception or, if unrecognized, evidence of the governing rule's non-applicability; if borderline, comparable cases additionally justify its treatment."
-  excuse/1: "%s falls under a recognized category of excuses for this type of case and the inclusion can be justified, or what is special about the case justifies the exemption."
+  excuse/6: "%s's plea in case %s under rule %s for action %s and sanction %s is justified by excuse %s: either its recognized category applies and is justified in this case, or special features justify an unrecognized excuse."
   excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
-  exempted/1: "In this instance, I ought to be exempted from %s."
+  exempted/5: "Pleader %s, in case %s under rule %s for action %s, ought to be exempted from sanction %s."
   has_property/2: "%s has property %s."
   implies/2: "%s implies %s."
   is_a/2: "%s is %s."
@@ -26,11 +27,11 @@ language:
   means_same/2: "%s means the same as %s."
   must_do/2: "%s must do %s."
   must_not_do/2: "%s must not do %s."
-  not_excuse/1: "%s does not fall under a recognized category, and this would pose a problem in future cases."
+  not_excuse/6: "%s's plea in case %s under rule %s for action %s and sanction %s uses unrecognized excuse %s that would set a problematic precedent."
   not_necessarily_true/2: "That %s is %s is not a necessary truth."
   obligatory/1: "%s is obligatory."
   official_rulebook/3: "In the official rulebook for %s -a rule governed institution, such as a game- it is stated that %s counts as %s."
-  pleader_committed/1: "I -the pleader- have committed %s."
+  pleader_committed/3: "Pleader %s, in case %s, committed action %s."
   prohibited/1: "%s is prohibited."
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
   rule_can_waived/1: "If the case of %s is an exception, then the established rule can be waived in that case."
@@ -41,10 +42,10 @@ language:
   rule_waived/1: "The established rule can be waived in the case of %s."
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
-  special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
+  special_circumstances/4: "Pleader %s cites in case %s special circumstances %s as an excuse for action %s."
   referentially_coextensive/2: "The expressions %s and %s are referentially coextensive."
   synonymous/0: "Whenever expressions are referentially coextensive, they are synonymous."
-  without_correcting/1: "Speakers are able to use the word %s in the correct physical and grammatical context without being correct about the nature of its referent or property."
+  without_correcting/3: "Speakers of language %s can use word %s correctly while being wrong about the proposed definition %s."
 
 issue_schemes:
   # A statement and its explicit negation are the two positions of one issue,
@@ -70,28 +71,37 @@ argument_schemes:
   - id: rule_physical_world_2
     meta:
       title: Argument For Constitutive Rule Claims - Physical World Premise Version 2
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.2, p. 342."
-    variables: [I,D,W]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 54.2, p. 342.
+    variables:
+    - I
+    - D
+    - W
     conclusions:
-      - counts_as(D,W)
+    - counts_as(I,D,W)
     premises:
-      - official_rulebook(I,D,W)
-      - correctly_report
+    - official_rulebook(I,D,W)
+    - correctly_report
     exceptions:
-      - rule_changed(I,D,W)
+    - rule_changed(I,D,W)
 
-  - id: rule_mental_world 
+  - id: rule_mental_world
     meta:
       title: Argument For Constitutive Rule Claims - Mental World Premise
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.3, p. 342. Wayne Grennan, Informal Logic, Montreal: McGill-Queen's University Press, 1997, p. 196."
-    variables: [W,D,L]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 54.3, p. 342. Wayne Grennan, Informal Logic, Montreal: McGill-Queen''s University Press, 1997,
+        p. 196.'
+    variables:
+    - W
+    - D
+    - L
     conclusions:
-      - means_same(W,D)
+    - means_same_in_language(L,W,D)
     premises:
-      - same_meaning(L,W,D)
-      - speakers_correct
+    - same_meaning(L,W,D)
+    - speakers_correct
     exceptions:
-      - without_correcting(W)
+    - without_correcting(L,W,D)
 
   - id: rule
     meta:
@@ -165,18 +175,26 @@ argument_schemes:
   - id: plea_for_excuse
     meta:
       title: Argument From Plea For Excuse
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 58, p. 345. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 154-156."
-    variables: [S,R,T,E]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 58, p. 345. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997,
+        pp. 154-156.'
+    variables:
+    - P
+    - C
+    - S
+    - R
+    - T
+    - E
     conclusions:
-      - exempted(S)
+    - exempted(P,C,R,T,S)
     premises:
-      - rule_require(R,T,S)
-      - pleader_committed(T)
-      - special_circumstances(E,T)
+    - rule_require(R,T,S)
+    - pleader_committed(P,C,T)
+    - special_circumstances(P,C,E,T)
     exceptions:
-      - not_excuse(E)
-    assumptions: 
-     - excuse(E)
+    - not_excuse(P,C,R,T,S,E)
+    assumptions:
+    - excuse(P,C,R,T,S,E)
 
   - id: defeasible_modus_ponens
     meta:

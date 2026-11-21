@@ -212,7 +212,10 @@ func scanArgMapGraph(m *argMapGraph) (*argMapGraph, error) {
 
 	// scan Labels
 	// -----------
-	m.caesLabels = labels2caes(m.Tests)
+	m.caesLabels, err = labels2caes(m.Tests)
+	if err != nil {
+		return nil, err
+	}
 	// scan Assumtions
 	// ---------------
 	if m.Assumptions != nil && len(m.Assumptions) != 0 {
@@ -282,20 +285,23 @@ func scanArgMapGraph(m *argMapGraph) (*argMapGraph, error) {
 	return m, nil
 }
 
-func labels2caes(ul *umLabel) map[string]caes.Label {
+func labels2caes(ul *umLabel) (map[string]caes.Label, error) {
 	ml := map[string]caes.Label{}
 	if ul != nil {
-		for _, in := range ul.In {
-			ml[in] = caes.In
-		}
-		for _, out := range ul.Out {
-			ml[out] = caes.Out
-		}
-		for _, undec := range ul.Undecided {
-			ml[undec] = caes.Undecided
+		for _, group := range []struct {
+			names []string
+			label caes.Label
+		}{{ul.In, caes.In}, {ul.Out, caes.Out}, {ul.Undecided, caes.Undecided}} {
+			for _, name := range group.names {
+				n := normString(name)
+				if old, exists := ml[n]; exists && old != group.label {
+					return nil, fmt.Errorf("conflicting expected labels normalize to %q", n)
+				}
+				ml[n] = group.label
+			}
 		}
 	}
-	return ml
+	return ml, nil
 }
 
 func caesArgMapGraph2caes(m *argMapGraph) (caesAg *caes.ArgGraph, err error) {
@@ -473,9 +479,15 @@ func caesArgMapGraph2caes(m *argMapGraph) (caesAg *caes.ArgGraph, err error) {
 	// Statements called into question, and the assumptions that are defaults
 	// of an instantiated scheme rather than stipulations (contract 5)
 	caesAg.Questioned = normStringVec(m.Questioned)
+	stipulated := map[string]bool{}
+	for _, s := range collOfAssumptions {
+		stipulated[terms.Normalize(s)] = true
+	}
 	for _, d := range normStringVec(m.Defaults) {
 		collOfAssumptions = append(collOfAssumptions, d)
-		caesAg.Defaults[terms.Normalize(d)] = true
+		if !stipulated[terms.Normalize(d)] {
+			caesAg.Defaults[terms.Normalize(d)] = true
+		}
 	}
 	// Assumptions
 	caesAg.Assumptions = []string{}
@@ -1108,6 +1120,9 @@ func iface2statement(value interface{}, yamlStats map[string]*caes.Statement) (m
 					errors.New("*** Error statemment name must be a string not '" + fmt.Sprintf("%v", st_key) + "'\n")
 			}
 			keyStr := normString(st_key.(string))
+			if _, exists := yamlStats[keyStr]; exists {
+				return nil, fmt.Errorf("statement keys normalize to the same formula %q", keyStr)
+			}
 			switch st_value.(type) {
 			case string:
 				yamlStats[keyStr] = &caes.Statement{
@@ -1533,7 +1548,7 @@ func iface2references(reference interface{}, yamlRefs map[string]caes.Metadata) 
 
 func normString(src string) (scr2 string) {
 	// fmt.Printf(">%s<\n", src)
-	t, ok := terms.ReadString(src)
+	t, ok := terms.ReadFormula(src)
 	if ok {
 		return t.String()
 	}

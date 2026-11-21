@@ -9,6 +9,7 @@ package vvlib
 //	cases:
 //	  - name: ad_hominem/positive
 //	    source: "42, p. 336"                      # where the reading comes from
+//	    schemes: [ad_hominem]                     # optional live-library rule selection
 //	    library: walton.yml                       # the scheme file loaded (default walton.yml)
 //	    graph: |                                  # or a whole graph file of its own, instead
 //	      ...
@@ -26,6 +27,7 @@ package vvlib
 // Each case is one check, "case", of the case file.
 
 import (
+	"bytes"
 	"errors"
 	"fmt"
 	"os"
@@ -45,6 +47,7 @@ type Case struct {
 	Name        string     `yaml:"name"`
 	Source      string     `yaml:"source"`
 	Library     string     `yaml:"library"`
+	Schemes     []string   `yaml:"schemes"`
 	Graph       string     `yaml:"graph"`
 	Assumptions []string   `yaml:"assumptions"`
 	Questioned  []string   `yaml:"questioned"`
@@ -57,7 +60,8 @@ type Case struct {
 	Outcome     string     `yaml:"outcome"`
 	// Variants, for a case with one argument (PLAN.md 5.7): leaving out any
 	// one assumption of the case builds no such argument with the selected
-	// schema isolated; the ordinary positive case retains its full theory.
+	// schema isolated; the ordinary positive case retains its declared theory
+	// context (the whole library unless Schemes is explicitly supplied).
 	// Stating any
 	// one exception of its scheme, for the argument's parameters, undercuts
 	// it.
@@ -93,71 +97,157 @@ var outcomes = map[string]error{
 	"limit reached":        caes.ErrLimitReached,
 }
 
-// RunCase evaluates one case and returns its problems.
-func RunCase(root string, c Case) []string {
-	lib := c.Library
-	if lib == "" {
-		lib = "walton.yml"
-	}
-	var data []byte
-	var err error
-	if c.Graph != "" {
-		data = []byte(c.Graph)
-	} else if data, err = os.ReadFile(filepath.Join(root, lib)); err != nil {
-		return []string{err.Error()}
-	}
-	ResetEngineGlobals()
-	cap := StartCapture()
-	defer func() { cap.Stop(); ResetEngineGlobals() }()
-	ag, err := cyaml.Import(strings.NewReader(string(data)))
-	if err != nil {
-		return []string{"the graph does not import: " + err.Error()}
-	}
-	ag.Assumptions = append(ag.Assumptions, c.Assumptions...)
-	ag.Questioned = append(ag.Questioned, c.Questioned...)
-	err = ag.Infer()
-	if c.Outcome != "" {
-		want, ok := outcomes[c.Outcome]
-		if !ok {
-			return []string{"unknown outcome " + c.Outcome}
-		}
-		if !errors.Is(err, want) {
-			return []string{fmt.Sprintf("Infer: want %s, got %v", c.Outcome, err)}
-		}
+// selectCaseSchemes retains actual imported records and rebuilds the private
+// index from scratch. A nil selection means all rules; an explicit empty list
+// means none. Issue schemes and language retain the case's declared context.
+func selectCaseSchemes(ag *caes.ArgGraph, ids []string) error {
+	if ids == nil {
 		return nil
 	}
-	if err != nil {
-		return []string{"Infer: " + err.Error()}
+	byID := map[string]*caes.Scheme{}
+	for _, s := range ag.Theory.ArgSchemes {
+		if _, duplicate := byID[s.Id]; duplicate {
+			return fmt.Errorf("duplicate library scheme %s", s.Id)
+		}
+		byID[s.Id] = s
 	}
-	l := ag.GroundedLabelling()
+	selected := caes.NewTheory()
+	selected.Language = ag.Theory.Language
+	selected.WeighingFunctions = ag.Theory.WeighingFunctions
+	selected.WeighingSpecs = ag.Theory.WeighingSpecs
+	selected.IssueSchemes = ag.Theory.IssueSchemes
+	seen := map[string]bool{}
+	for _, id := range ids {
+		if seen[id] {
+			return fmt.Errorf("duplicate selected scheme %s", id)
+		}
+		seen[id] = true
+		s, ok := byID[id]
+		if !ok {
+			return fmt.Errorf("unknown selected scheme %s", id)
+		}
+		selected.ArgSchemes = append(selected.ArgSchemes, s)
+	}
+	selected.InitSchemeIndex()
+	ag.Theory = selected
+	return nil
+}
+
+func importCase(data []byte, c Case) (*caes.ArgGraph, error) {
+	ag, err := cyaml.Import(strings.NewReader(string(data)))
+	if err != nil {
+		return nil, err
+	}
+	if err := selectCaseSchemes(ag, c.Schemes); err != nil {
+		return nil, err
+	}
+	for _, fact := range c.Assumptions {
+		ag.AddAssumption(fact)
+	}
+	ag.Questioned = append(ag.Questioned, c.Questioned...)
+	return ag, nil
+}
+
+// A shared observation-only oracle: importing or checking CLI output must not
+// infer again and repair the very result the case is meant to judge.
+type caseObservation struct {
+	labels    map[string]string
+	arguments map[string]bool
+	schemes   map[string]bool
+	issues    [][]string
+}
+
+func newCaseObservation() caseObservation {
+	return caseObservation{labels: map[string]string{}, arguments: map[string]bool{}, schemes: map[string]bool{}}
+}
+
+func (o *caseObservation) argument(scheme string, parameters []string) {
+	o.schemes[scheme] = true
+	o.arguments[terms.Normalize(scheme+"("+strings.Join(parameters, ",")+")")] = true
+}
+
+func observeCaseGraph(ag *caes.ArgGraph, l caes.Labelling) caseObservation {
+	o := newCaseObservation()
+	for id, s := range ag.Statements {
+		o.labels[terms.Normalize(id)] = l[s].String()
+	}
+	for _, a := range ag.Arguments {
+		if a != nil {
+			scheme := "linked"
+			if a.Scheme != nil {
+				scheme = a.Scheme.Id
+			}
+			o.argument(scheme, a.Parameters)
+		}
+	}
+	for _, is := range ag.Issues {
+		positions := []string{}
+		for _, p := range is.Positions {
+			positions = append(positions, terms.Normalize(p.Id))
+		}
+		o.issues = append(o.issues, positions)
+	}
+	return o
+}
+
+func observeCaseYAML(text string) (caseObservation, error) {
+	o := newCaseObservation()
+	observedLabels, err := labels(text)
+	if err != nil {
+		return o, err
+	}
+	for id, label := range observedLabels {
+		o.labels[terms.Normalize(id)] = label
+	}
+	var d struct {
+		Arguments map[string]struct {
+			Scheme     string   `yaml:"scheme"`
+			Parameters []string `yaml:"parameters"`
+		} `yaml:"arguments"`
+		Issues map[string]struct {
+			Positions []string `yaml:"positions"`
+		} `yaml:"issues"`
+	}
+	if err := yaml.Unmarshal([]byte(text), &d); err != nil {
+		return o, err
+	}
+	for _, a := range d.Arguments {
+		// The graph format's default scheme for authored arguments is linked.
+		if a.Scheme == "" {
+			a.Scheme = "linked"
+		}
+		o.argument(a.Scheme, a.Parameters)
+	}
+	for _, is := range d.Issues {
+		positions := []string{}
+		for _, p := range is.Positions {
+			positions = append(positions, terms.Normalize(p))
+		}
+		o.issues = append(o.issues, positions)
+	}
+	return o, nil
+}
+
+func caseExpectationProblems(c Case, o caseObservation) []string {
 	label := func(id string) string {
-		st, ok := ag.Statements[terms.Normalize(id)]
+		v, ok := o.labels[terms.Normalize(id)]
 		if !ok {
 			return "absent"
 		}
-		return l[st].String()
-	}
-	args := map[string]bool{}
-	schemes := map[string]bool{}
-	for _, a := range ag.Arguments {
-		if a == nil || a.Scheme == nil {
-			continue
-		}
-		schemes[a.Scheme.Id] = true
-		args[terms.Normalize(a.Scheme.Id+"("+strings.Join(a.Parameters, ",")+")")] = true
+		return v
 	}
 	var probs []string
 	for _, a := range c.Arguments {
-		if !args[terms.Normalize(a)] {
+		if !o.arguments[terms.Normalize(a)] {
 			probs = append(probs, "no argument "+a)
 		}
 	}
 	for _, a := range c.NoArguments {
 		if strings.Contains(a, "(") {
-			if args[terms.Normalize(a)] {
+			if o.arguments[terms.Normalize(a)] {
 				probs = append(probs, "an argument "+a+" was built")
 			}
-		} else if schemes[a] {
+		} else if o.schemes[a] {
 			probs = append(probs, "an argument of "+a+" was built")
 		}
 	}
@@ -178,18 +268,15 @@ func RunCase(root string, c Case) []string {
 	}
 	for _, want := range c.Issues {
 		found := false
-		for _, is := range ag.Issues {
-			got := []string{}
-			for _, p := range is.Positions {
-				got = append(got, terms.Normalize(p.Id))
-			}
+		for _, positions := range o.issues {
+			got := append([]string{}, positions...)
 			w := []string{}
 			for _, p := range want {
 				w = append(w, terms.Normalize(p))
 			}
 			sort.Strings(got)
 			sort.Strings(w)
-			if strings.Join(got, " ") == strings.Join(w, " ") {
+			if reflect.DeepEqual(got, w) {
 				found = true
 			}
 		}
@@ -197,6 +284,44 @@ func RunCase(root string, c Case) []string {
 			probs = append(probs, fmt.Sprintf("no issue with the positions %v", want))
 		}
 	}
+	return probs
+}
+
+// RunCase evaluates one case and returns its problems.
+func RunCase(root string, c Case) []string {
+	lib := c.Library
+	if lib == "" {
+		lib = "walton.yml"
+	}
+	var data []byte
+	var err error
+	if c.Graph != "" {
+		data = []byte(c.Graph)
+	} else if data, err = os.ReadFile(filepath.Join(root, lib)); err != nil {
+		return []string{err.Error()}
+	}
+	ResetEngineGlobals()
+	cap := StartCapture()
+	defer func() { cap.Stop(); ResetEngineGlobals() }()
+	ag, err := importCase(data, c)
+	if err != nil {
+		return []string{"the graph does not import: " + err.Error()}
+	}
+	err = ag.Infer()
+	if c.Outcome != "" {
+		want, ok := outcomes[c.Outcome]
+		if !ok {
+			return []string{"unknown outcome " + c.Outcome}
+		}
+		if !errors.Is(err, want) {
+			return []string{fmt.Sprintf("Infer: want %s, got %v", c.Outcome, err)}
+		}
+		return nil
+	}
+	if err != nil {
+		return []string{"Infer: " + err.Error()}
+	}
+	probs := caseExpectationProblems(c, observeCaseGraph(ag, ag.GroundedLabelling()))
 	if c.Variants {
 		probs = append(probs, variantProblems(data, c)...)
 	}
@@ -204,8 +329,9 @@ func RunCase(root string, c Case) []string {
 }
 
 // variantProblems isolates the selected current scheme for its positive control
-// and premise withdrawals. The normal case and exception checks retain the full
-// theory, where another scheme may legitimately rederive a withdrawn fact.
+// and premise withdrawals. The normal case and exception checks retain the
+// case's declared theory context, where another selected scheme may legitimately
+// rederive a withdrawn fact.
 func variantProblems(data []byte, c Case) []string {
 	if len(c.Arguments) != 1 {
 		return []string{"variants need exactly one argument"}
@@ -223,6 +349,9 @@ func variantProblems(data []byte, c Case) []string {
 		if err != nil {
 			return nil, nil, nil, err
 		}
+		if err := selectCaseSchemes(ag, c.Schemes); err != nil {
+			return nil, nil, nil, err
+		}
 		var s *caes.Scheme
 		for _, x := range ag.Theory.ArgSchemes {
 			if x.Id == call.Functor {
@@ -233,18 +362,13 @@ func variantProblems(data []byte, c Case) []string {
 			return nil, nil, nil, fmt.Errorf("the selected scheme %s is not in the graph", call.Functor)
 		}
 		if isolate {
-			// Use the actual imported schema, not a copied fixture. A fresh theory
-			// also prevents a stale private scheme index retaining excluded rules.
-			selected := caes.NewTheory()
-			selected.Language = ag.Theory.Language
-			selected.WeighingFunctions = ag.Theory.WeighingFunctions
-			selected.WeighingSpecs = ag.Theory.WeighingSpecs
-			selected.IssueSchemes = ag.Theory.IssueSchemes
-			selected.ArgSchemes = []*caes.Scheme{s}
-			selected.InitSchemeIndex()
-			ag.Theory = selected
+			if err := selectCaseSchemes(ag, []string{s.Id}); err != nil {
+				return nil, nil, nil, err
+			}
 		}
-		ag.Assumptions = append(ag.Assumptions, assumptions...)
+		for _, fact := range assumptions {
+			ag.AddAssumption(fact)
+		}
 		ag.Questioned = append(ag.Questioned, c.Questioned...)
 		if err := ag.Infer(); err != nil {
 			return ag, nil, s, err
@@ -341,10 +465,26 @@ func CaseChecks(root, path string) []Result {
 	return out
 }
 
+// selectedCaseText exports an unevaluated selection of the imported source.
+// It preserves the graph's existing context and appends case facts, as RunCase
+// does. The CLI still validates and evaluates it in a separate process.
+func selectedCaseText(text string, c Case) (string, error) {
+	ResetEngineGlobals()
+	cap := StartCapture()
+	defer func() { cap.Stop(); ResetEngineGlobals() }()
+	ag, err := importCase([]byte(text), c)
+	if err != nil {
+		return "", err
+	}
+	var out bytes.Buffer
+	cyaml.Export(&out, ag)
+	return out.String(), nil
+}
+
 // CaseRoundTrip evaluates a case with the carneades command, reads the YAML
 // it writes back in a second process, and compares the labels (PLAN.md 4.5:
 // export followed by import in a new process). The second run must also
-// meet the case's expectations of labels.
+// meet every label, argument and issue expectation; the first output must too.
 func CaseRoundTrip(cli *CLI, root string, c Case) []string {
 	var text string
 	if c.Graph != "" {
@@ -360,16 +500,14 @@ func CaseRoundTrip(cli *CLI, root string, c Case) []string {
 		}
 		text = string(data)
 	}
-	for _, l := range []struct {
-		key   string
-		items []string
-	}{{"assumptions", c.Assumptions}, {"questioned", c.Questioned}} {
-		if len(l.items) == 0 {
-			continue
-		}
-		b, _ := yaml.Marshal(map[string][]string{l.key: l.items})
-		text = strings.TrimRight(text, "\n") + "\n" + string(b)
+	// Always merge the context structurally. Appending another assumptions
+	// or questioned YAML key would replace the graph's original context in
+	// the CLI reader while RunCase correctly appends to that context.
+	prepared, err := selectedCaseText(text, c)
+	if err != nil {
+		return []string{"case preparation: " + err.Error()}
 	}
+	text = prepared
 	first := cli.Run(text, "eval", "-t", "yaml")
 	if first.Exit != 0 {
 		return []string{fmt.Sprintf("first run: exit %d: %s", first.Exit, firstLine(first.Stderr))}
@@ -425,18 +563,16 @@ func CaseRoundTrip(cli *CLI, root string, c Case) []string {
 			probs = append(probs, fmt.Sprintf("%s: %s, then %s", id, a, b))
 		}
 	}
-	lab := func(id string) string {
-		if v, ok := l2[id]; ok {
-			return v
+	for _, run := range []struct{ name, text string }{
+		{"first output", first.Stdout}, {"after the round trip", second.Stdout},
+	} {
+		observed, err := observeCaseYAML(run.text)
+		if err != nil {
+			probs = append(probs, run.name+": cannot read observations: "+err.Error())
+			continue
 		}
-		if v, ok := l2[terms.Normalize(id)]; ok {
-			return v
-		}
-		return "absent"
-	}
-	for _, s := range c.In {
-		if got := lab(s); got != "in" {
-			probs = append(probs, fmt.Sprintf("after the round trip %s is %s, want in", s, got))
+		for _, problem := range caseExpectationProblems(c, observed) {
+			probs = append(probs, run.name+": "+problem)
 		}
 	}
 	sort.Strings(probs)

@@ -3,7 +3,7 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Commitment"
-  version: "0.2.0"
+  version: "0.3.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   also_committed/2: "Generally, when an arguer is committed to %s, it can be inferred that he is also committed to %s."
@@ -22,8 +22,8 @@ language:
   negative_affects/3: "The fact that value %s is negative affects the interpretation and therefore the evaluation of goal %s of agent %s: if the value is bad, it goes against commitment to the goal."
   opposed_commitment/2: "Other evidence in this particular case shows that %s is not really committed to %s."
   positive_affects/3: "The fact that value %s is positive affects the interpretation and therefore the evaluation of goal %s of agent %s, if value is good, it supports commitment to goal."
-  reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s."
-  reason_retracting_goal/2: "%s is a reason for retracting commitment to goal %s."
+  reason_retaining_goal/3: "For agent %s, value %s is a reason for retaining commitment to goal %s."
+  reason_retracting_goal/3: "For agent %s, value %s is a reason for retracting commitment to goal %s."
 
 issue_schemes:
   # A statement and its explicit negation are the two positions of one issue,
@@ -74,23 +74,35 @@ argument_schemes:
       - commitments_conflict(A,S)
 
   - id: positive_value
-    meta: 
-      title: "Argument From Values - Variant 1: Positive Value"
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.1, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
-    variables: [V,A,G]
-    conclusions: 
-      - reason_retaining_goal(V,G)
-    premises: 
-      - judged_positive_value(V,A)
-      - positive_affects(V,G,A)
+    meta:
+      title: 'Argument From Values - Variant 1: Positive Value'
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 19.1, p. 321. Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation
+        Frameworks." Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, "Agreeing to Differ: Modelling
+        Persuasive Dialogue between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245.'
+    variables:
+    - V
+    - A
+    - G
+    conclusions:
+    - reason_retaining_goal(A,V,G)
+    premises:
+    - judged_positive_value(V,A)
+    - positive_affects(V,G,A)
 
   - id: negative_value
     meta:
-      title: "Argument From Values - Variant 2: Negative Value"
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.2, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
-    variables: [V,A,G]
-    conclusions: 
-      - reason_retracting_goal(V,G)
-    premises: 
-      - judged_negative_value(V,A)
-      - negative_affects(V,G,A)
+      title: 'Argument From Values - Variant 2: Negative Value'
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 19.2, p. 321. Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation
+        Frameworks." Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, "Agreeing to Differ: Modelling
+        Persuasive Dialogue between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245.'
+    variables:
+    - V
+    - A
+    - G
+    conclusions:
+    - reason_retracting_goal(A,V,G)
+    premises:
+    - judged_negative_value(V,A)
+    - negative_affects(V,G,A)

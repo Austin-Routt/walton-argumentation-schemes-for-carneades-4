@@ -289,6 +289,25 @@ for with every scheme repair (D13), and grow into the reference cases of
 under its file. Write YAML lists of terms one per line: a flow list splits a
 term at its comma.
 
+The API case and both CLI round-trip outputs must satisfy every declared
+`in`, `not_in`, `out`, `arguments`, `no_arguments`, and `issues` expectation.
+The CLI oracle reads the emitted labels, arguments, and issue positions without
+running inference again. Two consistently wrong outputs therefore cannot pass
+merely because they agree. Controls deliberately contradict each expectation
+class and verify rejection, while retaining a passing positive case.
+
+An optional `schemes: [scheme_id, other_scheme_id]` selects actual records from
+the imported `library` (or `graph`) for both API and CLI cases. It rebuilds the
+theory's scheme index; it does not copy a rule into the test. Language, weighing
+functions, and issue schemes retain the source's context. Omit `schemes` for the
+whole library; `schemes: []` selects no inference rules. Unknown or repeated
+selected IDs fail case preparation. Selection is useful when testing one
+record's adverse outcome, which another legitimate rule would otherwise
+support. Full-library composition cases should continue to omit it. `variants`
+uses the selected context for exception checks and isolates the target rule for
+premise withdrawals. A live-file mutation control verifies that changes to a
+selected record remain visible to the oracle.
+
 ## Premise-necessity controls after source-statement sharing
 
 A premise withdrawn from stipulated facts may still be derived by another loaded
@@ -300,7 +319,7 @@ checks the full positive graph; its withdrawal subcheck isolates the selected
 schema rather than claiming that a withdrawn stipulation is absent from closure.
 
 Ordinary reference cases, full-library arguments and grounded labels, premise
-link checks, and exception checks retain their existing theory context. Explicit
+link checks, and exception checks retain their declared theory context. Explicit
 two-scheme cases test legitimate composition. The isolation regression also
 checks that an unnecessary reference premise and a missing positive control
 still fail. See `docs/reviews/peer13-first-half-addendum.md` for the source-backed

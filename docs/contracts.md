@@ -63,7 +63,7 @@ Inference constructs a private mutable graph copy and publishes it only on succe
 | Cumulative inserted term nodes (`MAXSTORENODES`) | 2,000,000 |
 | Issue candidate/pattern visits per materialization phase (`MAXISSUESTEPS`) | 50,000,000 |
 
-The two visit budgets are safety valves, not working limits: at 1,000,000 a failing four-way join over 120 facts (about 1.7 million visits) and the issue closure of whole-library graphs of some 700 statements were refused although they complete in well under a second. Issue construction looks positions up by key when the remaining patterns are ground under the bindings of the first, as the negation issue scheme's are; statements with variables, and enumerations, keep the scan. An exact rule-application boundary is complete if no further firing remains. Duplicate facts consume no new insertion allowance. A caller's context cancels `ArgGraph.InferContext`; CLI evaluation connects interrupt/termination signals to that context. Cancellation is checked even when there are no rules or no matching rule, and during candidate search, issue construction and argument materialization. A cancelled/deadline context produces cancellation, rather than a successful partial evaluation.
+The two visit budgets are finite safety limits. The earlier 1,000,000-visit quotas refused the reference four-way join over 120 facts and modest issue-closure examples. The larger limits admit those cases; elapsed time depends on the machine and theory. A larger finite evaluation can still be refused even when an unbounded evaluation would eventually finish. Issue construction indexes parsed statement keys when the remaining patterns are ground under the bindings of the first, preserving noncanonical API spacing and checking typed matching. Open patterns, statements with variables and enumerations retain the scan. An exact rule-application boundary is complete if no further firing remains. Duplicate facts consume no new insertion allowance. A caller's context cancels `ArgGraph.InferContext`; CLI evaluation connects interrupt/termination signals to that context. Cancellation is checked even when there are no rules or no matching rule, and during candidate search, issue construction and argument materialization. A cancelled/deadline context produces cancellation, rather than a successful partial evaluation.
 
 These are logical work/storage quotas, not a hard byte-memory or end-to-end wall-clock guarantee. Parsing, copying an already supplied graph and grounded labelling are not fully preemptible by these solver checks. Term-node counts do not bound the byte length of a string. Applications exposed to untrusted oversized inputs must impose input-size limits and process resource controls; the present release does not claim that service profile.
 
@@ -73,19 +73,21 @@ Checked by: `cli-check-exit-status`, `cli-interrupt-is-cancelled`, `invalid-rule
 
 `¬S` is the explicit negation of `S`. It is encoded once, structurally, when a statement enters the rule store, under a functor no user statement can contain, so that it matches through statement variables and cannot collide with a user predicate such as `neg/1`. `¬¬S` is read as `S`. Language templates apply inside `¬`.
 
+The same structural cancellation of paired explicit negations applies to imported/API statement identities, instantiated premises, conclusions and exceptions, and authored-instance validation after parameter binding. It leaves quoted text and other operators unchanged. For example, with `X=¬p`, an exception `¬X` is the statement `p`, so a stipulated `p` defeats that argument. Private API normalization preserves existing node identities on success. It does not preserve a program's own spelling: after a successful inference the statement keys and `Id` fields are the normalized forms (a statement entered as `accepts( a )` is afterwards `ag.Statements["accepts(a)"]`, the same object), so a program that kept a key should look it up through `terms.Normalize`. Two distinct declared statement objects that normalize to the same identity are refused rather than silently discarding their content; repeated assumptions alone remain set members. YAML rejects colliding normalized statement declarations. Questioned/default origins and expected labels use the same normalized identity.
+
+Checked additionally by `TestNormalizeExplicitNegation`, `TestGeneratedNegationIdentityAndException`, `TestGeneratedNegationConclusionChains`, `TestAuthoredNegationIdentity`, `TestNormalizeAPIGraphPreservesIdentityAndAtomicity` and `TestNormalizedContextAndImport` in the required native-engine gate.
+
 The library supplies the opposition of `S` and `¬S` as an issue scheme, so that arguments for both are weighed in one issue under its proof standard. A graph that stipulates both `S` and `¬S` is an **inconsistent context** (contract 3): it is reported and not resolved by picking a side. `ArgGraph.CheckContext()` examines raw assumptions and complete issue closure even without predeclared statement nodes or a rule firing. It reports malformed input, limits and inconsistency distinctly. `Inconsistent()` is the Boolean inconsistency query; callers needing all failures use `CheckContext()`.
 
 Overlapping issue schemes may connect accepted positions through an existing or derived third statement. Inference checks before seeding and again after construction. Connecting two distinct pre-existing issues is rejected as invalid input rather than arbitrarily merging their proof standards. These checks operate on a private copy.
+
+For a non-enumeration issue scheme, the first pattern selects an anchor statement and its bindings. Each remaining pattern independently identifies alternative positions under those anchor bindings. Variables first introduced in a later pattern are local to that candidate match; their values do not carry over to competing statements or another alternative pattern. Thus `[leads(X), trails(Y)]` includes every matching `trails` position for an anchor, while `[leads(X), trails(X,Y)]` retains the anchor's `X`. Repeating `Y` within one pattern still requires equal values. Reusing a fresh `Y` name in two later patterns does not turn the issue scheme into a conjunction requiring both patterns to have a common witness. This is per-anchor pattern matching, not an unrestricted multi-pattern join. Anchors and candidates are visited in sorted key order; sorting alone must not select one arbitrary fresh-variable value and omit the others. Enumeration schemes retain their existing indexed-variable rule.
 
 Checked by: `negated-premises-match`, `negation-through-statement-variable`, `baseline-user-predicate-neg-is-ordinary`, `baseline-negation-issue`, `inconsistent-assumptions-detected`, `inconsistent-follows-current-assumptions`, `iso/negation-texts`; issues X-NEG, E-NEGTEXT, E-INCONS, E-ISSUE.
 
 ## 5. Critical questions and their states (D2)
 
 The book's three kinds are kept (pp. 33, 373–375). An ordinary **premise** has to be supported. An **assumption** holds until it is called into question, and then has to be supported like a premise. An **exception** counts against the argument only once it is shown.
-
-**What this is, and what it is not (D16).** Each printed question of a scheme is sorted once, as a premise, an assumption, an exception or a rebuttal, by the book's own test (p. 33): a question the proponent's argument presupposes can be asked out of the blue and is an assumption; a question that asks for something to be named, another goal, another means, a consequence, a bias, counts once that thing is shown and is an exception. Evaluation is static: a graph is one state of a dispute. The library does not implement a dialogue. In particular it does not implement what p. 96 describes for practical reasoning, where asking any of the five questions suspends the argument until it is answered; to record that a question of the assumption kind has been asked, list its statement under `questioned:`. A question about the burden or the standard of proof (26, CQ2 and CQ3) has no statement in the scheme: the application answers it when it builds the graph, by who stipulates what, which statement is at issue and the proof standard of that issue.
-
-**Recommendations and degrees (D19).** The engine weighs positions for and against a statement and has no degrees of plausibility. `¬should_do(P,A)` reads "P should not do A". A scheme the book concludes with "more plausible" is an argument for the statement, and one it concludes with "rejected as less plausible" is an argument for its negation.
 
 A statement of a graph can have three origins, kept apart:
 
@@ -112,6 +114,27 @@ A contrary argument does not question an assumption by itself; it is weighed aga
 Issue closure and this priority are resolved before choosing the facts that seed rule inference. Otherwise an already defeated default could generate another default and incorrectly accept a downstream conclusion. The independent regression gate covers this ordering as well as direct default-versus-stipulation labels.
 
 **Representation.** `ArgGraph.Questioned` and `questioned:` hold the questioned statements; `ArgGraph.Defaults` records which assumptions a scheme instantiation added; export writes them under `questioned:` and `defaults:`, apart from the stipulated `assumptions:`. `ArgGraph.Assumed()` lists what is assumed now.
+
+**API updates.** Use `ArgGraph.AddAssumption(id)` to explicitly stipulate a
+fact, including a fact previously introduced as a default. The operation
+normalizes its identity and clears every equivalent default-origin marker;
+question history and unrelated defaults are retained. A later scheme
+instantiation cannot demote the stipulation back to a default. Direct writes
+to the public `Assumptions` and `Defaults` fields require the caller to maintain
+that origin invariant; appending a fact while retaining its default marker
+does not express promotion. Native tests cover promotion before and after
+inference, equivalent spellings, preserved node identity and repeated runs.
+
+**Dialogue policy.** A request for an answer is distinct from proving an
+exception. For the six explicitly supported practical/position-to-know
+families, `tools/dialogue_snapshot.py` implements the separate finite
+question/accepted-answer/reopening protocol in `docs/dialogue-snapshots.md`.
+It targets an individual constructed argument, retains independent support
+and original defeaters, and requires fresh evaluation of each snapshot.
+Ignorance-family burden-holder/probandum allocations are checked separately
+from the issue's proof threshold. The application supplies the appropriateness
+of questions, adequacy of answers and relevance of the ultimate probandum;
+the engine does not authenticate those judgments or infer them from atom names.
 
 Checked by: `default-yields-to-stipulated-negation`, `default-yields-to-stipulated-position`, `contrary-defaults-suspend-each-other`, `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `questioned-stipulation-stays-assumed`, `questioned-state-survives-export`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`, `iso/assumptions-questionable`; issue X-ASSUME.
 

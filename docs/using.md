@@ -7,19 +7,19 @@ library today, and the command gives every label its `tests:` expect.
 
 ## Source approval and scope
 
-The full 120-record file is a preview. The independently reviewed 70-record subset is identified by `example-passed` in `tools/vv/source_ledger.yml` and bound to recorded approvals in `docs/reviews/independent-approvals.json`. The other 50 records retain specific source or interpretation holds. The graph generator copies a requested scheme; it does not imply that scheme has passed source approval. Read its ledger row and review scope when selecting it.
+The full 143-record file is a preview. 128 records have independently approved interpretations, recorded as `example-passed` and bound to current fingerprints. 15 inherited records retain source or interpretation holds. The [current register](reviews/closure-current-register.md) gives every disposition. Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
 
 API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
 
 ### Participants, contexts and defaults
 
-In records whose statements still say "I" or "you" without a participant argument, those words refer to one fixed proponent and one fixed respondent for that graph. Such a record does not distinguish several speakers, audiences or deliberations automatically. Use separate graphs, or context-qualified ground terms where the record supports them, for separate cases. The source register identifies the records that still need explicit participant or context parameters before broader use; this convention does not remove their holds.
+In records whose statements still say "I" or "you" without a participant argument, those words refer to one fixed proponent and one fixed respondent for that graph. Such a record does not distinguish several speakers, audiences or deliberations automatically. Use separate graphs, or context-qualified ground terms where the record supports them, for separate cases. The source register states each approved scope and any remaining source holds. This convention permits only the declared single-context use; it does not extend approval to arbitrary mixed participants or remove a separately recorded original-source hold.
 
 Load the schemes needed for the question being evaluated. Loading the entire library enables every matching rule and every unchallenged default. For example, `division_generic` can infer that all parts have a property from a whole having it while its divisional-heredity assumption stands. That is the scheme's defeasible claim, not a general fact that arbitrary properties are inherited by parts. Question the relevant default, supply contrary evidence, or omit that scheme when the application does not justify using it. The cycle warnings make some interactions visible but do not decide whether the application warrants them.
 
 ## What to load
 
-* `walton.yml` holds every scheme (120 records) with the language templates
+* `walton.yml` holds every scheme (143 records) with the language templates
   they use and the negation issue scheme. It is the only hand-edited scheme
   file.
 * The category files (`A_reasoning/`, `B_source-based-arguments/`,
@@ -48,7 +48,7 @@ The engine is kept as source in `third_party/`, with this repository's fixes;
 ```sh
 cd tools/vv
 go build -o ~/bin/carneades github.com/carneades/carneades-4/src/cmd/carneades
-carneades            # prints the engine's version, 4.3.1+walton.3
+carneades            # prints the engine's version, 4.3.1+walton.5
 ```
 
 `carneades check case.yml` reads and validates a graph without evaluating it;
@@ -110,13 +110,7 @@ count only once they are shown.
 * **Expected labels** go under `tests:`, with the lists `in`, `out` and
   `undecided`. A statement named there has to be declared under
   `statements:`, with its text; otherwise the command refuses the file.
-* **I and you.** Some schemes are printed in the first or second person: the
-  subtypes 4.7 to 4.9, 26.2, 33.4, the appeals of entries 34 to 37, 51, 52
-  and 58. Their statements name no participant, so a graph that uses them
-  holds one proponent ("I") and one respondent ("you"); two speakers need two
-  graphs. Where a scheme names its agent (22.1 to 22.5, 23, 33.3, 38, 39), the
-  agent is a constant of your case, such as `me`. (Proposed by the second
-  independent review, pull request #14.)
+* **I and you.** Legacy unqualified forms in entries 4.5–4.9,26.2,33.4,34–37,51 and 52 use one declared proponent/respondent context. Several entries now also have named-participant variants; choose those for several actors, or use separate graphs or context-qualified terms where the record's contract supports them. The named practical schemes carry the acting agent as a case constant. Entry 58 now explicitly names pleader P and case C; it is no longer an example of an unqualified speaker.
 
 ## Pro and con in one issue
 
@@ -124,16 +118,16 @@ count only once they are shown.
 reasoning from negative consequences (33.3) in one graph. The first concludes
 `should_do(me,take_job)`, the second its negation, so they meet in one issue.
 With both arguments standing they weigh the same and neither position is in.
-The example questions the assumption of 33.3 that the bad outcome is likely,
-`outcome_likely(take_job,leave_family)`, which nothing supports: the argument
+The example questions whether the assessed likelihood of the bad outcome is adequate for the strength of the argument,
+`consequence_likelihood_adequate(take_job,leave_family)`, which nothing supports: the argument
 against falls, and `should_do(me,take_job)` is in.
 
 The library shares a statement between schemes where the book means the same
-thing by it (PLAN.md 5.6): `should_do/2` is the practical ought of entry 22,
-of 6.3 and 6.4, 23, 25, 38 and 39; `has_property/2` the property of entries 9,
+thing by it (the shared-vocabulary contract): `should_do/2` is the practical ought of entry 22,
+of 6.3, 23, 25, 38 and 39; `has_property/2` the property of entries 9,
 10, 21, 31.5 and 52; and "A is (plausibly) true" is the statement A itself. So
 the conclusion of one scheme can be the premise of another, and arguments
-from different schemes meet in one issue.
+from different schemes meet in one issue. Entry 6.4 instead concludes `should_refrain/2`; it has no automatic bridge to `¬should_do/2`, preserving the source distinction between recommending restraint and merely lacking an obligation to act.
 
 ## Versions
 
@@ -154,3 +148,11 @@ arguments, a premise added).
 `python3 tools/test_graph_from_library.py` checks the tool against every
 scheme; `go test -run TestCLI` in `tools/vv` evaluates the examples
 (`docs/example-current`, `docs/example-labels`).
+
+## Additional reviewed profiles
+
+The four worked examples include `practical_presumption.yml` and `practical_presumption_conflict.yml`. They explicitly declare the binary practical-choice issue: the first selects the true presumption, while the second preserves both opposed arguments and accepts neither choice. Neither choice proves the uncertain proposition true or false, and no global choice/negation equivalence is installed.
+
+Use [dialogue snapshots](dialogue-snapshots.md) for source question-induced suspension. A supported exception and a request for an answer are distinct. The adapter targets a constructed argument in a preserved evaluated base, requires externally justified answer acceptance and emits a graph for fresh evaluation. Burden-holder, ultimate probandum and standard are explicit inputs.
+
+API callers use `AddAssumption(id)` to newly stipulate an existing default; it clears equivalent default markers while preserving question history and unrelated defaults. Direct field mutations require maintaining the origin invariant. See the source-closure and source-branch contracts for finite partitions, named participants, branch warrants and evaluation contexts. Engine success does not prove supplied facts complete or true.

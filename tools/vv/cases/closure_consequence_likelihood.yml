@@ -1,0 +1,73 @@
+# Source: Walton, Reed and Macagno (2008), entry 33, pp.332-333.
+# CQ1 concerns likelihood relative to the strength asserted; it supplies no
+# universal 'strongly likely' threshold. 33.2 and 33.3 can share this judgment.
+cases:
+  - name: negative_consequences_reasoning/closure-shared-likelihood-positive
+    source: "33.2-33.3, pp.332-333: the same action/outcome assessment supports both forms"
+    assumptions:
+      - brings_about(tax_rise,recession)
+      - bad(recession)
+      - agent_bring_about(me,tax_rise,recession)
+      - bad_for_goals(me,recession)
+    arguments:
+      - negative_consequences(tax_rise,recession)
+      - negative_consequences_reasoning(tax_rise,recession,me)
+    in:
+      - ¬should_be_performed(tax_rise)
+      - ¬should_do(me,tax_rise)
+  - name: negative_consequences_reasoning/closure-shared-likelihood-question
+    source: "33, CQ1: one unanswered challenge suspends both uses of the same assessment"
+    assumptions:
+      - brings_about(tax_rise,recession)
+      - bad(recession)
+      - agent_bring_about(me,tax_rise,recession)
+      - bad_for_goals(me,recession)
+    questioned:
+      - consequence_likelihood_adequate(tax_rise,recession)
+    not_in:
+      - ¬should_be_performed(tax_rise)
+      - ¬should_do(me,tax_rise)
+  - name: negative_consequences_reasoning/closure-likelihood-outcome-isolation
+    source: "33, CQ1: a challenge about one cited consequence does not challenge another"
+    assumptions:
+      - brings_about(tax_rise,recession)
+      - bad(recession)
+      - agent_bring_about(me,tax_rise,administrative_cost)
+      - bad_for_goals(me,administrative_cost)
+    questioned:
+      - consequence_likelihood_adequate(tax_rise,recession)
+    not_in:
+      - ¬should_be_performed(tax_rise)
+    in:
+      - ¬should_do(me,tax_rise)
+  - name: negative_consequences_reasoning/closure-supported-likelihood-answer
+    source: "33, CQ1: a supported adequacy answer can discharge the shared challenge"
+    assumptions:
+      - brings_about(tax_rise,recession)
+      - bad(recession)
+      - agent_bring_about(me,tax_rise,recession)
+      - bad_for_goals(me,recession)
+      - consequence_likelihood_adequate(tax_rise,recession)
+    questioned:
+      - consequence_likelihood_adequate(tax_rise,recession)
+    in:
+      - ¬should_be_performed(tax_rise)
+      - ¬should_do(me,tax_rise)
+  - name: negative_consequences_reasoning/closure-no-universal-strong-threshold
+    source: "33, CQ1: not strongly likely is not the negation of adequate for this argument"
+    assumptions:
+      - agent_bring_about(me,tax_rise,recession)
+      - bad_for_goals(me,recession)
+      - ¬outcome_likely(tax_rise,recession)
+    in:
+      - ¬should_do(me,tax_rise)
+  - name: negative_consequences_reasoning/closure-old-threshold-does-not-answer
+    source: "33, CQ1: an old threshold assertion is not automatically an assessment of the new adequacy condition"
+    assumptions:
+      - agent_bring_about(me,tax_rise,recession)
+      - bad_for_goals(me,recession)
+      - outcome_likely(tax_rise,recession)
+    questioned:
+      - consequence_likelihood_adequate(tax_rise,recession)
+    not_in:
+      - ¬should_do(me,tax_rise)

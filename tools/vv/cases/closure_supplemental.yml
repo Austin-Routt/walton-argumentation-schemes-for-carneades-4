@@ -1,0 +1,300 @@
+# Hand-authored source controls; selected schemes are imported from the current library.
+cases:
+- name: ethotic_positive_compendium/book
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: &id001
+  - asserts(ann,claim)
+  - good_moral_character(ann)
+  - ethos_context(ann,claim,dialogue1)
+  arguments:
+  - ethotic_positive_compendium(ann,claim,dialogue1)
+  in:
+  - ethos_more_plausible(ann,claim,dialogue1)
+  not_in:
+  - claim
+  - ¬claim
+  variants: true
+  schemes:
+  - ethotic_positive_compendium
+- name: ethotic_positive_compendium/closure-strength-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id001
+  not_in:
+  - ethos_more_plausible(ann,claim,dialogue1)
+  - claim
+  - ¬claim
+  questioned:
+  - ethos_presumption_warranted(ann,claim,dialogue1,positive)
+  schemes:
+  - ethotic_positive_compendium
+- name: ethotic_positive_compendium/closure-relevance-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id001
+  not_in:
+  - ethos_more_plausible(ann,claim,dialogue1)
+  questioned:
+  - ethos_relevant(ann,claim,dialogue1)
+  schemes:
+  - ethotic_positive_compendium
+- name: ethotic_positive_compendium/closure-other-dialogue-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id001
+  in:
+  - ethos_more_plausible(ann,claim,dialogue1)
+  questioned:
+  - ethos_presumption_warranted(ann,claim,dialogue2,positive)
+  schemes:
+  - ethotic_positive_compendium
+- name: ethotic_positive_compendium/closure-other-speaker-character
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - asserts(ann,claim)
+  - good_moral_character(bob)
+  - ethos_context(ann,claim,dialogue1)
+  not_in:
+  - ethos_more_plausible(ann,claim,dialogue1)
+  no_arguments:
+  - ethotic_positive_compendium
+  schemes:
+  - ethotic_positive_compendium
+- name: ethotic_negative_compendium/book
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: &id002
+  - asserts(ann,claim)
+  - bad_moral_character(ann)
+  - ethos_context(ann,claim,dialogue1)
+  arguments:
+  - ethotic_negative_compendium(ann,claim,dialogue1)
+  in:
+  - ethos_less_plausible(ann,claim,dialogue1)
+  not_in:
+  - claim
+  - ¬claim
+  variants: true
+  schemes:
+  - ethotic_negative_compendium
+- name: ethotic_negative_compendium/closure-strength-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id002
+  not_in:
+  - ethos_less_plausible(ann,claim,dialogue1)
+  - claim
+  - ¬claim
+  questioned:
+  - ethos_presumption_warranted(ann,claim,dialogue1,negative)
+  schemes:
+  - ethotic_negative_compendium
+- name: ethotic_negative_compendium/closure-relevance-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id002
+  not_in:
+  - ethos_less_plausible(ann,claim,dialogue1)
+  questioned:
+  - ethos_relevant(ann,claim,dialogue1)
+  schemes:
+  - ethotic_negative_compendium
+- name: ethotic_negative_compendium/closure-other-dialogue-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id002
+  in:
+  - ethos_less_plausible(ann,claim,dialogue1)
+  questioned:
+  - ethos_presumption_warranted(ann,claim,dialogue2,negative)
+  schemes:
+  - ethotic_negative_compendium
+- name: ethotic_negative_compendium/closure-other-speaker-character
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - asserts(ann,claim)
+  - bad_moral_character(bob)
+  - ethos_context(ann,claim,dialogue1)
+  not_in:
+  - ethos_less_plausible(ann,claim,dialogue1)
+  no_arguments:
+  - ethotic_negative_compendium
+  schemes:
+  - ethotic_negative_compendium
+- name: ethotic2/closure-reduced-not-false
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - asserts(ann,claim)
+  - bad_moral_character(ann)
+  in:
+  - reduced_plausibility_from_ethos(ann,claim)
+  not_in:
+  - ¬claim
+  - claim
+- name: ethotic2/closure-same-proposition-independent-evidence
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - asserts(ann,claim)
+  - bad_moral_character(ann)
+  - claim
+  in:
+  - reduced_plausibility_from_ethos(ann,claim)
+  - claim
+  not_in:
+  - ¬claim
+- name: slippery_slope_compendium/book
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: &id003
+  - initially_acceptable_proposal(start)
+  - plausible_slope_chain(start,steps,disaster)
+  - slope_bad_outcome(disaster)
+  arguments:
+  - slippery_slope_compendium(start,steps,disaster)
+  in:
+  - should_not_bring_about(start)
+  not_in:
+  - ¬should_be_performed(start)
+  variants: true
+- name: slippery_slope_compendium/closure-missing-chain
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - initially_acceptable_proposal(start)
+  - slope_bad_outcome(disaster)
+  not_in:
+  - should_not_bring_about(start)
+  no_arguments:
+  - slippery_slope_compendium
+- name: slippery_slope_compendium/closure-incomplete-chain-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id003
+  not_in:
+  - should_not_bring_about(start)
+  questioned:
+  - slope_chain_complete(start,steps,disaster)
+- name: slippery_slope_compendium/closure-weakest-link-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id003
+  not_in:
+  - should_not_bring_about(start)
+  questioned:
+  - slope_links_warranted(start,steps,disaster)
+- name: slippery_slope_compendium/closure-other-sequence-question
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions: *id003
+  in:
+  - should_not_bring_about(start)
+  questioned:
+  - slope_links_warranted(start,other_steps,disaster)
+- name: slippery_slope_compendium/closure-different-outcome
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - initially_acceptable_proposal(start)
+  - plausible_slope_chain(start,steps,disaster)
+  - slope_bad_outcome(other_disaster)
+  not_in:
+  - should_not_bring_about(start)
+  no_arguments:
+  - slippery_slope_compendium
+- name: established_rule_actor/book
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  - established_action_warrant(case1,safety_rule,ann,inspect_case1)
+  arguments:
+  - established_rule_actor(case1,safety_rule,ann,inspect_case1)
+  in:
+  - must_do(ann,inspect_case1)
+  variants: true
+- name: established_rule_actor/closure-override
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  - established_action_warrant(case1,safety_rule,ann,inspect_case1)
+  - conflicting_action_rule(case1,safety_rule,ann,inspect_case1)
+  not_in:
+  - must_do(ann,inspect_case1)
+- name: established_rule_actor/closure-excuse
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  - established_action_warrant(case1,safety_rule,ann,inspect_case1)
+  - action_rule_excuse(case1,safety_rule,ann,inspect_case1)
+  not_in:
+  - must_do(ann,inspect_case1)
+- name: established_rule_actor/closure-other-actor-excuse
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  - established_action_warrant(case1,safety_rule,ann,inspect_case1)
+  - action_rule_excuse(case1,safety_rule,bob,inspect_case1)
+  in:
+  - must_do(ann,inspect_case1)
+  not_in:
+  - must_do(bob,inspect_case1)
+- name: established_rule_actor/closure-other-case-excuse
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  - established_action_warrant(case1,safety_rule,ann,inspect_case1)
+  - action_rule_excuse(case2,safety_rule,ann,inspect_case1)
+  in:
+  - must_do(ann,inspect_case1)
+- name: established_rule_actor/closure-no-conditional-warrant
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  not_in:
+  - must_do(ann,inspect_case1)
+  no_arguments:
+  - established_rule_actor
+- name: established_rule_actor/closure-wrong-action-warrant
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - established_action_rule(case1,safety_rule,ann,inspect_case1)
+  - established_action_warrant(case1,safety_rule,ann,other_action)
+  not_in:
+  - must_do(ann,inspect_case1)
+  no_arguments:
+  - established_rule_actor
+- name: witness_testimony/closure-account-specific-bias
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - position_to_know(ann,inspection)
+  - in_domain(safe_bridge1,inspection)
+  - in_domain(safe_bridge2,inspection)
+  - believes(ann,safe_bridge1)
+  - believes(ann,safe_bridge2)
+  - asserts(ann,safe_bridge1)
+  - asserts(ann,safe_bridge2)
+  - witness_account_biased(ann,safe_bridge1)
+  in:
+  - safe_bridge2
+  not_in:
+  - safe_bridge1
+  schemes:
+  - witness_testimony
+- name: witness_testimony/closure-other-witness-bias
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - position_to_know(ann,inspection)
+  - in_domain(safe_bridge1,inspection)
+  - in_domain(safe_bridge2,inspection)
+  - believes(ann,safe_bridge1)
+  - believes(ann,safe_bridge2)
+  - asserts(ann,safe_bridge1)
+  - asserts(ann,safe_bridge2)
+  - witness_account_biased(bob,safe_bridge1)
+  in:
+  - safe_bridge1
+  - safe_bridge2
+  schemes:
+  - witness_testimony
+- name: witness_testimony/closure-generic-bias-is-not-all-accounts
+  source: Independent compendium interpretation; see closure-supplemental-source-changes.md
+  assumptions:
+  - position_to_know(ann,inspection)
+  - in_domain(safe_bridge1,inspection)
+  - in_domain(safe_bridge2,inspection)
+  - believes(ann,safe_bridge1)
+  - believes(ann,safe_bridge2)
+  - asserts(ann,safe_bridge1)
+  - asserts(ann,safe_bridge2)
+  - biased(ann)
+  in:
+  - safe_bridge1
+  - safe_bridge2
+  schemes:
+  - witness_testimony

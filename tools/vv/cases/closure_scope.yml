@@ -1,0 +1,90 @@
+# Independent source controls for unchanged schemes, 2026-11-21.
+# These are constructed applications of the cited passages, not printed examples.
+cases:
+  - name: from_example/closure-one-exception-does-not-refute-usually
+    source: "6.1 p.314 CQ4; 6.2 p.315: the selected conclusion is qualitative usually, not universal or a numerical estimate"
+    assumptions:
+      - has_properties(robin,bird,flies)
+      - has_property(penguin,bird)
+      - "¬has_property(penguin,flies)"
+    arguments:
+      - from_example(robin,bird,flies)
+    in:
+      - usually_properties(bird,flies)
+    not_in:
+      - "¬usually_properties(bird,flies)"
+  - name: from_example/closure-supported-generalization-rebuttal
+    source: "6.1 p.314 CQ4: an accepted contrary assessment attacks the actual qualitative generalization"
+    assumptions:
+      - has_properties(robin,bird,flies)
+      - "¬usually_properties(bird,flies)"
+    arguments:
+      - from_example(robin,bird,flies)
+    in:
+      - "¬usually_properties(bird,flies)"
+    not_in:
+      - usually_properties(bird,flies)
+  - name: from_example/closure-support-for-generalization-questioned
+    source: "6.1 p.314 CQ2: calling the instance-to-generalization default into question removes unsupported induction"
+    assumptions:
+      - has_properties(robin,bird,flies)
+    questioned:
+      - supports_generalization(robin,bird,flies)
+    arguments:
+      - from_example(robin,bird,flies)
+    not_in:
+      - usually_properties(bird,flies)
+  - name: from_example/closure-other-generalization-rebuttal-isolated
+    source: "6.1 p.314 CQ4: the strength assessment belongs to the actual property pair"
+    assumptions:
+      - has_properties(robin,bird,flies)
+      - "¬usually_properties(bird,swims)"
+    arguments:
+      - from_example(robin,bird,flies)
+    in:
+      - usually_properties(bird,flies)
+  - name: verbal_classification_arbitrariness/closure-unanswered-harmlessness-query
+    source: "17 p.320 CQ3: selected static policy; questioning an exception is not proving it when the source warrant and need premise are supplied"
+    assumptions:
+      - arbitrary_defined_property(argument1,threshold)
+      - needed_nonarbitrary(argument1,threshold)
+      - arbitrary_property(threshold,argument1)
+    questioned:
+      - arbitrariness_harmless(argument1,threshold)
+    arguments:
+      - verbal_classification_arbitrariness(argument1,threshold)
+    in:
+      - rejected_as_deficient(argument1)
+  - name: verbal_classification_arbitrariness/closure-supported-harmlessness
+    source: "17 p.320 CQ3: supported harmlessness in the actual argument and definition undercuts the criticism"
+    assumptions:
+      - arbitrary_defined_property(argument1,threshold)
+      - needed_nonarbitrary(argument1,threshold)
+      - arbitrary_property(threshold,argument1)
+      - arbitrariness_harmless(argument1,threshold)
+    arguments:
+      - verbal_classification_arbitrariness(argument1,threshold)
+    not_in:
+      - rejected_as_deficient(argument1)
+  - name: verbal_classification_arbitrariness/closure-unestablished-need
+    source: "17 p.320 CQ1/CQ3: lack of a supported requirement for nonarbitrariness prevents this argument"
+    assumptions:
+      - arbitrary_defined_property(argument1,threshold)
+      - arbitrary_property(threshold,argument1)
+    questioned:
+      - needed_nonarbitrary(argument1,threshold)
+    no_arguments:
+      - verbal_classification_arbitrariness(argument1,threshold)
+    not_in:
+      - rejected_as_deficient(argument1)
+  - name: verbal_classification_arbitrariness/closure-other-argument-harmlessness-isolated
+    source: "17 p.320 CQ3: harmlessness belonging to another argument cannot defeat this criticism"
+    assumptions:
+      - arbitrary_defined_property(argument1,threshold)
+      - needed_nonarbitrary(argument1,threshold)
+      - arbitrary_property(threshold,argument1)
+      - arbitrariness_harmless(argument2,threshold)
+    arguments:
+      - verbal_classification_arbitrariness(argument1,threshold)
+    in:
+      - rejected_as_deficient(argument1)
