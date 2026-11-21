@@ -1,0 +1,129 @@
+{
+  "schema": "walton-peer-review-reconciliation/v1",
+  "peer_commit": "96daf6c0545f7cb84fe5e30cfbffdde5d6f6c0d1",
+  "integrated_baseline": "a708add511f52fb3603d92ba368875ef3d3f2c42",
+  "counts": {
+    "peer_approved": 90,
+    "integrated_approved": 70,
+    "both_approved": 65,
+    "integrated_approved_peer_not": 5,
+    "peer_approved_integrated_held": 25
+  },
+  "integrated_approved_peer_not": [
+    "abductive_action_to_character",
+    "abductive_character_to_action",
+    "popular_opinion",
+    "retroductive",
+    "rhetorical_oppositions_descriptive"
+  ],
+  "peer_approved_integrated_held": [
+    "abductive_backward",
+    "alternative_normative",
+    "cause_to_effect",
+    "circumstantial_ad_hominem",
+    "end_and_means_1",
+    "end_and_means_2",
+    "end_and_means_3",
+    "from_antimodel",
+    "moral_justification_ad_populum",
+    "moral_justification_ad_populum_excuse",
+    "negative_normal_expectations",
+    "negative_value",
+    "perception",
+    "plea_for_excuse",
+    "popular_practice",
+    "positive_value",
+    "practical_inference",
+    "rule_mental_world",
+    "rule_physical_world_2",
+    "sacrifice",
+    "sign",
+    "snob_appeal_ad_populum",
+    "sunk_costs",
+    "value_based_practical_reasoning",
+    "verbal_classification_arbitrariness"
+  ],
+  "atkinson": {
+    "peer_nonblank_mapping_cqs": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      13,
+      16
+    ],
+    "peer_blank_mapping_cqs": [
+      10,
+      11,
+      12,
+      14,
+      15,
+      17
+    ],
+    "direct_as1_cqs": [
+      1,
+      2,
+      3,
+      4,
+      10,
+      13,
+      16
+    ],
+    "partial_legacy_cqs": [
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "no_separate_mapping_cqs": [
+      11,
+      12,
+      14,
+      15,
+      17
+    ],
+    "incomplete_ledger_mapping_cqs": [
+      5,
+      6,
+      7,
+      11,
+      12,
+      14,
+      15,
+      17
+    ],
+    "decision": "Retain current transcription-checked hold, source_questions=17, positive support CQ10, and explicit legacy policies. Neither count establishes full AS2/AATS coverage.",
+    "source_pages": [
+      858,
+      859,
+      861,
+      862,
+      866,
+      868
+    ]
+  },
+  "metadata_validation": {
+    "records": 120,
+    "review_decisions": {
+      "approved": 70,
+      "hold": 45,
+      "open": 5
+    },
+    "stages": {
+      "example-passed": 70,
+      "transcription-checked": 48,
+      "mapped": 2
+    },
+    "registry_approvals": 70,
+    "semantic_fingerprints_unchanged": true,
+    "idempotent": true,
+    "approval_audit_errors": [],
+    "source_ledger_nonreview_data_unchanged": true
+  }
+}

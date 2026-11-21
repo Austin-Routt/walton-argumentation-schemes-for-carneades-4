@@ -12,6 +12,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import check_source_approvals as gate
+import apply_source_review_metadata as metadata
 
 
 class ApprovalIntegrity(unittest.TestCase):
@@ -24,11 +25,13 @@ class ApprovalIntegrity(unittest.TestCase):
                        "argument_schemes": [{"id": "probe", "meta": {"title": "Synthetic fixture"},
                                              "variables": ["X"], "premises": ["p(X)"], "conclusions": ["q(X)"]}]}
         self.row = {"record": "probe", "origin": "book", "entry": "1", "claim": "interpretation",
-                    "stage": "example-passed", "questions": [{"n": 1, "kind": "premise", "as": "p(X)"}]}
+                    "stage": "example-passed", "questions": [{"n": 1, "kind": "premise", "as": "p(X)"}],
+                    "review": {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "approved"}}
         self.ledger = {"records": [self.row]}
-        self.registry = {"schema": gate.SCHEMA, "approvals": [{
+        self.registry = {"schema": gate.SCHEMA, "review_date": "2026-11-21", "approvals": [{
             "record": "probe", "fingerprint": gate.semantic_fingerprint(self.master, self.master["argument_schemes"][0], self.row),
-            "evidence": ["Synthetic unit-test evidence, not a real review approval."], "examples": ["probe/book"]}]}
+            "evidence": ["Synthetic unit-test evidence, not a real review approval."], "examples": ["probe/book"],
+            "review": dict(self.row["review"])}]}
         self.registry_path = self.root / "docs/reviews/independent-approvals.json"
         self.save()
         self.write("tools/vv/cases/book.yml", {"cases": [{"name": "probe/book", "source": "Synthetic fixture"}]})
@@ -134,6 +137,7 @@ class ApprovalIntegrity(unittest.TestCase):
     def test_empty_or_missing_registry_with_unpromoted_rows_passes(self):
         self.registry["approvals"] = []
         self.row["stage"] = "transcription-checked"
+        self.row["review"] = {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "hold", "note": "Needs source adjudication."}
         self.assertEqual("", self.errors())
         self.registry_path.unlink()
         self.assertEqual([], gate.audit(self.root)[1])
@@ -142,6 +146,7 @@ class ApprovalIntegrity(unittest.TestCase):
     def test_cli_repo_forms_inventory_and_stable_mode(self):
         self.registry["approvals"] = []
         self.row["stage"] = "mapped"
+        self.row.pop("review")
         self.save()
         self.registry_path.unlink()
         command = [sys.executable, str(Path(gate.__file__).resolve())]
@@ -155,6 +160,70 @@ class ApprovalIntegrity(unittest.TestCase):
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertTrue(json.loads(result.stdout)["probe"].startswith("sha256:"))
         self.assertFalse(self.registry_path.exists(), "inventory mode created an approval")
+
+    def test_review_attribution_mutations_fail_without_semantic_hash_change(self):
+        original = dict(self.row["review"])
+        for field, value in (("by", "Someone else"), ("date", "2026-11-22"), ("decision", "hold")):
+            with self.subTest(field=field):
+                self.row["review"] = dict(original, **{field: value})
+                self.assertEqual(self.registry["approvals"][0]["fingerprint"],
+                                 gate.semantic_fingerprint(self.master, self.master["argument_schemes"][0], self.row))
+                self.assertIn("review metadata differs", self.errors())
+        self.row.pop("review")
+        self.assertIn("requires review decision approved", self.errors())
+
+    def test_matching_invalid_review_snapshot_does_not_authorize_approval(self):
+        for field, value, message in (("by", " ", "named reviewer"),
+                                      ("date", "2026-02-30", "date YYYY-MM-DD"),
+                                      ("date", "20261121", "date YYYY-MM-DD"),
+                                      ("decision", "hold", "decision approved")):
+            with self.subTest(field=field, value=value):
+                stamp = {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "approved", field: value}
+                self.row["review"] = dict(stamp)
+                self.registry["approvals"][0]["review"] = dict(stamp)
+                self.assertIn(message, self.errors())
+
+    def test_review_note_is_editorial_but_withdrawn_stage_is_not_approval(self):
+        self.row["review"]["note"] = "Additional evidence locator."
+        self.assertEqual("", self.errors())
+        self.row["stage"] = "transcription-checked"
+        self.assertIn("approving review is inconsistent", self.errors())
+
+    def disposition(self):
+        self.write("docs/reviews/record-dispositions.json", {"records": [{
+            "record": "probe", "current_stage": "example-passed", "disposition": "approved within declared scope",
+            "next_concrete_action": "Retain the reviewed synthetic interpretation."}]})
+
+    def test_metadata_helper_is_idempotent_and_preserves_accepted_semantics(self):
+        self.disposition()
+        path = self.root / "tools/vv/source_ledger.yml"
+        original_hash = self.registry["approvals"][0]["fingerprint"]
+        for flow in (True, False):
+            for existing_review in (True, False):
+                with self.subTest(flow=flow, existing_review=existing_review):
+                    original = copy.deepcopy(self.ledger)
+                    if not existing_review:
+                        original["records"][0].pop("review")
+                    path.write_text("# retained comment\n" + yaml.safe_dump(original, default_flow_style=flow, sort_keys=False, width=100000), encoding="utf-8")
+                    self.assertTrue(metadata.reconcile(self.root, write=True))
+                    self.assertFalse(metadata.reconcile(self.root, write=False))
+                    after = gate.read(path)
+                    for data in (original, after):
+                        data["records"][0].pop("review", None)
+                    self.assertEqual(original, after)
+                    self.assertTrue(path.read_text().startswith("# retained comment\n"))
+                    self.assertEqual(original_hash, gate.read(self.registry_path)["approvals"][0]["fingerprint"])
+                    self.assertEqual([], gate.audit(self.root)[1])
+
+    def test_metadata_helper_refuses_stale_semantics_without_writing(self):
+        self.disposition()
+        self.master["argument_schemes"][0]["conclusions"] = ["¬q(X)"]
+        self.save()
+        ledger_path = self.root / "tools/vv/source_ledger.yml"
+        before = (ledger_path.read_bytes(), self.registry_path.read_bytes())
+        with self.assertRaisesRegex(ValueError, "stale semantic approval"):
+            metadata.reconcile(self.root, write=True)
+        self.assertEqual(before, (ledger_path.read_bytes(), self.registry_path.read_bytes()))
 
 
 if __name__ == "__main__":

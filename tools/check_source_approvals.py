@@ -12,6 +12,7 @@ notes are excluded. Dynamic templates supplied through statement variables,
 engine code, test results and reviewer identity are not authenticated here.
 """
 import argparse
+from datetime import date
 import hashlib
 import json
 from pathlib import Path
@@ -24,6 +25,7 @@ from validate_schemes import LIST_FIELDS, load_unique, parse_statement
 SCHEMA = "walton-source-approvals/v1"
 STAGES = ("mapped", "transcription-checked", "interpretation-approved", "questions-sorted", "example-passed")
 CONTRACT_FIELDS = ("origin", "upstream", "entry", "cites", "claim", "source_questions")
+REVIEW_FIELDS = ("by", "date", "decision")
 
 
 def read(path):
@@ -91,6 +93,19 @@ def audit(repo, require_stable=False):
             continue
         if approval.get("fingerprint") != fingerprints[sid]:
             errors.append(f"{sid}: approval fingerprint is stale or missing")
+        review = rows[sid].get("review")
+        stamp = {key: review.get(key) for key in REVIEW_FIELDS} if isinstance(review, dict) else {}
+        if stamp.get("decision") != "approved":
+            errors.append(f"{sid}: recorded approval requires review decision approved")
+        if not isinstance(stamp.get("by"), str) or not stamp["by"].strip():
+            errors.append(f"{sid}: recorded approval requires a named reviewer")
+        try:
+            if date.fromisoformat(stamp.get("date", "")).isoformat() != stamp["date"]:
+                raise ValueError("noncanonical date")
+        except (TypeError, ValueError):
+            errors.append(f"{sid}: recorded approval requires review date YYYY-MM-DD")
+        if approval.get("review") != stamp:
+            errors.append(f"{sid}: approval review metadata differs from the ledger")
         for field in ("evidence", "examples"):
             values = approval.get(field)
             if not isinstance(values, list) or not values or not all(isinstance(v, str) and v.strip() for v in values):
@@ -103,6 +118,8 @@ def audit(repo, require_stable=False):
             errors.append(f"{sid}: unknown stage {stage!r}")
         if stage in STAGES[2:] and sid not in approvals:
             errors.append(f"{sid}: {stage} has no independent approval")
+        if isinstance(row.get("review"), dict) and row["review"].get("decision") == "approved" and stage not in STAGES[2:]:
+            errors.append(f"{sid}: approving review is inconsistent with stage {stage!r}")
         if require_stable and stage != "example-passed":
             errors.append(f"{sid}: stable release requires example-passed (found {stage!r})")
     return fingerprints, errors
