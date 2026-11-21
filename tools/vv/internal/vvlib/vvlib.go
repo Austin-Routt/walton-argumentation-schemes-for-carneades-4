@@ -439,8 +439,9 @@ func ValidatorProblems(lib *Library) map[string][]string {
 }
 
 // RuleError translates one scheme into a GoCHR rule exactly as
-// caes.TheoryToRuleStore does and returns the error that function discards,
-// together with anything GoCHR printed.
+// caes.TheoryToRuleStore does and returns the error GoCHR gives (the engine
+// as shipped discarded it; caes.RuleStoreOf now reports it), together with
+// anything GoCHR printed.
 func RuleError(s *caes.Scheme) (error, string) {
 	rs := chr.MakeRuleStore()
 	prem := s.Premises

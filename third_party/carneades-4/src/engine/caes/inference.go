@@ -90,7 +90,10 @@ func (ag *ArgGraph) Infer() error {
 func (ag *ArgGraph) InferContext(ctx context.Context) error {
 	if len(ag.Theory.ArgSchemes) != 0 {
 		// rb := TheoryToSWIRulebase(ag.Theory)
-		rb := TheoryToRuleStore(ag.Theory)
+		rb, err := RuleStoreOf(ag.Theory)
+		if err != nil {
+			return NewRunError(ErrInvalidInput, "the rule engine refused the theory: %v", err)
+		}
 		rb.Done = ctx.Done()
 
 		// Create an index of the previous arguments constructed

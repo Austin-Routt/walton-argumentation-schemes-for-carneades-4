@@ -185,3 +185,43 @@ func TestInferContextCancelled(t *testing.T) {
 		t.Errorf("a cancelled run added %d arguments", len(ag.Arguments))
 	}
 }
+
+// A scheme the rule engine cannot read makes Infer fail as invalid input,
+// naming the scheme, and leaves the graph unchanged (E-PARSE). Before, the
+// premise `broken(` was read as `broken` and the scheme silently did nothing.
+func TestMalformedSchemeIsInvalidInput(t *testing.T) {
+	ag, err := yaml.Import(strings.NewReader(`
+language:
+  p/1: "%s is p"
+  q/1: "%s is q"
+argument_schemes:
+  - id: fine
+    variables: [X]
+    premises:
+      - p(X)
+    conclusions:
+      - q(X)
+  - id: s15
+    variables: [X]
+    premises:
+      - p(X)
+      - "broken("
+    conclusions:
+      - q(X)
+assumptions:
+  - p(a)
+`))
+	if err != nil {
+		t.Fatal(err)
+	}
+	err = ag.Infer()
+	if !errors.Is(err, caes.ErrInvalidInput) || caes.ExitStatus(err) != 1 {
+		t.Fatalf("Infer returned %v (exit %d), want invalid input (exit 1)", err, caes.ExitStatus(err))
+	}
+	if !strings.Contains(err.Error(), "s15") {
+		t.Errorf("the error does not name the scheme: %v", err)
+	}
+	if len(ag.Arguments) != 0 {
+		t.Errorf("%d argument(s) added", len(ag.Arguments))
+	}
+}

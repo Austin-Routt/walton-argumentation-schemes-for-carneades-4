@@ -12,7 +12,8 @@ No scheme file changed. Each fix is one commit in `third_party/`, with tests in 
 * `Inconsistent()` answers from the current assumptions; `check` and `eval` report a graph that assumes a statement and its negation (E-INCONS).
 * Argument construction treats facts as a set: composition with division, and `exeptional`, terminate instead of running to the rule limit and starving every later scheme (X-LOOP; GoCHR `RuleStore.Unique`).
 * Limits: reaching the rule limit, or deriving a term over 500 nodes, is an error (`caes.ErrLimitReached`, exit 4) that leaves the graph unchanged; nothing is written to stdout; `InferContext` stops a run from outside (E-BUDGET).
-* Gate: 5,948 checks; 360 known failures under 18 issues (390 under 24 before).
+* Unreadable rule text is an error: GoCHR refuses a premise, conclusion or goal it cannot read in full (it read `broken(` as `broken` and `p(X) q(Y)` as `p(X)`), and `Infer` reports the scheme as invalid input instead of skipping it. When no rule fires, GoCHR returns the goals instead of an empty store (E-PARSE).
+* Gate: 5,948 checks; 359 known failures under 17 issues (390 under 24 before).
 
 ## 2026-11-21 — the reviewed plan, the engine sources and the verification gate
 
