@@ -74,6 +74,9 @@ func evalCmd() {
 	}
 	// trace.CHRtrace = 0
 	chr.CHRsolver(rs, 1000000)
+	if rs.Stopped != nil {
+		fmt.Fprintf(os.Stderr, "gochr: %v\n", rs.Stopped)
+	}
 
 	trace.CHRtrace = 1
 	chr.WriteCHRStore(rs, outFile)

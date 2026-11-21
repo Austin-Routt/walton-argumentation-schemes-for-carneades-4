@@ -9,6 +9,7 @@
 package chr
 
 import (
+	"errors"
 	"fmt"
 	"math/big"
 	"strconv"
@@ -113,8 +114,20 @@ type RuleStore struct {
 	// The default, false, keeps CHR's multiset semantics, so programs that
 	// count copies of a constraint are unaffected. Carneades sets it for
 	// argument construction, where facts form a set.
-	Unique         bool
-	alive          map[string]*Compound // Unique: ground constraint -> the copy in the store
+	Unique bool
+	alive  map[string]*Compound // Unique: ground constraint -> the copy in the store
+	// MaxTermSize, when positive, is the largest size, in nodes, of a
+	// constraint a run may add to the store; a larger one stops the run with
+	// ErrLimit. The rule limit alone does not bound a run whose terms grow
+	// without end: each rule application costs more than the last.
+	MaxTermSize int
+	// Done, when not nil, stops the run with ErrCancelled once it is closed
+	// (for example a context's Done channel).
+	Done <-chan struct{}
+	// Stopped tells why the last run ended while a rule could still fire: nil
+	// when it ran to its end, otherwise an error wrapping ErrLimit or
+	// ErrCancelled. Infer returns it.
+	Stopped        error
 	Result         resultType
 	CHRruleStore   []*chrRule
 	QueryVars      Vars
@@ -126,6 +139,40 @@ type RuleStore struct {
 	RenameRuleVars *big.Int
 	chrCounter     *big.Int
 	pred2rule      predicateRule
+}
+
+// ErrLimit is wrapped by RuleStore.Stopped, and returned by Infer, when a run
+// reached its limit of rule applications, or a constraint larger than
+// MaxTermSize, while a rule could still fire.
+var ErrLimit = errors.New("limit reached")
+
+// ErrCancelled is wrapped by RuleStore.Stopped, and returned by Infer, when
+// RuleStore.Done was closed during the run.
+var ErrCancelled = errors.New("run cancelled")
+
+// termSize counts the nodes of a term (one per atom, number, string,
+// variable, compound and list), and stops counting once it passes limit.
+func termSize(t Term, limit int) int {
+	switch t := t.(type) {
+	case Compound:
+		return argsSize(t.Args, limit)
+	case *Compound:
+		return argsSize(t.Args, limit)
+	case List:
+		return argsSize(t, limit)
+	}
+	return 1
+}
+
+func argsSize(args []Term, limit int) int {
+	n := 1
+	for _, a := range args {
+		if n > limit {
+			break
+		}
+		n += termSize(a, limit-n)
+	}
+	return n
 }
 
 type resultType int
@@ -244,6 +291,10 @@ func (rs *RuleStore) Infer(goals []string, max int) (bool, []string, error) {
 			addRefConstraintToStore(rs, g)
 		}
 		CHRsolver(rs, max)
+		if rs.Stopped != nil {
+			// the store as it was when the run stopped, for diagnosis only
+			return false, storeStrings(rs), rs.Stopped
+		}
 
 		switch rs.Result {
 		case REmpty:
@@ -253,41 +304,47 @@ func (rs *RuleStore) Infer(goals []string, max int) (bool, []string, error) {
 		case RTrue:
 			return true, []string{}, err
 		}
-		result := []string{}
 		// default: Result == RStore
-		for _, aChr := range rs.CHRstore {
-			for _, con := range aChr.varArg {
-				if con != nil && !con.IsDeleted {
-					result = append(result, con.String())
-				}
-			}
-			for _, con := range aChr.noArg {
-				if con != nil && !con.IsDeleted {
-					result = append(result, con.String())
-				}
-			}
-		}
-
-		for _, aChr := range rs.BuiltInStore {
-			for _, con := range aChr.varArg {
-				if con != nil && !con.IsDeleted {
-					result = append(result, con.String())
-				}
-			}
-			for _, con := range aChr.noArg {
-				if con != nil && !con.IsDeleted {
-					result = append(result, con.String())
-				}
-			}
-		}
-		return true, result, err
+		return true, storeStrings(rs), err
 	}
 	// fmt.Printf("** parseGoals  mit Fehler !!! \n")
 	return false, []string{}, err
 }
 
+// storeStrings lists the constraints alive in the CHR and built-in stores.
+func storeStrings(rs *RuleStore) []string {
+	result := []string{}
+	for _, aChr := range rs.CHRstore {
+		for _, con := range aChr.varArg {
+			if con != nil && !con.IsDeleted {
+				result = append(result, con.String())
+			}
+		}
+		for _, con := range aChr.noArg {
+			if con != nil && !con.IsDeleted {
+				result = append(result, con.String())
+			}
+		}
+	}
+
+	for _, aChr := range rs.BuiltInStore {
+		for _, con := range aChr.varArg {
+			if con != nil && !con.IsDeleted {
+				result = append(result, con.String())
+			}
+		}
+		for _, con := range aChr.noArg {
+			if con != nil && !con.IsDeleted {
+				result = append(result, con.String())
+			}
+		}
+	}
+	return result
+}
+
 func InitStore(rs *RuleStore) {
 	rs.Result = REmpty
+	rs.Stopped = nil
 	InitRenamingVariables()
 	v := NewVariable("")
 	rs.emptyBinding = &BindEle{Var: v, T: nil, Next: nil}
@@ -304,6 +361,7 @@ func InitStore(rs *RuleStore) {
 
 func ClearCHRStore(rs *RuleStore) {
 	rs.Result = REmpty
+	rs.Stopped = nil
 	InitRenamingVariables()
 	rs.chrCounter = big.NewInt(0)
 	rs.alive = map[string]*Compound{}
@@ -422,6 +480,14 @@ func addConstraintToStore(rs *RuleStore, g Compound) {
 	addRefConstraintToStore(rs, &g)
 }
 func addRefConstraintToStore(rs *RuleStore, g *Compound) {
+	if rs.MaxTermSize > 0 {
+		if n := termSize(*g, rs.MaxTermSize); n > rs.MaxTermSize {
+			if rs.Stopped == nil {
+				rs.Stopped = fmt.Errorf("%w: a constraint %s/%d of more than %d nodes", ErrLimit, g.Functor, len(g.Args), rs.MaxTermSize)
+			}
+			return
+		}
+	}
 	if rs.Unique && g.Prio == 0 && len(g.OccurVars()) == 0 {
 		// set semantics: a ground constraint already alive is not added again
 		// IsDeleted cannot tell whether that copy is still alive: matching
@@ -609,6 +675,22 @@ var CurVarCounter *big.Int
 // CHR solver
 // ----------
 
+// cancelled reports whether rs.Done is closed, and records it in rs.Stopped.
+func cancelled(rs *RuleStore) bool {
+	if rs.Done == nil {
+		return false
+	}
+	select {
+	case <-rs.Done:
+		if rs.Stopped == nil {
+			rs.Stopped = fmt.Errorf("%w", ErrCancelled)
+		}
+		return true
+	default:
+		return false
+	}
+}
+
 // Try all rules in 'CHRruleStore' with CHR-goals in CHR-store
 // until no rule fired.
 // CHRsolver used the trace- or no-trace function
@@ -620,7 +702,7 @@ func CHRsolver(rs *RuleStore, max int) {
 	i := 0
 	ruleFound := true
 	if CHRtrace == 0 {
-		for ruleFound, i = true, 0; ruleFound && rs.Result != RFalse && (max == 0 || i < max); i++ {
+		for ruleFound, i = true, 0; ruleFound && rs.Result != RFalse && rs.Stopped == nil && (max == 0 || i <= max) && !cancelled(rs); i++ {
 			// for ruleFound := true; ruleFound; {
 			ruleFound = false
 			for _, rule := range rs.CHRruleStore {
@@ -637,7 +719,7 @@ func CHRsolver(rs *RuleStore, max int) {
 			}
 		}
 	} else { // CHRtrace != 0
-		for ruleFound, i = true, 0; ruleFound && rs.Result != RFalse && (max == 0 || i < max); i++ {
+		for ruleFound, i = true, 0; ruleFound && rs.Result != RFalse && rs.Stopped == nil && (max == 0 || i <= max) && !cancelled(rs); i++ {
 			// for ruleFound := true; ruleFound; {
 			ruleFound = false
 			for _, rule := range rs.CHRruleStore {
@@ -677,8 +759,14 @@ func CHRsolver(rs *RuleStore, max int) {
 		}
 	}
 
-	if i == max {
-		TraceHeadln(0, 1, fmt.Sprintf("GoChr inference engine interrupted after executing the maximum (%d) number of rules", max))
+	// The loop allows one iteration more than max: a rule firing in it means
+	// that work remained when the limit was reached. A run that needs exactly
+	// max rule applications is not interrupted.
+	if ruleFound && max != 0 && i > max && rs.Stopped == nil {
+		rs.Stopped = fmt.Errorf("%w: %d rule applications", ErrLimit, max)
+	}
+	if rs.Stopped != nil {
+		TraceHeadln(1, 1, "GoChr inference engine stopped: ", rs.Stopped)
 	}
 
 	reduceStore(rs)
