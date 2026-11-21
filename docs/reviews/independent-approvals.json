@@ -805,10 +805,11 @@
     },
     {
       "record": "bias",
-      "fingerprint": "sha256:dadb596ff945653a7b94a62adcd7b2a3259dcb1ae0bf1090ade2b6001f1a3fec",
+      "fingerprint": "sha256:ebf5e207682c6b06e6aa4091cd84d9e092e552b185087b352633836d16a9b6e7",
       "evidence": [
         "docs/reviews/2026-11-21-second-half-source-review.md: bias",
-        "docs/source-contracts-second-half.md"
+        "docs/source-contracts-second-half.md",
+        "docs/reviews/peer13-second-followup.md: restored biased/1 upstream wording"
       ],
       "examples": [
         "bias/book"
@@ -1060,9 +1061,10 @@
     },
     {
       "record": "credible_source",
-      "fingerprint": "sha256:57f35ba2053da6f1e031c3f1ab907375980bc085101205bba8550291cfab48c0",
+      "fingerprint": "sha256:3497ddffcb17d0ffadb847741119953cfe586b141727e1fedeebcc91e667fbd8",
       "evidence": [
-        "docs/reviews/own-source-review.md#credible_source"
+        "docs/reviews/own-source-review.md#credible_source",
+        "docs/reviews/peer13-second-followup.md: restored biased/1 upstream wording"
       ],
       "examples": [
         "credible_source/book"
