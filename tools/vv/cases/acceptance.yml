@@ -1,0 +1,86 @@
+# The second review's six acceptance cases (its tools/go/cases/*.yml), ported
+# (PLAN.md 0.2, docs/parity.md). Each is a small graph against a scheme file,
+# with the labels the review stated by hand.
+cases:
+  # Argument from expert opinion: the three premises hold and no exception is
+  # raised, so the asserted statement is in.
+  - name: expert-opinion
+    source: "2, p. 310"
+    library: walton.yml
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+    arguments:
+      - expert_opinion(smith,law,liable(acme))
+    in:
+      - liable(acme)
+  # The same against the category file instead of walton.yml.
+  - name: expert-opinion/category-file
+    source: "2, p. 310"
+    library: B_source-based-arguments/1_arguments-from-position-to-know.yml
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+    arguments:
+      - expert_opinion(smith,law,liable(acme))
+    in:
+      - liable(acme)
+  # The exception untrustworthy(W) holds: the argument is undercut and the
+  # conclusion is out (nothing else supports it).
+  - name: expert-opinion/untrustworthy
+    source: "2, p. 310 (exception untrustworthy)"
+    library: walton.yml
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+      - untrustworthy(smith)
+    in:
+      - untrustworthy(smith)
+    out:
+      - liable(acme)
+  # An unrelated fact that triggers argument from composition does not change
+  # the label of liable(acme).
+  - name: expert-opinion/with-composition
+    source: "2, p. 310; 9.1, p. 316"
+    library: walton.yml
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+      - all_parts_propert(car,red)
+    arguments:
+      - expert_opinion(smith,law,liable(acme))
+      - composition_generic(car,red)
+    in:
+      - liable(acme)
+      - has_property(car,red)
+  # Argument from ignorance: if it were true it would be known, it is not
+  # known, so it is not true.
+  - name: ignorance
+    source: "26, p. 327"
+    library: walton.yml
+    assumptions:
+      - would_be_known(liable(acme))
+      - ¬known(liable(acme))
+    arguments:
+      - ignorance(liable(acme))
+    in:
+      - ¬liable(acme)
+  # The inductive step of the slippery slope on data with a causal cycle (a
+  # causes b, b causes a). The scheme chains by design; on finite data the run
+  # completes.
+  - name: slippery-slope/cycle
+    source: "49, p. 339"
+    library: A_reasoning/5_casual-reasoning.yml
+    assumptions:
+      - causes(a,b)
+      - causes(b,a)
+      - horrible_costs(b)
+    arguments:
+      - slippery_slope_inductive_step(a,b)
+    in:
+      - horrible_costs(a)
+      - horrible_costs(b)

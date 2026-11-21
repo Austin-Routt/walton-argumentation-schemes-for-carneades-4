@@ -23,6 +23,7 @@ import (
 	// "log"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 type (
@@ -110,7 +111,13 @@ var collOfWF2source map[string]interface{}                   // collection of we
 
 // Import
 
+// importing serializes Import and Export: both work in the package-level
+// tables above (docs/contracts.md, contract 1).
+var importing sync.Mutex
+
 func Import(inFile io.Reader) (*caes.ArgGraph, error) {
+	importing.Lock()
+	defer importing.Unlock()
 
 	// Work on copies of the built-in tables: writing imported schemes and
 	// weighing functions into caes.BasicSchemes and caes.BasicWeighingFunctions
@@ -1685,10 +1692,14 @@ func writeWF(f io.Writer, key, name string, weight caes.WeighingFunction) {
 }
 
 func ExportWithReferences(f io.Writer, caesAg *caes.ArgGraph) {
+	importing.Lock()
+	defer importing.Unlock()
 	writeArgGraph1(false, f, caesAg)
 }
 
 func Export(f io.Writer, caesAg *caes.ArgGraph) {
+	importing.Lock()
+	defer importing.Unlock()
 	writeArgGraph1(true, f, caesAg)
 }
 

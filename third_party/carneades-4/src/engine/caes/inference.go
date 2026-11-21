@@ -87,7 +87,15 @@ func (ag *ArgGraph) Infer() error {
 // InferContext is Infer, stopped with an error wrapping ErrCancelled when ctx
 // is done before argument construction ends. The graph is then left
 // unchanged.
+//
+// Runs from several goroutines are serialized: a run waits until no other run
+// uses the rule engine (docs/contracts.md, contract 1), and a run whose ctx
+// is done while it waits ends as cancelled.
 func (ag *ArgGraph) InferContext(ctx context.Context) error {
+	if err := acquireEngine(ctx); err != nil {
+		return err
+	}
+	defer releaseEngine()
 	if err := Unsupported(ag.Theory); err != nil {
 		return err
 	}
@@ -102,7 +110,7 @@ func (ag *ArgGraph) InferContext(ctx context.Context) error {
 	}
 	if len(ag.Theory.ArgSchemes) != 0 {
 		// rb := TheoryToSWIRulebase(ag.Theory)
-		rb, err := RuleStoreOf(ag.Theory)
+		rb, err := ruleStoreOf(ag.Theory)
 		if err != nil {
 			return NewRunError(ErrInvalidInput, "the rule engine refused the theory: %v", err)
 		}

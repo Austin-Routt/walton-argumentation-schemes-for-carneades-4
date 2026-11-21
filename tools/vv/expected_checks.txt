@@ -2,6 +2,7 @@ A_reasoning/1_deductive-reasoning.yml|(file)|cli/check-clean
 A_reasoning/1_deductive-reasoning.yml|(file)|cli/eval-produces-output
 A_reasoning/1_deductive-reasoning.yml|(file)|engine-validator
 A_reasoning/1_deductive-reasoning.yml|(file)|import
+A_reasoning/1_deductive-reasoning.yml|(file)|stress
 A_reasoning/1_deductive-reasoning.yml|division_generic|chr-translation
 A_reasoning/1_deductive-reasoning.yml|division_generic|cli/scenario
 A_reasoning/1_deductive-reasoning.yml|division_generic|engine-validator
@@ -22,6 +23,7 @@ A_reasoning/1_deductive-reasoning.yml|division_generic|iso/infer-twice
 A_reasoning/1_deductive-reasoning.yml|division_generic|iso/negation-texts
 A_reasoning/1_deductive-reasoning.yml|division_generic|iso/premises
 A_reasoning/1_deductive-reasoning.yml|division_generic|iso/premises-needed
+A_reasoning/1_deductive-reasoning.yml|division_generic|iso/roundtrip
 A_reasoning/1_deductive-reasoning.yml|division_generic|iso/terminates
 A_reasoning/1_deductive-reasoning.yml|division_generic|iso/texts
 A_reasoning/1_deductive-reasoning.yml|division_generic|static/id-round-trips
@@ -48,6 +50,7 @@ A_reasoning/1_deductive-reasoning.yml|group_2|iso/infer-twice
 A_reasoning/1_deductive-reasoning.yml|group_2|iso/negation-texts
 A_reasoning/1_deductive-reasoning.yml|group_2|iso/premises
 A_reasoning/1_deductive-reasoning.yml|group_2|iso/premises-needed
+A_reasoning/1_deductive-reasoning.yml|group_2|iso/roundtrip
 A_reasoning/1_deductive-reasoning.yml|group_2|iso/terminates
 A_reasoning/1_deductive-reasoning.yml|group_2|iso/texts
 A_reasoning/1_deductive-reasoning.yml|group_2|static/id-round-trips
@@ -58,6 +61,7 @@ A_reasoning/2_inductive-reasoning.yml|(file)|cli/check-clean
 A_reasoning/2_inductive-reasoning.yml|(file)|cli/eval-produces-output
 A_reasoning/2_inductive-reasoning.yml|(file)|engine-validator
 A_reasoning/2_inductive-reasoning.yml|(file)|import
+A_reasoning/2_inductive-reasoning.yml|(file)|stress
 A_reasoning/2_inductive-reasoning.yml|composition_generic|chr-translation
 A_reasoning/2_inductive-reasoning.yml|composition_generic|cli/scenario
 A_reasoning/2_inductive-reasoning.yml|composition_generic|engine-validator
@@ -78,6 +82,7 @@ A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/infer-twice
 A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/negation-texts
 A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/premises
 A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/premises-needed
+A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/roundtrip
 A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/terminates
 A_reasoning/2_inductive-reasoning.yml|composition_generic|iso/texts
 A_reasoning/2_inductive-reasoning.yml|composition_generic|static/id-round-trips
@@ -104,6 +109,7 @@ A_reasoning/2_inductive-reasoning.yml|group_1|iso/infer-twice
 A_reasoning/2_inductive-reasoning.yml|group_1|iso/negation-texts
 A_reasoning/2_inductive-reasoning.yml|group_1|iso/premises
 A_reasoning/2_inductive-reasoning.yml|group_1|iso/premises-needed
+A_reasoning/2_inductive-reasoning.yml|group_1|iso/roundtrip
 A_reasoning/2_inductive-reasoning.yml|group_1|iso/terminates
 A_reasoning/2_inductive-reasoning.yml|group_1|iso/texts
 A_reasoning/2_inductive-reasoning.yml|group_1|static/id-round-trips
@@ -132,6 +138,7 @@ A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/infer-twice
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/negation-texts
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/premises
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/premises-needed
+A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/roundtrip
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/terminates
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|iso/texts
 A_reasoning/2_inductive-reasoning.yml|part_in_whole|static/id-round-trips
@@ -158,6 +165,7 @@ A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/infer-twice
 A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/negation-texts
 A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/premises
 A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/premises-needed
+A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/roundtrip
 A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/terminates
 A_reasoning/2_inductive-reasoning.yml|whole_into_parts|iso/texts
 A_reasoning/2_inductive-reasoning.yml|whole_into_parts|static/id-round-trips
@@ -168,6 +176,7 @@ A_reasoning/3_practical-reasoning.yml|(file)|cli/check-clean
 A_reasoning/3_practical-reasoning.yml|(file)|cli/eval-produces-output
 A_reasoning/3_practical-reasoning.yml|(file)|engine-validator
 A_reasoning/3_practical-reasoning.yml|(file)|import
+A_reasoning/3_practical-reasoning.yml|(file)|stress
 A_reasoning/3_practical-reasoning.yml|ad_baculum|chr-translation
 A_reasoning/3_practical-reasoning.yml|ad_baculum|cli/scenario
 A_reasoning/3_practical-reasoning.yml|ad_baculum|engine-validator
@@ -188,6 +197,7 @@ A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/premises
 A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/terminates
 A_reasoning/3_practical-reasoning.yml|ad_baculum|iso/texts
 A_reasoning/3_practical-reasoning.yml|ad_baculum|static/id-round-trips
@@ -214,6 +224,7 @@ A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/premises
 A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/terminates
 A_reasoning/3_practical-reasoning.yml|alternative_cognitive|iso/texts
 A_reasoning/3_practical-reasoning.yml|alternative_cognitive|static/id-round-trips
@@ -240,6 +251,7 @@ A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/premises
 A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/terminates
 A_reasoning/3_practical-reasoning.yml|alternative_normative|iso/texts
 A_reasoning/3_practical-reasoning.yml|alternative_normative|static/id-round-trips
@@ -266,6 +278,7 @@ A_reasoning/3_practical-reasoning.yml|danger|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|danger|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|danger|iso/premises
 A_reasoning/3_practical-reasoning.yml|danger|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|danger|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|danger|iso/terminates
 A_reasoning/3_practical-reasoning.yml|danger|iso/texts
 A_reasoning/3_practical-reasoning.yml|danger|static/id-round-trips
@@ -294,6 +307,7 @@ A_reasoning/3_practical-reasoning.yml|distress|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|distress|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|distress|iso/premises
 A_reasoning/3_practical-reasoning.yml|distress|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|distress|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|distress|iso/terminates
 A_reasoning/3_practical-reasoning.yml|distress|iso/texts
 A_reasoning/3_practical-reasoning.yml|distress|static/id-round-trips
@@ -320,6 +334,7 @@ A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/premises
 A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/terminates
 A_reasoning/3_practical-reasoning.yml|end_and_means_1|iso/texts
 A_reasoning/3_practical-reasoning.yml|end_and_means_1|static/id-round-trips
@@ -346,6 +361,7 @@ A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/premises
 A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/terminates
 A_reasoning/3_practical-reasoning.yml|end_and_means_2|iso/texts
 A_reasoning/3_practical-reasoning.yml|end_and_means_2|static/id-round-trips
@@ -372,6 +388,7 @@ A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/premises
 A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/terminates
 A_reasoning/3_practical-reasoning.yml|end_and_means_3|iso/texts
 A_reasoning/3_practical-reasoning.yml|end_and_means_3|static/id-round-trips
@@ -398,6 +415,7 @@ A_reasoning/3_practical-reasoning.yml|fear|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|fear|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|fear|iso/premises
 A_reasoning/3_practical-reasoning.yml|fear|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|fear|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|fear|iso/terminates
 A_reasoning/3_practical-reasoning.yml|fear|iso/texts
 A_reasoning/3_practical-reasoning.yml|fear|static/id-round-trips
@@ -426,6 +444,7 @@ A_reasoning/3_practical-reasoning.yml|help|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|help|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|help|iso/premises
 A_reasoning/3_practical-reasoning.yml|help|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|help|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|help|iso/terminates
 A_reasoning/3_practical-reasoning.yml|help|iso/texts
 A_reasoning/3_practical-reasoning.yml|help|static/id-round-trips
@@ -454,6 +473,7 @@ A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/infer
 A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/premises
 A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/terminates
 A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|iso/texts
 A_reasoning/3_practical-reasoning.yml|negative_consequences_prudential|static/id-round-trips
@@ -480,6 +500,7 @@ A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/infer-
 A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/premises
 A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/terminates
 A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|iso/texts
 A_reasoning/3_practical-reasoning.yml|negative_consequences_reasoning|static/id-round-trips
@@ -506,6 +527,7 @@ A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/premises
 A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/terminates
 A_reasoning/3_practical-reasoning.yml|negative_consequences|iso/texts
 A_reasoning/3_practical-reasoning.yml|negative_consequences|static/id-round-trips
@@ -532,6 +554,7 @@ A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/premises
 A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/terminates
 A_reasoning/3_practical-reasoning.yml|positive_consequences|iso/texts
 A_reasoning/3_practical-reasoning.yml|positive_consequences|static/id-round-trips
@@ -558,6 +581,7 @@ A_reasoning/3_practical-reasoning.yml|practical_goal|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|practical_goal|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|practical_goal|iso/premises
 A_reasoning/3_practical-reasoning.yml|practical_goal|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|practical_goal|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|practical_goal|iso/terminates
 A_reasoning/3_practical-reasoning.yml|practical_goal|iso/texts
 A_reasoning/3_practical-reasoning.yml|practical_goal|static/id-round-trips
@@ -586,6 +610,7 @@ A_reasoning/3_practical-reasoning.yml|practical_inference|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|practical_inference|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|practical_inference|iso/premises
 A_reasoning/3_practical-reasoning.yml|practical_inference|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|practical_inference|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|practical_inference|iso/terminates
 A_reasoning/3_practical-reasoning.yml|practical_inference|iso/texts
 A_reasoning/3_practical-reasoning.yml|practical_inference|static/id-round-trips
@@ -614,6 +639,7 @@ A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/infer-tw
 A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/premises
 A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/terminates
 A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|iso/texts
 A_reasoning/3_practical-reasoning.yml|practical_necessary_condition|static/id-round-trips
@@ -642,6 +668,7 @@ A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/premises
 A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/terminates
 A_reasoning/3_practical-reasoning.yml|practical_reasoning1|iso/texts
 A_reasoning/3_practical-reasoning.yml|practical_reasoning1|static/id-round-trips
@@ -670,6 +697,7 @@ A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/premises
 A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/terminates
 A_reasoning/3_practical-reasoning.yml|practical_reasoning2|iso/texts
 A_reasoning/3_practical-reasoning.yml|practical_reasoning2|static/id-round-trips
@@ -698,6 +726,7 @@ A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/infer-t
 A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/premises
 A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/terminates
 A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|iso/texts
 A_reasoning/3_practical-reasoning.yml|practical_sufficient_condition|static/id-round-trips
@@ -724,6 +753,7 @@ A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/premises
 A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/terminates
 A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|iso/texts
 A_reasoning/3_practical-reasoning.yml|pragmatic_alternative|static/id-round-trips
@@ -750,6 +780,7 @@ A_reasoning/3_practical-reasoning.yml|sacrifice|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|sacrifice|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|sacrifice|iso/premises
 A_reasoning/3_practical-reasoning.yml|sacrifice|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|sacrifice|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|sacrifice|iso/terminates
 A_reasoning/3_practical-reasoning.yml|sacrifice|iso/texts
 A_reasoning/3_practical-reasoning.yml|sacrifice|static/id-round-trips
@@ -778,6 +809,7 @@ A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/premises
 A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/terminates
 A_reasoning/3_practical-reasoning.yml|sunk_costs|iso/texts
 A_reasoning/3_practical-reasoning.yml|sunk_costs|static/id-round-trips
@@ -804,6 +836,7 @@ A_reasoning/3_practical-reasoning.yml|treat|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|treat|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|treat|iso/premises
 A_reasoning/3_practical-reasoning.yml|treat|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|treat|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|treat|iso/terminates
 A_reasoning/3_practical-reasoning.yml|treat|iso/texts
 A_reasoning/3_practical-reasoning.yml|treat|static/id-round-trips
@@ -832,6 +865,7 @@ A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/premises
 A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/terminates
 A_reasoning/3_practical-reasoning.yml|two_person_practical|iso/texts
 A_reasoning/3_practical-reasoning.yml|two_person_practical|static/id-round-trips
@@ -860,6 +894,7 @@ A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/infer-
 A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/premises
 A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/terminates
 A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|iso/texts
 A_reasoning/3_practical-reasoning.yml|value_based_practical_reasoning|static/id-round-trips
@@ -886,6 +921,7 @@ A_reasoning/3_practical-reasoning.yml|waste|iso/infer-twice
 A_reasoning/3_practical-reasoning.yml|waste|iso/negation-texts
 A_reasoning/3_practical-reasoning.yml|waste|iso/premises
 A_reasoning/3_practical-reasoning.yml|waste|iso/premises-needed
+A_reasoning/3_practical-reasoning.yml|waste|iso/roundtrip
 A_reasoning/3_practical-reasoning.yml|waste|iso/terminates
 A_reasoning/3_practical-reasoning.yml|waste|iso/texts
 A_reasoning/3_practical-reasoning.yml|waste|static/id-round-trips
@@ -896,6 +932,7 @@ A_reasoning/4_abductive-reasoning.yml|(file)|cli/check-clean
 A_reasoning/4_abductive-reasoning.yml|(file)|cli/eval-produces-output
 A_reasoning/4_abductive-reasoning.yml|(file)|engine-validator
 A_reasoning/4_abductive-reasoning.yml|(file)|import
+A_reasoning/4_abductive-reasoning.yml|(file)|stress
 A_reasoning/4_abductive-reasoning.yml|abduction|chr-translation
 A_reasoning/4_abductive-reasoning.yml|abduction|cli/scenario
 A_reasoning/4_abductive-reasoning.yml|abduction|engine-validator
@@ -918,6 +955,7 @@ A_reasoning/4_abductive-reasoning.yml|abduction|iso/infer-twice
 A_reasoning/4_abductive-reasoning.yml|abduction|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|abduction|iso/premises
 A_reasoning/4_abductive-reasoning.yml|abduction|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|abduction|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|abduction|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|abduction|iso/texts
 A_reasoning/4_abductive-reasoning.yml|abduction|static/id-round-trips
@@ -944,6 +982,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/infer-tw
 A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/premises
 A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|iso/texts
 A_reasoning/4_abductive-reasoning.yml|abductive_action_to_character|static/id-round-trips
@@ -970,6 +1009,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/infer-twice
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/premises
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|iso/texts
 A_reasoning/4_abductive-reasoning.yml|abductive_backward|static/id-round-trips
@@ -998,6 +1038,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/infer-tw
 A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/premises
 A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|iso/texts
 A_reasoning/4_abductive-reasoning.yml|abductive_character_to_action|static/id-round-trips
@@ -1024,6 +1065,7 @@ A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/infer-twice
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/premises
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|iso/texts
 A_reasoning/4_abductive-reasoning.yml|abductive_forward|static/id-round-trips
@@ -1050,6 +1092,7 @@ A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/infe
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/premises
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|iso/texts
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_falsification|static/id-round-trips
@@ -1076,6 +1119,7 @@ A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/infer
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/premises
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|iso/texts
 A_reasoning/4_abductive-reasoning.yml|evidence_hypothesis_verification|static/id-round-trips
@@ -1102,6 +1146,7 @@ A_reasoning/4_abductive-reasoning.yml|retroductive|iso/infer-twice
 A_reasoning/4_abductive-reasoning.yml|retroductive|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|retroductive|iso/premises
 A_reasoning/4_abductive-reasoning.yml|retroductive|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|retroductive|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|retroductive|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|retroductive|iso/texts
 A_reasoning/4_abductive-reasoning.yml|retroductive|static/id-round-trips
@@ -1130,6 +1175,7 @@ A_reasoning/4_abductive-reasoning.yml|sign|iso/infer-twice
 A_reasoning/4_abductive-reasoning.yml|sign|iso/negation-texts
 A_reasoning/4_abductive-reasoning.yml|sign|iso/premises
 A_reasoning/4_abductive-reasoning.yml|sign|iso/premises-needed
+A_reasoning/4_abductive-reasoning.yml|sign|iso/roundtrip
 A_reasoning/4_abductive-reasoning.yml|sign|iso/terminates
 A_reasoning/4_abductive-reasoning.yml|sign|iso/texts
 A_reasoning/4_abductive-reasoning.yml|sign|static/id-round-trips
@@ -1140,6 +1186,7 @@ A_reasoning/5_casual-reasoning.yml|(file)|cli/check-clean
 A_reasoning/5_casual-reasoning.yml|(file)|cli/eval-produces-output
 A_reasoning/5_casual-reasoning.yml|(file)|engine-validator
 A_reasoning/5_casual-reasoning.yml|(file)|import
+A_reasoning/5_casual-reasoning.yml|(file)|stress
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|chr-translation
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|cli/scenario
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|engine-validator
@@ -1162,6 +1209,7 @@ A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/premises
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/terminates
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|iso/texts
 A_reasoning/5_casual-reasoning.yml|cause_to_effect|static/id-round-trips
@@ -1190,6 +1238,7 @@ A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/premises
 A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/terminates
 A_reasoning/5_casual-reasoning.yml|correlation_to_cause|iso/texts
 A_reasoning/5_casual-reasoning.yml|correlation_to_cause|static/id-round-trips
@@ -1216,6 +1265,7 @@ A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/premises
 A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/terminates
 A_reasoning/5_casual-reasoning.yml|full_slippery_slope|iso/texts
 A_reasoning/5_casual-reasoning.yml|full_slippery_slope|static/id-round-trips
@@ -1242,6 +1292,7 @@ A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/premises
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/terminates
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|iso/texts
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_1|static/id-round-trips
@@ -1268,6 +1319,7 @@ A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/premises
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/terminates
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|iso/texts
 A_reasoning/5_casual-reasoning.yml|interaction_act_person_2|static/id-round-trips
@@ -1294,6 +1346,7 @@ A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/premises
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/terminates
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|iso/texts
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_1|static/id-round-trips
@@ -1320,6 +1373,7 @@ A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/premises
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/terminates
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|iso/texts
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_2|static/id-round-trips
@@ -1346,6 +1400,7 @@ A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/premises
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/terminates
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|iso/texts
 A_reasoning/5_casual-reasoning.yml|opposition-descriptive_3|static/id-round-trips
@@ -1372,6 +1427,7 @@ A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/premises
 A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/terminates
 A_reasoning/5_casual-reasoning.yml|opposition-normative|iso/texts
 A_reasoning/5_casual-reasoning.yml|opposition-normative|static/id-round-trips
@@ -1398,6 +1454,7 @@ A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/infer-
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/premises
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/terminates
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|iso/texts
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_descriptive|static/id-round-trips
@@ -1424,6 +1481,7 @@ A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/infer-tw
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/premises
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/terminates
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|iso/texts
 A_reasoning/5_casual-reasoning.yml|rhetorical_oppositions_normative|static/id-round-trips
@@ -1450,6 +1508,7 @@ A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/premises
 A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/terminates
 A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|iso/texts
 A_reasoning/5_casual-reasoning.yml|slippery_slope_base_case|static/id-round-trips
@@ -1476,6 +1535,7 @@ A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/infer-twice
 A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/negation-texts
 A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/premises
 A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/premises-needed
+A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/roundtrip
 A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/terminates
 A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|iso/texts
 A_reasoning/5_casual-reasoning.yml|slippery_slope_inductive_step|static/id-round-trips
@@ -1486,6 +1546,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|(file)|cli/check-
 B_source-based-arguments/1_arguments-from-position-to-know.yml|(file)|cli/eval-produces-output
 B_source-based-arguments/1_arguments-from-position-to-know.yml|(file)|engine-validator
 B_source-based-arguments/1_arguments-from-position-to-know.yml|(file)|import
+B_source-based-arguments/1_arguments-from-position-to-know.yml|(file)|stress
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|chr-translation
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|cli/scenario
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|engine-validator
@@ -1506,6 +1567,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/in
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|appearance|static/id-round-trips
@@ -1534,6 +1596,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|i
 B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|credible_source|static/id-round-trips
@@ -1560,6 +1623,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignoren
 B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|epistemic_ignorence|static/id-round-trips
@@ -1586,6 +1650,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion_ad_populum|static/id-round-trips
@@ -1614,6 +1679,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|is
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|expert_opinion|static/id-round-trips
@@ -1642,6 +1708,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/inf
 B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|ignorance|static/id-round-trips
@@ -1668,6 +1735,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/infer-
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|memory|static/id-round-trips
@@ -1694,6 +1762,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_e
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_normal_expectations|static/id-round-trips
@@ -1720,6 +1789,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practica
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|negative_practical|static/id-round-trips
@@ -1746,6 +1816,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know_ad_populum|static/id-round-trips
@@ -1774,6 +1845,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|position_to_know|static/id-round-trips
@@ -1802,6 +1874,7 @@ B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony
 B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|iso/negation-texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|iso/premises
 B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|iso/premises-needed
+B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|iso/roundtrip
 B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|iso/terminates
 B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|iso/texts
 B_source-based-arguments/1_arguments-from-position-to-know.yml|witness_testimony|static/id-round-trips
@@ -1812,6 +1885,7 @@ B_source-based-arguments/2_argumen-from-commitment.yml|(file)|cli/check-clean
 B_source-based-arguments/2_argumen-from-commitment.yml|(file)|cli/eval-produces-output
 B_source-based-arguments/2_argumen-from-commitment.yml|(file)|engine-validator
 B_source-based-arguments/2_argumen-from-commitment.yml|(file)|import
+B_source-based-arguments/2_argumen-from-commitment.yml|(file)|stress
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|chr-translation
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|cli/scenario
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|engine-validator
@@ -1834,6 +1908,7 @@ B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/infer-twi
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/negation-texts
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/premises
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/premises-needed
+B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/roundtrip
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/terminates
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|iso/texts
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment1|static/id-round-trips
@@ -1862,6 +1937,7 @@ B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/infer-twi
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/negation-texts
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/premises
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/premises-needed
+B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/roundtrip
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/terminates
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|iso/texts
 B_source-based-arguments/2_argumen-from-commitment.yml|commitment2|static/id-round-trips
@@ -1890,6 +1966,7 @@ B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|i
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/negation-texts
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/premises
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/premises-needed
+B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/roundtrip
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/terminates
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|iso/texts
 B_source-based-arguments/2_argumen-from-commitment.yml|inconsistent_commitment|static/id-round-trips
@@ -1916,6 +1993,7 @@ B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/infer-
 B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/negation-texts
 B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/premises
 B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/premises-needed
+B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/roundtrip
 B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/terminates
 B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|iso/texts
 B_source-based-arguments/2_argumen-from-commitment.yml|negative_value|static/id-round-trips
@@ -1942,6 +2020,7 @@ B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/infer-
 B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/negation-texts
 B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/premises
 B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/premises-needed
+B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/roundtrip
 B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/terminates
 B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|iso/texts
 B_source-based-arguments/2_argumen-from-commitment.yml|positive_value|static/id-round-trips
@@ -1952,6 +2031,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|(file)|cli/check-c
 B_source-based-arguments/3_attacking-personal-credibility.yml|(file)|cli/eval-produces-output
 B_source-based-arguments/3_attacking-personal-credibility.yml|(file)|engine-validator
 B_source-based-arguments/3_attacking-personal-credibility.yml|(file)|import
+B_source-based-arguments/3_attacking-personal-credibility.yml|(file)|stress
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|chr-translation
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|cli/scenario
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|engine-validator
@@ -1974,6 +2054,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/inf
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/negation-texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/premises
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/premises-needed
+B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/roundtrip
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/terminates
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|iso/texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|ad_hominem|static/id-round-trips
@@ -2000,6 +2081,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|is
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|iso/negation-texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|iso/premises
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|iso/premises-needed
+B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|iso/roundtrip
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|iso/terminates
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|iso/texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias_ad_hominem|static/id-round-trips
@@ -2026,6 +2108,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/infer-twi
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/negation-texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/premises
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/premises-needed
+B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/roundtrip
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/terminates
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias|iso/texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|bias|static/id-round-trips
@@ -2052,6 +2135,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/negation-texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/premises
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/premises-needed
+B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/roundtrip
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/terminates
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|iso/texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|circumstantial_ad_hominem|static/id-round-trips
@@ -2078,6 +2162,7 @@ B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsis
 B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|iso/negation-texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|iso/premises
 B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|iso/premises-needed
+B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|iso/roundtrip
 B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|iso/terminates
 B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|iso/texts
 B_source-based-arguments/3_attacking-personal-credibility.yml|pragmatic_inconsistency|static/id-round-trips
@@ -2088,6 +2173,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|(file)|cli/check-
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|(file)|cli/eval-produces-output
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|(file)|engine-validator
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|(file)|import
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|(file)|stress
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|chr-translation
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|cli/scenario
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|engine-validator
@@ -2108,6 +2194,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|appeal_to_vanity_ad_populum|static/id-round-trips
@@ -2134,6 +2221,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_po
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folk_ad_populum|static/id-round-trips
@@ -2160,6 +2248,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_grou
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|common_folks_group_ad_populum|static/id-round-trips
@@ -2186,6 +2275,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_p
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|deliberation_ad_populum|static/id-round-trips
@@ -2212,6 +2302,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/infe
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic1|static/id-round-trips
@@ -2238,6 +2329,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/infe
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|ethotic2|static/id-round-trips
@@ -2264,6 +2356,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justificati
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum_excuse|static/id-round-trips
@@ -2290,6 +2383,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justificati
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|moral_justification_ad_populum|static/id-round-trips
@@ -2316,6 +2410,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/in
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|pop_scheme|static/id-round-trips
@@ -2344,6 +2439,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|i
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_opinion|static/id-round-trips
@@ -2370,6 +2466,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|popular_practise|static/id-round-trips
@@ -2396,6 +2493,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_popul
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|rhetoric_ad_populum|static/id-round-trips
@@ -2422,6 +2520,7 @@ B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_po
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|iso/negation-texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|iso/premises
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|iso/premises-needed
+B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|iso/roundtrip
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|iso/terminates
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|iso/texts
 B_source-based-arguments/4_argumen-from-popular-acceptence.yml|snob_appeal_ad_populum|static/id-round-trips
@@ -2432,6 +2531,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|(file)|cli/check-clean
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|(file)|cli/eval-produces-output
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|(file)|engine-validator
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|(file)|import
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|(file)|stress
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|chr-translation
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|cli/scenario
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|engine-validator
@@ -2454,6 +2554,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/infer-twice
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|analogy|static/id-round-trips
@@ -2480,6 +2581,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/in
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|established_rule|static/id-round-trips
@@ -2508,6 +2610,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/in
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|exeption_to_rule|static/id-round-trips
@@ -2534,6 +2637,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/infe
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_antimodel|static/id-round-trips
@@ -2562,6 +2666,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/infer-
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_example|static/id-round-trips
@@ -2588,6 +2693,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/infer-tw
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|from_model|static/id-round-trips
@@ -2614,6 +2720,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/infer-
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|illustration|static/id-round-trips
@@ -2642,6 +2749,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/infer-tw
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|perception|static/id-round-trips
@@ -2668,6 +2776,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negat
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_negative|static/id-round-trips
@@ -2694,6 +2803,7 @@ C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_posit
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|iso/negation-texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|iso/premises
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|iso/premises-needed
+C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|iso/roundtrip
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|iso/terminates
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|iso/texts
 C_applying-rules-to-cases/1_arguments-based-on-cases.yml|practical_analogy_positive|static/id-round-trips
@@ -2704,6 +2814,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|(file)|cli/check
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|(file)|cli/eval-produces-output
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|(file)|engine-validator
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|(file)|import
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|(file)|stress
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|chr-translation
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|cli/scenario
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|engine-validator
@@ -2724,6 +2835,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|defeasible_modus_ponens|static/id-round-trips
@@ -2750,6 +2862,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/i
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|exeptional|static/id-round-trips
@@ -2778,6 +2891,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|i
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|from_precedent|static/id-round-trips
@@ -2806,6 +2920,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|plea_for_excuse|static/id-round-trips
@@ -2834,6 +2949,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule_prohibition|static/id-round-trips
@@ -2862,6 +2978,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|regulative_rule|static/id-round-trips
@@ -2890,6 +3007,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_worl
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_mental_world|static/id-round-trips
@@ -2918,6 +3036,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_wo
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_1|static/id-round-trips
@@ -2946,6 +3065,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_wo
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule_physical_world_2|static/id-round-trips
@@ -2972,6 +3092,7 @@ C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/infer-t
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/negation-texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/premises
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/premises-needed
+C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/roundtrip
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/terminates
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|iso/texts
 C_applying-rules-to-cases/2_defeasible-rule-based-arguments.yml|rule|static/id-round-trips
@@ -2982,6 +3103,7 @@ C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|(fi
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|(file)|cli/eval-produces-output
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|(file)|engine-validator
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|(file)|import
+C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|(file)|stress
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|chr-translation
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|cli/scenario
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|engine-validator
@@ -3002,6 +3124,7 @@ C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gra
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|iso/negation-texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|iso/premises
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|iso/premises-needed
+C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|iso/roundtrip
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|iso/terminates
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|iso/texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|gradualism|static/id-round-trips
@@ -3028,6 +3151,7 @@ C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|pre
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|iso/negation-texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|iso/premises
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|iso/premises-needed
+C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|iso/roundtrip
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|iso/terminates
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|iso/texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|precedent_slippery_slope|static/id-round-trips
@@ -3054,6 +3178,7 @@ C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sor
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|iso/negation-texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|iso/premises
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|iso/premises-needed
+C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|iso/roundtrip
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|iso/terminates
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|iso/texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|sorites_slippery_slope|static/id-round-trips
@@ -3080,6 +3205,7 @@ C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|ver
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|iso/negation-texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|iso/premises
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|iso/premises-needed
+C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|iso/roundtrip
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|iso/terminates
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|iso/texts
 C_applying-rules-to-cases/3_chained-arguments-connecting-rules-and-cases.yml|verbal_slippery_slope|static/id-round-trips
@@ -3090,6 +3216,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|(file)|cli/check
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|(file)|cli/eval-produces-output
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|(file)|engine-validator
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|(file)|import
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|(file)|stress
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|chr-translation
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|cli/scenario
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|engine-validator
@@ -3112,6 +3239,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_ve
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|iso/negation-texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|iso/premises
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|iso/premises-needed
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|iso/roundtrip
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|iso/terminates
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|iso/texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|definition_to_verbal_classification|static/id-round-trips
@@ -3138,6 +3266,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/negation-texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/premises
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/premises-needed
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/roundtrip
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/terminates
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|iso/texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_arbitrariness|static/id-round-trips
@@ -3166,6 +3295,7 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|iso/negation-texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|iso/premises
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|iso/premises-needed
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|iso/roundtrip
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|iso/terminates
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|iso/texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification_vagueness|static/id-round-trips
@@ -3192,12 +3322,25 @@ C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classific
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/negation-texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/premises
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/premises-needed
+C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/roundtrip
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/terminates
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|iso/texts
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|static/id-round-trips
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|static/no-reserved-functor
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|static/not-self-feeding
 C_applying-rules-to-cases/4_verbal_classification_arguments.yml|verbal_classification|static/range-restricted
+cases/acceptance.yml|expert-opinion/category-file|case
+cases/acceptance.yml|expert-opinion/category-file|roundtrip
+cases/acceptance.yml|expert-opinion/untrustworthy|case
+cases/acceptance.yml|expert-opinion/untrustworthy|roundtrip
+cases/acceptance.yml|expert-opinion/with-composition|case
+cases/acceptance.yml|expert-opinion/with-composition|roundtrip
+cases/acceptance.yml|expert-opinion|case
+cases/acceptance.yml|expert-opinion|roundtrip
+cases/acceptance.yml|ignorance|case
+cases/acceptance.yml|ignorance|roundtrip
+cases/acceptance.yml|slippery-slope/cycle|case
+cases/acceptance.yml|slippery-slope/cycle|roundtrip
 cases/phase3.yml|ad_hominem/adverse-another-argument-of-the-same-person|case
 cases/phase3.yml|ad_hominem/adverse-another-argument-of-the-same-person|roundtrip
 cases/phase3.yml|ad_hominem/adverse-another-persons-argument|case
@@ -3451,6 +3594,7 @@ walton.yml|(file)|cli/check-clean
 walton.yml|(file)|cli/eval-produces-output
 walton.yml|(file)|engine-validator
 walton.yml|(file)|import
+walton.yml|(file)|stress
 walton.yml|abduction|chr-translation
 walton.yml|abduction|cli/scenario
 walton.yml|abduction|engine-validator
@@ -3473,6 +3617,7 @@ walton.yml|abduction|iso/infer-twice
 walton.yml|abduction|iso/negation-texts
 walton.yml|abduction|iso/premises
 walton.yml|abduction|iso/premises-needed
+walton.yml|abduction|iso/roundtrip
 walton.yml|abduction|iso/terminates
 walton.yml|abduction|iso/texts
 walton.yml|abduction|source/mapped
@@ -3500,6 +3645,7 @@ walton.yml|abductive_action_to_character|iso/infer-twice
 walton.yml|abductive_action_to_character|iso/negation-texts
 walton.yml|abductive_action_to_character|iso/premises
 walton.yml|abductive_action_to_character|iso/premises-needed
+walton.yml|abductive_action_to_character|iso/roundtrip
 walton.yml|abductive_action_to_character|iso/terminates
 walton.yml|abductive_action_to_character|iso/texts
 walton.yml|abductive_action_to_character|source/mapped
@@ -3527,6 +3673,7 @@ walton.yml|abductive_backward|iso/infer-twice
 walton.yml|abductive_backward|iso/negation-texts
 walton.yml|abductive_backward|iso/premises
 walton.yml|abductive_backward|iso/premises-needed
+walton.yml|abductive_backward|iso/roundtrip
 walton.yml|abductive_backward|iso/terminates
 walton.yml|abductive_backward|iso/texts
 walton.yml|abductive_backward|source/mapped
@@ -3556,6 +3703,7 @@ walton.yml|abductive_character_to_action|iso/infer-twice
 walton.yml|abductive_character_to_action|iso/negation-texts
 walton.yml|abductive_character_to_action|iso/premises
 walton.yml|abductive_character_to_action|iso/premises-needed
+walton.yml|abductive_character_to_action|iso/roundtrip
 walton.yml|abductive_character_to_action|iso/terminates
 walton.yml|abductive_character_to_action|iso/texts
 walton.yml|abductive_character_to_action|source/mapped
@@ -3583,6 +3731,7 @@ walton.yml|abductive_forward|iso/infer-twice
 walton.yml|abductive_forward|iso/negation-texts
 walton.yml|abductive_forward|iso/premises
 walton.yml|abductive_forward|iso/premises-needed
+walton.yml|abductive_forward|iso/roundtrip
 walton.yml|abductive_forward|iso/terminates
 walton.yml|abductive_forward|iso/texts
 walton.yml|abductive_forward|source/mapped
@@ -3610,6 +3759,7 @@ walton.yml|ad_baculum|iso/infer-twice
 walton.yml|ad_baculum|iso/negation-texts
 walton.yml|ad_baculum|iso/premises
 walton.yml|ad_baculum|iso/premises-needed
+walton.yml|ad_baculum|iso/roundtrip
 walton.yml|ad_baculum|iso/terminates
 walton.yml|ad_baculum|iso/texts
 walton.yml|ad_baculum|source/mapped
@@ -3639,6 +3789,7 @@ walton.yml|ad_hominem|iso/infer-twice
 walton.yml|ad_hominem|iso/negation-texts
 walton.yml|ad_hominem|iso/premises
 walton.yml|ad_hominem|iso/premises-needed
+walton.yml|ad_hominem|iso/roundtrip
 walton.yml|ad_hominem|iso/terminates
 walton.yml|ad_hominem|iso/texts
 walton.yml|ad_hominem|source/mapped
@@ -3666,6 +3817,7 @@ walton.yml|alternative_cognitive|iso/infer-twice
 walton.yml|alternative_cognitive|iso/negation-texts
 walton.yml|alternative_cognitive|iso/premises
 walton.yml|alternative_cognitive|iso/premises-needed
+walton.yml|alternative_cognitive|iso/roundtrip
 walton.yml|alternative_cognitive|iso/terminates
 walton.yml|alternative_cognitive|iso/texts
 walton.yml|alternative_cognitive|source/mapped
@@ -3693,6 +3845,7 @@ walton.yml|alternative_normative|iso/infer-twice
 walton.yml|alternative_normative|iso/negation-texts
 walton.yml|alternative_normative|iso/premises
 walton.yml|alternative_normative|iso/premises-needed
+walton.yml|alternative_normative|iso/roundtrip
 walton.yml|alternative_normative|iso/terminates
 walton.yml|alternative_normative|iso/texts
 walton.yml|alternative_normative|source/mapped
@@ -3722,6 +3875,7 @@ walton.yml|analogy|iso/infer-twice
 walton.yml|analogy|iso/negation-texts
 walton.yml|analogy|iso/premises
 walton.yml|analogy|iso/premises-needed
+walton.yml|analogy|iso/roundtrip
 walton.yml|analogy|iso/terminates
 walton.yml|analogy|iso/texts
 walton.yml|analogy|source/mapped
@@ -3749,6 +3903,7 @@ walton.yml|appeal_to_vanity_ad_populum|iso/infer-twice
 walton.yml|appeal_to_vanity_ad_populum|iso/negation-texts
 walton.yml|appeal_to_vanity_ad_populum|iso/premises
 walton.yml|appeal_to_vanity_ad_populum|iso/premises-needed
+walton.yml|appeal_to_vanity_ad_populum|iso/roundtrip
 walton.yml|appeal_to_vanity_ad_populum|iso/terminates
 walton.yml|appeal_to_vanity_ad_populum|iso/texts
 walton.yml|appeal_to_vanity_ad_populum|source/mapped
@@ -3776,6 +3931,7 @@ walton.yml|appearance|iso/infer-twice
 walton.yml|appearance|iso/negation-texts
 walton.yml|appearance|iso/premises
 walton.yml|appearance|iso/premises-needed
+walton.yml|appearance|iso/roundtrip
 walton.yml|appearance|iso/terminates
 walton.yml|appearance|iso/texts
 walton.yml|appearance|source/mapped
@@ -3803,6 +3959,7 @@ walton.yml|bias_ad_hominem|iso/infer-twice
 walton.yml|bias_ad_hominem|iso/negation-texts
 walton.yml|bias_ad_hominem|iso/premises
 walton.yml|bias_ad_hominem|iso/premises-needed
+walton.yml|bias_ad_hominem|iso/roundtrip
 walton.yml|bias_ad_hominem|iso/terminates
 walton.yml|bias_ad_hominem|iso/texts
 walton.yml|bias_ad_hominem|source/mapped
@@ -3830,6 +3987,7 @@ walton.yml|bias|iso/infer-twice
 walton.yml|bias|iso/negation-texts
 walton.yml|bias|iso/premises
 walton.yml|bias|iso/premises-needed
+walton.yml|bias|iso/roundtrip
 walton.yml|bias|iso/terminates
 walton.yml|bias|iso/texts
 walton.yml|bias|source/mapped
@@ -3859,6 +4017,7 @@ walton.yml|cause_to_effect|iso/infer-twice
 walton.yml|cause_to_effect|iso/negation-texts
 walton.yml|cause_to_effect|iso/premises
 walton.yml|cause_to_effect|iso/premises-needed
+walton.yml|cause_to_effect|iso/roundtrip
 walton.yml|cause_to_effect|iso/terminates
 walton.yml|cause_to_effect|iso/texts
 walton.yml|cause_to_effect|source/mapped
@@ -3886,6 +4045,7 @@ walton.yml|circumstantial_ad_hominem|iso/infer-twice
 walton.yml|circumstantial_ad_hominem|iso/negation-texts
 walton.yml|circumstantial_ad_hominem|iso/premises
 walton.yml|circumstantial_ad_hominem|iso/premises-needed
+walton.yml|circumstantial_ad_hominem|iso/roundtrip
 walton.yml|circumstantial_ad_hominem|iso/terminates
 walton.yml|circumstantial_ad_hominem|iso/texts
 walton.yml|circumstantial_ad_hominem|source/mapped
@@ -3915,6 +4075,7 @@ walton.yml|commitment1|iso/infer-twice
 walton.yml|commitment1|iso/negation-texts
 walton.yml|commitment1|iso/premises
 walton.yml|commitment1|iso/premises-needed
+walton.yml|commitment1|iso/roundtrip
 walton.yml|commitment1|iso/terminates
 walton.yml|commitment1|iso/texts
 walton.yml|commitment1|source/mapped
@@ -3944,6 +4105,7 @@ walton.yml|commitment2|iso/infer-twice
 walton.yml|commitment2|iso/negation-texts
 walton.yml|commitment2|iso/premises
 walton.yml|commitment2|iso/premises-needed
+walton.yml|commitment2|iso/roundtrip
 walton.yml|commitment2|iso/terminates
 walton.yml|commitment2|iso/texts
 walton.yml|commitment2|source/mapped
@@ -3971,6 +4133,7 @@ walton.yml|common_folk_ad_populum|iso/infer-twice
 walton.yml|common_folk_ad_populum|iso/negation-texts
 walton.yml|common_folk_ad_populum|iso/premises
 walton.yml|common_folk_ad_populum|iso/premises-needed
+walton.yml|common_folk_ad_populum|iso/roundtrip
 walton.yml|common_folk_ad_populum|iso/terminates
 walton.yml|common_folk_ad_populum|iso/texts
 walton.yml|common_folk_ad_populum|source/mapped
@@ -3998,6 +4161,7 @@ walton.yml|common_folks_group_ad_populum|iso/infer-twice
 walton.yml|common_folks_group_ad_populum|iso/negation-texts
 walton.yml|common_folks_group_ad_populum|iso/premises
 walton.yml|common_folks_group_ad_populum|iso/premises-needed
+walton.yml|common_folks_group_ad_populum|iso/roundtrip
 walton.yml|common_folks_group_ad_populum|iso/terminates
 walton.yml|common_folks_group_ad_populum|iso/texts
 walton.yml|common_folks_group_ad_populum|source/mapped
@@ -4025,6 +4189,7 @@ walton.yml|composition_generic|iso/infer-twice
 walton.yml|composition_generic|iso/negation-texts
 walton.yml|composition_generic|iso/premises
 walton.yml|composition_generic|iso/premises-needed
+walton.yml|composition_generic|iso/roundtrip
 walton.yml|composition_generic|iso/terminates
 walton.yml|composition_generic|iso/texts
 walton.yml|composition_generic|source/mapped
@@ -4054,6 +4219,7 @@ walton.yml|correlation_to_cause|iso/infer-twice
 walton.yml|correlation_to_cause|iso/negation-texts
 walton.yml|correlation_to_cause|iso/premises
 walton.yml|correlation_to_cause|iso/premises-needed
+walton.yml|correlation_to_cause|iso/roundtrip
 walton.yml|correlation_to_cause|iso/terminates
 walton.yml|correlation_to_cause|iso/texts
 walton.yml|correlation_to_cause|source/mapped
@@ -4083,6 +4249,7 @@ walton.yml|credible_source|iso/infer-twice
 walton.yml|credible_source|iso/negation-texts
 walton.yml|credible_source|iso/premises
 walton.yml|credible_source|iso/premises-needed
+walton.yml|credible_source|iso/roundtrip
 walton.yml|credible_source|iso/terminates
 walton.yml|credible_source|iso/texts
 walton.yml|credible_source|source/mapped
@@ -4110,6 +4277,7 @@ walton.yml|danger|iso/infer-twice
 walton.yml|danger|iso/negation-texts
 walton.yml|danger|iso/premises
 walton.yml|danger|iso/premises-needed
+walton.yml|danger|iso/roundtrip
 walton.yml|danger|iso/terminates
 walton.yml|danger|iso/texts
 walton.yml|danger|source/mapped
@@ -4137,6 +4305,7 @@ walton.yml|defeasible_modus_ponens|iso/infer-twice
 walton.yml|defeasible_modus_ponens|iso/negation-texts
 walton.yml|defeasible_modus_ponens|iso/premises
 walton.yml|defeasible_modus_ponens|iso/premises-needed
+walton.yml|defeasible_modus_ponens|iso/roundtrip
 walton.yml|defeasible_modus_ponens|iso/terminates
 walton.yml|defeasible_modus_ponens|iso/texts
 walton.yml|defeasible_modus_ponens|source/mapped
@@ -4166,6 +4335,7 @@ walton.yml|definition_to_verbal_classification|iso/infer-twice
 walton.yml|definition_to_verbal_classification|iso/negation-texts
 walton.yml|definition_to_verbal_classification|iso/premises
 walton.yml|definition_to_verbal_classification|iso/premises-needed
+walton.yml|definition_to_verbal_classification|iso/roundtrip
 walton.yml|definition_to_verbal_classification|iso/terminates
 walton.yml|definition_to_verbal_classification|iso/texts
 walton.yml|definition_to_verbal_classification|source/mapped
@@ -4193,6 +4363,7 @@ walton.yml|deliberation_ad_populum|iso/infer-twice
 walton.yml|deliberation_ad_populum|iso/negation-texts
 walton.yml|deliberation_ad_populum|iso/premises
 walton.yml|deliberation_ad_populum|iso/premises-needed
+walton.yml|deliberation_ad_populum|iso/roundtrip
 walton.yml|deliberation_ad_populum|iso/terminates
 walton.yml|deliberation_ad_populum|iso/texts
 walton.yml|deliberation_ad_populum|source/mapped
@@ -4222,6 +4393,7 @@ walton.yml|distress|iso/infer-twice
 walton.yml|distress|iso/negation-texts
 walton.yml|distress|iso/premises
 walton.yml|distress|iso/premises-needed
+walton.yml|distress|iso/roundtrip
 walton.yml|distress|iso/terminates
 walton.yml|distress|iso/texts
 walton.yml|distress|source/mapped
@@ -4249,6 +4421,7 @@ walton.yml|division_generic|iso/infer-twice
 walton.yml|division_generic|iso/negation-texts
 walton.yml|division_generic|iso/premises
 walton.yml|division_generic|iso/premises-needed
+walton.yml|division_generic|iso/roundtrip
 walton.yml|division_generic|iso/terminates
 walton.yml|division_generic|iso/texts
 walton.yml|division_generic|source/mapped
@@ -4276,6 +4449,7 @@ walton.yml|end_and_means_1|iso/infer-twice
 walton.yml|end_and_means_1|iso/negation-texts
 walton.yml|end_and_means_1|iso/premises
 walton.yml|end_and_means_1|iso/premises-needed
+walton.yml|end_and_means_1|iso/roundtrip
 walton.yml|end_and_means_1|iso/terminates
 walton.yml|end_and_means_1|iso/texts
 walton.yml|end_and_means_1|source/mapped
@@ -4303,6 +4477,7 @@ walton.yml|end_and_means_2|iso/infer-twice
 walton.yml|end_and_means_2|iso/negation-texts
 walton.yml|end_and_means_2|iso/premises
 walton.yml|end_and_means_2|iso/premises-needed
+walton.yml|end_and_means_2|iso/roundtrip
 walton.yml|end_and_means_2|iso/terminates
 walton.yml|end_and_means_2|iso/texts
 walton.yml|end_and_means_2|source/mapped
@@ -4330,6 +4505,7 @@ walton.yml|end_and_means_3|iso/infer-twice
 walton.yml|end_and_means_3|iso/negation-texts
 walton.yml|end_and_means_3|iso/premises
 walton.yml|end_and_means_3|iso/premises-needed
+walton.yml|end_and_means_3|iso/roundtrip
 walton.yml|end_and_means_3|iso/terminates
 walton.yml|end_and_means_3|iso/texts
 walton.yml|end_and_means_3|source/mapped
@@ -4357,6 +4533,7 @@ walton.yml|epistemic_ignorence|iso/infer-twice
 walton.yml|epistemic_ignorence|iso/negation-texts
 walton.yml|epistemic_ignorence|iso/premises
 walton.yml|epistemic_ignorence|iso/premises-needed
+walton.yml|epistemic_ignorence|iso/roundtrip
 walton.yml|epistemic_ignorence|iso/terminates
 walton.yml|epistemic_ignorence|iso/texts
 walton.yml|epistemic_ignorence|source/mapped
@@ -4384,6 +4561,7 @@ walton.yml|established_rule|iso/infer-twice
 walton.yml|established_rule|iso/negation-texts
 walton.yml|established_rule|iso/premises
 walton.yml|established_rule|iso/premises-needed
+walton.yml|established_rule|iso/roundtrip
 walton.yml|established_rule|iso/terminates
 walton.yml|established_rule|iso/texts
 walton.yml|established_rule|source/mapped
@@ -4411,6 +4589,7 @@ walton.yml|ethotic1|iso/infer-twice
 walton.yml|ethotic1|iso/negation-texts
 walton.yml|ethotic1|iso/premises
 walton.yml|ethotic1|iso/premises-needed
+walton.yml|ethotic1|iso/roundtrip
 walton.yml|ethotic1|iso/terminates
 walton.yml|ethotic1|iso/texts
 walton.yml|ethotic1|source/mapped
@@ -4438,6 +4617,7 @@ walton.yml|ethotic2|iso/infer-twice
 walton.yml|ethotic2|iso/negation-texts
 walton.yml|ethotic2|iso/premises
 walton.yml|ethotic2|iso/premises-needed
+walton.yml|ethotic2|iso/roundtrip
 walton.yml|ethotic2|iso/terminates
 walton.yml|ethotic2|iso/texts
 walton.yml|ethotic2|source/mapped
@@ -4465,6 +4645,7 @@ walton.yml|evidence_hypothesis_falsification|iso/infer-twice
 walton.yml|evidence_hypothesis_falsification|iso/negation-texts
 walton.yml|evidence_hypothesis_falsification|iso/premises
 walton.yml|evidence_hypothesis_falsification|iso/premises-needed
+walton.yml|evidence_hypothesis_falsification|iso/roundtrip
 walton.yml|evidence_hypothesis_falsification|iso/terminates
 walton.yml|evidence_hypothesis_falsification|iso/texts
 walton.yml|evidence_hypothesis_falsification|source/mapped
@@ -4492,6 +4673,7 @@ walton.yml|evidence_hypothesis_verification|iso/infer-twice
 walton.yml|evidence_hypothesis_verification|iso/negation-texts
 walton.yml|evidence_hypothesis_verification|iso/premises
 walton.yml|evidence_hypothesis_verification|iso/premises-needed
+walton.yml|evidence_hypothesis_verification|iso/roundtrip
 walton.yml|evidence_hypothesis_verification|iso/terminates
 walton.yml|evidence_hypothesis_verification|iso/texts
 walton.yml|evidence_hypothesis_verification|source/mapped
@@ -4521,6 +4703,7 @@ walton.yml|exeption_to_rule|iso/infer-twice
 walton.yml|exeption_to_rule|iso/negation-texts
 walton.yml|exeption_to_rule|iso/premises
 walton.yml|exeption_to_rule|iso/premises-needed
+walton.yml|exeption_to_rule|iso/roundtrip
 walton.yml|exeption_to_rule|iso/terminates
 walton.yml|exeption_to_rule|iso/texts
 walton.yml|exeption_to_rule|source/mapped
@@ -4548,6 +4731,7 @@ walton.yml|exeptional|iso/infer-twice
 walton.yml|exeptional|iso/negation-texts
 walton.yml|exeptional|iso/premises
 walton.yml|exeptional|iso/premises-needed
+walton.yml|exeptional|iso/roundtrip
 walton.yml|exeptional|iso/terminates
 walton.yml|exeptional|iso/texts
 walton.yml|exeptional|source/mapped
@@ -4575,6 +4759,7 @@ walton.yml|expert_opinion_ad_populum|iso/infer-twice
 walton.yml|expert_opinion_ad_populum|iso/negation-texts
 walton.yml|expert_opinion_ad_populum|iso/premises
 walton.yml|expert_opinion_ad_populum|iso/premises-needed
+walton.yml|expert_opinion_ad_populum|iso/roundtrip
 walton.yml|expert_opinion_ad_populum|iso/terminates
 walton.yml|expert_opinion_ad_populum|iso/texts
 walton.yml|expert_opinion_ad_populum|source/mapped
@@ -4604,6 +4789,7 @@ walton.yml|expert_opinion|iso/infer-twice
 walton.yml|expert_opinion|iso/negation-texts
 walton.yml|expert_opinion|iso/premises
 walton.yml|expert_opinion|iso/premises-needed
+walton.yml|expert_opinion|iso/roundtrip
 walton.yml|expert_opinion|iso/terminates
 walton.yml|expert_opinion|iso/texts
 walton.yml|expert_opinion|source/mapped
@@ -4631,6 +4817,7 @@ walton.yml|fear|iso/infer-twice
 walton.yml|fear|iso/negation-texts
 walton.yml|fear|iso/premises
 walton.yml|fear|iso/premises-needed
+walton.yml|fear|iso/roundtrip
 walton.yml|fear|iso/terminates
 walton.yml|fear|iso/texts
 walton.yml|fear|source/mapped
@@ -4658,6 +4845,7 @@ walton.yml|from_antimodel|iso/infer-twice
 walton.yml|from_antimodel|iso/negation-texts
 walton.yml|from_antimodel|iso/premises
 walton.yml|from_antimodel|iso/premises-needed
+walton.yml|from_antimodel|iso/roundtrip
 walton.yml|from_antimodel|iso/terminates
 walton.yml|from_antimodel|iso/texts
 walton.yml|from_antimodel|source/mapped
@@ -4687,6 +4875,7 @@ walton.yml|from_example|iso/infer-twice
 walton.yml|from_example|iso/negation-texts
 walton.yml|from_example|iso/premises
 walton.yml|from_example|iso/premises-needed
+walton.yml|from_example|iso/roundtrip
 walton.yml|from_example|iso/terminates
 walton.yml|from_example|iso/texts
 walton.yml|from_example|source/mapped
@@ -4714,6 +4903,7 @@ walton.yml|from_model|iso/infer-twice
 walton.yml|from_model|iso/negation-texts
 walton.yml|from_model|iso/premises
 walton.yml|from_model|iso/premises-needed
+walton.yml|from_model|iso/roundtrip
 walton.yml|from_model|iso/terminates
 walton.yml|from_model|iso/texts
 walton.yml|from_model|source/mapped
@@ -4743,6 +4933,7 @@ walton.yml|from_precedent|iso/infer-twice
 walton.yml|from_precedent|iso/negation-texts
 walton.yml|from_precedent|iso/premises
 walton.yml|from_precedent|iso/premises-needed
+walton.yml|from_precedent|iso/roundtrip
 walton.yml|from_precedent|iso/terminates
 walton.yml|from_precedent|iso/texts
 walton.yml|from_precedent|source/mapped
@@ -4770,6 +4961,7 @@ walton.yml|full_slippery_slope|iso/infer-twice
 walton.yml|full_slippery_slope|iso/negation-texts
 walton.yml|full_slippery_slope|iso/premises
 walton.yml|full_slippery_slope|iso/premises-needed
+walton.yml|full_slippery_slope|iso/roundtrip
 walton.yml|full_slippery_slope|iso/terminates
 walton.yml|full_slippery_slope|iso/texts
 walton.yml|full_slippery_slope|source/mapped
@@ -4797,6 +4989,7 @@ walton.yml|gradualism|iso/infer-twice
 walton.yml|gradualism|iso/negation-texts
 walton.yml|gradualism|iso/premises
 walton.yml|gradualism|iso/premises-needed
+walton.yml|gradualism|iso/roundtrip
 walton.yml|gradualism|iso/terminates
 walton.yml|gradualism|iso/texts
 walton.yml|gradualism|source/mapped
@@ -4824,6 +5017,7 @@ walton.yml|group_1|iso/infer-twice
 walton.yml|group_1|iso/negation-texts
 walton.yml|group_1|iso/premises
 walton.yml|group_1|iso/premises-needed
+walton.yml|group_1|iso/roundtrip
 walton.yml|group_1|iso/terminates
 walton.yml|group_1|iso/texts
 walton.yml|group_1|source/mapped
@@ -4851,6 +5045,7 @@ walton.yml|group_2|iso/infer-twice
 walton.yml|group_2|iso/negation-texts
 walton.yml|group_2|iso/premises
 walton.yml|group_2|iso/premises-needed
+walton.yml|group_2|iso/roundtrip
 walton.yml|group_2|iso/terminates
 walton.yml|group_2|iso/texts
 walton.yml|group_2|source/mapped
@@ -4880,6 +5075,7 @@ walton.yml|help|iso/infer-twice
 walton.yml|help|iso/negation-texts
 walton.yml|help|iso/premises
 walton.yml|help|iso/premises-needed
+walton.yml|help|iso/roundtrip
 walton.yml|help|iso/terminates
 walton.yml|help|iso/texts
 walton.yml|help|source/mapped
@@ -4909,6 +5105,7 @@ walton.yml|ignorance|iso/infer-twice
 walton.yml|ignorance|iso/negation-texts
 walton.yml|ignorance|iso/premises
 walton.yml|ignorance|iso/premises-needed
+walton.yml|ignorance|iso/roundtrip
 walton.yml|ignorance|iso/terminates
 walton.yml|ignorance|iso/texts
 walton.yml|ignorance|source/mapped
@@ -4936,6 +5133,7 @@ walton.yml|illustration|iso/infer-twice
 walton.yml|illustration|iso/negation-texts
 walton.yml|illustration|iso/premises
 walton.yml|illustration|iso/premises-needed
+walton.yml|illustration|iso/roundtrip
 walton.yml|illustration|iso/terminates
 walton.yml|illustration|iso/texts
 walton.yml|illustration|source/mapped
@@ -4965,6 +5163,7 @@ walton.yml|inconsistent_commitment|iso/infer-twice
 walton.yml|inconsistent_commitment|iso/negation-texts
 walton.yml|inconsistent_commitment|iso/premises
 walton.yml|inconsistent_commitment|iso/premises-needed
+walton.yml|inconsistent_commitment|iso/roundtrip
 walton.yml|inconsistent_commitment|iso/terminates
 walton.yml|inconsistent_commitment|iso/texts
 walton.yml|inconsistent_commitment|source/mapped
@@ -4992,6 +5191,7 @@ walton.yml|interaction_act_person_1|iso/infer-twice
 walton.yml|interaction_act_person_1|iso/negation-texts
 walton.yml|interaction_act_person_1|iso/premises
 walton.yml|interaction_act_person_1|iso/premises-needed
+walton.yml|interaction_act_person_1|iso/roundtrip
 walton.yml|interaction_act_person_1|iso/terminates
 walton.yml|interaction_act_person_1|iso/texts
 walton.yml|interaction_act_person_1|source/mapped
@@ -5019,6 +5219,7 @@ walton.yml|interaction_act_person_2|iso/infer-twice
 walton.yml|interaction_act_person_2|iso/negation-texts
 walton.yml|interaction_act_person_2|iso/premises
 walton.yml|interaction_act_person_2|iso/premises-needed
+walton.yml|interaction_act_person_2|iso/roundtrip
 walton.yml|interaction_act_person_2|iso/terminates
 walton.yml|interaction_act_person_2|iso/texts
 walton.yml|interaction_act_person_2|source/mapped
@@ -5046,6 +5247,7 @@ walton.yml|memory|iso/infer-twice
 walton.yml|memory|iso/negation-texts
 walton.yml|memory|iso/premises
 walton.yml|memory|iso/premises-needed
+walton.yml|memory|iso/roundtrip
 walton.yml|memory|iso/terminates
 walton.yml|memory|iso/texts
 walton.yml|memory|source/mapped
@@ -5073,6 +5275,7 @@ walton.yml|moral_justification_ad_populum_excuse|iso/infer-twice
 walton.yml|moral_justification_ad_populum_excuse|iso/negation-texts
 walton.yml|moral_justification_ad_populum_excuse|iso/premises
 walton.yml|moral_justification_ad_populum_excuse|iso/premises-needed
+walton.yml|moral_justification_ad_populum_excuse|iso/roundtrip
 walton.yml|moral_justification_ad_populum_excuse|iso/terminates
 walton.yml|moral_justification_ad_populum_excuse|iso/texts
 walton.yml|moral_justification_ad_populum_excuse|source/mapped
@@ -5100,6 +5303,7 @@ walton.yml|moral_justification_ad_populum|iso/infer-twice
 walton.yml|moral_justification_ad_populum|iso/negation-texts
 walton.yml|moral_justification_ad_populum|iso/premises
 walton.yml|moral_justification_ad_populum|iso/premises-needed
+walton.yml|moral_justification_ad_populum|iso/roundtrip
 walton.yml|moral_justification_ad_populum|iso/terminates
 walton.yml|moral_justification_ad_populum|iso/texts
 walton.yml|moral_justification_ad_populum|source/mapped
@@ -5129,6 +5333,7 @@ walton.yml|negative_consequences_prudential|iso/infer-twice
 walton.yml|negative_consequences_prudential|iso/negation-texts
 walton.yml|negative_consequences_prudential|iso/premises
 walton.yml|negative_consequences_prudential|iso/premises-needed
+walton.yml|negative_consequences_prudential|iso/roundtrip
 walton.yml|negative_consequences_prudential|iso/terminates
 walton.yml|negative_consequences_prudential|iso/texts
 walton.yml|negative_consequences_prudential|source/mapped
@@ -5156,6 +5361,7 @@ walton.yml|negative_consequences_reasoning|iso/infer-twice
 walton.yml|negative_consequences_reasoning|iso/negation-texts
 walton.yml|negative_consequences_reasoning|iso/premises
 walton.yml|negative_consequences_reasoning|iso/premises-needed
+walton.yml|negative_consequences_reasoning|iso/roundtrip
 walton.yml|negative_consequences_reasoning|iso/terminates
 walton.yml|negative_consequences_reasoning|iso/texts
 walton.yml|negative_consequences_reasoning|source/mapped
@@ -5183,6 +5389,7 @@ walton.yml|negative_consequences|iso/infer-twice
 walton.yml|negative_consequences|iso/negation-texts
 walton.yml|negative_consequences|iso/premises
 walton.yml|negative_consequences|iso/premises-needed
+walton.yml|negative_consequences|iso/roundtrip
 walton.yml|negative_consequences|iso/terminates
 walton.yml|negative_consequences|iso/texts
 walton.yml|negative_consequences|source/mapped
@@ -5210,6 +5417,7 @@ walton.yml|negative_normal_expectations|iso/infer-twice
 walton.yml|negative_normal_expectations|iso/negation-texts
 walton.yml|negative_normal_expectations|iso/premises
 walton.yml|negative_normal_expectations|iso/premises-needed
+walton.yml|negative_normal_expectations|iso/roundtrip
 walton.yml|negative_normal_expectations|iso/terminates
 walton.yml|negative_normal_expectations|iso/texts
 walton.yml|negative_normal_expectations|source/mapped
@@ -5237,6 +5445,7 @@ walton.yml|negative_practical|iso/infer-twice
 walton.yml|negative_practical|iso/negation-texts
 walton.yml|negative_practical|iso/premises
 walton.yml|negative_practical|iso/premises-needed
+walton.yml|negative_practical|iso/roundtrip
 walton.yml|negative_practical|iso/terminates
 walton.yml|negative_practical|iso/texts
 walton.yml|negative_practical|source/mapped
@@ -5264,6 +5473,7 @@ walton.yml|negative_value|iso/infer-twice
 walton.yml|negative_value|iso/negation-texts
 walton.yml|negative_value|iso/premises
 walton.yml|negative_value|iso/premises-needed
+walton.yml|negative_value|iso/roundtrip
 walton.yml|negative_value|iso/terminates
 walton.yml|negative_value|iso/texts
 walton.yml|negative_value|source/mapped
@@ -5291,6 +5501,7 @@ walton.yml|opposition-descriptive_1|iso/infer-twice
 walton.yml|opposition-descriptive_1|iso/negation-texts
 walton.yml|opposition-descriptive_1|iso/premises
 walton.yml|opposition-descriptive_1|iso/premises-needed
+walton.yml|opposition-descriptive_1|iso/roundtrip
 walton.yml|opposition-descriptive_1|iso/terminates
 walton.yml|opposition-descriptive_1|iso/texts
 walton.yml|opposition-descriptive_1|source/mapped
@@ -5318,6 +5529,7 @@ walton.yml|opposition-descriptive_2|iso/infer-twice
 walton.yml|opposition-descriptive_2|iso/negation-texts
 walton.yml|opposition-descriptive_2|iso/premises
 walton.yml|opposition-descriptive_2|iso/premises-needed
+walton.yml|opposition-descriptive_2|iso/roundtrip
 walton.yml|opposition-descriptive_2|iso/terminates
 walton.yml|opposition-descriptive_2|iso/texts
 walton.yml|opposition-descriptive_2|source/mapped
@@ -5345,6 +5557,7 @@ walton.yml|opposition-descriptive_3|iso/infer-twice
 walton.yml|opposition-descriptive_3|iso/negation-texts
 walton.yml|opposition-descriptive_3|iso/premises
 walton.yml|opposition-descriptive_3|iso/premises-needed
+walton.yml|opposition-descriptive_3|iso/roundtrip
 walton.yml|opposition-descriptive_3|iso/terminates
 walton.yml|opposition-descriptive_3|iso/texts
 walton.yml|opposition-descriptive_3|source/mapped
@@ -5372,6 +5585,7 @@ walton.yml|opposition-normative|iso/infer-twice
 walton.yml|opposition-normative|iso/negation-texts
 walton.yml|opposition-normative|iso/premises
 walton.yml|opposition-normative|iso/premises-needed
+walton.yml|opposition-normative|iso/roundtrip
 walton.yml|opposition-normative|iso/terminates
 walton.yml|opposition-normative|iso/texts
 walton.yml|opposition-normative|source/mapped
@@ -5401,6 +5615,7 @@ walton.yml|part_in_whole|iso/infer-twice
 walton.yml|part_in_whole|iso/negation-texts
 walton.yml|part_in_whole|iso/premises
 walton.yml|part_in_whole|iso/premises-needed
+walton.yml|part_in_whole|iso/roundtrip
 walton.yml|part_in_whole|iso/terminates
 walton.yml|part_in_whole|iso/texts
 walton.yml|part_in_whole|source/mapped
@@ -5430,6 +5645,7 @@ walton.yml|perception|iso/infer-twice
 walton.yml|perception|iso/negation-texts
 walton.yml|perception|iso/premises
 walton.yml|perception|iso/premises-needed
+walton.yml|perception|iso/roundtrip
 walton.yml|perception|iso/terminates
 walton.yml|perception|iso/texts
 walton.yml|perception|source/mapped
@@ -5459,6 +5675,7 @@ walton.yml|plea_for_excuse|iso/infer-twice
 walton.yml|plea_for_excuse|iso/negation-texts
 walton.yml|plea_for_excuse|iso/premises
 walton.yml|plea_for_excuse|iso/premises-needed
+walton.yml|plea_for_excuse|iso/roundtrip
 walton.yml|plea_for_excuse|iso/terminates
 walton.yml|plea_for_excuse|iso/texts
 walton.yml|plea_for_excuse|source/mapped
@@ -5486,6 +5703,7 @@ walton.yml|pop_scheme|iso/infer-twice
 walton.yml|pop_scheme|iso/negation-texts
 walton.yml|pop_scheme|iso/premises
 walton.yml|pop_scheme|iso/premises-needed
+walton.yml|pop_scheme|iso/roundtrip
 walton.yml|pop_scheme|iso/terminates
 walton.yml|pop_scheme|iso/texts
 walton.yml|pop_scheme|source/mapped
@@ -5515,6 +5733,7 @@ walton.yml|popular_opinion|iso/infer-twice
 walton.yml|popular_opinion|iso/negation-texts
 walton.yml|popular_opinion|iso/premises
 walton.yml|popular_opinion|iso/premises-needed
+walton.yml|popular_opinion|iso/roundtrip
 walton.yml|popular_opinion|iso/terminates
 walton.yml|popular_opinion|iso/texts
 walton.yml|popular_opinion|source/mapped
@@ -5542,6 +5761,7 @@ walton.yml|popular_practise|iso/infer-twice
 walton.yml|popular_practise|iso/negation-texts
 walton.yml|popular_practise|iso/premises
 walton.yml|popular_practise|iso/premises-needed
+walton.yml|popular_practise|iso/roundtrip
 walton.yml|popular_practise|iso/terminates
 walton.yml|popular_practise|iso/texts
 walton.yml|popular_practise|source/mapped
@@ -5569,6 +5789,7 @@ walton.yml|position_to_know_ad_populum|iso/infer-twice
 walton.yml|position_to_know_ad_populum|iso/negation-texts
 walton.yml|position_to_know_ad_populum|iso/premises
 walton.yml|position_to_know_ad_populum|iso/premises-needed
+walton.yml|position_to_know_ad_populum|iso/roundtrip
 walton.yml|position_to_know_ad_populum|iso/terminates
 walton.yml|position_to_know_ad_populum|iso/texts
 walton.yml|position_to_know_ad_populum|source/mapped
@@ -5598,6 +5819,7 @@ walton.yml|position_to_know|iso/infer-twice
 walton.yml|position_to_know|iso/negation-texts
 walton.yml|position_to_know|iso/premises
 walton.yml|position_to_know|iso/premises-needed
+walton.yml|position_to_know|iso/roundtrip
 walton.yml|position_to_know|iso/terminates
 walton.yml|position_to_know|iso/texts
 walton.yml|position_to_know|source/mapped
@@ -5625,6 +5847,7 @@ walton.yml|positive_consequences|iso/infer-twice
 walton.yml|positive_consequences|iso/negation-texts
 walton.yml|positive_consequences|iso/premises
 walton.yml|positive_consequences|iso/premises-needed
+walton.yml|positive_consequences|iso/roundtrip
 walton.yml|positive_consequences|iso/terminates
 walton.yml|positive_consequences|iso/texts
 walton.yml|positive_consequences|source/mapped
@@ -5652,6 +5875,7 @@ walton.yml|positive_value|iso/infer-twice
 walton.yml|positive_value|iso/negation-texts
 walton.yml|positive_value|iso/premises
 walton.yml|positive_value|iso/premises-needed
+walton.yml|positive_value|iso/roundtrip
 walton.yml|positive_value|iso/terminates
 walton.yml|positive_value|iso/texts
 walton.yml|positive_value|source/mapped
@@ -5679,6 +5903,7 @@ walton.yml|practical_analogy_negative|iso/infer-twice
 walton.yml|practical_analogy_negative|iso/negation-texts
 walton.yml|practical_analogy_negative|iso/premises
 walton.yml|practical_analogy_negative|iso/premises-needed
+walton.yml|practical_analogy_negative|iso/roundtrip
 walton.yml|practical_analogy_negative|iso/terminates
 walton.yml|practical_analogy_negative|iso/texts
 walton.yml|practical_analogy_negative|source/mapped
@@ -5706,6 +5931,7 @@ walton.yml|practical_analogy_positive|iso/infer-twice
 walton.yml|practical_analogy_positive|iso/negation-texts
 walton.yml|practical_analogy_positive|iso/premises
 walton.yml|practical_analogy_positive|iso/premises-needed
+walton.yml|practical_analogy_positive|iso/roundtrip
 walton.yml|practical_analogy_positive|iso/terminates
 walton.yml|practical_analogy_positive|iso/texts
 walton.yml|practical_analogy_positive|source/mapped
@@ -5733,6 +5959,7 @@ walton.yml|practical_goal|iso/infer-twice
 walton.yml|practical_goal|iso/negation-texts
 walton.yml|practical_goal|iso/premises
 walton.yml|practical_goal|iso/premises-needed
+walton.yml|practical_goal|iso/roundtrip
 walton.yml|practical_goal|iso/terminates
 walton.yml|practical_goal|iso/texts
 walton.yml|practical_goal|source/mapped
@@ -5762,6 +5989,7 @@ walton.yml|practical_inference|iso/infer-twice
 walton.yml|practical_inference|iso/negation-texts
 walton.yml|practical_inference|iso/premises
 walton.yml|practical_inference|iso/premises-needed
+walton.yml|practical_inference|iso/roundtrip
 walton.yml|practical_inference|iso/terminates
 walton.yml|practical_inference|iso/texts
 walton.yml|practical_inference|source/mapped
@@ -5791,6 +6019,7 @@ walton.yml|practical_necessary_condition|iso/infer-twice
 walton.yml|practical_necessary_condition|iso/negation-texts
 walton.yml|practical_necessary_condition|iso/premises
 walton.yml|practical_necessary_condition|iso/premises-needed
+walton.yml|practical_necessary_condition|iso/roundtrip
 walton.yml|practical_necessary_condition|iso/terminates
 walton.yml|practical_necessary_condition|iso/texts
 walton.yml|practical_necessary_condition|source/mapped
@@ -5820,6 +6049,7 @@ walton.yml|practical_reasoning1|iso/infer-twice
 walton.yml|practical_reasoning1|iso/negation-texts
 walton.yml|practical_reasoning1|iso/premises
 walton.yml|practical_reasoning1|iso/premises-needed
+walton.yml|practical_reasoning1|iso/roundtrip
 walton.yml|practical_reasoning1|iso/terminates
 walton.yml|practical_reasoning1|iso/texts
 walton.yml|practical_reasoning1|source/mapped
@@ -5849,6 +6079,7 @@ walton.yml|practical_reasoning2|iso/infer-twice
 walton.yml|practical_reasoning2|iso/negation-texts
 walton.yml|practical_reasoning2|iso/premises
 walton.yml|practical_reasoning2|iso/premises-needed
+walton.yml|practical_reasoning2|iso/roundtrip
 walton.yml|practical_reasoning2|iso/terminates
 walton.yml|practical_reasoning2|iso/texts
 walton.yml|practical_reasoning2|source/mapped
@@ -5878,6 +6109,7 @@ walton.yml|practical_sufficient_condition|iso/infer-twice
 walton.yml|practical_sufficient_condition|iso/negation-texts
 walton.yml|practical_sufficient_condition|iso/premises
 walton.yml|practical_sufficient_condition|iso/premises-needed
+walton.yml|practical_sufficient_condition|iso/roundtrip
 walton.yml|practical_sufficient_condition|iso/terminates
 walton.yml|practical_sufficient_condition|iso/texts
 walton.yml|practical_sufficient_condition|source/mapped
@@ -5905,6 +6137,7 @@ walton.yml|pragmatic_alternative|iso/infer-twice
 walton.yml|pragmatic_alternative|iso/negation-texts
 walton.yml|pragmatic_alternative|iso/premises
 walton.yml|pragmatic_alternative|iso/premises-needed
+walton.yml|pragmatic_alternative|iso/roundtrip
 walton.yml|pragmatic_alternative|iso/terminates
 walton.yml|pragmatic_alternative|iso/texts
 walton.yml|pragmatic_alternative|source/mapped
@@ -5932,6 +6165,7 @@ walton.yml|pragmatic_inconsistency|iso/infer-twice
 walton.yml|pragmatic_inconsistency|iso/negation-texts
 walton.yml|pragmatic_inconsistency|iso/premises
 walton.yml|pragmatic_inconsistency|iso/premises-needed
+walton.yml|pragmatic_inconsistency|iso/roundtrip
 walton.yml|pragmatic_inconsistency|iso/terminates
 walton.yml|pragmatic_inconsistency|iso/texts
 walton.yml|pragmatic_inconsistency|source/mapped
@@ -5959,6 +6193,7 @@ walton.yml|precedent_slippery_slope|iso/infer-twice
 walton.yml|precedent_slippery_slope|iso/negation-texts
 walton.yml|precedent_slippery_slope|iso/premises
 walton.yml|precedent_slippery_slope|iso/premises-needed
+walton.yml|precedent_slippery_slope|iso/roundtrip
 walton.yml|precedent_slippery_slope|iso/terminates
 walton.yml|precedent_slippery_slope|iso/texts
 walton.yml|precedent_slippery_slope|source/mapped
@@ -5988,6 +6223,7 @@ walton.yml|regulative_rule_prohibition|iso/infer-twice
 walton.yml|regulative_rule_prohibition|iso/negation-texts
 walton.yml|regulative_rule_prohibition|iso/premises
 walton.yml|regulative_rule_prohibition|iso/premises-needed
+walton.yml|regulative_rule_prohibition|iso/roundtrip
 walton.yml|regulative_rule_prohibition|iso/terminates
 walton.yml|regulative_rule_prohibition|iso/texts
 walton.yml|regulative_rule_prohibition|source/mapped
@@ -6017,6 +6253,7 @@ walton.yml|regulative_rule|iso/infer-twice
 walton.yml|regulative_rule|iso/negation-texts
 walton.yml|regulative_rule|iso/premises
 walton.yml|regulative_rule|iso/premises-needed
+walton.yml|regulative_rule|iso/roundtrip
 walton.yml|regulative_rule|iso/terminates
 walton.yml|regulative_rule|iso/texts
 walton.yml|regulative_rule|source/mapped
@@ -6044,6 +6281,7 @@ walton.yml|retroductive|iso/infer-twice
 walton.yml|retroductive|iso/negation-texts
 walton.yml|retroductive|iso/premises
 walton.yml|retroductive|iso/premises-needed
+walton.yml|retroductive|iso/roundtrip
 walton.yml|retroductive|iso/terminates
 walton.yml|retroductive|iso/texts
 walton.yml|retroductive|source/mapped
@@ -6071,6 +6309,7 @@ walton.yml|rhetoric_ad_populum|iso/infer-twice
 walton.yml|rhetoric_ad_populum|iso/negation-texts
 walton.yml|rhetoric_ad_populum|iso/premises
 walton.yml|rhetoric_ad_populum|iso/premises-needed
+walton.yml|rhetoric_ad_populum|iso/roundtrip
 walton.yml|rhetoric_ad_populum|iso/terminates
 walton.yml|rhetoric_ad_populum|iso/texts
 walton.yml|rhetoric_ad_populum|source/mapped
@@ -6098,6 +6337,7 @@ walton.yml|rhetorical_oppositions_descriptive|iso/infer-twice
 walton.yml|rhetorical_oppositions_descriptive|iso/negation-texts
 walton.yml|rhetorical_oppositions_descriptive|iso/premises
 walton.yml|rhetorical_oppositions_descriptive|iso/premises-needed
+walton.yml|rhetorical_oppositions_descriptive|iso/roundtrip
 walton.yml|rhetorical_oppositions_descriptive|iso/terminates
 walton.yml|rhetorical_oppositions_descriptive|iso/texts
 walton.yml|rhetorical_oppositions_descriptive|source/mapped
@@ -6125,6 +6365,7 @@ walton.yml|rhetorical_oppositions_normative|iso/infer-twice
 walton.yml|rhetorical_oppositions_normative|iso/negation-texts
 walton.yml|rhetorical_oppositions_normative|iso/premises
 walton.yml|rhetorical_oppositions_normative|iso/premises-needed
+walton.yml|rhetorical_oppositions_normative|iso/roundtrip
 walton.yml|rhetorical_oppositions_normative|iso/terminates
 walton.yml|rhetorical_oppositions_normative|iso/texts
 walton.yml|rhetorical_oppositions_normative|source/mapped
@@ -6154,6 +6395,7 @@ walton.yml|rule_mental_world|iso/infer-twice
 walton.yml|rule_mental_world|iso/negation-texts
 walton.yml|rule_mental_world|iso/premises
 walton.yml|rule_mental_world|iso/premises-needed
+walton.yml|rule_mental_world|iso/roundtrip
 walton.yml|rule_mental_world|iso/terminates
 walton.yml|rule_mental_world|iso/texts
 walton.yml|rule_mental_world|source/mapped
@@ -6183,6 +6425,7 @@ walton.yml|rule_physical_world_1|iso/infer-twice
 walton.yml|rule_physical_world_1|iso/negation-texts
 walton.yml|rule_physical_world_1|iso/premises
 walton.yml|rule_physical_world_1|iso/premises-needed
+walton.yml|rule_physical_world_1|iso/roundtrip
 walton.yml|rule_physical_world_1|iso/terminates
 walton.yml|rule_physical_world_1|iso/texts
 walton.yml|rule_physical_world_1|source/mapped
@@ -6212,6 +6455,7 @@ walton.yml|rule_physical_world_2|iso/infer-twice
 walton.yml|rule_physical_world_2|iso/negation-texts
 walton.yml|rule_physical_world_2|iso/premises
 walton.yml|rule_physical_world_2|iso/premises-needed
+walton.yml|rule_physical_world_2|iso/roundtrip
 walton.yml|rule_physical_world_2|iso/terminates
 walton.yml|rule_physical_world_2|iso/texts
 walton.yml|rule_physical_world_2|source/mapped
@@ -6239,6 +6483,7 @@ walton.yml|rule|iso/infer-twice
 walton.yml|rule|iso/negation-texts
 walton.yml|rule|iso/premises
 walton.yml|rule|iso/premises-needed
+walton.yml|rule|iso/roundtrip
 walton.yml|rule|iso/terminates
 walton.yml|rule|iso/texts
 walton.yml|rule|source/mapped
@@ -6266,6 +6511,7 @@ walton.yml|sacrifice|iso/infer-twice
 walton.yml|sacrifice|iso/negation-texts
 walton.yml|sacrifice|iso/premises
 walton.yml|sacrifice|iso/premises-needed
+walton.yml|sacrifice|iso/roundtrip
 walton.yml|sacrifice|iso/terminates
 walton.yml|sacrifice|iso/texts
 walton.yml|sacrifice|source/mapped
@@ -6295,6 +6541,7 @@ walton.yml|sign|iso/infer-twice
 walton.yml|sign|iso/negation-texts
 walton.yml|sign|iso/premises
 walton.yml|sign|iso/premises-needed
+walton.yml|sign|iso/roundtrip
 walton.yml|sign|iso/terminates
 walton.yml|sign|iso/texts
 walton.yml|sign|source/mapped
@@ -6322,6 +6569,7 @@ walton.yml|slippery_slope_base_case|iso/infer-twice
 walton.yml|slippery_slope_base_case|iso/negation-texts
 walton.yml|slippery_slope_base_case|iso/premises
 walton.yml|slippery_slope_base_case|iso/premises-needed
+walton.yml|slippery_slope_base_case|iso/roundtrip
 walton.yml|slippery_slope_base_case|iso/terminates
 walton.yml|slippery_slope_base_case|iso/texts
 walton.yml|slippery_slope_base_case|source/mapped
@@ -6349,6 +6597,7 @@ walton.yml|slippery_slope_inductive_step|iso/infer-twice
 walton.yml|slippery_slope_inductive_step|iso/negation-texts
 walton.yml|slippery_slope_inductive_step|iso/premises
 walton.yml|slippery_slope_inductive_step|iso/premises-needed
+walton.yml|slippery_slope_inductive_step|iso/roundtrip
 walton.yml|slippery_slope_inductive_step|iso/terminates
 walton.yml|slippery_slope_inductive_step|iso/texts
 walton.yml|slippery_slope_inductive_step|source/mapped
@@ -6376,6 +6625,7 @@ walton.yml|snob_appeal_ad_populum|iso/infer-twice
 walton.yml|snob_appeal_ad_populum|iso/negation-texts
 walton.yml|snob_appeal_ad_populum|iso/premises
 walton.yml|snob_appeal_ad_populum|iso/premises-needed
+walton.yml|snob_appeal_ad_populum|iso/roundtrip
 walton.yml|snob_appeal_ad_populum|iso/terminates
 walton.yml|snob_appeal_ad_populum|iso/texts
 walton.yml|snob_appeal_ad_populum|source/mapped
@@ -6403,6 +6653,7 @@ walton.yml|sorites_slippery_slope|iso/infer-twice
 walton.yml|sorites_slippery_slope|iso/negation-texts
 walton.yml|sorites_slippery_slope|iso/premises
 walton.yml|sorites_slippery_slope|iso/premises-needed
+walton.yml|sorites_slippery_slope|iso/roundtrip
 walton.yml|sorites_slippery_slope|iso/terminates
 walton.yml|sorites_slippery_slope|iso/texts
 walton.yml|sorites_slippery_slope|source/mapped
@@ -6432,6 +6683,7 @@ walton.yml|sunk_costs|iso/infer-twice
 walton.yml|sunk_costs|iso/negation-texts
 walton.yml|sunk_costs|iso/premises
 walton.yml|sunk_costs|iso/premises-needed
+walton.yml|sunk_costs|iso/roundtrip
 walton.yml|sunk_costs|iso/terminates
 walton.yml|sunk_costs|iso/texts
 walton.yml|sunk_costs|source/mapped
@@ -6459,6 +6711,7 @@ walton.yml|treat|iso/infer-twice
 walton.yml|treat|iso/negation-texts
 walton.yml|treat|iso/premises
 walton.yml|treat|iso/premises-needed
+walton.yml|treat|iso/roundtrip
 walton.yml|treat|iso/terminates
 walton.yml|treat|iso/texts
 walton.yml|treat|source/mapped
@@ -6488,6 +6741,7 @@ walton.yml|two_person_practical|iso/infer-twice
 walton.yml|two_person_practical|iso/negation-texts
 walton.yml|two_person_practical|iso/premises
 walton.yml|two_person_practical|iso/premises-needed
+walton.yml|two_person_practical|iso/roundtrip
 walton.yml|two_person_practical|iso/terminates
 walton.yml|two_person_practical|iso/texts
 walton.yml|two_person_practical|source/mapped
@@ -6517,6 +6771,7 @@ walton.yml|value_based_practical_reasoning|iso/infer-twice
 walton.yml|value_based_practical_reasoning|iso/negation-texts
 walton.yml|value_based_practical_reasoning|iso/premises
 walton.yml|value_based_practical_reasoning|iso/premises-needed
+walton.yml|value_based_practical_reasoning|iso/roundtrip
 walton.yml|value_based_practical_reasoning|iso/terminates
 walton.yml|value_based_practical_reasoning|iso/texts
 walton.yml|value_based_practical_reasoning|source/mapped
@@ -6544,6 +6799,7 @@ walton.yml|verbal_classification_arbitrariness|iso/infer-twice
 walton.yml|verbal_classification_arbitrariness|iso/negation-texts
 walton.yml|verbal_classification_arbitrariness|iso/premises
 walton.yml|verbal_classification_arbitrariness|iso/premises-needed
+walton.yml|verbal_classification_arbitrariness|iso/roundtrip
 walton.yml|verbal_classification_arbitrariness|iso/terminates
 walton.yml|verbal_classification_arbitrariness|iso/texts
 walton.yml|verbal_classification_arbitrariness|source/mapped
@@ -6573,6 +6829,7 @@ walton.yml|verbal_classification_vagueness|iso/infer-twice
 walton.yml|verbal_classification_vagueness|iso/negation-texts
 walton.yml|verbal_classification_vagueness|iso/premises
 walton.yml|verbal_classification_vagueness|iso/premises-needed
+walton.yml|verbal_classification_vagueness|iso/roundtrip
 walton.yml|verbal_classification_vagueness|iso/terminates
 walton.yml|verbal_classification_vagueness|iso/texts
 walton.yml|verbal_classification_vagueness|source/mapped
@@ -6600,6 +6857,7 @@ walton.yml|verbal_classification|iso/infer-twice
 walton.yml|verbal_classification|iso/negation-texts
 walton.yml|verbal_classification|iso/premises
 walton.yml|verbal_classification|iso/premises-needed
+walton.yml|verbal_classification|iso/roundtrip
 walton.yml|verbal_classification|iso/terminates
 walton.yml|verbal_classification|iso/texts
 walton.yml|verbal_classification|source/mapped
@@ -6627,6 +6885,7 @@ walton.yml|verbal_slippery_slope|iso/infer-twice
 walton.yml|verbal_slippery_slope|iso/negation-texts
 walton.yml|verbal_slippery_slope|iso/premises
 walton.yml|verbal_slippery_slope|iso/premises-needed
+walton.yml|verbal_slippery_slope|iso/roundtrip
 walton.yml|verbal_slippery_slope|iso/terminates
 walton.yml|verbal_slippery_slope|iso/texts
 walton.yml|verbal_slippery_slope|source/mapped
@@ -6654,6 +6913,7 @@ walton.yml|waste|iso/infer-twice
 walton.yml|waste|iso/negation-texts
 walton.yml|waste|iso/premises
 walton.yml|waste|iso/premises-needed
+walton.yml|waste|iso/roundtrip
 walton.yml|waste|iso/terminates
 walton.yml|waste|iso/texts
 walton.yml|waste|source/mapped
@@ -6681,6 +6941,7 @@ walton.yml|whole_into_parts|iso/infer-twice
 walton.yml|whole_into_parts|iso/negation-texts
 walton.yml|whole_into_parts|iso/premises
 walton.yml|whole_into_parts|iso/premises-needed
+walton.yml|whole_into_parts|iso/roundtrip
 walton.yml|whole_into_parts|iso/terminates
 walton.yml|whole_into_parts|iso/texts
 walton.yml|whole_into_parts|source/mapped
@@ -6710,6 +6971,7 @@ walton.yml|witness_testimony|iso/infer-twice
 walton.yml|witness_testimony|iso/negation-texts
 walton.yml|witness_testimony|iso/premises
 walton.yml|witness_testimony|iso/premises-needed
+walton.yml|witness_testimony|iso/roundtrip
 walton.yml|witness_testimony|iso/terminates
 walton.yml|witness_testimony|iso/texts
 walton.yml|witness_testimony|source/mapped
@@ -6731,10 +6993,14 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|build-all-packages
 |(engine)|cli-check-exit-status
 |(engine)|cli-eval-signals-refusal
+|(engine)|cli-interrupt-is-cancelled
 |(engine)|cli-output-stays-valid
 |(engine)|cli-reads-its-own-yaml
 |(engine)|cli-reports-inconsistent-context
 |(engine)|cli-upstream-examples-check
+|(engine)|contrary-defaults-suspend-each-other
+|(engine)|default-yields-to-stipulated-negation
+|(engine)|default-yields-to-stipulated-position
 |(engine)|deletions-and-guards-are-unsupported
 |(engine)|engine-keeps-stdout-clean
 |(engine)|explicit-argument-without-questions-is-reported
@@ -6746,9 +7012,12 @@ walton.yml|witness_testimony|static/range-restricted
 |(engine)|inconsistent-follows-current-assumptions
 |(engine)|infer-is-idempotent
 |(engine)|infer-twice-with-exception
+|(engine)|invalid-expected-label-is-rejected
+|(engine)|invalid-rule-is-reported
 |(engine)|issue-extension-keeps-positions
 |(engine)|labelling-returns-after-issue-gains-position
 |(engine)|malformed-statement-is-an-error
+|(engine)|negated-assumption-alone
 |(engine)|negated-premises-match
 |(engine)|negation-through-statement-variable
 |(engine)|no-scheme-is-starved

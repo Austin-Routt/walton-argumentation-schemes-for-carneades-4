@@ -9,6 +9,7 @@
 package caes
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	// "log"
@@ -29,7 +30,38 @@ func TheoryToRuleStore(t *Theory) *chr.RuleStore {
 // refuses, for example for a premise it cannot read (E-PARSE), or that has a
 // statement with arithmetic the rule engine would compute (contract 1); those
 // schemes are left out of the store.
+//
+// The rule engine keeps package-level state, so RuleStoreOf waits while an
+// inference run or another translation is in progress (docs/contracts.md,
+// contract 1). Using the returned store is outside that protection.
 func RuleStoreOf(t *Theory) (*chr.RuleStore, error) {
+	if err := acquireEngine(context.Background()); err != nil {
+		return nil, err
+	}
+	defer releaseEngine()
+	return ruleStoreOf(t)
+}
+
+// engine serializes the uses of the rule engine: GoCHR's parser and
+// interpreter keep package-level state (a variable counter, trace settings),
+// which two runs at the same time would share (docs/contracts.md, contract 1;
+// the third review's TestConcurrentImports and race job).
+var engine = make(chan struct{}, 1)
+
+// acquireEngine waits until no other run uses the rule engine, or ctx is done.
+func acquireEngine(ctx context.Context) error {
+	select {
+	case engine <- struct{}{}:
+		return nil
+	case <-ctx.Done():
+		return NewRunError(ErrCancelled, "cancelled while another run used the rule engine")
+	}
+}
+
+func releaseEngine() { <-engine }
+
+// ruleStoreOf is RuleStoreOf for a caller that holds the engine.
+func ruleStoreOf(t *Theory) (*chr.RuleStore, error) {
 	// log.Printf("TheoryToRuleStore\n") // DEBUG
 	rs := chr.MakeRuleStore()
 	var errs []string

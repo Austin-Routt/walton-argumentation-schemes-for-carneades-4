@@ -21,7 +21,7 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | per scheme: `exception` (each exception undercuts) | covered | `iso/exceptions-undercut`, `full/exceptions-undercut` |
 | per scheme: `premise` (each premise needed) | covered | `iso/premises-needed`, `full/premises-needed` |
 | per scheme: `assumption` (a withdrawn assumption) | covered | `iso/assumptions-questionable`, `full/assumptions-questionable`, restated for the questioned state of D2 |
-| per scheme: `roundtrip` (export and import, parameters compared) | to port | engine level only: `export-keeps-compound-parameters`, `cli-reads-its-own-yaml` |
+| per scheme: `roundtrip` (export and import, parameters compared) | covered | `iso/roundtrip` (ported): every argument with its scheme, parameters, premises and undercutter, and every label, after export and import with clean globals; `roundtrip` of every reference case in a second process |
 | per scheme: `negation-text` | covered | `iso/negation-texts` |
 | static: `gochr-name` (built-in names as predicates) | covered | `static/no-reserved-functor`, `is-as-predicate-in-conclusion` |
 | static: `shared-0ary` (statements without variables used by several schemes) | to port | none; belongs with PLAN.md 5.4 |
@@ -31,25 +31,25 @@ Status: **covered** (a `tools/vv` check tests the same thing), **partly** (the `
 | probe: `argument-binding` | covered | `validator-enforces-shared-bindings` |
 | probe: `inconsistent` | covered | `inconsistent-assumptions-detected`, `inconsistent-follows-current-assumptions` |
 | probe: `infer-twice`, `infer-idempotent` | covered | `infer-twice-with-exception`, `infer-is-idempotent` |
-| probe: `negated-goal` (a negated assumption as a goal) | partly | `negated-premises-match` tests a negated premise against a negated fact; a negated goal alone is not tested |
+| probe: `negated-goal` (a negated assumption as a goal) | covered | `negated-premises-match`; `negated-assumption-alone` (ported) |
 | probe: `assumption-semantics` | covered | `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported` |
 | probe: `export-import-fresh` | covered | `cli-reads-its-own-yaml` (a new process) |
-| probe: `stress` (every premise of every scheme asserted at once) | to port | `no-scheme-is-starved` covers starvation, not the full load |
+| probe: `stress` (every premise of every scheme asserted at once) | covered | `stress` of each scheme file (ported): the run completes, every scheme constructs its argument, every statement is ground; a scheme whose premise negates one already asserted gets constants of its own |
 | probe: `proposed-fix` | dropped | measured the second review's prototype rules, which the plan drops (D8) |
-| the six acceptance cases with expected labels (`cases/*.yml`) | to port | none: `tools/vv` derives its expectations per scheme; these state labels by hand for realistic graphs |
+| the six acceptance cases with expected labels (`cases/*.yml`) | covered | `tools/vv/cases/acceptance.yml` (ported), with the book entry of each |
 
 ## Third review: `tools/enginecheck`
 
 | Check | Status | Covered by |
 |---|---|---|
 | `TestBudgetExhaustionMustBeReported` | covered | `budget-exhaustion-is-reported` |
-| `TestCompletionSignals` (limit, error and stdout together) | partly | `budget-exhaustion-is-reported`, `engine-keeps-stdout-clean`; the seven outcomes of D9 need one check each |
-| `TestConcurrentImports`, `TestConcurrentSpellInitialization`, the race job | to port | outside the first profile (D3); port as known failures so the race stays visible |
-| `TestDefaultAssumptionAndExplicitContraryIssue` | partly | `inconsistent-assumptions-detected`; the case of a default against an explicit contrary argument needs its own check |
+| `TestCompletionSignals` (limit, error and stdout together) | covered | `budget-exhaustion-is-reported`, `engine-keeps-stdout-clean`; one check for each outcome of D9: complete (every case), invalid input, unsupported, inconsistent context and limit (`outcome/*` reference cases), cancelled (`cli-interrupt-is-cancelled`, `TestInferContextCancelled`), internal failure (`TestExitStatus`) |
+| `TestConcurrentImports`, `TestConcurrentSpellInitialization`, the race job | covered | the engines' `TestConcurrentImports`, `TestConcurrentSpellInitialization`, `TestConcurrentInference` and `TestWaitingRunCanBeCancelled`, under `-race` in `tools/vv/engine-tests.sh` (ported). Without the fix both review tests race; calls are now serialized (contract 1) |
+| `TestDefaultAssumptionAndExplicitContraryIssue` | covered | `default-yields-to-stipulated-negation`, `default-yields-to-stipulated-position`, `contrary-defaults-suspend-each-other` (ported; they found that a default and its stipulated negation were both in, contract 5) |
 | `TestImportedSchemeIsNotBasic`, `TestImportsAreIsolated` | covered | `yaml-import-keeps-globals-clean` |
-| `TestInferenceRejectsInvalidRule`, `TestMalformedRuleMustBeRejected` | partly | `malformed-statement-is-an-error` covers a statement; GoCHR's own `AddRule` on malformed rule text is not tested directly |
+| `TestInferenceRejectsInvalidRule`, `TestMalformedRuleMustBeRejected` | covered | `invalid-rule-is-reported` (ported); GoCHR `TestAddRuleRefusesMalformedText`, which now also refuses a number or a string as a rule body (the review's `numeric_body`) |
 | `TestMalformedGoalMustBeRejected` | covered | GoCHR `TestInferRefusesMalformedGoal`, run by `tools/vv/engine-tests.sh`; `malformed-statement-is-an-error` |
-| `TestInvalidExpectedLabelDoesNotPanic` | to port | none |
+| `TestInvalidExpectedLabelDoesNotPanic` | covered | `invalid-expected-label-is-rejected` (ported) |
 | `TestIssueExtensionKeepsBidirectionalMembership` | covered | `issue-extension-keeps-positions`, `labelling-returns-after-issue-gains-position` |
 | `TestLinkedEvidenceAndExceptionLabels` | covered | `baseline-scheme-with-exception` |
 | `TestManualValidArgumentDoesNotPanic` | covered | `validator-accepts-correct-argument` |

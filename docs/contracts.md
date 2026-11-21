@@ -6,7 +6,9 @@ A contract changes only together with its checks, in one reviewed change.
 
 ## 1. The supported profile (D3)
 
-**Entry points.** The `carneades` command (`check`, `eval`) and the Go API (`yaml.Import`, `ArgGraph.Infer`, `ArgGraph.GroundedLabelling`, `validation.Validate`), offline, one graph at a time in one process. Concurrent use and the web server are outside the profile until they have their own tests (issue E-GLOBALS covers what sequential use needs).
+**Entry points.** The `carneades` command (`check`, `eval`) and the Go API (`yaml.Import`, `ArgGraph.Infer`, `ArgGraph.GroundedLabelling`, `validation.Validate`), offline. The web server is outside the profile.
+
+**Concurrent use.** Calls from several goroutines are serialized, not run in parallel: an inference run, and the translation of a theory into rules (`caes.RuleStoreOf`), wait until no other run uses the rule engine, whose parser keeps package-level state; `yaml.Import` and `yaml.Export` wait for each other, since they share the importer's tables. Each call gives what it gives alone. A run that waits with a context that is done ends as cancelled (contract 3). GoCHR's spelling tables are filled once (`sync.Once`). A rule store returned by `RuleStoreOf` and used directly is outside this protection. Checked by the engines' `TestConcurrentInference`, `TestWaitingRunCanBeCancelled`, `TestConcurrentImports` and `TestConcurrentSpellInitialization`, run under the race detector by `tools/vv/engine-tests.sh`.
 
 **Schemes.** A scheme is a propagation rule: its premises, together with no deletions and no guards, yield its conclusions, assumptions and exceptions as instantiated statements. A scheme with `deletions` or `guards` is outside the profile and is reported as **unsupported** (contract 3), not run. Every variable of a scheme occurs in a premise (range restriction).
 
@@ -44,9 +46,9 @@ A run of `check`, `eval` or `Infer` ends in exactly one of seven ways.
 
 **Output.** The engine writes nothing to stdout; diagnostics go to stderr. On any outcome other than complete the command prints no evaluation.
 
-**Limits.** The rule-application limit stays 100,000 by default (`caes.MAXRULEAPPS`). A run counts as interrupted only if a rule could still fire when the limit was reached. A limit on the size of derived terms, 500 nodes (`caes.MAXTERMSIZE`), ends runs whose terms grow without end; the library derives none larger than 30. A caller's context ends a run from outside (`ArgGraph.InferContext`). Implemented: GoCHR's `RuleStore.MaxTermSize`, `Done` and `Stopped`, with `ErrLimit` and `ErrCancelled`.
+**Limits.** The rule-application limit stays 100,000 by default (`caes.MAXRULEAPPS`). A run counts as interrupted only if a rule could still fire when the limit was reached. A limit on the size of derived terms, 500 nodes (`caes.MAXTERMSIZE`), ends runs whose terms grow without end; the library derives none larger than 30. A caller's context ends a run from outside (`ArgGraph.InferContext`); for `carneades eval` an interrupt or a termination signal is the caller stopping the run, until the evaluation is printed. Implemented: GoCHR's `RuleStore.MaxTermSize`, `Done` and `Stopped`, with `ErrLimit` and `ErrCancelled`.
 
-Checked by: `cli-check-exit-status`, `cli-eval-signals-refusal`, `engine-keeps-stdout-clean`, `budget-exhaustion-is-reported`, `growing-term-is-bounded`, `malformed-statement-is-an-error`; issues E-EXIT, E-BUDGET, E-PARSE.
+Checked by: `cli-check-exit-status`, `cli-interrupt-is-cancelled`, `invalid-rule-is-reported`, `invalid-expected-label-is-rejected`, the reference cases `outcome/*`, the engines' `TestInferContextCancelled` and `TestExitStatus`, `cli-eval-signals-refusal`, `engine-keeps-stdout-clean`, `budget-exhaustion-is-reported`, `growing-term-is-bounded`, `malformed-statement-is-an-error`; issues E-EXIT, E-BUDGET, E-PARSE.
 
 ## 4. Negation and opposition (D10)
 
@@ -80,11 +82,11 @@ A graph can list **questioned** statements: `questioned:` in YAML, and through t
 | not shown | applicable |
 | shown (stipulated or supported) | undercut |
 
-A contrary argument does not question an assumption by itself; it is weighed against it in an issue (contract 4). The questioned list and the origin of each assumption survive a second `Infer`, export and import.
+A contrary argument does not question an assumption by itself; it is weighed against it in an issue (contract 4). A contrary that is *assumed* is different: a default is not assumed while its negation, or another position of its issue, is stipulated, and two defaults that contradict each other are both suspended. No side is picked between defaults, as none is between stipulations (contract 3); a stipulation outranks a default. Without this, a default and its stipulated negation were both labelled in. The questioned list and the origin of each assumption survive a second `Infer`, export and import.
 
 **Representation.** `ArgGraph.Questioned` and `questioned:` hold the questioned statements; `ArgGraph.Defaults` records which assumptions a scheme instantiation added; export writes them under `questioned:` and `defaults:`, apart from the stipulated `assumptions:`. `ArgGraph.Assumed()` lists what is assumed now.
 
-Checked by: `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `questioned-stipulation-stays-assumed`, `questioned-state-survives-export`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`, `iso/assumptions-questionable`; issue X-ASSUME.
+Checked by: `default-yields-to-stipulated-negation`, `default-yields-to-stipulated-position`, `contrary-defaults-suspend-each-other`, `questioned-assumption-is-not-assumed`, `questioned-assumption-holds-when-supported`, `questioned-stipulation-stays-assumed`, `questioned-state-survives-export`, `baseline-undisputed-assumption-holds`, `baseline-withdrawn-assumption-stays-withdrawn`, `withdrawn-assumption-survives-second-infer`, `iso/exceptions-undercut`, `iso/assumptions-questionable`; issue X-ASSUME.
 
 ## 6. Arguments in an input file that name a scheme (D12)
 

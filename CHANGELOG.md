@@ -2,7 +2,7 @@
 
 All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*, Cambridge University Press ("the book"); section numbers are those of the User's Compendium of Schemes (ch. 9).
 
-## 2026-11-21 — a file format that round-trips (`PLAN.md` 4.1 to 4.3)
+## 2026-11-21 — interchange, reference cases and the ported checks (`PLAN.md` 4.1 to 4.5, 0.2, 0.3)
 
 * The YAML export (and the JSON export, which goes through it) writes each argument's parameters one per line and quoted where YAML needs it: a flow list split `liable(acme,smith)` at its comma. Statement ids in premises, conclusions, undercutters and assumptions are quoted the same way.
 * Expected labels are written under `tests:`, the key the importer reads (they were written under `labels:` and lost).
@@ -12,7 +12,12 @@ All page numbers refer to Walton, Reed & Macagno (2008), *Argumentation Schemes*
 * Property tests (4.5): 400 generated statements mean the same to Carneades' reader and to GoCHR's; renaming every scheme's variables changes none of its arguments; every reference case is evaluated by the command, written as YAML and read back in a second process with the same labels.
 * Found by these: an assumption no argument uses had no statement and no label (it is now in once a run completes); a written-out argument without parameters was refused although its premises and conclusion instantiate its scheme (it is now validated by one substitution, as contract 6 says); a scheme that only gives a weighing function made the validator refuse every argument naming it. Every example upstream ships now passes `carneades check`, but `chr-leq` (unsupported) and `paraconsistency` (an inconsistent context), as designed.
 * The ledger lists the checks a complete run produces by name (`tools/vv/expected_checks.txt`, PLAN.md 0.3): a check that disappears or appears fails the run until the list is rewritten in the same change. An entry for a known failure can carry a fingerprint of its message, and a listed check that fails for another reason counts as a new failure.
-* The ledger of known failures is empty: all 6,774 checks pass.
+* The checks of the two other reviews are ported (`PLAN.md` 0.2, `docs/parity.md`): their six acceptance cases (`tools/vv/cases/acceptance.yml`), a round trip of every scheme's evaluated graph (`iso/roundtrip`), a run of every scheme file with all premises asserted at once (`stress`), a negated assumption alone, an unreadable expected label and an unreadable rule, a default against an assumed contrary, and the concurrency tests under the race detector.
+* Found by these: a scheme's default assumption and its stipulated negation were both labelled in, and so was the scheme's conclusion. A default now yields to a stipulated contrary, its negation or another position of its issue, and two defaults that contradict each other are both suspended (contract 5).
+* Concurrent use is serialized (contract 1): inference runs wait for one another, as do YAML imports and exports, and GoCHR fills its spelling tables once. Before, two imports at the same time raced on the importer's tables, and two first spellings on GoCHR's. `tools/vv/engine-tests.sh` runs the concurrency tests under `-race`.
+* `carneades eval` cancels the evaluation on an interrupt or a termination signal: nothing is printed and the exit status is 5, as contract 3 says for a run the caller stops.
+* GoCHR refuses a number or a string as a rule body, which it used to accept and then ignore, and no longer prints when it refuses a rule head.
+* The ledger of known failures is empty: all 7,043 checks pass.
 
 ## 2026-11-21 — the scheme repairs of release R1 (`PLAN.md` Phase 3)
 

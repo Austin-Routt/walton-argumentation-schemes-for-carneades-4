@@ -9,6 +9,7 @@
 package chr
 
 import (
+	"sync"
 	"fmt"
 	"strconv"
 	"strings"
@@ -690,6 +691,10 @@ var Char2SpellMap = map[rune]string{
 
 var initSpellAndStructMap = false
 
+// spellOnce initializes the spelling maps once, also when several goroutines
+// spell at the same time (the third review's TestConcurrentSpellInitialization).
+var spellOnce sync.Once
+
 // Synonyme
 var Spell2CharMap = map[string]rune{
 	"stern": '*', "at": '@', "klammeraffe": '@',
@@ -794,9 +799,7 @@ func selectOneRune(m map[string]rune, str string) rune {
 
 func Spell2text(spell Term) (Term, bool) {
 	if spell.Type() == ListType {
-		if !initSpellAndStructMap {
-			InitSpellAndStructMap()
-		}
+		spellOnce.Do(InitSpellAndStructMap)
 		spell3Words2rest := map[string]map[string]rune{}
 		spell3Words1rest := map[string]rune{}
 		spell2Words1rest := map[string]rune{}
@@ -1137,9 +1140,7 @@ func CheckSpellAndText(spell Term, text Term) bool {
 
 func Email2text(spell Term) (Term, int, bool) {
 	if spell.Type() == ListType {
-		if !initSpellAndStructMap {
-			InitSpellAndStructMap()
-		}
+		spellOnce.Do(InitSpellAndStructMap)
 		// list := spell.(List)
 		list, korrAnz := improveEmail(spell.(List))
 		last := len(list) - 1
@@ -1668,9 +1669,7 @@ func improveEmail(l List) (List, int) {
 
 func ZiffernZuZahl(spell Term) (Term, bool) {
 	if spell.Type() == ListType {
-		if !initSpellAndStructMap {
-			InitSpellAndStructMap()
-		}
+		spellOnce.Do(InitSpellAndStructMap)
 
 		list := spell.(List)
 		var zahl String

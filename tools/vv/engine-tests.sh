@@ -4,7 +4,7 @@
 #   tools/vv/engine-tests.sh
 #
 # For each module: go build ./..., go vet ./..., go test ./... (PLAN.md 1.7,
-# E-BUILD). Carneades runs against the GoCHR of third_party/ (a replace
+# E-BUILD), then the concurrency tests under the race detector. Carneades runs against the GoCHR of third_party/ (a replace
 # directive in a copy of its go.mod; the module's own files are not touched).
 # TestCouchDB skips itself unless a CouchDB server listens on 127.0.0.1:5984.
 # VV_GOMOD_EXTRA, as for the suite, names a file of extra go.mod lines
@@ -27,3 +27,14 @@ go mod edit -replace "github.com/hfried/GoCHR=$tp/GoCHR" "$tmp/go.mod"
 if [ -n "${VV_GOMOD_EXTRA:-}" ]; then cat "$VV_GOMOD_EXTRA" >> "$tmp/go.mod"; fi
 m=(-mod=mod -modfile="$tmp/go.mod")
 (cd "$tp/carneades-4" && go build "${m[@]}" ./... && go vet "${m[@]}" ./... && go test "${m[@]}" -count=1 ./...)
+
+# The race job (docs/contracts.md, contract 1): the concurrency tests of both
+# engines under the race detector, which needs cgo and a C compiler.
+if [ "$(go env CGO_ENABLED)" = "1" ] && command -v "$(go env CC)" >/dev/null 2>&1; then
+  echo "-- race: the concurrency tests under -race"
+  (cd "$tp/GoCHR" && go test -race -count=1 -run 'Concurrent' ./src/engine/CHR/)
+  (cd "$tp/carneades-4" && go test "${m[@]}" -race -count=1 -run 'Concurrent|WaitingRun' ./src/engine/caes/ ./src/engine/caes/encoding/yaml/)
+else
+  echo "-- race: skipped, cgo or a C compiler is missing" >&2
+  exit 1
+fi
