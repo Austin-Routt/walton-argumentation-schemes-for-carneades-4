@@ -11,6 +11,7 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/carneades/carneades-4/src/engine/caes"
 	"gopkg.in/yaml.v2"
@@ -71,6 +72,52 @@ type RecordRow struct {
 	Questions       []RecordQuestion `yaml:"questions"`
 	Changes         []RecordChange   `yaml:"changes"`
 	Note            string           `yaml:"note"`
+	Review          *RecordReview    `yaml:"review"`
+}
+
+// RecordReview is the decision on a row of a reviewer who did not write the
+// changes the row records (PLAN.md D14). A row is at "interpretation
+// approved" or beyond only with an approving review.
+type RecordReview struct {
+	By       string `yaml:"by"`
+	Date     string `yaml:"date"`     // YYYY-MM-DD
+	Decision string `yaml:"decision"` // approved, hold or open
+	Note     string `yaml:"note"`     // required for hold and open: what is asked for, or what is missing
+}
+
+// ReviewDecisions are the decisions a review can record: approved; hold, a
+// change is asked for first; open, the row cannot be decided with what is at
+// hand (a source that is not available).
+var ReviewDecisions = map[string]bool{"approved": true, "hold": true, "open": true}
+
+// reviewProblems checks a row's review against its stage (PLAN.md D14).
+func reviewProblems(r RecordRow) []string {
+	probs := []string{}
+	past := StageIndex(r.Stage) >= StageIndex("interpretation-approved")
+	if r.Review == nil {
+		if past {
+			probs = append(probs, fmt.Sprintf("stage %q needs a review by someone who did not write the change (review: by, date, decision: approved)", r.Stage))
+		}
+		return probs
+	}
+	v := r.Review
+	if strings.TrimSpace(v.By) == "" {
+		probs = append(probs, "the review does not say who made it (by)")
+	}
+	if _, err := time.Parse("2006-01-02", v.Date); err != nil {
+		probs = append(probs, fmt.Sprintf("the review's date %q is not a date of the form YYYY-MM-DD", v.Date))
+	}
+	switch {
+	case !ReviewDecisions[v.Decision]:
+		probs = append(probs, fmt.Sprintf("unknown review decision %q", v.Decision))
+	case v.Decision == "approved" && !past:
+		probs = append(probs, fmt.Sprintf("the review approves the row, but its stage is %q", r.Stage))
+	case v.Decision != "approved" && past:
+		probs = append(probs, fmt.Sprintf("stage %q, but the review's decision is %q", r.Stage, v.Decision))
+	case v.Decision != "approved" && strings.TrimSpace(v.Note) == "":
+		probs = append(probs, fmt.Sprintf("a review that decides %q says in its note what is asked for or what is missing", v.Decision))
+	}
+	return probs
 }
 
 // RecordQuestion is one printed critical question, sorted (PLAN.md 5.1).
@@ -486,6 +533,7 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 			}
 		}
 		probs = append(probs, questionProblems(r, s, printed, stage >= StageIndex("questions-sorted"))...)
+		probs = append(probs, reviewProblems(r)...)
 		if stage >= StageIndex("example-passed") && !cases[r.Record+"/book"] {
 			probs = append(probs, "example passed, but no reference case "+r.Record+"/book")
 		}

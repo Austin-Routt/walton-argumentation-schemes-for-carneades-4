@@ -159,7 +159,9 @@ not the compendium, what the record claims to be (a transcription, a
 correction the book supports, an interpretation, a policy, or unchecked), how
 far it has been checked (mapped, transcription checked, interpretation
 approved, questions sorted, example passed), its printed questions once sorted,
-and the changes made to it. `source/record-row` checks each row against
+the changes made to it, and the decision of a reviewer who did not write them
+(`review:`, D14: approved, hold or open). A row is at "interpretation
+approved" or beyond only with an approving review. `source/record-row` checks each row against
 `walton.yml`, the compendium list and upstream's file, and that its stage has
 what it needs; `source/records-complete` that no row is missing or left over.
 `go run ./cmd/schemecheck -format source` prints them as the worklist of

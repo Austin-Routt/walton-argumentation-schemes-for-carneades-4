@@ -12,7 +12,12 @@
       ],
       "examples": [
         "popular_opinion/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "pop_scheme",
@@ -23,7 +28,12 @@
       ],
       "examples": [
         "pop_scheme/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "pop_scheme_acceptance",
@@ -34,7 +44,12 @@
       ],
       "examples": [
         "pop_scheme_acceptance/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "position_to_know_ad_populum",
@@ -45,7 +60,12 @@
       ],
       "examples": [
         "position_to_know_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "expert_opinion_ad_populum",
@@ -56,7 +76,12 @@
       ],
       "examples": [
         "expert_opinion_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "deliberation_ad_populum",
@@ -67,7 +92,12 @@
       ],
       "examples": [
         "deliberation_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "appeal_to_vanity_ad_populum",
@@ -78,7 +108,12 @@
       ],
       "examples": [
         "appeal_to_vanity_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "rhetoric_ad_populum",
@@ -89,7 +124,12 @@
       ],
       "examples": [
         "rhetoric_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "common_folk_ad_populum",
@@ -100,7 +140,12 @@
       ],
       "examples": [
         "common_folk_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "common_folks_group_ad_populum",
@@ -111,7 +156,12 @@
       ],
       "examples": [
         "common_folks_group_ad_populum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "illustration",
@@ -122,7 +172,12 @@
       ],
       "examples": [
         "illustration/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "from_model",
@@ -133,7 +188,12 @@
       ],
       "examples": [
         "from_model/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "practical_analogy_positive",
@@ -144,7 +204,12 @@
       ],
       "examples": [
         "practical_analogy_positive/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "practical_analogy_negative",
@@ -155,7 +220,12 @@
       ],
       "examples": [
         "practical_analogy_negative/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "composition_generic",
@@ -166,7 +236,12 @@
       ],
       "examples": [
         "composition_generic/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "division_generic",
@@ -177,7 +252,12 @@
       ],
       "examples": [
         "division_generic/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "opposition_descriptive_1",
@@ -188,7 +268,12 @@
       ],
       "examples": [
         "opposition_descriptive_1/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "opposition_descriptive_2",
@@ -199,7 +284,12 @@
       ],
       "examples": [
         "opposition_descriptive_2/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "opposition_descriptive_3",
@@ -210,7 +300,12 @@
       ],
       "examples": [
         "opposition_descriptive_3/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "opposition_normative",
@@ -221,7 +316,12 @@
       ],
       "examples": [
         "opposition_normative/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "rhetorical_oppositions_normative",
@@ -232,7 +332,12 @@
       ],
       "examples": [
         "rhetorical_oppositions_normative/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "rhetorical_oppositions_descriptive",
@@ -243,7 +348,12 @@
       ],
       "examples": [
         "rhetorical_oppositions_descriptive/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "alternative_cognitive",
@@ -254,7 +364,12 @@
       ],
       "examples": [
         "alternative_cognitive/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "interaction_act_person_1",
@@ -265,7 +380,12 @@
       ],
       "examples": [
         "interaction_act_person_1/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "interaction_act_person_2",
@@ -276,7 +396,12 @@
       ],
       "examples": [
         "interaction_act_person_2/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "group_1",
@@ -287,7 +412,12 @@
       ],
       "examples": [
         "group_1/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "group_2",
@@ -298,7 +428,12 @@
       ],
       "examples": [
         "group_2/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "practical_goal",
@@ -309,7 +444,12 @@
       ],
       "examples": [
         "practical_goal/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "waste",
@@ -320,7 +460,12 @@
       ],
       "examples": [
         "waste/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "epistemic_ignorance",
@@ -331,7 +476,12 @@
       ],
       "examples": [
         "epistemic_ignorance/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "abductive_forward",
@@ -342,7 +492,12 @@
       ],
       "examples": [
         "abductive_forward/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "abductive_action_to_character",
@@ -353,7 +508,12 @@
       ],
       "examples": [
         "abductive_action_to_character/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "abductive_character_to_action",
@@ -364,7 +524,12 @@
       ],
       "examples": [
         "abductive_character_to_action/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "retroductive",
@@ -375,7 +540,12 @@
       ],
       "examples": [
         "retroductive/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "evidence_hypothesis_verification",
@@ -386,7 +556,12 @@
       ],
       "examples": [
         "evidence_hypothesis_verification/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "evidence_hypothesis_falsification",
@@ -397,7 +572,12 @@
       ],
       "examples": [
         "evidence_hypothesis_falsification/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "negative_consequences_prudential",
@@ -408,7 +588,12 @@
       ],
       "examples": [
         "negative_consequences_prudential/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "negative_consequences_reasoning",
@@ -419,7 +604,12 @@
       ],
       "examples": [
         "negative_consequences_reasoning/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "pragmatic_alternative",
@@ -430,7 +620,12 @@
       ],
       "examples": [
         "pragmatic_alternative/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "threat",
@@ -441,7 +636,12 @@
       ],
       "examples": [
         "threat/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "ad_baculum",
@@ -452,7 +652,12 @@
       ],
       "examples": [
         "ad_baculum/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "fear",
@@ -463,7 +668,12 @@
       ],
       "examples": [
         "fear/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "danger",
@@ -474,7 +684,12 @@
       ],
       "examples": [
         "danger/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "help",
@@ -485,7 +700,12 @@
       ],
       "examples": [
         "help/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "distress",
@@ -496,7 +716,12 @@
       ],
       "examples": [
         "distress/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "commitment1",
@@ -507,7 +732,12 @@
       ],
       "examples": [
         "commitment1/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "commitment2",
@@ -518,7 +748,12 @@
       ],
       "examples": [
         "commitment2/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "ad_hominem",
@@ -529,7 +764,12 @@
       ],
       "examples": [
         "ad_hominem/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "pragmatic_inconsistency",
@@ -540,7 +780,12 @@
       ],
       "examples": [
         "pragmatic_inconsistency/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "inconsistent_commitment",
@@ -551,7 +796,12 @@
       ],
       "examples": [
         "inconsistent_commitment/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "bias",
@@ -562,7 +812,12 @@
       ],
       "examples": [
         "bias/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "bias_ad_hominem",
@@ -573,7 +828,12 @@
       ],
       "examples": [
         "bias_ad_hominem/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "gradualism",
@@ -584,7 +844,12 @@
       ],
       "examples": [
         "gradualism/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "sorites_slippery_slope",
@@ -595,7 +860,12 @@
       ],
       "examples": [
         "sorites_slippery_slope/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "verbal_slippery_slope",
@@ -606,7 +876,12 @@
       ],
       "examples": [
         "verbal_slippery_slope/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "full_slippery_slope",
@@ -617,7 +892,12 @@
       ],
       "examples": [
         "full_slippery_slope/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "precedent_slippery_slope",
@@ -628,7 +908,12 @@
       ],
       "examples": [
         "precedent_slippery_slope/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "rule_physical_world_1",
@@ -639,7 +924,12 @@
       ],
       "examples": [
         "rule_physical_world_1/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "rule",
@@ -650,7 +940,12 @@
       ],
       "examples": [
         "rule/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "regulative_rule",
@@ -661,7 +956,12 @@
       ],
       "examples": [
         "regulative_rule/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "regulative_rule_prohibition",
@@ -672,7 +972,12 @@
       ],
       "examples": [
         "regulative_rule_prohibition/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "exceptional",
@@ -683,7 +988,12 @@
       ],
       "examples": [
         "exceptional/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "from_precedent",
@@ -694,7 +1004,12 @@
       ],
       "examples": [
         "from_precedent/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "memory",
@@ -705,7 +1020,12 @@
       ],
       "examples": [
         "memory/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "abduction",
@@ -715,7 +1035,12 @@
       ],
       "examples": [
         "abduction/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "appearance",
@@ -726,7 +1051,12 @@
       ],
       "examples": [
         "appearance/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "credible_source",
@@ -736,7 +1066,12 @@
       ],
       "examples": [
         "credible_source/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "defeasible_modus_ponens",
@@ -746,7 +1081,12 @@
       ],
       "examples": [
         "defeasible_modus_ponens/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "sunk_costs_precommitment",
@@ -757,7 +1097,12 @@
       ],
       "examples": [
         "sunk_costs_precommitment/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     },
     {
       "record": "verbal_classification",
@@ -767,7 +1112,12 @@
       ],
       "examples": [
         "verbal_classification/book"
-      ]
+      ],
+      "review": {
+        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }

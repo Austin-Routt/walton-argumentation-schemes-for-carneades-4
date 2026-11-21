@@ -11,6 +11,12 @@ The full 120-record file is a preview. The independently reviewed 70-record subs
 
 API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
 
+### Participants, contexts and defaults
+
+In records whose statements still say "I" or "you" without a participant argument, those words refer to one fixed proponent and one fixed respondent for that graph. Such a record does not distinguish several speakers, audiences or deliberations automatically. Use separate graphs, or context-qualified ground terms where the record supports them, for separate cases. The source register identifies the records that still need explicit participant or context parameters before broader use; this convention does not remove their holds.
+
+Load the schemes needed for the question being evaluated. Loading the entire library enables every matching rule and every unchallenged default. For example, `division_generic` can infer that all parts have a property from a whole having it while its divisional-heredity assumption stands. That is the scheme's defeasible claim, not a general fact that arbitrary properties are inherited by parts. Question the relevant default, supply contrary evidence, or omit that scheme when the application does not justify using it. The cycle warnings make some interactions visible but do not decide whether the application warrants them.
+
 ## What to load
 
 * `walton.yml` holds every scheme (120 records) with the language templates
