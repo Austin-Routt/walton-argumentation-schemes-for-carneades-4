@@ -3750,6 +3750,10 @@ cases/phase5.yml|exceptional/positive|case
 cases/phase5.yml|exceptional/positive|roundtrip
 cases/phase5.yml|exceptional/questioned-and-backed|case
 cases/phase5.yml|exceptional/questioned-and-backed|roundtrip
+cases/phase5.yml|expert_opinion/adverse-credibility-questioned|case
+cases/phase5.yml|expert_opinion/adverse-credibility-questioned|roundtrip
+cases/phase5.yml|expert_opinion/credibility-questioned-and-shown|case
+cases/phase5.yml|expert_opinion/credibility-questioned-and-shown|roundtrip
 cases/phase5.yml|from_example/adverse-support-questioned|case
 cases/phase5.yml|from_example/adverse-support-questioned|roundtrip
 cases/phase5.yml|from_example/positive|case
@@ -3957,6 +3961,7 @@ source_ledger.yml|common_folks_group_ad_populum|source/record-row
 source_ledger.yml|composition_generic|source/record-row
 source_ledger.yml|conflicting_goals/2|source/name-in-language
 source_ledger.yml|correlation_to_cause|source/record-row
+source_ledger.yml|credible/1|source/name-in-language
 source_ledger.yml|credible_source|source/record-row
 source_ledger.yml|danger|source/record-row
 source_ledger.yml|defeasible_modus_ponens|source/record-row
@@ -4245,6 +4250,7 @@ tools/migration_r2.yml|epistemic_ignorence|migration/premise bivalent(D)
 tools/migration_r2.yml|evidence_hypothesis_falsification|migration/arguments sufficient_correlation(H,A)
 tools/migration_r2.yml|exceptional|migration/rename-scheme exeptional
 tools/migration_r2.yml|exeptional|migration/added exception_backed(A)
+tools/migration_r2.yml|expert_opinion|migration/added credible(W)
 tools/migration_r2.yml|from_example|migration/added supports_generalization(A,P1,P2)
 tools/migration_r2.yml|full_slippery_slope|migration/arity accept_all_steps(C0)
 tools/migration_r2.yml|full_slippery_slope|migration/removed led_to_step
