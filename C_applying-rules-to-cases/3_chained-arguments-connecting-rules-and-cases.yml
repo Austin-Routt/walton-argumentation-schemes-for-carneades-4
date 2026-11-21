@@ -7,16 +7,16 @@ meta:
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   all_has/3: "If %s has %s, then %s has it too."
-  beyond_contetion/2: "It is clearly beyond contention that %s has %s."
+  beyond_contention/2: "It is clearly beyond contention that %s has %s."
   cannot_be_exception/2: "Case %s cannot be judged to be an exception to the rule %s."
   claimed_exception/2: "Case %s is claimed to be an exception to the rule %s, an excusable or exceptional case."
   individual_property/2: "Individual %s has property %s."
   individual_property_false/2: "But quite clearly it is false that %s has %s."
-  individuals_propoerty/3: "If %s has %s, then %s has it too."
+  individuals_property/3: "If %s has %s, then %s has it too."
   intolerable_exception/2: "Treating case %s as an exception to the rule %s would be intolerable."
   may_have/2: "%s may have %s, for all we know or can prove."
   must_proper/2: "The conditional 'if %s then %s' is not, by itself, acceptable to the respondent, nor are shorter sequences acceptable to the respondent."
-  not_has_propery/2: "Therefore, you can't truly say that %s has %s."
+  not_has_property/2: "You can't truly say that %s has %s."
   precedent_series/3: "By case-to-case consistency, holding case %s to be an exception to the rule %s binds us to hold each case of a sequence of similar cases, up to %s, to be an exception too."
   proper_sequence/2: "The sequence of propositions from %s to %s is dealt with in the appropriate order."
   reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
@@ -65,7 +65,7 @@ argument_schemes:
     conclusions:
       - may_have(A,P)
     premises:
-      - beyond_contetion(A2,P)
+      - beyond_contention(A2,P)
       - all_has(A2,P,A1)
       - reapplication_sequence(A2,A,P)
 
@@ -75,9 +75,9 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 52, p. 341. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 160."
     variables: [A1,A2,A,P]
     conclusions:
-      - not_has_propery(A1,P)
+      - not_has_property(A1,P)
     premises:
       - individual_property(A1,P)
-      - individuals_propoerty(A1,P,A2)
+      - individuals_property(A1,P,A2)
       - vague_property(P,A1,A)
       - individual_property_false(A,P)

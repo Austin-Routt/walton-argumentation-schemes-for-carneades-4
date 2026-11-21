@@ -94,32 +94,32 @@ cases:
     source: "16, pp. 319-320"
     assumptions:
       - vague_defined_property(arg1,heap)
-      - property_precion_needed(arg1)
+      - precision_needed(arg1)
       - property_vagueness(heap,arg1)
     arguments:
       - verbal_classification_vagueness(arg1,heap)
     in:
-      - vaguness_recejted(arg1)
+      - vagueness_rejected(arg1)
   - name: verbal_classification_vagueness/adverse-precision-said-of-the-property
     source: "16, pp. 319-320"
     assumptions:
       - vague_defined_property(arg1,heap)
-      - property_precion_needed(heap)
+      - precision_needed(heap)
       - property_vagueness(heap,arg1)
     no_arguments: [verbal_classification_vagueness]
     not_in:
-      - vaguness_recejted(arg1)
+      - vagueness_rejected(arg1)
   - name: verbal_classification_vagueness/exception
     source: "16, p. 320, CQ3"
     assumptions:
       - vague_defined_property(arg1,heap)
-      - property_precion_needed(arg1)
+      - precision_needed(arg1)
       - property_vagueness(heap,arg1)
-      - certainity_no_need(arg1,heap)
+      - certainty_no_need(arg1,heap)
     arguments:
       - verbal_classification_vagueness(arg1,heap)
     not_in:
-      - vaguness_recejted(arg1)
+      - vagueness_rejected(arg1)
 
   # 17 verbal_classification_arbitrariness (p. 320): CQ3, why arbitrariness is
   # a problem in this dialogue, is an exception, as for 16.
@@ -153,7 +153,7 @@ cases:
     source: "23, pp. 325-326"
     assumptions:
       - tells_intend(ann,trip,bob)
-      - situation_necessiy(bob,ticket,trip,ann)
+      - situation_necessity(bob,ticket,trip,ann)
     arguments:
       - two_person_practical(ann,bob,trip,ticket)
     in:
@@ -162,7 +162,7 @@ cases:
     source: "23, p. 326, CQ2"
     assumptions:
       - tells_intend(ann,trip,bob)
-      - situation_necessiy(bob,ticket,trip,ann)
+      - situation_necessity(bob,ticket,trip,ann)
       - alternative_means(trip,ticket)
     not_in:
       - should_carry_out(ann,ticket)
@@ -170,7 +170,7 @@ cases:
     source: "23, p. 326, CQ2"
     assumptions:
       - tells_intend(ann,trip,bob)
-      - situation_necessiy(bob,ticket,trip,ann)
+      - situation_necessity(bob,ticket,trip,ann)
       - alternative_means(ann,trip)
     in:
       - should_carry_out(ann,ticket)
@@ -178,7 +178,7 @@ cases:
     source: "23, p. 326, CQ3"
     assumptions:
       - tells_intend(ann,trip,bob)
-      - situation_necessiy(bob,ticket,trip,ann)
+      - situation_necessity(bob,ticket,trip,ann)
       - side_effect_other_act(ticket,ann)
     not_in:
       - should_carry_out(ann,ticket)
@@ -186,7 +186,7 @@ cases:
     source: "23, p. 326, CQ5"
     assumptions:
       - tells_intend(ann,trip,bob)
-      - situation_necessiy(bob,ticket,trip,ann)
+      - situation_necessity(bob,ticket,trip,ann)
       - other_actions_required(trip,ticket)
     not_in:
       - should_carry_out(ann,ticket)
@@ -242,7 +242,7 @@ cases:
     assumptions:
       - data_set(d)
       - data_account(a1,d)
-      - succesful_account(best,d)
+      - successful_account(best,d)
     arguments:
       - abductive_backward(a1,best,d)
     in:
@@ -252,7 +252,7 @@ cases:
     assumptions:
       - data_set(d)
       - data_account(a1,d)
-      - succesful_account(best,d)
+      - successful_account(best,d)
       - inquiry_incomplete(d)
     not_in:
       - plausible_hypothesis(best)
@@ -261,7 +261,7 @@ cases:
     assumptions:
       - data_set(d)
       - diagram_set(g,d,c)
-      - succesful_diagram(c1)
+      - successful_diagram(c1)
     arguments:
       - abductive_forward(d,g,c,c1)
     in:
@@ -271,7 +271,7 @@ cases:
     assumptions:
       - data_set(d)
       - diagram_set(g,d,c)
-      - succesful_diagram(c1)
+      - successful_diagram(c1)
     questioned:
       - sufficient_account(c1,d)
     not_in:
@@ -281,7 +281,7 @@ cases:
     assumptions:
       - data_set(d)
       - diagram_set(g,d,c)
-      - succesful_diagram(c1)
+      - successful_diagram(c1)
       - inquiry_incomplete(d)
     not_in:
       - plausible_conclusion(c1)
@@ -305,7 +305,7 @@ cases:
       - event_quality(greedy)
       - agent_quality(ann,greedy)
     questioned:
-      - not_fit_action(ann)
+      - action_fits_quality(ann)
     not_in:
       - event_question(ann)
 
@@ -411,7 +411,7 @@ cases:
     arguments:
       - distress(bob,lift,ann)
     in:
-      - bring_relive(bob,lift)
+      - bring_relieve(bob,lift)
   - name: distress/adverse-someone-elses-distress
     source: "39, p. 334"
     assumptions:
@@ -419,7 +419,7 @@ cases:
       - relieve(bob,lift,cat)
     no_arguments: [distress]
     not_in:
-      - bring_relive(bob,lift)
+      - bring_relieve(bob,lift)
   - name: distress/adverse-side-effects
     source: "39, p. 335, CQ4"
     assumptions:
@@ -427,7 +427,7 @@ cases:
       - relieve(bob,lift,ann)
       - great_side_effects(bob,lift)
     not_in:
-      - bring_relive(bob,lift)
+      - bring_relieve(bob,lift)
 
   # 40 commitment1, commitment2 (p. 335): CQ1's first half restates the
   # commitment premise, and the assumption commitment_support_evidence(A,X),
@@ -492,7 +492,7 @@ cases:
     arguments:
       - pragmatic_inconsistency(bob,arg1,tax_cut)
     in:
-      - arguement_not_accepted(bob,arg1)
+      - argument_not_accepted(bob,arg1)
   - name: pragmatic_inconsistency/adverse-relevance-questioned
     source: "43, p. 337, CQ3"
     assumptions:
@@ -501,7 +501,7 @@ cases:
     questioned:
       - inconsistency_relevant(bob,arg1)
     not_in:
-      - arguement_not_accepted(bob,arg1)
+      - argument_not_accepted(bob,arg1)
 
   # 44 inconsistent_commitment (p. 337): the exception evidence_not_commited
   # said what premise 2 says, so the evidence for the conclusion undercut the
@@ -542,7 +542,7 @@ cases:
     source: "45, p. 337"
     assumptions:
       - advocates_conclusion(bob,arg1,tax_cut)
-      - commited_opposite(bob,tax_cut)
+      - committed_opposite(bob,tax_cut)
       - credibility_questioned(bob)
     arguments:
       - circumstantial_ad_hominem(bob,arg1,tax_cut)
@@ -552,7 +552,7 @@ cases:
     source: "45, p. 337"
     assumptions:
       - advocates_conclusion(bob,arg1,tax_cut)
-      - commited_opposite(bob,arg1)
+      - committed_opposite(bob,arg1)
       - credibility_questioned(bob)
     no_arguments: [circumstantial_ad_hominem]
     not_in:
@@ -561,7 +561,7 @@ cases:
     source: "45, p. 338, CQ2"
     assumptions:
       - advocates_conclusion(bob,arg1,tax_cut)
-      - commited_opposite(bob,tax_cut)
+      - committed_opposite(bob,tax_cut)
       - credibility_questioned(bob)
       - inconsistency_explained(bob,arg1)
     not_in:
@@ -623,16 +623,16 @@ cases:
   # exception to be backed, by its recognized type, by evidence that the rule
   # does not apply, or by comparable cases (5.3): the assumption
   # exception_backed(A).
-  - name: exeptional/positive
+  - name: exceptional/positive
     source: "56, p. 344"
     assumptions:
       - rule_can_waived(ann)
       - case_exception(ann)
     arguments:
-      - exeptional(ann)
+      - exceptional(ann)
     in:
       - rule_waived(ann)
-  - name: exeptional/adverse-exception-questioned
+  - name: exceptional/adverse-exception-questioned
     source: "56, p. 344, CQ1"
     assumptions:
       - rule_can_waived(ann)
@@ -641,7 +641,7 @@ cases:
       - exception_backed(ann)
     not_in:
       - rule_waived(ann)
-  - name: exeptional/questioned-and-backed
+  - name: exceptional/questioned-and-backed
     source: "56, p. 344, CQ2 and CQ3"
     assumptions:
       - rule_can_waived(ann)
@@ -693,7 +693,7 @@ cases:
     arguments:
       - memory(ann,door_locked)
     in:
-      - reasonable_belive(door_locked)
+      - reasonable_believe(door_locked)
   - name: memory/adverse-false-basis
     source: "60, p. 346, CQ1"
     assumptions:
@@ -701,7 +701,7 @@ cases:
       - believe_it(door_locked)
       - based_on_false_belief(door_locked)
     not_in:
-      - reasonable_belive(door_locked)
+      - reasonable_believe(door_locked)
   - name: memory/adverse-not-originally-believed
     source: "60, p. 346, CQ2"
     assumptions:
@@ -709,7 +709,7 @@ cases:
       - believe_it(door_locked)
       - not_originally_believed(door_locked)
     not_in:
-      - reasonable_belive(door_locked)
+      - reasonable_believe(door_locked)
   - name: memory/adverse-recaller-doubts
     source: "60, p. 346, CQ3"
     assumptions:
@@ -717,7 +717,7 @@ cases:
       - believe_it(door_locked)
       - recaller_doubts(ann,door_locked)
     not_in:
-      - reasonable_belive(door_locked)
+      - reasonable_believe(door_locked)
 
   # --- records without printed questions: transcription ---------------------
   # 6.2 illustration (p. 315): the rule of premise 1 names no individual, and
@@ -763,7 +763,7 @@ cases:
 
   # 27 epistemic_ignorence (p. 328): premise 5, that every proposition in D is
   # true or false, was missing (5.5).
-  - name: epistemic_ignorence/positive
+  - name: epistemic_ignorance/positive
     source: "27, p. 328"
     assumptions:
       - true_propositions_contained(staff,files)
@@ -772,17 +772,17 @@ cases:
       - special_not_in(spy,files)
       - bivalent(staff)
     arguments:
-      - epistemic_ignorence(spy,staff,files)
+      - epistemic_ignorance(spy,staff,files)
     in:
       - plausible_false(staff,spy)
-  - name: epistemic_ignorence/adverse-premise-5-missing
+  - name: epistemic_ignorance/adverse-premise-5-missing
     source: "27, p. 328"
     assumptions:
       - true_propositions_contained(staff,files)
       - special_proposition(spy,files)
       - special_in(spy,staff)
       - special_not_in(spy,files)
-    no_arguments: [epistemic_ignorence]
+    no_arguments: [epistemic_ignorance]
     not_in:
       - plausible_false(staff,spy)
 
@@ -792,23 +792,23 @@ cases:
     source: "52, p. 341"
     assumptions:
       - individual_property(a1,bald)
-      - individuals_propoerty(a1,bald,a2)
+      - individuals_property(a1,bald,a2)
       - vague_property(bald,a1,an)
       - individual_property_false(an,bald)
     arguments:
       - verbal_slippery_slope(a1,a2,an,bald)
     in:
-      - not_has_propery(a1,bald)
+      - not_has_property(a1,bald)
   - name: verbal_slippery_slope/adverse-another-property-in-premise-2
     source: "52, p. 341"
     assumptions:
       - individual_property(a1,bald)
-      - individuals_propoerty(a1,tall,a2)
+      - individuals_property(a1,tall,a2)
       - vague_property(bald,a1,an)
       - individual_property_false(an,bald)
     no_arguments: [verbal_slippery_slope]
     not_in:
-      - not_has_propery(a1,bald)
+      - not_has_property(a1,bald)
 
   # --- 5.3: variants the R1 repairs left open --------------------------------
   # 22.2, 22.3 (p. 323): the set of alternatives S and the member selected X
@@ -849,7 +849,7 @@ cases:
       - should_accept(claim)
   - name: pop_scheme/truth-reading-alone
     source: "4.1, p. 311"
-    library: B_source-based-arguments/4_argumen-from-popular-acceptence.yml
+    library: B_source-based-arguments/4_argument-from-popular-acceptance.yml
     assumptions:
       - reference_group_accepted(g,claim)
     arguments:
@@ -947,7 +947,7 @@ cases:
       - advocates_conclusion(bob,arg1,tax_cut)
       - advocates_conclusion(bob,arg2,war)
     questioned:
-      - character_revelant(arg2)
+      - character_relevant(arg2)
     in:
       - bad_not_accepted(bob,arg1)
     not_in:
@@ -993,8 +993,8 @@ cases:
   - name: rule_physical_world_2/two-rules
     source: "54.2, p. 342"
     assumptions:
-      - oficcial_rulebook(chess,stalemate,draw)
-      - oficcial_rulebook(chess,castling,move)
+      - official_rulebook(chess,stalemate,draw)
+      - official_rulebook(chess,castling,move)
       - correctly_report
       - rule_changed(chess,castling,move)
     in:

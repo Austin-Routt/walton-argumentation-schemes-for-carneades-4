@@ -1,0 +1,103 @@
+# A graph written for release R1 (library 0.1.0): six schemes copied from
+# R1's walton.yml (commit 8c092b6), with R1's identifiers, and the labels
+# they give. The migration check of tools/vv migrates it with
+# tools/migrate_r2.py and evaluates both: the labels are the same, under
+# the new names.
+language:
+  acceptable_in_case/1: "Therefore, %s is acceptable in this case."
+  action_character/1: "Agent %s did something that can be classified as fitting a particular character quality."
+  all_parts_propert/2: "All the parts of %s have the property %s."
+  assert_bad/2: "I hereby assert that in fact I will see to it that %[2]s occurs if you bring about %[1]s."
+  cannot_opposite_evaluation/3: "If %s receives the evaluation %s, it cannot receive the opposite evaluation %s at the same time and in the same respect."
+  cannot_recieve_evaluation/2: "%s cannot receive the evaluation %s at the same time and in the same respect."
+  case_exception/1: "The case of %s is an exception."
+  character_quality/1: "Therefore, %s has this character quality."
+  cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
+  compositionally_hereditary/2: "Property %[2]s is compositionally hereditary with regard to %[1]s: if every part has it, the whole has it."
+  has_property/2: "%s has property %s."
+  have_grounds_think/1: "A large majority have justified grounds to think %s is acceptable."
+  not_bring_about/1: "Therefore, you had better not bring about %s."
+  not_fit_action/1: "The description of agent %s's action actually fits the definition of the quality."
+  popular_practise/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
+  position_to_bring_about/1: "I am in a position to bring about %s."
+  quality_defined/1: "The character quality attributed to %s is well defined."
+  recieves_evaluation/2: "%s receives the evaluation %s."
+  rule_can_waived/1: "If the case of %s is an exception, then the established rule can be waived in that case."
+  rule_waived/1: "Therefore, the established rule can be waived in the case of %s."
+  to_think_acceptable/1: "That gives a reason to think that %s is acceptable."
+argument_schemes:
+  - id: exeptional
+    variables: [A]
+    premises:
+      - rule_can_waived(A)
+      - case_exception(A)
+    conclusions:
+      - rule_waived(A)
+  - id: opposition-normative
+    variables: [A,X,X2]
+    premises:
+      - cannot_opposite_evaluation(A,X,X2)
+      - recieves_evaluation(A,X)
+    conclusions:
+      - cannot_recieve_evaluation(A,X2)
+  - id: composition_generic
+    variables: [A,P]
+    premises:
+      - all_parts_propert(A,P)
+    assumptions:
+      - compositionally_hereditary(A,P)
+    conclusions:
+      - has_property(A,P)
+  - id: treat
+    variables: [X,C]
+    premises:
+      - cited_bad_consequences(X,C)
+      - position_to_bring_about(C)
+      - assert_bad(X,C)
+    conclusions:
+      - not_bring_about(X)
+  - id: abductive_action_to_character
+    variables: [A]
+    premises:
+      - action_character(A)
+    assumptions:
+      - quality_defined(A)
+      - not_fit_action(A)
+    conclusions:
+      - character_quality(A)
+  - id: popular_practise
+    variables: [A]
+    premises:
+      - popular_practise(A)
+      - to_think_acceptable(A)
+    assumptions:
+      - have_grounds_think(A)
+    conclusions:
+      - acceptable_in_case(A)
+statements:
+  rule_waived(ann): "The established rule can be waived in the case of ann."
+  cannot_recieve_evaluation(act,bad): "act cannot receive the evaluation bad."
+  has_property(car,heavy): "car is heavy."
+  not_bring_about(strike): "You had better not bring about strike."
+  character_quality(bob): "bob has this character quality."
+  acceptable_in_case(tipping): "tipping is acceptable in this case."
+assumptions:
+  - rule_can_waived(ann)
+  - case_exception(ann)
+  - cannot_opposite_evaluation(act,good,bad)
+  - recieves_evaluation(act,good)
+  - all_parts_propert(car,heavy)
+  - cited_bad_consequences(strike,layoffs)
+  - position_to_bring_about(layoffs)
+  - assert_bad(strike,layoffs)
+  - action_character(bob)
+  - popular_practise(tipping)
+  - to_think_acceptable(tipping)
+tests:
+  in:
+    - rule_waived(ann)
+    - cannot_recieve_evaluation(act,bad)
+    - has_property(car,heavy)
+    - not_bring_about(strike)
+    - character_quality(bob)
+    - acceptable_in_case(tipping)

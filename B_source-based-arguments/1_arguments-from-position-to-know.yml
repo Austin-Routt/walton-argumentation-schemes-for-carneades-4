@@ -6,7 +6,7 @@ meta:
   version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  act_on_presumption/1: "Therefore, I act on the presumption that %s is not true or true."
+  act_on_presumption/1: "I act on the presumption that %s is not true or true."
   asserts/2: "%s asserts that %s is true."
   based_on_evidence/1: "The assertion %v is based on evidence."
   based_on_false_belief/1: "%s was originally based on beliefs of which one is false."
@@ -33,23 +33,23 @@ language:
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   normal_true/1: "If the situation were normal, %s would be true."
   not_know_true/1: "I do not know whether %s is true or not."
-  not_normal/1: "Therefore, the situation in which %s was expected is not normal."
+  not_normal/1: "The situation in which %s was expected is not normal."
   not_originally_believed/1: "%s was not originally believed for other reasons."
   other_consequences_presumption/2: "If I act on the presumption that %s is not true, and it is true, consequences %s will follow."
   other_credible_sources_disagree/1: "Other credible sources disagree with %s."
-  plausible_false/2: "Therefore, subject to further investigations in %s it is plausible to presume that %s is false."
-  plausibly_true/1: "Therefore, %s is plausibly true."
+  plausible_false/2: "Subject to further investigations in %s it is plausible to presume that %s is false."
+  plausibly_true/1: "%s is plausibly true."
   position_to_know/2: "%s is in a position to know about things in a certain subject domain %s."
   position_to_know_group/2: "Group %s is in a special position to know that %s is true."
   presumption/1: "I have to act on the presumption that %s is true or not true."
-  reasonable_belive/1: "It is reasonable to believe %s."
+  reasonable_believe/1: "It is reasonable to believe %s."
   recaller_doubts/2: "%s, who recalls %s, expresses doubt about it."
   recalls/2: "Person %s recalls %s."
   special_in/2: "%s is in %s."
   special_not_in/2: "%s is not in %s."
   special_proposition/2: "%s is a special type of proposition such that, if it were true, it would normally or usually be expected to be in %s."
   sufficient_evidence/1: "The search for evidence about whether %s is true has progressed sufficiently."
-  therefore_true/1: "Therefore %s is true."
+  therefore_true/1: "%s is true."
   true_propositions_contained/2: "It has not been established that all the true propositions in %s are contained in %s."
   uninvestigated/1: "The truth of %s has not been sufficiently investigated."
   untrustworthy/1: "%s is untrustworthy."
@@ -145,7 +145,7 @@ argument_schemes:
     assumptions: 
      - sufficient_evidence(A)
 
-  - id: epistemic_ignorence
+  - id: epistemic_ignorance
     meta:
       title: Epistemic Argument From Ignorance
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 27, p. 328. Douglas Walton , \"Nonfallacious Arguments from Ignorance.\" American Philosophical Quarterly 29 (1992), p. 386."
@@ -165,7 +165,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 60, p. 346. J.L. Pollock, \"Defeasible Reasoning.\" Cognitive Science 11 (1987), pp. 481-518."
     variables: [P,M]
     conclusions:
-      - reasonable_belive(M)
+      - reasonable_believe(M)
     premises:
       - recalls(P,M)
       - believe_it(M)

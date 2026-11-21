@@ -120,7 +120,7 @@ class Mutations(unittest.TestCase):
     def test_mutations(self):
         for name, sid, old, new in [
             ("danger_polarity", "danger", "      - should_not(X)", "      - ¬should_not(X)"),
-            ("division_roles", "division_generic", "      - all_parts_propert(A,P)", "      - all_parts_propert(P,A)"),
+            ("division_roles", "division_generic", "      - all_parts_property(A,P)", "      - all_parts_property(P,A)"),
             ("precedent_negation_dropped", "from_precedent", "      - ¬has_property(A,G)", "      - has_property(A,G)"),
             ("sacrifice_arguments_swapped", "sacrifice", "      - sacrifice_value(A,V)", "      - sacrifice_value(V,A)"),
             ("ad_hominem_premise_dropped", "ad_hominem", "      - advocates_conclusion(A,S,C)\n", ""),

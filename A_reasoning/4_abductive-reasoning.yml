@@ -10,9 +10,9 @@ language:
   agent_event/1: "An observed event appears to have been brought about by some agent %s."
   agent_quality/2: "%s has %s."
   character/1: "Agent %s has a character quality of a kind that has been defined."
-  character_action/1: "Therefore, if %s carries out some action in the future, this action is likely to be classifiable as fitting under that character quality."
+  character_action/1: "If %s carries out some action in the future, this action is likely to be classifiable as fitting under that character quality."
   character_defined/1: "Agent %s's character is well defined."
-  character_quality/1: "Therefore, %s has this character quality."
+  character_quality/1: "%s has this character quality."
   data_account/2: "Each account in the set %s is successful in explaining %s."
   data_set/1: "%s is a set of data or supposed facts in a case."
   diagram_set/3: "There is a set of argument diagrams %s and in each argument diagram %s represents premises of an argument that, supplemented by plausible conditionals and other statements that function as missing parts of enthymemes, leads to a respective conclusion %s."
@@ -29,15 +29,15 @@ language:
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
   more_reliable/1: "There are other events that would more reliably account for the sign %s."
   not_character_action/1: "Agent %s has some actions that don't fit into defined character."
-  not_fit_action/1: "The description of agent %s's action actually fits the definition of the quality."
+  action_fits_quality/1: "The description of agent %s's action actually fits the definition of the quality."
   observed/1:  "%s has been observed."
-  plausible_conclusion/1: "Therefore %s is the most plausible conclusion in the case."
-  plausible_hypothesis/1: "Therefore, %s is the most plausible hypothesis in the case."
+  plausible_conclusion/1: "%s is the most plausible conclusion in the case."
+  plausible_hypothesis/1: "%s is the most plausible hypothesis in the case."
   quality_defined/1: "The character quality attributed to %s is well defined."
   reference_class/2: "Few agents other than %s might have brought about this event and have the character quality %s."
   strong_correlation/2: "Correlation of %s and %s is strong."
-  succesful_account/2: "%s is the account that explains %s most successfully."
-  succesful_diagram/1: "The most plausible -strongest- argument is represented by %s."
+  successful_account/2: "%s is the account that explains %s most successfully."
+  successful_diagram/1: "The most plausible -strongest- argument is represented by %s."
   sufficient_account/2: "%s itself, as an explanation of %s apart from other alternative explanations available so far, is sufficient."
   sufficient_correlation/2: "Correlation between %s and %s is sufficient."
   true_in_situation/1: "%s is true in this situation."
@@ -74,7 +74,7 @@ argument_schemes:
     premises:
       - data_set(D)
       - data_account(A,D)
-      - succesful_account(A1,D)
+      - successful_account(A1,D)
     assumptions: 
      - sufficient_account(A1,D)
     exceptions:
@@ -90,7 +90,7 @@ argument_schemes:
     premises:
       - data_set(D)
       - diagram_set(G,D,C)
-      - succesful_diagram(C1)
+      - successful_diagram(C1)
     assumptions:
       - sufficient_account(C1,D)
     exceptions:
@@ -107,7 +107,7 @@ argument_schemes:
       - action_character(A)
     assumptions: 
      - quality_defined(A)
-     - not_fit_action(A)
+     - action_fits_quality(A)
 
   - id: abductive_character_to_action
     meta:
@@ -136,7 +136,7 @@ argument_schemes:
       - agent_quality(A,Q)
     assumptions: 
      - quality_defined(A)
-     - not_fit_action(A)
+     - action_fits_quality(A)
      - reference_class(A,Q)
 
   - id: evidence_hypothesis_verification

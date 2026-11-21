@@ -219,6 +219,7 @@ func TestCLI(t *testing.T) {
 			t.Run(r.Check, func(t *testing.T) { judge(t, []vvlib.Result{r}) })
 		}
 	})
+	t.Run("migration", func(t *testing.T) { judge(t, vvlib.MigrationFixtureChecks(cli)) })
 	root := vvlib.RepoRoot()
 	for _, f := range vvlib.SchemeFiles(root) {
 		f := f

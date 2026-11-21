@@ -6,14 +6,14 @@ meta:
   version: "0.1.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
-  all_parts_propert/2: "All the parts of %s have the property %s."
+  all_parts_property/2: "All the parts of %s have the property %s."
   compositionally_hereditary/2: "Property %[2]s is compositionally hereditary with regard to %[1]s: if every part has it, the whole has it."
   has/2: "%s has %s."
   has_property/2: "%s has property %s."
   member_group_quality/3: "If the member %s has quality %s, then %s will have it as well."
   member_quality/3: "Member %s of the group %s has the quality %s."
   part_is/2: "%s is %s."
-  part_propert/2: "%s is %s."
+  part_property/2: "%s is %s."
   part_whole/5: "%[1]s is %[2]s only if %[3]s, %[4]s or %[5]s is."
   smaller_part_property/3: "%s is less %s than %s, because it is a smaller part of it."
   species_of/2: "%s is a species of %s."
@@ -47,7 +47,7 @@ argument_schemes:
     conclusions:
       - has_property(A,P)
     premises:
-      - all_parts_propert(A,P)
+      - all_parts_property(A,P)
     assumptions: 
      - compositionally_hereditary(A,P)
 
@@ -57,7 +57,7 @@ argument_schemes:
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 9.2, p. 316. Ch. Perelman and L.Olbrechts-Tyteca, The New Rhetoric: A Treatise on Argumentation. Notre Dame, Ind.: University of Notre Dame Press, 1969, pp.231-233,234-241."
     variables: [Y,X,A]
     conclusions:
-      - part_propert(Y,A)
+      - part_property(Y,A)
     premises:
       - species_of(Y,X)
       - species_property(X,A)

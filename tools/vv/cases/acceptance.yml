@@ -50,7 +50,7 @@ cases:
       - expert(smith,law)
       - in_domain(liable(acme),law)
       - asserts(smith,liable(acme))
-      - all_parts_propert(car,red)
+      - all_parts_property(car,red)
     arguments:
       - expert_opinion(smith,law,liable(acme))
       - composition_generic(car,red)
@@ -74,7 +74,7 @@ cases:
   # completes.
   - name: slippery-slope/cycle
     source: "49, p. 339"
-    library: A_reasoning/5_casual-reasoning.yml
+    library: A_reasoning/5_causal-reasoning.yml
     assumptions:
       - causes(a,b)
       - causes(b,a)

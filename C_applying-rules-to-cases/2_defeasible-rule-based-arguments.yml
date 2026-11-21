@@ -14,11 +14,11 @@ language:
   do_obligator/0: "One must not do what is prohibited, and must do what is obligatory."
   established_rule_property/3: "Generally, according to the established rule %s, if something has property %s, then it also has property %s."
   evaluation/3: "If %s is the case, then an evaluation %s is justified/conduct %s is required."
-  evaluation_justified/2: "Therefore, evaluation %s is justified/conduct %s is required."
+  evaluation_justified/2: "Evaluation %s is justified/conduct %s is required."
   exception_backed/1: "The case of %s is of a recognized type of exception, or evidence that the established rule does not apply to it, or comparable cases, can be given."
   excuse/1: "%s falls under a recognized category of excuses for this type of case and the inclusion can be justified, or what is special about the case justifies the exemption."
   excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
-  exempted/1: "Therefore, in this instance, I ought to be exempted from %s."
+  exempted/1: "In this instance, I ought to be exempted from %s."
   has_property/2: "%s has property %s."
   implies/2: "%s implies %s."
   is_a/2: "%s is %s."
@@ -29,7 +29,7 @@ language:
   not_excuse/1: "%s does not fall under a recognized category, and this would pose a problem in future cases."
   not_necessarily_true/2: "That %s is %s is not a necessary truth."
   obligatory/1: "%s is obligatory."
-  oficcial_rulebook/3: "In the official rulebook for %s -a rule governed institution, such as a game- it is stated that %s counts as %s."
+  official_rulebook/3: "In the official rulebook for %s -a rule governed institution, such as a game- it is stated that %s counts as %s."
   pleader_committed/1: "I -the pleader- have committed %s."
   prohibited/1: "%s is prohibited."
   recognized_exception_category/2: "The case of %s falls under an already recognized category of exception to the rule %s, which does not require a change in the rule."
@@ -38,7 +38,7 @@ language:
   rule_exception_recognized/2: "An exception to the rule %s must be recognized for the case of %s, and the rule appropriately modified or qualified."
   rule_inapplicable_to/2: "The established rule %s does not really apply to the case of %s."
   rule_require/3: "Normally, rule %s requires or forbids a type of action or inaction %s, which carries with it a sanction -penalty- %s."
-  rule_waived/1: "Therefore, the established rule can be waived in the case of %s."
+  rule_waived/1: "The established rule can be waived in the case of %s."
   same_meaning/3: "Speakers of %s believe that %s means the same as %s."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
   special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
@@ -73,7 +73,7 @@ argument_schemes:
     conclusions:
       - counts_as(D,W)
     premises:
-      - oficcial_rulebook(I,D,W)
+      - official_rulebook(I,D,W)
       - correctly_report
     exceptions:
       - rule_changed(I,D,W)
@@ -130,7 +130,7 @@ argument_schemes:
     exceptions:
       - excuse_or_overriding_duty(A,X)
 
-  - id: exeptional
+  - id: exceptional
     meta:
       title: Argument For An Exceptional Case
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 56, p. 344. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995, p. 148."

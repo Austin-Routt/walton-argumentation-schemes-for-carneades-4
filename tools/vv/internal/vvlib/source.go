@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strings"
 
@@ -569,9 +570,60 @@ func MigrationChecks(lib *Library) []Result {
 		return []Result{fail(file, "(file)", "migration/readable", "%v", err)}
 	}
 	out := []Result{pass(file, "(file)", "migration/readable")}
+	// The renames of 5.6 come last in the table and hold for every row before
+	// them: a row names a record and statements as they were then.
+	schemeRen, predRen := map[string]string{}, map[string]string{}
+	for _, c := range t.Changes {
+		switch c.Kind {
+		case "rename-scheme":
+			schemeRen[c.Old] = c.New
+		case "rename-predicate":
+			predRen[strings.Split(c.Old, "/")[0]] = strings.Split(c.New, "/")[0]
+		}
+	}
+	renamed := func(st string) string {
+		for o, n := range predRen {
+			st = regexp.MustCompile(`(^|[^\w-])`+regexp.QuoteMeta(o)+`($|[^\w-])`).ReplaceAllString(st, "${1}"+n+"${2}")
+		}
+		return st
+	}
 	for _, c := range t.Changes {
 		probs := []string{}
-		s := lib.Scheme(c.Record)
+		switch c.Kind {
+		case "rename-scheme":
+			if lib.Scheme(c.Old) != nil || lib.Scheme(c.New) == nil {
+				probs = append(probs, fmt.Sprintf("the library should have %s and no longer %s", c.New, c.Old))
+			}
+		case "rename-predicate":
+			_, hasOld := lib.AG.Theory.Language[c.Old]
+			_, hasNew := lib.AG.Theory.Language[c.New]
+			if hasOld || !hasNew {
+				probs = append(probs, fmt.Sprintf("the language should define %s and no longer %s", c.New, c.Old))
+			}
+		case "rename-file":
+			_, errOld := os.Stat(filepath.Join(RepoRoot(), filepath.FromSlash(c.Old)))
+			_, errNew := os.Stat(filepath.Join(RepoRoot(), filepath.FromSlash(c.New)))
+			if errOld == nil || errNew != nil {
+				probs = append(probs, fmt.Sprintf("%s should exist and %s no longer", c.New, c.Old))
+			}
+		case "wording":
+			if c.Note == "" {
+				probs = append(probs, "a wording row says what changed in its note")
+			}
+		}
+		if strings.HasPrefix(c.Kind, "rename-") || c.Kind == "wording" {
+			if c.Plan == "" {
+				probs = append(probs, "a row needs its plan item")
+			}
+			out = append(out, res(file, c.Record, "migration/"+c.Kind+" "+c.Old, probs))
+			continue
+		}
+		rec := c.Record
+		if n, ok := schemeRen[rec]; ok {
+			rec = n
+		}
+		c.Old, c.New = renamed(c.Old), renamed(c.New)
+		s := lib.Scheme(rec)
 		if s == nil {
 			probs = append(probs, "no such record")
 		} else {

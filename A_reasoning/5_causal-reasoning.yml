@@ -10,7 +10,7 @@ language:
   act_value/2: "Done act %s is attributed the value %s."
   cannot_opposite_evaluation/3: "If %s receives the evaluation %s, it cannot receive the opposite evaluation %s at the same time and in the same respect."
   cannot_present_sametime/2: "%s cannot present %s at the same time and in the same respect."
-  cannot_recieve_evaluation/2: "%s cannot receive the evaluation %s at the same time and in the same respect."
+  cannot_receive_evaluation/2: "%s cannot receive the evaluation %s at the same time and in the same respect."
   causes/2: "Event %s causes event %s."
   causes_both/2: "Some other event causes both %s and %s."
   contrary_treatment_required/2: "The contrary treatment %[2]s is required for the subject %[1]s."
@@ -35,7 +35,7 @@ language:
   person_value_depending/3: "If a person is %s, his acts %s depending on judgment value, will be %s."
   presents/2: "%s presents %s."
   presents_predicate/3: "If %s presents the predicate %s, it cannot present the contradictory, contrary, converse, incompatible, predicate %s at the same time and in the same respect."
-  recieves_evaluation/2: "%s receives the evaluation %s."
+  receives_evaluation/2: "%s receives the evaluation %s."
   relation_converse_relation/4: "If %s is in relation %s with %s they can be in the converse relation %s."
   relation_with/3: "%s is in relation %s with %s."
   treatment_required/2: "The treatment %[2]s is required for the subject %[1]s."
@@ -71,7 +71,7 @@ argument_schemes:
       - causes(E1,E2)
       - horrible_costs(E2)
 
-  - id: opposition-descriptive_1
+  - id: opposition_descriptive_1
     meta:
       title: Argument From Opposition - Descriptive Scheme 1
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1a, p. 317."
@@ -82,7 +82,7 @@ argument_schemes:
       - presents_predicate(A,P,P2)
       - presents(A,P)
 
-  - id: opposition-descriptive_2
+  - id: opposition_descriptive_2
     meta:
       title: Argument From Opposition - Descriptive Scheme 2
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1b, p. 317."
@@ -93,7 +93,7 @@ argument_schemes:
       - not_presents_predicate(A,P,P2)
       - ¬presents(A,P)
 
-  - id: opposition-descriptive_3
+  - id: opposition_descriptive_3
     meta:
       title: Argument From Opposition - Descriptive Scheme 3
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.1c, p. 318."
@@ -104,16 +104,16 @@ argument_schemes:
       - must_present_complementary_contrary(A,P,P2)
       - ¬presents(A,P)
 
-  - id: opposition-normative
+  - id: opposition_normative
     meta:
       title: Argument From Opposition - Normative Scheme
       source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 11.2, p. 318."
     variables: [A,X,X2]
     conclusions:
-      - cannot_recieve_evaluation(A,X2)
+      - cannot_receive_evaluation(A,X2)
     premises:
       - cannot_opposite_evaluation(A,X,X2)
-      - recieves_evaluation(A,X)
+      - receives_evaluation(A,X)
 
   - id: rhetorical_oppositions_normative
     meta:

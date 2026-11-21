@@ -12,6 +12,9 @@
 #            assumption or exception; nothing to migrate, listed so that the
 #            table is complete)
 #   old/new  the statement as the record writes it
+#            rename-scheme, rename-predicate (name/arity), rename-file: the
+#            identifiers of 5.6, applied by tools/migrate_r2.py; wording: a
+#            change of the language templates only
 #   plan     the plan item; page: the compendium's page
 changes:
   - {record: popular_opinion, kind: removed, old: "generally_accepted(A)", new: "", plan: "5.1", page: 311, note: "repeated the premise generally_true(A)"}
@@ -77,3 +80,38 @@ changes:
   - {record: full_slippery_slope, kind: arity, old: "accept_all_steps", new: "accept_all_steps(C0)", plan: "5.4", page: 341}
   - {record: rule_physical_world_1, kind: arity, old: "not_necessarily_true", new: "not_necessarily_true(W,D)", plan: "5.4", page: 342}
   - {record: rule_physical_world_2, kind: arity, old: "rule_changed", new: "rule_changed(I,D,W)", plan: "5.4", page: 342}
+  - {record: exceptional, kind: rename-scheme, old: "exeptional", new: "exceptional", plan: "5.6", page: 0}
+  - {record: epistemic_ignorance, kind: rename-scheme, old: "epistemic_ignorence", new: "epistemic_ignorance", plan: "5.6", page: 0}
+  - {record: threat, kind: rename-scheme, old: "treat", new: "threat", plan: "5.6", page: 0}
+  - {record: popular_practice, kind: rename-scheme, old: "popular_practise", new: "popular_practice", plan: "5.6", page: 0}
+  - {record: opposition_descriptive_1, kind: rename-scheme, old: "opposition-descriptive_1", new: "opposition_descriptive_1", plan: "5.6", page: 0}
+  - {record: opposition_descriptive_2, kind: rename-scheme, old: "opposition-descriptive_2", new: "opposition_descriptive_2", plan: "5.6", page: 0}
+  - {record: opposition_descriptive_3, kind: rename-scheme, old: "opposition-descriptive_3", new: "opposition_descriptive_3", plan: "5.6", page: 0}
+  - {record: opposition_normative, kind: rename-scheme, old: "opposition-normative", new: "opposition_normative", plan: "5.6", page: 0}
+  - {record: end_and_means_3, kind: rename-predicate, old: "easy_to_achive/1", new: "easy_to_achieve/1", plan: "5.6", page: 0}
+  - {record: pragmatic_inconsistency, kind: rename-predicate, old: "arguement_not_accepted/2", new: "argument_not_accepted/2", plan: "5.6", page: 0}
+  - {record: memory, kind: rename-predicate, old: "reasonable_belive/1", new: "reasonable_believe/1", plan: "5.6", page: 0}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "certainity_no_need/2", new: "certainty_no_need/2", plan: "5.6", page: 0}
+  - {record: circumstantial_ad_hominem, kind: rename-predicate, old: "commited_opposite/2", new: "committed_opposite/2", plan: "5.6", page: 0}
+  - {record: sorites_slippery_slope, kind: rename-predicate, old: "beyond_contetion/2", new: "beyond_contention/2", plan: "5.6", page: 0}
+  - {record: two_person_practical, kind: rename-predicate, old: "situation_necessiy/4", new: "situation_necessity/4", plan: "5.6", page: 0}
+  - {record: rule_physical_world_2, kind: rename-predicate, old: "oficcial_rulebook/3", new: "official_rulebook/3", plan: "5.6", page: 0}
+  - {record: waste, kind: rename-predicate, old: "posible/1", new: "can_be_realized/1", plan: "5.6", page: 0, note: "possible/1 is upstream's, about an action; this one is about a goal"}
+  - {record: popular_practice, kind: rename-predicate, old: "popular_practise/1", new: "popular_practice/1", plan: "5.6", page: 0}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "property_precion_needed/1", new: "precision_needed/1", plan: "5.6", page: 0}
+  - {record: composition_generic, kind: rename-predicate, old: "all_parts_propert/2", new: "all_parts_property/2", plan: "5.6", page: 0}
+  - {record: part_in_whole, kind: rename-predicate, old: "part_propert/2", new: "part_property/2", plan: "5.6", page: 0}
+  - {record: verbal_slippery_slope, kind: rename-predicate, old: "not_has_propery/2", new: "not_has_property/2", plan: "5.6", page: 0}
+  - {record: verbal_slippery_slope, kind: rename-predicate, old: "individuals_propoerty/3", new: "individuals_property/3", plan: "5.6", page: 0}
+  - {record: verbal_classification_vagueness, kind: rename-predicate, old: "vaguness_recejted/1", new: "vagueness_rejected/1", plan: "5.6", page: 0}
+  - {record: opposition_normative, kind: rename-predicate, old: "recieves_evaluation/2", new: "receives_evaluation/2", plan: "5.6", page: 0}
+  - {record: opposition_normative, kind: rename-predicate, old: "cannot_recieve_evaluation/2", new: "cannot_receive_evaluation/2", plan: "5.6", page: 0}
+  - {record: distress, kind: rename-predicate, old: "bring_relive/2", new: "bring_relieve/2", plan: "5.6", page: 0}
+  - {record: ad_hominem, kind: rename-predicate, old: "character_revelant/1", new: "character_relevant/1", plan: "5.6", page: 0}
+  - {record: abductive_backward, kind: rename-predicate, old: "succesful_account/2", new: "successful_account/2", plan: "5.6", page: 0}
+  - {record: abductive_forward, kind: rename-predicate, old: "succesful_diagram/1", new: "successful_diagram/1", plan: "5.6", page: 0}
+  - {record: abductive_action_to_character, kind: rename-predicate, old: "not_fit_action/1", new: "action_fits_quality/1", plan: "5.6", page: 0, note: "the text was always positive: renamed, not inverted"}
+  - {record: "(library)", kind: rename-file, old: "A_reasoning/5_casual-reasoning.yml", new: "A_reasoning/5_causal-reasoning.yml", plan: "5.6", page: 0}
+  - {record: "(library)", kind: rename-file, old: "B_source-based-arguments/2_argumen-from-commitment.yml", new: "B_source-based-arguments/2_argument-from-commitment.yml", plan: "5.6", page: 0}
+  - {record: "(library)", kind: rename-file, old: "B_source-based-arguments/4_argumen-from-popular-acceptence.yml", new: "B_source-based-arguments/4_argument-from-popular-acceptance.yml", plan: "5.6", page: 0}
+  - {record: "(library)", kind: wording, old: "", new: "", plan: "5.6", page: 0, note: "no template begins with \"Therefore\" any more; 39 did"}

@@ -46,7 +46,7 @@ cases:
     assumptions:
       - bad_character(bob)
       - advocates_conclusion(bob,arg1,tax_cut)
-    questioned: [character_revelant(arg1)]
+    questioned: [character_relevant(arg1)]
     not_in:
       - bad_not_accepted(bob,arg1)
 
@@ -154,7 +154,7 @@ cases:
   - name: sorites_slippery_slope/positive
     source: "51, pp. 340-341"
     assumptions:
-      - beyond_contetion(a0,bald)
+      - beyond_contention(a0,bald)
       - all_has(a0,bald,a1)
       - reapplication_sequence(a0,an,bald)
     arguments:
@@ -164,14 +164,14 @@ cases:
   - name: sorites_slippery_slope/adverse-sequence-for-another-property
     source: "51, pp. 340-341"
     assumptions:
-      - beyond_contetion(a0,bald)
+      - beyond_contention(a0,bald)
       - all_has(a0,bald,a1)
       - reapplication_sequence(a0,an,tall)
     no_arguments: [sorites_slippery_slope]
   - name: sorites_slippery_slope/adverse-sequence-between-other-individuals
     source: "51, pp. 340-341"
     assumptions:
-      - beyond_contetion(a0,bald)
+      - beyond_contention(a0,bald)
       - all_has(a0,bald,a1)
       - reapplication_sequence(b0,an,bald)
     no_arguments: [sorites_slippery_slope]
@@ -222,21 +222,21 @@ cases:
       - means_same(whale,mammal)
 
   # 3.7 argument for an exceptional case (56, p. 344)
-  - name: exeptional/positive
+  - name: exceptional/positive
     source: "56, p. 344"
     assumptions:
       - rule_can_waived(a)
       - case_exception(a)
     arguments:
-      - "exeptional(a)"
+      - "exceptional(a)"
     in:
       - rule_waived(a)
-  - name: exeptional/adverse-rule-for-another-case
+  - name: exceptional/adverse-rule-for-another-case
     source: "56, p. 344"
     assumptions:
       - rule_can_waived(b)
       - case_exception(a)
-    no_arguments: [exeptional]
+    no_arguments: [exceptional]
     not_in:
       - rule_waived(a)
 
