@@ -67,9 +67,9 @@ issues:
     severity: major
     title: "is/2 in a conclusion is executed by GoCHR as an assignment; group_2 constructs nothing"
   - id: X-LOOP
-    where: both
-    severity: major
-    title: "No duplicate check in the rule engine: a scheme that re-derives its own premise, or two that derive each other's, run to the limit of 100000 rule applications and starve every scheme listed after them"
+    where: library
+    severity: minor
+    title: "A scheme whose premise repeats one of its own assumptions (exeptional) feeds itself. Since set semantics in the rule store (PLAN.md 2.2) this no longer loops; the repeated statement is redundant (p. 374) and goes with PLAN.md 3.7"
   - id: E-BUDGET
     where: engine
     severity: major
@@ -135,8 +135,7 @@ expected:
   - {issue: E-TERMS,   scheme: (engine), checks: [string-constants-survive, hyphenated-constants-are-not-computed]}
   - {issue: X-NEG,     scheme: (engine), checks: [negated-premises-match, negation-through-statement-variable]}
   - {issue: X-IS,      scheme: (engine), checks: [is-as-predicate-in-conclusion]}
-  - {issue: X-LOOP,    scheme: (engine), checks: [rederivation-terminates, no-scheme-is-starved]}
-  - {issue: E-BUDGET,  scheme: (engine), checks: [budget-exhaustion-is-reported, engine-keeps-stdout-clean, cli-output-stays-valid, growing-term-is-bounded]}
+  - {issue: E-BUDGET,  scheme: (engine), checks: [budget-exhaustion-is-reported, engine-keeps-stdout-clean, growing-term-is-bounded]}
   - {issue: E-CAPTURE, scheme: (engine), checks: [unbound-variable-is-not-captured]}
   - {issue: E-ROLES,   scheme: (engine), checks: [scheme-roles-are-imported]}
 
@@ -151,9 +150,7 @@ expected:
   - {issue: X-IS, scheme: group_2, checks: [static/no-reserved-functor, iso/fires, iso/conclusions-in, iso/premises-needed, full/fires, full/conclusions-in, full/premises-needed, cli/scenario]}
 
   # schemes that feed themselves or each other
-  - {issue: X-LOOP, scheme: exeptional, checks: [static/not-self-feeding, iso/terminates, iso/premises-needed, full/terminates, full/premises-needed]}
-  - {issue: X-LOOP, file: walton.yml, scheme: composition_generic, checks: [full/terminates, full/premises-needed]}
-  - {issue: X-LOOP, file: walton.yml, scheme: division_generic,    checks: [full/terminates, full/premises-needed]}
+  - {issue: X-LOOP, scheme: exeptional, checks: [static/not-self-feeding]}
 
   # variables no premise binds
   - {issue: X-RANGE, scheme: practical_necessary_condition,  checks: [engine-validator, static/range-restricted, iso/ground, iso/premises, iso/exceptions-undercut, full/ground, full/exceptions-undercut]}

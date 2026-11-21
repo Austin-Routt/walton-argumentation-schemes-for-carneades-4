@@ -20,6 +20,11 @@ import (
 func TheoryToRuleStore(t *Theory) *chr.RuleStore {
 	// log.Printf("TheoryToRuleStore\n") // DEBUG
 	rs := chr.MakeRuleStore()
+	// Argument construction is forward chaining over facts, and facts form a
+	// set (docs/contracts.md, contract 2): a fact derived a second time must
+	// not trigger the schemes again. Without this, schemes that re-derive a
+	// fact, or derive each other's premises, run to MAXRULEAPPS.
+	rs.Unique = true
 	for _, s := range t.ArgSchemes {
 		// If the scheme has no conclusions, skip the scheme
 		// and assume it only defines a weighing function but no rule
