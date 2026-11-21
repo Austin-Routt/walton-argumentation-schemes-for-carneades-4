@@ -1,0 +1,1242 @@
+# One instance per record (PLAN.md 5.7), written by hand: the premises as the
+# book states them, in the record's vocabulary, with constants for the book's
+# variables (from the book's own examples where it gives one), the argument
+# the record must build and the conclusion that must be in. `variants: true`
+# runs the case once without each premise (no argument) and once with each
+# exception of the scheme stated for the argument's parameters (undercut).
+# The expected conclusion is written from the book, not taken from the record.
+cases:
+  - name: group_2/book
+    source: "21.2, p. 322"
+    assumptions:
+      - group_quality(senate,wise)
+      - group_member(ann,senate)
+      - group_member_quality(senate,wise,ann)
+    arguments:
+      - group_2(senate,wise,ann)
+    in:
+      - has(ann,wise)
+    variants: true
+  - name: division_generic/book
+    source: "10.1, p. 317"
+    assumptions:
+      - has_property(car,heavy)
+    arguments:
+      - division_generic(car,heavy)
+    in:
+      - all_parts_property(car,heavy)
+    variants: true
+  - name: group_1/book
+    source: "21.1, pp. 321-322"
+    assumptions:
+      - member_quality(ann,team,fast)
+      - member_group_quality(ann,fast,team)
+    arguments:
+      - group_1(team,fast,ann)
+    in:
+      - has(team,fast)
+    variants: true
+  - name: composition_generic/book
+    source: "9.1, p. 316"
+    assumptions:
+      - all_parts_property(car,heavy)
+    arguments:
+      - composition_generic(car,heavy)
+    in:
+      - has_property(car,heavy)
+    variants: true
+  - name: part_in_whole/book
+    source: "9.2, p. 316"
+    assumptions:
+      - species_of(rose,flower)
+      - species_property(flower,beautiful)
+    arguments:
+      - part_in_whole(rose,flower,beautiful)
+    in:
+      - part_property(rose,beautiful)
+    variants: true
+  - name: whole_into_parts/book
+    source: "10.2, p. 317"
+    assumptions:
+      - whole_of(team,ann,bob,cy)
+      - part_whole(team,strong,ann,bob,cy)
+      - part_is(ann,strong)
+    arguments:
+      - whole_into_parts(team,ann,bob,cy,strong)
+    in:
+      - whole_is(team,strong)
+    variants: true
+  - name: practical_reasoning1/book
+    source: "upstream: Atkinson and Bench-Capon (2007); Hal and Carla, p. 322"
+    assumptions:
+      - current_circumstances(hal_needs_insulin)
+      - would_bring_about(take_insulin,hal_needs_insulin,hal_survives)
+      - would_be_realized(survival,hal_survives)
+      - would_promote_value(survival,life)
+    arguments:
+      - practical_reasoning1(take_insulin,hal_needs_insulin,hal_survives,survival,life)
+    in:
+      - should_be_performed(take_insulin)
+    variants: true
+  - name: practical_reasoning2/book
+    source: "upstream: Walton (2015)"
+    assumptions:
+      - current_circumstances(hal_needs_insulin)
+      - would_bring_about(take_insulin,hal_needs_insulin,hal_survives)
+      - would_be_realized(survival,hal_survives)
+    arguments:
+      - practical_reasoning2(take_insulin,hal_needs_insulin,hal_survives,survival)
+    in:
+      - should_be_performed(take_insulin)
+    variants: true
+  - name: negative_consequences/book
+    source: "33.2, p. 332"
+    assumptions:
+      - brings_about(smoking_ban,pub_closures)
+      - bad(pub_closures)
+    arguments:
+      - negative_consequences(smoking_ban,pub_closures)
+    in:
+      - ¬should_be_performed(smoking_ban)
+    variants: true
+  - name: positive_consequences/book
+    source: "33.1, p. 332"
+    assumptions:
+      - brings_about(smoking_ban,cleaner_air)
+      - good(cleaner_air)
+    arguments:
+      - positive_consequences(smoking_ban,cleaner_air)
+    in:
+      - should_be_performed(smoking_ban)
+    variants: true
+  - name: alternative_cognitive/book
+    source: "13.1, p. 318"
+    assumptions:
+      - can_be_case(rain,snow)
+      - plausibly_not_case(rain)
+    arguments:
+      - alternative_cognitive(rain,snow)
+    in:
+      - plausibly_case(snow)
+    variants: true
+  - name: alternative_normative/book
+    source: "13.2, p. 318"
+    assumptions:
+      - can_be_required(stop,go)
+      - is_required(stop)
+    arguments:
+      - alternative_normative(stop,go)
+    in:
+      - not_required(go)
+    variants: true
+  - name: sacrifice/book
+    source: "20, p. 322"
+    assumptions:
+      - sacrifice_made(degree,years)
+      - great_sacrifice(years,degree,worth)
+      - great_sacrifice_made(years,degree)
+    arguments:
+      - sacrifice(degree,years,worth)
+    in:
+      - sacrifice_value(degree,worth)
+    variants: true
+  - name: practical_inference/book
+    source: "22.1, p. 323"
+    assumptions:
+      - have_goal(health)
+      - action_realize_goal(exercise,health)
+    arguments:
+      - practical_inference(exercise,health)
+    in:
+      - carry_out_action(exercise)
+    variants: true
+  - name: practical_necessary_condition/book
+    source: "22.2, p. 323"
+    assumptions:
+      - goal_of_agent(me,pass_exam)
+      - alternative_action(ways_to_pass,pass_exam)
+      - necessary_action(study,ways_to_pass,pass_exam)
+      - practicality_action(study)
+      - more_acceptable_bringing(pass_exam,study)
+    arguments:
+      - practical_necessary_condition(study,pass_exam,me,ways_to_pass)
+    in:
+      - bringing_about_action(study)
+    variants: true
+  - name: practical_sufficient_condition/book
+    source: "22.3, p. 323"
+    assumptions:
+      - goal_of_agent(me,pass_exam)
+      - alternative_action_sufficient(ways_to_pass,pass_exam)
+      - sufficient_action(study,ways_to_pass,pass_exam)
+      - practicality_action(study)
+      - more_acceptable_bringing(pass_exam,study)
+    arguments:
+      - practical_sufficient_condition(study,pass_exam,me,ways_to_pass)
+    in:
+      - bringing_about_action(study)
+    variants: true
+  - name: value_based_practical_reasoning/book
+    source: "22.4, p. 324; Hal and Carla, p. 322"
+    assumptions:
+      - goal_of_agent(hal,survival)
+      - goal_supported_by_values(survival,life)
+      - necessary_or_sufficient_for_goal(hal,take_insulin,survival)
+    arguments:
+      - value_based_practical_reasoning(hal,survival,life,take_insulin)
+    in:
+      - should_bring_about(hal,take_insulin)
+    variants: true
+  - name: practical_goal/book
+    source: "22.5, p. 325"
+    assumptions:
+      - contributing_action(exercise,health)
+      - person_goal(ann,health)
+    arguments:
+      - practical_goal(ann,exercise,health)
+    in:
+      - should_do(ann,exercise)
+    variants: true
+  - name: end_and_means_1/book
+    source: "22.6.1, p. 325"
+    assumptions:
+      - means_to_end(training,victory)
+      - good(victory)
+    arguments:
+      - end_and_means_1(training,victory)
+    in:
+      - good(training)
+    variants: true
+  - name: end_and_means_2/book
+    source: "22.6.2, p. 325"
+    assumptions:
+      - means_end(money)
+      - more_important_ends
+    arguments:
+      - end_and_means_2(money)
+    in:
+      - ends_important(money)
+    variants: true
+  - name: end_and_means_3/book
+    source: "22.6.3, p. 325"
+    assumptions:
+      - means_to_end(walking,health)
+      - easy_to_achieve(walking)
+    arguments:
+      - end_and_means_3(walking,health)
+    in:
+      - good(health)
+    variants: true
+  - name: two_person_practical/book
+    source: "23, pp. 325-326"
+    assumptions:
+      - tells_intend(ann,trip,bob)
+      - situation_necessity(bob,ticket,trip,ann)
+    arguments:
+      - two_person_practical(ann,bob,trip,ticket)
+    in:
+      - should_carry_out(ann,ticket)
+    variants: true
+  - name: waste/book
+    source: "24, p. 326"
+    assumptions:
+      - stop_realize_wasted(ann,thesis)
+      - waste_bad_thing(ann,thesis)
+    arguments:
+      - waste(ann,thesis)
+    in:
+      - ought_to_continue(ann,thesis)
+    variants: true
+  - name: negative_consequences_prudential/book
+    source: "33.4, p. 332"
+    assumptions:
+      - not_doing(vaccinate)
+      - bad_consequence(vaccinate,illness)
+    arguments:
+      - negative_consequences_prudential(vaccinate,illness)
+    in:
+      - prudential(vaccinate)
+    variants: true
+  - name: pragmatic_alternative/book
+    source: "34, p. 333"
+    assumptions:
+      - alternatives(pay_ransom,hostage_harmed)
+      - undesirable(hostage_harmed)
+    arguments:
+      - pragmatic_alternative(pay_ransom,hostage_harmed)
+    in:
+      - do_other(pay_ransom)
+    variants: true
+  - name: threat/book
+    source: "35, p. 333"
+    assumptions:
+      - cited_bad_consequences(strike,layoffs)
+      - position_to_bring_about(layoffs)
+      - assert_bad(strike,layoffs)
+    arguments:
+      - threat(strike,layoffs)
+    in:
+      - not_bring_about(strike)
+    variants: true
+  - name: ad_baculum/book
+    source: "35.1, p. 333"
+    assumptions:
+      - alternative_bad(pay,lawsuit)
+      - undesirable(lawsuit)
+    arguments:
+      - ad_baculum(pay,lawsuit)
+    in:
+      - do_other(pay)
+    variants: true
+  - name: fear/book
+    source: "36, pp. 333-334"
+    assumptions:
+      - not_do_appear(insure,ruin)
+      - bad_for_you(ruin)
+      - prevent(ruin)
+      - only_way_prevent(ruin,insure)
+    arguments:
+      - fear(insure,ruin)
+    in:
+      - ought_to_bring_about(insure)
+    variants: true
+  - name: danger/book
+    source: "37, p. 334"
+    assumptions:
+      - occur(smoke,cancer)
+      - danger(cancer)
+    arguments:
+      - danger(smoke,cancer)
+    in:
+      - should_not(smoke)
+    variants: true
+  - name: help/book
+    source: "38, p. 334"
+    assumptions:
+      - help_needed(ann,bob)
+      - situation_help(ann,lift,bob)
+      - can_carry_out(bob,lift)
+      - not_too_costly(bob,lift)
+    arguments:
+      - help(ann,bob,lift)
+    in:
+      - carry_out(bob,lift)
+    variants: true
+  - name: distress/book
+    source: "39, pp. 334-335"
+    assumptions:
+      - distress(ann)
+      - relieve(bob,food,ann)
+    arguments:
+      - distress(bob,food,ann)
+    in:
+      - bring_relieve(bob,food)
+    variants: true
+  - name: negative_consequences_reasoning/book
+    source: "33.3, p. 332"
+    assumptions:
+      - agent_bring_about(tax_rise,recession)
+      - bad_for_goals(recession)
+    arguments:
+      - negative_consequences_reasoning(tax_rise,recession)
+    in:
+      - should_not_bring_about(tax_rise)
+    variants: true
+  - name: sunk_costs/book
+    source: "25, pp. 326-327"
+    assumptions:
+      - sunk_costs(concorde,millions)
+      - too_high_to_waste(millions)
+    arguments:
+      - sunk_costs(concorde,millions)
+    in:
+      - should_be_performed(concorde)
+    variants: true
+  - name: sign/book
+    source: "30, p. 329"
+    assumptions:
+      - finding_true(bear_tracks)
+      - indicated_true(bear_passed,bear_tracks)
+    arguments:
+      - sign(bear_tracks,bear_passed)
+    in:
+      - true_in_situation(bear_passed)
+    variants: true
+  - name: abductive_backward/book
+    source: "31.1, p. 329"
+    assumptions:
+      - data_set(clues)
+      - data_account(accounts,clues)
+      - successful_account(butler_did_it,clues)
+    arguments:
+      - abductive_backward(accounts,butler_did_it,clues)
+    in:
+      - plausible_hypothesis(butler_did_it)
+    variants: true
+  - name: abductive_forward/book
+    source: "31.2, pp. 329-330"
+    assumptions:
+      - data_set(clues)
+      - diagram_set(diagrams,clues,conclusions)
+      - successful_diagram(butler_guilty)
+    arguments:
+      - abductive_forward(clues,diagrams,conclusions,butler_guilty)
+    in:
+      - plausible_conclusion(butler_guilty)
+    variants: true
+  - name: abductive_action_to_character/book
+    source: "31.3, p. 330"
+    assumptions:
+      - action_character(bob)
+    arguments:
+      - abductive_action_to_character(bob)
+    in:
+      - character_quality(bob)
+    variants: true
+  - name: abductive_character_to_action/book
+    source: "31.4, p. 330"
+    assumptions:
+      - character(bob)
+    arguments:
+      - abductive_character_to_action(bob)
+    in:
+      - character_action(bob)
+    variants: true
+  - name: retroductive/book
+    source: "31.5, p. 331"
+    assumptions:
+      - agent_event(bob)
+      - event_quality(greedy)
+      - agent_quality(bob,greedy)
+    arguments:
+      - retroductive(bob,greedy)
+    in:
+      - event_question(bob)
+    variants: true
+  - name: evidence_hypothesis_verification/book
+    source: "32.1, p. 331"
+    assumptions:
+      - hypothesis_event(rain,wet_streets)
+      - event_true(wet_streets)
+    arguments:
+      - evidence_hypothesis_verification(rain,wet_streets)
+    in:
+      - rain
+    variants: true
+  - name: evidence_hypothesis_falsification/book
+    source: "32.2, pp. 331-332"
+    assumptions:
+      - hypothesis_event(rain,wet_streets)
+      - event_false(wet_streets)
+    arguments:
+      - evidence_hypothesis_falsification(rain,wet_streets)
+    in:
+      - ¬rain
+    variants: true
+  - name: abduction/book
+    source: "upstream: Carneades' walton.yml"
+    assumptions:
+      - observed(wet_streets)
+      - explanation(rain_theory,wet_streets)
+      - in(rain_theory,rain)
+    arguments:
+      - abduction(wet_streets,rain_theory,rain)
+    in:
+      - rain
+    variants: true
+  - name: slippery_slope_base_case/book
+    source: "49, p. 339"
+    assumptions:
+      - would_realize(legalize,addiction)
+      - horrible_costs(addiction)
+    arguments:
+      - slippery_slope_base_case(legalize,addiction)
+    in:
+      - negative_consequences(legalize)
+    variants: true
+  - name: slippery_slope_inductive_step/book
+    source: "49, p. 339"
+    assumptions:
+      - causes(addiction,crime)
+      - horrible_costs(crime)
+    arguments:
+      - slippery_slope_inductive_step(addiction,crime)
+    in:
+      - horrible_costs(addiction)
+    variants: true
+  - name: opposition_descriptive_1/book
+    source: "11.1, p. 317"
+    assumptions:
+      - presents_predicate(wall,white,black)
+      - presents(wall,white)
+    arguments:
+      - opposition_descriptive_1(white,black,wall)
+    in:
+      - cannot_present_sametime(wall,black)
+    variants: true
+  - name: opposition_descriptive_2/book
+    source: "11.1, p. 317"
+    assumptions:
+      - not_presents_predicate(number,even,odd)
+      - ¬presents(number,even)
+    arguments:
+      - opposition_descriptive_2(even,odd,number)
+    in:
+      - must_present_sametime(number,odd)
+    variants: true
+  - name: opposition_descriptive_3/book
+    source: "11.1, pp. 317-318"
+    assumptions:
+      - must_present_complementary_contrary(light,on,off)
+      - ¬presents(light,on)
+    arguments:
+      - opposition_descriptive_3(on,off,light)
+    in:
+      - must_present_sametime(light,off)
+    variants: true
+  - name: opposition_normative/book
+    source: "11.2, p. 318"
+    assumptions:
+      - cannot_opposite_evaluation(act,good,bad)
+      - receives_evaluation(act,good)
+    arguments:
+      - opposition_normative(act,good,bad)
+    in:
+      - cannot_receive_evaluation(act,bad)
+    variants: true
+  - name: rhetorical_oppositions_normative/book
+    source: "12.1, p. 318"
+    assumptions:
+      - if_treatment_required(friends,kindness,enemies,severity)
+      - treatment_required(friends,kindness)
+    arguments:
+      - rhetorical_oppositions_normative(friends,enemies,kindness,severity)
+    in:
+      - contrary_treatment_required(enemies,severity)
+    variants: true
+  - name: rhetorical_oppositions_descriptive/book
+    source: "12.2, p. 318"
+    assumptions:
+      - relation_converse_relation(ann,teaches,bob,learns_from)
+      - relation_with(ann,teaches,bob)
+    arguments:
+      - rhetorical_oppositions_descriptive(ann,bob,teaches,learns_from)
+    in:
+      - converse_relation(bob,learns_from,ann)
+    variants: true
+  - name: interaction_act_person_1/book
+    source: "18.1, p. 321"
+    assumptions:
+      - person_act(ann,rescue)
+      - act_value(rescue,brave)
+    arguments:
+      - interaction_act_person_1(rescue,ann,brave)
+    in:
+      - person_value(ann,brave)
+    variants: true
+  - name: interaction_act_person_2/book
+    source: "18.2, p. 321"
+    assumptions:
+      - person_judgment_value(ann,honest)
+      - person_value_depending(honest,report,truthful)
+    arguments:
+      - interaction_act_person_2(ann,report,honest,truthful)
+    in:
+      - person_acts_value(ann,report,truthful)
+    variants: true
+  - name: full_slippery_slope/book
+    source: "53, p. 341"
+    assumptions:
+      - initial_presumption(euthanasia)
+      - leads_to_next(euthanasia,assisted_suicide,involuntary_killing)
+      - accept_all_steps(euthanasia)
+    arguments:
+      - full_slippery_slope(euthanasia,assisted_suicide,involuntary_killing)
+    in:
+      - not_acceptable_step(euthanasia)
+    variants: true
+  - name: cause_to_effect/book
+    source: "28, p. 328"
+    assumptions:
+      - has_occurred(smoking)
+      - causes(smoking,cancer)
+    arguments:
+      - cause_to_effect(smoking,cancer)
+    in:
+      - will_occur(cancer)
+    variants: true
+  - name: correlation_to_cause/book
+    source: "29, pp. 328-329"
+    assumptions:
+      - correlated(smoking,cancer)
+    arguments:
+      - correlation_to_cause(smoking,cancer)
+    in:
+      - causes(smoking,cancer)
+    variants: true
+  - name: position_to_know/book
+    source: "1, p. 309"
+    assumptions:
+      - position_to_know(ann,street)
+      - asserts(ann,red_light_run)
+      - in_domain(red_light_run,street)
+    arguments:
+      - position_to_know(ann,street,red_light_run)
+    in:
+      - red_light_run
+    variants: true
+  - name: witness_testimony/book
+    source: "3, p. 310"
+    assumptions:
+      - position_to_know(ann,street)
+      - in_domain(street,red_light_run)
+      - believes(ann,red_light_run)
+      - asserts(ann,red_light_run)
+    arguments:
+      - witness_testimony(ann,street,red_light_run)
+    in:
+      - red_light_run
+    variants: true
+  - name: position_to_know_ad_populum/book
+    source: "4.2, p. 311"
+    assumptions:
+      - group_accepted(locals,safe_beach)
+      - position_to_know_group(locals,safe_beach)
+    arguments:
+      - position_to_know_ad_populum(safe_beach,locals)
+    in:
+      - plausibly_true(safe_beach)
+    variants: true
+  - name: expert_opinion_ad_populum/book
+    source: "4.3, p. 312"
+    assumptions:
+      - group_accepted(doctors,vaccines_safe)
+      - expert_in_knowledge(doctors)
+    arguments:
+      - expert_opinion_ad_populum(vaccines_safe,doctors)
+    in:
+      - therefore_true(vaccines_safe)
+    variants: true
+  - name: negative_normal_expectations/book
+    source: "26.1, p. 327"
+    assumptions:
+      - normal_true(alarm_silent)
+      - case_not_true(alarm_silent)
+    arguments:
+      - negative_normal_expectations(alarm_silent)
+    in:
+      - not_normal(alarm_silent)
+    variants: true
+  - name: negative_practical/book
+    source: "26.2, p. 327"
+    assumptions:
+      - not_know_true(loaded)
+      - presumption(loaded)
+      - consequences_presumption(loaded,accident)
+      - other_consequences_presumption(loaded,delay)
+      - more_serious_consequences(accident,delay)
+    arguments:
+      - negative_practical(loaded,accident,delay)
+    in:
+      - act_on_presumption(loaded)
+    variants: true
+  - name: epistemic_ignorance/book
+    source: "27, p. 328"
+    assumptions:
+      - true_propositions_contained(staff,files)
+      - special_proposition(spy,files)
+      - special_in(spy,staff)
+      - special_not_in(spy,files)
+      - bivalent(staff)
+    arguments:
+      - epistemic_ignorance(spy,staff,files)
+    in:
+      - plausible_false(staff,spy)
+    variants: true
+  - name: memory/book
+    source: "60, p. 346"
+    assumptions:
+      - recalls(ann,door_locked)
+      - believe_it(door_locked)
+    arguments:
+      - memory(ann,door_locked)
+    in:
+      - reasonable_believe(door_locked)
+    variants: true
+  - name: appearance/book
+    source: "59.2, p. 345"
+    assumptions:
+      - looks_like(rex,dog)
+    arguments:
+      - appearance(rex,dog)
+    in:
+      - instance(rex,dog)
+    variants: true
+  - name: credible_source/book
+    source: "upstream: Wyner (2016)"
+    assumptions:
+      - credible_source(ann,traffic)
+      - asserts(ann,jam)
+      - in_domain(jam,traffic)
+    arguments:
+      - credible_source(ann,traffic,jam)
+    in:
+      - jam
+    variants: true
+  - name: expert_opinion/book
+    source: "2, p. 310"
+    assumptions:
+      - expert(smith,law)
+      - in_domain(liable(acme),law)
+      - asserts(smith,liable(acme))
+    arguments:
+      - expert_opinion(smith,law,liable(acme))
+    in:
+      - liable(acme)
+    variants: true
+  - name: ignorance/book
+    source: "26, p. 327"
+    assumptions:
+      - would_be_known(spy(bob))
+      - ¬known(spy(bob))
+    arguments:
+      - ignorance(spy(bob))
+    in:
+      - ¬spy(bob)
+    variants: true
+  - name: commitment1/book
+    source: "40, p. 335, version 1"
+    assumptions:
+      - committed(ann,p)
+      - also_committed(p,q)
+    arguments:
+      - commitment1(ann,p,q)
+    in:
+      - committed_to(ann,q)
+    variants: true
+  - name: commitment2/book
+    source: "40, p. 335, version 2"
+    assumptions:
+      - also_committed_questioned(ann,p,q)
+      - dialog_committed(ann,p)
+    arguments:
+      - commitment2(ann,p,q)
+    in:
+      - commitment_arises(ann,q)
+    variants: true
+  - name: inconsistent_commitment/book
+    source: "44, p. 337"
+    assumptions:
+      - initial_commitment(bob,tax_cut)
+      - opposed_commitment(bob,tax_cut)
+    arguments:
+      - inconsistent_commitment(bob,tax_cut)
+    in:
+      - inconsistent_commitment(bob)
+    variants: true
+  - name: positive_value/book
+    source: "19.1, p. 321; Hal and Carla, p. 322"
+    assumptions:
+      - judged_positive_value(life,hal)
+      - positive_affects(life,survival,hal)
+    arguments:
+      - positive_value(life,hal,survival)
+    in:
+      - reason_retaining_goal(life,survival)
+    variants: true
+  - name: negative_value/book
+    source: "19.2, p. 321; Hal and Carla, p. 322"
+    assumptions:
+      - judged_negative_value(theft,hal)
+      - negative_affects(theft,survival,hal)
+    arguments:
+      - negative_value(theft,hal,survival)
+    in:
+      - reason_retracting_goal(theft,survival)
+    variants: true
+  - name: ad_hominem/book
+    source: "42, p. 336"
+    assumptions:
+      - bad_character(bob)
+      - advocates_conclusion(bob,arg1,tax_cut)
+    arguments:
+      - ad_hominem(bob,arg1,tax_cut)
+    in:
+      - bad_not_accepted(bob,arg1)
+    variants: true
+  - name: pragmatic_inconsistency/book
+    source: "43, pp. 336-337"
+    assumptions:
+      - advocates_conclusion(parent,arg1,smoking_unhealthy)
+      - opposite_action(parent,arg1,¬smoking_unhealthy)
+    arguments:
+      - pragmatic_inconsistency(parent,arg1,smoking_unhealthy)
+    in:
+      - argument_not_accepted(parent,arg1)
+    variants: true
+  - name: circumstantial_ad_hominem/book
+    source: "45, pp. 337-338"
+    assumptions:
+      - advocates_conclusion(parent,arg1,smoking_unhealthy)
+      - committed_opposite(parent,smoking_unhealthy)
+      - credibility_questioned(parent)
+    arguments:
+      - circumstantial_ad_hominem(parent,arg1,smoking_unhealthy)
+    in:
+      - plausibility_decreased(parent,arg1)
+    variants: true
+  - name: bias/book
+    source: "46, p. 338"
+    assumptions:
+      - not_taken_both(senator,tobacco_safe)
+      - biased(senator)
+    arguments:
+      - bias(senator,tobacco_safe)
+    in:
+      - arguer_not_taken_both(senator,tobacco_safe)
+    variants: true
+  - name: bias_ad_hominem/book
+    source: "47, pp. 338-339"
+    assumptions:
+      - proponent_biased(senator,arg1)
+      - biased_not_take_part(senator,inquiry,arg1)
+      - morally_bad(senator)
+    arguments:
+      - bias_ad_hominem(senator,arg1,inquiry)
+    in:
+      - not_given_credibility(arg1)
+    variants: true
+  - name: popular_opinion/book
+    source: "4, p. 311"
+    assumptions:
+      - generally_true(earth_round)
+      - favor(earth_round)
+    arguments:
+      - popular_opinion(earth_round)
+    in:
+      - reason_in_favor(earth_round)
+    variants: true
+  - name: pop_scheme/book
+    source: "4.1, p. 311"
+    assumptions:
+      - reference_group_accepted(scientists,earth_round)
+    arguments:
+      - pop_scheme(earth_round,scientists)
+    in:
+      - earth_round
+    variants: true
+  - name: pop_scheme_acceptance/book
+    source: "4.1, p. 311"
+    assumptions:
+      - reference_group_accepted(scientists,earth_round)
+    arguments:
+      - pop_scheme_acceptance(earth_round,scientists)
+    in:
+      - should_accept(earth_round)
+    variants: true
+  - name: deliberation_ad_populum/book
+    source: "4.4, p. 312"
+    assumptions:
+      - group_accepted(jury,guilty_verdict)
+      - deliberate(jury,guilty_verdict)
+    arguments:
+      - deliberation_ad_populum(guilty_verdict,jury)
+    in:
+      - plausibly_true(guilty_verdict)
+    variants: true
+  - name: moral_justification_ad_populum/book
+    source: "4.5, p. 312"
+    assumptions:
+      - good_group(good_citizens,recycling)
+      - goal_good_group(good_citizens)
+    arguments:
+      - moral_justification_ad_populum(good_citizens,recycling)
+    in:
+      - should_accept(recycling)
+    variants: true
+  - name: moral_justification_ad_populum_excuse/book
+    source: "4.6, p. 312"
+    assumptions:
+      - group_does(drivers,speeding,speeding_ok)
+      - acceptable_norm(speeding,speeding_ok,drivers)
+      - group_member(drivers)
+    arguments:
+      - moral_justification_ad_populum_excuse(drivers,speeding,speeding_ok)
+    in:
+      - morally_acceptable_action(speeding,speeding_ok)
+    variants: true
+  - name: snob_appeal_ad_populum/book
+    source: "4.7, p. 312"
+    assumptions:
+      - property_or_object(jet_set,rolex)
+      - elite_group(jet_set)
+      - goal_prestige
+      - accept_property_object(rolex,wealth,watch,jet_set)
+    arguments:
+      - snob_appeal_ad_populum(rolex,jet_set,watch,wealth)
+    in:
+      - should_accept(rolex)
+    variants: true
+  - name: appeal_to_vanity_ad_populum/book
+    source: "4.8, p. 312"
+    assumptions:
+      - admired_people(stars,brand_x)
+      - group_action(buy_brand_x,stars)
+    arguments:
+      - appeal_to_vanity_ad_populum(stars,brand_x,buy_brand_x)
+    in:
+      - carry_out_action(buy_brand_x)
+    variants: true
+  - name: rhetoric_ad_populum/book
+    source: "4.9, p. 313"
+    assumptions:
+      - group_accepted(union,leadership_honest)
+      - valued_to_be_member(union)
+      - out_group_not_accept(leadership_honest,union)
+    arguments:
+      - rhetoric_ad_populum(union,leadership_honest)
+    in:
+      - should_accept(leadership_honest)
+    variants: true
+  - name: common_folk_ad_populum/book
+    source: "4.10, p. 313"
+    assumptions:
+      - background(senator)
+    arguments:
+      - common_folk_ad_populum(senator)
+    in:
+      - being_credible(senator)
+    variants: true
+  - name: common_folks_group_ad_populum/book
+    source: "4.11, p. 313"
+    assumptions:
+      - group_background(senator,farmers)
+      - respondent_member(farmers)
+    arguments:
+      - common_folks_group_ad_populum(farmers,senator)
+    in:
+      - accept_saying(senator)
+    variants: true
+  - name: popular_practice/book
+    source: "5, p. 314"
+    assumptions:
+      - popular_practice(tipping)
+      - to_think_acceptable(tipping)
+    arguments:
+      - popular_practice(tipping)
+    in:
+      - acceptable_in_case(tipping)
+    variants: true
+  - name: ethotic1/book
+    source: "41, p. 336"
+    assumptions:
+      - asserts(ann,bridge_safe)
+      - good_moral_character(ann)
+    arguments:
+      - ethotic1(ann,bridge_safe)
+    in:
+      - bridge_safe
+    variants: true
+  - name: ethotic2/book
+    source: "41, p. 336"
+    assumptions:
+      - asserts(bob,bridge_safe)
+      - bad_moral_character(bob)
+    arguments:
+      - ethotic2(bob,bridge_safe)
+    in:
+      - ¬bridge_safe
+    variants: true
+  - name: exeption_to_rule/book
+    source: "upstream: A Pragmatic Theory of Fallacy (1995), p. 148"
+    assumptions:
+      - similar_case(case1)
+      - rule_of_case(rule1,case1)
+      - has_conclusion(rule1,liable)
+    arguments:
+      - exeption_to_rule(liable,case1,rule1)
+    in:
+      - liable
+    variants: true
+  - name: from_example/book
+    source: "6.1, p. 314"
+    assumptions:
+      - has_properties(tweety,bird,flies)
+    arguments:
+      - from_example(tweety,bird,flies)
+    in:
+      - both_properties(tweety,bird,flies)
+    variants: true
+  - name: illustration/book
+    source: "6.2, p. 315"
+    assumptions:
+      - usually_properties(bird,flies)
+      - same_properties(tweety,bird,flies)
+    arguments:
+      - illustration(tweety,bird,flies)
+    in:
+      - valid_rule(bird,flies)
+    variants: true
+  - name: from_model/book
+    source: "6.3, p. 315"
+    assumptions:
+      - prestigious_individual(gandhi,students)
+      - carry_out_act(gandhi,fasting)
+      - worth_imitated(fasting,students)
+    arguments:
+      - from_model(gandhi,students,fasting)
+    in:
+      - should_do(students,fasting)
+    variants: true
+  - name: from_antimodel/book
+    source: "6.4, p. 315"
+    assumptions:
+      - ¬prestigious_individual(tyrant,citizens)
+      - carry_out_act(tyrant,lying)
+      - want_to_be_different(citizens,tyrant)
+    arguments:
+      - from_antimodel(tyrant,citizens,lying)
+    in:
+      - ¬should_do(citizens,lying)
+    variants: true
+  - name: practical_analogy_positive/book
+    source: "8.1, p. 316"
+    assumptions:
+      - right_to_do(case1,mediate)
+      - similar_to(case1,case2)
+    arguments:
+      - practical_analogy_positive(case1,case2,mediate)
+    in:
+      - carry_out_right(case2,mediate)
+    variants: true
+  - name: practical_analogy_negative/book
+    source: "8.2, p. 316"
+    assumptions:
+      - wrong_to_do(case1,strike)
+      - similar_to(case1,case2)
+    arguments:
+      - practical_analogy_negative(case1,case2,strike)
+    in:
+      - carry_out_wrong(case2,strike)
+    variants: true
+  - name: perception/book
+    source: "59.1, p. 345"
+    assumptions:
+      - image(ann,red)
+      - exemplify(red)
+    arguments:
+      - perception(ann,red)
+    in:
+      - reasonable_case(red)
+    variants: true
+  - name: analogy/book
+    source: "7, p. 315"
+    assumptions:
+      - similar_case(case1)
+      - in_case(liable,case1)
+    arguments:
+      - analogy(liable,case1)
+    in:
+      - liable
+    variants: true
+  - name: established_rule/book
+    source: "55.1, p. 343"
+    assumptions:
+      - has_conclusion(speed_limit,fine_due)
+      - applicable(speed_limit)
+    arguments:
+      - established_rule(fine_due,speed_limit)
+    in:
+      - fine_due
+    variants: true
+  - name: rule_physical_world_1/book
+    source: "54.1, p. 342"
+    assumptions:
+      - is_a(whale,mammal)
+      - synonymous
+    arguments:
+      - rule_physical_world_1(whale,mammal)
+    in:
+      - means_same(whale,mammal)
+    variants: true
+  - name: rule_physical_world_2/book
+    source: "54.2, p. 342"
+    assumptions:
+      - official_rulebook(chess,stalemate,draw)
+      - correctly_report
+    arguments:
+      - rule_physical_world_2(chess,stalemate,draw)
+    in:
+      - counts_as(stalemate,draw)
+    variants: true
+  - name: rule_mental_world/book
+    source: "54.3, p. 342"
+    assumptions:
+      - same_meaning(english,bachelor,unmarried_man)
+      - speakers_correct
+    arguments:
+      - rule_mental_world(bachelor,unmarried_man,english)
+    in:
+      - means_same(bachelor,unmarried_man)
+    variants: true
+  - name: rule/book
+    source: "55.2, p. 343"
+    assumptions:
+      - evaluation(theft,punishable,arrest)
+      - case(theft)
+    arguments:
+      - rule(punishable,theft,arrest)
+    in:
+      - evaluation_justified(punishable,arrest)
+    variants: true
+  - name: regulative_rule/book
+    source: "55.3, p. 343"
+    assumptions:
+      - obligatory(pay_tax)
+      - do_obligator
+      - addressee_of(sam,pay_tax)
+    arguments:
+      - regulative_rule(sam,pay_tax)
+    in:
+      - must_do(sam,pay_tax)
+    variants: true
+  - name: regulative_rule_prohibition/book
+    source: "55.3, p. 343"
+    assumptions:
+      - prohibited(smoke)
+      - do_obligator
+      - addressee_of(sam,smoke)
+    arguments:
+      - regulative_rule_prohibition(sam,smoke)
+    in:
+      - must_not_do(sam,smoke)
+    variants: true
+  - name: exceptional/book
+    source: "56, p. 344"
+    assumptions:
+      - rule_can_waived(ann)
+      - case_exception(ann)
+    arguments:
+      - exceptional(ann)
+    in:
+      - rule_waived(ann)
+    variants: true
+  - name: from_precedent/book
+    source: "57, p. 344"
+    assumptions:
+      - established_rule_property(rule1,bird,flies)
+      - has_property(tweety,bird)
+      - ¬has_property(tweety,flies)
+    arguments:
+      - from_precedent(rule1,bird,flies,tweety)
+    in:
+      - rule_exception_recognized(rule1,tweety)
+    variants: true
+  - name: plea_for_excuse/book
+    source: "58, p. 345"
+    assumptions:
+      - rule_require(speed_rule,speeding,fine)
+      - pleader_committed(speeding)
+      - special_circumstances(emergency,speeding)
+    arguments:
+      - plea_for_excuse(fine,speed_rule,speeding,emergency)
+    in:
+      - exempted(fine)
+    variants: true
+  - name: defeasible_modus_ponens/book
+    source: "upstream: Carneades' walton.yml"
+    assumptions:
+      - implies(rain,wet)
+      - rain
+    arguments:
+      - defeasible_modus_ponens(rain,wet)
+    in:
+      - wet
+    variants: true
+  - name: gradualism/book
+    source: "48, p. 339"
+    assumptions:
+      - true_acceptable(a)
+      - sequence(a,b1,bn,c)
+      - must_proper(a,c)
+    arguments:
+      - gradualism(a,b1,bn,c)
+    in:
+      - true_acceptable(c)
+    variants: true
+  - name: precedent_slippery_slope/book
+    source: "50, p. 340"
+    assumptions:
+      - claimed_exception(c0,rule1)
+      - precedent_series(c0,rule1,cn)
+      - intolerable_exception(c0,rule1)
+    arguments:
+      - precedent_slippery_slope(c0,rule1,cn)
+    in:
+      - cannot_be_exception(c0,rule1)
+    variants: true
+  - name: sorites_slippery_slope/book
+    source: "51, pp. 340-341"
+    assumptions:
+      - beyond_contention(a0,bald)
+      - all_has(a0,bald,a1)
+      - reapplication_sequence(a0,an,bald)
+    arguments:
+      - sorites_slippery_slope(an,bald,a1,a0)
+    in:
+      - may_have(an,bald)
+    variants: true
+  - name: verbal_slippery_slope/book
+    source: "52, p. 341"
+    assumptions:
+      - individual_property(a1,bald)
+      - individuals_property(a1,bald,a2)
+      - vague_property(bald,a1,an)
+      - individual_property_false(an,bald)
+    arguments:
+      - verbal_slippery_slope(a1,a2,an,bald)
+    in:
+      - not_has_property(a1,bald)
+    variants: true
+  - name: verbal_classification/book
+    source: "14, p. 319"
+    assumptions:
+      - instance(rex,dog)
+      - subclass(dog,mammal)
+    arguments:
+      - verbal_classification(rex,dog,mammal)
+    in:
+      - instance(rex,mammal)
+    variants: true
+  - name: definition_to_verbal_classification/book
+    source: "15, p. 319"
+    assumptions:
+      - satisfies_definition(rex,dog_definition)
+      - classified_as(dog_definition,dog)
+    arguments:
+      - definition_to_verbal_classification(rex,dog,dog_definition)
+    in:
+      - instance(rex,dog)
+    variants: true
+  - name: verbal_classification_vagueness/book
+    source: "16, pp. 319-320"
+    assumptions:
+      - vague_defined_property(arg1,heap)
+      - precision_needed(arg1)
+      - property_vagueness(heap,arg1)
+    arguments:
+      - verbal_classification_vagueness(arg1,heap)
+    in:
+      - vagueness_rejected(arg1)
+    variants: true
+  - name: verbal_classification_arbitrariness/book
+    source: "17, p. 320"
+    assumptions:
+      - arbitrary_defined_property(arg1,poverty)
+      - needed_nonarbitrary(arg1,poverty)
+      - arbitrary_property(poverty,arg1)
+    arguments:
+      - verbal_classification_arbitrariness(arg1,poverty)
+    in:
+      - arbitrary_rejected(arg1)
+    variants: true
