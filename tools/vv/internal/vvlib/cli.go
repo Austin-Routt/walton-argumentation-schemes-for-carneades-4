@@ -200,10 +200,20 @@ func CLIEngineChecks(cli *CLI) []Result {
 
 	// docs/contracts.md, contract 3: an interrupt cancels the evaluation, which
 	// ends with status 5 and prints nothing. The graph has 300 facts and a
-	// scheme over pairs of them: 90,000 arguments, seconds of work.
+	// scheme that joins three of them with a fourth fact that does not exist:
+	// 27 million candidate visits and no argument. On the pinned review
+	// toolchains this leaves time for the interrupt without consuming the
+	// inserted-constraint quota. This finite, fixed-delay fixture is still
+	// timing-sensitive; it is not a guarantee for every machine or limit.
+	// (The scheme over pairs of the 300 facts
+	// used here before reaches the limit of 100,000 inserted constraints in a
+	// few tenths of a second since engine 4.3.1+walton.2. On a fast machine
+	// that run ended as "limit reached", status 4, before the interrupt
+	// arrived, and the check failed on some runs of one commit and passed on
+	// others.)
 	{
 		var b strings.Builder
-		b.WriteString("language:\n  p/1: \"%s is p.\"\n  q/2: \"%s q %s.\"\nargument_schemes:\n  - id: pair\n    variables: [X, Y]\n    premises:\n      - p(X)\n      - p(Y)\n    conclusions:\n      - q(X,Y)\nassumptions:\n")
+		b.WriteString("language:\n  p/1: \"%s is p.\"\n  q/3: \"%s, %s and %s are q.\"\n  t/3: \"%s, %s and %s are t.\"\nargument_schemes:\n  - id: s\n    variables: [X, Y, Z]\n    premises: [\"p(X)\", \"p(Y)\", \"p(Z)\", \"q(X,Y,Z)\"]\n    conclusions: [\"t(X,Y,Z)\"]\nassumptions:\n")
 		for i := 0; i < 300; i++ {
 			fmt.Fprintf(&b, "  - p(c%d)\n", i)
 		}
