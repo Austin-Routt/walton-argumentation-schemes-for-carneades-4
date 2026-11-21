@@ -180,9 +180,9 @@
       "source_pages": [
         317
       ],
-      "scope": "Legacy positive three-part presumptive form preserved for compatibility. Do not claim deductive entailment from only-if. Prefer the explicit general adaptations for practical construction.",
+      "scope": "Three-part positive application adaptation with an explicitly supplied sufficient-direction warrant. The printed only-if condition alone does not license the conclusion; manual migration required.",
       "proposal": "approve within the stated scope after independent review",
-      "authorship": "unchanged formula reviewed independently; new contract/tests need a separate reviewer",
+      "authorship": "authored repair after independent source-review request; separate approval required",
       "scheme": {
         "id": "whole_into_parts",
         "meta": {
@@ -202,10 +202,15 @@
         "premises": [
           "whole_of(X,X1,X2,X3)",
           "part_whole(X,A,X1,X2,X3)",
+          "selected_part_sufficient_for_whole(X,X1,A)",
           "has_property(X1,A)"
         ]
       },
-      "examples": []
+      "examples": [
+        "whole_into_parts/book",
+        "whole_into_parts/closure-legacy-only-if-insufficient",
+        "whole_into_parts/closure-legacy-other-part-warrant"
+      ]
     },
     {
       "record": "whole_into_parts_selected",

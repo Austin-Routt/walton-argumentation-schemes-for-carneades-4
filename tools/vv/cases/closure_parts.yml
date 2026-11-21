@@ -2,6 +2,23 @@
 # witnesses and conditional direction explicitly; no aggregate is inferred
 # from missing facts. See docs/source-closure-contracts.md.
 cases:
+  - name: whole_into_parts/closure-legacy-only-if-insufficient
+    source: "10.2: the three-part form also refuses to turn a necessary condition into a sufficient one"
+    assumptions:
+      - whole_of(team,ann,bob,cy)
+      - part_whole(team,strong,ann,bob,cy)
+      - has_property(ann,strong)
+    no_arguments: [whole_into_parts]
+    not_in: ["has_property(team,strong)"]
+  - name: whole_into_parts/closure-legacy-other-part-warrant
+    source: "10.2: sufficiency for a different selected part does not license this argument"
+    assumptions:
+      - whole_of(team,ann,bob,cy)
+      - part_whole(team,strong,ann,bob,cy)
+      - selected_part_sufficient_for_whole(team,bob,strong)
+      - has_property(ann,strong)
+    no_arguments: [whole_into_parts]
+    not_in: ["has_property(team,strong)"]
   - name: part_in_whole_physical/closure-physical-positive
     source: "9.2, p.316: physical-part positive alternative"
     assumptions: ["physical_part_of(fragment,ingot)", "has_property(ingot,gold)"]

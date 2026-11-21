@@ -9,6 +9,7 @@ meta:
 language: 
   means_same_in_language/3: "In language %s, word %s means the same as definition %s."
   member_of_accounts/2: "Account %s is a member of the candidate account set %s."
+  selected_part_sufficient_for_whole/3: "For whole %s, the selected part %s having property %s is sufficient for the whole to have that property in this application."
   physical_part_of/2: "%s is a physical part of %s."
   degree_comparable/3: "%s and %s are comparable on the same contextually specified degree scale for property %s."
   smaller_in_relevant_measure/2: "%s is smaller than %s in the measure relevant to this part-whole comparison."
@@ -691,6 +692,7 @@ argument_schemes:
     premises:
       - whole_of(X,X1,X2,X3)
       - part_whole(X,A,X1,X2,X3)
+      - selected_part_sufficient_for_whole(X,X1,A)
       - has_property(X1,A)
      
   - id: opposition_descriptive_1

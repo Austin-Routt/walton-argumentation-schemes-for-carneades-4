@@ -272,3 +272,5 @@ changes:
 
   - {record: whole_into_parts_selected, kind: premise, old: "", trigger: "whole_of(X,X1,X2,X3)", new: "whole_partition(X,S)", plan: closure-review, page: 317, note: "For the new arbitrary-cardinality form, identify the complete finite partition explicitly; saved three-part records remain unchanged."}
   - {record: whole_into_parts_selected, kind: premise, old: "", trigger: "part_whole(X,A,X1,X2,X3)", new: "some_part_sufficient_for_whole(X,S,A)", plan: closure-review, page: 317, note: "Only-if is necessary, not sufficient; the positive general form requires this separately justified sufficient warrant. Do not manufacture it by renaming."}
+
+  - {record: whole_into_parts, kind: premise, old: "", trigger: "part_whole(X,A,X1,X2,X3)", new: "selected_part_sufficient_for_whole(X,X1,A)", plan: closure-review, page: 317, note: "The three-part positive form also needs an explicitly justified sufficient direction; the source only-if premise alone cannot support this inference. Supply the actual warrant; do not infer or automatically assume it."}

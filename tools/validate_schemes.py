@@ -373,6 +373,8 @@ def cycles(master, rep):
 # that yields anything else fails: a flipped negation, two swapped arguments, a
 # missing or extra statement. Page numbers are those of the compendium (WRM 2008).
 INSTANCES = [
+    ("whole_into_parts", "10.2, p.317; explicit sufficient-direction adaptation", {"X": "machine", "X1": "power_unit", "X2": "control_unit", "X3": "motor", "A": "electrically_live"},
+     {"premises": ["whole_of(machine,power_unit,control_unit,motor)", "part_whole(machine,electrically_live,power_unit,control_unit,motor)", "selected_part_sufficient_for_whole(machine,power_unit,electrically_live)", "has_property(power_unit,electrically_live)"], "conclusions": ["has_property(machine,electrically_live)"]}),
     # the eleven corrections of the changelog (2026-11-06)
     ("division_generic", "10.1, p. 317", {"A": "car", "P": "heavy"},
      {"premises": ["has_property(car,heavy)"], "assumptions": ["divisionally_hereditary(car,heavy)"], "conclusions": ["all_parts_property(car,heavy)"]}),

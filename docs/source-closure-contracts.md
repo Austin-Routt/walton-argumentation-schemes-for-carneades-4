@@ -42,11 +42,15 @@ Read as a material conditional, that is a necessary condition: the whole
 having A entails that some part has A. A positive part does not establish the
 whole's property by that necessary condition alone.
 
-The historical `whole_into_parts` record is retained for saved-graph
-compatibility as the printed positive, three-part presumptive pattern. It
-must not be represented as a deductively valid use of only-if, an arbitrary
-number-of-parts implementation, or a complete treatment of the negative
-branch. The following explicit adaptations are the supported general forms.
+The historical `whole_into_parts` identifier and parameter order remain,
+but its positive three-part form now also requires the ordinary premise
+`selected_part_sufficient_for_whole(X,X1,A)`. This states the sufficient
+direction for the same whole, selected part and property. It is never supplied
+as a default or inferred from the printed only-if premise. Existing graphs
+need this explicitly justified witness; the migration table flags it for
+manual work. The record is a declared application adaptation, not a claim
+that the book says if where it prints only-if. The following general forms
+also support arbitrary finite partitions and the negative branch.
 
 ### Positive selected-part form
 
@@ -88,7 +92,7 @@ and complete-set evidence. This is the same explicit aggregate-evidence
 style already used for `all_parts_property/2`. Runtime quotas remain in force.
 
 These two general forms are semantic additions, not automatic replacements
-for a saved three-part graph. The migration table calls for review of the
+for a saved three-part graph. Both positive forms require an explicit sufficient warrant. The migration table calls for review of the
 partition, membership and directional warrant. It never manufactures those
 premises.
 

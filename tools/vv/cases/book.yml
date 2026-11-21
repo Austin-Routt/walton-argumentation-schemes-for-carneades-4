@@ -56,15 +56,16 @@ cases:
       - has_property(rose,beautiful)
     variants: true
   - name: whole_into_parts/book
-    source: "10.2, p. 317"
+    source: "10.2, p.317: three-part positive adaptation; the sufficient direction is supplied explicitly, not inferred from only-if"
     assumptions:
-      - whole_of(team,ann,bob,cy)
-      - part_whole(team,strong,ann,bob,cy)
-      - has_property(ann,strong)
+      - whole_of(machine,power_unit,control_unit,motor)
+      - part_whole(machine,electrically_live,power_unit,control_unit,motor)
+      - selected_part_sufficient_for_whole(machine,power_unit,electrically_live)
+      - has_property(power_unit,electrically_live)
     arguments:
-      - whole_into_parts(team,ann,bob,cy,strong)
+      - whole_into_parts(machine,power_unit,control_unit,motor,electrically_live)
     in:
-      - has_property(team,strong)
+      - has_property(machine,electrically_live)
     variants: true
   - name: practical_reasoning1/book
     source: "Atkinson and Bench-Capon (2007), p. 866, farmer Arg8; AS1 abstraction of the stipulated transition q0 to q9"

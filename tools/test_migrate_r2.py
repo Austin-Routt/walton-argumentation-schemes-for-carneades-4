@@ -164,6 +164,7 @@ class Migrate(unittest.TestCase):
         rows = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
         self.assertIn(("whole_into_parts_selected", "whole_partition(X,S)"), rows)
         self.assertIn(("whole_into_parts_selected", "some_part_sufficient_for_whole(X,S,A)"), rows)
+        self.assertIn(("whole_into_parts", "selected_part_sufficient_for_whole(X,X1,A)"), rows)
 
 
 if __name__ == "__main__":
