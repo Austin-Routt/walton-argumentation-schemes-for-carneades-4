@@ -1126,6 +1126,342 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "position_to_know",
+      "fingerprint": "sha256:e8edd0fffa869692b5bbfb45b4c111848295a65a111f7d0cf4340cad93bd868f",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: position_to_know",
+        "docs/reviews/record-dispositions.json: position_to_know",
+        "tools/vv/source_ledger.yml: position_to_know"
+      ],
+      "examples": [
+        "position_to_know/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "expert_opinion",
+      "fingerprint": "sha256:c14ea49c7d8360f9493c3ce40bfa25df0d2470e846493b70aa46128259d00a12",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: expert_opinion",
+        "docs/reviews/record-dispositions.json: expert_opinion",
+        "tools/vv/source_ledger.yml: expert_opinion"
+      ],
+      "examples": [
+        "expert_opinion/adverse-credibility-questioned",
+        "expert_opinion/book",
+        "expert_opinion/credibility-questioned-and-shown"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "definition_to_verbal_classification",
+      "fingerprint": "sha256:c5710754472ef919962cb3532ac372121e5d531444662ca5b1e9a456317e593c",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: definition_to_verbal_classification",
+        "docs/reviews/record-dispositions.json: definition_to_verbal_classification",
+        "tools/vv/source_ledger.yml: definition_to_verbal_classification"
+      ],
+      "examples": [
+        "definition_to_verbal_classification/book",
+        "definition_to_verbal_classification/independent-biased-definition-defeats",
+        "definition_to_verbal_classification/independent-other-definition-does-not-defeat"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "positive_consequences",
+      "fingerprint": "sha256:655c2072e1f45a85723fb030ae6af957668e512b72899ba0965d00fb24c8aaf8",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: positive_consequences",
+        "docs/reviews/record-dispositions.json: positive_consequences",
+        "tools/vv/source_ledger.yml: positive_consequences"
+      ],
+      "examples": [
+        "positive_consequences/book",
+        "positive_consequences/independent-likelihood-backed",
+        "positive_consequences/independent-likelihood-questioned",
+        "positive_consequences/independent-wrong-action-questioned",
+        "positive_consequences/independent-wrong-outcome-questioned"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "negative_consequences",
+      "fingerprint": "sha256:9e1886f9a4387f0b6cf9a4743fa506b6e8d0948ac4a4be38be8ded4622ee1c5f",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: negative_consequences",
+        "docs/reviews/record-dispositions.json: negative_consequences",
+        "tools/vv/source_ledger.yml: negative_consequences"
+      ],
+      "examples": [
+        "negative_consequences/book",
+        "negative_consequences/independent-likelihood-backed",
+        "negative_consequences/independent-likelihood-questioned",
+        "negative_consequences/independent-wrong-action-questioned",
+        "negative_consequences/independent-wrong-outcome-questioned"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "moral_justification_ad_populum_excuse",
+      "fingerprint": "sha256:1a7cbeb437a50c19f301bd6eab854ecfca1ad6503f54909dd94f1d645c6952a6",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: moral_justification_ad_populum_excuse",
+        "docs/reviews/record-dispositions.json: moral_justification_ad_populum_excuse",
+        "tools/vv/source_ledger.yml: moral_justification_ad_populum_excuse"
+      ],
+      "examples": [
+        "moral_justification_ad_populum_excuse/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "from_antimodel",
+      "fingerprint": "sha256:3f36b34ae16ae773a23a440e9bee609fa1e28941127d1f148e1ce82274e693e1",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: from_antimodel",
+        "docs/reviews/record-dispositions.json: from_antimodel",
+        "tools/vv/source_ledger.yml: from_antimodel"
+      ],
+      "examples": [
+        "from_antimodel/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "part_in_whole",
+      "fingerprint": "sha256:56b5c4d810a42989de497f7b4ddafbc249d40ccf09685011be72ae35fb841f2a",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: part_in_whole",
+        "docs/reviews/record-dispositions.json: part_in_whole",
+        "tools/vv/source_ledger.yml: part_in_whole"
+      ],
+      "examples": [
+        "part_in_whole/book",
+        "part_in_whole/independent-lower-degree-is-not-a-defeater"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "alternative_normative",
+      "fingerprint": "sha256:b2329c1ab3ad352d78ae67f04aacfe9e03cfad6f9d2f4d1e543134b0392cfa87",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: alternative_normative",
+        "docs/reviews/record-dispositions.json: alternative_normative",
+        "tools/vv/source_ledger.yml: alternative_normative"
+      ],
+      "examples": [
+        "alternative_normative/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "verbal_classification_arbitrariness",
+      "fingerprint": "sha256:9dcb2b16a35290accfa46b590756abf2f8e09e2e005940a75e3bd166848ccdbf",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: verbal_classification_arbitrariness",
+        "docs/reviews/record-dispositions.json: verbal_classification_arbitrariness",
+        "tools/vv/source_ledger.yml: verbal_classification_arbitrariness"
+      ],
+      "examples": [
+        "verbal_classification_arbitrariness/adverse-arbitrariness-harmless",
+        "verbal_classification_arbitrariness/book",
+        "verbal_classification_arbitrariness/positive"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "sacrifice",
+      "fingerprint": "sha256:52fd6b0a0140c8af40b217d48590392610270182167b9fd8ded20b795af0f8fc",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: sacrifice",
+        "docs/reviews/record-dispositions.json: sacrifice",
+        "tools/vv/source_ledger.yml: sacrifice"
+      ],
+      "examples": [
+        "sacrifice/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_inference",
+      "fingerprint": "sha256:5e812047fcd742fdced3556d05baa1c99a10513e7b293213b97ec81023d288c5",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: practical_inference",
+        "docs/reviews/record-dispositions.json: practical_inference",
+        "tools/vv/source_ledger.yml: practical_inference"
+      ],
+      "examples": [
+        "practical_inference/against-negative_consequences_reasoning",
+        "practical_inference/book",
+        "practical_inference/means-shared-with-end_and_means_1"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_necessary_condition",
+      "fingerprint": "sha256:4fe7670d6dd492672eb2eb51dba21d313b781c129ce43996e7f7bbf5ab7042a5",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: practical_necessary_condition",
+        "docs/reviews/record-dispositions.json: practical_necessary_condition",
+        "tools/vv/source_ledger.yml: practical_necessary_condition"
+      ],
+      "examples": [
+        "practical_necessary_condition/adverse-another-agents-conflict",
+        "practical_necessary_condition/adverse-member-of-another-set",
+        "practical_necessary_condition/book",
+        "practical_necessary_condition/conflicting-goals",
+        "practical_necessary_condition/independent-another-agents-alternative-does-not-defeat",
+        "practical_necessary_condition/independent-one-agents-selection-does-not-bind-another",
+        "practical_necessary_condition/positive"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_sufficient_condition",
+      "fingerprint": "sha256:c40f49bf521e7db2eb5308acea9e426289b1b725054a976dcfb926290a1bfa9c",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: practical_sufficient_condition",
+        "docs/reviews/record-dispositions.json: practical_sufficient_condition",
+        "tools/vv/source_ledger.yml: practical_sufficient_condition"
+      ],
+      "examples": [
+        "practical_sufficient_condition/adverse-necessary-alternatives",
+        "practical_sufficient_condition/book",
+        "practical_sufficient_condition/independent-another-agents-alternative-does-not-defeat",
+        "practical_sufficient_condition/independent-one-agents-selection-does-not-bind-another",
+        "practical_sufficient_condition/positive"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_1",
+      "fingerprint": "sha256:7cda1891cb1149488b5f77641a6ce0805d34d0509a940d3f6d59f4c8a6ffe26c",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: end_and_means_1",
+        "docs/reviews/record-dispositions.json: end_and_means_1",
+        "tools/vv/source_ledger.yml: end_and_means_1"
+      ],
+      "examples": [
+        "end_and_means_1/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_2",
+      "fingerprint": "sha256:e5383424e6c33c2797618ad95136a11000bf236e0e7910aa69c554bf0ade0e55",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: end_and_means_2",
+        "docs/reviews/record-dispositions.json: end_and_means_2",
+        "tools/vv/source_ledger.yml: end_and_means_2"
+      ],
+      "examples": [
+        "end_and_means_2/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "end_and_means_3",
+      "fingerprint": "sha256:5c3ffd3589bb4b3b03499f8609e838b07944879d71c8281785e4a8e8a5015014",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: end_and_means_3",
+        "docs/reviews/record-dispositions.json: end_and_means_3",
+        "tools/vv/source_ledger.yml: end_and_means_3"
+      ],
+      "examples": [
+        "end_and_means_3/book"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "negative_practical",
+      "fingerprint": "sha256:c08f34cf2ba0cb0ec173a97e42139f83dbf4b800f51334b041d766d1d58764cf",
+      "evidence": [
+        "docs/reviews/2026-11-21-reviewer-follow-up.md: negative_practical",
+        "docs/reviews/record-dispositions.json: negative_practical",
+        "tools/vv/source_ledger.yml: negative_practical"
+      ],
+      "examples": [
+        "negative_practical/book",
+        "negative_practical/independent-false-presumption-selected",
+        "negative_practical/independent-opposite-ranking-does-not-select-false",
+        "negative_practical/two-questions"
+      ],
+      "review": {
+        "by": "Fable (reviewer of 2026-11-21, follow-up)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }
