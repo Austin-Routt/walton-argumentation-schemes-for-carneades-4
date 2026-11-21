@@ -373,16 +373,18 @@ cases:
       - bear_passed
     variants: true
   - name: abductive_backward/book
-    source: "31.1, p. 329"
+    source: 31.1, p. 329
     assumptions:
-      - data_set(clues)
-      - data_account(accounts,clues)
-      - successful_account(butler_did_it,clues)
+    - data_set(clues)
+    - data_account(accounts,clues)
+    - successful_account(butler_did_it,accounts,clues)
+    - member_of_accounts(butler_did_it,accounts)
     arguments:
-      - abductive_backward(accounts,butler_did_it,clues)
+    - abductive_backward(accounts,butler_did_it,clues)
     in:
-      - plausible_hypothesis(butler_did_it)
+    - plausible_hypothesis(butler_did_it,accounts,clues)
     variants: true
+
   - name: abductive_forward/book
     source: "31.2, pp. 329-330"
     assumptions:
@@ -746,25 +748,27 @@ cases:
       - inconsistent_commitment(bob)
     variants: true
   - name: positive_value/book
-    source: "19.1, p. 321; Hal and Carla, p. 322"
+    source: 19.1, p. 321; Hal and Carla, p. 322
     assumptions:
-      - judged_positive_value(life,hal)
-      - positive_affects(life,survival,hal)
+    - judged_positive_value(life,hal)
+    - positive_affects(life,survival,hal)
     arguments:
-      - positive_value(life,hal,survival)
+    - positive_value(life,hal,survival)
     in:
-      - reason_retaining_goal(life,survival)
+    - reason_retaining_goal(hal,life,survival)
     variants: true
+
   - name: negative_value/book
-    source: "19.2, p. 321; Hal and Carla, p. 322"
+    source: 19.2, p. 321; Hal and Carla, p. 322
     assumptions:
-      - judged_negative_value(theft,hal)
-      - negative_affects(theft,survival,hal)
+    - judged_negative_value(theft,hal)
+    - negative_affects(theft,survival,hal)
     arguments:
-      - negative_value(theft,hal,survival)
+    - negative_value(theft,hal,survival)
     in:
-      - reason_retracting_goal(theft,survival)
+    - reason_retracting_goal(hal,theft,survival)
     variants: true
+
   - name: ad_hominem/book
     source: "42, p. 336"
     assumptions:
@@ -786,16 +790,17 @@ cases:
       - argument_not_accepted(parent,arg1)
     variants: true
   - name: circumstantial_ad_hominem/book
-    source: "45, pp. 337-338"
+    source: 45, pp. 337-338
     assumptions:
-      - advocates_conclusion(parent,arg1,smoking_unhealthy)
-      - committed_opposite(parent,smoking_unhealthy)
-      - credibility_questioned(parent)
+    - advocates_conclusion(parent,arg1,smoking_unhealthy)
+    - committed_opposite(parent,smoking_unhealthy)
+    - credibility_questioned(parent,arg1)
     arguments:
-      - circumstantial_ad_hominem(parent,arg1,smoking_unhealthy)
+    - circumstantial_ad_hominem(parent,arg1,smoking_unhealthy)
     in:
-      - plausibility_decreased(parent,arg1)
+    - plausibility_decreased(parent,arg1)
     variants: true
+
   - name: bias/book
     source: "46, p. 338"
     assumptions:
@@ -1074,25 +1079,27 @@ cases:
       - means_same(triangle,three_sided_polygon)
     variants: true
   - name: rule_physical_world_2/book
-    source: "54.2, p. 342"
+    source: 54.2, p. 342
     assumptions:
-      - official_rulebook(chess,stalemate,draw)
-      - correctly_report
+    - official_rulebook(chess,stalemate,draw)
+    - correctly_report
     arguments:
-      - rule_physical_world_2(chess,stalemate,draw)
+    - rule_physical_world_2(chess,stalemate,draw)
     in:
-      - counts_as(stalemate,draw)
+    - counts_as(chess,stalemate,draw)
     variants: true
+
   - name: rule_mental_world/book
-    source: "54.3, p. 342"
+    source: 54.3, p. 342
     assumptions:
-      - same_meaning(english,bachelor,unmarried_man)
-      - speakers_correct
+    - same_meaning(english,bachelor,unmarried_man)
+    - speakers_correct
     arguments:
-      - rule_mental_world(bachelor,unmarried_man,english)
+    - rule_mental_world(bachelor,unmarried_man,english)
     in:
-      - means_same(bachelor,unmarried_man)
+    - means_same_in_language(english,bachelor,unmarried_man)
     variants: true
+
   - name: rule/book
     source: "55.2, p. 343"
     assumptions:
@@ -1147,16 +1154,17 @@ cases:
       - rule_exception_recognized(rule1,tweety)
     variants: true
   - name: plea_for_excuse/book
-    source: "58, p. 345"
+    source: 58, p. 345
     assumptions:
-      - rule_require(speed_rule,speeding,fine)
-      - pleader_committed(speeding)
-      - special_circumstances(emergency,speeding)
+    - rule_require(speed_rule,speeding,fine)
+    - pleader_committed(ann,case1,speeding)
+    - special_circumstances(ann,case1,emergency,speeding)
     arguments:
-      - plea_for_excuse(fine,speed_rule,speeding,emergency)
+    - plea_for_excuse(ann,case1,fine,speed_rule,speeding,emergency)
     in:
-      - exempted(fine)
+    - exempted(ann,case1,speed_rule,speeding,fine)
     variants: true
+
   - name: defeasible_modus_ponens/book
     source: "upstream: Carneades' walton.yml"
     assumptions:

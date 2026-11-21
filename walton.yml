@@ -7,6 +7,8 @@ meta:
        Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). 
        Argumentation Schemes. Cambridge University Press.
 language: 
+  means_same_in_language/3: "In language %s, word %s means the same as definition %s."
+  member_of_accounts/2: "Account %s is a member of the candidate account set %s."
   consequence_likelihood_adequate/2: "The assessed likelihood that action %s brings about outcome %s is adequate for the strength of this consequence argument."
   conflicting_or_overriding_rule/2: "Another established rule conflicts with or overrides rule %s in its application to conclusion %s."
   rule_exception_or_excuse/2: "An exceptional case or an adequate excuse defeats rule %s in its application to conclusion %s."
@@ -82,7 +84,7 @@ language:
   character_quality/2: "%s has character quality %s."
   character_action/2: "If %s carries out some action in the future, this action is likely to fit character quality %s."
   character_is_relevant/1: "Character is relevant for evaluating the plausibility of the assertion: %s"
-  character_issue/1: "Character is an issue in the dialogue, and more specifically, %s's argument depends on his/her credibility."
+  character_issue/2: "Character is an issue because %s's argument %s depends on that person's credibility."
   character_relevant/1: "In the type of dialogue in which argument %s was used, the issue of character is relevant."
   choice_at/2: "There is a choice at %s between doing %s and not doing it."
   cited_bad_consequences/2: "If you bring about %s, some cited bad consequences, %s, will follow."
@@ -103,8 +105,8 @@ language:
   converse_relation/3: "%s can be in converse relation %s with %s."
   correctly_report/0: "Official rulebooks correctly report the rules in force."
   correlated/2: "Events %s and %s are correlated."
-  counts_as/2: "%s counts as %s." 
-  credibility_questioned/1: "%s's credibility as a sincere person who believes in his own argument has been put into question by the two premises above."
+  counts_as/3: "In institution %s, %s counts as %s."
+  credibility_questioned/2: "%s's credibility as a sincere person who believes argument %s is put into question by the advocacy and inconsistent-commitment premises."
   credible/1: "%s is credible as an expert source."
   credible_source/2: "Witness %s is a credible source for the domain %s."
   current_circumstances/1: "%s is the case in the current circumstances."
@@ -133,10 +135,10 @@ language:
   event_question/2: "%s brought about event %s."
   event_true/1: "%s has been observed to be true, in a given instance."
   exception_backed/1: "The case of %s has an applicable recognized exception or, if unrecognized, evidence of the governing rule's non-applicability; if borderline, comparable cases additionally justify its treatment."
-  excuse/1: "%s falls under a recognized category of excuses for this type of case and the inclusion can be justified, or what is special about the case justifies the exemption."
+  excuse/6: "%s's plea in case %s under rule %s for action %s and sanction %s is justified by excuse %s: either its recognized category applies and is justified in this case, or special features justify an unrecognized excuse."
   excuse_or_overriding_duty/2: "%s has an adequate excuse, or an overriding duty, as regards %s."
   exemplify/1: "To have a %s image -an image of a perceptible property- is a prima facie reason to believe that the circumstances exemplify it."
-  exempted/1: "In this instance, I ought to be exempted from %s."
+  exempted/5: "Pleader %s, in case %s under rule %s for action %s, ought to be exempted from sanction %s."
   expert/2: "%s is an expert in the %s domain."
   expert_in_knowledge/1: "%s is a group of experts in a domain of knowledge."
   explanation/2: "Theory %s explains %s."
@@ -193,7 +195,7 @@ language:
   initial_presumption/1: "Case %s is tentatively acceptable as an initial presumption."
   inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   instance/2: "%s is an instance of class %s."
-  interference/1: "An event has occurred which interferes with event %s."
+  interference/2: "In the causal application from event %s to effect %s, an interfering causal factor is present."
   internally_consistent/1: "%s is internally consistent."
   intervening_actions/2: "Intervening actions are needed after performing %s to achieve %s."
   intolerable_exception/2: "Treating case %s as an exception to the rule %s would be intolerable."
@@ -221,7 +223,7 @@ language:
   more_important_ends/0: "Ends are more important than the means used to achieve them."
   more_justifiable_category/2: "Although %s may look like it can be classified under %s, there are grounds for classifying it under another category, which is more justifiable."
   more_on_point/2: "%s is false in another case which is more on point than case %s."
-  more_reliable/1: "There are other events that would more reliably account for the sign %s."
+  more_reliable/2: "Another event accounts for sign %s more reliably than candidate %s does."
   more_serious_consequences/2: "Consequences %s are more serious than consequences %s."
   must_do/2: "%s must do %s."
   must_not_do/2: "%s must not do %s."
@@ -238,11 +240,11 @@ language:
   not_character_action/2: "Relevant actions of agent %s provide sufficient counterevidence against predicting future actions from character quality %s."
   not_do_appear/2: "If you do not bring about %s, then %s will occur."
   not_doing/1: "You were considering not doing %s."
-  not_excuse/1: "%s does not fall under a recognized category, and this would pose a problem in future cases."
+  not_excuse/6: "%s's plea in case %s under rule %s for action %s and sanction %s uses unrecognized excuse %s that would set a problematic precedent."
   action_fits_quality/3: "The description of agent %s's action or event %s actually fits the definition of quality %s."
   not_given_credibility/1: "%s should not be given as much credibility as it would have without the bias."
   not_has_property/2: "You can't truly say that %s has %s."
-  not_indicator/1: "The circumstances are such that having a %s image is not a reliable indicator of it."
+  not_indicator/2: "Under the circumstances of %s's perception, an image of %s is not a reliable indicator of that proposition."
   not_know_true/1: "I do not know whether %s is true or not."
   not_necessarily_true/2: "That %s is %s is not a necessary truth."
   not_normal/1: "The situation in which %s was expected is not normal."
@@ -271,8 +273,8 @@ language:
   person_value_depending/3: "If a person is %s, his acts %s depending on judgment value, will be %s."
   plausibility_decreased/2: "The plausibility of %s's argument %s is decreased or destroyed."
   plausible_conclusion/1: "%s is the most plausible conclusion in the case."
-  plausible_hypothesis/1: "%s is the most plausible hypothesis in the case."
-  pleader_committed/1: "I -the pleader- have committed %s."
+  plausible_hypothesis/3: "%s is the most plausible hypothesis among accounts %s for data %s."
+  pleader_committed/3: "Pleader %s, in case %s, committed action %s."
   popular_practice/1: "%s is a popular practice among those who are familiar with what is acceptable or not in regard to it."
   position_to_bring_about/1: "I am in a position to bring about %s."
   position_to_know/2: "%s is in a position to know about things in a certain subject domain %s."
@@ -302,8 +304,8 @@ language:
   realize_more_effectively/2: "There exists an action that would realize the goal %s more effectively than %s."
   reapplication_sequence/3: "A sequence of modus ponens subarguments leads from %s, in the clear area, through the grey area to %s, for the property %s."
   reason_in_favor/1: "There is a reason in favor of %s."
-  reason_retaining_goal/2: "%s is a reason for retaining commitment to goal %s." 
-  reason_retracting_goal/2: "%s is a reason for retracting commitment to goal %s."
+  reason_retaining_goal/3: "For agent %s, value %s is a reason for retaining commitment to goal %s."
+  reason_retracting_goal/3: "For agent %s, value %s is a reason for retracting commitment to goal %s."
   reasonable_believe/1: "It is reasonable to believe %s."
   reassessment_against_continuing/2: "Past losses that cannot be recouped aside, a reassessment of the costs and benefits from now on speaks against %s continuing to try to realize %s."
   recaller_doubts/2: "%s, who recalls %s, expresses doubt about it."
@@ -342,7 +344,7 @@ language:
   situation_help/3: "%s is in a situation where some action %s by %s would help."
   situation_necessity/4: "As %s sees the situation, %s is a necessary or sufficient condition for carrying out %s; the adviser reports this to %s."
   speakers_correct/0: "Speakers of a language are generally correct about word definitions in that language."
-  special_circumstances/2: "But I can cite special circumstances that constitute an excuse %s for %s."
+  special_circumstances/4: "Pleader %s cites in case %s special circumstances %s as an excuse for action %s."
   special_in/2: "%s is in %s."
   special_not_in/2: "%s is not in %s."
   special_proposition/2: "%s is a special type of proposition such that, if it were true, it would normally or usually be expected to be in %s."
@@ -353,7 +355,7 @@ language:
   stronger_than_character/1: "There is strong evidence that supports %s more than the character issue does."
   strongly_occur/2: "If you do not do %s, the consequences %s are strongly likely to occur."
   subclass/2:  "%s is a subclass of %s."
-  successful_account/2: "%s is the account that explains %s most successfully."
+  successful_account/3: "%s is the member of account set %s that explains data %s most successfully."
   successful_diagram/2: "Among the diagrams in %s, the strongest argument is represented by %s."
   diagram_conclusion/2: "The argument represented by diagram %s has conclusion %s."
   referentially_coextensive/2: "The expressions %s and %s are referentially coextensive."
@@ -384,7 +386,7 @@ language:
   waste_bad_thing/2: "If all of %s's previous attempts to realize %s are wasted, that would be a bad thing."
   whole_of/4: "%s is the whole of %s, %s and %s."
   will_occur/1: "An event %s will occur."
-  without_correcting/1: "Speakers are able to use the word %s in the correct physical and grammatical context without being correct about the nature of its referent or property."
+  without_correcting/3: "Speakers of language %s can use word %s correctly while being wrong about the proposed definition %s."
   worse_consequences/2: "Bringing about %s has consequences whose negative value outweighs the positive value of %s."
   imitation_warrant/3: "If %s carries out action %s, that action is worth being imitated by %s."
   worthy_goal/1: "%s is a worthy goal."
@@ -821,26 +823,38 @@ argument_schemes:
       - person_value_depending(V1,X,V2)
 
   - id: positive_value
-    meta: 
-      title: "Argument From Values - Variant 1: Positive Value"
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.1, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
-    variables: [V,A,G]
-    conclusions: 
-      - reason_retaining_goal(V,G)
-    premises: 
-      - judged_positive_value(V,A)
-      - positive_affects(V,G,A)
+    meta:
+      title: 'Argument From Values - Variant 1: Positive Value'
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 19.1, p. 321. Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation
+        Frameworks." Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, "Agreeing to Differ: Modelling
+        Persuasive Dialogue between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245.'
+    variables:
+    - V
+    - A
+    - G
+    conclusions:
+    - reason_retaining_goal(A,V,G)
+    premises:
+    - judged_positive_value(V,A)
+    - positive_affects(V,G,A)
 
   - id: negative_value
     meta:
-      title: "Argument From Values - Variant 2: Negative Value"
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 19.2, p. 321. Trevor Bench-Capon, \"Persuasion in Practical Argument Using Value-based Argumentation Frameworks.\" Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, \"Agreeing to Differ: Modelling Persuasive Dialogue between Parties without a Consensus about Values.\" Informal Logic 22 (2003a), pp. 231 -245."
-    variables: [V,A,G]
-    conclusions: 
-      - reason_retracting_goal(V,G)
-    premises: 
-      - judged_negative_value(V,A)
-      - negative_affects(V,G,A)
+      title: 'Argument From Values - Variant 2: Negative Value'
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 19.2, p. 321. Trevor Bench-Capon, "Persuasion in Practical Argument Using Value-based Argumentation
+        Frameworks." Journal of Logic and Computation 13 (2003), pp.429­448. Trevor Bench-Capon, "Agreeing to Differ: Modelling
+        Persuasive Dialogue between Parties without a Consensus about Values." Informal Logic 22 (2003a), pp. 231 -245.'
+    variables:
+    - V
+    - A
+    - G
+    conclusions:
+    - reason_retracting_goal(A,V,G)
+    premises:
+    - judged_negative_value(V,A)
+    - negative_affects(V,G,A)
 
   - id: sacrifice
     meta:
@@ -1083,34 +1097,43 @@ argument_schemes:
   - id: sign
     meta:
       title: Argument From Sign
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 30, p. 329. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, pp. 113-114."
-    variables: [A,B]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 30, p. 329. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University
+        Press, 2006, pp. 113-114.'
+    variables:
+    - A
+    - B
     conclusions:
-      - B
+    - B
     premises:
-      - A
-      - indicated_true(B,A)
+    - A
+    - indicated_true(B,A)
     exceptions:
-      - more_reliable(A)
-    assumptions: 
-     - strong_correlation(A,B)
-     
-  - id: abductive_backward 
+    - more_reliable(A,B)
+    assumptions:
+    - strong_correlation(A,B)
+
+  - id: abductive_backward
     meta:
       title: Abductive Argumentation Scheme - Backward Argumentation Scheme
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.1, p. 329."
-    variables: [A,A1,D]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 31.1, p. 329.
+    variables:
+    - A
+    - A1
+    - D
     conclusions:
-      - plausible_hypothesis(A1)
+    - plausible_hypothesis(A1,A,D)
     premises:
-      - data_set(D)
-      - data_account(A,D)
-      - successful_account(A1,D)
-    assumptions: 
-     - sufficient_account(A1,D)
+    - data_set(D)
+    - data_account(A,D)
+    - member_of_accounts(A1,A)
+    - successful_account(A1,A,D)
+    assumptions:
+    - sufficient_account(A1,D)
     exceptions:
-     - inquiry_incomplete(D)
-      
+    - inquiry_incomplete(D)
+
   - id: abductive_forward
     meta:
       title: Abductive Argumentation Scheme - Forward Argumentation Scheme
@@ -1387,18 +1410,24 @@ argument_schemes:
   - id: circumstantial_ad_hominem
     meta:
       title: Circumstantial Ad Hominem
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 45, p. 337. Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, pp. 255-256. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 125-126."
-    variables: [A,S,C]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 45, p. 337. Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press,
+        1998, pp. 255-256. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press,
+        2006, pp. 125-126.'
+    variables:
+    - A
+    - S
+    - C
     conclusions:
-      - plausibility_decreased(A,S)
+    - plausibility_decreased(A,S)
     premises:
-      - advocates_conclusion(A,S,C)
-      - committed_opposite(A,C)
-      - credibility_questioned(A)
-    assumptions: 
-     - character_issue(A)
+    - advocates_conclusion(A,S,C)
+    - committed_opposite(A,C)
+    - credibility_questioned(A,S)
+    assumptions:
+    - character_issue(A,S)
     exceptions:
-     - inconsistency_explained(A,S)
+    - inconsistency_explained(A,S)
 
   - id: bias
     meta:
@@ -1506,29 +1535,38 @@ argument_schemes:
   - id: rule_physical_world_2
     meta:
       title: Argument For Constitutive Rule Claims - Physical World Premise Version 2
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.2, p. 342."
-    variables: [I,D,W]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 54.2, p. 342.
+    variables:
+    - I
+    - D
+    - W
     conclusions:
-      - counts_as(D,W)
+    - counts_as(I,D,W)
     premises:
-      - official_rulebook(I,D,W)
-      - correctly_report
+    - official_rulebook(I,D,W)
+    - correctly_report
     exceptions:
-      - rule_changed(I,D,W)
+    - rule_changed(I,D,W)
 
-  - id: rule_mental_world 
+  - id: rule_mental_world
     meta:
       title: Argument For Constitutive Rule Claims - Mental World Premise
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 54.3, p. 342. Wayne Grennan, Informal Logic, Montreal: McGill-Queen's University Press, 1997, p. 196."
-    variables: [W,D,L]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 54.3, p. 342. Wayne Grennan, Informal Logic, Montreal: McGill-Queen''s University Press, 1997,
+        p. 196.'
+    variables:
+    - W
+    - D
+    - L
     conclusions:
-      - means_same(W,D)
+    - means_same_in_language(L,W,D)
     premises:
-      - same_meaning(L,W,D)
-      - speakers_correct
+    - same_meaning(L,W,D)
+    - speakers_correct
     exceptions:
-      - without_correcting(W)
-      
+    - without_correcting(L,W,D)
+
   - id: rule
     meta:
       title: Argument From Rules - From Rules
@@ -1601,32 +1639,43 @@ argument_schemes:
   - id: plea_for_excuse
     meta:
       title: Argument From Plea For Excuse
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 58, p. 345. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997, pp. 154-156."
-    variables: [S,R,T,E]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 58, p. 345. Douglas Walton, Appeal to Pity. Albany: State University of New York Press, 1997,
+        pp. 154-156.'
+    variables:
+    - P
+    - C
+    - S
+    - R
+    - T
+    - E
     conclusions:
-      - exempted(S)
+    - exempted(P,C,R,T,S)
     premises:
-      - rule_require(R,T,S)
-      - pleader_committed(T)
-      - special_circumstances(E,T)
+    - rule_require(R,T,S)
+    - pleader_committed(P,C,T)
+    - special_circumstances(P,C,E,T)
     exceptions:
-      - not_excuse(E)
-    assumptions: 
-     - excuse(E)
-     
+    - not_excuse(P,C,R,T,S,E)
+    assumptions:
+    - excuse(P,C,R,T,S,E)
+
   - id: perception
     meta:
       title: Argument From Perception
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 59.1, p. 345. John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53."
-    variables: [P,I]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 59.1, p. 345. John Pollock, Cognitive Carpentry. Cambridge, Mass.: MIT Press, 1995, p. 53.'
+    variables:
+    - P
+    - I
     conclusions:
-      - reasonable_believe(I)
+    - reasonable_believe(I)
     premises:
-      - image(P,I)
-      - exemplify(I)
+    - image(P,I)
+    - exemplify(I)
     exceptions:
-      - not_indicator(I)
-      
+    - not_indicator(P,I)
+
   - id: memory
     meta:
       title: Argument From Memory
@@ -1683,15 +1732,18 @@ argument_schemes:
   - id: cause_to_effect
     meta:
       title: Argument from Cause to Effect
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 28, p. 328."
-    variables: [E1,E2]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 28, p. 328.
+    variables:
+    - E1
+    - E2
     conclusions:
-      - will_occur(E2)
+    - will_occur(E2)
     premises:
-      - has_occurred(E1)
-      - causes(E1,E2)
+    - has_occurred(E1)
+    - causes(E1,E2)
     exceptions:
-      - interference(E1)
+    - interference(E1,E2)
 
   - id: correlation_to_cause
     meta:

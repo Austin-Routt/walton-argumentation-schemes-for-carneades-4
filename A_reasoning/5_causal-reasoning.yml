@@ -21,7 +21,7 @@ language:
   horrible_costs/1: "Event %s would entail horrible costs."
   if_treatment_required/4: "If the treatment %[2]s is required for the subject %[1]s, for the contrary subject %[3]s the contrary treatment %[4]s is required."
   initial_presumption/1: "Case %s is tentatively acceptable as an initial presumption."
-  interference/1: "An event has occurred which interferes with event %s."
+  interference/2: "In the causal application from event %s to effect %s, an interfering causal factor is present."
   leads_to_next/3: "There exists a series of cases %s, %s, ..., %s where each leads to the next by a combination of causal, precedent and/or analogical steps."
   must_present_complementary_contrary/3: "If %s does not present the predicate %s, it must present the complementary contrary predicate %s at the same time and in the same respect."
   must_present_sametime/2: "%s must present %s at the same time and in the same respect."
@@ -173,15 +173,18 @@ argument_schemes:
   - id: cause_to_effect
     meta:
       title: Argument from Cause to Effect
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 28, p. 328."
-    variables: [E1,E2]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 28, p. 328.
+    variables:
+    - E1
+    - E2
     conclusions:
-      - will_occur(E2)
+    - will_occur(E2)
     premises:
-      - has_occurred(E1)
-      - causes(E1,E2)
+    - has_occurred(E1)
+    - causes(E1,E2)
     exceptions:
-      - interference(E1)
+    - interference(E1,E2)
 
   - id: correlation_to_cause
     meta:

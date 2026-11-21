@@ -13,10 +13,10 @@ language:
   bias_relevant/2: "The type of dialogue in which %s arrived at %s is one in which being biased matters."
   biased/1: "%s is biased."
   biased_not_take_part/3: "Person %s's bias is a failure to honestly take part in a type of dialogue %s, that %s is part of."
-  character_issue/1: "Character is an issue in the dialogue, and more specifically, %s's argument depends on his/her credibility."
+  character_issue/2: "Character is an issue because %s's argument %s depends on that person's credibility."
   character_relevant/1: "In the type of dialogue in which argument %s was used, the issue of character is relevant."
   committed_opposite/2: "%s is personally committed to the opposite of %s, as shown by commitments expressed in her/his personal actions or personal circumstances expressing such commitments."
-  credibility_questioned/1: "%s's credibility as a sincere person who believes in his own argument has been put into question by the two premises above."
+  credibility_questioned/2: "%s's credibility as a sincere person who believes argument %s is put into question by the advocacy and inconsistent-commitment premises."
   inconsistency_explained/2: "The practical inconsistency of the commitments of %s can be resolved or explained by further dialogue, so that it does not show a lack of credibility in arguing %s."
   inconsistency_relevant/2: "The pragmatic inconsistency of %s is a relevant reason for not accepting argument %s."
   morally_bad/1: "%s is a morally bad person."
@@ -67,18 +67,24 @@ argument_schemes:
   - id: circumstantial_ad_hominem
     meta:
       title: Circumstantial Ad Hominem
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 45, p. 337. Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press, 1998, pp. 255-256. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press, 2006, pp. 125-126."
-    variables: [A,S,C]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 45, p. 337. Douglas Walton, Ad Hominem Arguments. Tuscaloosa: University of Alabama Press,
+        1998, pp. 255-256. Douglas Walton, Fundamentals of Critical Argumentation. Cambridge: Cambridge University Press,
+        2006, pp. 125-126.'
+    variables:
+    - A
+    - S
+    - C
     conclusions:
-      - plausibility_decreased(A,S)
+    - plausibility_decreased(A,S)
     premises:
-      - advocates_conclusion(A,S,C)
-      - committed_opposite(A,C)
-      - credibility_questioned(A)
-    assumptions: 
-     - character_issue(A)
+    - advocates_conclusion(A,S,C)
+    - committed_opposite(A,C)
+    - credibility_questioned(A,S)
+    assumptions:
+    - character_issue(A,S)
     exceptions:
-     - inconsistency_explained(A,S)
+    - inconsistency_explained(A,S)
 
   - id: bias
     meta:

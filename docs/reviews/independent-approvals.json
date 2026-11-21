@@ -603,16 +603,23 @@
     },
     {
       "record": "negative_consequences_reasoning",
-      "fingerprint": "sha256:7e1b1a34b5a0747f1a09e05179fe1103230122d041544af3e1c920c1c8cff257",
+      "fingerprint": "sha256:4aa7238ca3ba620d95c75791cecba651adba56d6a0001cd6936aefcc317c4c56",
       "evidence": [
         "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_reasoning",
-        "docs/source-contracts-second-half.md"
+        "docs/source-contracts-second-half.md",
+        "docs/reviews/closure-independent-source-acceptance.md: Entry 33.3"
       ],
       "examples": [
-        "negative_consequences_reasoning/book"
+        "negative_consequences_reasoning/book",
+        "negative_consequences_reasoning/closure-shared-likelihood-positive",
+        "negative_consequences_reasoning/closure-shared-likelihood-question",
+        "negative_consequences_reasoning/closure-likelihood-outcome-isolation",
+        "negative_consequences_reasoning/closure-supported-likelihood-answer",
+        "negative_consequences_reasoning/closure-no-universal-strong-threshold",
+        "negative_consequences_reasoning/closure-old-threshold-does-not-answer"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "closure/root-source-review",
         "date": "2026-11-21",
         "decision": "approved"
       }

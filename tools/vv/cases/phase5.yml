@@ -238,24 +238,28 @@ cases:
   # exception inquiry_incomplete(D); for 31.2, CQ1 is the assumption 31.1
   # uses, sufficient_account.
   - name: abductive_backward/positive
-    source: "31.1, p. 329"
+    source: 31.1, p. 329
     assumptions:
-      - data_set(d)
-      - data_account(a1,d)
-      - successful_account(best,d)
+    - data_set(d)
+    - data_account(a1,d)
+    - successful_account(best,a1,d)
+    - member_of_accounts(best,a1)
     arguments:
-      - abductive_backward(a1,best,d)
+    - abductive_backward(a1,best,d)
     in:
-      - plausible_hypothesis(best)
+    - plausible_hypothesis(best,a1,d)
+
   - name: abductive_backward/adverse-inquiry-incomplete
-    source: "31.1, p. 330, CQ3 and CQ4"
+    source: 31.1, p. 330, CQ3 and CQ4
     assumptions:
-      - data_set(d)
-      - data_account(a1,d)
-      - successful_account(best,d)
-      - inquiry_incomplete(d)
+    - data_set(d)
+    - data_account(a1,d)
+    - successful_account(best,a1,d)
+    - inquiry_incomplete(d)
+    - member_of_accounts(best,a1)
     not_in:
-      - plausible_hypothesis(best)
+    - plausible_hypothesis(best,a1,d)
+
   - name: abductive_forward/positive
     source: "31.2, pp. 329-330"
     assumptions:
@@ -542,37 +546,37 @@ cases:
   # CQ2, an inconsistency resolved or explained, is the exception
   # inconsistency_explained(A,S).
   - name: circumstantial_ad_hominem/positive
-    source: "45, p. 337"
+    source: 45, p. 337
     assumptions:
-      - advocates_conclusion(bob,arg1,tax_cut)
-      - committed_opposite(bob,tax_cut)
-      - credibility_questioned(bob)
+    - advocates_conclusion(bob,arg1,tax_cut)
+    - committed_opposite(bob,tax_cut)
+    - credibility_questioned(bob,arg1)
     arguments:
-      - circumstantial_ad_hominem(bob,arg1,tax_cut)
+    - circumstantial_ad_hominem(bob,arg1,tax_cut)
     in:
-      - plausibility_decreased(bob,arg1)
-  - name: circumstantial_ad_hominem/adverse-opposite-of-another-proposition
-    source: "45, p. 337"
-    assumptions:
-      - advocates_conclusion(bob,arg1,tax_cut)
-      - committed_opposite(bob,arg1)
-      - credibility_questioned(bob)
-    no_arguments: [circumstantial_ad_hominem]
-    not_in:
-      - plausibility_decreased(bob,arg1)
-  - name: circumstantial_ad_hominem/adverse-inconsistency-explained
-    source: "45, p. 338, CQ2"
-    assumptions:
-      - advocates_conclusion(bob,arg1,tax_cut)
-      - committed_opposite(bob,tax_cut)
-      - credibility_questioned(bob)
-      - inconsistency_explained(bob,arg1)
-    not_in:
-      - plausibility_decreased(bob,arg1)
+    - plausibility_decreased(bob,arg1)
 
-  # 46 bias (p. 338): the major premise is stated for the arguer at hand, as
-  # exeptional's was in 3.7 (5.3), and X goes; CQ1, the type of dialogue, is
-  # the assumption bias_relevant(A,C).
+  - name: circumstantial_ad_hominem/adverse-opposite-of-another-proposition
+    source: 45, p. 337
+    assumptions:
+    - advocates_conclusion(bob,arg1,tax_cut)
+    - committed_opposite(bob,arg1)
+    - credibility_questioned(bob,arg1)
+    no_arguments:
+    - circumstantial_ad_hominem
+    not_in:
+    - plausibility_decreased(bob,arg1)
+
+  - name: circumstantial_ad_hominem/adverse-inconsistency-explained
+    source: 45, p. 338, CQ2
+    assumptions:
+    - advocates_conclusion(bob,arg1,tax_cut)
+    - committed_opposite(bob,tax_cut)
+    - credibility_questioned(bob,arg1)
+    - inconsistency_explained(bob,arg1)
+    not_in:
+    - plausibility_decreased(bob,arg1)
+
   - name: bias/positive
     source: "46, p. 338"
     assumptions:
@@ -660,35 +664,37 @@ cases:
   # the action committed, special_circumstances(E,T); CQ2 joins CQ1 in the
   # assumption excuse(E), whose text now says both.
   - name: plea_for_excuse/positive
-    source: "58, p. 345"
+    source: 58, p. 345
     assumptions:
-      - rule_require(r,speeding,fine)
-      - pleader_committed(speeding)
-      - special_circumstances(emergency,speeding)
+    - rule_require(r,speeding,fine)
+    - pleader_committed(ann,case1,speeding)
+    - special_circumstances(ann,case1,emergency,speeding)
     arguments:
-      - plea_for_excuse(fine,r,speeding,emergency)
+    - plea_for_excuse(ann,case1,fine,r,speeding,emergency)
     in:
-      - exempted(fine)
-  - name: plea_for_excuse/adverse-excuse-for-another-action
-    source: "58, p. 345"
-    assumptions:
-      - rule_require(r,speeding,fine)
-      - pleader_committed(speeding)
-      - special_circumstances(emergency,parking)
-    no_arguments: [plea_for_excuse]
-    not_in:
-      - exempted(fine)
-  - name: plea_for_excuse/adverse-precedent-problem
-    source: "58, p. 345, CQ3"
-    assumptions:
-      - rule_require(r,speeding,fine)
-      - pleader_committed(speeding)
-      - special_circumstances(emergency,speeding)
-      - not_excuse(emergency)
-    not_in:
-      - exempted(fine)
+    - exempted(ann,case1,r,speeding,fine)
 
-  # 60 memory (p. 346): the three undercutters are exceptions.
+  - name: plea_for_excuse/adverse-excuse-for-another-action
+    source: 58, p. 345
+    assumptions:
+    - rule_require(r,speeding,fine)
+    - pleader_committed(ann,case1,speeding)
+    - special_circumstances(ann,case1,emergency,parking)
+    no_arguments:
+    - plea_for_excuse
+    not_in:
+    - exempted(ann,case1,r,speeding,fine)
+
+  - name: plea_for_excuse/adverse-precedent-problem
+    source: 58, p. 345, CQ3
+    assumptions:
+    - rule_require(r,speeding,fine)
+    - pleader_committed(ann,case1,speeding)
+    - special_circumstances(ann,case1,emergency,speeding)
+    - not_excuse(ann,case1,r,speeding,fine,emergency)
+    not_in:
+    - exempted(ann,case1,r,speeding,fine)
+
   - name: memory/positive
     source: "60, p. 346"
     assumptions:
@@ -752,24 +758,23 @@ cases:
   # commitment to the goal; the record concluded "retaining", the conclusion
   # of 19.1.
   - name: negative_value/positive
-    source: "19.2, p. 321"
+    source: 19.2, p. 321
     assumptions:
-      - judged_negative_value(theft,hal)
-      - negative_affects(theft,survive,hal)
+    - judged_negative_value(theft,hal)
+    - negative_affects(theft,survive,hal)
     arguments:
-      - negative_value(theft,hal,survive)
+    - negative_value(theft,hal,survive)
     in:
-      - reason_retracting_goal(theft,survive)
-  - name: negative_value/adverse-not-a-reason-for-retaining
-    source: "19.2, p. 321"
-    assumptions:
-      - judged_negative_value(theft,hal)
-      - negative_affects(theft,survive,hal)
-    not_in:
-      - reason_retaining_goal(theft,survive)
+    - reason_retracting_goal(hal,theft,survive)
 
-  # 27 epistemic_ignorence (p. 328): premise 5, that every proposition in D is
-  # true or false, was missing (5.5).
+  - name: negative_value/adverse-not-a-reason-for-retaining
+    source: 19.2, p. 321
+    assumptions:
+    - judged_negative_value(theft,hal)
+    - negative_affects(theft,survive,hal)
+    not_in:
+    - reason_retaining_goal(hal,theft,survive)
+
   - name: epistemic_ignorance/positive
     source: "27, p. 328"
     assumptions:
@@ -922,17 +927,18 @@ cases:
     not_in:
       - act_on_presumption_false(safe_to_consume)
   - name: sign/two-signs
-    source: "30, p. 329, CQ2"
+    source: 30, p. 329, CQ2
     assumptions:
-      - smoke
-      - indicated_true(fire,smoke)
-      - spots
-      - indicated_true(measles,spots)
-      - more_reliable(spots)
+    - smoke
+    - indicated_true(fire,smoke)
+    - spots
+    - indicated_true(measles,spots)
+    - more_reliable(spots,measles)
     in:
-      - fire
+    - fire
     not_in:
-      - measles
+    - measles
+
   - name: retroductive/two-agents
     source: "31.5, p. 331, CQ4"
     assumptions:
@@ -1000,20 +1006,17 @@ cases:
     not_in:
       - means_same(square,equilateral_right_quadrilateral)
   - name: rule_physical_world_2/two-rules
-    source: "54.2, p. 342"
+    source: 54.2, p. 342
     assumptions:
-      - official_rulebook(chess,stalemate,draw)
-      - official_rulebook(chess,castling,move)
-      - correctly_report
-      - rule_changed(chess,castling,move)
+    - official_rulebook(chess,stalemate,draw)
+    - official_rulebook(chess,castling,move)
+    - correctly_report
+    - rule_changed(chess,castling,move)
     in:
-      - counts_as(stalemate,draw)
+    - counts_as(chess,stalemate,draw)
     not_in:
-      - counts_as(castling,move)
+    - counts_as(chess,castling,move)
 
-  # --- 5.5: expert_opinion (2, p. 310; pp. 374-375) ----------------------------
-  # CQ1, how credible the expert is, is the assumption credible(W), as in the
-  # book's own Carneades model of the scheme.
   - name: expert_opinion/adverse-credibility-questioned
     source: "2, p. 310, CQ1; pp. 374-375"
     assumptions:

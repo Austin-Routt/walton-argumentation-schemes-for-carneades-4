@@ -6,6 +6,7 @@ meta:
   version: "0.2.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  member_of_accounts/2: "Account %s is a member of the candidate account set %s."
   action_character/3: "Agent %s performed action %s, which can be classified as fitting character quality %s."
   agent_event/2: "Agent %s appears to have brought about observed event %s."
   character_quality/2: "%s has character quality %s."
@@ -24,16 +25,16 @@ language:
   indicated_true/2: "%s is generally indicated as true when its sign %s is true."
   inquiry_incomplete/1: "The inquiry into %s has not progressed far enough to draw a conclusion now."
   more_coherent_explanation/2: "There exists a more coherent explanation than theory %s of observation %s."
-  more_reliable/1: "There are other events that would more reliably account for the sign %s."
+  more_reliable/2: "Another event accounts for sign %s more reliably than candidate %s does."
   not_character_action/2: "Relevant actions of agent %s provide sufficient counterevidence against predicting future actions from character quality %s."
   action_fits_quality/3: "The description of agent %s's action or event %s actually fits the definition of quality %s."
   observed/1:  "%s has been observed."
   plausible_conclusion/1: "%s is the most plausible conclusion in the case."
-  plausible_hypothesis/1: "%s is the most plausible hypothesis in the case."
+  plausible_hypothesis/3: "%s is the most plausible hypothesis among accounts %s for data %s."
   quality_defined/1: "The character quality %s is well defined."
   reference_class/3: "Few agents other than %s might have brought about event %s and have character quality %s."
   strong_correlation/2: "Correlation of %s and %s is strong."
-  successful_account/2: "%s is the account that explains %s most successfully."
+  successful_account/3: "%s is the member of account set %s that explains data %s most successfully."
   successful_diagram/2: "Among the diagrams in %s, the strongest argument is represented by %s."
   diagram_conclusion/2: "The argument represented by diagram %s has conclusion %s."
   sufficient_account/2: "%s itself, as an explanation of %s apart from other alternative explanations available so far, is sufficient."
@@ -49,33 +50,42 @@ argument_schemes:
   - id: sign
     meta:
       title: Argument From Sign
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 30, p. 329. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University Press, 2006, pp. 113-114."
-    variables: [A,B]
+      source: 'Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 30, p. 329. Douglas Walton, Fundamentals of Critical Argumentation. New York: Cambridge University
+        Press, 2006, pp. 113-114.'
+    variables:
+    - A
+    - B
     conclusions:
-      - B
+    - B
     premises:
-      - A
-      - indicated_true(B,A)
+    - A
+    - indicated_true(B,A)
     exceptions:
-      - more_reliable(A)
-    assumptions: 
-     - strong_correlation(A,B)
+    - more_reliable(A,B)
+    assumptions:
+    - strong_correlation(A,B)
 
-  - id: abductive_backward 
+  - id: abductive_backward
     meta:
       title: Abductive Argumentation Scheme - Backward Argumentation Scheme
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 31.1, p. 329."
-    variables: [A,A1,D]
+      source: Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University
+        Press, ch. 9, entry 31.1, p. 329.
+    variables:
+    - A
+    - A1
+    - D
     conclusions:
-      - plausible_hypothesis(A1)
+    - plausible_hypothesis(A1,A,D)
     premises:
-      - data_set(D)
-      - data_account(A,D)
-      - successful_account(A1,D)
-    assumptions: 
-     - sufficient_account(A1,D)
+    - data_set(D)
+    - data_account(A,D)
+    - member_of_accounts(A1,A)
+    - successful_account(A1,A,D)
+    assumptions:
+    - sufficient_account(A1,D)
     exceptions:
-     - inquiry_incomplete(D)
+    - inquiry_incomplete(D)
 
   - id: abductive_forward
     meta:

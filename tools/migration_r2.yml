@@ -56,13 +56,13 @@ changes:
   - {record: bias, kind: added, old: "", new: "bias_relevant(A,C)", plan: "5.2", page: 338}
   - {record: full_slippery_slope, kind: removed, old: "led_to_step", new: "", plan: "5.1", page: 341, note: "restated the group opinion premise"}
   - {record: exeptional, kind: added, old: "", new: "exception_backed(A)", plan: "5.3", page: 344}
-  - {record: plea_for_excuse, kind: arity, old: "special_circumstances(E)", new: "special_circumstances(E,T)", plan: "5.1", page: 345, note: "the excuse is for the action committed"}
+  - {record: plea_for_excuse, kind: arity, old: "special_circumstances(E)", new: "special_circumstances(P,C,E,T)", plan: "5.1", page: 345, note: "the excuse is for the action committed"}
   - {record: memory, kind: added, old: '', new: 'based_on_false_belief(P,M)', plan: '5.2', page: 346}
   - {record: memory, kind: added, old: '', new: 'not_originally_believed(P,M)', plan: '5.2', page: 346}
   - {record: memory, kind: added, old: "", new: "recaller_doubts(P,M)", plan: "5.2", page: 346}
   - {record: illustration, kind: arity, old: "usually_properties(X,P1,P2)", new: "usually_properties(P1,P2)", plan: "5.1", page: 315, note: "the rule names no individual; the variable X goes, the parameters are [Y,P1,P2]"}
   - {record: illustration, kind: arity, old: "valid_rule(Y)", new: "valid_rule(P1,P2)", plan: "5.1", page: 315, note: "the conclusion is that the rule is valid"}
-  - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
+  - {record: negative_value, kind: replaced, old: "reason_retaining_goal(V,G)", new: "reason_retracting_goal(A,V,G)", plan: "5.1", page: 321, note: "a negative value is a reason for retracting commitment to the goal"}
   - {record: epistemic_ignorence, kind: premise, old: "", new: "bivalent(D)", plan: "5.5", page: 328, note: "premise 5, which the record left out"}
   - {record: verbal_slippery_slope, kind: arguments, old: "individuals_propoerty(A1,F,A2)", new: "individuals_propoerty(A1,P,A2)", plan: "5.1", page: 341, note: "one property throughout; the variable F goes, the parameters are [A1,A2,A,P]"}
   - {record: pop_scheme, kind: removed, old: "should_accept(A)", new: "", plan: "5.3", page: 311, note: "the acceptance reading is the record pop_scheme_acceptance"}
@@ -77,7 +77,7 @@ changes:
   - {record: common_folks_group_ad_populum, kind: arity, old: "accept_saying", new: "accept_saying(S)", plan: "5.4", page: 313}
   - {record: negative_normal_expectations, kind: arity, old: "not_normal", new: "not_normal(A)", plan: "5.4", page: 327}
   - {record: negative_practical, kind: arity, old: "sufficient_evidence", new: "sufficient_evidence(A)", plan: "5.4", page: 327}
-  - {record: sign, kind: arity, old: "more_reliable", new: "more_reliable(A)", plan: "5.4", page: 329}
+  - {record: sign, kind: arity, old: "more_reliable", new: "more_reliable(A,B)", plan: "5.4", page: 329}
   - {record: retroductive, kind: arity, old: reference_class, new: 'reference_class(A,E,Q)', plan: '5.4', page: 331}
   - {record: ad_hominem, kind: arity, old: "character_revelant", new: "character_revelant(S)", plan: "5.4", page: 336}
   - {record: gradualism, kind: arity, old: "proper_sequence", new: "proper_sequence(P1,P4)", plan: "5.4", page: 339}
@@ -113,7 +113,7 @@ changes:
   - {record: opposition_normative, kind: rename-predicate, old: "cannot_recieve_evaluation/2", new: "cannot_receive_evaluation/2", plan: "5.6", page: 0}
   - {record: distress, kind: rename-predicate, old: "bring_relive/2", new: "bring_relieve/2", plan: "5.6", page: 0}
   - {record: ad_hominem, kind: rename-predicate, old: "character_revelant/1", new: "character_relevant/1", plan: "5.6", page: 0}
-  - {record: abductive_backward, kind: rename-predicate, old: "succesful_account/2", new: "successful_account/2", plan: "5.6", page: 0}
+  - {record: abductive_backward, kind: arity, old: "succesful_account(A1,D)", new: "successful_account(A1,A,D)", plan: "5.6", page: 329, note: "The historical spelling change now also requires the explicit candidate account set; migration is manual."}
   - {record: abductive_forward, kind: arity, old: succesful_diagram(C1), new: 'successful_diagram(G,G1)', plan: '5.6', page: 330, note: Independent review also separates diagram G1 from conclusion C1. This spelling-plus-role change requires manual migration.}
   - {record: abductive_action_to_character, kind: arity, old: not_fit_action(A), new: 'action_fits_quality(A,X,Q)', plan: '5.6', page: 330, note: 'The old text was positive. Independent review also names the action and quality, so this migration requires those missing roles.'}
   - {record: "(library)", kind: rename-file, old: "A_reasoning/5_casual-reasoning.yml", new: "A_reasoning/5_causal-reasoning.yml", plan: "5.6", page: 0}
@@ -251,3 +251,21 @@ changes:
   - {record: interaction_act_person_2, kind: rename-predicate, old: person_judgment_value/2, new: person_value/2, plan: independent-review, page: 321, note: 'PR13 reconciliation: person P is V is the conclusion of18.1 and premise1 of18.2, with the same judgment-value role'}
 
   - {record: negative_consequences_reasoning, kind: replaced, old: "outcome_likely(A,B)", new: "consequence_likelihood_adequate(A,B)", plan: closure-review, page: 332, note: "Assess likelihood relative to the claimed argument strength. This is a semantic change requiring manual review: not strongly likely does not imply inadequate, so neither positive nor negative saved judgments are automatically renamed."}
+  - {record: positive_value, kind: arity, old: 'reason_retaining_goal(V,G)', new: 'reason_retaining_goal(A,V,G)', plan: closure-context, page: 321, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: negative_value, kind: arity, old: 'reason_retracting_goal(V,G)', new: 'reason_retracting_goal(A,V,G)', plan: closure-context, page: 321, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: sign, kind: arity, old: more_reliable(A), new: 'more_reliable(A,B)', plan: closure-context, page: 329, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: cause_to_effect, kind: arity, old: interference(E1), new: 'interference(E1,E2)', plan: closure-context, page: 328, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: abductive_backward, kind: arity, old: 'successful_account(A1,D)', new: 'successful_account(A1,A,D)', plan: closure-context, page: 329, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: abductive_backward, kind: arity, old: plausible_hypothesis(A1), new: 'plausible_hypothesis(A1,A,D)', plan: closure-context, page: 329, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: circumstantial_ad_hominem, kind: arity, old: credibility_questioned(A), new: 'credibility_questioned(A,S)', plan: closure-context, page: 337, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: circumstantial_ad_hominem, kind: arity, old: character_issue(A), new: 'character_issue(A,S)', plan: closure-context, page: 337, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: rule_physical_world_2, kind: arity, old: 'counts_as(D,W)', new: 'counts_as(I,D,W)', plan: closure-context, page: 342, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: rule_mental_world, kind: replaced, old: 'means_same(W,D)', new: 'means_same_in_language(L,W,D)', plan: closure-context, page: 342, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: rule_mental_world, kind: arity, old: without_correcting(W), new: 'without_correcting(L,W,D)', plan: closure-context, page: 342, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: perception, kind: arity, old: not_indicator(I), new: 'not_indicator(P,I)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: pleader_committed(T), new: 'pleader_committed(P,C,T)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: 'special_circumstances(E,T)', new: 'special_circumstances(P,C,E,T)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: excuse(E), new: 'excuse(P,C,R,T,S,E)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: not_excuse(E), new: 'not_excuse(P,C,R,T,S,E)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: plea_for_excuse, kind: arity, old: exempted(S), new: 'exempted(P,C,R,T,S)', plan: closure-context, page: 345, note: 'Explicit context identity: supply the actual participant, case, candidate set or application. Missing witnesses cannot be inferred by renaming.'}
+  - {record: abductive_backward, kind: premise, old: '', trigger: 'data_account(A,D)', new: 'member_of_accounts(A1,A)', plan: closure-context, page: 329, note: Supply an explicit witness that the selected account belongs to this candidate universe; a different account set is insufficient.}
