@@ -427,14 +427,22 @@ language:
 argument_schemes:
   - id: expert_opinion
     variables: [W,D,S]
-    premises: [expert(W,D), asserts(W,S)]
+    premises:
+      - expert(W,D)
+      - asserts(W,S)
     exceptions: [untrustworthy(W)]
     conclusions: [S]
 arguments:
   r1:
     scheme: expert_opinion
-    parameters: [ann, vaccines, safe(vaccine)]
-assumptions: [expert(ann,vaccines), asserts(ann,safe(vaccine)), untrustworthy(ann)]
+    parameters:
+      - ann
+      - vaccines
+      - safe(vaccine)
+assumptions:
+  - expert(ann,vaccines)
+  - asserts(ann,safe(vaccine))
+  - untrustworthy(ann)
 `))
 	if err != nil {
 		t.Fatal(err)
