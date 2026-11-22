@@ -91,6 +91,11 @@ func CarneadesServer(port string, templatesDir string) {
 	evalHandler := func(w http.ResponseWriter, req *http.Request) {
 		inputFormat := req.FormValue("input-format")
 		outputFormat := req.FormValue("output-format")
+		// the same input profile as check and eval (profile.go)
+		if err := checkImportProfile(inputFormat); err != nil {
+			errorTemplate.Execute(w, err.Error())
+			return
+		}
 		file, _, err := req.FormFile("datafile")
 		if err != nil {
 			errorTemplate.Execute(w, err.Error())

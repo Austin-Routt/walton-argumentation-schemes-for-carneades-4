@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-21 — integration of the independent baseline review (engine 4.3.1+walton.7)
+
+See `docs/reviews/final-baseline-integration.md`.
+
+* The four commits of the independent review (`598aa7e`, `8a201e4`, `3e2593d`, `da1dac5`) are merged unchanged; their archive was verified (size, SHA-256, all 2,618 manifest hashes) and the patches reproduce their tree from `98a2335`.
+* Their findings were reproduced on `98a2335` before merging: the Figure 5 sensitivity, the shared state-pair counterexample (the engine built an argument the adapter did not predict), the CQ2/CQ13 boundary, the conditional threat of entry 35, the Smart Car premise, the migration page, and the false "nor its last change" in the D20 stamp of `sunk_costs`.
+* One gap they left: `carneades server` passed CAF, AGXML and LKIF uploads to the legacy converters without the opt-in that `check` and `eval` now require. It now refuses them unless started with `-experimental-import` (`src/web/profile.go`, with a test). Engine 4.3.1+walton.7.
+
 ## 2026-11-21 — independent framework baseline (library 0.4.1, engine 4.3.1+walton.6)
 
 The complete independent integration decision is `docs/reviews/final-baseline-independent-review.md`; the active plan separates baseline source/implementation closure from the next validation effort.

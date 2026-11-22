@@ -1,4 +1,10 @@
-# Framework baseline preview: library 0.4.1 / engine 4.3.1+walton.6
+# Framework baseline preview: library 0.4.1 / engine 4.3.1+walton.7
+
+Engine walton.7 is the reviewed walton.6 with one integration fix: the web
+service applies the same import profile as `check` and `eval`
+(`docs/reviews/final-baseline-integration.md`). The review archive's
+acceptance evidence is for walton.6 at `da1dac5`; this repository's CI is the
+evidence for the integrated commit.
 
 This candidate follows PR21 `98a2335d2c9909cf597ae85a9f359f20d092ae6c` and
 incorporates the independent pre-benchmark closure review. Publish only the

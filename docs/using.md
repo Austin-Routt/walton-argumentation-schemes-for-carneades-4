@@ -54,7 +54,7 @@ The engine is kept as source in `third_party/`, with this repository's fixes;
 ```sh
 cd tools/vv
 go build -o ~/bin/carneades github.com/carneades/carneades-4/src/cmd/carneades
-carneades            # prints the engine's version, 4.3.1+walton.6
+carneades            # prints the engine's version, 4.3.1+walton.7
 ```
 
 `carneades check case.yml` reads and validates a graph without evaluating it;

@@ -7,6 +7,6 @@
 package common
 
 const Name = "The Carneades Argumentation System"
-const Version = "4.3.1+walton.6"
+const Version = "4.3.1+walton.7"
 const Source = "https://github.com/carneades/carneades-4"
 const Blog = "https://carneades.github.io/"

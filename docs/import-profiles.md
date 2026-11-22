@@ -4,14 +4,14 @@ The primary library graph format is native Carneades YAML. Other formats do
 not identify executable Walton schemes merely by using the same scheme name.
 Successful parsing and structural validation are separate from preserving the
 meaning of a source graph. These boundaries are part of library 0.4.1 / engine
-4.3.1+walton.6 and the next validation effort must test each claimed conversion
+4.3.1+walton.7 and the next validation effort must test each claimed conversion
 separately.
 
 | Input | Admission and interpretation | Acceptance scope |
 |---|---|---|
 | Native YAML | Known fields, unique keys, statement-id premise lists or role-to-id mappings; explicit assumptions, defaults, questions and issues | Primary structured CLI/API profile in `contracts.md` |
 | Restricted AIF JSON | I/RA/binary-CA graph; policy below | Tested project projection, not general AIF or AIFdb conformance |
-| CAF | CAF 1.3 shape with explicit legacy policy | Experimental; CLI opt-in required |
+| CAF | CAF 1.3 shape with explicit legacy policy | Experimental; opt-in required (CLI and web service) |
 | AGXML | One EDU per ADU; supported relation shapes and declared endpoints | Experimental; segmentation joints and full corpus conformance excluded |
 | LKIF | One argument graph; explicit premise polarity and type | Experimental; legacy assumption interpretation is not a full dialogue translation |
 | Dung TGF | Declared argument ids, a `#` separator, unlabelled two-id attack edges | Small abstract-framework interface; optional node text is outside Dung semantics |
@@ -63,12 +63,17 @@ define its source semantics and loss accounting before relaxing these checks.
 ## Experimental legacy conversion
 
 `carneades check` and `carneades eval` refuse CAF, AGXML and LKIF by default
-with unsupported outcome 2. A deliberate experiment can opt in:
+with unsupported outcome 2, and so does the web service (`carneades server`)
+for an upload in those formats. A deliberate experiment can opt in:
 
 ```sh
 carneades check -f caf -experimental-import legacy.xml
 carneades eval -f caf -experimental-import -t yaml legacy.xml
+carneades server -experimental-import
 ```
+
+Before engine 4.3.1+walton.7 the web service called the legacy converters
+without the opt-in; `src/web/profile.go` now applies the same profile.
 
 The flag does not bypass admission or structural validation and does not
 certify fidelity. Legacy Go import APIs remain available as experimental
