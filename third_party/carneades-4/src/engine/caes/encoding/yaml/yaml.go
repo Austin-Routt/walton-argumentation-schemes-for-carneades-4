@@ -75,7 +75,7 @@ type (
 		Parameters  []string
 		umpremises  []umPremis
 		Undercutter string
-		Weigth      float64 //
+		Weigth      float64 `yaml:"weight"`
 	}
 	umIssue struct {
 		id           string
@@ -141,7 +141,9 @@ func Import(inFile io.Reader) (*caes.ArgGraph, error) {
 	m := new(argMapGraph)
 
 	//	m := make(map[interface{}]interface{})
-	err = yaml.Unmarshal(data, m)
+	// Unknown semantic fields and duplicate keys must not silently change the
+	// graph. In particular, an attack flag is not a native YAML conclusion.
+	err = yaml.UnmarshalStrict(data, m)
 	if err != nil {
 		return nil, err
 	}
@@ -173,6 +175,9 @@ func scanArgMapGraph(m *argMapGraph) (*argMapGraph, error) {
 	// ------------
 
 	for id, iss := range m.Issues {
+		if iss == nil {
+			return nil, fmt.Errorf("issue %q must be a mapping, not null", id)
+		}
 		iss.id = id
 		// fmt.Printf(" issue: %s standard: \"%s\"\n", id, iss.Standard)
 		switch iss.Standard {
@@ -198,12 +203,15 @@ func scanArgMapGraph(m *argMapGraph) (*argMapGraph, error) {
 	// set argument-id and scan premises
 	// ---------------------------------
 	for id, arg := range m.Arguments {
+		if arg == nil {
+			return nil, fmt.Errorf("argument %q must be a mapping, not null", id)
+		}
 		// for id, _ := range m.Arguments {
 		arg.id = id
 		// fmt.Printf(" Arg.: %s, Premises: %v \n", id, arg.Premises)
 		arg.umpremises, err = iface2premises(arg.Premises)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("argument %q: %w", id, err)
 		}
 	}
 	// for _, arg := range m.Arguments {
@@ -242,6 +250,9 @@ func scanArgMapGraph(m *argMapGraph) (*argMapGraph, error) {
 	// --------------------
 
 	for _, argS := range m.Argument_schemes {
+		if argS == nil {
+			return nil, fmt.Errorf("argument scheme must be a mapping, not null")
+		}
 		name := argS.Id
 		// scan weight in argument_schemes
 		argS.caesWeight, err = iface2weighfunc(argS.Weight, name, collOfWeighingFunctions)
@@ -1145,6 +1156,8 @@ func iface2statement(value interface{}, yamlStats map[string]*caes.Statement) (m
 					return yamlStats, err
 				}
 				yamlStats[keyStr] = v
+			default:
+				return nil, fmt.Errorf("statement %q must have scalar text or a mapping, got %T", keyStr, st_value)
 			}
 		}
 	default:
@@ -1205,7 +1218,11 @@ func iface2xstatement(st_value interface{}, stat *caes.Statement) (*caes.Stateme
 				stat.Label = caes.Out
 			case "undecided":
 				stat.Label = caes.Undecided
+			default:
+				return nil, fmt.Errorf("statement %q has invalid label %q", stat.Id, iface2string(st_subvalue))
 			}
+		default:
+			return nil, fmt.Errorf("statement %q has unknown field %q", stat.Id, st_subkey)
 		}
 	}
 	return stat, nil
@@ -1472,53 +1489,29 @@ func iface2parameters(inArg interface{}) ([]string, error) {
 
 func iface2premises(inArg interface{}) ([]umPremis, error) {
 	var outArg []umPremis
-	switch inArg.(type) {
+	switch ps := inArg.(type) {
+	case nil:
+		return outArg, nil
 	case []interface{}:
-		// fmt.Printf(" [")
-		for idx, stat := range inArg.([]interface{}) {
-			switch stat.(type) {
-			case string:
-				umP := umPremis{stmt: normString(stat.(string))}
-				if outArg == nil {
-					outArg = []umPremis{umP}
-				} else {
-					outArg = append(outArg, umP)
-				}
-				if idx != 0 {
-					// fmt.Printf(", ")
-				}
-				// fmt.Printf("%s", stat.(string))
-
+		for idx, value := range ps {
+			stmt, ok := value.(string)
+			if !ok {
+				return nil, fmt.Errorf("premises[%d] must be a statement ID string, got %T; use a role-to-ID mapping for roles", idx, value)
 			}
+			outArg = append(outArg, umPremis{stmt: normString(stmt)})
 		}
-		// fmt.Printf("]")
 	case map[interface{}]interface{}:
-		// fmt.Printf("\n")
-		for key, val := range inArg.(map[interface{}]interface{}) {
-			premis := umPremis{}
-			valStr := ""
-			switch val.(type) {
-			case string:
-				valStr = val.(string)
-			default:
-				valStr = iface2string(val)
+		for key, value := range ps {
+			role, roleOK := key.(string)
+			stmt, stmtOK := value.(string)
+			if !roleOK || !stmtOK {
+				return nil, fmt.Errorf("premises must map role strings to statement ID strings, got %T: %T", key, value)
 			}
-			keyStr := ""
-			switch key.(type) {
-			case string:
-				keyStr = key.(string)
-			default:
-				keyStr = iface2string(key)
-			}
-			keyStr = strings.ToLower(keyStr)
-			premis.role = keyStr
-			premis.stmt = normString(valStr)
-			if outArg == nil {
-				outArg = []umPremis{premis}
-			} else {
-				outArg = append(outArg, premis)
-			}
+			outArg = append(outArg, umPremis{role: strings.ToLower(role), stmt: normString(stmt)})
 		}
+		sort.Slice(outArg, func(i, j int) bool { return outArg[i].role < outArg[j].role })
+	default:
+		return nil, fmt.Errorf("premises must be a list of statement ID strings or a role-to-ID mapping, got %T", inArg)
 	}
 	return outArg, nil
 }
