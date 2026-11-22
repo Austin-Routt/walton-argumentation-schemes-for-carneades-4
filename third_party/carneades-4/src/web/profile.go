@@ -5,7 +5,7 @@ import "github.com/carneades/carneades-4/src/engine/caes"
 // ExperimentalImport opts the web service in to the legacy CAF, AGXML and
 // LKIF converters, as -experimental-import does for check and eval
 // (docs/import-profiles.md). Without it an upload in those formats is
-// refused before it is read, so the service has the same input profile as
+// refused before conversion, so the service has the same input profile as
 // the command line: native YAML and the restricted AIF projection.
 var ExperimentalImport bool
 

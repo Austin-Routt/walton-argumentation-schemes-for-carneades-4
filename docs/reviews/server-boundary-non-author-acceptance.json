@@ -1,0 +1,86 @@
+{
+  "reviewer": "ChatGPT root integration reviewer; non-author of these four web files",
+  "scope": "Actual-route validation and inference failures; separate code review covers cancellation and profile wiring",
+  "files": {
+    "third_party/carneades-4/src/web/evaluation.go": "2e21e5701cd0644679f2e8068e276ce87128c4828d72092e1968b2684ffe78f3",
+    "third_party/carneades-4/src/web/evaluation_test.go": "427a6ededd509824c6a9cc7a49d96fca97a6ac38c784db24406eb91d79f67897",
+    "third_party/carneades-4/src/web/web.go": "018337e1ffc1072160122798070d87aa2b97a1dcf96ae96a670f954f96ef6002",
+    "third_party/carneades-4/src/web/profile.go": "edd646004e157df748ca100a348a8a0120086c0091987cf3764875ce9570c2d7"
+  },
+  "binary_sha256": "fda11ab21433295f724248b5dc6d98d692fa91736d143c7b8804e9633821714c",
+  "cases": [
+    {
+      "status": 200,
+      "content_type": "text/plain; charset=utf-8",
+      "body": "issues: \nstatements: \n    hot(kettle): \n        text: The kettle is hot \n        label: in\n    warm(kettle): \n        text: kettle is warm \n        label: in\n    undercut(a1): \n        text: a1 is undercut. \n        label: out\nassumptions:\n    - hot(kettle)\narguments: \n    a1:\n        premises:\n            - hot(kettle)\n        conclusion: warm(kettle)\n        weight: 1.00\n        scheme: hot_to_warm\n        parameters:\n            - kettle\n        undercutter: undercut(a1)\nlanguage:\n    hot/1: \"%s is hot\"\n    warm/1: \"%s is warm\"\nargument_schemes:\n    - id: hot_to_warm\n      variables:\n          - X\n      premises:\n          - hot(X)\n      conclusions:\n          - warm(X)\n",
+      "route": "/carneades/eval",
+      "name": "valid_inference",
+      "input_sha256": "f3e71e0f52a4dff87b95d209e790d066f1f1fe254f467fd3f344d43a57281f86",
+      "passed": true
+    },
+    {
+      "status": 400,
+      "content_type": "text/html; charset=utf-8",
+      "body": "<!DOCTYPE html> \n<html>\n<head>\n\t<title>Error Message</title>\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t<link rel=\"stylesheet\" href=\"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css\" />\n\t<script src=\"https://code.jquery.com/jquery-1.11.1.min.js\"></script>\n\t<script src=\"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js\"></script>\n</head>\n\n<body>\n<div data-role=\"page\" id=\"errorPage\">\n\n\t<div data-role=\"header\">\n\t\t<h1>Error Message</h1>\n\t</div>\n\n    <p>\n\tinvalid input: graph validation failed: argument: invalid_example: premises do not instantiate the scheme&#39;s premises and assumptions with the argument&#39;s parameters\n\t</p>\n    \n\t<div data-role=\"footer\" data-id=\"main-footer\" data-position=\"fixed\">\n\t\t<div data-role=\"navbar\">\n\t  \t\t<ul>\n\t    \t\t\t<li><a href=\"/carneades/\" class=\"ui-btn-active\" data-icon=\"home\">Home</a></li>\n\t   \t\t\t\t<li><a href=\"/carneades/help\" data-icon=\"info\">Help</a></li>\n\t\t\t\t\t<li><a href=\"/carneades/dataprot\" data-icon=\"info\">Data Protection</a></li>\n\t\t\t\t\t<li><a href=\"/carneades/imprint\" data-icon=\"info\">Imprint</a></li>\n\t  \t\t</ul>\n\t\t</div>\n\t</div>\n</div> \n\n</body>\n</html>\n",
+      "route": "/carneades/eval",
+      "name": "wrong_authored_premise",
+      "input_sha256": "864c88498cc61b0621f49613582b3bea600fb073d2e2c2a926735c8314b65092",
+      "passed": true
+    },
+    {
+      "status": 422,
+      "content_type": "text/html; charset=utf-8",
+      "body": "<!DOCTYPE html> \n<html>\n<head>\n\t<title>Error Message</title>\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t<link rel=\"stylesheet\" href=\"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css\" />\n\t<script src=\"https://code.jquery.com/jquery-1.11.1.min.js\"></script>\n\t<script src=\"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js\"></script>\n</head>\n\n<body>\n<div data-role=\"page\" id=\"errorPage\">\n\n\t<div data-role=\"header\">\n\t\t<h1>Error Message</h1>\n\t</div>\n\n    <p>\n\tinconsistent context: the accepted context contains two positions of one issue, or a statement and its negation\n\t</p>\n    \n\t<div data-role=\"footer\" data-id=\"main-footer\" data-position=\"fixed\">\n\t\t<div data-role=\"navbar\">\n\t  \t\t<ul>\n\t    \t\t\t<li><a href=\"/carneades/\" class=\"ui-btn-active\" data-icon=\"home\">Home</a></li>\n\t   \t\t\t\t<li><a href=\"/carneades/help\" data-icon=\"info\">Help</a></li>\n\t\t\t\t\t<li><a href=\"/carneades/dataprot\" data-icon=\"info\">Data Protection</a></li>\n\t\t\t\t\t<li><a href=\"/carneades/imprint\" data-icon=\"info\">Imprint</a></li>\n\t  \t\t</ul>\n\t\t</div>\n\t</div>\n</div> \n\n</body>\n</html>\n",
+      "route": "/carneades/eval",
+      "name": "opposed_stipulations",
+      "input_sha256": "0c2ec8bc9d464dc622882b56aa5498456884ecaf174ddd34f0b09335c42738e9",
+      "passed": true
+    },
+    {
+      "status": 422,
+      "content_type": "text/html; charset=utf-8",
+      "body": "<!DOCTYPE html> \n<html>\n<head>\n\t<title>Error Message</title>\n\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n\t<link rel=\"stylesheet\" href=\"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css\" />\n\t<script src=\"https://code.jquery.com/jquery-1.11.1.min.js\"></script>\n\t<script src=\"https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js\"></script>\n</head>\n\n<body>\n<div data-role=\"page\" id=\"errorPage\">\n\n\t<div data-role=\"header\">\n\t\t<h1>Error Message</h1>\n\t</div>\n\n    <p>\n\tunsupported: schemes with deletions or guards are outside the supported profile: hot_to_warm\n\t</p>\n    \n\t<div data-role=\"footer\" data-id=\"main-footer\" data-position=\"fixed\">\n\t\t<div data-role=\"navbar\">\n\t  \t\t<ul>\n\t    \t\t\t<li><a href=\"/carneades/\" class=\"ui-btn-active\" data-icon=\"home\">Home</a></li>\n\t   \t\t\t\t<li><a href=\"/carneades/help\" data-icon=\"info\">Help</a></li>\n\t\t\t\t\t<li><a href=\"/carneades/dataprot\" data-icon=\"info\">Data Protection</a></li>\n\t\t\t\t\t<li><a href=\"/carneades/imprint\" data-icon=\"info\">Imprint</a></li>\n\t  \t\t</ul>\n\t\t</div>\n\t</div>\n</div> \n\n</body>\n</html>\n",
+      "route": "/carneades/eval",
+      "name": "unsupported_guard",
+      "input_sha256": "67a883714a2cbd7de3933aa9aef6facedec0a80f9ab6c77d9f2f0000a709f6a7",
+      "passed": true
+    },
+    {
+      "status": 200,
+      "content_type": "application/json",
+      "body": "{\"argument_schemes\":[{\"conclusions\":[\"warm(X)\"],\"id\":\"hot_to_warm\",\"premises\":[\"hot(X)\"],\"variables\":[\"X\"]}],\"arguments\":{\"a1\":{\"conclusion\":\"warm(kettle)\",\"parameters\":[\"kettle\"],\"premises\":[\"hot(kettle)\"],\"scheme\":\"hot_to_warm\",\"undercutter\":\"undercut(a1)\",\"weight\":1}},\"assumptions\":[\"hot(kettle)\"],\"issues\":null,\"language\":{\"hot/1\":\"%s is hot\",\"warm/1\":\"%s is warm\"},\"statements\":{\"hot(kettle)\":{\"label\":\"in\",\"text\":\"The kettle is hot\"},\"undercut(a1)\":{\"label\":\"out\",\"text\":\"a1 is undercut.\"},\"warm(kettle)\":{\"label\":\"in\",\"text\":\"kettle is warm\"}}}",
+      "route": "/carneades/eval-arg-graph",
+      "name": "valid_inference",
+      "input_sha256": "f3e71e0f52a4dff87b95d209e790d066f1f1fe254f467fd3f344d43a57281f86",
+      "passed": true
+    },
+    {
+      "status": 400,
+      "content_type": "application/json",
+      "body": "\"invalid input: graph validation failed: argument: invalid_example: premises do not instantiate the scheme's premises and assumptions with the argument's parameters\"\n",
+      "route": "/carneades/eval-arg-graph",
+      "name": "wrong_authored_premise",
+      "input_sha256": "864c88498cc61b0621f49613582b3bea600fb073d2e2c2a926735c8314b65092",
+      "passed": true
+    },
+    {
+      "status": 422,
+      "content_type": "application/json",
+      "body": "\"inconsistent context: the accepted context contains two positions of one issue, or a statement and its negation\"\n",
+      "route": "/carneades/eval-arg-graph",
+      "name": "opposed_stipulations",
+      "input_sha256": "0c2ec8bc9d464dc622882b56aa5498456884ecaf174ddd34f0b09335c42738e9",
+      "passed": true
+    },
+    {
+      "status": 422,
+      "content_type": "application/json",
+      "body": "\"unsupported: schemes with deletions or guards are outside the supported profile: hot_to_warm\"\n",
+      "route": "/carneades/eval-arg-graph",
+      "name": "unsupported_guard",
+      "input_sha256": "67a883714a2cbd7de3933aa9aef6facedec0a80f9ab6c77d9f2f0000a709f6a7",
+      "passed": true
+    }
+  ],
+  "accepted": true
+}

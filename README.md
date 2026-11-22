@@ -49,11 +49,13 @@ VV_STRICT=1 tools/vv/run.sh  # required repository, Python, harness and engine/l
 
 ## Versions and releases
 
-The current preview uses library **0.4.1** (`walton.yml` and all category files) and engine **4.3.1+walton.7** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the current baseline release notes](docs/releases/framework-0.4.1.md) and [the engine contracts](docs/contracts.md).
+The current preview uses library **0.4.1** (`walton.yml` and all category files) and engine **4.3.1+walton.8** (`third_party/VERSION`). The old proposed R1 commit `8c092b6` is superseded and should not be tagged for publication. See [PLAN.md](PLAN.md), [the current baseline release notes](docs/releases/framework-0.4.1.md) and [the engine contracts](docs/contracts.md).
 
 **All 149 records have current scoped source acceptance with explicit non-author evidence.** The newly supplied books support the 2015 configured practical-reasoning records, the case-based reading of `exeption_to_rule`, and the omission reading of entry 33.3. The five AS1/AS2 records have a separate source review. This closure replaces nine admitted self-stamps, independently accepts the D20 sunk-cost reclassification, refreshes three record-specific source locators and identifies the actual non-author reviewer for eight earlier repairs. The current evidence is in [the independent source report](docs/reviews/final-source-independent-review.md) and [the 149-record acceptance register](docs/reviews/final-source-acceptance.json). The older 143-record register and review reports remain historical evidence.
 
 Source acceptance is for the declared interpretations. It is not original-author endorsement, authenticated human certification, general format conformance, empirical argument validity or permission to skip the next validation effort. The corrected preview is a candidate framework baseline, not a stable 1.0.0 release.
+
+The [post-integration review](docs/reviews/post-integration-readiness-review.md) closes the remaining HTTP admission/inference defects and corrects eleven live D20 reviewer attributions without changing any scheme formula, example or semantic fingerprint. Both CAES HTTP evaluation routes now validate authored arguments, propagate inference failures and request cancellation, and refuse failed graphs before labelling or export. This narrow correction does not expand the accepted offline profile into a production-hosting claim. The next stage begins with task/oracle/split definitions and a small Kialo annotation calibration, alongside formal engine checks; [the entry protocol](docs/validation-entry.md) separates those activities from a full benchmark campaign.
 
 Source approvals are recorded in `docs/reviews/independent-approvals.json` and bound to the reviewed content. Run:
 
