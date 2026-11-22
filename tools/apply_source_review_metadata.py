@@ -52,6 +52,19 @@ def reconcile(repo, write=False):
             if not isinstance(evidence, list) or not evidence or not all(isinstance(x, str) and x.strip() for x in evidence):
                 raise ValueError(f"{sid}: approval needs existing evidence references")
             note = "Approved only within the declared executable interpretation. Evidence: " + "; ".join(evidence + [reference])
+            # Reconciliation is not a new review. Preserve the accepted reviewer
+            # and non-author attestation instead of manufacturing an attribution.
+            accepted_review = approvals[sid].get("review", {})
+            invalid = gate.review_errors(accepted_review)
+            if invalid:
+                raise ValueError(f"{sid}: invalid accepted review: {'; '.join(invalid)}")
+            current_review = row.get("review")
+            if current_review is not None:
+                if not isinstance(current_review, dict):
+                    raise ValueError(f"{sid}: explicit ledger review is malformed; adjudicate before reconciliation")
+                for key in gate.REVIEW_FIELDS:
+                    if key in current_review and current_review[key] != accepted_review.get(key):
+                        raise ValueError(f"{sid}: explicit ledger review conflicts on {key}; adjudicate before reconciliation")
         else:
             decision = "open" if disposition.get("disposition") in OPEN_DISPOSITIONS else "hold"
             action = disposition.get("next_concrete_action")
@@ -60,7 +73,7 @@ def reconcile(repo, write=False):
             note = action + " Evidence: " + reference
         reviews[sid] = {"by": REVIEWER, "date": reviewed, "decision": decision, "note": note}
         if sid in approvals:
-            approvals[sid]["review"] = {key: reviews[sid][key] for key in gate.REVIEW_FIELDS}
+            reviews[sid].update({key: accepted_review.get(key) for key in gate.REVIEW_FIELDS})
     original = ledger_path.read_text(encoding="utf-8")
     document = yaml.compose(original)
     record_nodes = next(value.value for key, value in document.value if key.value == "records")

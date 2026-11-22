@@ -9,8 +9,7 @@ record cites is recorded as not compared; comparing it is research for later,
 not a condition of the stable release. The owner also decided that the
 upstream patches and the memorandum to the authors are not to be sent (D22).
 
-The reviewer is the implementer, who did not write these records (Carneades
-did) nor their last changes (the first and second reviews did). Each was
+The reviewer is the implementer, who did not write the inherited executable records. The later independent review found that the same reviewer did author the `sunk_costs` reclassification from entry 25 to 24; that source-contract change now has fresh non-author acceptance in `final-source-independent-review.md`. The other eleven D20 source decisions retain their non-author evidence. Each was
 compared with its printed entry, page by page, for the premises, the
 conclusion and every printed critical question; each has a passing book
 example. The approval states a reading, declared in the ledger, not an

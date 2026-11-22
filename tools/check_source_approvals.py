@@ -10,6 +10,8 @@ The hash covers the raw scheme, statically used language templates, global
 issue schemes, and selected source-ledger contract fields. Ledger stages and
 notes are excluded. Dynamic templates supplied through statement variables,
 engine code, test results and reviewer identity are not authenticated here.
+An explicit non-author attestation is required; an integrity-valid self-review
+is not independent acceptance. The attestation is evidence, not authentication.
 """
 import argparse
 from datetime import date
@@ -22,10 +24,10 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from validate_schemes import LIST_FIELDS, load_unique, parse_statement
 
-SCHEMA = "walton-source-approvals/v1"
+SCHEMA = "walton-source-approvals/v2"
 STAGES = ("mapped", "transcription-checked", "interpretation-approved", "questions-sorted", "example-passed")
 CONTRACT_FIELDS = ("origin", "upstream", "entry", "cites", "claim", "source_questions")
-REVIEW_FIELDS = ("by", "date", "decision")
+REVIEW_FIELDS = ("by", "date", "decision", "independent_of_author", "independence_basis")
 
 
 def read(path):
@@ -81,6 +83,27 @@ def semantic_fingerprint(master, scheme, row):
     return "sha256:" + hashlib.sha256(encoded).hexdigest()
 
 
+def review_errors(stamp):
+    """Validate an attestation without treating its assertions as authenticated."""
+    errors = []
+    if not isinstance(stamp, dict):
+        stamp = {}
+    if stamp.get("decision") != "approved":
+        errors.append("recorded approval requires review decision approved")
+    if not isinstance(stamp.get("by"), str) or not stamp["by"].strip():
+        errors.append("recorded approval requires a named reviewer")
+    if stamp.get("independent_of_author") is not True:
+        errors.append("recorded approval requires explicit non-author acceptance")
+    if not isinstance(stamp.get("independence_basis"), str) or not stamp["independence_basis"].strip():
+        errors.append("recorded approval requires an independence evidence basis")
+    try:
+        if date.fromisoformat(stamp.get("date", "")).isoformat() != stamp["date"]:
+            raise ValueError("noncanonical date")
+    except (TypeError, ValueError):
+        errors.append("recorded approval requires review date YYYY-MM-DD")
+    return errors
+
+
 def audit(repo, require_stable=False):
     master, schemes, rows = inventory(repo)
     fingerprints = {sid: semantic_fingerprint(master, s, rows[sid]) for sid, s in schemes.items()}
@@ -100,15 +123,8 @@ def audit(repo, require_stable=False):
             errors.append(f"{sid}: approval fingerprint is stale or missing")
         review = rows[sid].get("review")
         stamp = {key: review.get(key) for key in REVIEW_FIELDS} if isinstance(review, dict) else {}
-        if stamp.get("decision") != "approved":
-            errors.append(f"{sid}: recorded approval requires review decision approved")
-        if not isinstance(stamp.get("by"), str) or not stamp["by"].strip():
-            errors.append(f"{sid}: recorded approval requires a named reviewer")
-        try:
-            if date.fromisoformat(stamp.get("date", "")).isoformat() != stamp["date"]:
-                raise ValueError("noncanonical date")
-        except (TypeError, ValueError):
-            errors.append(f"{sid}: recorded approval requires review date YYYY-MM-DD")
+        errors.extend(f"{sid}: {error}" for error in review_errors(stamp))
+        errors.extend(f"{sid}: registry {error}" for error in review_errors(approval.get("review")))
         if approval.get("review") != stamp:
             errors.append(f"{sid}: approval review metadata differs from the ledger")
         for field in ("evidence", "examples"):

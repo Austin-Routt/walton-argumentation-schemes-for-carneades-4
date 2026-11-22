@@ -3,7 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Arguments Based on Cases"
-  version: "0.4.0"
+  version: "0.4.1"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   action_rule_excuse/4: "Case %s supplies an exception, extenuating circumstance or excuse under rule %s for actor %s's noncompliance with action %s."

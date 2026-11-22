@@ -3,7 +3,7 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Position to Know"
-  version: "0.4.0"
+  version: "0.4.1"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   witness_account_biased/2: "The account by witness %s concerning situated proposition %s has relevant bias."

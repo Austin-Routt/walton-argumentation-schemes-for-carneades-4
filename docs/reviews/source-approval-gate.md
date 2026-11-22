@@ -33,12 +33,13 @@ The path is `docs/reviews/independent-approvals.json`. The following is a format
 
 ```json
 {
-  "schema": "walton-source-approvals/v1",
+  "schema": "walton-source-approvals/v2",
   "approvals": [
     {
       "record": "RECORD_ID",
       "fingerprint": "sha256:REVIEWED_FINGERPRINT",
-      "review": {"by": "Attributed reviewer", "date": "YYYY-MM-DD", "decision": "approved"},
+      "review": {"by": "Attributed reviewer", "date": "YYYY-MM-DD", "decision": "approved",
+                 "independent_of_author": true, "independence_basis": "Non-author review report and authorship evidence"},
       "evidence": ["A report/source locator identifying the independent comparison and its scope"],
       "examples": ["RECORD_ID/book"]
     }
@@ -48,7 +49,7 @@ The path is `docs/reviews/independent-approvals.json`. The following is a format
 
 `evidence` and `examples` must be nonempty lists of nonblank strings. Evidence identifies the material and reasoning supporting the approval; the tool does not establish that the cited reasoning is true or that a person actually performed it. Example IDs must exist in `tools/vv/cases/*.yml`. Existence is checked; execution and success belong to the V&V run.
 
-`review` snapshots exactly the ledger review's `by`, `date`, and `decision` fields. The reviewer label must be nonblank, the date must be a real ISO date in `YYYY-MM-DD` form, and the decision must be `approved`. A differing snapshot fails even if the semantic fingerprint still matches. This makes accidental changes or withdrawals visible; it does not authenticate a reviewer or prevent someone from editing both records. The ledger's explanatory review note is not part of the snapshot.
+`review` snapshots exactly the ledger review's `by`, `date`, `decision`, `independent_of_author` and `independence_basis` fields. The reviewer label must be nonblank, the date must be a real ISO date in `YYYY-MM-DD` form, and the decision must be `approved`. Both ledger and registry must attest independence with the Boolean `true` and a nonempty evidence basis; integers and strings are not accepted as Booleans. A differing snapshot fails even if the semantic fingerprint still matches. This makes accidental changes or withdrawals visible; it does not authenticate a reviewer or prevent someone from editing both records. The ledger's explanatory review note is not part of the snapshot.
 
 ## Fingerprint formula
 
@@ -62,6 +63,7 @@ The value is `sha256:` followed by SHA-256 over the UTF-8 encoding of this JSON 
   issue_schemes: the complete master library issue_schemes object,
   source_contract: {
     origin, upstream, entry, cites, claim, source_questions,
+    comparison: the named comparison contract, only when present,
     questions: all question fields except each question's note
   }
 }
@@ -77,21 +79,21 @@ The existing validator's `parse_statement` selects the outer predicate's templat
 
 ## Mutation evidence and integration
 
-The test module uses only temporary synthetic records and synthetic approvals. Nineteen tests cover an unchanged approved record; changed conclusion and metadata; missing approvals at every promoted stage; changed CQ scope, kind and source contract; relevant language and global opposition changes; irrelevant-template and ledger-note stability; mapping-key order; unknown and duplicate IDs; missing evidence; nonexistent examples; stale approvals on unpromoted rows; absent/empty registries; both repository argument forms; inventory without approval creation; stable-mode refusal of an incomplete library; changed or invalid review attribution; withdrawn stages; metadata-only reconciliation; and refusal to reconcile stale semantic approvals.
+The test module uses only temporary synthetic records and synthetic approvals. Twenty-three tests cover an unchanged approved record; changed conclusion and metadata; missing approvals at every promoted stage; changed CQ scope, kind and source contract; relevant language and global opposition changes; irrelevant-template and ledger-note stability; mapping-key order; unknown and duplicate IDs; missing evidence; nonexistent examples; stale approvals on unpromoted rows; absent/empty registries; both repository argument forms; inventory without approval creation; stable-mode refusal of an incomplete library; changed or invalid review attribution; withdrawn stages; metadata-only reconciliation; refusal to reconcile stale semantic approvals; explicit non-author attestations; integer-versus-Boolean registry attacks; and preservation of explicit withdrawn/conflicting decisions and invalid reviewer metadata before any write.
 
-This change adds the checker, its tests and this documentation. It does not edit source stages, create the approval registry, or alter `PLAN.md` or `tools/vv/run.sh`. The integrating reviewer generates the real registry from final reviewed dispositions and wires the default check and mutation tests into CI. Stable-release execution uses `--require-stable` in addition to the full runtime/library test gate.
+The current strict workflow runs this checker with `--require-stable`, its mutation tests, and the complete runtime/library gates. The v2 migration retains supported historical acceptance and records the specific fresh non-author decisions in `final-source-acceptance.json`. Matching hashes plus a reviewer name were insufficient in v1: nine admitted self-reviews passed its integrity check. The v2 attestation makes that requirement explicit, while still not authenticating identities or proving the underlying evidence true.
 
-## Reconciling PR #13 metadata with the current dispositions
+## Legacy metadata reconciliation and current acceptance
 
 PR #13 adds explicit `review: {by, date, decision, note}` metadata and a corresponding Go stage check. Preserve its review and ledger as historical evidence; do not copy its stage promotions over later independent source decisions.
 
-The current metadata can be populated from the already accepted disposition register and existing approval registry:
+The helper below is for an already adjudicated disposition register whose records and stages exactly cover its library. The historical `record-dispositions.json` is not the current 149-record acceptance register: if its IDs/stages differ, the helper refuses and must not be used to replay old decisions. Current acceptance is in `final-source-acceptance.json`, the ledger and the v2 registry. For compatible historical copies or synthetic controls:
 
 ```sh
 # Preview only: exit 1 means derived metadata differs; no file is written.
 python3 tools/apply_source_review_metadata.py --repo /path/to/repository
 
-# Apply only the review metadata and registry review snapshots.
+# Restore missing metadata from valid accepted stamps; explicit conflicts refuse.
 python3 tools/apply_source_review_metadata.py --repo /path/to/repository --write
 
 python3 tools/check_source_approvals.py --repo /path/to/repository
@@ -99,4 +101,4 @@ python3 tools/check_source_approvals.py --repo /path/to/repository
 
 This helper never creates an approval, promotes a stage, or recomputes an approval fingerprint. It refuses mismatched disposition/stage/approval sets and any stale approved semantics. Complete independent review of a changed record before updating that record's accepted fingerprint; metadata reconciliation is not a way to approve the change.
 
-The attribution is `ChatGPT independent source-review team (integrated adjudication)`, not the peer reviewer's identity. Approved notes point to the actual approval evidence; held/open notes give the accepted next action and a record-level disposition reference. A row with only an unavailable-source or unreviewed-mapping obligation is `open`; a known interpretation or implementation qualification is `hold`. Both remain below interpretation approval. The operation preserves all other parsed ledger data and its surrounding source text.
+For accepted rows the helper preserves the existing registry reviewer and non-author evidence. It does not replace their identity with a generic integrator. It validates every accepted stamp before writing and refuses any explicit ledger withdrawal, false independence, changed reviewer/date/basis or malformed review. Missing metadata may be restored from a valid accepted stamp; a conflicting decision requires independent adjudication. The operation preserves all other parsed ledger data and its surrounding source text.

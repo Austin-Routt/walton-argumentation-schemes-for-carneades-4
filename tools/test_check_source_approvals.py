@@ -26,7 +26,8 @@ class ApprovalIntegrity(unittest.TestCase):
                                              "variables": ["X"], "premises": ["p(X)"], "conclusions": ["q(X)"]}]}
         self.row = {"record": "probe", "origin": "book", "entry": "1", "claim": "interpretation",
                     "stage": "example-passed", "questions": [{"n": 1, "kind": "premise", "as": "p(X)"}],
-                    "review": {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "approved"}}
+                    "review": {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "approved",
+                               "independent_of_author": True, "independence_basis": "Synthetic non-author fixture."}}
         self.ledger = {"records": [self.row]}
         self.registry = {"schema": gate.SCHEMA, "review_date": "2026-11-21", "approvals": [{
             "record": "probe", "fingerprint": gate.semantic_fingerprint(self.master, self.master["argument_schemes"][0], self.row),
@@ -164,7 +165,8 @@ class ApprovalIntegrity(unittest.TestCase):
 
     def test_review_attribution_mutations_fail_without_semantic_hash_change(self):
         original = dict(self.row["review"])
-        for field, value in (("by", "Someone else"), ("date", "2026-11-22"), ("decision", "hold")):
+        for field, value in (("by", "Someone else"), ("date", "2026-11-22"), ("decision", "hold"),
+                             ("independent_of_author", False), ("independence_basis", "Another review")):
             with self.subTest(field=field):
                 self.row["review"] = dict(original, **{field: value})
                 self.assertEqual(self.registry["approvals"][0]["fingerprint"],
@@ -177,9 +179,13 @@ class ApprovalIntegrity(unittest.TestCase):
         for field, value, message in (("by", " ", "named reviewer"),
                                       ("date", "2026-02-30", "date YYYY-MM-DD"),
                                       ("date", "20261121", "date YYYY-MM-DD"),
-                                      ("decision", "hold", "decision approved")):
+                                      ("decision", "hold", "decision approved"),
+                                      ("independent_of_author", False, "explicit non-author acceptance"),
+                                      ("independent_of_author", "true", "explicit non-author acceptance"),
+                                      ("independence_basis", " ", "independence evidence basis")):
             with self.subTest(field=field, value=value):
-                stamp = {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "approved", field: value}
+                stamp = {"by": "Synthetic reviewer", "date": "2026-11-21", "decision": "approved",
+                         "independent_of_author": True, "independence_basis": "Synthetic non-author fixture.", field: value}
                 self.row["review"] = dict(stamp)
                 self.registry["approvals"][0]["review"] = dict(stamp)
                 self.assertIn(message, self.errors())
@@ -189,6 +195,10 @@ class ApprovalIntegrity(unittest.TestCase):
         self.assertEqual("", self.errors())
         self.row["stage"] = "transcription-checked"
         self.assertIn("approving review is inconsistent", self.errors())
+
+    def test_registry_independence_is_boolean_not_equal_integer(self):
+        self.registry["approvals"][0]["review"]["independent_of_author"] = 1
+        self.assertIn("registry recorded approval requires explicit non-author acceptance", self.errors())
 
     def disposition(self):
         self.write("docs/reviews/record-dispositions.json", {"records": [{
@@ -215,6 +225,47 @@ class ApprovalIntegrity(unittest.TestCase):
                     self.assertTrue(path.read_text().startswith("# retained comment\n"))
                     self.assertEqual(original_hash, gate.read(self.registry_path)["approvals"][0]["fingerprint"])
                     self.assertEqual([], gate.audit(self.root)[1])
+                    self.assertEqual("Synthetic reviewer", gate.read(path)["records"][0]["review"]["by"])
+
+    def test_metadata_helper_cannot_turn_self_review_into_independent_acceptance(self):
+        self.disposition()
+        self.row["review"]["independent_of_author"] = False
+        self.registry["approvals"][0]["review"] = dict(self.row["review"])
+        self.save()
+        path = self.root / "tools/vv/source_ledger.yml"
+        before = (path.read_bytes(), self.registry_path.read_bytes())
+        with self.assertRaisesRegex(ValueError, "explicit non-author acceptance"):
+            metadata.reconcile(self.root, write=True)
+        self.assertEqual(before, (path.read_bytes(), self.registry_path.read_bytes()))
+
+    def test_metadata_helper_preserves_explicit_withdrawal_and_reviewer_conflicts(self):
+        self.disposition()
+        original = dict(self.row["review"])
+        for field, value in (("independent_of_author", False), ("decision", "hold"),
+                             ("by", "Different reviewer"), ("date", "2026-11-20"),
+                             ("independence_basis", "Withdrawn basis")):
+            with self.subTest(field=field):
+                self.row["review"] = dict(original, **{field: value})
+                self.save()
+                path = self.root / "tools/vv/source_ledger.yml"
+                before = (path.read_bytes(), self.registry_path.read_bytes())
+                with self.assertRaisesRegex(ValueError, "explicit ledger review conflicts"):
+                    metadata.reconcile(self.root, write=True)
+                self.assertEqual(before, (path.read_bytes(), self.registry_path.read_bytes()))
+
+    def test_metadata_helper_rejects_invalid_registry_reviewer_before_writing(self):
+        self.disposition()
+        original = dict(self.registry["approvals"][0]["review"])
+        self.row.pop("review")
+        for field, value in (("by", ""), ("date", "bogus"), ("independent_of_author", "true")):
+            with self.subTest(field=field):
+                self.registry["approvals"][0]["review"] = dict(original, **{field: value})
+                self.save()
+                path = self.root / "tools/vv/source_ledger.yml"
+                before = (path.read_bytes(), self.registry_path.read_bytes())
+                with self.assertRaisesRegex(ValueError, "invalid accepted review"):
+                    metadata.reconcile(self.root, write=True)
+                self.assertEqual(before, (path.read_bytes(), self.registry_path.read_bytes()))
 
     def test_metadata_helper_refuses_stale_semantics_without_writing(self):
         self.disposition()
