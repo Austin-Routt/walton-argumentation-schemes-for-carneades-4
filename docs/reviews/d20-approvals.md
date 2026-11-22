@@ -24,6 +24,8 @@ ledger and both approval registers. This is an attribution correction, not
 eleven new passage-by-passage source reviews. Every source interpretation,
 semantic fingerprint and example remains unchanged; see
 `integration-provenance-review.md` and `integration-attribution-updates.json`.
+For each record, whose change was last and which non-author check covers it
+is tabulated in `post-readiness-integration.md`.
 The twelfth D20 record, `sunk_costs`, retains its separate non-author acceptance
 of the entry-25-to-24 source-contract reclassification in
 `final-source-independent-review.md`.
