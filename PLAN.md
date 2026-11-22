@@ -4,22 +4,22 @@ Updated 2026-11-21. Reviewed public snapshots: original PR15 `e6d2d6f427c6ec0447
 
 ## Decision and current evidence
 
-Proceed with the corrected **preview** only at the exact commit in the final clean acceptance evidence. Do not publish old R1 pin `8c092b6` or the PR15 baseline as this corrected candidate. Do not label the complete library 1.0.0. Fifteen inherited-source holds remain, despite repaired engine behavior and passing executable examples.
+Proceed with the corrected **preview** only at the exact commit in the final clean acceptance evidence. Do not publish old R1 pin `8c092b6` or the PR15 baseline as this corrected candidate. Do not label the complete library 1.0.0 yet. No source hold remains since the final closure of 2026-11-21 (library 0.4.0); 1.0.0 waits for the owner's independent research and the release checks of section D.
 
-The owner decisions are settled: add explicit finite part/whole and source-alternative variants; correct the likelihood assessments in 33.3 and 33.4 without conflating action and omission using semantic migration; retain qualified AS1 separately from a future full AS2 model; implement question-induced suspension in a separate finite dialogue layer. No broad opinion round or majority vote is needed. Reopen concrete counterexamples or newly available source evidence.
+The owner decisions are settled: add explicit finite part/whole and source-alternative variants; correct the likelihood assessments in 33.3 and 33.4 without conflating action and omission using semantic migration; have both a verified AS1 and a full AS2 model (D24, done); implement question-induced suspension in a separate finite dialogue layer. No broad opinion round or majority vote is needed. Reopen concrete counterexamples or newly available source evidence.
 
 | Item | Current state |
 |---|---|
-| Records | 143: 119 book-origin and 24 inherited |
-| Independent approvals | 140: 119 book-origin and 21 inherited (128 at the closure review; 12 inherited records approved against the compendium under D20 on 2026-11-21) |
-| Holds | 3 inherited records with no compendium entry: `practical_reasoning1` (transcription-checked; AS2 scope), `practical_reasoning2` and `exeption_to_rule` (mapped; originals to compare) |
-| Original 50 holds | 47 closed (35 by the closure review, 12 under D20); 3 retained with exact next actions |
+| Records | 148: 119 book-origin, 24 inherited and 5 from Atkinson and Bench-Capon (2007) |
+| Approvals | 148 (128 at the closure review; 12 under D20; 8 in the final closure, by the implementer, who also wrote those changes: D14 not met, the owner's research is the second check) |
+| Holds | none (`docs/reviews/final-closure.md`) |
+| Original 50 holds | all closed (35 by the closure review, 12 under D20, 3 in the final closure) |
 | Additions | 23 variants, all independently accepted within declared scope |
-| Compendium mapping | 137 records under 109 entries; 6 upstream-only |
+| Compendium mapping | 137 records under 109 entries; 6 upstream-only; 5 publication-only |
 | Entry approval coverage | every one of the 109 represented entries has an approved record |
-| Registered inventory | 9,989 distinct checks (9,979 at the closure candidate `fcccbba`, ten added by the implementer's second response), plus separate Python/native/unit/vet/race gates |
-| Validator | 0 errors; 11 warnings: 6 unused inherited templates and 5 dependency-cycle groups |
-| Stable gate L | Open; 3 of 143 rows are not at example-passed |
+| Registered inventory | 10,365 distinct checks (9,989 before the final closure), plus separate Python/native/unit/vet/race gates |
+| Validator | 0 errors; 10 warnings: 5 unused inherited templates and 5 dependency-cycle groups |
+| Stable gate L | Passes: 148 of 148 rows at example-passed with an approval; run by `tools/vv/run.sh` |
 
 The current complete register and every original-hold outcome are `docs/reviews/closure-current-register.json` and its readable companion. The exact test inventory is `tools/vv/expected_checks.txt`. Historical reports retain their original counts and do not describe current status.
 
@@ -80,6 +80,10 @@ The register of decisions that tools, contracts, ledger notes and reviews cite a
 | D22: outside contacts | send only when the owner says so | agree | **owner, 2026-11-21: not to be sent**; independent research follows once the gaps are closed | agree |
 | D23: 33.3 and 33.4 | likelihood adequate for the argument | agree; 33.4's omission has its own statement | adopted: `consequence_likelihood_adequate`, `omission_consequence_likelihood_adequate` | agree |
 
+### D24 (owner, 2026-11-21)
+
+Both a verified AS1 and a full AS2 model. Done in the final closure (`docs/reviews/final-closure.md`): AS1, its two negative versions and AS2 with its negative version are records of their own (origin `publication`); AS2's facts come from validated AATS models (`tools/aats.py`); alternatives are decided by the comparison contract of `docs/contracts.md`, contract 8, validated against every choice the paper reports. `practical_reasoning1` stays as what it is, the value-based scheme of Walton (2015) as configured in Carneades. This settles D21 for that record.
+
 ## Source stages and stable gate L
 
 The stages are cumulative: `mapped` locates provenance; `transcription-checked` compares accessible source content; `interpretation-approved` records independent judgment; `questions-sorted` supplies every printed CQ's justified disposition; `example-passed` adds actual positive and discriminating adverse execution. Tests alone cannot advance source stages. Verified zero printed questions differs from an unknown count.
@@ -91,7 +95,7 @@ python3 tools/check_source_approvals.py --repo .
 python3 tools/check_source_approvals.py --repo . --require-stable
 ```
 
-The first must pass; the second must refuse the three current holds. This is the intended complete-library gate, not an executable failure waiver or a silent scope reduction. All 143 records are still required for full 1.0.0.
+Both pass since the final closure, and `tools/vv/run.sh` runs the second. A record added later has to reach `example-passed` with an approval before it can be merged.
 
 ## Remaining sequence
 
@@ -102,19 +106,17 @@ The first must pass; the second must refuse the three current holds. This is the
 3. Produce source archive, Git bundle, cumulative repository patch and separately named patched engine sources. Verify clean application and resulting tree equality. Root `carneades-4.zip` and `GoCHR.zip` remain unchanged original provenance inputs with `sources.lock`; they alone do not install patches.
 4. Publish only the exact accepted candidate using `docs/releases/r1-candidate.md`. Without authenticated GitHub write access, deliver the tested artifacts and exact commands. A local bundle/tag or prepared command is not a completed remote release.
 
-### B. Original-source comparisons (D20)
+### B. Original sources (closed)
 
-Under D20 (owner, 2026-11-21) the twelve inherited records filed under compendium entries are approved against those entries; the older works they cite are recorded as not compared, and comparing them is research, not a release condition. Two records have no entry and stay held until their originals are compared: `practical_reasoning2` (Walton 2015, *Goal-Based Reasoning for Argumentation*, doi:10.1017/CBO9781316340554) and `exeption_to_rule` (Walton 1995, *A Pragmatic Theory of Fallacy*, p. 148, which has no DOI, and the 2019 correspondence behind its name). Its citation is the reference printed for entry 57, argument from precedent, but its form, applying the ratio of a similar case, is not 57's. The sources, with DOIs where they have one, are listed in `docs/reviews/d20-approvals.md`.
+Under D20 the twelve inherited records filed under compendium entries are approved against those entries. On 2026-11-21 the owner supplied Walton (1995), Walton (2015) and Walton (2002): `practical_reasoning2` and `exeption_to_rule` were compared, corrected and approved, and nineteen records approved against the compendium (eight of them under D20) have their original compared in a ledger note (`docs/reviews/final-closure.md`). Not supplied, and not a condition: *Scare Tactics* (2000), cited by 33.3 and 33.4, and the 2019 correspondence behind the name `exeption_to_rule`.
 
-### C. One model hold
+### C. AS1 and AS2 (closed, D24)
 
-`practical_reasoning1` follows AS1 of Atkinson and Bench-Capon (2007, doi:10.1016/j.artint.2007.04.009), which is at hand: all 17 questions have a disposition, but CQ5-9 and 11 only through inherited stronger exceptions and CQ12, 14, 15 and 17 through none. The owner chooses between approving it as a qualified AS1 record, with those differences declared, and a separate AS2 model (agents, joint actions, states, transitions, values); until then it is held.
-
-`sunk_costs` is closed: it is the argument from waste of entry 24 with the costs stated, approved under D20; the article's p. 489 form is `sunk_costs_precommitment`.
+`practical_reasoning1` is the value-based scheme of Walton (2015, pp. 92-93) and is approved as that. AS1 of Atkinson and Bench-Capon (2007), its two negative versions and AS2 are separate records, all seventeen questions sorted; `tools/aats.py` validates AATS models, generates the AS2 facts and arguments (which the suite checks the engine builds exactly) and implements the comparison contract.
 
 ### D. Stable R2
 
-After those three rows are resolved, independently review all semantic migrations and rerun stable gate L and both clean toolchains before releasing 1.0.0. No completion date is inferred for unavailable evidence.
+The source gate passes. Before releasing 1.0.0: the owner's independent research (the second check of the eight approvals of the final closure, D14), an independent review of the semantic migrations, and stable gate L and both clean toolchains rerun at the exact commit to be tagged.
 
 The upstream patches and the source memorandum prepared by the reviews are not to be sent (owner, 2026-11-21, D22).
 

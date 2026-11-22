@@ -3,7 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Arguments Based on Cases"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   action_rule_excuse/4: "Case %s supplies an exception, extenuating circumstance or excuse under rule %s for actor %s's noncompliance with action %s."
@@ -30,7 +30,6 @@ language:
   prestigious_individual/2: "Individual %s is prestigious for -admired by- individuals %s."
   reasonable_believe/1: "It is reasonable to believe %s."
   relevant_differences/1: "There are relevant differences between case %s and the current case."
-  relevant_differences/2: "There are relevant differences between case %s and case %s."
   right_to_do/2: "The right thing to do in %s, was to carry out action %s."
   rule_of_case/2: "Rule %s is the ratio decidendi of case %s."
   should_do/2: "%s should do %s."
@@ -63,7 +62,7 @@ argument_schemes:
       - rule_of_case(R,C)
       - has_conclusion(R,S)
     exceptions:
-      - relevant_differences(R,C)
+      - relevant_differences(C)
       - inapplicable_rule(R)
 
   - id: from_example

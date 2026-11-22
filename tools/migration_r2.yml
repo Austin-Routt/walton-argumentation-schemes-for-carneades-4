@@ -324,3 +324,6 @@ changes:
     plan: closure-review
     page: 312
     note: Support the specific acceptance branch; possession of an object is not acceptance of a proposition. No membership/acceptance evidence is manufactured.
+  - {record: practical_reasoning2, kind: replaced, old: "possible(G)", new: "possible_goal(G)", plan: final-closure, page: 94, note: "Walton 2015, p. 94: G is possible; possible/1 reads Action G is possible. Shared with 22.1"}
+  - {record: practical_reasoning2, kind: replaced, old: "side_effects(A,S1)", new: "side_effects_to_consider(A,S1)", plan: final-closure, page: 94, note: "Walton 2015, p. 94: the instrumental scheme asks for side effects that need to be taken into account; side_effects/2 is the value-based question of p. 93"}
+  - {record: exeption_to_rule, kind: arity, old: "relevant_differences(R,C)", new: "relevant_differences(C)", plan: final-closure, page: 148, note: "the rule R sat in a case slot; the difference is between the cited case and the current case, as in 7"}

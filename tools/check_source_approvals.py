@@ -68,6 +68,11 @@ def semantic_fingerprint(master, scheme, row):
     if any(key not in language or not isinstance(language[key], str) for key in used):
         raise ValueError(f"{scheme['id']}: a referenced language template is missing or not text")
     contract = {key: row.get(key) for key in CONTRACT_FIELDS}
+    if row.get("comparison") is not None:
+        # the comparison contract an alternative question names (added after
+        # the first approvals: only rows that name one carry the key, so the
+        # fingerprints of the others are unchanged)
+        contract["comparison"] = row["comparison"]
     contract["questions"] = [{k: v for k, v in q.items() if k != "note"} for q in row.get("questions", [])]
     payload = {"format": "walton-source-semantics/v1", "scheme": scheme,
                "language": {key: language[key] for key in sorted(used)},

@@ -1,0 +1,232 @@
+# Value-based practical reasoning as Atkinson and Bench-Capon (2007) state it:
+# AS1 and its two negative versions (pp. 858-859), and AS2 on an AATS
+# (pp. 861-862), written by hand. The generated AATS cases are in
+# practical_as2.yml. Which of several competing actions an audience chooses is
+# decided by the comparison contract value-based-choice (tools/aats.py,
+# docs/contracts.md, contract 8), not by the engine: these cases check what the
+# records build and how the engine labels it without an audience.
+cases:
+  - name: practical_reasoning_as1/book
+    source: "Atkinson and Bench-Capon (2007), p. 858: I may diet to lose weight, with the goal of not being overweight, to promote the value of health; state names are this library's"
+    assumptions:
+      - current_circumstances(overweight)
+      - would_bring_about(diet,overweight,weight_lost)
+      - would_be_realized(not_overweight,weight_lost)
+      - would_promote_value(not_overweight,health)
+    arguments:
+      - practical_reasoning_as1(diet,overweight,weight_lost,not_overweight,health)
+    in:
+      - should_be_performed(diet)
+    variants: true
+
+  - name: practical_reasoning_as1/cq12-circumstances-questioned
+    source: "p. 858, CQ12: are the circumstances as described possible? Questioned and not supported, the default fails"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions: &diet
+      - current_circumstances(overweight)
+      - would_bring_about(diet,overweight,weight_lost)
+      - would_be_realized(not_overweight,weight_lost)
+      - would_promote_value(not_overweight,health)
+    questioned: [circumstances_possible(overweight)]
+    arguments:
+      - practical_reasoning_as1(diet,overweight,weight_lost,not_overweight,health)
+    not_in: [should_be_performed(diet)]
+
+  - name: practical_reasoning_as1/cq13-action-questioned
+    source: "p. 858, CQ13: is the action possible?"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions: *diet
+    questioned: [possible(diet)]
+    not_in: [should_be_performed(diet)]
+
+  - name: practical_reasoning_as1/cq14-consequences-questioned
+    source: "p. 858, CQ14: are the consequences as described possible?"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions: *diet
+    questioned: [consequences_possible(weight_lost)]
+    not_in: [should_be_performed(diet)]
+
+  - name: practical_reasoning_as1/cq15-goal-questioned
+    source: "p. 858, CQ15: can the desired goal be realised?"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions: *diet
+    questioned: [goal_realizable(not_overweight)]
+    not_in: [should_be_performed(diet)]
+
+  - name: practical_reasoning_as1/cq16-value-questioned
+    source: "p. 858, CQ16: is the value indeed a legitimate value?"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions: *diet
+    questioned: [legitimate_value(health)]
+    not_in: [should_be_performed(diet)]
+
+  - name: practical_reasoning_as1/cq16-questioned-and-supported
+    source: "p. 858, CQ16 answered: a questioned default that is stated holds again"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions:
+      - current_circumstances(overweight)
+      - would_bring_about(diet,overweight,weight_lost)
+      - would_be_realized(not_overweight,weight_lost)
+      - would_promote_value(not_overweight,health)
+      - legitimate_value(health)
+    questioned: [legitimate_value(health)]
+    in: [should_be_performed(diet)]
+
+  - name: practical_reasoning_as1/farmer-arg8
+    source: "p. 866, Arg8: the farmer should row the chicken to reach q9, putting the chicken on the right bank, promoting P"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+    arguments:
+      - practical_reasoning_as1(row_chicken,q0,q9,chicken_right,progress)
+    in: [should_be_performed(row_chicken)]
+
+  - name: practical_reasoning_as1/cq10-another-value-supports
+    source: "p. 862, CQ10 supports the action; p. 866, Arg6: rowing the dog promotes P and F (q7 as Arg6 states it)"
+    schemes: [practical_reasoning_as1]   # practical_reasoning1 and 2 share these premises
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_dog,q0,q7)
+      - would_be_realized(dog_right,q7)
+      - would_promote_value(dog_right,progress)
+      - would_promote_value(dog_right,friendship)
+    questioned: [legitimate_value(progress)]
+    arguments:
+      - practical_reasoning_as1(row_dog,q0,q7,dog_right,progress)
+      - practical_reasoning_as1(row_dog,q0,q7,dog_right,friendship)
+    in: [should_be_performed(row_dog)]
+
+  - name: practical_reasoning_as1/cq5-7-alternatives-are-left-to-the-contract
+    source: "pp. 859, 862: CQ5-CQ7 pose another instance of AS1 for another action (Obj4b, p. 865); the engine builds both, and the comparison contract chooses"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_seeds,q0,q5)
+      - would_be_realized(seeds_right,q5)
+      - would_promote_value(seeds_right,progress)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+    arguments:
+      - practical_reasoning_as1(row_seeds,q0,q5,seeds_right,progress)
+      - practical_reasoning_as1(row_chicken,q0,q9,chicken_right,progress)
+    in:
+      - should_be_performed(row_seeds)
+      - should_be_performed(row_chicken)
+
+  - name: practical_reasoning_as1_demotion/book
+    source: "p. 859, the negative version for CQ8 and CQ9: a state containing features (a 'goal') that demote a value; p. 866, Obj5a: reaching q6 demotes C. The features are stated with would_obtain, not would_be_realized, so that practical_reasoning2 does not take them for the agent's goal"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_seeds,q0,q6)
+      - would_obtain(chicken_eaten,q6)
+      - would_demote_value(chicken_eaten,chicken)
+    arguments:
+      - practical_reasoning_as1_demotion(row_seeds,q0,q6,chicken_eaten,chicken)
+    in: ["¬should_be_performed(row_seeds)"]
+    variants: true
+
+  - name: practical_reasoning_as1/cq9-rebuttal-blocks-without-an-audience
+    source: "p. 866, Arg5 and Obj5a: rowing the seeds promotes P and demotes C. Without a value order the engine weighs the two arguments alike and accepts neither side; the contract decides (C is decisive, p. 866)"
+    schemes: [practical_reasoning_as1, practical_reasoning_as1_demotion]   # practical_reasoning1 and 2 share these premises
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_seeds,q0,q6)
+      - would_be_realized(seeds_right,q6)
+      - would_promote_value(seeds_right,progress)
+      - would_obtain(chicken_eaten,q6)
+      - would_demote_value(chicken_eaten,chicken)
+    arguments:
+      - practical_reasoning_as1(row_seeds,q0,q6,seeds_right,progress)
+      - practical_reasoning_as1_demotion(row_seeds,q0,q6,chicken_eaten,chicken)
+    out:
+      - should_be_performed(row_seeds)
+      - "¬should_be_performed(row_seeds)"
+
+  - name: practical_reasoning_as1_preclusion/book
+    source: "p. 859, the negative version for CQ11; p. 865, Obj2f: rowing alone precludes rowing with the seeds, which would put the seeds on the right bank and promote P"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_alone,q0,q3)
+      - excludes_goal(q3,seeds_right)
+      - would_promote_value(seeds_right,progress)
+    arguments:
+      - practical_reasoning_as1_preclusion(row_alone,q0,q3,seeds_right,progress)
+    in: ["¬should_be_performed(row_alone)"]
+    variants: true
+
+  - name: practical_reasoning_as2/book
+    source: "pp. 861-862, AS2; p. 866, Arg8 on the AATS of Fig. 2: in q0 the farmer should row the chicken (j9), reaching q9, where c_right has changed, promoting progress"
+    assumptions:
+      - current_state(q0)
+      - model_state(q0)
+      - model_state(q9)
+      - joint_action_part(j9,farmer,row_chicken)
+      - precondition_holds(row_chicken,q0)
+      - possible_joint_action(j9,q0)
+      - transition(q0,j9,q9)
+      - proposition_changes(c_right,q0,q9)
+      - proposition_realizable(c_right)
+      - agent_value(farmer,progress)
+      - transition_promotes(q0,q9,c_right,progress)
+    arguments:
+      - practical_reasoning_as2(farmer,row_chicken,j9,q0,q9,c_right,progress)
+    in:
+      - should_perform(farmer,row_chicken)
+    variants: true
+
+  - name: practical_reasoning_as2/cq17-unanswered-undercuts
+    source: "p. 862, CQ17; p. 865, Obj1a: the chicken may not eat the seeds (j1 instead of j2), and then CH is not promoted"
+    assumptions:
+      - current_state(q0)
+      - model_state(q0)
+      - model_state(q2)
+      - joint_action_part(j2,farmer,row_alone)
+      - precondition_holds(row_alone,q0)
+      - possible_joint_action(j2,q0)
+      - transition(q0,j2,q2)
+      - proposition_changes(s_eaten,q0,q2)
+      - proposition_realizable(s_eaten)
+      - agent_value(farmer,chicken_happy)
+      - transition_promotes(q0,q2,s_eaten,chicken_happy)
+      - others_may_prevent(q0,j2,farmer,chicken_happy)
+    arguments:
+      - practical_reasoning_as2(farmer,row_alone,j2,q0,q2,s_eaten,chicken_happy)
+    out:
+      - should_perform(farmer,row_alone)
+
+  - name: practical_reasoning_as2_demotion/book
+    source: "p. 859, the negative version; p. 866, Obj5a on the AATS of Fig. 2: rowing the seeds (j6) reaches q6, where c_eaten has changed, demoting the chicken"
+    assumptions:
+      - current_state(q0)
+      - model_state(q0)
+      - model_state(q6)
+      - joint_action_part(j6,farmer,row_seeds)
+      - precondition_holds(row_seeds,q0)
+      - possible_joint_action(j6,q0)
+      - transition(q0,j6,q6)
+      - proposition_changes(c_eaten,q0,q6)
+      - proposition_realizable(c_eaten)
+      - agent_value(farmer,chicken)
+      - transition_demotes(q0,q6,c_eaten,chicken)
+    arguments:
+      - practical_reasoning_as2_demotion(farmer,row_seeds,j6,q0,q6,c_eaten,chicken)
+    in:
+      - "¬should_perform(farmer,row_seeds)"
+    variants: true
+
+  - name: practical_reasoning_as2_demotion/assured-joint-action-builds-nothing
+    source: "p. 871: an assurance that the other agent will not choose the harmful joint action (a social law, or its interests) removes the argument from that joint action"
+    assumptions:
+      - current_state(q5)
+      - model_state(q5)
+      - model_state(q8)
+      - joint_action_part(j3,west,west_moves)
+      - precondition_holds(west_moves,q5)
+      - transition(q5,j3,q8)
+      - proposition_changes(crash,q5,q8)
+      - proposition_realizable(crash)
+      - agent_value(west,safety)
+      - transition_demotes(q5,q8,crash,safety)
+    no_arguments: [practical_reasoning_as2_demotion]

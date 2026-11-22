@@ -3,9 +3,26 @@
 
 meta:
   title: "Reasoning - Practical Reasoning"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
+  agent_value/2: "%[2]s is one of the values of agent %[1]s."
+  circumstances_possible/1: "The circumstances %s are possible."
+  consequences_possible/1: "The consequences %s are possible."
+  current_state/1: "The current state is %s."
+  excludes_goal/2: "The circumstances %s would exclude the goal %s."
+  goal_realizable/1: "%s can be realized."
+  joint_action_part/3: "In joint action %s, agent %s performs %s."
+  model_state/1: "%s is a state of the model."
+  others_may_prevent/4: "In state %[1]s the other agents may choose otherwise than in %[2]s, so that the action of %[3]s would not promote %[4]s."
+  possible_joint_action/2: "Joint action %s may be performed in state %s."
+  precondition_holds/2: "Action %s can be performed in state %s."
+  proposition_changes/3: "Proposition %s has different truth values in states %s and %s."
+  proposition_realizable/1: "Proposition %s is true in some state of the model."
+  should_perform/2: "Agent %s should perform action %s."
+  transition/3: "Performing joint action %[2]s in state %[1]s leads to state %[3]s."
+  transition_demotes/4: "The change of %[3]s from state %[1]s to state %[2]s demotes the value %[4]s."
+  transition_promotes/4: "The change of %[3]s from state %[1]s to state %[2]s promotes the value %[4]s."
   exclusive_requirement_alternatives/2: "At most one of %s and %s can be required in the same stated context; they are exclusive requirement alternatives."
   goal_supported_by_values/3: "For agent %s, goal %s is supported by that agent’s set of values %s."
   more_efficient_alternative/3: "For agent %s, another available alternative to %s would bring about goal %s more efficiently."
@@ -91,6 +108,7 @@ language:
   side_effect_action/2: "There are negative side effects of %s's bringing about %s that ought to be considered."
   side_effect_other_act/2: "Carrying out %s has known side effects that might conflict with %s's other goals."
   side_effects/2: "Performing %s in %s would have side-effects which demote some value."
+  side_effects_to_consider/2: "Performing %s in %s would have side effects that need to be taken into account."
   situation_help/3: "%s is in a situation where some action %s by %s would help."
   situation_necessity/4: "As %s sees the situation, %s is a necessary or sufficient condition for carrying out %s; the adviser reports this to %s."
   stop_realize_wasted/2: "If %s stops trying to realize %s now, all previous efforts will be wasted."
@@ -103,6 +121,8 @@ language:
   worthy_goal/1: "%s is a worthy goal."
   would_be_realized/2: "%s would be realized in %s."
   would_bring_about/3: "Performing %s in %s would bring about %s."
+  would_demote_value/2: "Achieving the goal %s would demote the value %s."
+  would_obtain/2: "%s would obtain in %s."
   would_promote_value/2:  "Achieving the goal %s would promote the value %s."
 
 issue_schemes:
@@ -115,7 +135,7 @@ argument_schemes:
   - id: practical_reasoning1
     meta:
       title: Argument from Value-Based Practical Reasoning
-      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874."
+      source: "Douglas Walton, Goal-Based Reasoning for Argumentation, Cambridge University Press, 2015, pp. 92-93 (the scheme as configured in Carneades), following Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874."
     variables: [A,S1,S2,G,V]
     conclusions:
       - should_be_performed(A)
@@ -137,7 +157,7 @@ argument_schemes:
   - id: practical_reasoning2
     meta:
       title: Argument from Instrumental Practical Reasoning
-      source: "Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press."
+      source: "Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press, pp. 93-94."
     variables: [A,S1,S2,G]
     conclusions:
       - should_be_performed(A)
@@ -147,13 +167,112 @@ argument_schemes:
       - would_be_realized(G,S2)
     assumptions:
       - possible(A)
-      - possible(G)
+      - possible_goal(G)
     exceptions:
       - bring_about_more_effectively(S2,A)
       - realize_more_effectively(G,A)
       - intervening_actions(A,G)
-      - side_effects(A,S1)
+      - side_effects_to_consider(A,S1)
       - incompatible_goal(G)
+
+  - id: practical_reasoning_as1
+    meta:
+      title: Value-Based Practical Reasoning (AS1)
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 858 (AS1 and CQ1-CQ16), p. 859 (CQ17)."
+    variables: [A,R,S,G,V]
+    conclusions:
+      - should_be_performed(A)
+    premises:
+      - current_circumstances(R)
+      - would_bring_about(A,R,S)
+      - would_be_realized(G,S)
+      - would_promote_value(G,V)
+    assumptions:
+      - circumstances_possible(R)
+      - possible(A)
+      - consequences_possible(S)
+      - goal_realizable(G)
+      - legitimate_value(V)
+
+  - id: practical_reasoning_as1_demotion
+    meta:
+      title: Value-Based Practical Reasoning, Negative Version (AS1, value demoted)
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 859 (the negative version used to pose CQ8 and CQ9)."
+    variables: [A,R,S,G,V]
+    conclusions:
+      - ¬should_be_performed(A)
+    premises:
+      - current_circumstances(R)
+      - would_bring_about(A,R,S)
+      - would_obtain(G,S)
+      - would_demote_value(G,V)
+    assumptions:
+      - circumstances_possible(R)
+      - possible(A)
+      - consequences_possible(S)
+      - goal_realizable(G)
+      - legitimate_value(V)
+
+  - id: practical_reasoning_as1_preclusion
+    meta:
+      title: Value-Based Practical Reasoning, Negative Version (AS1, goal precluded)
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 859 (the negative version used to pose CQ11)."
+    variables: [A,R,S,G,V]
+    conclusions:
+      - ¬should_be_performed(A)
+    premises:
+      - current_circumstances(R)
+      - would_bring_about(A,R,S)
+      - excludes_goal(S,G)
+      - would_promote_value(G,V)
+    assumptions:
+      - circumstances_possible(R)
+      - possible(A)
+      - consequences_possible(S)
+      - goal_realizable(G)
+      - legitimate_value(V)
+
+  - id: practical_reasoning_as2
+    meta:
+      title: Value-Based Practical Reasoning over an Action-Based Alternating Transition System (AS2)
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, pp. 860-861 (the AATS extended with values, and AS2), p. 862 (the critical questions defined on the AATS)."
+    variables: [I,Al,J,Q0,Q1,P,V]
+    conclusions:
+      - should_perform(I,Al)
+    premises:
+      - current_state(Q0)
+      - model_state(Q0)
+      - joint_action_part(J,I,Al)
+      - precondition_holds(Al,Q0)
+      - possible_joint_action(J,Q0)
+      - transition(Q0,J,Q1)
+      - model_state(Q1)
+      - proposition_changes(P,Q0,Q1)
+      - proposition_realizable(P)
+      - agent_value(I,V)
+      - transition_promotes(Q0,Q1,P,V)
+    exceptions:
+      - others_may_prevent(Q0,J,I,V)
+
+  - id: practical_reasoning_as2_demotion
+    meta:
+      title: Value-Based Practical Reasoning over an AATS, Negative Version (AS2, value demoted)
+      source: "Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 859 (negative versions), pp. 861-862 (AS2 and its critical questions), pp. 867-869 (the negative arguments of the example)."
+    variables: [I,Al,J,Q0,Q1,P,V]
+    conclusions:
+      - ¬should_perform(I,Al)
+    premises:
+      - current_state(Q0)
+      - model_state(Q0)
+      - joint_action_part(J,I,Al)
+      - precondition_holds(Al,Q0)
+      - possible_joint_action(J,Q0)
+      - transition(Q0,J,Q1)
+      - model_state(Q1)
+      - proposition_changes(P,Q0,Q1)
+      - proposition_realizable(P)
+      - agent_value(I,V)
+      - transition_demotes(Q0,Q1,P,V)
 
   - id: negative_consequences
     meta:

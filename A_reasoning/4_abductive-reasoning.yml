@@ -3,7 +3,7 @@
 
 meta:
   title: "Reasoning - Abductive Reasoning"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   member_of_accounts/2: "Account %s is a member of the candidate account set %s."

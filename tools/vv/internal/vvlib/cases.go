@@ -23,6 +23,12 @@ package vvlib
 //	    issues: [[h, ¬h]]                         # an issue with exactly these positions
 //	    outcome: invalid input                    # Infer ends this way (default: complete)
 //	    variants: true                            # each assumption needed, each exception undercuts
+//	    exact_schemes: [practical_reasoning_as2]  # the arguments listed are all those of these schemes
+//
+// practical_as2.yml is written by tools/aats.py from the models of
+// tools/aats_models: its expectations come from that adapter, which is
+// validated against the paper on its own (tools/test_aats.py), not from the
+// engine or the library under test.
 //
 // Each case is one check, "case", of the case file.
 
@@ -66,6 +72,9 @@ type Case struct {
 	// one exception of its scheme, for the argument's parameters, undercuts
 	// it.
 	Variants bool `yaml:"variants"`
+	// ExactSchemes: for each scheme listed, the arguments the engine builds
+	// with it are exactly those of Arguments that name it, no more.
+	ExactSchemes []string `yaml:"exact_schemes"`
 }
 
 // CaseFiles lists the case files under tools/vv/cases.
@@ -240,6 +249,24 @@ func caseExpectationProblems(c Case, o caseObservation) []string {
 	for _, a := range c.Arguments {
 		if !o.arguments[terms.Normalize(a)] {
 			probs = append(probs, "no argument "+a)
+		}
+	}
+	for _, scheme := range c.ExactSchemes {
+		want := map[string]bool{}
+		for _, a := range c.Arguments {
+			if strings.HasPrefix(a, scheme+"(") {
+				want[terms.Normalize(a)] = true
+			}
+		}
+		extra := []string{}
+		for a := range o.arguments {
+			if strings.HasPrefix(a, scheme+"(") && !want[a] {
+				extra = append(extra, a)
+			}
+		}
+		sort.Strings(extra)
+		for _, a := range extra {
+			probs = append(probs, "an argument "+a+" was built, but the case lists every argument of "+scheme)
 		}
 	}
 	for _, a := range c.NoArguments {

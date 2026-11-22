@@ -2466,6 +2466,182 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "practical_reasoning1",
+      "fingerprint": "sha256:c8813ee87ef9eac0a716f66975c3972d5fe118f700b9242fb2f14f6271be2bcf",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning1",
+        "tools/vv/source_ledger.yml: practical_reasoning1"
+      ],
+      "examples": [
+        "practical_reasoning1/book",
+        "practical_reasoning1/cq10-additional-value-supports",
+        "practical_reasoning1/cq10-questioning-extra-value-keeps-first-support",
+        "practical_reasoning1/cq10-wrong-goal",
+        "practical_reasoning1/cq10-wrong-result-state",
+        "practical_reasoning1/cq13-action-questioned",
+        "practical_reasoning1/cq13-questioned-action-supported",
+        "practical_reasoning1/cq16-argument-local-challenge",
+        "practical_reasoning1/farmer-arg8",
+        "practical_reasoning1/inherited-side-effect-policy",
+        "practical_reasoning1/side-effect-other-action",
+        "practical_reasoning1/side-effect-other-state",
+        "practical_reasoning1/wrong-goal-state",
+        "practical_reasoning1/wrong-initial-state"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_reasoning2",
+      "fingerprint": "sha256:270bef2d41c3a86e225b269fbfa862c8a36e96ec9d26e3ecc8e881052ac15bb4",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning2",
+        "tools/vv/source_ledger.yml: practical_reasoning2"
+      ],
+      "examples": [
+        "practical_reasoning2/book"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_reasoning_as1",
+      "fingerprint": "sha256:dbfb6c32b24c2c31be568d53fbce03bd03fef3526b728654f72ae186521ac916",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning_as1",
+        "tools/vv/source_ledger.yml: practical_reasoning_as1"
+      ],
+      "examples": [
+        "practical_reasoning_as1/book",
+        "practical_reasoning_as1/cq10-another-value-supports",
+        "practical_reasoning_as1/cq12-circumstances-questioned",
+        "practical_reasoning_as1/cq13-action-questioned",
+        "practical_reasoning_as1/cq14-consequences-questioned",
+        "practical_reasoning_as1/cq15-goal-questioned",
+        "practical_reasoning_as1/cq16-questioned-and-supported",
+        "practical_reasoning_as1/cq16-value-questioned",
+        "practical_reasoning_as1/cq5-7-alternatives-are-left-to-the-contract",
+        "practical_reasoning_as1/cq9-rebuttal-blocks-without-an-audience",
+        "practical_reasoning_as1/farmer-arg8"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_reasoning_as1_demotion",
+      "fingerprint": "sha256:20a0d96e5ac74a3c922c28c128ab380861a453cf58b27a2ff848c805f755bc98",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning_as1_demotion",
+        "tools/vv/source_ledger.yml: practical_reasoning_as1_demotion"
+      ],
+      "examples": [
+        "practical_reasoning_as1_demotion/book"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_reasoning_as1_preclusion",
+      "fingerprint": "sha256:b944cfffa12edb9e4471447c1104b47ff2c386b18c17dcb7989a7fc6942b8813",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning_as1_preclusion",
+        "tools/vv/source_ledger.yml: practical_reasoning_as1_preclusion"
+      ],
+      "examples": [
+        "practical_reasoning_as1_preclusion/book"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_reasoning_as2",
+      "fingerprint": "sha256:3608e0193d17da8a500fed7c772915fa9f84e93b9c34e4cf9c58135654b73ec9",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning_as2",
+        "tools/vv/source_ledger.yml: practical_reasoning_as2",
+        "tools/test_aats.py",
+        "tools/aats_models/farmer.yml",
+        "tools/aats_models/trains.yml"
+      ],
+      "examples": [
+        "practical_reasoning_as2/book",
+        "practical_reasoning_as2/cq17-unanswered-undercuts",
+        "practical_reasoning_as2/farmer-fig1-q0",
+        "practical_reasoning_as2/farmer-fig2-q0",
+        "practical_reasoning_as2/farmer-fig3-q9",
+        "practical_reasoning_as2/farmer-fig4-q10",
+        "practical_reasoning_as2/farmer-fig5-q11",
+        "practical_reasoning_as2/farmer-fig6-q14",
+        "practical_reasoning_as2/farmer-fig7-q15",
+        "practical_reasoning_as2/farmer-fig8-q16",
+        "practical_reasoning_as2/farmer-q10-second-visit",
+        "practical_reasoning_as2/farmer-q18-home",
+        "practical_reasoning_as2/trains-east-q5",
+        "practical_reasoning_as2/trains-east-q6",
+        "practical_reasoning_as2/trains-east-q6-rational-west",
+        "practical_reasoning_as2/trains-east-q7",
+        "practical_reasoning_as2/trains-west-q5",
+        "practical_reasoning_as2/trains-west-q5-social-law",
+        "practical_reasoning_as2/trains-west-q6"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "practical_reasoning_as2_demotion",
+      "fingerprint": "sha256:96af2657c88049cd937f2327d1e33c926760c068335f258d79ec736aa1ad5852",
+      "evidence": [
+        "docs/reviews/final-closure.md: practical_reasoning_as2_demotion",
+        "tools/vv/source_ledger.yml: practical_reasoning_as2_demotion",
+        "tools/test_aats.py",
+        "tools/aats_models/farmer.yml",
+        "tools/aats_models/trains.yml"
+      ],
+      "examples": [
+        "practical_reasoning_as2_demotion/assured-joint-action-builds-nothing",
+        "practical_reasoning_as2_demotion/book"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
+    },
+    {
+      "record": "exeption_to_rule",
+      "fingerprint": "sha256:4141a06730dcaef3d7ae5cfb5d070717ba16592c266dc91557891a478a7ee14f",
+      "evidence": [
+        "docs/reviews/final-closure.md: exeption_to_rule",
+        "tools/vv/source_ledger.yml: exeption_to_rule"
+      ],
+      "examples": [
+        "exeption_to_rule/book"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }

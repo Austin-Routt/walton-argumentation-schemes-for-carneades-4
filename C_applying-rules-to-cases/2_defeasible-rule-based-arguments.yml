@@ -3,7 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Defeasible Rule-based Arguments"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   means_same_in_language/3: "In language %s, word %s means the same as definition %s."

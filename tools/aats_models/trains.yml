@@ -1,0 +1,132 @@
+# Two trains and a tunnel: Atkinson and Bench-Capon (2007), section 7,
+# pp. 870-872, Table 1 (taken from van der Hoek et al.). j0: both stay;
+# j1: the westbound train moves; j2: the eastbound train moves; j3: both
+# move (read off Table 1: from q0, j1 gives q1 = {away_e, waiting_w}).
+#
+# Values (p. 870): safety, demoted by a crash; progress, promoted by moving.
+# The proposition crash, true exactly in q8 = {in_e, in_w}, is added as the
+# goal whose realization demotes safety. Progress "demoted by staying still"
+# is left out: a train that stays changes no proposition of Table 1, so AS2
+# has no goal for it (the gap the paper closes for the farmer by counting
+# non-movement as repetition, p. 867). Leaving it out cannot change the
+# choices below; tools/test_aats.py checks that adding it does not.
+schema: walton-aats/v1
+name: trains
+source: "Atkinson and Bench-Capon (2007), Artificial Intelligence 171, pp. 870-872, Table 1"
+agents:
+  east: [east_stays, east_moves]
+  west: [west_stays, west_moves]
+joint_actions:
+  j0: {east: east_stays, west: west_stays}
+  j1: {east: east_stays, west: west_moves}
+  j2: {east: east_moves, west: west_stays}
+  j3: {east: east_moves, west: west_moves}
+audiences:
+  cautious: [safety, progress_east, progress_west]
+  pressing_east: [progress_east, safety, progress_west]
+  cautious_west: [safety, progress_west, progress_east]
+  pressing_west: [progress_west, safety, progress_east]
+common: &trains
+  values:
+    east: [safety, progress_east]
+    west: [safety, progress_west]
+  states:
+    q0: [away_e, away_w]
+    q1: [away_e, waiting_w]
+    q2: [away_e, in_w]
+    q3: [waiting_e, away_w]
+    q4: [in_e, away_w]
+    q5: [waiting_e, waiting_w]
+    q6: [waiting_e, in_w]
+    q7: [in_e, waiting_w]
+    q8: [in_e, in_w, crash]
+  transitions:
+    - {from: q0, by: j0, to: q0}
+    - {from: q0, by: j1, to: q1, promotes: {progress_west: [waiting_w]}}
+    - {from: q0, by: j2, to: q3, promotes: {progress_east: [waiting_e]}}
+    - {from: q0, by: j3, to: q5, promotes: {progress_east: [waiting_e], progress_west: [waiting_w]}}
+    - {from: q1, by: j0, to: q1}
+    - {from: q1, by: j1, to: q2, promotes: {progress_west: [in_w]}}
+    - {from: q1, by: j2, to: q5, promotes: {progress_east: [waiting_e]}}
+    - {from: q1, by: j3, to: q6, promotes: {progress_east: [waiting_e], progress_west: [in_w]}}
+    - {from: q2, by: j0, to: q2}
+    - {from: q2, by: j1, to: q0, promotes: {progress_west: [away_w]}}
+    - {from: q2, by: j2, to: q6, promotes: {progress_east: [waiting_e]}}
+    - {from: q2, by: j3, to: q3, promotes: {progress_east: [waiting_e], progress_west: [away_w]}}
+    - {from: q3, by: j0, to: q3}
+    - {from: q3, by: j1, to: q5, promotes: {progress_west: [waiting_w]}}
+    - {from: q3, by: j2, to: q4, promotes: {progress_east: [in_e]}}
+    - {from: q3, by: j3, to: q7, promotes: {progress_east: [in_e], progress_west: [waiting_w]}}
+    - {from: q4, by: j0, to: q4}
+    - {from: q4, by: j1, to: q7, promotes: {progress_west: [waiting_w]}}
+    - {from: q4, by: j2, to: q0, promotes: {progress_east: [away_e]}}
+    - {from: q4, by: j3, to: q1, promotes: {progress_east: [away_e], progress_west: [waiting_w]}}
+    - {from: q5, by: j0, to: q5}
+    - {from: q5, by: j1, to: q6, promotes: {progress_west: [in_w]}}
+    - {from: q5, by: j2, to: q7, promotes: {progress_east: [in_e]}}
+    - {from: q5, by: j3, to: q8, promotes: {progress_east: [in_e], progress_west: [in_w]}, demotes: {safety: [crash]}}
+    - {from: q6, by: j0, to: q6}
+    - {from: q6, by: j1, to: q3, promotes: {progress_west: [away_w]}}
+    - {from: q6, by: j2, to: q8, promotes: {progress_east: [in_e]}, demotes: {safety: [crash]}}
+    - {from: q6, by: j3, to: q4, promotes: {progress_east: [in_e], progress_west: [away_w]}}
+    - {from: q7, by: j0, to: q7}
+    - {from: q7, by: j1, to: q8, promotes: {progress_west: [in_w]}, demotes: {safety: [crash]}}
+    - {from: q7, by: j2, to: q1, promotes: {progress_east: [away_e]}}
+    - {from: q7, by: j3, to: q2, promotes: {progress_east: [away_e], progress_west: [in_w]}}
+    - {from: q8, by: j0, to: q8}
+situations:
+  - <<: *trains
+    name: east-q7
+    source: "p. 871: in q7 the eastbound train moves; standing still could demote safety"
+    agent: east
+    initial: q7
+    decisions:
+      - {audience: cautious, choose: [east_moves], source: "p. 871: thus in q7 the eastbound train will choose to move"}
+      - {audience: pressing_east, choose: [east_moves], source: "p. 871"}
+  - <<: *trains
+    name: east-q6
+    source: "p. 871: in q6 moving could demote safety; preferring safety the train stays"
+    agent: east
+    initial: q6
+    decisions:
+      - {audience: cautious, choose: [east_stays], source: "p. 871: assuming the agent prefers safety to progress, it remains stationary"}
+      - {audience: pressing_east, choose: [east_moves], source: "p. 871: when progress comes to rank above safety"}
+  - <<: *trains
+    name: east-q5
+    source: "pp. 871: in q5 both trains wait for one another, unless progress comes to rank above safety"
+    agent: east
+    initial: q5
+    decisions:
+      - {audience: cautious, choose: [east_stays], source: "p. 871: the rational agent will comply with the social law even given freedom to act otherwise"}
+      - {audience: pressing_east, choose: [east_moves], source: "p. 871: the deadlock is broken when progress ranks above safety"}
+  - <<: *trains
+    name: west-q5
+    source: "p. 871: without a social law the westbound train also waits in q5"
+    agent: west
+    initial: q5
+    decisions:
+      - {audience: cautious_west, choose: [west_stays], source: "p. 871: both will not dare to move themselves"}
+  - <<: *trains
+    name: west-q5-social-law
+    source: "p. 871: SL1 forbids the eastbound train to enter in q5, which answers the westbound train's CQ17 objection"
+    agent: west
+    initial: q5
+    assurances: [j2, j3]
+    decisions:
+      - {audience: cautious_west, choose: [west_moves], source: "p. 871: the attack on the argument in favour of moving is defeated, and the train will choose to move"}
+  - <<: *trains
+    name: west-q6
+    source: "p. 871: in q6 the westbound train has a reason to leave the tunnel and none to stay"
+    agent: west
+    initial: q6
+    decisions:
+      - {audience: cautious_west, choose: [west_moves], source: "p. 871"}
+      - {audience: pressing_west, choose: [west_moves], source: "p. 871"}
+  - <<: *trains
+    name: east-q6-rational-west
+    source: "p. 871: assuming the westbound train acts rationally (it leaves the tunnel), the argument from safety is defeated in q6"
+    agent: east
+    initial: q6
+    assurances: [j0, j2]
+    decisions:
+      - {audience: cautious, choose: [east_moves], source: "p. 871: so that the eastbound train could move immediately into the tunnel"}

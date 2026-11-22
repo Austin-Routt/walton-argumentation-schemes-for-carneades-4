@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-21 — final closure: the originals, AS1 and AS2 (library 0.4.0)
+
+See `docs/reviews/final-closure.md`. The owner supplied Walton (1995), Walton (2015) and Walton (2002) and asked for a verified AS1 as well as a full AS2.
+
+* `practical_reasoning1` is the value-based scheme Walton (2015, pp. 92-93) prints as configured in Carneades, and is re-sourced to it. `practical_reasoning2` is the instrumental scheme of pp. 93-94, with two corrections: the goal assumption `possible(G)` ("Action G is possible") is `possible_goal(G)`, and the side-effect exception is `side_effects_to_consider(A,S1)`, the instrumental wording. `exeption_to_rule` is the case-based reasoning of Walton (1995, p. 148, Case 80a); its `relevant_differences(R,C)` is `relevant_differences(C)`. Migration rows in `tools/migration_r2.yml`; reference cases from the sources (the Smart Car; Case 80a).
+* New records from Atkinson and Bench-Capon (2007): `practical_reasoning_as1`, `practical_reasoning_as1_demotion` and `practical_reasoning_as1_preclusion` (AS1 and its negative versions, pp. 858-859), `practical_reasoning_as2` and `practical_reasoning_as2_demotion` (AS2 over an AATS, pp. 860-862), with all seventeen questions sorted. New source origin `publication` and ledger list `publication_only`.
+* `tools/aats.py`: AATS models (`tools/aats_models/`: the farmer, Figs. 1-8; the trains, Table 1), their validation, AS2 arguments and the facts Carneades builds them from, the critical questions, and the comparison contract `value-based-choice` (`docs/contracts.md`, contract 8), which reproduces every choice the paper reports. `tools/test_aats.py` checks it against the paper and against a second derivation from the generated cases. The ledger's `alternative` questions now complete with a named comparison contract.
+* Case files `practical_as1.yml` and the generated `practical_as2.yml`; a case can require the exact set of arguments of a scheme (`exact_schemes`).
+* The originals compared with nineteen records approved against the compendium (eight of them under D20); notes in the ledger.
+* All 148 records are at `example-passed` with an approval; `tools/vv/run.sh` runs the stable gate (`--require-stable`) and the AATS checks. The eight approvals of this change are the implementer's own (D14 not met; the owner's independent research is the second check). 10,365 checks.
+
 ## 2026-11-21 — approvals against the compendium (decision D20)
 
 See `docs/reviews/d20-approvals.md`.

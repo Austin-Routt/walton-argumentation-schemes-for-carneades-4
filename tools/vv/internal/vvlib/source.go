@@ -35,6 +35,10 @@ type SourceEntry struct {
 type SourceLedger struct {
 	Compendium   []SourceEntry `yaml:"compendium"`
 	UpstreamOnly []string      `yaml:"upstream_only"`
+	// PublicationOnly lists the records this project took from a publication
+	// other than the compendium, that upstream's file does not contain
+	// (origin publication). Their row cites the publication, with pages.
+	PublicationOnly []string `yaml:"publication_only"`
 	// Names records each predicate name the plan introduced, with its page
 	// and how it was chosen (D6).
 	Names []struct {
@@ -68,11 +72,15 @@ type RecordRow struct {
 	// source. Nil means that source inventory has not yet been established;
 	// zero means it has been checked and prints no questions. Compendium
 	// records instead use SourceEntry.Questions.
-	SourceQuestions *int             `yaml:"source_questions"`
-	Questions       []RecordQuestion `yaml:"questions"`
-	Changes         []RecordChange   `yaml:"changes"`
-	Note            string           `yaml:"note"`
-	Review          *RecordReview    `yaml:"review"`
+	SourceQuestions *int `yaml:"source_questions"`
+	// Comparison names the executable contract that compares a record's
+	// argument with the competing instances an "alternative" question poses
+	// (ComparisonContracts). Empty when the row sorts no question that way.
+	Comparison string           `yaml:"comparison"`
+	Questions  []RecordQuestion `yaml:"questions"`
+	Changes    []RecordChange   `yaml:"changes"`
+	Note       string           `yaml:"note"`
+	Review     *RecordReview    `yaml:"review"`
 }
 
 // RecordReview is the decision on a row of a reviewer who did not write the
@@ -146,6 +154,13 @@ var (
 	// are needed by Atkinson and Bench-Capon (2007), pp. 858-862: CQ10 is
 	// positive support, while an alternative is not automatically a defeater.
 	QuestionKinds = map[string]bool{"premise": true, "assumption": true, "exception": true, "rebuttal": true, "standard": true, "support": true, "alternative": true}
+	// ComparisonContracts are the executable comparison contracts an
+	// alternative question can be answered by, with the file that implements
+	// each (docs/contracts.md, contract 8). An alternative names one of the
+	// record's conclusions, the conclusion that the competing instance of the
+	// scheme draws for another action; whether it prevails is decided by the
+	// contract, not by the engine's weighing.
+	ComparisonContracts = map[string]string{"value-based-choice": "tools/aats.py"}
 )
 
 // StageIndex is the position of a stage in Stages, or -1.
@@ -200,6 +215,9 @@ func SourceChecks(l *SourceLedger, lib *Library) []Result {
 	for _, id := range l.UpstreamOnly {
 		where[id] = append(where[id], "upstream_only")
 	}
+	for _, id := range l.PublicationOnly {
+		where[id] = append(where[id], "publication_only")
+	}
 	inLib := map[string]bool{}
 	for _, s := range lib.Schemes() {
 		inLib[s.Id] = true
@@ -207,7 +225,7 @@ func SourceChecks(l *SourceLedger, lib *Library) []Result {
 		case n == 1:
 			out = append(out, pass(lib.Rel, s.Id, "source/mapped"))
 		case n == 0:
-			out = append(out, fail(lib.Rel, s.Id, "source/mapped", "the scheme has no place in %s: add it to the compendium entry it encodes, or to upstream_only", sourceFile))
+			out = append(out, fail(lib.Rel, s.Id, "source/mapped", "the scheme has no place in %s: add it to the compendium entry it encodes, to upstream_only, or to publication_only", sourceFile))
 		default:
 			out = append(out, fail(lib.Rel, s.Id, "source/mapped", "the scheme is listed %d times in %s: %v", n, sourceFile, where[s.Id]))
 		}
@@ -328,6 +346,10 @@ func SourceRows(l *SourceLedger, lib *Library) []SourceRow {
 		a, x := count(id)
 		rows = append(rows, SourceRow{Entry: "-", Scheme: id, Assumptions: a, Exceptions: x, Status: "upstream-only", Note: "from Carneades' own walton.yml; no entry of its own in the compendium"})
 	}
+	for _, id := range l.PublicationOnly {
+		a, x := count(id)
+		rows = append(rows, SourceRow{Entry: "-", Scheme: id, Assumptions: a, Exceptions: x, Status: "publication-only", Note: "from a publication other than the compendium, cited in the ledger row; not in Carneades' own walton.yml"})
+	}
 	return rows
 }
 
@@ -432,6 +454,10 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 		rows[r.Record] = append(rows[r.Record], r)
 	}
 	seenUpstream := map[string]string{}
+	publicationOnly := map[string]bool{}
+	for _, id := range l.PublicationOnly {
+		publicationOnly[id] = true
+	}
 	for _, s := range lib.Schemes() {
 		rs := rows[s.Id]
 		if len(rs) != 1 {
@@ -474,8 +500,41 @@ func RecordChecks(l *SourceLedger, lib *Library) []Result {
 			if r.Entry == "" {
 				probs = append(probs, "a book record needs its entry")
 			}
+		case "publication":
+			// a record this project took from a publication other than the
+			// compendium: not upstream's, not filed under an entry, listed in
+			// publication_only, citing its publication with pages, with the
+			// number of questions that publication prints
+			if r.Upstream != "" {
+				probs = append(probs, "a publication record has no upstream id")
+			}
+			if upstream[r.Record] {
+				probs = append(probs, "upstream's walton.yml has a record with this id: origin upstream")
+			}
+			if r.Entry != "" {
+				probs = append(probs, "a publication record is not filed under a compendium entry: origin book")
+			}
+			if !publicationOnly[r.Record] {
+				probs = append(probs, "a publication record needs its place in publication_only")
+			}
+			if !strings.Contains(r.Cites, "p.") {
+				probs = append(probs, "a publication record cites its publication with pages (p. or pp.)")
+			}
+			if r.SourceQuestions == nil {
+				probs = append(probs, "a publication record needs source_questions, the number of questions its publication prints for the scheme")
+			}
 		default:
-			probs = append(probs, fmt.Sprintf("origin %q is neither book nor upstream", r.Origin))
+			probs = append(probs, fmt.Sprintf("origin %q is neither book, upstream nor publication", r.Origin))
+		}
+		if r.Origin != "publication" && publicationOnly[r.Record] {
+			probs = append(probs, "publication_only lists the record, but its origin is "+r.Origin)
+		}
+		if r.Comparison != "" {
+			if impl, ok := ComparisonContracts[r.Comparison]; !ok {
+				probs = append(probs, fmt.Sprintf("unknown comparison contract %q", r.Comparison))
+			} else if _, err := os.Stat(filepath.Join(RepoRoot(), impl)); err != nil {
+				probs = append(probs, fmt.Sprintf("comparison contract %q: its implementation %s is missing", r.Comparison, impl))
+			}
 		}
 		if r.Entry != entryOf[s.Id] {
 			probs = append(probs, fmt.Sprintf("entry %q, but the compendium list files the record under %q", r.Entry, entryOf[s.Id]))
@@ -634,11 +693,16 @@ func questionProblems(r RecordRow, s *caes.Scheme, printed int, complete bool) [
 		case "support":
 			ok = in(s.Conclusions, q.As)
 		case "alternative":
-			probs = append(probs, fmt.Sprintf("question %d: an alternative needs a comparison contract; do not claim that %q alone models it", q.N, q.As))
-			continue
+			// the competing instance concludes the same predicate for
+			// another action; the row names the contract that compares them
+			if _, ok := ComparisonContracts[r.Comparison]; !ok {
+				probs = append(probs, fmt.Sprintf("question %d: an alternative needs a comparison contract; do not claim that %q alone models it", q.N, q.As))
+				continue
+			}
+			ok = in(s.Conclusions, q.As)
 		}
 		if !ok {
-			probs = append(probs, fmt.Sprintf("question %d, %s, is modelled by %q, which is not one of the record's %ss", q.N, article(q.Kind), q.As, map[string]string{"premise": "premise", "assumption": "assumption", "exception": "exception", "rebuttal": "negated conclusion", "support": "conclusion", "standard": "proof-standard setting"}[q.Kind]))
+			probs = append(probs, fmt.Sprintf("question %d, %s, is modelled by %q, which is not one of the record's %ss", q.N, article(q.Kind), q.As, map[string]string{"premise": "premise", "assumption": "assumption", "exception": "exception", "rebuttal": "negated conclusion", "support": "conclusion", "alternative": "conclusion", "standard": "proof-standard setting"}[q.Kind]))
 		}
 		if q.As != "" {
 			named[Norm(q.As)] = true

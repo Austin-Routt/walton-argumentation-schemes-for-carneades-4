@@ -1,7 +1,22 @@
-# Source-led review fixtures. These exercise the inherited AS1 abstraction.
-# They do not encode the entire AATS or its value-preference deliberation.
+# Source-led review fixtures. These exercise practical_reasoning1, the value-based
+# scheme as configured in Carneades (Walton 2015, pp. 92-93, following this
+# paper), on the paper's examples. The faithful AS1 records and the AATS model
+# (AS2) are tested in practical_as1.yml and practical_as2*.yml.
 # q0 -> q7 is stipulated for Arg6; the paper later challenges that transition.
 cases:
+  - name: practical_reasoning1/farmer-arg8
+    source: "Atkinson and Bench-Capon (2007), p. 866, farmer Arg8; AS1 abstraction of the stipulated transition q0 to q9 (the record's reference case until it was re-sourced to Walton 2015, pp. 92-93)"
+    assumptions:
+      - current_circumstances(q0)
+      - would_bring_about(row_chicken,q0,q9)
+      - would_be_realized(chicken_right,q9)
+      - would_promote_value(chicken_right,progress)
+    arguments:
+      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+    in:
+      - should_be_performed(row_chicken)
+    variants: true
+
   - name: practical_reasoning1/cq10-additional-value-supports
     source: "Atkinson and Bench-Capon (2007), p. 862 CQ10 and p. 866 Arg6; initial AS1 argument conditional on q7"
     assumptions:
@@ -94,6 +109,7 @@ cases:
 
   - name: practical_reasoning1/inherited-side-effect-policy
     source: "Legacy Carneades policy on the p. 866 Arg8 fixture; unconditional side-effect undercut is stronger than the 2007 value-comparison account"
+    schemes: [practical_reasoning1]   # practical_reasoning2 asks about side effects in its own words (Walton 2015, p. 94)
     assumptions:
       - current_circumstances(q0)
       - would_bring_about(row_chicken,q0,q9)
