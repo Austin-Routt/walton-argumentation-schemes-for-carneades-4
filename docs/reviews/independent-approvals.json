@@ -2642,6 +2642,24 @@
         "date": "2026-11-21",
         "decision": "approved"
       }
+    },
+    {
+      "record": "negative_consequences_reasoning_omission",
+      "fingerprint": "sha256:9029c4b11d402387ec75c6aee81911cdd85830bf414d27571f04c069dab5adc0",
+      "evidence": [
+        "docs/reviews/final-closure.md: negative_consequences_reasoning_omission",
+        "tools/vv/source_ledger.yml: negative_consequences_reasoning_omission"
+      ],
+      "examples": [
+        "negative_consequences_reasoning_omission/book",
+        "negative_consequences_reasoning_omission/likelihood-questioned",
+        "negative_consequences_reasoning_omission/opposite-consequences"
+      ],
+      "review": {
+        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
+        "date": "2026-11-21",
+        "decision": "approved"
+      }
     }
   ]
 }

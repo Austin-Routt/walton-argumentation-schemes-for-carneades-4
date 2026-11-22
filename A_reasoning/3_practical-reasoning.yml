@@ -43,6 +43,7 @@ language:
   acceptable_action/2: "For %s, %s is an acceptable action."
   action_will_help/2: "Proposed action %s will really help %s."
   agent_bring_about/3: "If %s, as an agent, brings about %s, then %s will occur."
+  agent_not_bring_about/3: "If %s, as an agent, does not bring about %s, then %s will occur."
   alternative_action/3: "%s reasonably considers on the given information that bringing about at least one of %s is necessary to bring about %s."
   alternative_action_sufficient/3: "%s reasonably considers on the given information that each one of %s is sufficient to bring about %s."
   alternative_bad/2: "The respondent must bring about %s, or the proponent will undertake to see to it that %s will occur."
@@ -707,6 +708,19 @@ argument_schemes:
       - bad_for_goals(P,B)
     assumptions:
       - consequence_likelihood_adequate(A,B)
+
+  - id: negative_consequences_reasoning_omission
+    meta:
+      title: Argument From Consequences - Reasoning From Negative Consequences (omission)
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
+    variables: [A,B,P]
+    conclusions:
+      - should_do(P,A)
+    premises:
+      - agent_not_bring_about(P,A,B)
+      - bad_for_goals(P,B)
+    assumptions:
+      - omission_consequence_likelihood_adequate(A,B)
 
   - id: sunk_costs
     meta:

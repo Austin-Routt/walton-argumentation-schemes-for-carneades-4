@@ -13,6 +13,14 @@
 # harmful goals" is demoted "severely"). A value the figures label on a
 # transition therefore has one entry per goal the text names.
 #
+# P is promoted and demoted "through the goal of transportation" (p. 864):
+# right_k holds when at least k of the farmer's possessions (C, D, S) are on
+# the right bank, and a move of a possession changes exactly one level, the
+# one reached (promotion) or lost (demotion). So rowing the seeds and rowing
+# the chicken from q0 realize the same goal, right_1, which is why the paper
+# calls Obj4b (p. 865) and the choice in q10 (p. 868) CQ6. F is promoted when
+# the farmer travels with the dog: the dog's bank, d_right, changes.
+#
 # repeated: the farmer is back in a state already visited. The paper counts
 # non-movement as repetition (p. 867, against the CQ3 objection to Arg10);
 # a state reached again is the earlier state plus repeated, named qN_again.
@@ -57,21 +65,21 @@ situations:
       q2: [c_left, d_left, b_right, s_eaten]
       q3: [d_left, s_left, b_right, c_eaten]
       q4: [d_left, b_right, c_eaten, s_eaten]
-      q5: [c_left, d_left, b_right, s_right]
-      q6: [d_left, b_right, s_right, c_eaten]
-      q7: [c_left, s_left, b_right, d_right]
-      q8: [c_left, b_right, d_right, s_eaten]
-      q9: [d_left, s_left, b_right, c_right]
+      q5: [c_left, d_left, b_right, s_right, right_1]
+      q6: [d_left, b_right, s_right, c_eaten, right_1]
+      q7: [c_left, s_left, b_right, d_right, right_1]
+      q8: [c_left, b_right, d_right, s_eaten, right_1]
+      q9: [d_left, s_left, b_right, c_right, right_1]
     transitions:
       - {from: q0, by: j1, to: q1}
       - {from: q0, by: j2, to: q2, demotes: {seeds: [s_eaten]}, promotes: {chicken_happy: [s_eaten]}}
       - {from: q0, by: j3, to: q3, demotes: {chicken: [c_eaten]}, promotes: {dog_happy: [c_eaten]}}
       - {from: q0, by: j4, to: q4, demotes: {seeds: [s_eaten], chicken: [c_eaten]}, promotes: {dog_happy: [c_eaten]}}
-      - {from: q0, by: j5, to: q5, promotes: {progress: [s_right]}}
-      - {from: q0, by: j6, to: q6, promotes: {progress: [s_right], dog_happy: [c_eaten]}, demotes: {chicken: [c_eaten]}}
-      - {from: q0, by: j7, to: q7, promotes: {progress: [d_right], friendship: [d_right]}}
-      - {from: q0, by: j8, to: q8, promotes: {progress: [d_right], friendship: [d_right], chicken_happy: [s_eaten]}, demotes: {seeds: [s_eaten]}}
-      - {from: q0, by: j9, to: q9, promotes: {progress: [c_right]}}
+      - {from: q0, by: j5, to: q5, promotes: {progress: [right_1]}}
+      - {from: q0, by: j6, to: q6, promotes: {progress: [right_1], dog_happy: [c_eaten]}, demotes: {chicken: [c_eaten]}}
+      - {from: q0, by: j7, to: q7, promotes: {progress: [right_1], friendship: [d_right]}}
+      - {from: q0, by: j8, to: q8, promotes: {progress: [right_1], friendship: [d_right], chicken_happy: [s_eaten]}, demotes: {seeds: [s_eaten]}}
+      - {from: q0, by: j9, to: q9, promotes: {progress: [right_1]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_chicken], source: "not stated for Fig. 1; the paper reformulates first (p. 866) and then accepts Arg8. Under the worst-case reading the unreformulated problem gives the same choice."}
       - {audience: companionable, choose: [row_chicken], source: "as above; S is preferred to F (p. 866), so rowing the dog loses on the seeds"}
@@ -88,14 +96,14 @@ situations:
     states:
       q0: [b_left, c_left, d_left, s_left]
       q4: [d_left, b_right, c_eaten, s_eaten]
-      q6: [d_left, b_right, s_right, c_eaten]
-      q8: [c_left, b_right, d_right, s_eaten]
-      q9: [d_left, s_left, b_right, c_right]
+      q6: [d_left, b_right, s_right, c_eaten, right_1]
+      q8: [c_left, b_right, d_right, s_eaten, right_1]
+      q9: [d_left, s_left, b_right, c_right, right_1]
     transitions:
       - {from: q0, by: j4, to: q4, demotes: {seeds: [s_eaten], chicken: [c_eaten]}}
-      - {from: q0, by: j6, to: q6, promotes: {progress: [s_right]}, demotes: {chicken: [c_eaten]}}
-      - {from: q0, by: j8, to: q8, promotes: {progress: [d_right], friendship: [d_right]}, demotes: {seeds: [s_eaten]}}
-      - {from: q0, by: j9, to: q9, promotes: {progress: [c_right]}}
+      - {from: q0, by: j6, to: q6, promotes: {progress: [right_1]}, demotes: {chicken: [c_eaten]}}
+      - {from: q0, by: j8, to: q8, promotes: {progress: [right_1], friendship: [d_right]}, demotes: {seeds: [s_eaten]}}
+      - {from: q0, by: j9, to: q9, promotes: {progress: [right_1]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_chicken], source: "p. 866: the accepted argument will be Arg8"}
       - {audience: seeds_first, choose: [row_chicken], source: "p. 866"}
@@ -107,14 +115,14 @@ situations:
     values: *values
     initial: q9
     states:
-      q9: [d_left, s_left, b_right, c_right]
-      q9_again: [d_left, s_left, b_right, c_right, repeated]
-      q10: [b_left, d_left, s_left, c_right]
+      q9: [d_left, s_left, b_right, c_right, right_1]
+      q9_again: [d_left, s_left, b_right, c_right, repeated, right_1]
+      q10: [b_left, d_left, s_left, c_right, right_1]
       q0: [b_left, c_left, d_left, s_left]
     transitions:
       - {from: q9, by: j0, to: q9_again, demotes: {progress: [repeated]}}
       - {from: q9, by: j1, to: q10}
-      - {from: q9, by: j9, to: q0, demotes: {progress: [c_right]}}
+      - {from: q9, by: j9, to: q0, demotes: {progress: [right_1]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_alone], source: "p. 867, Arg12"}
       - {audience: companionable, choose: [row_alone], source: "p. 867, Arg12"}
@@ -125,14 +133,14 @@ situations:
     values: *values
     initial: q10
     states:
-      q10: [b_left, d_left, s_left, c_right]
-      q9_again: [d_left, s_left, b_right, c_right, repeated]
-      q11: [s_left, b_right, c_right, d_right]
-      q12: [d_left, b_right, c_right, s_right]
+      q10: [b_left, d_left, s_left, c_right, right_1]
+      q9_again: [d_left, s_left, b_right, c_right, repeated, right_1]
+      q11: [s_left, b_right, c_right, d_right, right_1, right_2]
+      q12: [d_left, b_right, c_right, s_right, right_1, right_2]
     transitions:
       - {from: q10, by: j1, to: q9_again, demotes: {progress: [repeated]}}
-      - {from: q10, by: j7, to: q11, promotes: {progress: [d_right], friendship: [d_right]}}
-      - {from: q10, by: j5, to: q12, promotes: {progress: [s_right]}}
+      - {from: q10, by: j7, to: q11, promotes: {progress: [right_2], friendship: [d_right]}}
+      - {from: q10, by: j5, to: q12, promotes: {progress: [right_2]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_dog], source: "p. 868: so we should row the dog here"}
       - {audience: companionable, choose: [row_dog], source: "p. 868"}
@@ -143,14 +151,14 @@ situations:
     values: *values
     initial: q11
     states:
-      q11: [s_left, b_right, c_right, d_right]
-      q13: [b_left, s_left, d_right, c_eaten]
-      q14: [b_left, c_left, s_left, d_right]
-      q10_again: [b_left, d_left, s_left, c_right, repeated]
+      q11: [s_left, b_right, c_right, d_right, right_1, right_2]
+      q13: [b_left, s_left, d_right, c_eaten, right_1]
+      q14: [b_left, c_left, s_left, d_right, right_1]
+      q10_again: [b_left, d_left, s_left, c_right, repeated, right_1]
     transitions:
       - {from: q11, by: j3, to: q13, demotes: {chicken: [c_eaten]}}
-      - {from: q11, by: j9, to: q14, demotes: {progress: [c_right]}}
-      - {from: q11, by: j7, to: q10_again, demotes: {progress: [d_right, repeated]}, promotes: {friendship: [d_right]}}
+      - {from: q11, by: j9, to: q14, demotes: {progress: [right_2]}}
+      - {from: q11, by: j7, to: q10_again, demotes: {progress: [right_2, repeated]}, promotes: {friendship: [d_right]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_chicken], source: "p. 868: the farmer in a hurry rows the chicken"}
       - {audience: companionable, choose: [row_dog], source: "p. 868: ranking F above severely impeding his progress, he rows the dog"}
@@ -161,14 +169,14 @@ situations:
     values: *values
     initial: q10
     states:
-      q10: [b_left, d_left, s_left, c_right]
-      q9_again: [d_left, s_left, b_right, c_right, repeated]
-      q11_again: [s_left, b_right, c_right, d_right, repeated]
-      q12: [d_left, b_right, c_right, s_right]
+      q10: [b_left, d_left, s_left, c_right, right_1]
+      q9_again: [d_left, s_left, b_right, c_right, repeated, right_1]
+      q11_again: [s_left, b_right, c_right, d_right, repeated, right_1, right_2]
+      q12: [d_left, b_right, c_right, s_right, right_1, right_2]
     transitions:
       - {from: q10, by: j1, to: q9_again, demotes: {progress: [repeated]}}
-      - {from: q10, by: j7, to: q11_again, promotes: {progress: [d_right], friendship: [d_right]}, demotes: {progress: [repeated]}}
-      - {from: q10, by: j5, to: q12, promotes: {progress: [s_right]}}
+      - {from: q10, by: j7, to: q11_again, promotes: {progress: [right_2], friendship: [d_right]}, demotes: {progress: [repeated]}}
+      - {from: q10, by: j5, to: q12, promotes: {progress: [right_2]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_seeds], source: "p. 868: he will choose to row the seeds rather than the dog"}
       - {audience: companionable, choose: [row_dog], source: "p. 868: as long as he prefers F to P he rows the dog back and forth"}
@@ -179,14 +187,14 @@ situations:
     values: *values
     initial: q14
     states:
-      q14: [b_left, c_left, s_left, d_right]
-      q8: [c_left, b_right, d_right, s_eaten]
-      q15: [c_left, b_right, d_right, s_right]
-      q11_again: [s_left, b_right, c_right, d_right, repeated]
+      q14: [b_left, c_left, s_left, d_right, right_1]
+      q8: [c_left, b_right, d_right, s_eaten, right_1]
+      q15: [c_left, b_right, d_right, s_right, right_1, right_2]
+      q11_again: [s_left, b_right, c_right, d_right, repeated, right_1, right_2]
     transitions:
       - {from: q14, by: j2, to: q8, demotes: {seeds: [s_eaten]}}
-      - {from: q14, by: j5, to: q15, promotes: {progress: [s_right]}}
-      - {from: q14, by: j9, to: q11_again, promotes: {progress: [c_right]}, demotes: {progress: [repeated]}}
+      - {from: q14, by: j5, to: q15, promotes: {progress: [right_2]}}
+      - {from: q14, by: j9, to: q11_again, promotes: {progress: [right_2]}, demotes: {progress: [repeated]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_seeds], source: "p. 868: thus the farmer will choose to row the seeds"}
       - {audience: companionable, choose: [row_seeds], source: "p. 868"}
@@ -197,14 +205,14 @@ situations:
     values: *values
     initial: q15
     states:
-      q15: [c_left, b_right, d_right, s_right]
-      q16: [b_left, c_left, d_right, s_right]
-      q17: [b_left, c_left, d_left, s_right]
-      q14_again: [b_left, c_left, s_left, d_right, repeated]
+      q15: [c_left, b_right, d_right, s_right, right_1, right_2]
+      q16: [b_left, c_left, d_right, s_right, right_1, right_2]
+      q17: [b_left, c_left, d_left, s_right, right_1]
+      q14_again: [b_left, c_left, s_left, d_right, repeated, right_1]
     transitions:
       - {from: q15, by: j1, to: q16}
-      - {from: q15, by: j7, to: q17, demotes: {progress: [d_right]}, promotes: {friendship: [d_right]}}
-      - {from: q15, by: j5, to: q14_again, demotes: {progress: [s_right, repeated]}}
+      - {from: q15, by: j7, to: q17, demotes: {progress: [right_2]}, promotes: {friendship: [d_right]}}
+      - {from: q15, by: j5, to: q14_again, demotes: {progress: [right_2, repeated]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_alone], source: "p. 868: rowing alone, supported by the default argument that it is neutral as to all values"}
       - {audience: companionable, choose: [row_dog], source: "p. 868: the situation is like q11; preferring F he rows the dog until he tires of it"}
@@ -215,12 +223,12 @@ situations:
     values: *values
     initial: q16
     states:
-      q16: [b_left, c_left, d_right, s_right]
-      q15_again: [c_left, b_right, d_right, s_right, repeated]
-      q18: [b_right, c_right, d_right, s_right]
+      q16: [b_left, c_left, d_right, s_right, right_1, right_2]
+      q15_again: [c_left, b_right, d_right, s_right, repeated, right_1, right_2]
+      q18: [b_right, c_right, d_right, s_right, right_1, right_2, right_3]
     transitions:
       - {from: q16, by: j1, to: q15_again, demotes: {progress: [repeated]}}
-      - {from: q16, by: j9, to: q18, promotes: {progress: [c_right]}}
+      - {from: q16, by: j9, to: q18, promotes: {progress: [right_3]}}
     decisions:
       - {audience: in_a_hurry, choose: [row_chicken], source: "p. 869: so he rows the chicken"}
       - {audience: companionable, choose: [row_chicken], source: "p. 869"}
@@ -231,18 +239,18 @@ situations:
     values: *values
     initial: q18
     states:
-      q18: [b_right, c_right, d_right, s_right]
+      q18: [b_right, c_right, d_right, s_right, right_1, right_2, right_3]
       home: [at_home]
-      q18_alone: [b_left, d_right, c_eaten, s_eaten]
-      q16_again: [b_left, c_left, d_right, s_right, repeated]
-      q18_dog: [b_left, d_left, c_right, s_eaten]
-      q18_seeds: [b_left, s_left, d_right, c_eaten]
+      q18_alone: [b_left, d_right, c_eaten, s_eaten, right_1]
+      q16_again: [b_left, c_left, d_right, s_right, repeated, right_1, right_2]
+      q18_dog: [b_left, d_left, c_right, s_eaten, right_1]
+      q18_seeds: [b_left, s_left, d_right, c_eaten, right_1]
     transitions:
       - {from: q18, by: j10, to: home}
       - {from: q18, by: j4, to: q18_alone, demotes: {chicken: [c_eaten], seeds: [s_eaten]}}
-      - {from: q18, by: j9, to: q16_again, demotes: {progress: [c_right]}}
-      - {from: q18, by: j8, to: q18_dog, demotes: {progress: [d_right], seeds: [s_eaten]}, promotes: {friendship: [d_right]}}
-      - {from: q18, by: j6, to: q18_seeds, demotes: {progress: [s_right], chicken: [c_eaten]}}
+      - {from: q18, by: j9, to: q16_again, demotes: {progress: [right_3]}}
+      - {from: q18, by: j8, to: q18_dog, demotes: {progress: [right_3], seeds: [s_eaten]}, promotes: {friendship: [d_right]}}
+      - {from: q18, by: j6, to: q18_seeds, demotes: {progress: [right_3], chicken: [c_eaten]}}
     decisions:
       - {audience: in_a_hurry, choose: [farmer_goes_home], source: "p. 869: thus going home will be selected"}
       - {audience: companionable, choose: [farmer_goes_home], source: "p. 869: rowing the dog demotes S, which outranks F"}

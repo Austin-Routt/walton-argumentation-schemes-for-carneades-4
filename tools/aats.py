@@ -283,7 +283,14 @@ class Situation:
         another agent claims, with its own formulation of the problem: a
         state (an id of Q, or the list of what holds in it), a joint action
         (a name, or a mapping agent -> action), the agent and its action, the
-        resulting state, the goal and the value (pp. 862 and 864)."""
+        resulting state, the goal and the value (pp. 862 and 864).
+
+        As printed on p. 862, with two readings made explicit. CQ1 is the
+        conjunction q0 != qx and q0 not in rho(alpha_i). CQ3 and CQ15 are
+        printed for a goal that becomes true (pa not in pi(qy); pa in pi(q)
+        for no q); AS2 also allows a goal that becomes false, for which they
+        are read the other way round (pa still in pi(qy); pa in pi(q) for
+        every q)."""
         cqs = set()
         qx, qy = self._state(claim.get("state")), self._state(claim.get("result"))
         i, a = claim.get("agent"), claim.get("action")
@@ -293,22 +300,26 @@ class Situation:
         elif j not in self.joint:
             j = None
         pa, vu = claim.get("goal"), claim.get("value")
+        # the direction of the goal: does pa become true (the printed case)
+        # or false? Read from the claimed initial state when it is in Q.
+        falls = qx is not None and pa in self.states[qx]
         if qx is None:
             cqs.add(12)                                     # qx not in Q
         if j is None or (i is not None and self.joint[j].get(i) != a):
             cqs.add(13)                                     # jn not in J_Ag (with jn_i = alpha_i)
         if qy is None:
             cqs.add(14)                                     # tau(qx, jn) not in Q
-        if pa not in self.Phi():
-            cqs.add(15)                                     # pa in pi(q) for no q in Q
+        if (not falls and not any(pa in p for p in self.states.values())) or \
+                (falls and all(pa in p for p in self.states.values())):
+            cqs.add(15)                                     # the goal holds (fails) in no state of Q
         if vu not in self.V():
             cqs.add(16)                                     # vu not in V
-        if qx is not None and (qx != self.initial or (a is not None and qx not in self.rho.get(a, set()))):
-            cqs.add(1)                                      # not the current state, or alpha_i's precondition fails
-        if qx is not None and j is not None and qy is not None and self.tau.get((qx, j)) != qy:
-            cqs.add(2)                                      # tau(qx, jn) is not qy
-        if qx is not None and qy is not None and pa not in (self.states[qx] ^ self.states[qy]):
-            cqs.add(3)                                      # pa does not change between qx and qy
+        if qx != self.initial and (a is None or self.initial not in self.rho.get(a, set())):
+            cqs.add(1)                                      # q0 != qx and q0 not in rho(alpha_i)
+        if qx is not None and j is not None and (self.tau.get((qx, j)) is None or self.tau[(qx, j)] != qy):
+            cqs.add(2)                                      # tau(qx, jn) is not qy, or does not exist (p. 859)
+        if qx is not None and qy is not None and (pa in self.states[qy]) != (not falls):
+            cqs.add(3)                                      # the goal is not realized in qy
         if qx is not None and qy is not None and j is not None and self.tau.get((qx, j)) == qy \
                 and "+" not in self.delta(qx, qy, vu):
             cqs.add(4)                                      # delta(qx, qy, vu) is not +

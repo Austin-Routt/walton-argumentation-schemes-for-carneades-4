@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-21 — final closure, second round: Scare Tactics, the 2019 record, the paper's examples
+
+See `docs/reviews/final-closure.md` and `docs/reviews/atkinson-2007-example.md`.
+
+* *Scare Tactics* (2000) compared with the six records that cite it. 33.3 is printed on p. 140, not on the cited p. 123 (which prints 33.4); 35.1's disjunctive threat is on p. 142, not the cited p. 140 (which prints the conditional form); 36 is two linked inferences on p. 22. Notes in the ledger; no record needed a correction.
+* New record `negative_consequences_reasoning_omission` (entry 33.3): the printed alternative "(don't bring about)", concluding `should_do(P,A)` (*Scare Tactics*, p. 139), with its reference and adverse cases. 149 records.
+* `exeption_to_rule`: its name is documented by the README's Updates of 2019-10-08 (Walton's correspondence of 2019-09-19, private and not to be published; the README is its official record). The change of 2019-09-22 renamed upstream's `precedent` and its title only.
+* Atkinson and Bench-Capon (2007), checked again line by line with the formal definitions read from the printed page: all seventeen questions of the farmer example, the four the paper never names (CQ5, CQ7, CQ10, CQ15) inferred and tested, Obj6ai relabelled from CQ2 to CQ17, five problems in the printed definitions and seven differences between the figures and the text recorded. The farmer model now encodes P's "goal of transportation" (`right_k`), with which the paper's CQ6 labels are correct; the earlier note that Obj4b was mislabelled is withdrawn. Claimed arguments are checked against CQ1 as printed (a conjunction) and CQ3 and CQ15 in both directions of a goal. No reported choice changes.
+* Ledger notes no longer say that originals compared later were not compared.
+* 10,428 checks (63 added).
+
 ## 2026-11-21 — final closure: the originals, AS1 and AS2 (library 0.4.0)
 
 See `docs/reviews/final-closure.md`. The owner supplied Walton (1995), Walton (2015) and Walton (2002) and asked for a verified AS1 as well as a full AS2.
