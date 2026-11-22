@@ -7,15 +7,15 @@ Three things are checked against something other than the code under test:
   * the paper: its arguments Arg1-Arg8, its objections, its formulation
     questions and every choice it reports (decisions in the models);
   * a second implementation, written here: the formal critical questions of
-    p. 862 as set comprehensions, and each choice recomputed from the facts and
-    argument identifiers of the generated Carneades cases alone (which the
-    suite then checks the engine builds, exactly);
+    p. 862 as set comprehensions, and each choice and argument set recomputed
+    from the generated facts alone (without reading predicted argument ids);
   * random models: both implementations agree on every one.
 Run: python3 tools/test_aats.py
 """
 import copy
 import random
 import re
+import subprocess
 import sys
 import unittest
 from pathlib import Path
@@ -70,6 +70,63 @@ class Definitions(unittest.TestCase):
         s = situation_from(self.doc, self.sit)
         self.assertEqual(s.options(), ["row_alone", "row_chicken", "row_dog", "row_seeds"])
 
+    def test_duplicate_yaml_keys_are_rejected(self):
+        original = FARMER.read_text(encoding="utf-8")
+        for label, text in (("top-level", original + "\nname: silently_replaced\n"),
+                            ("state", original.replace("      q0: [b_left, c_left, d_left, s_left]",
+                                                      "      q0: [different]\n      q0: [b_left, c_left, d_left, s_left]", 1))):
+            with self.subTest(label=label):
+                path = Path(self._tmp("duplicate.yml"))
+                path.write_text(text, encoding="utf-8")
+                with self.assertRaisesRegex(aats.ModelError, "duplicate YAML key"):
+                    aats.Model(path)
+
+    def test_yaml_merge_overrides_remain_valid(self):
+        # The supplied train and farmer models intentionally use YAML
+        # merge keys with explicit per-situation overrides, not duplicate
+        # literal keys in the same mapping.
+        self.assertEqual(len(aats.Model(FARMER).situations), 10)
+        self.assertEqual(len(aats.Model(TRAINS).situations), 7)
+
+    def test_malformed_shapes_raise_model_errors(self):
+        for label, mutate in (
+                ("agents", lambda d: d.update(agents=["farmer"])),
+                ("situations", lambda d: d.update(situations={})),
+                ("propositions", lambda d: d["situations"][0]["states"].update(q0="not_a_list")),
+                ("transitions", lambda d: d["situations"][0].update(transitions=[7])),
+                ("effects", lambda d: d["situations"][0]["transitions"][0].update(promotes=["progress"])),
+                ("decision", lambda d: d["situations"][0]["decisions"][0].update(choose="row_dog"))):
+            with self.subTest(label=label):
+                doc = copy.deepcopy(raw(FARMER))
+                mutate(doc)
+                path = Path(self._tmp("malformed.yml"))
+                path.write_text(yaml.safe_dump(doc), encoding="utf-8")
+                with self.assertRaises(aats.ModelError):
+                    aats.Model(path)
+
+    def test_malformed_yaml_raises_model_error(self):
+        path = Path(self._tmp("malformed.yml"))
+        path.write_text("schema: [unterminated", encoding="utf-8")
+        with self.assertRaisesRegex(aats.ModelError, "cannot read model YAML"):
+            aats.Model(path)
+
+    def test_unknown_joint_action_is_a_typed_model_and_cli_error(self):
+        doc = copy.deepcopy(raw(FARMER))
+        doc["situations"][0]["transitions"][0]["by"] = "unknown_joint"
+        path = Path(self._tmp("unknown-joint.yml"))
+        path.write_text(yaml.safe_dump(doc), encoding="utf-8")
+        with self.assertRaisesRegex(aats.ModelError, "unknown_joint is not a joint action"):
+            aats.Model(path)
+        result = subprocess.run([sys.executable, str(aats.ROOT / "tools" / "aats.py"), "check", str(path)],
+                                capture_output=True, text=True, timeout=10)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("unknown_joint is not a joint action", result.stderr)
+        self.assertNotIn("Traceback", result.stderr)
+
+    def test_delta_both_effects_has_documented_order(self):
+        s = aats.Model(FARMER).situation("fig6-q14")
+        self.assertEqual(s.delta("q14", "q11_again", "progress"), "+-")
+
     def test_initial_state_in_Q(self):
         self.rejects(lambda d, s: s.update(initial="q99"), "initial state")
 
@@ -94,10 +151,30 @@ class Definitions(unittest.TestCase):
             s["values"] = {"farmer": ["progress"]}
         self.rejects(m, "every agent needs")
 
-    def test_states_are_told_apart(self):
-        def m(d, s):
-            s["states"]["q9b"] = list(s["states"]["q9"])
-        self.rejects(m, "same interpretation")
+    def test_distinct_states_may_have_the_same_interpretation(self):
+        # p. 860 defines pi as a function, not an injection. A state id
+        # remains unambiguous; a bare proposition list need not be.
+        self.sit["states"]["q9b"] = list(self.sit["states"]["q9"])
+        s = situation_from(self.doc, self.sit)
+        self.assertEqual(s._state("q9"), "q9")
+        self.assertEqual(s._state("q9b"), "q9b")
+        with self.assertRaisesRegex(aats.ModelError, "ambiguous state description"):
+            s._state(self.sit["states"]["q9"])
+
+    def test_effects_depend_on_state_pair_not_joint_action(self):
+        # Two own actions reach q9. Omitting the second promotion used to
+        # be accepted, but emitted facts then made the engine build an
+        # argument absent from Situation.arguments().
+        def inconsistent(d, s):
+            s["transitions"].append({"from": "q0", "by": "j5", "to": "q9"})
+        self.rejects(inconsistent, "inconsistent effects")
+
+    def test_same_state_pair_same_effects_are_allowed(self):
+        self.sit["transitions"].append({"from": "q0", "by": "j5", "to": "q9",
+                                        "promotes": {"progress": ["right_1"]}})
+        s = situation_from(self.doc, self.sit)
+        got = {(a.joint, a.action, a.value) for a in s.arguments() if a.result == "q9"}
+        self.assertEqual(got, {("j5", "row_seeds", "progress"), ("j9", "row_chicken", "progress")})
 
     def test_preconditions_agree_with_tau(self):
         def m(d, s):
@@ -352,6 +429,30 @@ class PaperQuestions(unittest.TestCase):
                 arg1 = [a for a in s2.arguments() if (a.joint, a.value) == ("j2", "chicken_happy")][0]
                 self.assertTrue(s2.cq17_unanswered(arg1))
 
+    def test_figure5_single_penalty_changes_the_hurried_choice(self):
+        # Fig. 5 prints one -P; p. 868 and footnote 5 count two harmful
+        # goals. Treating that graphical label as a unit penalty is NOT
+        # decision-invariant: F breaks the resulting tie on P in favour
+        # of rowing the dog. The text's two-goal reading is intentional.
+        doc, sit = raw_situation(FARMER, "fig5-q11")
+        for t in sit["transitions"]:
+            if t["by"] == "j7":
+                t["demotes"]["progress"] = ["right_2"]
+        text_model = self.m.situation("fig5-q11")
+        figure_model = situation_from(doc, sit)
+        audience = self.m.audience("in_a_hurry")
+        self.assertEqual(text_model.decide(audience), ["row_chicken"])
+        self.assertEqual(figure_model.decide(audience), ["row_dog"])
+
+    def test_figure7_single_penalty_preserves_the_reported_choices(self):
+        doc, sit = raw_situation(FARMER, "fig7-q15")
+        for t in sit["transitions"]:
+            if t["by"] == "j5":
+                t["demotes"]["progress"] = ["right_2"]
+        figure_model = situation_from(doc, sit)
+        for audience in self.m.audiences.values():
+            self.assertEqual(figure_model.decide(audience), self.m.situation("fig7-q15").decide(audience))
+
 
 class Formulation(unittest.TestCase):
     """p. 864 (bridge, muzzled dog, q_n with n > 9, another initial state),
@@ -371,9 +472,29 @@ class Formulation(unittest.TestCase):
     def test_arg8_is_sound(self):
         self.assertEqual(self.claim(self.fig1), [])
 
+    def test_claim_shapes_raise_model_errors(self):
+        claim = {"state": "q0", "result": "q9", "agent": "farmer", "action": "row_chicken",
+                 "joint": "j9", "goal": "right_1", "value": "progress"}
+        for malformed in ([], {}, dict(claim, joint=[]), dict(claim, state=[[]]),
+                          dict(claim, joint={"farmer": []}), dict(claim, goal=[])):
+            with self.subTest(claim=malformed):
+                with self.assertRaises(aats.ModelError):
+                    self.fig1.claim_problems(malformed)
+
     def test_cq13_bridge(self):
         self.assertIn(13, self.claim(self.fig1, joint={"farmer": "cross_bridge", "chicken": "chicken_waits", "dog": "dog_waits"},
                                      action="cross_bridge"))
+
+    def test_unnamed_valid_joint_action_is_cq2_not_cq13(self):
+        # J_Ag is the full Cartesian product (p. 860); naming only the
+        # transitions used by a model must not redefine joint-action legality.
+        problems = self.claim(self.fig1, action="farmer_waits",
+                              joint={"farmer": "farmer_waits", "chicken": "chicken_eats_seeds", "dog": "dog_waits"},
+                              result="q2", goal="s_eaten", value="chicken_happy")
+        self.assertEqual(problems, [2])
+
+    def test_named_joint_action_can_be_claimed_as_a_tuple(self):
+        self.assertEqual(self.claim(self.fig1, joint=self.fig1.joint["j9"]), [])
 
     def test_cq12_cq14_cq15_muzzled_dog(self):
         muzzled = ["b_left", "c_left", "d_left", "s_left", "d_muzzled"]
@@ -527,6 +648,7 @@ def random_situation(seed, force_cq5=False):
     joint = {f"j{k}": {"a": x, "b": y} for k, (x, y) in enumerate([(x, y) for x in agents["a"] for y in agents["b"]])}
     values = {"a": ["u", "v", "w"], "b": ["w"]}
     transitions = []
+    effects_by_pair = {}
     for j in joint:
         if rnd.random() < 0.85 or j == "j0" or (force_cq5 and j == "j1"):
             to = rnd.choice(names)
@@ -539,6 +661,13 @@ def random_situation(seed, force_cq5=False):
                     goals = [g for g in changed if rnd.random() < 0.35]
                     if goals:
                         t.setdefault(field, {})[v] = goals
+            pair = ("s0", to)
+            if pair not in effects_by_pair:
+                effects_by_pair[pair] = {field: copy.deepcopy(t[field]) for field in ("promotes", "demotes") if field in t}
+            else:
+                for field in ("promotes", "demotes"):
+                    t.pop(field, None)
+                t.update(copy.deepcopy(effects_by_pair[pair]))
             transitions.append(t)
     assurances = []
     for j in joint:
@@ -553,11 +682,40 @@ def random_situation(seed, force_cq5=False):
     return situation_from(doc, sit)
 
 
+def arguments_from_facts(case):
+    """Join the actual AS2 premises using only emitted facts. This oracle
+    never reads case['arguments'] or Situation.arguments()/effects. A direct
+    engine boundary test with authored expectations is in aats_adapter_test.go.
+    """
+    relations = {}
+    for fact in case["assumptions"]:
+        m = re.fullmatch(r"([a-z_]+)\(([a-zA-Z0-9_,]+)\)", fact)
+        if m:
+            relations.setdefault(m.group(1), set()).add(tuple(m.group(2).split(",")))
+    def holds(name, *args):
+        return args in relations.get(name, set())
+    out = set()
+    for q0, in relations.get("current_state", set()):
+        for qx, j, q1 in relations.get("transition", set()):
+            if qx != q0 or not (holds("model_state", q0) and holds("model_state", q1)
+                                and holds("possible_joint_action", j, q0)):
+                continue
+            for jp, i, a in relations.get("joint_action_part", set()):
+                if jp != j or not holds("precondition_holds", a, q0):
+                    continue
+                for relation, scheme in (("transition_promotes", aats.POSITIVE), ("transition_demotes", aats.NEGATIVE)):
+                    for x, y, p, v in relations.get(relation, set()):
+                        if (x, y) == (q0, q1) and holds("proposition_changes", p, q0, q1) \
+                                and holds("proposition_realizable", p) and holds("agent_value", i, v):
+                            out.add(f"{scheme}({i},{a},{j},{q0},{q1},{p},{v})")
+    return out
+
+
 def decide_from_case(case, audience, agent):
     """The comparison contract recomputed from a generated Carneades case
     alone: the facts say which joint actions the agent may face for each of
-    its actions (joint_action_part, possible_joint_action, transition); the
-    argument identifiers say which goals promote or demote which value."""
+    its actions and which goals promote or demote which value. The predicted
+    argument identifiers in the case are deliberately not read."""
     facts = case["assumptions"]
     q0 = next(re.match(r"current_state\((\w+)\)", f).group(1) for f in facts if f.startswith("current_state("))
     possible = {re.match(r"possible_joint_action\((\w+),", f).group(1) for f in facts if f.startswith("possible_joint_action(")}
@@ -572,7 +730,7 @@ def decide_from_case(case, audience, agent):
         if m and m.group(1) == q0 and m.group(2) in possible:
             result[m.group(2)] = m.group(3)
     net = {}
-    for a in case["arguments"]:
+    for a in arguments_from_facts(case):
         m = re.match(r"(practical_reasoning_as2(?:_demotion)?)\((\w+),(\w+),(\w+),(\w+),(\w+),(\w+),(\w+)\)", a)
         sign = -1 if m.group(1).endswith("_demotion") else 1
         net[(m.group(4), m.group(8))] = net.get((m.group(4), m.group(8)), 0) + sign
@@ -647,11 +805,29 @@ class Contract(unittest.TestCase):
         self.assertEqual(s.decide(["progress"]), ["row_alone", "row_chicken"])
 
     def test_values_outside_the_audience_are_ignored(self):
-        s = farmer().situation("fig2-q0")
+        m = farmer()
+        s = m.situation("fig2-q0")
         # an audience that holds only the dog's happiness, which the farmer no
         # longer counts among his values (Obj2e accepted, p. 866): nothing of
         # his is left to compare, and every option is as good as any other
-        self.assertEqual(s.decide(["dog_happy"]), ["row_alone", "row_chicken", "row_dog", "row_seeds"])
+        self.assertEqual(s.decide(m.audience("dog_happy")), ["row_alone", "row_chicken", "row_dog", "row_seeds"])
+        self.assertEqual(m.audience("progress,friendship"), ["progress", "friendship"])
+
+    def test_invalid_audience_orders_raise_model_and_cli_errors(self):
+        m = farmer()
+        for spec in ("definitely_unknown", "progress,progress", "", "progress,", "progress,unknown"):
+            with self.subTest(audience=spec):
+                with self.assertRaises(aats.ModelError):
+                    m.audience(spec)
+                result = subprocess.run([sys.executable, str(aats.ROOT / "tools" / "aats.py"), "decide",
+                                         str(FARMER), "fig1-q0", "--audience", spec],
+                                        capture_output=True, text=True, timeout=10)
+                self.assertEqual(result.returncode, 2)
+                self.assertNotIn("Traceback", result.stderr)
+                self.assertNotIn('"choose"', result.stdout)
+        for order in ([], ["unknown"], ["progress", "progress"]):
+            with self.assertRaises(aats.ModelError):
+                m.situation("fig1-q0").decide(order)
 
 
 def _cases_for(s):
@@ -661,6 +837,13 @@ def _cases_for(s):
 
 
 class Files(unittest.TestCase):
+    def test_fact_projection_reconstructs_exact_arguments(self):
+        situations = [s for path in (FARMER, TRAINS) for s in aats.Model(path).situations]
+        situations += [random_situation(seed) for seed in range(300)]
+        for s in situations:
+            case = yaml.safe_load(_cases_for(s))["cases"][0]
+            self.assertEqual(arguments_from_facts(case), set(case["arguments"]), s.name)
+
     def test_generated_cases_are_current(self):
         models = [aats.Model(p) for p in aats.model_paths()]
         self.assertEqual(aats.CASES.read_text(encoding="utf-8"), aats.build_cases(models),

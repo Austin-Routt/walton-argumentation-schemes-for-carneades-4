@@ -1,0 +1,63 @@
+{
+  "schema": "walton-go-ledger-integration-cross-review/v1",
+  "review_date_utc": "2026-11-22",
+  "reviewer": "ChatGPT final_sources, separate non-author reviewer of root implementation",
+  "reviewed_base_commit": "3e2593d47ca9f1943b68ed7106287b1b943fdea0",
+  "reviewed_state": "Uncommitted root-authored integration fix, bound to file hashes below. No repository edits by this reviewer.",
+  "verdict": "accepted",
+  "findings": [],
+  "rationale": [
+    "The strict Go source-ledger reader now recognizes both approval-v2 attestation fields instead of rejecting the entire149-record ledger.",
+    "The interface{} fields preserve decoded YAML scalar/object types. Approval requires a Boolean true, so missing/null/false/quoted true/integer1 cannot substitute.",
+    "The basis must decode as a string and contain non-whitespace text; a numeric basis is rejected rather than coerced into evidence.",
+    "Only approved rows require this attestation; existing hold/open stage checks and strict rejection of unknown fields remain in force.",
+    "Actual serialized-YAML controls exercise the strict reader, not only hand-constructed Go values. The real-ledger publication controls also load the integrated current ledger.",
+    "No argument scheme, source interpretation, source approval fingerprint or source-case expectation is changed by this fix."
+  ],
+  "executions": [
+    {
+      "toolchain": "go1.24.13",
+      "command": [
+        "/workspace/scratch/372d165f0fc7/release-review/toolchains/go1.24.13/go/bin/go",
+        "test",
+        "-count=1",
+        "-run",
+        "^(TestReviewProblems|TestSourceApprovalV2LedgerAdmission|TestPublicationOriginRules)$",
+        "-v",
+        "./internal/vvlib"
+      ],
+      "exit_code": 0,
+      "log_file": "go-ledger-cross-go1.24.13.log",
+      "serialized_admission_controls": 10,
+      "summary": [
+        "PASS",
+        "ok  \twaltonvv/internal/vvlib\t0.617s"
+      ]
+    },
+    {
+      "toolchain": "go1.27.4",
+      "command": [
+        "/workspace/scratch/372d165f0fc7/audit-work/toolchain/go/bin/go",
+        "test",
+        "-count=1",
+        "-run",
+        "^(TestReviewProblems|TestSourceApprovalV2LedgerAdmission|TestPublicationOriginRules)$",
+        "-v",
+        "./internal/vvlib"
+      ],
+      "exit_code": 0,
+      "log_file": "go-ledger-cross-go1.27.4.log",
+      "serialized_admission_controls": 10,
+      "summary": [
+        "PASS",
+        "ok  \twaltonvv/internal/vvlib\t0.557s"
+      ]
+    }
+  ],
+  "accepted_file_sha256": {
+    "tools/vv/internal/vvlib/source.go": "7214d02db3b035bf4ad602ead88da2346af19c901269b71ff92b088d323fe3cc",
+    "tools/vv/internal/vvlib/source_test.go": "db625150349dfbe77c79aab5791b62e32a62c61265fa5dbeb7942c331476685e"
+  },
+  "failure_accounting": "The earlier complete acceptance run at3e2593d47ca9f1943b68ed7106287b1b943fdea0 failed integration because strict Go decoding omitted these v2 fields. Its9,614 emitted green checks did not satisfy the10,428 expected inventory. This review does not reinterpret that incomplete run as accepted; final complete clean gates must be rerun after the root commits this fix.",
+  "next_required_step": "Root commits the accepted exact fix and reruns both complete clean-copy Go gates and their cross-version result comparison; obtain a fresh commit-bound signoff."
+}

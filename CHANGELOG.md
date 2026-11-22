@@ -1,5 +1,23 @@
 # Changelog
 
+## 2026-11-21 — integration of the independent baseline review (engine 4.3.1+walton.7)
+
+See `docs/reviews/final-baseline-integration.md`.
+
+* The four commits of the independent review (`598aa7e`, `8a201e4`, `3e2593d`, `da1dac5`) are merged unchanged; their archive was verified (size, SHA-256, all 2,618 manifest hashes) and the patches reproduce their tree from `98a2335`.
+* Their findings were reproduced on `98a2335` before merging: the Figure 5 sensitivity, the shared state-pair counterexample (the engine built an argument the adapter did not predict), the CQ2/CQ13 boundary, the conditional threat of entry 35, the Smart Car premise, the migration page, and the false "nor its last change" in the D20 stamp of `sunk_costs`.
+* One gap they left: `carneades server` passed CAF, AGXML and LKIF uploads to the legacy converters without the opt-in that `check` and `eval` now require. It now refuses them unless started with `-experimental-import` (`src/web/profile.go`, with a test). Engine 4.3.1+walton.7.
+
+## 2026-11-21 — independent framework baseline (library 0.4.1, engine 4.3.1+walton.6)
+
+The complete independent integration decision is `docs/reviews/final-baseline-independent-review.md`; the active plan separates baseline source/implementation closure from the next validation effort.
+
+* Retain all 149 executable records. Independently accept the nine final-closure self-stamps and the D20 sunk-cost reclassification; identify the actual non-author second reviewer for eight earlier repairs. Registry v2 requires explicit independence evidence and refuses withdrawn/conflicting metadata reconciliation. Source approval does not authenticate human reviewers or validate real-world arguments.
+* Correct record-specific Scare Tactics citations to 140 (33.3 action), 139–140 (omission) and 142 (35.1), retaining the compendium's shared references as provenance. Correct the conditional-threat and Smart Car explanations. Refresh only the three affected source fingerprints; regenerate category copies and example prefixes.
+* Repair AATS state-pair effect aliasing, duplicate-input loss, malformed-shape diagnostics, unknown audience handling and legal unnamed joint-action classification. Permit distinct state IDs with identical propositions. Use independent fact joins and actual-engine boundary regressions. The Fig. 5 single-penalty reading changes the hurried choice; the declared reconstruction follows the text's two harmful goals. AS1 comparison requires a separate AATS model; the comparison policy is not general VAF semantics.
+* Native YAML rejects unsupported premise shapes, unknown fields and duplicate keys. Restricted AIF preserves assumption and issue topology, rejects unsupported/duplicate structures and retains scheme names only as provenance. CAF/AGXML/LKIF CLI use requires experimental opt-in; targeted default, backlink and admission defects are repaired. TGF rejects labelled edges instead of converting support to attack. Dung family equality and the odd-cycle fixture are corrected.
+* Fix the bundled abduction example's ignored `labels:` to actual `tests:` assertions. Preserve original engine ZIPs and `sources.lock`. Exact final commit and all clean acceptance outcomes are in the accompanying review archive; source closure alone does not authorize 1.0.0, external publication or outside correspondence.
+
 ## 2026-11-21 — final closure, second round: Scare Tactics, the 2019 record, the paper's examples
 
 See `docs/reviews/final-closure.md` and `docs/reviews/atkinson-2007-example.md`.

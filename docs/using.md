@@ -7,9 +7,13 @@ library today, and the command gives every label its `tests:` expect.
 
 ## Source approval and scope
 
-The full 149-record file is a preview. All 149 records have approved interpretations, recorded as `example-passed` and bound to current fingerprints; twelve inherited ones are approved against their compendium entries (D20), with the older works they cite compared where the owner supplied them (`reviews/final-closure.md`). Nine approvals of 2026-11-21 are the implementer's own, as their stamps say. The [current register](reviews/closure-current-register.md) gives the earlier dispositions.
+The full 149-record file remains a preview. Its current source interpretations have non-author acceptance, are recorded as `example-passed`, and are bound to reviewed fingerprints and explicit independence evidence. The compendium governs numbered entries under D20; newly supplied originals resolve the formerly held configured practical-reasoning and case-based records. The latest source judgment is `reviews/final-source-independent-review.md`; current per-record decisions are in `reviews/final-source-acceptance.json`. Earlier self-stamps and historical holds have been superseded by those decisions. This source-stage gate is separate from empirical application validation.
 
 For practical reasoning there are three families: `practical_reasoning1` and `practical_reasoning2` (Walton 2015, as configured in Carneades), `practical_reasoning_as1` with its two negative versions (Atkinson and Bench-Capon 2007, AS1), and `practical_reasoning_as2` with its negative version, whose facts describe an action-based alternating transition system. The first two families share premises: questioning a default of one does not remove a conclusion that another still supports, so select the record you mean (`schemes:` in a case, or only its templates in a graph). For AS2, `python3 tools/aats.py cases MODEL` writes the facts of a model; `python3 tools/aats.py decide MODEL --audience v1,v2,...` gives the action an audience's value order chooses, which the engine's own weighing does not decide (`contracts.md`, contract 8). Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
+
+The comparison command requires a separately authored AATS model; it does not read AS1 graphs or infer their missing agents, joint actions, outcomes, goal effects and assurances. An AS1 record's reference to `value-based-choice` is therefore conditional on supplying that model and checking its mapping to the original argument. The AS2 profile is a declared interpretation of the paper, including goal-count and worst-case comparison policies. It does not implement a general VAF solver. When several joint actions connect the same pair of states, give them identical effect annotations; the adapter rejects conflicting annotations before generating a graph.
+
+Use a declared audience name or a non-empty comma-separated order of values declared by the model. Unknown, repeated or empty values are errors. Valid subsets and values held by other modeled agents are allowed; only the deliberating agent's values contribute to the comparison.
 
 API callers evaluating authored arguments must run structural validation before inference. The CLI does this itself. Runtime outcomes and logical resource quotas are specified in `docs/contracts.md`.
 
@@ -50,7 +54,7 @@ The engine is kept as source in `third_party/`, with this repository's fixes;
 ```sh
 cd tools/vv
 go build -o ~/bin/carneades github.com/carneades/carneades-4/src/cmd/carneades
-carneades            # prints the engine's version, 4.3.1+walton.5
+carneades            # prints the engine's version, 4.3.1+walton.7
 ```
 
 `carneades check case.yml` reads and validates a graph without evaluating it;
@@ -59,6 +63,8 @@ label for every statement (`in`, `out` or `undecided`). How a run can end, and
 its exit status, is in `docs/contracts.md`, contract 3: 0 when complete, 1 for
 invalid input, 3 for an inconsistent context, and so on. On any outcome other
 than complete nothing is printed on stdout.
+
+Native YAML is the supported library graph format. Importing restricted AIF or opting into an experimental legacy converter requires the explicit policies in `import-profiles.md`; format acceptance does not establish a scheme assignment. The migration tool reports semantic changes for manual review. Its automatic renames and `--check` result do not certify that all manual judgments have been completed.
 
 ## A first case
 

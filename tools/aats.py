@@ -33,6 +33,7 @@ from collections import namedtuple
 from pathlib import Path
 
 import yaml
+from validate_schemes import load_unique
 
 SCHEMA = "walton-aats/v1"
 ROOT = Path(__file__).resolve().parent.parent
@@ -59,6 +60,32 @@ class ModelError(Exception):
     pass
 
 
+def _mapping(value, what):
+    if not isinstance(value, dict) or any(not isinstance(k, str) for k in value):
+        raise ModelError(f"{what} must be a mapping with string keys")
+    return value
+
+
+def _list(value, what):
+    if not isinstance(value, list):
+        raise ModelError(f"{what} must be a list")
+    return value
+
+
+def _atoms(value, what):
+    return [_atom(x, what) for x in _list(value, what)]
+
+
+def _audience_order(value, declared):
+    order = _atoms(value, "audience values")
+    if not order or len(set(order)) != len(order):
+        raise ModelError("an audience must be a non-empty strict order of distinct values")
+    unknown = set(order) - declared
+    if unknown:
+        raise ModelError(f"audience names undeclared values {sorted(unknown)}")
+    return order
+
+
 def _atom(x, what):
     if not isinstance(x, str) or not x or not (x[0].islower() and x.replace("_", "a").isalnum()):
         raise ModelError(f"{what} {x!r} is not an atom (lower case letter, then letters, digits or _)")
@@ -72,39 +99,45 @@ class Situation:
 
     def __init__(self, model, raw):
         self.model = model
+        _mapping(raw, "situation")
         unknown = set(raw) - SITUATION_KEYS
         if unknown:
             raise ModelError(f"unknown situation keys {sorted(unknown)}")
         self.name = raw.get("name")
         self.source = raw.get("source", "")
         where = f"{model.name}/{self.name}"
-        if not self.name or not self.source:
+        if not all(isinstance(x, str) and x.strip() for x in (self.name, self.source)):
             raise ModelError(f"{where}: a situation needs a name and a source")
         self.agents = model.agents                                   # Ag, Ac_i
         self.joint = model.joint                                     # named elements of J_Ag
-        self.values = {i: list(vs) for i, vs in (raw.get("values") or {}).items()}   # Av_i
-        self.states = {q: frozenset(p) for q, p in (raw.get("states") or {}).items()}  # Q, pi
-        self.initial = raw.get("initial")                            # q0
-        self.agent = raw.get("agent")
+        self.values = {i: _atoms(vs, f"values of {i}") for i, vs in _mapping(raw.get("values", {}), "values").items()}   # Av_i
+        self.states = {q: frozenset(_atoms(p, f"propositions of {q}")) for q, p in _mapping(raw.get("states", {}), "states").items()}  # Q, pi
+        self.initial = _atom(raw.get("initial"), "initial state")    # q0
+        self.agent = _atom(raw.get("agent"), "deliberating agent")
         self.tau, self.effects = {}, {}
-        for t in raw.get("transitions") or []:
+        for t in _list(raw.get("transitions", []), "transitions"):
+            _mapping(t, "transition")
             unknown = set(t) - TRANSITION_KEYS
             if unknown:
                 raise ModelError(f"{where}: unknown transition keys {sorted(unknown)}")
-            key = (t.get("from"), t.get("by"))
+            key = (_atom(t.get("from"), "transition source"), _atom(t.get("by"), "joint action"))
             if key in self.tau:
                 raise ModelError(f"{where}: tau({key[0]}, {key[1]}) is given twice: tau is a function")
-            self.tau[key] = t.get("to")
+            self.tau[key] = _atom(t.get("to"), "transition target")
             effs = []
             for sign, field in (("+", "promotes"), ("-", "demotes")):
-                for v, goals in (t.get(field) or {}).items():
+                for v, goals in _mapping(t.get(field, {}), field).items():
                     if not isinstance(goals, list) or not goals:
                         raise ModelError(f"{where}: {field} {v} on {key} needs a list of goals")
                     for g in goals:
-                        effs.append(Effect(sign, v, g))
+                        effs.append(Effect(sign, _atom(v, "value"), _atom(g, "goal")))
             self.effects[key] = effs
-        self.assurances = set(raw.get("assurances") or [])
-        self.decisions = raw.get("decisions") or []
+        self.assurances = set(_atoms(raw.get("assurances", []), "assurances"))
+        self.decisions = [_mapping(d, "decision") for d in _list(raw.get("decisions", []), "decisions")]
+        for d in self.decisions:
+            if not all(isinstance(d.get(k), str) and d[k].strip() for k in ("audience", "source")):
+                raise ModelError(f"{where}: each decision needs an audience and source string")
+            _atoms(d.get("choose"), "decision choices")
         rho = raw.get("preconditions")
         if rho is None:
             # the least precondition function that agrees with tau: an action
@@ -112,8 +145,9 @@ class Situation:
             rho = {}
             for (q, j) in self.tau:
                 for a in (self.joint.get(j) or {}).values():
-                    rho.setdefault(a, set()).add(q)
-        self.rho = {a: set(qs) for a, qs in rho.items()}
+                    if q not in rho.setdefault(a, []):
+                        rho[a].append(q)
+        self.rho = {a: set(_atoms(qs, f"preconditions of {a}")) for a, qs in _mapping(rho, "preconditions").items()}
         self.problems = self._validate()
         if self.problems:
             raise ModelError(f"{where}: " + "; ".join(self.problems))
@@ -145,9 +179,9 @@ class Situation:
                 except ModelError as e:
                     p.append(str(e))
         V = self.V()
-        dup = [s for s in self.states.values()]
-        if len(set(dup)) != len(dup):
-            p.append("two states have the same interpretation pi(q); states are told apart by what holds in them")
+        # pi: Q -> 2^Phi need not be injective (p. 860). State identifiers
+        # can distinguish states with the same currently true propositions.
+        pair_effects = {}
         for (q, j), q1 in self.tau.items():
             if q not in self.states or q1 not in self.states:
                 p.append(f"tau({q}, {j}) = {q1}: both states must be in Q")
@@ -168,6 +202,15 @@ class Situation:
                 if (e.sign, e.value, e.goal) in seen:
                     p.append(f"tau({q}, {j}): {e.sign}{e.value} by {e.goal} is given twice")
                 seen.add((e.sign, e.value, e.goal))
+            # Both the paper's delta and our goal-labelled refinement are
+            # functions of the state pair, not the joint action. The facts
+            # consumed by the library deliberately omit j. Without this
+            # invariant, two actions reaching the same state would silently
+            # acquire each other's effects when Carneades joins those facts.
+            pair = (q, q1)
+            if pair in pair_effects and pair_effects[pair] != seen:
+                p.append(f"transitions from {q} to {q1} have inconsistent effects; effects depend on the state pair, not the joint action")
+            pair_effects[pair] = seen
         for a, qs in self.rho.items():
             if not any(a in acts for acts in self.agents.values()):
                 p.append(f"rho names {a}, which is no agent's action")
@@ -184,7 +227,11 @@ class Situation:
                     if q == self.initial and j in self.joint and j not in self.assurances}
             if mine != left:
                 p.append(f"the assurances exclude every joint action of {sorted(mine - left)}")
-        if self.agent in self.agents and not self.options():
+        # Invalid transition references have already been reported above.
+        # Do not call options(), which assumes a validated model and would
+        # dereference an unknown joint action before ModelError is raised.
+        has_option = any(j in self.joint and self.agent in self.joint[j] for j in self.possible())
+        if self.agent in self.agents and not has_option:
             p.append(f"{self.agent} has no action in {self.initial}")
         return p
 
@@ -201,7 +248,7 @@ class Situation:
         for (q, j), q1 in self.tau.items():
             if q == qx and q1 == qy:
                 signs |= {e.sign for e in self.effects[(q, j)] if e.value == v}
-        return "".join(sorted(signs, reverse=True)) or "="
+        return "".join(sign for sign in ("+", "-") if sign in signs) or "="
 
     def possible(self, q=None):
         """The joint actions that can be performed in q (by default the current
@@ -275,8 +322,11 @@ class Situation:
     def _state(self, s):
         if isinstance(s, str):
             return s if s in self.states else None
-        props = frozenset(s or [])
-        return next((q for q, p in self.states.items() if p == props), None)
+        props = frozenset(_atoms(s, "state description"))
+        matches = [q for q, p in self.states.items() if p == props]
+        if len(matches) > 1:
+            raise ModelError(f"ambiguous state description {sorted(props)}: use an explicit state id from {sorted(matches)}")
+        return matches[0] if matches else None
 
     def claim_problems(self, claim):
         """The critical questions answered unfavourably for an argument that
@@ -291,21 +341,35 @@ class Situation:
         for no q); AS2 also allows a goal that becomes false, for which they
         are read the other way round (pa still in pi(qy); pa in pi(q) for
         every q)."""
+        _mapping(claim, "claim")
+        required = {"state", "result", "agent", "action", "joint", "goal", "value"}
+        if set(claim) != required:
+            raise ModelError(f"claim needs exactly {sorted(required)}; missing {sorted(required - set(claim))}, unknown {sorted(set(claim) - required)}")
         cqs = set()
         qx, qy = self._state(claim.get("state")), self._state(claim.get("result"))
-        i, a = claim.get("agent"), claim.get("action")
+        i, a = _atom(claim.get("agent"), "claim agent"), _atom(claim.get("action"), "claim action")
         j = claim.get("joint")
         if isinstance(j, dict):
-            j = next((n for n, acts in self.joint.items() if acts == j), None)
-        elif j not in self.joint:
-            j = None
-        pa, vu = claim.get("goal"), claim.get("value")
+            parts = _mapping(j, "claimed joint action")
+            for agent, action in parts.items():
+                _atom(agent, "joint action agent")
+                _atom(action, "joint action component")
+            # J_Ag is the Cartesian product of the agents' action sets
+            # (p. 860), not merely the tuples given names in the input.
+            valid_joint = set(parts) == set(self.agents) and all(
+                action in self.agents[agent] for agent, action in parts.items())
+            j = next((n for n, acts in self.joint.items() if acts == parts), None)
+        else:
+            _atom(j, "claimed joint action")
+            parts = self.joint.get(j, {})
+            valid_joint = j in self.joint
+        pa, vu = _atom(claim.get("goal"), "claim goal"), _atom(claim.get("value"), "claim value")
         # the direction of the goal: does pa become true (the printed case)
         # or false? Read from the claimed initial state when it is in Q.
         falls = qx is not None and pa in self.states[qx]
         if qx is None:
             cqs.add(12)                                     # qx not in Q
-        if j is None or (i is not None and self.joint[j].get(i) != a):
+        if not valid_joint or (i is not None and parts.get(i) != a):
             cqs.add(13)                                     # jn not in J_Ag (with jn_i = alpha_i)
         if qy is None:
             cqs.add(14)                                     # tau(qx, jn) not in Q
@@ -316,7 +380,7 @@ class Situation:
             cqs.add(16)                                     # vu not in V
         if qx != self.initial and (a is None or self.initial not in self.rho.get(a, set())):
             cqs.add(1)                                      # q0 != qx and q0 not in rho(alpha_i)
-        if qx is not None and j is not None and (self.tau.get((qx, j)) is None or self.tau[(qx, j)] != qy):
+        if qx is not None and valid_joint and (self.tau.get((qx, j)) is None or self.tau[(qx, j)] != qy):
             cqs.add(2)                                      # tau(qx, jn) is not qy, or does not exist (p. 859)
         if qx is not None and qy is not None and (pa in self.states[qy]) != (not falls):
             cqs.add(3)                                      # the goal is not realized in qy
@@ -331,6 +395,7 @@ class Situation:
         the audience that is one of its values: the least, over the joint
         actions with jn_i = alpha that the agent cannot exclude, of the number
         of goals promoting v minus the number demoting it."""
+        audience = _audience_order(audience, getattr(self.model, "value_universe", self.V()))
         vals = [v for v in audience if v in self.values[self.agent]]
         out = {}
         for a in self.options():
@@ -402,16 +467,23 @@ def engine_labels(sit):
 class Model:
     def __init__(self, path):
         self.path = Path(path)
-        doc = yaml.safe_load(self.path.read_text(encoding="utf-8"))
+        try:
+            doc, duplicates = load_unique(self.path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeError, yaml.YAMLError) as exc:
+            raise ModelError(f"{path}: cannot read model YAML: {exc}") from exc
+        if duplicates:
+            key, first, second = duplicates[0]
+            raise ModelError(f"{path}: duplicate YAML key {key!r} on lines {first} and {second}")
         if not isinstance(doc, dict) or doc.get("schema") != SCHEMA:
             raise ModelError(f"{path}: schema must be {SCHEMA}")
+        _mapping(doc, "model")
         unknown = set(doc) - TOP_KEYS
         if unknown:
             raise ModelError(f"{path}: unknown keys {sorted(unknown)}")
         self.name, self.source = doc.get("name"), doc.get("source")
-        if not self.name or not self.source:
+        if not all(isinstance(x, str) and x.strip() for x in (self.name, self.source)):
             raise ModelError(f"{path}: a model needs a name and a source")
-        self.agents = {i: list(acts) for i, acts in (doc.get("agents") or {}).items()}
+        self.agents = {i: _atoms(acts, f"actions of {i}") for i, acts in _mapping(doc.get("agents", {}), "agents").items()}
         if not self.agents:
             raise ModelError(f"{path}: Ag is empty")
         every = [a for acts in self.agents.values() for a in acts]
@@ -424,27 +496,33 @@ class Model:
         if len(set(every)) != len(every):
             raise ModelError(f"{path}: the agents' action sets must be pairwise disjoint")
         self.joint = {}
-        for j, acts in (doc.get("joint_actions") or {}).items():
+        for j, acts in _mapping(doc.get("joint_actions", {}), "joint_actions").items():
             _atom(j, "joint action")
+            _mapping(acts, f"joint action {j}")
             if set(acts) != set(self.agents) or any(acts[i] not in self.agents[i] for i in acts):
                 raise ModelError(f"{path}: joint action {j} must give each agent exactly one of its own actions")
             self.joint[j] = dict(acts)
         tuples = [tuple(sorted(a.items())) for a in self.joint.values()]
         if len(set(tuples)) != len(tuples):
             raise ModelError(f"{path}: two joint actions name the same tuple of actions")
-        self.audiences = {n: list(o) for n, o in (doc.get("audiences") or {}).items()}
+        self.audiences = {n: _atoms(o, f"audience {n}") for n, o in _mapping(doc.get("audiences", {}), "audiences").items()}
         for n, order in self.audiences.items():
             if len(set(order)) != len(order):
                 raise ModelError(f"{path}: audience {n} must be a strict order")
-        self.situations = [Situation(self, raw) for raw in doc.get("situations") or []]
+        self.situations = [Situation(self, raw) for raw in _list(doc.get("situations", []), "situations")]
         names = [s.name for s in self.situations]
         if not names or len(set(names)) != len(names):
             raise ModelError(f"{path}: situations need distinct names")
+        self.value_universe = set().union(*(s.V() for s in self.situations))
+        for order in self.audiences.values():
+            _audience_order(order, self.value_universe)
 
     def audience(self, spec):
+        if not isinstance(spec, str) or not spec.strip():
+            raise ModelError("an audience needs a declared name or a non-empty comma-separated value order")
         if spec in self.audiences:
             return self.audiences[spec]
-        return [v for v in spec.split(",") if v]
+        return _audience_order([v.strip() for v in spec.split(",")], self.value_universe)
 
     def situation(self, name):
         for s in self.situations:
@@ -527,7 +605,9 @@ def main(argv=None):
         m = Model(a.model)
         if a.cmd == "decide":
             sits = [m.situation(a.situation)] if a.situation else m.situations
-            auds = [a.audience] if a.audience else sorted(m.audiences)
+            auds = [a.audience] if a.audience is not None else sorted(m.audiences)
+            if not auds:
+                raise ModelError("the model declares no audiences; supply --audience with a value order")
             for s in sits:
                 for au in auds:
                     vals, sc = s.scores(m.audience(au))

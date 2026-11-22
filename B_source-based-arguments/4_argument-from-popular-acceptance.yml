@@ -3,7 +3,7 @@
 
 meta:
   title: "Source-based Arguments - Arguments from Popular Acceptance"
-  version: "0.4.0"
+  version: "0.4.1"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   ethos_less_plausible/3: "The assertion by %s of %s merits reduced plausibility on the character evidence in dialogue %s; the proposition's negation is not asserted."

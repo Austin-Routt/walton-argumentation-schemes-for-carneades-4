@@ -1,6 +1,6 @@
 meta:
   title: Walton's Argumentation Schemes for Carneades4 (Full List)
-  version: "0.4.0"
+  version: "0.4.1"
   note: >
          Full list of Douglas Walton's argumentation schemes, includes both we added and given before.
   source: >
@@ -1330,7 +1330,7 @@ argument_schemes:
   - id: negative_consequences_reasoning_omission
     meta:
       title: Argument From Consequences - Reasoning From Negative Consequences (omission)
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, pp. 139-140."
     variables: [A,B,P]
     conclusions:
       - should_do(P,A)
@@ -1358,7 +1358,7 @@ argument_schemes:
   - id: negative_consequences_reasoning
     meta:
       title: Argument From Consequences - Reasoning From Negative Consequences
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140."
     variables: [A,B,P]
     conclusions:
       - ¬should_do(P,A)
@@ -1394,7 +1394,7 @@ argument_schemes:
   - id: ad_baculum
     meta:
       title: Argument From Disjunctive Ad Baculum Threat
-      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 35.1, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 140."
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 35.1, p. 333. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 142."
     variables: [X,Y]
     conclusions:
       - ought_to_bring_about(X)

@@ -3,4 +3,4 @@
 # and GoCHR at the commits of sources.lock, with the fixes of this repository;
 # the number after "walton." identifies its candidate revisions. `carneades` prints it
 # (src/common/globals.go), and tools/vv checks that the two agree.
-engine: 4.3.1+walton.5
+engine: 4.3.1+walton.7

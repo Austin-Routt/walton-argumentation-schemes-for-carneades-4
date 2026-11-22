@@ -1,3 +1,7 @@
+# Historical corrected R1 candidate
+
+**Historical:** this file describes the 0.3.0/0.4.0 transition. Use `framework-0.4.1.md` for the current independently reviewed framework baseline. No older pin in this file is the corrected release target.
+
 # R1 — corrected closure preview
 
 **Superseded in part (2026-11-21, library 0.4.0):** the three source holds this note describes are closed and AS1 and AS2 have records of their own (`docs/reviews/final-closure.md`); all 148 records are approved and the stable source gate passes. The note below describes the 0.3.0 candidate as it was.

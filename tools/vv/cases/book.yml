@@ -68,7 +68,7 @@ cases:
       - has_property(machine,electrically_live)
     variants: true
   - name: practical_reasoning1/book
-    source: "Walton (2015), pp. 90-92, the Smart Car example: the value-based reading of Fig. 3.16, in which concern for the environment (V1) backs the premise that the Smart Car uses less fuel; state and goal names are this library's"
+    source: "Walton (2015), pp. 90-92, the Smart Car example: a reconstructed value-based reading of Fig. 3.16: concern for the environment (V1) supports the environmental relevance of lower fuel consumption (E), not the factual fuel-use premise (B); the source permits alternative analyses, and state and goal names are this library's"
     assumptions:
       - current_circumstances(old_car_unreliable)
       - would_bring_about(buy_smart_car,old_car_unreliable,own_smart_car)

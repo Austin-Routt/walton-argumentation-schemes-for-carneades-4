@@ -150,7 +150,7 @@ func TestSourceWorklistCountsPrintedQuestionsOnly(t *testing.T) {
 // A row is at "interpretation approved" or beyond only with an approving
 // review, and a review that holds a row or leaves it open says why (D14).
 func TestReviewProblems(t *testing.T) {
-	ok := &RecordReview{By: "a reviewer", Date: "2026-11-21", Decision: "approved"}
+	ok := &RecordReview{By: "a reviewer", Date: "2026-11-21", Decision: "approved", IndependentOfAuthor: true, IndependenceBasis: "separate source review"}
 	cases := []struct {
 		name  string
 		stage string
@@ -179,6 +179,41 @@ func TestReviewProblems(t *testing.T) {
 		case c.want != "" && !strings.Contains(strings.Join(got, "; "), c.want):
 			t.Errorf("%s: got %v, want a problem containing %q", c.name, got, c.want)
 		}
+	}
+}
+
+// Exercise the strict ledger reader, not just constructed Go values: the
+// first v2 integration forgot these fields and refused the whole live ledger.
+// The decoded type also matters: quoted "true" and integer 1 are not attestations.
+func TestSourceApprovalV2LedgerAdmission(t *testing.T) {
+	const prefix = "records:\n- record: sample\n  stage: example-passed\n  review:\n    by: independent reviewer\n    date: 2026-11-21\n    decision: approved\n"
+	cases := []struct {
+		name, fields string
+		wantPass     bool
+	}{
+		{"accepted", "    independent_of_author: true\n    independence_basis: separate source check\n", true},
+		{"missing", "    independence_basis: separate source check\n", false},
+		{"self review", "    independent_of_author: false\n    independence_basis: wrote it\n", false},
+		{"quoted Boolean", "    independent_of_author: 'true'\n    independence_basis: separate source check\n", false},
+		{"integer", "    independent_of_author: 1\n    independence_basis: separate source check\n", false},
+		{"null", "    independent_of_author: null\n    independence_basis: separate source check\n", false},
+		{"no basis", "    independent_of_author: true\n", false},
+		{"empty basis", "    independent_of_author: true\n    independence_basis: '  '\n", false},
+		{"numeric basis", "    independent_of_author: true\n    independence_basis: 123\n", false},
+		{"unknown field", "    independent_of_author: true\n    independence_basis: separate source check\n    invented_approval: true\n", false},
+	}
+	for _, c := range cases {
+		t.Run(c.name, func(t *testing.T) {
+			path := filepath.Join(t.TempDir(), "ledger.yml")
+			if err := os.WriteFile(path, []byte(prefix+c.fields), 0600); err != nil {
+				t.Fatal(err)
+			}
+			ledger, err := LoadSourceLedger(path)
+			pass := err == nil && len(ledger.Records) == 1 && len(reviewProblems(ledger.Records[0])) == 0
+			if pass != c.wantPass {
+				t.Fatalf("admission passed=%v, want %v; load error=%v", pass, c.wantPass, err)
+			}
+		})
 	}
 }
 

@@ -9,8 +9,7 @@ record cites is recorded as not compared; comparing it is research for later,
 not a condition of the stable release. The owner also decided that the
 upstream patches and the memorandum to the authors are not to be sent (D22).
 
-The reviewer is the implementer, who did not write these records (Carneades
-did) nor their last changes (the first and second reviews did). Each was
+The reviewer is the implementer, who did not write the inherited executable records. (Strictly, the implementer had made three earlier changes to them in Phases 5.5–5.9: the assumption `credible(W)` of `expert_opinion`, the argument order of `in_domain` in `witness_testimony`, and the compendium citation added to each source line. All three were in the tree, `49ad425`, that the non-author compendium reviews compared: `first-half-adjudication.json` for entries 2, 3 and 26, and `2026-11-21-second-half-source-review.md` for the other eight. Those reviews, not this one, are the non-author check of the three changes; found at integration, `final-baseline-integration.md`.) The later independent review found that the same reviewer did author the `sunk_costs` reclassification from entry 25 to 24; that source-contract change now has fresh non-author acceptance in `final-source-independent-review.md`. The other eleven D20 source decisions retain their non-author evidence. Each was
 compared with its printed entry, page by page, for the premises, the
 conclusion and every printed critical question; each has a passing book
 example. The approval states a reading, declared in the ledger, not an

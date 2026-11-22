@@ -21,7 +21,7 @@ import (
 )
 
 const helpEval = `
-usage: carneades eval [-f input-format] [-t output-format] [-o output-file] [input-file]
+usage: carneades eval [-f input-format] [-experimental-import] [-t output-format] [-o output-file] [input-file]
 
 Evaluates an argument graph and prints the result in the selected output format.
 The argument graph is first checked for syntactic and semantic errors and
@@ -31,7 +31,14 @@ to stderr.
 If no input-file is specified, input is read from stdin. 
 
 The -f flag ("from") specifies the format of the input file: Currently 
-yaml, aif, agxml and lkif are supported. (default: yaml)
+yaml and a restricted aif profile are supported. (default: yaml)
+The legacy caf, agxml and lkif converters require -experimental-import.
+That opt-in does not certify conversion fidelity or skip input validation.
+The AIF profile accepts I/RA/binary-CA structures only; CA becomes symmetric
+incompatibility and RA becomes a linked argument. Scheme names are provenance,
+not executable scheme-library bindings. Dialogical nodes are refused.
+I nodes without an incoming RA and without a CA issue are stipulated; this
+conversion policy does not establish their truth or general AIFdb conformance.
 
 The "yaml" format is the native format of Carneades 4.x.  YAML is a schemeless
 data interchange format. See http://yaml.org/ for general information about
@@ -93,6 +100,7 @@ output goes to stdout.
 func evalCmd() {
 	eval := flag.NewFlagSet("eval", flag.ContinueOnError)
 	fromFlag := eval.String("f", "yaml", "the format of the source file")
+	experimentalFlag := eval.Bool("experimental-import", false, "opt in to a legacy converter; does not certify conversion fidelity")
 	toFlag := eval.String("t", "graphml", "the format of the output file")
 	outFileFlag := eval.String("o", "", "the filename of the output file")
 
@@ -114,8 +122,8 @@ func evalCmd() {
 		os.Exit(caes.ExitStatus(caes.ErrCancelled))
 	}
 
-	if !contains(inputFormats, *fromFlag) {
-		log.Fatal(fmt.Errorf("unsupported input format: %s\n", *fromFlag))
+	if err := checkImportProfile(*fromFlag, *experimentalFlag); err != nil {
+		failImport(err)
 		return
 	}
 	if !contains(outputFormats, *toFlag) {
@@ -151,35 +159,35 @@ func evalCmd() {
 		ag, err = yaml.Import(inFile)
 		inFile.Close()
 		if err != nil {
-			log.Fatal(err)
+			failImport(err)
 			return
 		}
 	case "agxml":
 		ag, err = agxml.Import(inFile)
 		inFile.Close()
 		if err != nil {
-			log.Fatal(err)
+			failImport(err)
 			return
 		}
 	case "aif":
 		ag, err = aif.Import(inFile)
 		inFile.Close()
 		if err != nil {
-			log.Fatal(err)
+			failImport(err)
 			return
 		}
 	case "lkif":
 		ag, err = lkif.Import(inFile)
 		inFile.Close()
 		if err != nil {
-			log.Fatal(err)
+			failImport(err)
 			return
 		}
 	case "caf":
 		ag, err = caf.Import(inFile)
 		inFile.Close()
 		if err != nil {
-			log.Fatal(err)
+			failImport(err)
 			return
 		}
 	default:

@@ -209,6 +209,23 @@ class Migrate(unittest.TestCase):
         self.assertIn(("end_and_means_2", "ends_important(X,C)"), rows)
         self.assertIn(("snob_appeal_ad_populum", "group_accepted(G,A)"), rows)
 
+    def test_final_source_repairs_do_not_rewrite_shared_meanings(self):
+        # possible/1 still denotes actions and side_effects/2 still belongs to
+        # value-based reasoning. A graph-wide rename would corrupt those uses.
+        probes = [
+            ("possible(travel)", "practical_reasoning2", "possible_goal(G)"),
+            ("side_effects(travel,current_state)", "practical_reasoning2", "side_effects_to_consider(A,S1)"),
+            ("relevant_differences(rule1,case1)", "exeption_to_rule", "relevant_differences(C)"),
+        ]
+        mig = Migrator()
+        for old, record, new in probes:
+            for section, prefix in (("assumptions", ""), ("assumptions", "¬"), ("questioned", "")):
+                with self.subTest(old=old, section=section, prefix=prefix):
+                    src = f'{section}: ["{prefix}{old}"]\n'
+                    self.assertEqual(src, mig.text(src))
+                    pending = {(r["record"], r["new"]) for r in mig.needs_hand(src)}
+                    self.assertIn((record, new), pending)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)

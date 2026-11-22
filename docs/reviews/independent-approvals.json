@@ -1,7 +1,7 @@
 {
-  "schema": "walton-source-approvals/v1",
-  "review_date": "2026-11-21",
-  "review_scope": "Independent source adjudication of the declared executable interpretation; not source-author endorsement or general application certification.",
+  "schema": "walton-source-approvals/v2",
+  "review_date": "2026-11-22",
+  "review_scope": "Non-author source acceptance within declared interpretations, with explicit independence evidence; AI-assisted technical review is not original-author endorsement, authenticated human certification or empirical application validation.",
   "approvals": [
     {
       "record": "popular_opinion",
@@ -17,7 +17,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: popular_opinion. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -33,7 +35,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: pop_scheme. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -49,7 +53,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: pop_scheme_acceptance. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -65,7 +71,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: position_to_know_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -81,7 +89,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: expert_opinion_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -97,7 +107,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: deliberation_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -113,7 +125,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: appeal_to_vanity_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -129,7 +143,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: rhetoric_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -145,7 +161,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: common_folk_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -161,7 +179,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: common_folks_group_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -179,13 +199,16 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: illustration. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "from_model",
       "fingerprint": "sha256:505214940a09cc67f614702000b6f73a8c2f692796333691287412b28f2c2170",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: from_model",
         "docs/reviews/first-half-complete-adjudication.md: from_model",
         "tools/vv/source_ledger.yml: from_model"
       ],
@@ -193,9 +216,11 @@
         "from_model/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
@@ -211,7 +236,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: practical_analogy_positive. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -227,7 +254,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: practical_analogy_negative. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -243,7 +272,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: composition_generic. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -259,7 +290,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: division_generic. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -275,7 +308,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: opposition_descriptive_1. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -291,7 +326,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: opposition_descriptive_2. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -307,7 +344,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: opposition_descriptive_3. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -323,7 +362,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: opposition_normative. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -339,7 +380,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: rhetorical_oppositions_normative. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -356,7 +399,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: rhetorical_oppositions_descriptive. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -372,7 +417,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: alternative_cognitive. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -388,7 +435,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: interaction_act_person_1. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -406,7 +455,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: interaction_act_person_2. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -422,7 +473,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: group_1. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -438,7 +491,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: group_2. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -454,7 +509,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: practical_goal. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -470,7 +527,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: waste. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -486,13 +545,16 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: epistemic_ignorance. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "abductive_forward",
       "fingerprint": "sha256:81bc397a4ce118eddfc72ca95b03ff4b9089a0604a27bd5a6b4f8ad2347b88a7",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: abductive_forward",
         "docs/reviews/2026-11-21-second-half-source-review.md: abductive_forward",
         "docs/source-contracts-second-half.md"
       ],
@@ -500,15 +562,18 @@
         "abductive_forward/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
       "record": "abductive_action_to_character",
       "fingerprint": "sha256:c2570a088629dc9dce37bf159598b1e2bc6ff5b969244a60125a8c09025d683d",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: abductive_action_to_character",
         "docs/reviews/2026-11-21-second-half-source-review.md: abductive_action_to_character",
         "docs/source-contracts-second-half.md"
       ],
@@ -516,15 +581,18 @@
         "abductive_action_to_character/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
       "record": "abductive_character_to_action",
       "fingerprint": "sha256:89b259e6633da3f9cd2b72b3957ca8fb735f1ec779d3f0578e97481b8feab868",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: abductive_character_to_action",
         "docs/reviews/2026-11-21-second-half-source-review.md: abductive_character_to_action",
         "docs/source-contracts-second-half.md"
       ],
@@ -532,15 +600,18 @@
         "abductive_character_to_action/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
       "record": "retroductive",
       "fingerprint": "sha256:f2bad3895adb8b5104490bdafa3ca5cec8cee03c0c022c72ffa7834125f128ab",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: retroductive",
         "docs/reviews/2026-11-21-second-half-source-review.md: retroductive",
         "docs/source-contracts-second-half.md"
       ],
@@ -548,9 +619,11 @@
         "retroductive/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
@@ -566,7 +639,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: evidence_hypothesis_verification. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -582,7 +657,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: evidence_hypothesis_falsification. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -608,13 +685,16 @@
       "review": {
         "by": "closure/root-source-review",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-independent-source-acceptance.md: Entry33.4. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "negative_consequences_reasoning",
-      "fingerprint": "sha256:4aa7238ca3ba620d95c75791cecba651adba56d6a0001cd6936aefcc317c4c56",
+      "fingerprint": "sha256:e33c7b74a17f30a8f21230336006af2a137e2a24f06303c2da39842e5ca6849c",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: negative_consequences_reasoning",
         "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences_reasoning",
         "docs/source-contracts-second-half.md",
         "docs/reviews/closure-independent-source-acceptance.md: Entry 33.3"
@@ -629,9 +709,11 @@
         "negative_consequences_reasoning/closure-old-threshold-does-not-answer"
       ],
       "review": {
-        "by": "closure/root-source-review",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     },
     {
@@ -647,7 +729,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: pragmatic_alternative. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -663,13 +747,16 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: threat. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "ad_baculum",
-      "fingerprint": "sha256:7c4b79e4cdebe657f537a78f3961c0f14acd4967e07b172a5181ff3557869006",
+      "fingerprint": "sha256:8bb3fa487312ea216c9087fb171969692cf5a00e485528d18b16444762bb151c",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: ad_baculum",
         "docs/reviews/2026-11-21-second-half-source-review.md: ad_baculum",
         "docs/source-contracts-second-half.md"
       ],
@@ -677,9 +764,11 @@
         "ad_baculum/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     },
     {
@@ -695,7 +784,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: fear. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -711,7 +802,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: danger. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -727,7 +820,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: help. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -743,7 +838,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: distress. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -759,7 +856,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: commitment1. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -775,7 +874,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: commitment2. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -791,7 +892,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: ad_hominem. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -807,7 +910,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: pragmatic_inconsistency. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -823,7 +928,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: inconsistent_commitment. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -840,7 +947,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: bias. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -856,7 +965,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: bias_ad_hominem. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -872,7 +983,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: gradualism. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -888,7 +1001,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: sorites_slippery_slope. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -904,7 +1019,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: verbal_slippery_slope. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -920,7 +1037,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: full_slippery_slope. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -936,13 +1055,16 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: precedent_slippery_slope. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "rule_physical_world_1",
       "fingerprint": "sha256:4a381007de6ea21b4e4605a97bb1b00cef73617ee5011003ea009f94f0bcf96b",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: rule_physical_world_1",
         "docs/reviews/2026-11-21-second-half-source-review.md: rule_physical_world_1",
         "docs/source-contracts-second-half.md"
       ],
@@ -950,9 +1072,11 @@
         "rule_physical_world_1/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
@@ -968,7 +1092,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: rule. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -984,7 +1110,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: regulative_rule. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1000,13 +1128,16 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: regulative_rule_prohibition. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "exceptional",
       "fingerprint": "sha256:f871c4bc762aa73159742b18f8e3695d0943eb3b1f9c06c473fa3f94e84b18b2",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: exceptional",
         "docs/reviews/2026-11-21-second-half-source-review.md: exceptional",
         "docs/source-contracts-second-half.md"
       ],
@@ -1014,9 +1145,11 @@
         "exceptional/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
@@ -1032,13 +1165,16 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: from_precedent. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
       "record": "memory",
       "fingerprint": "sha256:263ef2d03ff205fa8126cc89bef0bce5ab005956bf854b556f7a836f8c7c0dab",
       "evidence": [
+        "docs/reviews/implementer-response.md: section2, Approvals the first review both wrote and approved: memory",
         "docs/reviews/2026-11-21-second-half-source-review.md: memory",
         "docs/source-contracts-second-half.md"
       ],
@@ -1046,9 +1182,11 @@
         "memory/book"
       ],
       "review": {
-        "by": "ChatGPT independent source-review team (integrated adjudication)",
+        "by": "Claude, recorded non-author second reviewer of the earlier ChatGPT source changes",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/implementer-response.md, section2, explicitly identifies this record among eight changes authored by the first review and independently checked by Claude, who says he did not write those changes. The attribution identifies that second check rather than marking the original author independent."
       }
     },
     {
@@ -1063,7 +1201,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/own-source-review.md#abduction. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1079,7 +1219,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/2026-11-21-second-half-source-review.md: appearance. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1095,7 +1237,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/own-source-review.md#credible_source. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1110,7 +1254,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/own-source-review.md#defeasible_modus_ponens. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1126,7 +1272,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/first-half-complete-adjudication.md: sunk_costs_precommitment. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1141,7 +1289,9 @@
       "review": {
         "by": "ChatGPT independent source-review team (integrated adjudication)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/own-source-review.md#verbal_classification. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1161,7 +1311,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-source-adjudication.md: from_example. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1181,7 +1333,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-source-adjudication.md: verbal_classification_arbitrariness. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1199,7 +1353,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-source-adjudication.md: definition_to_verbal_classification. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1216,7 +1372,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: positive_value. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1233,7 +1391,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: negative_value. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1251,7 +1411,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: sign. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1268,7 +1430,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: cause_to_effect. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1287,7 +1451,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: abductive_backward. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1305,7 +1471,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: circumstantial_ad_hominem. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1323,7 +1491,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: rule_physical_world_2. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1341,7 +1511,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: rule_mental_world. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1359,7 +1531,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: perception. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1380,7 +1554,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-context-independent-acceptance.md: plea_for_excuse. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1397,7 +1573,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: part_in_whole. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1414,7 +1592,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_physical. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1431,7 +1611,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_species_degree. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1448,7 +1630,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_physical_degree. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1465,7 +1649,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: part_in_whole_smaller_degree. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1483,7 +1669,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: whole_into_parts. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1503,7 +1691,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: whole_into_parts_selected. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1523,7 +1713,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: whole_into_parts_negative. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1544,7 +1736,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-parts-independent-acceptance.md: verbal_classification_vagueness. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1564,7 +1758,9 @@
       "review": {
         "by": "closure/root-source-review",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-family-independent-acceptance.md: popular_practice. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1585,7 +1781,9 @@
       "review": {
         "by": "closure/root-source-review",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-family-independent-acceptance.md: analogy. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1604,7 +1802,9 @@
       "review": {
         "by": "closure/root-source-review",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-family-independent-acceptance.md: from_antimodel. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1623,7 +1823,9 @@
       "review": {
         "by": "closure/root-source-review",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-family-independent-acceptance.md: alternative_normative. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1640,7 +1842,9 @@
       "review": {
         "by": "ChatGPT fresh non-author acceptance reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-supplemental-independent-acceptance.md: ethotic_positive_compendium. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1657,7 +1861,9 @@
       "review": {
         "by": "ChatGPT fresh non-author acceptance reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-supplemental-independent-acceptance.md: ethotic_negative_compendium. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1674,7 +1880,9 @@
       "review": {
         "by": "ChatGPT fresh non-author acceptance reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-supplemental-independent-acceptance.md: slippery_slope_compendium. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1691,7 +1899,9 @@
       "review": {
         "by": "ChatGPT fresh non-author acceptance reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-supplemental-independent-acceptance.md: established_rule_actor. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1709,7 +1919,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: moral_justification_actual_goal. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1727,7 +1939,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: moral_justification_ought_goal. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1747,7 +1961,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: moral_excuse_action. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1766,7 +1982,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: moral_excuse_policy. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1785,7 +2003,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_acceptance. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1804,7 +2024,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_property. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1822,7 +2044,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_purchase. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1842,7 +2066,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: sacrifice_small. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1860,7 +2086,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: end_and_means_bad. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1880,7 +2108,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: end_and_means_less_bad. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1899,7 +2129,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: end_and_means_difficult. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1916,7 +2148,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: moral_justification_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1933,7 +2167,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: moral_justification_ad_populum_excuse. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1951,7 +2187,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: snob_appeal_ad_populum. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1968,7 +2206,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: sacrifice. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -1985,7 +2225,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: end_and_means_1. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -2002,7 +2244,9 @@
       "review": {
         "by": "ChatGPT independent closure scope reviewer",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-branches-independent-acceptance.md: end_and_means_3. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       }
     },
     {
@@ -2011,7 +2255,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2032,7 +2278,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2054,7 +2302,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2074,7 +2324,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2099,7 +2351,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2125,7 +2379,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2141,7 +2397,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2162,7 +2420,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2182,7 +2442,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2206,7 +2468,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2224,7 +2488,9 @@
       "review": {
         "by": "ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Historical non-author acceptance retained from docs/reviews/closure-dialogue-independent-acceptance.md. The evidence report records the source comparison and separate implementation/review responsibilities. This pass does not authenticate reviewer identities or claim original-author endorsement."
       },
       "evidence": [
         "docs/reviews/closure-dialogue-independent-acceptance.md",
@@ -2252,7 +2518,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2275,7 +2543,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2292,7 +2562,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2311,7 +2583,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2330,7 +2604,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2350,7 +2626,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2371,7 +2649,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2392,7 +2672,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2409,7 +2691,9 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
@@ -2426,13 +2710,16 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
       "record": "sunk_costs",
       "fingerprint": "sha256:36bb83ffbabea0dcfe5193024b1e2c9eefc4ea1c889a3051b189b4201800b1b6",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: sunk_costs",
         "docs/reviews/d20-approvals.md: sunk_costs",
         "tools/vv/source_ledger.yml: sunk_costs",
         "docs/reviews/record-dispositions.json: sunk_costs"
@@ -2441,9 +2728,11 @@
         "sunk_costs/book"
       ],
       "review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     },
     {
@@ -2464,13 +2753,16 @@
       "review": {
         "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
         "date": "2026-11-21",
-        "decision": "approved"
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
       }
     },
     {
       "record": "practical_reasoning1",
       "fingerprint": "sha256:c8813ee87ef9eac0a716f66975c3972d5fe118f700b9242fb2f14f6271be2bcf",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: practical_reasoning1",
         "docs/reviews/final-closure.md: practical_reasoning1",
         "tools/vv/source_ledger.yml: practical_reasoning1"
       ],
@@ -2491,15 +2783,18 @@
         "practical_reasoning1/wrong-initial-state"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     },
     {
       "record": "practical_reasoning2",
       "fingerprint": "sha256:270bef2d41c3a86e225b269fbfa862c8a36e96ec9d26e3ecc8e881052ac15bb4",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: practical_reasoning2",
         "docs/reviews/final-closure.md: practical_reasoning2",
         "tools/vv/source_ledger.yml: practical_reasoning2"
       ],
@@ -2507,15 +2802,21 @@
         "practical_reasoning2/book"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     },
     {
       "record": "practical_reasoning_as1",
       "fingerprint": "sha256:dbfb6c32b24c2c31be568d53fbce03bd03fef3526b728654f72ae186521ac916",
       "evidence": [
+        "docs/reviews/final-atkinson-independent-review.md",
+        "Atkinson and Bench-Capon (2007), pp. 858-862; farmer pp. 863-869; trains pp. 870-872",
+        "docs/reviews/atkinson-2007-example.md",
+        "docs/contracts.md#8-value-based-choice-between-competing-practical-arguments",
         "docs/reviews/final-closure.md: practical_reasoning_as1",
         "tools/vv/source_ledger.yml: practical_reasoning_as1"
       ],
@@ -2533,15 +2834,21 @@
         "practical_reasoning_as1/farmer-arg8"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_atkinson, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from the implementer Claude. Read the complete five live records and their CQ mappings, visually inspected supplied Atkinson and Bench-Capon 2007 pp. 858-871 including printed symbols and figures, and checked the exact current semantic fingerprints. No edits to these five scheme records or their fingerprinted source contracts. Adapter repairs authored during this audit require separate code review and are not certified as independent by this source attestation. This is AI-assisted review, not authenticated human approval."
       }
     },
     {
       "record": "practical_reasoning_as1_demotion",
       "fingerprint": "sha256:20a0d96e5ac74a3c922c28c128ab380861a453cf58b27a2ff848c805f755bc98",
       "evidence": [
+        "docs/reviews/final-atkinson-independent-review.md",
+        "Atkinson and Bench-Capon (2007), pp. 858-862; farmer pp. 863-869; trains pp. 870-872",
+        "docs/reviews/atkinson-2007-example.md",
+        "docs/contracts.md#8-value-based-choice-between-competing-practical-arguments",
         "docs/reviews/final-closure.md: practical_reasoning_as1_demotion",
         "tools/vv/source_ledger.yml: practical_reasoning_as1_demotion"
       ],
@@ -2549,15 +2856,21 @@
         "practical_reasoning_as1_demotion/book"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_atkinson, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from the implementer Claude. Read the complete five live records and their CQ mappings, visually inspected supplied Atkinson and Bench-Capon 2007 pp. 858-871 including printed symbols and figures, and checked the exact current semantic fingerprints. No edits to these five scheme records or their fingerprinted source contracts. Adapter repairs authored during this audit require separate code review and are not certified as independent by this source attestation. This is AI-assisted review, not authenticated human approval."
       }
     },
     {
       "record": "practical_reasoning_as1_preclusion",
       "fingerprint": "sha256:b944cfffa12edb9e4471447c1104b47ff2c386b18c17dcb7989a7fc6942b8813",
       "evidence": [
+        "docs/reviews/final-atkinson-independent-review.md",
+        "Atkinson and Bench-Capon (2007), pp. 858-862; farmer pp. 863-869; trains pp. 870-872",
+        "docs/reviews/atkinson-2007-example.md",
+        "docs/contracts.md#8-value-based-choice-between-competing-practical-arguments",
         "docs/reviews/final-closure.md: practical_reasoning_as1_preclusion",
         "tools/vv/source_ledger.yml: practical_reasoning_as1_preclusion"
       ],
@@ -2565,15 +2878,21 @@
         "practical_reasoning_as1_preclusion/book"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_atkinson, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from the implementer Claude. Read the complete five live records and their CQ mappings, visually inspected supplied Atkinson and Bench-Capon 2007 pp. 858-871 including printed symbols and figures, and checked the exact current semantic fingerprints. No edits to these five scheme records or their fingerprinted source contracts. Adapter repairs authored during this audit require separate code review and are not certified as independent by this source attestation. This is AI-assisted review, not authenticated human approval."
       }
     },
     {
       "record": "practical_reasoning_as2",
       "fingerprint": "sha256:3608e0193d17da8a500fed7c772915fa9f84e93b9c34e4cf9c58135654b73ec9",
       "evidence": [
+        "docs/reviews/final-atkinson-independent-review.md",
+        "Atkinson and Bench-Capon (2007), pp. 858-862; farmer pp. 863-869; trains pp. 870-872",
+        "docs/reviews/atkinson-2007-example.md",
+        "docs/contracts.md#8-value-based-choice-between-competing-practical-arguments",
         "docs/reviews/final-closure.md: practical_reasoning_as2",
         "tools/vv/source_ledger.yml: practical_reasoning_as2",
         "tools/test_aats.py",
@@ -2602,15 +2921,21 @@
         "practical_reasoning_as2/trains-west-q6"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_atkinson, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from the implementer Claude. Read the complete five live records and their CQ mappings, visually inspected supplied Atkinson and Bench-Capon 2007 pp. 858-871 including printed symbols and figures, and checked the exact current semantic fingerprints. No edits to these five scheme records or their fingerprinted source contracts. Adapter repairs authored during this audit require separate code review and are not certified as independent by this source attestation. This is AI-assisted review, not authenticated human approval."
       }
     },
     {
       "record": "practical_reasoning_as2_demotion",
       "fingerprint": "sha256:96af2657c88049cd937f2327d1e33c926760c068335f258d79ec736aa1ad5852",
       "evidence": [
+        "docs/reviews/final-atkinson-independent-review.md",
+        "Atkinson and Bench-Capon (2007), pp. 858-862; farmer pp. 863-869; trains pp. 870-872",
+        "docs/reviews/atkinson-2007-example.md",
+        "docs/contracts.md#8-value-based-choice-between-competing-practical-arguments",
         "docs/reviews/final-closure.md: practical_reasoning_as2_demotion",
         "tools/vv/source_ledger.yml: practical_reasoning_as2_demotion",
         "tools/test_aats.py",
@@ -2622,15 +2947,18 @@
         "practical_reasoning_as2_demotion/book"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_atkinson, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from the implementer Claude. Read the complete five live records and their CQ mappings, visually inspected supplied Atkinson and Bench-Capon 2007 pp. 858-871 including printed symbols and figures, and checked the exact current semantic fingerprints. No edits to these five scheme records or their fingerprinted source contracts. Adapter repairs authored during this audit require separate code review and are not certified as independent by this source attestation. This is AI-assisted review, not authenticated human approval."
       }
     },
     {
       "record": "exeption_to_rule",
       "fingerprint": "sha256:4141a06730dcaef3d7ae5cfb5d070717ba16592c266dc91557891a478a7ee14f",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: exeption_to_rule",
         "docs/reviews/final-closure.md: exeption_to_rule",
         "tools/vv/source_ledger.yml: exeption_to_rule"
       ],
@@ -2638,15 +2966,18 @@
         "exeption_to_rule/book"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     },
     {
       "record": "negative_consequences_reasoning_omission",
-      "fingerprint": "sha256:9029c4b11d402387ec75c6aee81911cdd85830bf414d27571f04c069dab5adc0",
+      "fingerprint": "sha256:85bd07016eecf73e21f0d4900dce46ccc3e050e8b6e5e893428480447b59187a",
       "evidence": [
+        "docs/reviews/final-source-independent-review.md: negative_consequences_reasoning_omission",
         "docs/reviews/final-closure.md: negative_consequences_reasoning_omission",
         "tools/vv/source_ledger.yml: negative_consequences_reasoning_omission"
       ],
@@ -2656,9 +2987,11 @@
         "negative_consequences_reasoning_omission/opposite-consequences"
       ],
       "review": {
-        "by": "Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner's independent research is the second check)",
-        "date": "2026-11-21",
-        "decision": "approved"
+        "by": "ChatGPT final_sources, independent model-assisted source reviewer",
+        "date": "2026-11-22",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "Separate reviewer from Claude, the author of the final-closure changes, and from the integrating reviewer who applies citation corrections. Inspected the supplied source passages, current formula/templates/question mapping, reference expectations and exact final fingerprint; authored no reviewed central scheme/ledger changes. Source review is model-assisted technical evidence, not authenticated human or original-author certification."
       }
     }
   ]

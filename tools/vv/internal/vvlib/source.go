@@ -91,6 +91,10 @@ type RecordReview struct {
 	Date     string `yaml:"date"`     // YYYY-MM-DD
 	Decision string `yaml:"decision"` // approved, hold or open
 	Note     string `yaml:"note"`     // required for hold and open: what is asked for, or what is missing
+	// Preserve the decoded scalar type so strings and integers cannot stand
+	// in for an explicit Boolean non-author attestation (approval registry v2).
+	IndependentOfAuthor interface{} `yaml:"independent_of_author"`
+	IndependenceBasis   interface{} `yaml:"independence_basis"`
 }
 
 // ReviewDecisions are the decisions a review can record: approved; hold, a
@@ -114,6 +118,16 @@ func reviewProblems(r RecordRow) []string {
 	}
 	if _, err := time.Parse("2006-01-02", v.Date); err != nil {
 		probs = append(probs, fmt.Sprintf("the review's date %q is not a date of the form YYYY-MM-DD", v.Date))
+	}
+	if v.Decision == "approved" {
+		independent, isBool := v.IndependentOfAuthor.(bool)
+		if !isBool || !independent {
+			probs = append(probs, "an approval needs independent_of_author: true as an explicit Boolean")
+		}
+		basis, isString := v.IndependenceBasis.(string)
+		if !isString || strings.TrimSpace(basis) == "" {
+			probs = append(probs, "an approval needs a nonempty independence_basis")
+		}
 	}
 	switch {
 	case !ReviewDecisions[v.Decision]:
