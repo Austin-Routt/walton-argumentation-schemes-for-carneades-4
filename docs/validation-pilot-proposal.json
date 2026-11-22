@@ -1,0 +1,299 @@
+{
+  "schema": "walton-validation-entry-pilot/v1",
+  "status": "proposed_validation_protocol_with_completed_metadata_preflight",
+  "timezone": "Etc/UTC",
+  "observed_repository_commit": "d9a25857277140a5d3f10aaf1dfa4ade0f15b91f",
+  "experiment_commit": null,
+  "experiment_pin_rule": "Use the parent reviewer final accepted integration commit; full SHA suffices without a published tag.",
+  "scope": "Offline supported CLI/API; no server-hosting, arbitrary AIF fidelity, whole-collection or human-gold claim.",
+  "readiness": {
+    "protocol_and_data_preparation": "can_begin",
+    "formal_accuracy_measurement": "requires_frozen_independent_reference",
+    "human_semantic_accuracy": "requires_blind_human_annotations_and_adjudication",
+    "tag_required_for_experiments": false,
+    "metadata_preflight": "completed_for_d9a2585_rebind_after_final_integration_commit"
+  },
+  "current_data": {
+    "discussion_id": "2629",
+    "claims": 8319,
+    "locations": 10947,
+    "thesis_view_claims": 3554,
+    "thesis_view_relations": 3690,
+    "normalized_graph_sha256": "e2f616bb745ae5b7c2b136290c7e21663208d5f2317cc40a2e2731d7c4de5b4b",
+    "independent_discussion_families": 1,
+    "human_adjudicated_items": 0,
+    "machine_draft_occurrences": 12,
+    "distinct_draft_child_claims": 11,
+    "authored_conditional_scenarios": 4,
+    "whole_discussion_split": "development_exposed"
+  },
+  "training_exercise": {
+    "purpose": "cost_ambiguity_and_manual_calibration_only",
+    "file": "six_unit_source_only_training.jsonl",
+    "sha256": "4725fa46f47af1ef643f13f84611a6b5500efdc8a167e696207f7f2a95bca3f8",
+    "occurrences": 6,
+    "distinct_child_claims": 5,
+    "discussion_families": 1,
+    "dossier_ids": [
+      "kialo2629-u01",
+      "kialo2629-u04",
+      "kialo2629-u07",
+      "kialo2629-u09",
+      "kialo2629-u11",
+      "kialo2629-u12"
+    ],
+    "selection": "purposive_diagnostic_contrasts_not_a_probability_sample",
+    "initial_pass": "two_humans_source_only_no_machine_proposals_or_peer_answers; record prior exposure",
+    "adjudication": "qualified_third_human; retain alternatives and unresolved items",
+    "counts_toward_independent_family_pilot": false,
+    "gold_status": "unannotated"
+  },
+  "feasibility_budget": {
+    "total_dossiers": 60,
+    "calibration": 12,
+    "development": 12,
+    "sealed_evaluation_reserve": 36,
+    "preferred_independent_families": 60,
+    "fallback_planning_family_count": 30,
+    "family_count_is_statistical_guarantee": false,
+    "existing_exposed_drafts_count_toward_budget": false,
+    "sealed_cases_selected": false,
+    "expansion_rule": "Use observed clustering, prevalence, annotation time and a stated precision/effect target; choose before opening further sealed evaluation."
+  },
+  "work_packages": [
+    {
+      "id": "P0",
+      "maps_to": [
+        "V0",
+        "K0"
+      ],
+      "task": "Freeze claims, exact accepted code pin, data eligibility, task schema, reference ownership and outcome policy.",
+      "deliverable": "versioned_protocol_and_component_claim_matrix",
+      "gate": "No unbound code/data/reference version; public tag optional."
+    },
+    {
+      "id": "P1",
+      "maps_to": [
+        "V0",
+        "K1",
+        "K2"
+      ],
+      "task": "Create current metadata/catalog derivative; retain immutable historical packet. Parameterize hardcoded commit/engine fields and bind current 149 ledger/registry.",
+      "deliverable": "current_catalog_manual_addendum_and_exposure_manifest",
+      "gate": "All bindings/statuses match accepted source; source approval does not create instance approval.",
+      "status": "completed for inspected public pin; regenerate against final accepted pin",
+      "tool": "../../pilot/refresh_pilot_context.py",
+      "completed_output": "../../pilot/context-d9a2585/"
+    },
+    {
+      "id": "P2A",
+      "maps_to": [
+        "V1",
+        "K1"
+      ],
+      "task": "Strict structural adapter and preservation/refusal controls using current supplied derivative.",
+      "deliverable": "structural_loss_report",
+      "gate": "Zero unexplained supported-field loss, polarity reversal or occurrence merge; unsupported structures explicitly refused."
+    },
+    {
+      "id": "P2B",
+      "maps_to": [
+        "V2",
+        "K4"
+      ],
+      "task": "Develop bounded independent CAES/CHR reference evaluator and reviewed native scenario families; preserve separate Dung/ICCMA semantics.",
+      "deliverable": "frozen_formal_reference_and_counterexamples",
+      "gate": "Expected results do not call SUT, copy its predictions or share its core inference routines; zero incorrect supported-suite answers and no unresolved oracle disagreement for claimed suite."
+    },
+    {
+      "id": "P2C",
+      "maps_to": [
+        "V5",
+        "K2",
+        "K3"
+      ],
+      "task": "Six-unit human cost/ambiguity exercise; revise manual, then proceed with the 12/12/36 feasibility budget after collection inventory.",
+      "deliverable": "annotation_time_disagreement_context_and_reconstruction_report",
+      "gate": "Record all initial human judgments and exposure; do not invent gold or claim statistical sufficiency."
+    },
+    {
+      "id": "P3",
+      "maps_to": [
+        "V3",
+        "K0",
+        "K5"
+      ],
+      "task": "Inventory additional captures; group discussion/version/copy families, audit overlap, freeze development and sealed sampling.",
+      "deliverable": "capture_inventory_leakage_groups_split_manifest",
+      "gate": "No confirmed family crosses splits; current discussion 2629 and copies excluded from sealed evaluation; natural and challenge samples reported separately."
+    },
+    {
+      "id": "P4",
+      "maps_to": [
+        "V4",
+        "K5"
+      ],
+      "task": "Correctness-qualified bounded workload ladders after supported conversions and references exist.",
+      "deliverable": "resource_observations_and_operating_envelope",
+      "gate": "Freeze runner parameters; retain all failures/refusals; no capacity certification without an adopted workload/SLO."
+    },
+    {
+      "id": "P5",
+      "maps_to": [
+        "V6",
+        "K6"
+      ],
+      "task": "Evaluate sealed reference under preregistered task criteria and reproduce release gates at exact release commit.",
+      "deliverable": "scoped_release_assurance_report",
+      "gate": "Independent semantic review; complete finite supported gates; empirical claims limited to sampled domains and measured uncertainty."
+    }
+  ],
+  "parallelism": [
+    [
+      "P2A",
+      "P2B",
+      "P2C"
+    ]
+  ],
+  "ordering": [
+    [
+      "P0",
+      "P1"
+    ],
+    [
+      "P1",
+      "P2A"
+    ],
+    [
+      "P1",
+      "P2C"
+    ],
+    [
+      "P0",
+      "P2B"
+    ],
+    [
+      "P3",
+      "P5"
+    ],
+    [
+      "P2B",
+      "P4"
+    ]
+  ],
+  "splits": {
+    "unit": "discussion_version_lineage_and_confirmed_substantive_duplicate_or_copy_family",
+    "edge_random_split_allowed": false,
+    "source_only_packet_is_sealed_test": false,
+    "unknown_pretraining_exposure_disclosed": true,
+    "natural_distribution_and_challenge_tracks_separate": true,
+    "inclusion_probabilities_required_for_population_estimates": true,
+    "common_domain_alone_creates_duplicate_group": false
+  },
+  "formal_scenario_coverage": [
+    "linked_vs_convergent_premises",
+    "repeated_premise_set_behavior",
+    "missing_premise",
+    "wrong_instance_binding",
+    "target_specific_undercut",
+    "rebuttal_issue",
+    "questioned_default_vs_established_exception",
+    "competing_stipulations",
+    "alternative_admissible_interpretation",
+    "typed_failure_and_cancellation"
+  ],
+  "engineering_gates": {
+    "supported_structural_unexplained_losses_allowed": 0,
+    "finite_supported_suite_wrong_answers_allowed": 0,
+    "unresolved_oracle_disagreements_for_passed_claim_allowed": 0,
+    "timeout_is_logical_no": false,
+    "safe_refusal_equals_interoperability": false,
+    "universal_correctness_claim": false
+  },
+  "human_metrics": [
+    "pre_adjudication_agreement_with_task_appropriate_measure",
+    "per_class_counts_and_confusion",
+    "accepted_alternatives",
+    "abstention_and_coverage",
+    "unsupported_premise_insertion",
+    "modality_quantifier_agent_and_target_errors",
+    "unresolved_rate",
+    "annotator_time_and_context_requests"
+  ],
+  "human_threshold_policy": "Use calibration/development to set task/use-specific thresholds before sealed evaluation. No universal kappa/F1 cutoff or 60-dossier certification claim.",
+  "capacity_initial_proposal": {
+    "wall_seconds_per_bounded_case": 30,
+    "memory_mib_per_bounded_case": 2048,
+    "repetitions": 5,
+    "concurrency": 1,
+    "status": "containment_parameters_to_freeze_before_execution_not_product_SLO",
+    "report": [
+      "all_observations",
+      "median",
+      "range",
+      "failures",
+      "correctness",
+      "eligibility"
+    ],
+    "precise_tail_latency_claim": false,
+    "product_SLO": null
+  },
+  "run_record_required": [
+    "implementation_commit",
+    "library_hash",
+    "engine_version",
+    "toolchain",
+    "input_hash",
+    "reference_hash",
+    "profile",
+    "task",
+    "process_outcome",
+    "semantic_answer_or_null",
+    "answer_correctness",
+    "eligibility",
+    "resource_caps",
+    "wall_time",
+    "peak_memory",
+    "seed",
+    "repeat",
+    "hardware_environment",
+    "unsupported_or_loss_reason"
+  ],
+  "remaining_external_inputs": [
+    "additional_owner_held_captures_and_inventory",
+    "two_independent_human_annotators_and_qualified_adjudication",
+    "unexposed_discussion_families",
+    "intended_use_permissions_before_corresponding_public_release",
+    "product_workload_and_SLO_before_capacity_certification"
+  ],
+  "actions_performed": [
+    "read_current_plan_and_prior_corpus_materials",
+    "read-only 14-record catalog comparison",
+    "prepare_unannotated_six_unit_training_packet",
+    "write_proposed_protocol",
+    "implement immutable-commit metadata context refresher",
+    "refresh 12 machine drafts without new interpretations",
+    "reject 11 deliberate metadata/provenance mismatches"
+  ],
+  "actions_not_performed": [
+    "runtime_benchmark",
+    "human_annotation",
+    "new_capture_inventory",
+    "external_contact",
+    "corpus_download",
+    "public_dataset_release"
+  ],
+  "review_date": "2026-11-22",
+  "completed_preflight": {
+    "repository_commit": "d9a25857277140a5d3f10aaf1dfa4ade0f15b91f",
+    "tool": "../../pilot/refresh_pilot_context.py",
+    "tool_sha256": "1ab9a9c6c8f06b76124aea464f4820a913e37b2df6e131d3ca484bb54589a557",
+    "manifest": "../../pilot/context-d9a2585/refresh_manifest.json",
+    "negative_controls": 11,
+    "human_gold": 0,
+    "engine_executed": false,
+    "source_approval_fingerprints_recomputed": false,
+    "historical_inputs_preserved": true,
+    "note": "Actual versions are read from immutable Git objects. This derivative is not yet rebound to any later final integration commit."
+  }
+}
