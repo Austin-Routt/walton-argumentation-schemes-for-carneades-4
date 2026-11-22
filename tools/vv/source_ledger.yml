@@ -408,6 +408,7 @@ compendium:
   questions: 3
   schemes:
   - negative_consequences_reasoning
+  - negative_consequences_reasoning_omission
   shared: true
 - entry: '33.4'
   page: 332
@@ -2175,7 +2176,9 @@ records:
     for NOT doing the same action and producing the same outcome. Existing ordinary premises and CQ3 exception are preserved;
     old judgments require manual semantic migration. See docs/reviews/pr16-source-adjudication.md. Second check, by the implementer
     (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 332:
-    concurs. See docs/reviews/implementer-second-response.md.'
+    concurs. See docs/reviews/implementer-second-response.md. Scare Tactics compared on 2026-11-21 (owner-supplied copy):
+    p. 123 prints the form as (Inf Con.), word for word, as a warning that can carry a covert threat; no questions are printed
+    there. p. 139 says it is equivalent to arguing from negative consequences.'
   review:
     by: closure/root-source-review
     date: '2026-11-21'
@@ -2214,16 +2217,52 @@ records:
   - plan: '5.6'
     page: 332
     claim: interpretation
-  note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
+  note: 'Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
     example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
     Second check, by the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21,
-    against the printed p. 332: concurs. See docs/reviews/implementer-second-response.md.'
+    against the printed p. 332: concurs. See docs/reviews/implementer-second-response.md. Scare Tactics compared on 2026-11-21
+    (owner-supplied copy): the scheme is printed word for word on p. 140 as (Reas. Neg. Con.), not on p. 123, which the compendium
+    cites for the whole of entry 33 and which prints 33.4''s form. p. 139 says the forms apply to omissions; the printed "(don''t
+    bring about)" reading is negative_consequences_reasoning_omission. Scare Tactics prints no questions for the form; the
+    record''s follow the compendium.'
   review:
     by: closure/root-source-review
     date: '2026-11-21'
     decision: approved
     note: 'Independent review of implementation 746b5ab: shared CQ1 likelihood-adequacy judgment, explicit semantic migration
       and six case oracles accepted for selected bring-about branch. See docs/reviews/closure-independent-source-acceptance.md.'
+- record: negative_consequences_reasoning_omission
+  origin: book
+  entry: '33.3'
+  cites: 'Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156.
+    Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123.'
+  claim: interpretation
+  stage: example-passed
+  questions:
+  - n: 1
+    kind: assumption
+    as: omission_consequence_likelihood_adequate(A,B)
+    note: 'Shared CQ1 of entry 33, for the omission: the likelihood that not doing A brings about B, the assessment 33.4 uses'
+  - n: 2
+    kind: premise
+    as: agent_not_bring_about(P,A,B)
+  - n: 3
+    kind: rebuttal
+    as: ¬should_do(P,A)
+    note: 'opposite consequences: an argument against doing A, such as the bring-about reading of 33.3 for another outcome
+      of A'
+  note: 'Added 2026-11-21: the printed alternative of 33.3, "If I (an agent) bring about (don''t bring about) A", which the
+    closure review left unimplemented. The conclusion "I should not (practically speaking) [not bring about] A" is read as
+    should_do(P,A): Scare Tactics (2000) says the same forms apply to omissions (p. 139) and that the prudential inference
+    whose conclusion is to do A is equivalent to arguing from negative consequences (p. 139), and prints 33.3 on p. 140. A
+    local reading of this one conclusion in the issue should_do / not should_do that 33.3 already uses (D19), not a general
+    equivalence.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: Approved against entry 33.3 (p. 332) and Scare Tactics pp. 139-140. See docs/reviews/final-closure.md.
 - record: pragmatic_alternative
   origin: book
   entry: '34'
@@ -2234,8 +2273,13 @@ records:
   - plan: '5.6'
     page: 333
     claim: interpretation
-  note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+  note: 'Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Scare Tactics compared on 2026-11-21 (owner-supplied copy): p. 142 prints the form as (Arg. Alt.), word for word, as the
+    two-alternative case of disjunctive reasoning; no questions there. Chapter 7 (p. 191) says these forms are evaluated through
+    the critical questions of practical reasoning of ch. 5, section 4 (p. 138, five questions; p. 191 says "four", and p.
+    138 notes the second is not in doubt in these cases); the compendium attaches none to entries 34-37, and the records follow
+    it (D20).'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2272,8 +2316,14 @@ records:
   - plan: '5.6'
     page: 333
     claim: interpretation
-  note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+  note: 'Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Scare Tactics compared on 2026-11-21 (owner-supplied copy): the disjunctive threat is printed on p. 142 as (Dis. Bac.
+    Threat), word for word; p. 140, which the compendium cites, prints the conditional form (Cond. Bac. Threat), "I undertake
+    to see to it that B will occur if you bring about A", which the compendium does not list as a scheme. No questions are
+    printed for either. Chapter 7 (p. 191) says these forms are evaluated through the critical questions of practical reasoning
+    of ch. 5, section 4 (p. 138, five questions; p. 191 says "four", and p. 138 notes the second is not in doubt in these
+    cases); the compendium attaches none to entries 34-37, and the records follow it (D20).'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2290,8 +2340,14 @@ records:
   - plan: '5.6'
     page: 333
     claim: interpretation
-  note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+  note: 'Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Scare Tactics compared on 2026-11-21 (owner-supplied copy): p. 22 prints the form as (CF) and (DF), "a sequence of two
+    inferences linked together": "you ought to stop D if possible" is the conclusion of the first; the compendium, and the
+    record, state it as a premise, and say "prevent" for "stop". No questions on p. 22. Chapter 7 (p. 191) says these forms
+    are evaluated through the critical questions of practical reasoning of ch. 5, section 4 (p. 138, five questions; p. 191
+    says "four", and p. 138 notes the second is not in doubt in these cases); the compendium attaches none to entries 34-37,
+    and the records follow it (D20).'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2308,8 +2364,13 @@ records:
   - plan: '5.6'
     page: 334
     claim: interpretation
-  note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+  note: 'Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Scare Tactics compared on 2026-11-21 (owner-supplied copy): p. 173 prints the form as (Dang. App.), word for word, with
+    the conclusion "(on balance)": the record''s conclusion is defeasible and weighed in its issue, which is that qualification.
+    No questions there. Chapter 7 (p. 191) says these forms are evaluated through the critical questions of practical reasoning
+    of ch. 5, section 4 (p. 138, five questions; p. 191 says "four", and p. 138 notes the second is not in doubt in these
+    cases); the compendium attaches none to entries 34-37, and the records follow it (D20).'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -3254,11 +3315,11 @@ records:
       is the default that a theory explains how the first event causes the second: questioning it removes the argument unless
       the theory is supported. Approved against compendium entry 29 under decision D20, taken by the owner on 2026-11-21:
       the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy,
-      The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.) was not compared; that comparison is recorded
-      when the work is at hand and is not a condition of approval. Reviewer: the implementer, who did not write this record
-      (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1995 source;
-      retain an explicit explanatory-theory policy and require causal evidence, with a case distinguishing correlation alone
-      from a justified causal application. Evidence: docs/reviews/record-dispositions.json: correlation_to_cause'
+      The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.) was not compared at approval; it was compared
+      later the same day, when the owner supplied it (see the row''s note). Reviewer: the implementer, who did not write this
+      record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1995
+      source; retain an explicit explanatory-theory policy and require causal evidence, with a case distinguishing correlation
+      alone from a justified causal application. Evidence: docs/reviews/record-dispositions.json: correlation_to_cause'
 - record: credible_source
   origin: upstream
   cites: Wyner, A., A functional perspective on argumentation schemes. Argument and Computation, vol. 7, pp. 113-133. 2016,
@@ -3368,8 +3429,8 @@ records:
       difference: the inherited template of applicable/1 says "Argument", not "Rule" (D5). Approved against compendium entry
       55.1 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the
       record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London,
-      1995, p. 147.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
-      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      1995, p. 147.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the
+      row''s note). Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
       Earlier hold: Retain the repaired scoped book questions; compare the original 1995 source and distinguish the inherited
       rule/conclusion form from the compendium actor/action form with explicit coverage claims. Evidence: docs/reviews/record-dispositions.json:
       established_rule'
@@ -3402,8 +3463,8 @@ records:
       for the statement, weighed in its issue under the proof standard (CQ3, standard), as for 1 and 2. CQ1 premise, CQ2 default.
       The qualitative form is ethotic_positive_compendium. Approved against compendium entry 41 under decision D20, taken
       by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton,
-      A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.) was not compared;
-      that comparison is recorded when the work is at hand and is not a condition of approval. Reviewer: the implementer,
+      A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.) was not compared
+      at approval; it was compared later the same day, when the owner supplied it (see the row''s note). Reviewer: the implementer,
       who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold:
       Compare the cited 1995 source and decide explicitly whether bare-proposition support is the accepted strength policy;
       otherwise add a graded-plausibility variant and examples. Evidence: docs/reviews/record-dispositions.json: ethotic1'
@@ -3426,11 +3487,11 @@ records:
   note: 'concludes the negation where the book concludes that it should be rejected as less plausible; upstream''s wording
     (D5, 5.5) Independent source review 2026-11-21: block. Do not approve as exact entry 41. Retain as an explicitly qualified
     legacy variant outside a fully source-certified release, or replace/add a scoped reduced-plausibility formulation and
-    cases. The cited 1995 work remains unverified. Closure correction supersedes the old behavior: reduced plausibility is
-    explicit and no longer concludes the negation of the assertion. Second check, by the implementer (a different system from
-    the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.
-    Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 152: the same scheme (good or bad character) and the same
-    three questions.'
+    cases. The cited 1995 work was then unverified (compared later the same day, below). Closure correction supersedes the
+    old behavior: reduced plausibility is explicit and no longer concludes the negation of the assertion. Second check, by
+    the implementer (a different system from the author and from the closure''s own reviewers; D14), 2026-11-21, against the
+    printed p. 336: concurs. See docs/reviews/implementer-second-response.md. Original compared on 2026-11-21 (owner-supplied
+    copy): 1995, p. 152: the same scheme (good or bad character) and the same three questions.'
   review:
     by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
@@ -3439,8 +3500,8 @@ records:
       of the assertion and does not assert its negation. CQ1 premise, CQ2 default, CQ3 standard. Approved against compendium
       entry 41 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work
       the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London,
-      1995, p. 152.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
-      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      1995, p. 152.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the
+      row''s note). Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
       Earlier hold: The compendium correction is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md;
       the unavailable separately cited original remains held. This correction does not certify the original record as fully
       source-checked.'
@@ -3516,8 +3577,8 @@ records:
       builds the graph (D16; the dialogue adapter gives a finite alternative). Approved against compendium entry 26 under
       decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites
       (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150)
-      was not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Reviewer:
-      the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
+      was not compared at approval; it was compared later the same day, when the owner supplied it (see the row''s note).
+      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
       Earlier hold: Compare the cited 1995 source and specify application-supplied dialogue burden/probandum independently
       of the issue proof standard; add examples for the chosen burden contract. Evidence: docs/reviews/record-dispositions.json:
       ignorance'
@@ -3545,9 +3606,9 @@ records:
     note: 'opposite consequences: positive_consequences concludes this'
   note: 'Book-supported adaptation of the inherited form: CQ1 is now modeled without imposing a fixed strong-likelihood threshold.
     CQ2 remains the causal/consequence premise. Verification against the original cited 1995 source remains open. Independent
-    source review 2026-11-21: qualified. The original cited 1995 work remains unverified; this is an explicit adaptation of
-    the inherited schema from the supplied compendium. Original compared on 2026-11-21 (owner-supplied copy): 1995, pp. 155-156:
-    one scheme for good and bad consequences, with the same three questions.'
+    source review 2026-11-21: qualified. The original cited 1995 work was then unverified (compared later the same day, below);
+    this is an explicit adaptation of the inherited schema from the supplied compendium. Original compared on 2026-11-21 (owner-supplied
+    copy): 1995, pp. 155-156: one scheme for good and bad consequences, with the same three questions.'
   changes:
   - plan: independent-review
     page: 332
@@ -3560,11 +3621,11 @@ records:
       shared with 33.1 and 33.3, CQ2 the consequence premise, CQ3 the rebuttal by an argument for performing the action (p.
       333). Approved against compendium entry 33.2 under decision D20, taken by the owner on 2026-11-21: the compendium is
       the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University
-      of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.) was not compared; that comparison is recorded when the
-      work is at hand and is not a condition of approval. Reviewer: the implementer, who did not write this record (Carneades
-      did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported adequacy
-      hook and scoped inherited adaptation; compare the original cited 1995 form before original-source approval. Evidence:
-      docs/reviews/record-dispositions.json: negative_consequences'
+      of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.) was not compared at approval; it was compared later the
+      same day, when the owner supplied it (see the row''s note). Reviewer: the implementer, who did not write this record
+      (Carneades did) nor its last change. See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported
+      adequacy hook and scoped inherited adaptation; compare the original cited 1995 form before original-source approval.
+      Evidence: docs/reviews/record-dispositions.json: negative_consequences'
 - record: position_to_know
   origin: upstream
   entry: '1'
@@ -3627,8 +3688,8 @@ records:
       CQ2 the consequence premise, CQ3 the rebuttal by an argument against performing the action (p. 333). Approved against
       compendium entry 33.1 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record.
       The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa
-      and London, 1995, pp. 155-156.) was not compared; that comparison is recorded when the work is at hand and is not a
-      condition of approval. Reviewer: the implementer, who did not write this record (Carneades did) nor its last change.
+      and London, 1995, pp. 155-156.) was not compared at approval; it was compared later the same day, when the owner supplied
+      it (see the row''s note). Reviewer: the implementer, who did not write this record (Carneades did) nor its last change.
       See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported adequacy hook without imposing a fixed
       numerical threshold; compare the original cited 1995 form before original-source approval. Evidence: docs/reviews/record-dispositions.json:
       positive_consequences'
@@ -4033,7 +4094,10 @@ records:
   - n: 1
     kind: premise
     as: current_state(Q0)
-    note: 'p. 862 CQ1 (epistemic): q0 = qx; its second clause, q0 not in rho(alpha_i), is the premise precondition_holds(Al,Q0)'
+    note: 'p. 862 CQ1 (epistemic), printed q0 != qx and q0 not in rho(alpha_i): the believed state is not the actual one and
+      the action cannot be done in the actual one (the text extraction loses the "!="). The record states AS2''s first line,
+      q0 = qx (current_state(Q0)), and the precondition (precondition_holds(Al,Q0)); either failing removes the argument,
+      which is stricter than the printed conjunction. See docs/reviews/atkinson-2007-example.md'
   - n: 2
     kind: premise
     as: transition(Q0,J,Q1)
@@ -4041,7 +4105,8 @@ records:
   - n: 3
     kind: premise
     as: proposition_changes(P,Q0,Q1)
-    note: 'p. 862 CQ3: the goal pa does not change between qx and qy'
+    note: p. 862 CQ3, printed pa not in pi(qy), for a goal that becomes true; AS2 also allows one that becomes false, for
+      which the question is read the other way round. The premise is that pa changes. See docs/reviews/atkinson-2007-example.md
   - n: 4
     kind: premise
     as: transition_promotes(Q0,Q1,P,V)
@@ -4053,7 +4118,8 @@ records:
   - n: 6
     kind: alternative
     as: should_perform(I,Al)
-    note: 'p. 862 CQ6: another joint action changing pa'
+    note: 'p. 862 CQ6: another joint action changing pa. Printed with "tau(qx, jm) is qy", which would make it CQ5 (AS2 already
+      makes pa change between qx and qy); read with qz, as CQ7 and CQ11 are printed. See docs/reviews/atkinson-2007-example.md'
   - n: 7
     kind: alternative
     as: should_perform(I,Al)
@@ -4061,7 +4127,9 @@ records:
   - n: 8
     kind: rebuttal
     as: ¬should_perform(I,Al)
-    note: 'p. 862 CQ8: the transition demotes vu through another goal (practical_reasoning_as2_demotion)'
+    note: 'p. 862 CQ8: the transition demotes vu through another goal (practical_reasoning_as2_demotion). As printed, CQ8
+      asks that delta(qx, qy, vu) be - where AS2 has it +, which delta, a function, cannot give; it needs values attached
+      to goals, as here. See docs/reviews/atkinson-2007-example.md'
   - n: 9
     kind: rebuttal
     as: ¬should_perform(I,Al)
@@ -4089,7 +4157,8 @@ records:
   - n: 15
     kind: premise
     as: proposition_realizable(P)
-    note: 'p. 862 CQ15: pa in pi(q) for no q'
+    note: p. 862 CQ15, printed pa in pi(q) for no q (for a goal that becomes true; for one that becomes false, pa in every
+      pi(q)). See docs/reviews/atkinson-2007-example.md
   - n: 16
     kind: premise
     as: agent_value(I,V)
@@ -4125,7 +4194,10 @@ records:
   - n: 1
     kind: premise
     as: current_state(Q0)
-    note: 'p. 862 CQ1 (epistemic): q0 = qx; its second clause, q0 not in rho(alpha_i), is the premise precondition_holds(Al,Q0)'
+    note: 'p. 862 CQ1 (epistemic), printed q0 != qx and q0 not in rho(alpha_i): the believed state is not the actual one and
+      the action cannot be done in the actual one (the text extraction loses the "!="). The record states AS2''s first line,
+      q0 = qx (current_state(Q0)), and the precondition (precondition_holds(Al,Q0)); either failing removes the argument,
+      which is stricter than the printed conjunction. See docs/reviews/atkinson-2007-example.md'
   - n: 2
     kind: premise
     as: transition(Q0,J,Q1)
@@ -4133,7 +4205,8 @@ records:
   - n: 3
     kind: premise
     as: proposition_changes(P,Q0,Q1)
-    note: 'p. 862 CQ3: the goal pa does not change between qx and qy'
+    note: p. 862 CQ3, printed pa not in pi(qy), for a goal that becomes true; AS2 also allows one that becomes false, for
+      which the question is read the other way round. The premise is that pa changes. See docs/reviews/atkinson-2007-example.md
   - n: 4
     kind: premise
     as: transition_demotes(Q0,Q1,P,V)
@@ -4145,7 +4218,8 @@ records:
   - n: 6
     kind: alternative
     as: ¬should_perform(I,Al)
-    note: 'p. 862 CQ6: another joint action changing pa'
+    note: 'p. 862 CQ6: another joint action changing pa. Printed with "tau(qx, jm) is qy", which would make it CQ5 (AS2 already
+      makes pa change between qx and qy); read with qz, as CQ7 and CQ11 are printed. See docs/reviews/atkinson-2007-example.md'
   - n: 7
     kind: alternative
     as: ¬should_perform(I,Al)
@@ -4153,7 +4227,9 @@ records:
   - n: 8
     kind: support
     as: ¬should_perform(I,Al)
-    note: 'p. 862 CQ8: the transition demotes vu through another goal (practical_reasoning_as2_demotion)'
+    note: 'p. 862 CQ8: the transition demotes vu through another goal (practical_reasoning_as2_demotion). As printed, CQ8
+      asks that delta(qx, qy, vu) be - where AS2 has it +, which delta, a function, cannot give; it needs values attached
+      to goals, as here. See docs/reviews/atkinson-2007-example.md'
   - n: 9
     kind: support
     as: ¬should_perform(I,Al)
@@ -4181,7 +4257,8 @@ records:
   - n: 15
     kind: premise
     as: proposition_realizable(P)
-    note: 'p. 862 CQ15: pa in pi(q) for no q'
+    note: p. 862 CQ15, printed pa in pi(q) for no q (for a goal that becomes true; for one that becomes false, pa in every
+      pi(q)). See docs/reviews/atkinson-2007-example.md
   - n: 16
     kind: premise
     as: agent_value(I,V)
@@ -4235,7 +4312,13 @@ records:
     instead the case-based reasoning the same page describes ("a species of case-based reasoning that uses argumentation from
     analogy between two cases") and illustrates with Case 80a: a similar case was decided by a rule, so its conclusion holds
     here. The printed questions are sorted for that reading. relevant_differences(R,C) put the rule in a case slot and is
-    now relevant_differences(C), the statement of the analogy records (tools/migration_r2.yml).'
+    now relevant_differences(C), the statement of the analogy records (tools/migration_r2.yml). Name: the original repository''s
+    README, Updates of 2019-10-08, records that after correspondence with Douglas Walton on 2019-09-19 "Argument From Precedent"
+    was changed to "Argument From Exception To A Rule"; commits 0b1dd95 and 16c09f2 (2019-09-22) in this repository''s history
+    did it, changing only the id and title of upstream''s precedent (the id''s misspelling is that commit''s, not Walton''s
+    wording, and the id is kept, docs/reviews.md). The e-mail is private and will not be available; the README is the official
+    record of it (owner, 2026-11-21). Walton''s name agrees with the reading approved here: the record argues from an exception
+    granted in a decided case (Case 80a), not to the modification of the rule that entry 57 concludes.'
   review:
     by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
       independent research is the second check)'
@@ -4346,11 +4429,11 @@ records:
       the future losses outweigh the value. Entry 25''s precommitment form, which the cited article prints on p. 489, is sunk_costs_precommitment.
       Approved against compendium entry 24 under decision D20, taken by the owner on 2026-11-21: the compendium is the source
       of record. The older work the record cites (Douglas Walton, ‘The Sunk Costs Fallacy or Argument from Waste’, Argumentation,
-      16, 2002, p. 489) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval.
-      Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See docs/reviews/d20-approvals.md.
-      Earlier hold: Retain the legacy quantity/feasibility record as a documented adaptation, distinct from sunk_costs_precommitment;
-      settle the selected practical-question and future-loss policy rather than treating the legacy form as the article''s
-      printed p. 489 scheme. Evidence: docs/reviews/record-dispositions.json: sunk_costs'
+      16, 2002, p. 489) was not compared at approval; it was compared later the same day, when the owner supplied it (see
+      the row''s note). Reviewer: the implementer, who did not write this record (Carneades did) nor its last change. See
+      docs/reviews/d20-approvals.md. Earlier hold: Retain the legacy quantity/feasibility record as a documented adaptation,
+      distinct from sunk_costs_precommitment; settle the selected practical-question and future-loss policy rather than treating
+      the legacy form as the article''s printed p. 489 scheme. Evidence: docs/reviews/record-dispositions.json: sunk_costs'
   changes:
   - plan: D20
     page: 326
@@ -5708,6 +5791,11 @@ names:
   page: 861
   how: trial
   from: AS2's conclusion, as the agent's part of the joint action
+- name: agent_not_bring_about/3
+  page: 332
+  entry: '33.3'
+  how: book
+  from: 33.3's printed alternative, "If I (an agent) ... (don't bring about) A"
 citations:
 - scheme: sorites_slippery_slope
   record: Informal Logic 18 (1996), p. 151

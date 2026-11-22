@@ -26,7 +26,8 @@ A_reasoning/3_practical-reasoning.yml:
             end_and_means_2, end_and_means_reverse, end_and_means_3, end_and_means_difficult, two_person_practical, waste,
             negative_consequences_prudential, pragmatic_alternative, threat,
             ad_baculum, fear, danger, help, distress,
-            negative_consequences_reasoning, sunk_costs,
+            negative_consequences_reasoning, negative_consequences_reasoning_omission,
+            sunk_costs,
             sunk_costs_precommitment]
 
 A_reasoning/4_abductive-reasoning.yml:

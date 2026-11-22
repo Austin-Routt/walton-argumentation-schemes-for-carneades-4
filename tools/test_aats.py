@@ -185,8 +185,8 @@ class FarmerFigure1(unittest.TestCase):
         o = self.s.objections(arg4)
         o17 = [x for x in o if x["cq"] == 17]
         self.assertEqual([(x["joint"], x["answered"], x["demotes"]) for x in o17], [("j6", True, ["chicken"])])  # Obj4a
-        self.assertIn(("j9", "progress"), {(x["joint"], x["value"]) for x in o if x["cq"] == 7})       # Obj4b
-        self.assertNotIn("j9", {x["joint"] for x in o if x["cq"] == 6})   # see test_cq6_needs_the_same_proposition
+        self.assertIn(("j9", "right_1"), {(x["joint"], x["goal"]) for x in o if x["cq"] == 6})        # Obj4b (CQ6)
+        self.assertIn(("j9", "progress"), {(x["joint"], x["value"]) for x in o if x["cq"] == 7})       # and CQ7
         self.assertIn(("j7", "friendship"), {(x["joint"], x["value"]) for x in o if x["cq"] == 11})    # Obj4c
 
     def test_obj5a_obj7a_obj6a(self):
@@ -200,16 +200,157 @@ class FarmerFigure1(unittest.TestCase):
         arg6 = self.find("+", "j7", "progress")
         self.assertIn(("friendship"), {o["value"] for o in self.s.objections(arg6) if o["cq"] == 10})
 
-    def test_cq6_needs_the_same_proposition(self):
-        # p. 865 calls Obj4b CQ6, reading "putting a possession on the right
-        # bank" as one goal (transportation, p. 864). On the AATS a goal is a
-        # proposition: CQ6 holds for another joint action changing s_right.
+    def test_obj4b_label_depends_on_the_goal(self):
+        # p. 865 calls Obj4b CQ6: P is promoted "through the goal of
+        # transportation" (p. 864), the goal right_1 that rowing the seeds and
+        # rowing the chicken both realize. Were the goals the items moved
+        # (s_right, c_right), Obj4b would meet only CQ7's definition.
         doc, sit = raw_situation(FARMER, "fig1-q0")
-        sit["states"]["q5b"] = ["c_left", "d_left", "b_right", "s_right", "repeated"]
-        sit["transitions"].append({"from": "q0", "by": "j0", "to": "q5b", "promotes": {"progress": ["s_right"]}})
+        for t in sit["transitions"]:
+            if t["by"] in ("j5", "j9"):
+                t["promotes"]["progress"] = ["s_right" if t["by"] == "j5" else "c_right"]
         s = situation_from(doc, sit)
         arg4 = [a for a in s.arguments() if (a.joint, a.value) == ("j5", "progress")][0]
-        self.assertIn("j0", {o["joint"] for o in s.objections(arg4) if o["cq"] == 6})
+        o = s.objections(arg4)
+        self.assertNotIn("j9", {x["joint"] for x in o if x["cq"] == 6})
+        self.assertIn("j9", {x["joint"] for x in o if x["cq"] == 7})
+
+    def test_printed_cq6_would_be_cq5(self):
+        # p. 862 prints CQ6 with tau(qx, jm) is qy. AS2 already makes pa
+        # change between qx and qy, so that reading is exactly CQ5; CQ6 is
+        # read with qz, as CQ7 and CQ11 are printed and as "the same goal"
+        # (p. 858) requires.
+        for path in (FARMER, TRAINS):
+            for s in aats.Model(path).situations:
+                for a in s.arguments():
+                    if a.sign != "+":
+                        continue
+                    printed = {jm for jm in s.possible() if jm != a.joint and s.tau[(a.state, jm)] == a.result
+                               and a.goal in s.states[a.state] ^ s.states[a.result]}
+                    cq5 = {o["joint"] for o in s.objections(a) if o["cq"] == 5}
+                    self.assertEqual(printed, cq5)
+
+class PaperQuestions(unittest.TestCase):
+    """Every critical question in the farmer example (pp. 864-869): the
+    thirteen the paper names, at the place it names them, the relabelled
+    Obj6ai, and the four it never names (CQ5, CQ7, CQ10, CQ15), inferred from
+    the context. docs/reviews/atkinson-2007-example.md is the table."""
+
+    def setUp(self):
+        self.m = farmer()
+
+    def arg(self, situation, sign, joint, value):
+        s = self.m.situation(situation)
+        hits = [a for a in s.arguments() if (a.sign, a.joint, a.value) == (sign, joint, value)]
+        self.assertEqual(len(hits), 1, (situation, sign, joint, value))
+        return s, hits[0]
+
+    def cqs(self, situation, joint, value):
+        s, a = self.arg(situation, "+", joint, value)
+        return s, a, s.objections(a)
+
+    def test_cq6_in_q10(self):
+        # p. 868: "rowing the dog is an alternative way of moving something to the right bank (CQ6)"
+        _, _, o = self.cqs("fig4-q10", "j5", "progress")
+        self.assertIn(("j7", "right_2"), {(x["joint"], x["goal"]) for x in o if x["cq"] == 6})
+
+    def test_cq11_in_q10(self):
+        # p. 868: rowing the dog, precluded by rowing the seeds, "will promote F as well (CQ11)"
+        _, _, o = self.cqs("fig4-q10", "j5", "progress")
+        self.assertIn(("j7", "friendship"), {(x["joint"], x["value"]) for x in o if x["cq"] == 11})
+
+    def test_cq8_in_q14(self):
+        # p. 868: rowing the chicken promotes P and also demotes P, "allowing CQ8"
+        _, _, o = self.cqs("fig6-q14", "j9", "progress")
+        self.assertIn(("repeated"), {x["goal"] for x in o if x["cq"] == 8})
+
+    def test_cq9_in_q11_and_q15(self):
+        # pp. 868: rowing the dog promotes F and demotes P (CQ9), in q11 twice
+        for situation, n in (("fig5-q11", 2), ("fig7-q15", 1)):
+            _, _, o = self.cqs(situation, "j7", "friendship")
+            self.assertEqual(len([x for x in o if x["cq"] == 9 and x["value"] == "progress"]), n, situation)
+
+    def test_cq9_label_for_rowing_alone_in_q14(self):
+        # p. 868 says rowing alone "falls to the objection that the chicken will
+        # eat the seeds, demoting S (CQ9)". In q14 nothing supports rowing
+        # alone, so there is no argument CQ9 could question: the objection is
+        # the negative version of p. 859, an argument against rowing alone.
+        s = self.m.situation("fig6-q14")
+        self.assertEqual([a.sign for a in s.arguments() if a.action == "row_alone"], ["-"])
+
+    def test_obj6ai_is_cq17(self):
+        # p. 866 labels Obj6ai ("the chicken won't eat the seeds") CQ2, and Obj1a,
+        # which says the same, CQ17. Both transitions, j7 to q7 and j8 to q8,
+        # exist; which one follows is the chicken's choice: CQ17 by p. 859.
+        s, a, o = self.cqs("fig1-q0", "j8", "chicken_happy")         # Arg7's CH
+        self.assertIn("j7", {x["joint"] for x in o if x["cq"] == 17 and not x["answered"]})
+        self.assertEqual(s.tau[("q0", "j7")], "q7")
+        self.assertEqual(s.tau[("q0", "j8")], "q8")
+        claim = {"state": "q0", "agent": "farmer", "action": "row_dog", "joint": "j8", "result": "q8",
+                 "goal": "s_eaten", "value": "chicken_happy"}
+        self.assertNotIn(2, s.claim_problems(claim))                  # the transition is there
+
+    def test_cq5_has_no_instance_in_the_paper(self):
+        # Inferred: CQ5 needs two joint actions from the same state into the
+        # same state. In no figure and in no row of Table 1 is there such a
+        # pair, so the example cannot give CQ5 an unfavourable answer.
+        for path in (FARMER, TRAINS):
+            for s in aats.Model(path).situations:
+                for q in {q for (q, _) in s.tau}:
+                    results = [s.tau[(x, j)] for (x, j) in s.tau if x == q]
+                    self.assertEqual(len(results), len(set(results)), (s.name, q))
+
+    def test_cq7_wherever_cq6_is_named(self):
+        # Inferred: each value of the farmer has one kind of goal, so an
+        # alternative that realizes the same goal promotes the same value:
+        # Obj4b and the choice in q10 meet CQ7 as well as CQ6, and the paper
+        # names the narrower question.
+        for situation, joint, value, other in (("fig1-q0", "j5", "progress", "j9"), ("fig4-q10", "j5", "progress", "j7")):
+            _, _, o = self.cqs(situation, joint, value)
+            self.assertIn(other, {x["joint"] for x in o if x["cq"] == 6})
+            self.assertIn(other, {x["joint"] for x in o if x["cq"] == 7})
+        # Arg5 is an alternative way of promoting DH to Arg2 (and Obj4c's
+        # rowing the dog promotes P as well as F)
+        _, _, o = self.cqs("fig1-q0", "j3", "dog_happy")
+        self.assertIn("j6", {x["joint"] for x in o if x["cq"] == 7})
+        _, _, o = self.cqs("fig1-q0", "j5", "progress")
+        self.assertIn("j7", {x["joint"] for x in o if x["cq"] == 7})
+
+    def test_cq10_in_arg5_to_arg7(self):
+        # Inferred: Arg5 (P and DH), Arg6 (P and F), Arg7 (P, F and CH): each
+        # value supports the action the others support (p. 862: CQ10 endorses)
+        for joint, values in (("j6", {"progress", "dog_happy"}), ("j7", {"progress", "friendship"}),
+                              ("j8", {"progress", "friendship", "chicken_happy"})):
+            for v in values:
+                _, _, o = self.cqs("fig1-q0", joint, v)
+                self.assertEqual({x["value"] for x in o if x["cq"] == 10}, values - {v}, (joint, v))
+
+    def test_cq15_for_a_goal_outside_the_formulation(self):
+        # Inferred: p. 864 objects to a muzzled dog that "the representation
+        # contains no such proposition", CQ15's printed condition; the paper
+        # applies it to states (CQ12, CQ14). As the goal of an argument it is CQ15.
+        s = self.m.situation("fig1-q0")
+        claim = {"state": "q0", "agent": "farmer", "action": "row_dog", "joint": "j7", "result": "q7",
+                 "goal": "d_muzzled", "value": "chicken"}
+        self.assertIn(15, s.claim_problems(claim))
+
+    def test_figure_details_change_no_choice(self):
+        # Fig. 1 labels j4 -S -C +DH: the chicken eats the seeds there too
+        # (Obj2b), so CH could be +; Figs. 1 and 2 omit j0 (doing nothing in
+        # q0, a repetition). Neither changes a choice or Arg1's undercutter.
+        for name in ("fig1-q0", "fig2-q0"):
+            doc, sit = raw_situation(FARMER, name)
+            for t in sit["transitions"]:
+                if t["by"] == "j4" and name == "fig1-q0":
+                    t.setdefault("promotes", {})["chicken_happy"] = ["s_eaten"]
+            sit["states"]["q0_again"] = sit["states"]["q0"] + ["repeated"]
+            sit["transitions"].append({"from": "q0", "by": "j0", "to": "q0_again", "demotes": {"progress": ["repeated"]}})
+            s2, s1 = situation_from(doc, sit), self.m.situation(name)
+            for au in self.m.audiences:
+                self.assertEqual(s2.decide(self.m.audience(au)), s1.decide(self.m.audience(au)), (name, au))
+            if name == "fig1-q0":
+                arg1 = [a for a in s2.arguments() if (a.joint, a.value) == ("j2", "chicken_happy")][0]
+                self.assertTrue(s2.cq17_unanswered(arg1))
 
 
 class Formulation(unittest.TestCase):
@@ -220,7 +361,7 @@ class Formulation(unittest.TestCase):
         self.m = farmer()
         self.fig1 = self.m.situation("fig1-q0")
         self.arg8 = {"state": "q0", "agent": "farmer", "action": "row_chicken", "joint": "j9",
-                     "result": "q9", "goal": "c_right", "value": "progress"}
+                     "result": "q9", "goal": "right_1", "value": "progress"}
 
     def claim(self, sit, **change):
         c = dict(self.arg8)
@@ -241,12 +382,38 @@ class Formulation(unittest.TestCase):
         self.assertIn(15, self.claim(self.fig1, goal="d_muzzled"))
 
     def test_cq2_consequence_beyond_q9(self):
-        # j9 is claimed to reach q8: the transition (CQ2) and the goal's
-        # change (CQ3) are denied; delta is not asked of a transition that is not there
-        self.assertEqual(self.claim(self.fig1, result="q8"), [2, 3])
+        # p. 864: a joint action claimed to reach q_n with n > 9; q12 of the
+        # full problem, [D, BCS], is not among the states of Fig. 1
+        q12 = ["d_left", "b_right", "c_right", "s_right", "right_1", "right_2"]
+        self.assertEqual(self.claim(self.fig1, result=q12), [2, 14])
+        # a state of Fig. 1 that is not tau(q0, j9): the transition is denied,
+        # and the goal of transportation is still realized there (q8 has the dog across)
+        self.assertEqual(self.claim(self.fig1, result="q8"), [2])
 
-    def test_cq1_other_initial_state(self):
-        self.assertIn(1, self.claim(self.fig1, state="q1"))
+    def test_cq1_is_a_conjunction(self):
+        # p. 862: CQ1 is q0 != qx and q0 not in rho(alpha_i). Arguing from
+        # q18 that the farmer should go home (p. 864: "an initial state other
+        # than [BCDS, _]") meets it: going home cannot be done in q0.
+        home = {"state": ["b_right", "c_right", "d_right", "s_right", "right_1", "right_2", "right_3"],
+                "agent": "farmer", "action": "farmer_goes_home", "joint": "j10", "result": ["at_home"],
+                "goal": "at_home", "value": "progress"}
+        self.assertIn(1, self.fig1.claim_problems(home))
+        # a wrong initial state from which the action could also be done in
+        # q0 does not meet CQ1 as printed; the claimed transition fails (CQ2)
+        self.assertEqual(self.claim(self.fig1, state="q1"), [2])
+        # a transition that does not exist, to a state outside Q, is still CQ2 (p. 859)
+        self.assertIn(2, self.claim(self.fig1, state="q1", result=["d_muzzled"]))
+
+    def test_a_goal_that_becomes_false(self):
+        # AS2 allows a goal that becomes false (p. 861): rowing the dog back
+        # from q15 promotes F as d_right becomes false. CQ3 and CQ15 as printed
+        # (pa not in pi(qy); pa in no pi(q)) would object; read for this
+        # direction they do not
+        s = self.m.situation("fig7-q15")
+        claim = {"state": "q15", "agent": "farmer", "action": "row_dog", "joint": "j7", "result": "q17",
+                 "goal": "d_right", "value": "friendship"}
+        self.assertEqual(s.claim_problems(claim), [])
+        self.assertIn(3, s.claim_problems(dict(claim, result="q16")))      # where the dog stays across
 
     def test_cq16_values_dropped_by_the_reformulation(self):
         arg1 = {"state": "q0", "agent": "farmer", "action": "row_alone", "joint": "j2", "result": "q2",
@@ -454,7 +621,7 @@ class Contract(unittest.TestCase):
         # rowing the chicken back to q0, although q0 is visited again
         doc, sit = raw_situation(FARMER, "fig3-q9")
         sit["states"]["q0"] = sit["states"]["q0"] + ["repeated"]
-        sit["transitions"][2]["demotes"] = {"progress": ["c_right", "repeated"]}
+        sit["transitions"][2]["demotes"] = {"progress": ["right_1", "repeated"]}
         s = situation_from(doc, sit)
         m = farmer()
         for name in m.audiences:

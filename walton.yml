@@ -105,6 +105,7 @@ language:
   admired_people/2: "Everybody in this group of admired, popular people %s accepts %s."
   advocates_conclusion/3: "%s advocates argument %s, which has proposition %s as its conclusion."
   agent_bring_about/3: "If %s, as an agent, brings about %s, then %s will occur."
+  agent_not_bring_about/3: "If %s, as an agent, does not bring about %s, then %s will occur."
   agent_event/2: "Agent %s appears to have brought about observed event %s."
   all_parts_property/2: "All the parts of %s have the property %s."
   also_committed/2: "Generally, when an arguer is committed to %s, it can be inferred that he is also committed to %s."
@@ -1325,6 +1326,19 @@ argument_schemes:
       - event_false(A)
     assumptions: 
      - sufficient_correlation(H,A)
+
+  - id: negative_consequences_reasoning_omission
+    meta:
+      title: Argument From Consequences - Reasoning From Negative Consequences (omission)
+      source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press, ch. 9, entry 33.3, p. 332. Douglas Walton, A Pragmatic Theory of Fallacy. Tuscaloosa and London: University of Alabama Press, 1995. pp. 155-156. Douglas Walton, Scare Tactics. Dordrecht: Kluwer, 2000, p. 123."
+    variables: [A,B,P]
+    conclusions:
+      - should_do(P,A)
+    premises:
+      - agent_not_bring_about(P,A,B)
+      - bad_for_goals(P,B)
+    assumptions:
+      - omission_consequence_likelihood_adequate(A,B)
 
   - id: negative_consequences_prudential
     meta:

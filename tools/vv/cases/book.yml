@@ -1264,3 +1264,36 @@ cases:
     in:
       - rejected_as_deficient(arg1)
     variants: true
+  - name: negative_consequences_reasoning_omission/book
+    source: "33.3, p. 332, the printed '(don't bring about)' reading; Scare Tactics (2000), pp. 139-140: the forms apply to omissions, and the prudential inference for an omission, whose conclusion is to do A, is equivalent to arguing from negative consequences; p. 192, case 1.7: not quitting smoking leads to lung cancer"
+    assumptions:
+      - agent_not_bring_about(smoker,quit_smoking,lung_cancer)
+      - bad_for_goals(smoker,lung_cancer)
+    arguments:
+      - negative_consequences_reasoning_omission(quit_smoking,lung_cancer,smoker)
+    in:
+      - should_do(smoker,quit_smoking)
+    variants: true
+  - name: negative_consequences_reasoning_omission/likelihood-questioned
+    source: "33, CQ1 (p. 332): the likelihood that not quitting brings about lung cancer, questioned and not supported"
+    schemes: [negative_consequences_reasoning_omission]
+    assumptions:
+      - agent_not_bring_about(smoker,quit_smoking,lung_cancer)
+      - bad_for_goals(smoker,lung_cancer)
+    questioned:
+      - omission_consequence_likelihood_adequate(quit_smoking,lung_cancer)
+    not_in:
+      - should_do(smoker,quit_smoking)
+  - name: negative_consequences_reasoning_omission/opposite-consequences
+    source: "33, CQ3 (p. 333), Scare Tactics p. 192: quitting has its own negative side effects (weight gain); the two readings of 33.3 meet in one issue, and without a weighing neither side is accepted: the respondent must decide which goal matters more"
+    assumptions:
+      - agent_not_bring_about(smoker,quit_smoking,lung_cancer)
+      - bad_for_goals(smoker,lung_cancer)
+      - agent_bring_about(smoker,quit_smoking,weight_gain)
+      - bad_for_goals(smoker,weight_gain)
+    arguments:
+      - negative_consequences_reasoning_omission(quit_smoking,lung_cancer,smoker)
+      - negative_consequences_reasoning(quit_smoking,weight_gain,smoker)
+    out:
+      - should_do(smoker,quit_smoking)
+      - "¬should_do(smoker,quit_smoking)"

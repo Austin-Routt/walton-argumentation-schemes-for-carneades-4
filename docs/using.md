@@ -7,7 +7,7 @@ library today, and the command gives every label its `tests:` expect.
 
 ## Source approval and scope
 
-The full 148-record file is a preview. All 148 records have approved interpretations, recorded as `example-passed` and bound to current fingerprints; twelve inherited ones are approved against their compendium entries (D20), with the older works they cite compared where the owner supplied them (`reviews/final-closure.md`). Eight approvals of 2026-11-21 are the implementer's own, as their stamps say. The [current register](reviews/closure-current-register.md) gives the earlier dispositions.
+The full 149-record file is a preview. All 149 records have approved interpretations, recorded as `example-passed` and bound to current fingerprints; twelve inherited ones are approved against their compendium entries (D20), with the older works they cite compared where the owner supplied them (`reviews/final-closure.md`). Nine approvals of 2026-11-21 are the implementer's own, as their stamps say. The [current register](reviews/closure-current-register.md) gives the earlier dispositions.
 
 For practical reasoning there are three families: `practical_reasoning1` and `practical_reasoning2` (Walton 2015, as configured in Carneades), `practical_reasoning_as1` with its two negative versions (Atkinson and Bench-Capon 2007, AS1), and `practical_reasoning_as2` with its negative version, whose facts describe an action-based alternating transition system. The first two families share premises: questioning a default of one does not remove a conclusion that another still supports, so select the record you mean (`schemes:` in a case, or only its templates in a graph). For AS2, `python3 tools/aats.py cases MODEL` writes the facts of a model; `python3 tools/aats.py decide MODEL --audience v1,v2,...` gives the action an audience's value order chooses, which the engine's own weighing does not decide (`contracts.md`, contract 8). Selecting a scheme with the generator does not establish its source approval; read its ledger and contract.
 
@@ -21,7 +21,7 @@ Load the schemes needed for the question being evaluated. Loading the entire lib
 
 ## What to load
 
-* `walton.yml` holds every scheme (148 records) with the language templates
+* `walton.yml` holds every scheme (149 records) with the language templates
   they use and the negation issue scheme. It is the only hand-edited scheme
   file.
 * The category files (`A_reasoning/`, `B_source-based-arguments/`,

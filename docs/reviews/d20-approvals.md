@@ -1,6 +1,6 @@
 # Approvals against the compendium (decision D20)
 
-**Status, later the same day:** the owner supplied the originals; the three records still held below are closed, and AS1 and AS2 have records of their own (`final-closure.md`).
+**Status, later the same day:** the owner supplied the originals; the three records still held below are closed, and AS1 and AS2 have records of their own (`final-closure.md`). *Scare Tactics* (2000) was compared in a second round; the name `exeption_to_rule` is documented by the README's Updates of 2019-10-08 (Walton's correspondence of 2019-09-19, private).
 
 2026-11-21. On this date the owner decided D20: the compendium (Walton, Reed
 and Macagno 2008) is the source of record, and an inherited record filed under

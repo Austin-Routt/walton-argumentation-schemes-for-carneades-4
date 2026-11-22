@@ -10,16 +10,16 @@ The owner decisions are settled: add explicit finite part/whole and source-alter
 
 | Item | Current state |
 |---|---|
-| Records | 148: 119 book-origin, 24 inherited and 5 from Atkinson and Bench-Capon (2007) |
-| Approvals | 148 (128 at the closure review; 12 under D20; 8 in the final closure, by the implementer, who also wrote those changes: D14 not met, the owner's research is the second check) |
+| Records | 149: 120 book-origin, 24 inherited and 5 from Atkinson and Bench-Capon (2007) |
+| Approvals | 149 (128 at the closure review; 12 under D20; 9 in the final closure's two rounds, by the implementer, who also wrote those changes: D14 not met, the owner's research is the second check) |
 | Holds | none (`docs/reviews/final-closure.md`) |
 | Original 50 holds | all closed (35 by the closure review, 12 under D20, 3 in the final closure) |
 | Additions | 23 variants, all independently accepted within declared scope |
-| Compendium mapping | 137 records under 109 entries; 6 upstream-only; 5 publication-only |
+| Compendium mapping | 138 records under 109 entries; 6 upstream-only; 5 publication-only |
 | Entry approval coverage | every one of the 109 represented entries has an approved record |
-| Registered inventory | 10,365 distinct checks (9,989 before the final closure), plus separate Python/native/unit/vet/race gates |
+| Registered inventory | 10,428 distinct checks (9,989 before the final closure), plus separate Python/native/unit/vet/race gates |
 | Validator | 0 errors; 10 warnings: 5 unused inherited templates and 5 dependency-cycle groups |
-| Stable gate L | Passes: 148 of 148 rows at example-passed with an approval; run by `tools/vv/run.sh` |
+| Stable gate L | Passes: 149 of 149 rows at example-passed with an approval; run by `tools/vv/run.sh` |
 
 The current complete register and every original-hold outcome are `docs/reviews/closure-current-register.json` and its readable companion. The exact test inventory is `tools/vv/expected_checks.txt`. Historical reports retain their original counts and do not describe current status.
 
@@ -108,11 +108,11 @@ Both pass since the final closure, and `tools/vv/run.sh` runs the second. A reco
 
 ### B. Original sources (closed)
 
-Under D20 the twelve inherited records filed under compendium entries are approved against those entries. On 2026-11-21 the owner supplied Walton (1995), Walton (2015) and Walton (2002): `practical_reasoning2` and `exeption_to_rule` were compared, corrected and approved, and nineteen records approved against the compendium (eight of them under D20) have their original compared in a ledger note (`docs/reviews/final-closure.md`). Not supplied, and not a condition: *Scare Tactics* (2000), cited by 33.3 and 33.4, and the 2019 correspondence behind the name `exeption_to_rule`.
+Under D20 the twelve inherited records filed under compendium entries are approved against those entries. On 2026-11-21 the owner supplied Walton (1995), Walton (2015), Walton (2002) and Walton, *Scare Tactics* (2000): `practical_reasoning2` and `exeption_to_rule` were compared, corrected and approved; the six records citing *Scare Tactics* and nineteen others approved against the compendium have their original compared in a ledger note; 33.3's printed omission reading, which *Scare Tactics* (pp. 139-140) explains, became `negative_consequences_reasoning_omission` (`docs/reviews/final-closure.md`). The name `exeption_to_rule` comes from Walton's correspondence of 2019-09-19, recorded in the README's Updates of 2019-10-08; the e-mail is private, and the owner confirms the README as its official record. Works cited but not supplied (*Appeal to Expert Opinion*, *Slippery Slope Arguments*, *Witness Testimony Evidence* and the 2003 ICAIL paper, and the compendium's references for book-origin records) are research under D20, not conditions.
 
 ### C. AS1 and AS2 (closed, D24)
 
-`practical_reasoning1` is the value-based scheme of Walton (2015, pp. 92-93) and is approved as that. AS1 of Atkinson and Bench-Capon (2007), its two negative versions and AS2 are separate records, all seventeen questions sorted; `tools/aats.py` validates AATS models, generates the AS2 facts and arguments (which the suite checks the engine builds exactly) and implements the comparison contract.
+`practical_reasoning1` is the value-based scheme of Walton (2015, pp. 92-93) and is approved as that. AS1 of Atkinson and Bench-Capon (2007), its two negative versions and AS2 are separate records, all seventeen questions sorted; `tools/aats.py` validates AATS models, generates the AS2 facts and arguments (which the suite checks the engine builds exactly) and implements the comparison contract. Every question of the paper's examples, named or inferred, and every discrepancy between its definitions, figures and text, is recorded and tested (`docs/reviews/atkinson-2007-example.md`).
 
 ### D. Stable R2
 

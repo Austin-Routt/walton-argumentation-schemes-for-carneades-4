@@ -4,7 +4,7 @@ The owner supplied the three works the remaining holds waited for — Walton, *A
 
 The files were treated as untrusted input: each was unpacked into its own directory and read as text, with the PDF pages of Atkinson and Bench-Capon (2007) rendered as images where the text extraction loses symbols (≠ in the formal critical questions, the labels of Figs. 1-8). Only page references and short phrases are quoted here.
 
-**Reviewer.** Claude, the implementer, who also wrote every change below. The decision D14 asks that someone who did not write a change review it; that is not met for these eight records, and every stamp says so. The owner's independent research, announced for when the gaps are closed, is the second check.
+**Reviewer.** Claude, the implementer, who also wrote every change below. The decision D14 asks that someone who did not write a change review it; that is not met for these nine records (eight in the first round, one in the second), and every stamp says so. The owner's independent research, announced for when the gaps are closed, is the second check.
 
 ## 1. What the originals settle
 
@@ -20,7 +20,24 @@ The files were treated as untrusted input: each was unpacked into its own direct
 | `negative_normal_expectations`, `negative_practical` | 1995, pp. 150-151 (the compendium's reference) | only the argument from ignorance is printed there; these subtypes are not | notes; the compendium governs |
 | `waste`, `sunk_costs`, `sunk_costs_precommitment`, `commitment1`, `commitment2` | 2002, pp. 488-490 | waste: same form (p. 488); the article takes waste and sunk costs to be "essentially the same argument"; precommitment form p. 489; p. 490 prints the older one-premise commitment form and the new version | notes |
 
-Of these nineteen records, eight are inherited records approved under D20 and eleven are book-origin records approved against the compendium in the closure review; the compendium stays their source of record. `negative_consequences_prudential` and `negative_consequences_reasoning` cite *Scare Tactics* (2000), which was not supplied; they stay approved against the compendium.
+Of these nineteen records, eight are inherited records approved under D20 and eleven are book-origin records approved against the compendium in the closure review; the compendium stays their source of record.
+
+### Second round: Scare Tactics and the 2019 record
+
+Later the same day the owner supplied Walton, *Scare Tactics* (2000), and pointed to the record of the 2019 correspondence.
+
+| Record | Original | Finding | Done |
+|---|---|---|---|
+| `negative_consequences_reasoning` (33.3) | 2000, p. 140 | printed word for word as (Reas. Neg. Con.), on p. 140, not on p. 123, which the compendium cites for the whole of entry 33 and which prints 33.4's form | note |
+| `negative_consequences_reasoning_omission` (33.3) | 2000, pp. 139-140 | the printed alternative "(don't bring about)" of 33.3, which the closure review had left out: p. 139 says the forms apply to omissions and that the prudential inference, whose conclusion is to do A, is equivalent to arguing from negative consequences | **added**: concludes `should_do(P,A)`, the opponent of 33.3's `¬should_do(P,A)` in the issue 33.3 already uses (D19: a local reading of one conclusion, not a general equivalence); three cases, one from the smoking case of p. 192 |
+| `negative_consequences_prudential` (33.4) | 2000, p. 123 | (Inf Con.), word for word | note |
+| `pragmatic_alternative` (34) | 2000, p. 142 | (Arg. Alt.), word for word | note |
+| `ad_baculum` (35.1) | 2000, p. 142 | (Dis. Bac. Threat), word for word, on p. 142; p. 140, which the compendium cites, prints the conditional form, which the compendium does not list | note |
+| `fear` (36) | 2000, p. 22 | (CF) and (DF): two linked inferences, whose intermediate conclusion the compendium and the record state as premise 3; "stop" where the compendium says "prevent" | note |
+| `danger` (37) | 2000, p. 173 | (Dang. App.), word for word, "(on balance)" included | note |
+| `exeption_to_rule` | the original repository's README, Updates of 2019-10-08 | after correspondence with Douglas Walton on 2019-09-19, "Argument From Precedent" was changed to "Argument From Exception To A Rule"; this repository's history shows the change (commits 0b1dd95 and 16c09f2, 2019-09-22) altered only the id and title of upstream's `precedent`, and that the id's misspelling is that commit's. The e-mail is private and will not be available; the owner confirms the README as its official record | note; Walton's name agrees with the reading approved above (an argument from an exception granted in a decided case, not entry 57's conclusion that the rule must change); the id is kept (`docs/reviews.md`) |
+
+Scare Tactics prints no critical questions for entries 34-37; it says (p. 191) that the threat and fear forms are evaluated by the critical questions of practical reasoning of ch. 5, section 4 (p. 138). Those are five, though p. 191 calls them four (p. 138 notes that the second is not in doubt in these cases). The compendium attaches none to entries 34-37 and the records follow it (D20). The related thesis and paper are Başak Kurtuldu, *Douglas Walton's Argumentation Schemes and Applications* (master's thesis, Istanbul University) and "Douglas Walton'ın Argüman Biçimleri Yaklaşımı", *Felsefe Arkivi* 51 (2019), 161-178, doi:10.26650/arcp2019-5111.
 
 ## 2. AS1 and AS2: why both
 
@@ -56,13 +73,10 @@ CQ17 (p. 862) holds when another joint action with the same part for the agent l
 
 ## 6. Findings about the paper
 
-1. The example says it gives "at least one example of each of the seventeen critical questions" (p. 864) but labels thirteen: CQ5, CQ7, CQ10 and CQ15 are never named. CQ7 and CQ10 occur in the model (Obj4b; Arg5-Arg7); CQ5 and CQ15 are tested on constructed models and claims.
-2. Obj4b (p. 865) and the move in q10 (p. 868) are called CQ6, reading "putting a possession on the right bank" as one goal. On the AATS a goal is a proposition, and the objection meets CQ7's definition (same value, another goal); CQ6's holds only for the same proposition. The tests record both.
-3. Fig. 5 shows one −P on q11 to q10 and Fig. 7 one −P on q15 to q14, where the text counts two (Arg15, "severely"; "in two ways", p. 868). The models follow the text.
-4. Rowing the chicken back from q9 to q0 (Fig. 3) and from q18 to q16 revisit states, but the text counts only the move to the left bank. The models follow the text; counting the revisit changes no choice (tested).
-5. The trains' progress "demoted by staying still" (p. 870) has no proposition in Table 1 that changes, so AS2 has no goal for it — the gap the paper closes for the farmer by counting non-movement as repetition (p. 867). It is left out; adding it changes no choice (tested).
-6. The paper says the state lists the right bank first and the left second (p. 863), but writes the initial state [BCDS, _] and moves possessions into the second list; the models read the first list as the starting (left) bank.
+A second, line-by-line check of the examples, with the formal definitions read from the printed page, is `docs/reviews/atkinson-2007-example.md`: all seventeen questions with where the paper names them, the four it never names (CQ5, CQ7, CQ10, CQ15) inferred from the context, the relabelling of Obj6ai from CQ2 to CQ17, five problems in the printed definitions (CQ1 a conjunction, CQ3 and CQ15 one-directional, CQ6 printed with qy and so equal to CQ5, CQ8 impossible for δ as defined, CQ5-CQ7 and CQ11 overlapping CQ17), and seven differences between the figures and the text. It also corrects this review's first version, which called Obj4b mislabelled: the paper's goal for P is transportation, the models now encode it, and with it CQ6 is right.
 
 ## 7. Not claimed
 
 The comparison rule is a reading of the paper's narrative, validated against the choices it reports, not an algorithm the paper states. The AS2 records need the model's facts; they are meant to be fed by `tools/aats.py` or another generator of the same facts, and say nothing about how a model is built. `practical_reasoning1`, `practical_reasoning2` and `practical_reasoning_as1` share premises, so in one graph questioning an AS1 default does not remove a conclusion that `practical_reasoning2` still supports; the cases select the record they test. Approval binds the scheme, its templates and its ledger contract; it does not authenticate the reviewer, and the reviewer here is the implementer.
+
+**Originals not compared.** Under D20 the compendium is the source of record, and comparing the works it cites is research, not a condition. Every original the owner supplied has been compared. Not supplied, for the records approved under D20: Walton, *Appeal to Expert Opinion* (1997), cited by `expert_opinion`; Walton, *Slippery Slope Arguments* (Vale Press, 1999), cited by `slippery_slope_base_case` and `slippery_slope_inductive_step`; and Walton, Prakken and Reed (ICAIL 2003) with Walton, *Witness Testimony Evidence* (2008), cited by `witness_testimony`. The works cited by the 119 book-origin records were not compared either, except those listed above; identifiers are in `docs/reviews/d20-approvals.md`.

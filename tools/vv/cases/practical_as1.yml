@@ -157,7 +157,7 @@ cases:
     variants: true
 
   - name: practical_reasoning_as2/book
-    source: "pp. 861-862, AS2; p. 866, Arg8 on the AATS of Fig. 2: in q0 the farmer should row the chicken (j9), reaching q9, where c_right has changed, promoting progress"
+    source: "pp. 861-862, AS2; p. 866, Arg8 on the AATS of Fig. 2: in q0 the farmer should row the chicken (j9), reaching q9, where right_1 has changed (a possession is on the right bank: the goal of transportation, p. 864), promoting progress"
     assumptions:
       - current_state(q0)
       - model_state(q0)
@@ -166,12 +166,12 @@ cases:
       - precondition_holds(row_chicken,q0)
       - possible_joint_action(j9,q0)
       - transition(q0,j9,q9)
-      - proposition_changes(c_right,q0,q9)
-      - proposition_realizable(c_right)
+      - proposition_changes(right_1,q0,q9)
+      - proposition_realizable(right_1)
       - agent_value(farmer,progress)
-      - transition_promotes(q0,q9,c_right,progress)
+      - transition_promotes(q0,q9,right_1,progress)
     arguments:
-      - practical_reasoning_as2(farmer,row_chicken,j9,q0,q9,c_right,progress)
+      - practical_reasoning_as2(farmer,row_chicken,j9,q0,q9,right_1,progress)
     in:
       - should_perform(farmer,row_chicken)
     variants: true
