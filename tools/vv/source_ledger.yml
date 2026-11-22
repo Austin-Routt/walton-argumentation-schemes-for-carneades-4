@@ -901,8 +901,8 @@ records:
   - plan: '5.2'
     page: 314
     claim: interpretation
-  note: the record cites the reference the compendium prints after 6.4; 6.1's own is A Pragmatic Theory of Fallacy (1995),
-    p. 135 (5.9)
+  note: 'the record cites the reference the compendium prints after 6.4; 6.1''s own is A Pragmatic Theory of Fallacy (1995),
+    p. 135 (5.9) Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 135: the same scheme and the same five questions.'
   review:
     by: ChatGPT independent closure scope reviewer
     date: '2026-11-21'
@@ -1758,6 +1758,8 @@ records:
     decision: approved
     note: 'Approved only within the declared executable interpretation. Evidence: docs/reviews/first-half-complete-adjudication.md:
       waste; tools/vv/source_ledger.yml: waste; docs/reviews/record-dispositions.json: waste'
+  note: 'Original compared on 2026-11-21 (owner-supplied copy): 2002 article, p. 488: the same premises and conclusion (quoted
+    from Walton 1996, p. 80), no questions; 1995, pp. 156-157 prints the two the record sorts.'
 - record: sunk_costs_precommitment
   origin: book
   entry: '25'
@@ -1768,8 +1770,9 @@ records:
   - plan: '5.5'
     page: 327
     claim: interpretation
-  note: the first person is the agent P, as in entry 22 (5.6), and 'I should choose A' is should_do(P,A); added in 5.5, as
-    3.8 added the compendium's form of 50 and 57
+  note: 'the first person is the agent P, as in entry 22 (5.6), and ''I should choose A'' is should_do(P,A); added in 5.5,
+    as 3.8 added the compendium''s form of 50 and 57 Original compared on 2026-11-21 (owner-supplied copy): 2002 article,
+    p. 489: the same precommitment form, with no questions.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -1804,9 +1807,11 @@ records:
   - plan: '5.6'
     page: 327
     claim: interpretation
-  note: not_normal names the expectation since 5.4 Current approval requires case-qualified propositions or one declared situation,
-    with explicit application burden/probandum/standard metadata; see docs/dialogue-snapshots.md. The cited 1995/1996 predecessors
-    are not claimed independently verified.
+  note: 'not_normal names the expectation since 5.4 Current approval requires case-qualified propositions or one declared
+    situation, with explicit application burden/probandum/standard metadata; see docs/dialogue-snapshots.md. The cited 1995/1996
+    predecessors are not claimed independently verified. Original compared on 2026-11-21 (owner-supplied copy): 1995, pp.
+    150-151, the page the compendium cites, prints only the argument from ignorance; this subtype is not printed there. The
+    compendium governs (D20).'
   review:
     by: ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)
     date: '2026-11-21'
@@ -1841,12 +1846,14 @@ records:
   - plan: closure-review
     page: 327
     claim: interpretation
-  note: Source false-presumption branch for B more serious than C; the reverse ranking has a separate true-presumption record
+  note: 'Source false-presumption branch for B more serious than C; the reverse ranking has a separate true-presumption record
     and binary-choice applications explicitly declare one issue under the documented protocol. Search adequacy is challengeable;
     ultimate probandum, burden and proof standard follow the declared static graph contract. See docs/source-branch-contracts.md;
     bibliography predecessors are not claimed as inspected. Current approval requires case-qualified propositions or one declared
     situation, with explicit application burden/probandum/standard metadata; see docs/dialogue-snapshots.md. The cited 1995/1996
-    predecessors are not claimed independently verified.
+    predecessors are not claimed independently verified. Original compared on 2026-11-21 (owner-supplied copy): 1995, pp.
+    150-151, the page the compendium cites, prints only the argument from ignorance; this subtype is not printed there. The
+    compendium governs (D20).'
   review:
     by: ChatGPT integrating independent reviewer (non-author of the reviewed source/profile changes)
     date: '2026-11-21'
@@ -2246,7 +2253,9 @@ records:
     page: 333
     claim: interpretation
   note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 157: the same scheme; no questions are printed for it
+    there.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2399,7 +2408,10 @@ records:
     page: 335
     claim: interpretation
   note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 2002 article, p. 490: prints the older one-premise form (Walton
+    1996): a is committed to A, so a should support A. The compendium''s version 1, which the record follows (D20), adds the
+    inference from one commitment to another.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2429,7 +2441,9 @@ records:
     page: 335
     claim: interpretation
   note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 2002 article, p. 490: the same new version (major and minor premise,
+    conclusion), with no questions.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2605,7 +2619,8 @@ records:
     page: 338
     claim: interpretation
   note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 153: the same scheme and the same two questions.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2701,7 +2716,9 @@ records:
     page: 341
     claim: interpretation
   note: ' Independent source review 2026-11-21: approved the declared compendium interpretation, sorted questions and hand-checked
-    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.'
+    example expectations; details and scope in the independent entries-28-60 audit and docs/source-contracts-second-half.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 160: the same scheme; its questions are referred to Walton
+    (1992a, ch. 2), not printed.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -2955,7 +2972,9 @@ records:
     routes and case/rule scope are specified in docs/source-contracts-second-half.md. Independent source review 2026-11-21:
     approved the declared compendium interpretation, sorted questions and hand-checked example expectations; details and scope
     in the independent entries-28-60 audit and docs/source-contracts-second-half.md. Second check of the change by the implementer,
-    who did not write it (D14), 2026-11-21, against the printed p. 344: concurs; see docs/reviews/implementer-response.md.'
+    who did not write it (D14), 2026-11-21, against the printed p. 344: concurs; see docs/reviews/implementer-response.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 1995, pp. 147-148: the same scheme (if the case is an exception,
+    the rule can be waived); no questions are printed for it there.'
   review:
     by: ChatGPT independent source-review team (integrated adjudication)
     date: '2026-11-21'
@@ -3225,7 +3244,8 @@ records:
     kind: exception
     as: causes_both(E1,E2)
   note: ' Independent source review 2026-11-21: qualified. Original cited 1995 work not independently read. Preserve the explanatory-theory
-    policy qualification and require an application to justify causal evidence.'
+    policy qualification and require an application to justify causal evidence. Original compared on 2026-11-21 (owner-supplied
+    copy): 1995, p. 142: the same scheme with seven questions; the compendium prints three, which the record sorts (D20).'
   review:
     by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
@@ -3332,7 +3352,8 @@ records:
   note: 'Upstream rule-and-conclusion form, not the compendium actor/action form. Available-book CQ2 and CQ3 now have scoped
     exception hooks; verification of the original cited 1995 work remains open. Independent source review 2026-11-21: qualified.
     The two previously unmodeled book questions are operationally closed. Original 1995 source verification and exact actor/action
-    compendium-form coverage remain qualified.'
+    compendium-form coverage remain qualified. Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 147: the same
+    scheme (an established rule for x; x must carry out A unless an exception) and the same three questions.'
   changes:
   - plan: independent-review
     page: 343
@@ -3371,7 +3392,8 @@ records:
   note: 'concludes the statement itself where the book concludes that it should be accepted as more plausible; upstream''s
     wording (D5, 5.5) Independent source review 2026-11-21: qualified. Retain the declared-strength and unavailable-1995-source
     qualifications. A stable claim of exact compendium coverage needs a distinct graded formulation or an explicitly accepted
-    argument-weight policy.'
+    argument-weight policy. Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 152: the same scheme (good or
+    bad character) and the same three questions.'
   review:
     by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
@@ -3406,7 +3428,9 @@ records:
     legacy variant outside a fully source-certified release, or replace/add a scoped reduced-plausibility formulation and
     cases. The cited 1995 work remains unverified. Closure correction supersedes the old behavior: reduced plausibility is
     explicit and no longer concludes the negation of the assertion. Second check, by the implementer (a different system from
-    the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.'
+    the author and from the closure''s own reviewers; D14), 2026-11-21, against the printed p. 336: concurs. See docs/reviews/implementer-second-response.md.
+    Original compared on 2026-11-21 (owner-supplied copy): 1995, p. 152: the same scheme (good or bad character) and the same
+    three questions.'
   review:
     by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
@@ -3497,6 +3521,8 @@ records:
       Earlier hold: Compare the cited 1995 source and specify application-supplied dialogue burden/probandum independently
       of the issue proof standard; add examples for the chosen burden contract. Evidence: docs/reviews/record-dispositions.json:
       ignorance'
+  note: 'Original compared on 2026-11-21 (owner-supplied copy): 1995, pp. 150-151: the same scheme (if A were true it would
+    be known; it is not known; so A is not true), with no numbered questions; the record''s follow the compendium.'
 - record: negative_consequences
   origin: upstream
   entry: '33.2'
@@ -3520,7 +3546,8 @@ records:
   note: 'Book-supported adaptation of the inherited form: CQ1 is now modeled without imposing a fixed strong-likelihood threshold.
     CQ2 remains the causal/consequence premise. Verification against the original cited 1995 source remains open. Independent
     source review 2026-11-21: qualified. The original cited 1995 work remains unverified; this is an explicit adaptation of
-    the inherited schema from the supplied compendium.'
+    the inherited schema from the supplied compendium. Original compared on 2026-11-21 (owner-supplied copy): 1995, pp. 155-156:
+    one scheme for good and bad consequences, with the same three questions.'
   changes:
   - plan: independent-review
     page: 332
@@ -3590,7 +3617,8 @@ records:
   note: 'Book-supported adaptation of the inherited form: CQ1 is now modeled without imposing a fixed strong-likelihood threshold.
     CQ2 remains the causal/consequence premise. Verification against the original cited 1995 source remains open. Independent
     source review 2026-11-21: qualified. The compendium-supported hook closes this operational gap. Preserve the original
-    cited-source hold: the 1995 work was not independently read.'
+    cited-source hold: the 1995 work was not independently read. Original compared on 2026-11-21 (owner-supplied copy): 1995,
+    pp. 155-156: one scheme for good and bad consequences, with the same three questions.'
   review:
     by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
@@ -3605,146 +3633,621 @@ records:
       numerical threshold; compare the original cited 1995 form before original-source approval. Evidence: docs/reviews/record-dispositions.json:
       positive_consequences'
 - record: practical_reasoning1
-  review:
-    by: ChatGPT independent source-review team (integrated adjudication)
-    date: '2026-11-21'
-    decision: hold
-    note: 'Preserve the legacy flat AS1 record; implement a separate explicitly scoped AATS variant/adapter or documented
-      model-validation contract covering CQ5,6,7,11,12,14,15,17, plus agent/transition/value and CQ8-9 policy differences;
-      retain CQ10 as support. Evidence: docs/reviews/record-dispositions.json: practical_reasoning1'
   origin: upstream
+  cites: Douglas Walton, Goal-Based Reasoning for Argumentation, Cambridge University Press, 2015, pp. 92-93 (the scheme as
+    configured in Carneades), following Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation
+    using action based alternating transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874.
+  claim: transcription
+  stage: example-passed
+  source_questions: 7
+  questions:
+  - n: 1
+    kind: assumption
+    as: legitimate_value(V)
+    note: 'p. 93, assumption: V is a legitimate value'
+  - n: 2
+    kind: assumption
+    as: worthy_goal(G)
+    note: 'p. 93, assumption: G is a worthy goal'
+  - n: 3
+    kind: assumption
+    as: possible(A)
+    note: 'p. 93, assumption: Action A is possible'
+  - n: 4
+    kind: exception
+    as: bring_about_more_effectively(S2,A)
+    note: p. 93, exception
+  - n: 5
+    kind: exception
+    as: realize_more_effectively(G,A)
+    note: p. 93, exception
+  - n: 6
+    kind: exception
+    as: promote_more_effectively(V,A)
+    note: p. 93, exception
+  - n: 7
+    kind: exception
+    as: side_effects(A,S1)
+    note: 'p. 93, exception: side effects which demote V or some other value; the template says "some value", which includes
+      V'
+  note: 'Re-sourced on 2026-11-21 from the owner-supplied Walton (2015): the record is, premise for premise, the value-based
+    scheme printed on pp. 92-93 as "currently configured in the CAS", which the book says follows Atkinson and Bench-Capon
+    (2007). The CAS form prints its critical questions as three assumptions and four exceptions; source_questions counts these
+    seven, numbered in printed order. It is not Atkinson and Bench-Capon''s AS1: their seventeen questions are sorted on practical_reasoning_as1
+    and its negative versions, and the AATS form on practical_reasoning_as2. The earlier comparison with the 2007 paper (docs/reviews/atkinson-2007.md)
+    is kept for the record; its farmer cases stay in atkinson_2007.yml.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: 'Approved against Walton (2015), pp. 92-93: premises, conclusion, the three assumptions and the four exceptions
+      of the printed configuration. Reference case: the Smart Car (pp. 90-92). Earlier hold: Preserve the legacy flat AS1
+      record; implement a separate explicitly scoped AATS variant/adapter or documented model-validation contract covering
+      CQ5,6,7,11,12,14,15,17, plus agent/transition/value and CQ8-9 policy differences; retain CQ10 as support. Evidence:
+      docs/reviews/record-dispositions.json: practical_reasoning1 See docs/reviews/final-closure.md.'
+- record: practical_reasoning2
+  origin: upstream
+  cites: Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press, pp. 93-94.
+  claim: correction
+  stage: example-passed
+  source_questions: 7
+  questions:
+  - n: 1
+    kind: assumption
+    as: possible_goal(G)
+    note: 'p. 93, assumption: G is possible (was possible(G), whose template reads "Action G is possible")'
+  - n: 2
+    kind: assumption
+    as: possible(A)
+    note: 'p. 93, assumption: Action A is possible'
+  - n: 3
+    kind: exception
+    as: bring_about_more_effectively(S2,A)
+    note: p. 94, exception
+  - n: 4
+    kind: exception
+    as: realize_more_effectively(G,A)
+    note: p. 94, exception
+  - n: 5
+    kind: exception
+    as: intervening_actions(A,G)
+    note: p. 94, exception
+  - n: 6
+    kind: exception
+    as: side_effects_to_consider(A,S1)
+    note: 'p. 94, exception: side effects that need to be taken into account (was side_effects(A,S1), the value-based wording
+      of p. 93)'
+  - n: 7
+    kind: exception
+    as: incompatible_goal(G)
+    note: p. 94, exception
+  changes:
+  - plan: final-closure
+    page: 94
+    claim: correction
+  - plan: final-closure
+    page: 94
+    claim: correction
+  note: 'Compared on 2026-11-21 with the owner-supplied Walton (2015), pp. 93-94, the "new version" of the instrumental scheme
+    configured in the CAS. Premises and conclusion match. Two statements said something else than the print and are corrected
+    (tools/migration_r2.yml): the goal assumption read "Action G is possible" and the side-effect exception spoke of demoted
+    values, which belongs to the value-based scheme. The CAS form prints its critical questions as two assumptions and five
+    exceptions; source_questions counts these seven. would_be_realized(G,S2) makes G the goal: a negative argument states
+    what it avoids with would_obtain, so that this scheme does not take it for a goal.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: 'Approved against Walton (2015), pp. 93-94, with the two corrections. Reference case: the Smart Car read instrumentally
+      (p. 90). Earlier: Obtain Walton (2015), locate and compare the actual instrumental schema and all its questions, inventory
+      the printed CQ count, then review burdens and a genuinely source-grounded reference example. Evidence: docs/reviews/record-dispositions.json:
+      practical_reasoning2 Source: doi:10.1017/CBO9781316340554 (docs/reviews/d20-approvals.md). See docs/reviews/final-closure.md.'
+- record: practical_reasoning_as1
+  origin: publication
   cites: Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating
-    transition systems. Artificial Intelligence 171, 10-15 (2007), 855–874.
+    transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 858 (AS1 and CQ1-CQ16), p. 859 (CQ17).
   claim: interpretation
-  stage: transcription-checked
+  stage: example-passed
   source_questions: 17
+  comparison: value-based-choice
   questions:
   - n: 1
     kind: premise
-    as: current_circumstances(S1)
-    note: p. 858; AS1 circumstances. AS2 also makes the acting agent's action preconditions explicit (pp. 861-862).
+    as: current_circumstances(R)
+    note: p. 858 CQ1
   - n: 2
     kind: premise
-    as: would_bring_about(A,S1,S2)
-    note: pp. 858, 862; the asserted transition. This does not separately model the other agents' choices in CQ17.
+    as: would_bring_about(A,R,S)
+    note: p. 858 CQ2
   - n: 3
     kind: premise
-    as: would_be_realized(G,S2)
-    note: pp. 858, 862; goal in the resulting state. AS2 additionally represents whether the proposition changes between states.
+    as: would_be_realized(G,S)
+    note: p. 858 CQ3
   - n: 4
     kind: premise
     as: would_promote_value(G,V)
-    note: pp. 858, 861-862; AS1 abstraction. AS2 values are agent-specific and transition-relative; this inherited relation
-      omits those arguments.
+    note: p. 858 CQ4; p. 863 CQ4b
   - n: 5
     kind: alternative
-    note: pp. 858-859, 862; another action achieving the same consequences. bring_about_more_effectively(S2,A) is a stronger
-      application policy, not a complete mapping.
+    as: should_be_performed(A)
+    note: 'pp. 858-859, 862: another instance of this scheme for another action with the same consequences; the comparison
+      contract compares the two'
   - n: 6
     kind: alternative
-    note: pp. 858-859, 862; another action achieving the same goal. realize_more_effectively(G,A) is a stronger application
-      policy, not a complete mapping.
+    as: should_be_performed(A)
+    note: 'pp. 858-859, 862: the same goal by another action'
   - n: 7
     kind: alternative
-    note: pp. 858-859, 862; another action promoting the same value. promote_more_effectively(V,A) is a stronger application
-      policy, not a complete mapping.
+    as: should_be_performed(A)
+    note: 'pp. 858-859, 862: the same value by another action'
   - n: 8
-    kind: exception
-    as: side_effects(A,S1)
-    note: 'pp. 858-859, 862; legacy approximation only: merges same-value and other-value demotion and undercuts unconditionally,
-      without a negative AS1 argument or value comparison.'
+    kind: rebuttal
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ8, p. 859: practical_reasoning_as1_demotion for the same value'
   - n: 9
-    kind: exception
-    as: side_effects(A,S1)
-    note: pp. 858-859, 862, 868; legacy approximation only. The paper allows a contrary preference to defeat a negative side-effect
-      argument; this aggregate exception does not.
+    kind: rebuttal
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ9, p. 859: practical_reasoning_as1_demotion for another value'
   - n: 10
     kind: support
     as: should_be_performed(A)
-    note: p. 862 explicitly treats this as positive support, not a reason against performing A. Another goal/value instantiation
-      can support the same conclusion; the farmer's Arg6 (p. 866) promotes P and F. This is the AS1 abstraction, not full
-      agent/transition modelling.
+    note: 'p. 862: CQ10 supports the action: another instance of AS1 for another value'
   - n: 11
-    kind: alternative
-    note: pp. 858-859, 862, 865; the action precludes another action promoting a different value. No explicit incompatibility
-      relation, alternative witness or value comparison in this record.
+    kind: rebuttal
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ11, p. 859: practical_reasoning_as1_preclusion'
   - n: 12
     kind: assumption
-    note: pp. 858, 862; whether the described initial circumstances are possible. No corresponding default or AATS state-membership
-      check; proposed burden is an executable interpretation, not stated by the paper.
+    as: circumstances_possible(R)
+    note: p. 858 CQ12
   - n: 13
     kind: assumption
     as: possible(A)
-    note: pp. 858, 862; action feasibility. The default/questioning burden is Carneades' policy; the paper formalizes joint-action
-      membership.
+    note: p. 858 CQ13
   - n: 14
     kind: assumption
-    note: pp. 858, 862; whether the described consequences are possible. No corresponding default or AATS successor-state
-      membership check; proposed burden is an executable interpretation.
+    as: consequences_possible(S)
+    note: p. 858 CQ14
   - n: 15
     kind: assumption
-    note: pp. 858, 862; whether the goal is realizable in any state. worthy_goal(G) is a different claim. No realizability
-      mapping; proposed burden is an executable interpretation.
+    as: goal_realizable(G)
+    note: p. 858 CQ15
   - n: 16
     kind: assumption
     as: legitimate_value(V)
-    note: pp. 858, 862, 865; value membership/legitimacy. The default/questioning burden is Carneades' policy.
+    note: p. 858 CQ16
   - n: 17
-    kind: assumption
-    note: p. 859 introduces the additional CQ; p. 862 distinguishes the other agents' joint-action choices from CQ2. No agent/joint-action/cooperation
-      mapping; proposed burden is an executable interpretation.
-  - n: 0
-    kind: assumption
-    as: worthy_goal(G)
-    note: 'Inherited application policy, not CQ15: worthiness is not realizability.'
-  - n: 0
-    kind: exception
-    as: bring_about_more_effectively(S2,A)
-    note: Inherited stronger policy related to CQ5; the paper's question does not require greater effectiveness.
-  - n: 0
-    kind: exception
-    as: realize_more_effectively(G,A)
-    note: Inherited stronger policy related to CQ6; the paper's question does not require greater effectiveness.
-  - n: 0
-    kind: exception
-    as: promote_more_effectively(V,A)
-    note: Inherited stronger policy related to CQ7; the paper's question does not require greater effectiveness.
-  note: 'Independently compared with the supplied 20-page 2007 paper, SHA-256 dad4124c052c48b5c82de02494aac6971de113bb8452ae9fc6e764aa35e43cbc.
-    AS1 and CQ1-16 are on printed p. 858 (PDF 4), CQ17 on p. 859 (PDF 5), AS2 and formal treatments on pp. 861-862 (PDF 7-8).
-    The four premises and conclusion are a flat AS1 adaptation; defaults and unconditional exceptions are inherited policy.
-    Ten CQ mappings lack full-source treatment: five partial (5,6,7,8,9) and five absent (11,12,14,15,17). The historical
-    eight-item worklist omitted the partial CQ8-9 policies; CQ10 remains positive supporting argument within the flat AS1
-    scope. Source comparison is complete, but full interpretation approval is withheld. The corrected reference case is farmer
-    Arg8 (p. 866), with a separate positive-value case based on Arg6. See docs/reviews/atkinson-2007.md for scope, evidence
-    and release decision.'
-- record: practical_reasoning2
-  origin: upstream
-  cites: Walton, Douglas (2015). Goal-Based Reasoning for Argumentation. Cambridge University Press.
-  claim: unchecked
-  stage: mapped
+    kind: premise
+    as: would_bring_about(A,R,S)
+    note: 'p. 859: CQ17 asks whether the other agents will do their part of a joint action; "in [3] this objection was subsumed
+      under CQ2". AS1 has no joint actions; practical_reasoning_as2 asks it separately (others_may_prevent)'
+  note: 'Added on 2026-11-21 from the owner-supplied paper: AS1 and CQ1-CQ16 on p. 858, CQ17 on p. 859. The scheme is printed;
+    that CQ12-CQ16 are defaults which fail when questioned is Carneades'' burden policy, the paper says only that an unfavourable
+    answer attacks the argument. CQ5-CQ7 pose a competing instance for another action, which the comparison contract value-based-choice
+    weighs by an audience''s value order (docs/contracts.md, contract 8); the engine alone does not choose.'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
     date: '2026-11-21'
-    decision: open
-    note: 'Obtain Walton (2015), locate and compare the actual instrumental schema and all its questions, inventory the printed
-      CQ count, then review burdens and a genuinely source-grounded reference example. Evidence: docs/reviews/record-dispositions.json:
-      practical_reasoning2 Source: doi:10.1017/CBO9781316340554 (docs/reviews/d20-approvals.md).'
+    decision: approved
+    note: Approved against Atkinson and Bench-Capon (2007), AS1 and CQ1-CQ16 on p. 858, CQ17 on p. 859. See docs/reviews/final-closure.md.
+- record: practical_reasoning_as1_demotion
+  origin: publication
+  cites: Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating
+    transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 859 (the negative version used to pose CQ8
+    and CQ9).
+  claim: interpretation
+  stage: example-passed
+  source_questions: 17
+  comparison: value-based-choice
+  questions:
+  - n: 1
+    kind: premise
+    as: current_circumstances(R)
+    note: p. 858 CQ1
+  - n: 2
+    kind: premise
+    as: would_bring_about(A,R,S)
+    note: p. 858 CQ2
+  - n: 3
+    kind: premise
+    as: would_obtain(G,S)
+    note: 'p. 858 CQ3; p. 859: a state containing features (a "goal")'
+  - n: 4
+    kind: premise
+    as: would_demote_value(G,V)
+    note: p. 858 CQ4; p. 863 CQ4b
+  - n: 5
+    kind: alternative
+    as: ¬should_be_performed(A)
+    note: 'pp. 858-859, 862: another instance of this scheme for another action with the same consequences; the comparison
+      contract compares the two'
+  - n: 6
+    kind: alternative
+    as: ¬should_be_performed(A)
+    note: 'pp. 858-859, 862: the same goal by another action'
+  - n: 7
+    kind: alternative
+    as: ¬should_be_performed(A)
+    note: 'pp. 858-859, 862: the same value by another action'
+  - n: 8
+    kind: support
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ8, p. 859: practical_reasoning_as1_demotion for the same value; for a negative version the questions about
+      side effects are mirrored: a further demoted or precluded value adds to the reason to refrain, a promoted one rebuts
+      it'
+  - n: 9
+    kind: support
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ9, p. 859: practical_reasoning_as1_demotion for another value'
+  - n: 10
+    kind: rebuttal
+    as: should_be_performed(A)
+    note: 'p. 862: CQ10 supports the action: another instance of AS1 for another value'
+  - n: 11
+    kind: support
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ11, p. 859: practical_reasoning_as1_preclusion'
+  - n: 12
+    kind: assumption
+    as: circumstances_possible(R)
+    note: p. 858 CQ12
+  - n: 13
+    kind: assumption
+    as: possible(A)
+    note: p. 858 CQ13
+  - n: 14
+    kind: assumption
+    as: consequences_possible(S)
+    note: p. 858 CQ14
+  - n: 15
+    kind: assumption
+    as: goal_realizable(G)
+    note: p. 858 CQ15
+  - n: 16
+    kind: assumption
+    as: legitimate_value(V)
+    note: p. 858 CQ16
+  - n: 17
+    kind: premise
+    as: would_bring_about(A,R,S)
+    note: 'p. 859: CQ17 asks whether the other agents will do their part of a joint action; "in [3] this objection was subsumed
+      under CQ2". AS1 has no joint actions; practical_reasoning_as2 asks it separately (others_may_prevent)'
+  note: 'Added on 2026-11-21 from the owner-supplied paper: the negative version for CQ8 and CQ9, p. 859. The scheme is printed;
+    that CQ12-CQ16 are defaults which fail when questioned is Carneades'' burden policy, the paper says only that an unfavourable
+    answer attacks the argument. CQ5-CQ7 pose a competing instance for another action, which the comparison contract value-based-choice
+    weighs by an audience''s value order (docs/contracts.md, contract 8); the engine alone does not choose. The paper says
+    the negative versions are "subject to the same set of critical questions" (p. 859); their sorting, mirrored for side effects,
+    is this project''s.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: Approved against Atkinson and Bench-Capon (2007), the negative version for CQ8 and CQ9, p. 859. See docs/reviews/final-closure.md.
+- record: practical_reasoning_as1_preclusion
+  origin: publication
+  cites: Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating
+    transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 859 (the negative version used to pose CQ11).
+  claim: interpretation
+  stage: example-passed
+  source_questions: 17
+  comparison: value-based-choice
+  questions:
+  - n: 1
+    kind: premise
+    as: current_circumstances(R)
+    note: p. 858 CQ1
+  - n: 2
+    kind: premise
+    as: would_bring_about(A,R,S)
+    note: p. 858 CQ2
+  - n: 3
+    kind: premise
+    as: excludes_goal(S,G)
+    note: 'p. 858 CQ3; p. 859: a state containing features (a "goal")'
+  - n: 4
+    kind: premise
+    as: would_promote_value(G,V)
+    note: p. 858 CQ4; p. 863 CQ4b
+  - n: 5
+    kind: alternative
+    as: ¬should_be_performed(A)
+    note: 'pp. 858-859, 862: another instance of this scheme for another action with the same consequences; the comparison
+      contract compares the two'
+  - n: 6
+    kind: alternative
+    as: ¬should_be_performed(A)
+    note: 'pp. 858-859, 862: the same goal by another action'
+  - n: 7
+    kind: alternative
+    as: ¬should_be_performed(A)
+    note: 'pp. 858-859, 862: the same value by another action'
+  - n: 8
+    kind: support
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ8, p. 859: practical_reasoning_as1_demotion for the same value; for a negative version the questions about
+      side effects are mirrored: a further demoted or precluded value adds to the reason to refrain, a promoted one rebuts
+      it'
+  - n: 9
+    kind: support
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ9, p. 859: practical_reasoning_as1_demotion for another value'
+  - n: 10
+    kind: rebuttal
+    as: should_be_performed(A)
+    note: 'p. 862: CQ10 supports the action: another instance of AS1 for another value'
+  - n: 11
+    kind: support
+    as: ¬should_be_performed(A)
+    note: 'p. 858 CQ11, p. 859: practical_reasoning_as1_preclusion'
+  - n: 12
+    kind: assumption
+    as: circumstances_possible(R)
+    note: p. 858 CQ12
+  - n: 13
+    kind: assumption
+    as: possible(A)
+    note: p. 858 CQ13
+  - n: 14
+    kind: assumption
+    as: consequences_possible(S)
+    note: p. 858 CQ14
+  - n: 15
+    kind: assumption
+    as: goal_realizable(G)
+    note: p. 858 CQ15
+  - n: 16
+    kind: assumption
+    as: legitimate_value(V)
+    note: p. 858 CQ16
+  - n: 17
+    kind: premise
+    as: would_bring_about(A,R,S)
+    note: 'p. 859: CQ17 asks whether the other agents will do their part of a joint action; "in [3] this objection was subsumed
+      under CQ2". AS1 has no joint actions; practical_reasoning_as2 asks it separately (others_may_prevent)'
+  note: 'Added on 2026-11-21 from the owner-supplied paper: the negative version for CQ11, p. 859. The scheme is printed;
+    that CQ12-CQ16 are defaults which fail when questioned is Carneades'' burden policy, the paper says only that an unfavourable
+    answer attacks the argument. CQ5-CQ7 pose a competing instance for another action, which the comparison contract value-based-choice
+    weighs by an audience''s value order (docs/contracts.md, contract 8); the engine alone does not choose. The paper says
+    the negative versions are "subject to the same set of critical questions" (p. 859); their sorting, mirrored for side effects,
+    is this project''s.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: Approved against Atkinson and Bench-Capon (2007), the negative version for CQ11, p. 859. See docs/reviews/final-closure.md.
+- record: practical_reasoning_as2
+  origin: publication
+  cites: Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating
+    transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, pp. 860-861 (the AATS extended with values, and
+    AS2), p. 862 (the critical questions defined on the AATS).
+  claim: interpretation
+  stage: example-passed
+  source_questions: 17
+  comparison: value-based-choice
+  questions:
+  - n: 1
+    kind: premise
+    as: current_state(Q0)
+    note: 'p. 862 CQ1 (epistemic): q0 = qx; its second clause, q0 not in rho(alpha_i), is the premise precondition_holds(Al,Q0)'
+  - n: 2
+    kind: premise
+    as: transition(Q0,J,Q1)
+    note: 'p. 862 CQ2: tau(qx, jn) is not qy'
+  - n: 3
+    kind: premise
+    as: proposition_changes(P,Q0,Q1)
+    note: 'p. 862 CQ3: the goal pa does not change between qx and qy'
+  - n: 4
+    kind: premise
+    as: transition_promotes(Q0,Q1,P,V)
+    note: 'p. 862 CQ4: delta(qx, qy, vu) is not +; the value is attached to the goal that realizes it (p. 868, footnote 5)'
+  - n: 5
+    kind: alternative
+    as: should_perform(I,Al)
+    note: 'p. 862 CQ5: another joint action reaching qy'
+  - n: 6
+    kind: alternative
+    as: should_perform(I,Al)
+    note: 'p. 862 CQ6: another joint action changing pa'
+  - n: 7
+    kind: alternative
+    as: should_perform(I,Al)
+    note: 'p. 862 CQ7: another joint action promoting vu'
+  - n: 8
+    kind: rebuttal
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ8: the transition demotes vu through another goal (practical_reasoning_as2_demotion)'
+  - n: 9
+    kind: rebuttal
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ9: the transition demotes another value'
+  - n: 10
+    kind: support
+    as: should_perform(I,Al)
+    note: 'p. 862 CQ10: the transition promotes another value'
+  - n: 11
+    kind: alternative
+    as: should_perform(I,Al)
+    note: 'p. 862 CQ11: another joint action promoting another value'
+  - n: 12
+    kind: premise
+    as: model_state(Q0)
+    note: 'p. 862 CQ12: qx not in Q'
+  - n: 13
+    kind: premise
+    as: joint_action_part(J,I,Al)
+    note: 'p. 862 CQ13: jn not in J_Ag, with jn_i = alpha_i'
+  - n: 14
+    kind: premise
+    as: model_state(Q1)
+    note: 'p. 862 CQ14: tau(qx, jn) not in Q'
+  - n: 15
+    kind: premise
+    as: proposition_realizable(P)
+    note: 'p. 862 CQ15: pa in pi(q) for no q'
+  - n: 16
+    kind: premise
+    as: agent_value(I,V)
+    note: 'p. 862 CQ16: vu not in V (here: not among agent i''s values Av_i)'
+  - n: 17
+    kind: exception
+    as: others_may_prevent(Q0,J,I,V)
+    note: 'p. 862 CQ17: another joint action with the same part for i leads elsewhere. tools/aats.py states the exception
+      only when some such joint action, which no assurance of i excludes, does not promote V: Obj2bi (p. 865) and the eastbound
+      train in q7 (p. 871) answer CQ17 by the value being promoted anyway'
+  note: 'Added on 2026-11-21: AS2 (p. 861) with the AATS of pp. 860-861 as facts, which tools/aats.py states from a model
+    and validates; the critical questions as p. 862 defines them on the AATS. Representation choices: the conclusion is the
+    agent''s part of the joint action (should_perform(I,Al), "participate in jn where jn_i = alpha_i"), so that arguments
+    about different joint actions with the same part meet in one issue; each promotion or demotion is attached to the goal
+    that realizes it (p. 868, footnote 5). Validated on the farmer and the trains: tools/aats_models, tools/test_aats.py,
+    cases/practical_as2.yml.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: Approved against Atkinson and Bench-Capon (2007), pp. 860-862, with the validation of sections 6 and 7. See docs/reviews/final-closure.md.
+- record: practical_reasoning_as2_demotion
+  origin: publication
+  cites: Atkinson, K., and Bench-Capon, T. J. M. Practical reasoning as presumptive argumentation using action based alternating
+    transition systems. Artificial Intelligence 171, 10-15 (2007), 855-874, p. 859 (negative versions), pp. 861-862 (AS2 and
+    its critical questions), pp. 867-869 (the negative arguments of the example).
+  claim: interpretation
+  stage: example-passed
+  source_questions: 17
+  comparison: value-based-choice
+  questions:
+  - n: 1
+    kind: premise
+    as: current_state(Q0)
+    note: 'p. 862 CQ1 (epistemic): q0 = qx; its second clause, q0 not in rho(alpha_i), is the premise precondition_holds(Al,Q0)'
+  - n: 2
+    kind: premise
+    as: transition(Q0,J,Q1)
+    note: 'p. 862 CQ2: tau(qx, jn) is not qy'
+  - n: 3
+    kind: premise
+    as: proposition_changes(P,Q0,Q1)
+    note: 'p. 862 CQ3: the goal pa does not change between qx and qy'
+  - n: 4
+    kind: premise
+    as: transition_demotes(Q0,Q1,P,V)
+    note: 'p. 862 CQ4: delta(qx, qy, vu) is not -; the value is attached to the goal that realizes it (p. 868, footnote 5)'
+  - n: 5
+    kind: alternative
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ5: another joint action reaching qy'
+  - n: 6
+    kind: alternative
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ6: another joint action changing pa'
+  - n: 7
+    kind: alternative
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ7: another joint action promoting vu'
+  - n: 8
+    kind: support
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ8: the transition demotes vu through another goal (practical_reasoning_as2_demotion)'
+  - n: 9
+    kind: support
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ9: the transition demotes another value'
+  - n: 10
+    kind: rebuttal
+    as: should_perform(I,Al)
+    note: 'p. 862 CQ10: the transition promotes another value'
+  - n: 11
+    kind: alternative
+    as: ¬should_perform(I,Al)
+    note: 'p. 862 CQ11: another joint action promoting another value'
+  - n: 12
+    kind: premise
+    as: model_state(Q0)
+    note: 'p. 862 CQ12: qx not in Q'
+  - n: 13
+    kind: premise
+    as: joint_action_part(J,I,Al)
+    note: 'p. 862 CQ13: jn not in J_Ag, with jn_i = alpha_i'
+  - n: 14
+    kind: premise
+    as: model_state(Q1)
+    note: 'p. 862 CQ14: tau(qx, jn) not in Q'
+  - n: 15
+    kind: premise
+    as: proposition_realizable(P)
+    note: 'p. 862 CQ15: pa in pi(q) for no q'
+  - n: 16
+    kind: premise
+    as: agent_value(I,V)
+    note: 'p. 862 CQ16: vu not in V (here: not among agent i''s values Av_i)'
+  - n: 17
+    kind: premise
+    as: possible_joint_action(J,Q0)
+    note: 'p. 862 CQ17 for a reason to refrain: will the other agents choose the harmful joint action? An assurance that they
+      will not (a social law or their interests, p. 871) removes it from the possible joint actions'
+  note: 'Added on 2026-11-21: AS2 (p. 861) with the AATS of pp. 860-861 as facts, which tools/aats.py states from a model
+    and validates; the critical questions as p. 862 defines them on the AATS. Representation choices: the conclusion is the
+    agent''s part of the joint action (should_perform(I,Al), "participate in jn where jn_i = alpha_i"), so that arguments
+    about different joint actions with the same part meet in one issue; each promotion or demotion is attached to the goal
+    that realizes it (p. 868, footnote 5). The negative version is the one p. 859 uses to generate arguments; pp. 867-869
+    use it (Arg10, Arg11, Arg13, Arg15). Validated on the farmer and the trains: tools/aats_models, tools/test_aats.py, cases/practical_as2.yml.'
+  review:
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
+    date: '2026-11-21'
+    decision: approved
+    note: Approved against Atkinson and Bench-Capon (2007), pp. 860-862, with the validation of sections 6 and 7. See docs/reviews/final-closure.md.
 - record: exeption_to_rule
   origin: upstream
   upstream: precedent
   cites: Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 148
-  claim: unchecked
-  stage: mapped
+  claim: interpretation
+  stage: example-passed
+  source_questions: 3
+  questions:
+  - n: 1
+    kind: exception
+    as: inapplicable_rule(R)
+    note: 'p. 148 CQ1: does the established rule really apply to this case?'
+  - n: 2
+    kind: premise
+    as: rule_of_case(R,C)
+    note: 'p. 148 CQ2: is the case cited legitimate, or only an apparent violation of the rule? A cited case that was not
+      decided under R gives no ratio to apply'
+  - n: 3
+    kind: exception
+    as: relevant_differences(C)
+    note: 'p. 148 CQ3: can the cited case be dealt with under an already recognized category of exception? Then the present
+      case gets its treatment only if it falls in that category too; that it does not is a relevant difference between the
+      two cases'
+  changes:
+  - plan: final-closure
+    page: 148
+    claim: correction
+  note: 'Compared on 2026-11-21 with the owner-supplied 1995 book, p. 148. The page prints the argument from precedent (a
+    legitimate case has F but not G, so the rule must be modified), which is entry 57 and from_precedent. This record encodes
+    instead the case-based reasoning the same page describes ("a species of case-based reasoning that uses argumentation from
+    analogy between two cases") and illustrates with Case 80a: a similar case was decided by a rule, so its conclusion holds
+    here. The printed questions are sorted for that reading. relevant_differences(R,C) put the rule in a case slot and is
+    now relevant_differences(C), the statement of the analogy records (tools/migration_r2.yml).'
   review:
-    by: ChatGPT independent source-review team (integrated adjudication)
+    by: 'Claude (implementer; also the author of this record or of its last change, so D14 independence is not met: the owner''s
+      independent research is the second check)'
     date: '2026-11-21'
-    decision: open
-    note: 'Obtain the cited 1995 p. 148 and any preserved 2019 correspondence underlying the rename; adjudicate whether this
-      is precedent or exception, inventory actual source CQs, and replace the generic reference example with a sourced interpretation.
+    decision: approved
+    note: 'Approved as an interpretation of p. 148 (Case 80a), not as the printed scheme, with the arity correction. Earlier:
+      Obtain the cited 1995 p. 148 and any preserved 2019 correspondence underlying the rename; adjudicate whether this is
+      precedent or exception, inventory actual source CQs, and replace the generic reference example with a sourced interpretation.
       Evidence: docs/reviews/record-dispositions.json: exeption_to_rule Implementer, 2026-11-21: the cited page (1995, p.
       148) is the reference the compendium prints for entry 57, argument from precedent (p. 344), but this record applies
       the ratio of a similar case, while entry 57 concludes from a counterexample that the rule needs an exception or a change;
-      it is not approved against 57. Sources and identifiers: docs/reviews/d20-approvals.md.'
+      it is not approved against 57. Sources and identifiers: docs/reviews/d20-approvals.md. See docs/reviews/final-closure.md.'
 - record: slippery_slope_base_case
   origin: upstream
   entry: '49'
@@ -3831,7 +4334,9 @@ records:
   note: 'compared with its source (5.5): the article prints on p. 489 the compendium''s form, a choice at t2 and a precommitment
     at t1, which is now the record sunk_costs_precommitment; upstream''s form is a reading of the article''s discussion, the
     costs incurred and too high to waste from the argument from waste (p. 488), feasibility and future losses from the critical
-    questions of practical inference (p. 493)'
+    questions of practical inference (p. 493) Original compared on 2026-11-21 (owner-supplied copy): 2002 article, p. 488:
+    the article takes the argument from waste and the sunk costs argument to be "essentially the same argument"; the record
+    is the waste form in other words, as D20 found.'
   review:
     by: Claude (implementer), against the compendium at the owner's direction (D20)
     date: '2026-11-21'
@@ -5127,6 +5632,82 @@ names:
   how: book
   from: 'Shared CQ1, pp332-333: adequacy relative to the argument strength, specifically for consequences of not doing the
     action; see docs/reviews/pr16-source-adjudication.md.'
+- name: side_effects_to_consider/2
+  page: 94
+  how: book
+  from: 'Walton (2015): side effects that need to be taken into account'
+- name: would_obtain/2
+  page: 859
+  how: trial
+  from: the features (a "goal") of a state that demote a value; not would_be_realized, which makes them a goal
+- name: circumstances_possible/1
+  page: 858
+  how: book
+  from: AS1 CQ12
+- name: consequences_possible/1
+  page: 858
+  how: book
+  from: AS1 CQ14
+- name: goal_realizable/1
+  page: 858
+  how: book
+  from: AS1 CQ15
+- name: excludes_goal/2
+  page: 859
+  how: book
+  from: a state that entails the negation of a goal
+- name: current_state/1
+  page: 862
+  how: book
+  from: q0 = qx
+- name: model_state/1
+  page: 862
+  how: book
+  from: q in Q (CQ12, CQ14)
+- name: joint_action_part/3
+  page: 861
+  how: book
+  from: jn in J_Ag with jn_i = alpha_i
+- name: precondition_holds/2
+  page: 860
+  how: book
+  from: q in rho(alpha)
+- name: possible_joint_action/2
+  page: 859
+  how: trial
+  from: a joint action that no assurance of the agent excludes (the answers to CQ17)
+- name: transition/3
+  page: 860
+  how: book
+  from: tau(q, j) = q'
+- name: proposition_changes/3
+  page: 861
+  how: book
+  from: pa in pi(qy) and not in pi(qx), or the reverse
+- name: proposition_realizable/1
+  page: 862
+  how: book
+  from: pa in pi(q) for some q (CQ15)
+- name: agent_value/2
+  page: 861
+  how: book
+  from: v in Av_i
+- name: transition_promotes/4
+  page: 861
+  how: book
+  from: delta(qx, qy, v) = +, through goal pa
+- name: transition_demotes/4
+  page: 861
+  how: book
+  from: delta(qx, qy, v) = -, through goal pa
+- name: others_may_prevent/4
+  page: 862
+  how: trial
+  from: CQ17 unanswered for the value
+- name: should_perform/2
+  page: 861
+  how: trial
+  from: AS2's conclusion, as the agent's part of the joint action
 citations:
 - scheme: sorites_slippery_slope
   record: Informal Logic 18 (1996), p. 151
@@ -5134,3 +5715,9 @@ citations:
 - scheme: exceptional
   record: A Pragmatic Theory of Fallacy, p. 148
   compendium: p. 147 (56, p. 344)
+publication_only:
+- practical_reasoning_as1
+- practical_reasoning_as1_demotion
+- practical_reasoning_as1_preclusion
+- practical_reasoning_as2
+- practical_reasoning_as2_demotion

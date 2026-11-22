@@ -1,5 +1,7 @@
 # Approvals against the compendium (decision D20)
 
+**Status, later the same day:** the owner supplied the originals; the three records still held below are closed, and AS1 and AS2 have records of their own (`final-closure.md`).
+
 2026-11-21. On this date the owner decided D20: the compendium (Walton, Reed
 and Macagno 2008) is the source of record, and an inherited record filed under
 one of its entries is approved against that entry. The older work such a

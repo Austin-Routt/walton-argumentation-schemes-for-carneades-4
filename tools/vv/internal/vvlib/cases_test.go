@@ -324,6 +324,10 @@ issues:
 				{"no-argument", "an argument selected(a) was built", func(c *Case) { c.NoArguments = []string{"selected(a)"} }},
 				{"no-scheme", "an argument of selected was built", func(c *Case) { c.NoArguments = []string{"selected"} }},
 				{"issue", "no issue with the positions", func(c *Case) { c.Issues = [][]string{{"q(a)", "r(a)"}} }},
+				{"exact", "an argument selected(a) was built, but the case lists every argument of selected", func(c *Case) {
+					c.Arguments = nil
+					c.ExactSchemes = []string{"selected"}
+				}},
 			} {
 				t.Run(tc.name, func(t *testing.T) {
 					c := base

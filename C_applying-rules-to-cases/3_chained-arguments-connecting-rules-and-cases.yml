@@ -3,7 +3,7 @@
 
 meta:
   title: "Applying Rules to Cases - Chained Arguments Connecting Rules and Cases"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   also_has/3: "If %s has %s, then %s has it too."

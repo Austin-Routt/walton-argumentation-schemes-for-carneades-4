@@ -18,8 +18,13 @@ python3 "$repo/tools/test_migrate_r2.py" 2>&1 | tail -1
 echo "== tools/test_graph_from_library.py (graphs started from the library)"
 python3 "$repo/tools/test_graph_from_library.py" 2>&1 | tail -1
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1
-echo "== tools/check_source_approvals.py (reviewed source decisions)"
-python3 "$repo/tools/check_source_approvals.py" --repo "$repo" || status=1
+echo "== tools/check_source_approvals.py --require-stable (every record approved and at example-passed)"
+python3 "$repo/tools/check_source_approvals.py" --repo "$repo" --require-stable || status=1
+echo "== tools/aats.py check (the AATS models and every choice the paper reports)"
+python3 "$repo/tools/aats.py" check || status=1
+echo "== tools/test_aats.py (AS2, its critical questions and the comparison contract)"
+python3 "$repo/tools/test_aats.py" 2>&1 | tail -3
+[ "${PIPESTATUS[0]}" -eq 0 ] || status=1
 echo "== tools/test_check_source_approvals.py (approval integrity mutations)"
 python3 "$repo/tools/test_check_source_approvals.py" 2>&1 | tail -3
 [ "${PIPESTATUS[0]}" -eq 0 ] || status=1

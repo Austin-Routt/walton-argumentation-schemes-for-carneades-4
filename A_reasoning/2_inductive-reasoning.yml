@@ -3,7 +3,7 @@
 
 meta:
   title: "Reasoning - Inductive Reasoning"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   selected_part_sufficient_for_whole/3: "For whole %s, the selected part %s having property %s is sufficient for the whole to have that property in this application."

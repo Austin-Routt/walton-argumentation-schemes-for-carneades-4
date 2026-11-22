@@ -3,7 +3,7 @@
 
 meta:
   title: "Source-based Arguments - Arguments Attacking Personal Credibility"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   advocates_conclusion/3: "%s advocates argument %s, which has proposition %s as its conclusion."

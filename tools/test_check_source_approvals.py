@@ -74,7 +74,8 @@ class ApprovalIntegrity(unittest.TestCase):
                      lambda: self.row["questions"][0].update({"kind": "assumption"}),
                      lambda: self.row.update({"origin": "upstream"}),
                      lambda: self.row.update({"claim": "policy"}),
-                     lambda: self.row.update({"source_questions": 2})]
+                     lambda: self.row.update({"source_questions": 2}),
+                     lambda: self.row.update({"comparison": "value-based-choice"})]
         original = copy.deepcopy(self.row)
         for mutate in mutations:
             self.row.clear()

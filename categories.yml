@@ -16,7 +16,9 @@ A_reasoning/2_inductive-reasoning.yml:
 
 A_reasoning/3_practical-reasoning.yml:
   title: Reasoning - Practical Reasoning
-  schemes: [practical_reasoning1, practical_reasoning2, negative_consequences,
+  schemes: [practical_reasoning1, practical_reasoning2, practical_reasoning_as1,
+            practical_reasoning_as1_demotion, practical_reasoning_as1_preclusion,
+            practical_reasoning_as2, practical_reasoning_as2_demotion, negative_consequences,
             positive_consequences, alternative_cognitive, alternative_normative,
             sacrifice, sacrifice_small, practical_inference, practical_necessary_condition,
             practical_sufficient_condition, value_based_practical_reasoning,

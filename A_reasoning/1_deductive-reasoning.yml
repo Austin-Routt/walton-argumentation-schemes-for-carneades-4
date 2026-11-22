@@ -3,7 +3,7 @@
 
 meta:
   title: "Reasoning - Deductive Reasoning"
-  version: "0.3.0"
+  version: "0.4.0"
   source: "Walton, Douglas and Reed, Chris and Macagno, Fabrizio (2008). Argumentation Schemes. Cambridge University Press."
 language:
   all_parts_property/2: "All the parts of %s have the property %s."

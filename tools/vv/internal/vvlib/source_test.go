@@ -1,6 +1,8 @@
 package vvlib
 
 import (
+	"os"
+	"path/filepath"
 	"strings"
 	"testing"
 
@@ -81,6 +83,36 @@ func TestAlternativeCannotClaimCompletenessWithoutComparison(t *testing.T) {
 	}
 }
 
+func TestAlternativeWithComparisonContract(t *testing.T) {
+	s := &caes.Scheme{Conclusions: []string{"do(A)"}}
+	r := RecordRow{Origin: "publication", Comparison: "value-based-choice", Questions: []RecordQuestion{{N: 1, Kind: "alternative", As: "do(A)"}}}
+	if probs := questionProblems(r, s, 1, true); len(probs) != 0 {
+		t.Fatalf("alternative under a known comparison contract rejected: %v", probs)
+	}
+	r.Questions[0].As = "¬do(A)"
+	if probs := questionProblems(r, s, 1, true); !hasSourceProblem(probs, "not one of the record's conclusions") {
+		t.Fatalf("an alternative naming a negated conclusion accepted: %v", probs)
+	}
+	r.Questions[0].As = "do(A)"
+	r.Comparison = "coin-toss"
+	if probs := questionProblems(r, s, 1, true); !hasSourceProblem(probs, "needs a comparison contract") {
+		t.Fatalf("an unknown comparison contract accepted: %v", probs)
+	}
+	r.Comparison = ""
+	r.Questions[0].As = ""
+	if probs := questionProblems(r, s, 1, true); !hasSourceProblem(probs, "is not modelled") {
+		t.Fatalf("an unmapped alternative accepted as complete: %v", probs)
+	}
+}
+
+func TestComparisonContractsAreImplemented(t *testing.T) {
+	for name, impl := range ComparisonContracts {
+		if _, err := os.Stat(filepath.Join(RepoRoot(), impl)); err != nil {
+			t.Errorf("comparison contract %s: %v", name, err)
+		}
+	}
+}
+
 func TestUnknownOriginalQuestionCountIsNotZero(t *testing.T) {
 	s := &caes.Scheme{Conclusions: []string{"do(A)"}}
 	r := RecordRow{Origin: "upstream"}
@@ -146,6 +178,82 @@ func TestReviewProblems(t *testing.T) {
 			t.Errorf("%s: unexpected problem(s) %v", c.name, got)
 		case c.want != "" && !strings.Contains(strings.Join(got, "; "), c.want):
 			t.Errorf("%s: got %v, want a problem containing %q", c.name, got, c.want)
+		}
+	}
+}
+
+// A record taken from a publication other than the compendium (origin
+// publication) is checked on the real library and ledger: each rule rejects a
+// row that breaks it, and the control passes.
+func TestPublicationOriginRules(t *testing.T) {
+	// the case files are found from the suite's directory
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	if err := os.Chdir(filepath.Join(RepoRoot(), "tools", "vv")); err != nil {
+		t.Fatal(err)
+	}
+	defer os.Chdir(wd)
+	lib, err := LoadLibrary(RepoRoot(), "walton.yml")
+	if err != nil {
+		t.Fatal(err)
+	}
+	const id = "practical_reasoning_as2"
+	detail := func(l *SourceLedger) string {
+		for _, r := range RecordChecks(l, lib) {
+			if r.Scheme == id && !r.Pass {
+				return r.Detail
+			}
+		}
+		return ""
+	}
+	load := func() *SourceLedger {
+		l, err := LoadSourceLedger(filepath.Join(RepoRoot(), "tools", "vv", "source_ledger.yml"))
+		if err != nil {
+			t.Fatal(err)
+		}
+		return l
+	}
+	row := func(l *SourceLedger) *RecordRow {
+		for i := range l.Records {
+			if l.Records[i].Record == id {
+				return &l.Records[i]
+			}
+		}
+		t.Fatalf("no row %s", id)
+		return nil
+	}
+	if d := detail(load()); d != "" {
+		t.Fatalf("control: %s", d)
+	}
+	for _, tc := range []struct {
+		name, want string
+		mutate     func(*SourceLedger)
+	}{
+		{"entry", "not filed under a compendium entry", func(l *SourceLedger) { row(l).Entry = "1" }},
+		{"listed", "needs its place in publication_only", func(l *SourceLedger) {
+			kept := []string{}
+			for _, x := range l.PublicationOnly {
+				if x != id {
+					kept = append(kept, x)
+				}
+			}
+			l.PublicationOnly = kept
+		}},
+		{"pages", "with pages", func(l *SourceLedger) {
+			r := row(l)
+			r.Cites = strings.ReplaceAll(strings.ReplaceAll(r.Cites, "pp.", "pages"), "p.", "page")
+		}},
+		{"questions", "needs source_questions", func(l *SourceLedger) { row(l).SourceQuestions = nil }},
+		{"origin", "publication_only lists the record", func(l *SourceLedger) { row(l).Origin = "upstream" }},
+		{"contract", "unknown comparison contract", func(l *SourceLedger) { row(l).Comparison = "coin-toss" }},
+		{"upstream-id", "has no upstream id", func(l *SourceLedger) { row(l).Upstream = "practical_reasoning1" }},
+	} {
+		l := load()
+		tc.mutate(l)
+		if d := detail(l); !strings.Contains(d, tc.want) {
+			t.Errorf("%s: want %q, got %q", tc.name, tc.want, d)
 		}
 	}
 }

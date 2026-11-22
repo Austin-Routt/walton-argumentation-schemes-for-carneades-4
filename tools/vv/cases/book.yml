@@ -68,27 +68,27 @@ cases:
       - has_property(machine,electrically_live)
     variants: true
   - name: practical_reasoning1/book
-    source: "Atkinson and Bench-Capon (2007), p. 866, farmer Arg8; AS1 abstraction of the stipulated transition q0 to q9"
+    source: "Walton (2015), pp. 90-92, the Smart Car example: the value-based reading of Fig. 3.16, in which concern for the environment (V1) backs the premise that the Smart Car uses less fuel; state and goal names are this library's"
     assumptions:
-      - current_circumstances(q0)
-      - would_bring_about(row_chicken,q0,q9)
-      - would_be_realized(chicken_right,q9)
-      - would_promote_value(chicken_right,progress)
+      - current_circumstances(old_car_unreliable)
+      - would_bring_about(buy_smart_car,old_car_unreliable,own_smart_car)
+      - would_be_realized(less_fuel_used,own_smart_car)
+      - would_promote_value(less_fuel_used,environment)
     arguments:
-      - practical_reasoning1(row_chicken,q0,q9,chicken_right,progress)
+      - practical_reasoning1(buy_smart_car,old_car_unreliable,own_smart_car,less_fuel_used,environment)
     in:
-      - should_be_performed(row_chicken)
+      - should_be_performed(buy_smart_car)
     variants: true
   - name: practical_reasoning2/book
-    source: "upstream: Walton (2015)"
+    source: "Walton (2015), pp. 90-91, the Smart Car example read instrumentally: the goal is to buy a new car (p. 90); state and goal names are this library's"
     assumptions:
-      - current_circumstances(hal_needs_insulin)
-      - would_bring_about(take_insulin,hal_needs_insulin,hal_survives)
-      - would_be_realized(survival,hal_survives)
+      - current_circumstances(old_car_unreliable)
+      - would_bring_about(buy_smart_car,old_car_unreliable,own_smart_car)
+      - would_be_realized(new_car_owned,own_smart_car)
     arguments:
-      - practical_reasoning2(take_insulin,hal_needs_insulin,hal_survives,survival)
+      - practical_reasoning2(buy_smart_car,old_car_unreliable,own_smart_car,new_car_owned)
     in:
-      - should_be_performed(take_insulin)
+      - should_be_performed(buy_smart_car)
     variants: true
   - name: negative_consequences/book
     source: "33.2, p. 332"
@@ -966,15 +966,15 @@ cases:
       - reduced_plausibility_from_ethos(bob,bridge_safe)
     variants: true
   - name: exeption_to_rule/book
-    source: "upstream: A Pragmatic Theory of Fallacy (1995), p. 148"
+    source: "A Pragmatic Theory of Fallacy (1995), p. 148, Case 80a: the student cites the extension given to another student whose mother is ill; case and rule names are this library's"
     assumptions:
-      - similar_case(case1)
-      - rule_of_case(rule1,case1)
-      - has_conclusion(rule1,liable)
+      - similar_case(mother_ill_extension)
+      - rule_of_case(family_illness_extension,mother_ill_extension)
+      - has_conclusion(family_illness_extension,one_week_extension)
     arguments:
-      - exeption_to_rule(liable,case1,rule1)
+      - exeption_to_rule(one_week_extension,mother_ill_extension,family_illness_extension)
     in:
-      - liable
+      - one_week_extension
     variants: true
   - name: from_example/book
     source: "6.1, p. 314"

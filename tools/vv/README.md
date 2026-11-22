@@ -177,13 +177,27 @@ additions. A question's valid kind is checked even when its `as` mapping is blan
 The source review of Atkinson and Bench-Capon (2007) adds two distinctions to
 PLAN.md 5.1. `support` names a conclusion receiving another supporting argument
 (their CQ10); it is not a negated conclusion or an exception. `alternative`
-records a choice between actions that still needs a comparison contract. It has
-no executable `as` mapping and prevents advancement to `questions-sorted`.
+records a choice between actions: another instance of the scheme concludes the
+same predicate for another action, and an executable comparison contract
+decides between them. Its `as` names the record's own conclusion, and the row
+names the contract (`comparison: value-based-choice`, implemented by
+`tools/aats.py`, `docs/contracts.md` contract 8); without a known contract an
+alternative cannot be mapped and prevents advancement to `questions-sorted`.
 Neither category changes engine behavior. A blank mapping records incomplete
 content, while a nonblank mapping proves only that the statement exists in the
 scheme: the independent review must still assess its fidelity and scope.
-See `docs/reviews/atkinson-2007.md` for the 17-question source comparison and the
-limits of `practical_reasoning1`.
+See `docs/reviews/atkinson-2007.md` for the first 17-question source comparison
+and `docs/reviews/final-closure.md` for the AS1 and AS2 records that followed.
+
+A record taken from a publication other than the compendium, that upstream's
+file does not contain, has `origin: publication`: it is listed in
+`publication_only`, is filed under no entry, cites its publication with pages
+(`cites` equals its `meta.source`), and states `source_questions`.
+
+A case can list `exact_schemes`: for each scheme named, the arguments it lists
+are all the engine may build with that scheme. `cases/practical_as2.yml` is
+written by `tools/aats.py cases --write` from `tools/aats_models/` and uses it
+for the two AS2 records.
 
 **Engine** (`TestEngine`, `TestEngineToolchain`, and the `command` group of
 `TestCLI`): small experiments stating what practical use needs, such as "two
