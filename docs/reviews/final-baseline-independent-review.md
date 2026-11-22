@@ -112,6 +112,17 @@ The final controls reject these cases before writing and retain file bytes.
 This is why a technical non-author review is recorded separately from the
 implementer's successful unit tests.
 
+The first complete integration run then found an error in this review's own
+metadata update: the Go harness's strict ledger reader did not yet declare
+the two new fields. That candidate was refused. The reader now recognizes
+both fields and also requires a literal Boolean true and a nonempty string
+basis for approved rows. Its ten serialized-input controls include the valid
+case, missing/self/quoted/integer/null attestations, invalid bases and an
+unknown field. The unsuccessful run is preserved and is superseded only by
+clean acceptance of the subsequent exact commit. The separate reviewer
+accepted the fix and ran its focused controls on both Go versions
+(`final-go-ledger-cross-review.json`).
+
 ## AATS/AS2 implementation acceptance
 
 The Atkinson reviewer authored the adapter repairs. The integrating reviewer
