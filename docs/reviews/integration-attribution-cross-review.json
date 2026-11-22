@@ -1,0 +1,57 @@
+{
+  "schema": "walton-integrated-attribution-cross-review/v1",
+  "review_date_local": "2026-11-21",
+  "timezone": "America/Chicago",
+  "verified_at_utc": "2026-11-22T05:36:45.455893+00:00",
+  "reviewer": "ChatGPT integration_provenance, non-author of root metadata integration",
+  "base_commit": "d9a25857277140a5d3f10aaf1dfa4ade0f15b91f",
+  "reviewed_state": "Root-authored integrated working-tree metadata; accepted exact files bound below. No repository edits by this reviewer.",
+  "decision": "accepted",
+  "blocking_findings": [],
+  "checks": {
+    "all149_ids_retained": true,
+    "ledger_nonreview_content_unchanged": true,
+    "master_bytes_unchanged": true,
+    "eleven_ledger_stamps_exact": true,
+    "eleven_registry_stamps_exact": true,
+    "eleven_acceptance_recommendations_exact": true,
+    "other138_ledger_reviews_unchanged": true,
+    "other138_registry_entries_unchanged": true,
+    "other138_acceptance_entries_unchanged": true,
+    "eleven_nonattribution_registry_fields_unchanged": true,
+    "eleven_nonattribution_acceptance_fields_unchanged": true,
+    "original_acceptance_metadata_preserved": true,
+    "metadata_revision_added": true,
+    "old_false_live_sentence_removed": true,
+    "copied_review_exact": true,
+    "copied_map_exact": true,
+    "all149_semantic_fingerprints_identical": true,
+    "all149_example_lists_identical": true,
+    "map_fingerprints_match": true,
+    "source_gate_passed": true
+  },
+  "records_corrected": 11,
+  "semantic_fingerprints_preserved": 149,
+  "remaining_false_live_notes": 0,
+  "d20_prose_judgment": "Accepted: names Claude as historical scope adjudicator, identifies earlier authored changes and separate non-author evidence, distinguishes eleven attribution updates from new full source comparisons, preserves history and the separate sunk-cost acceptance.",
+  "source_gate": {
+    "command": [
+      "python3",
+      "tools/check_source_approvals.py",
+      "--require-stable"
+    ],
+    "exit_code": 0,
+    "output": "Source approval integrity passed for 149 records; stable source-stage gate passed.\n"
+  },
+  "accepted_file_sha256": {
+    "tools/vv/source_ledger.yml": "b19a26dc8ee835950ab7869ac6407db5443f0df42323e928c76cc18a4e07c3e6",
+    "docs/reviews/independent-approvals.json": "91801d87d7c4f365bba2372d2761251858a313d68a4fd9914734fef0690cc25d",
+    "docs/reviews/final-source-acceptance.json": "1c1c22c75beb109d9422797a636d89578b6362706b5c6a479ddeda44be4bdf03",
+    "docs/reviews/d20-approvals.md": "cc5c7abcb738fcf7aaabcf409305d61e055b6808cb438eca20c6ec9c4391d620",
+    "docs/reviews/integration-provenance-review.md": "19bfd636a00eef45d234669d04207ab53bebbec9778ec1d4a0af0728bc952f92",
+    "docs/reviews/integration-attribution-updates.json": "81e672b71122c0277f771fda26a256d51e5df864fdc2f30cbd82231151712bd9",
+    "walton.yml": "701ed1188f67cf340274da6dca578342a6c24c6554ca6f89a0fba2f9a4a56c70"
+  },
+  "scope": "Retains prior scoped source acceptance after a provenance audit. No new primary-source semantics, source/formula changes, full runtime rerun, reviewer identity authentication or publication claim.",
+  "next_step": "Bind these exact accepted metadata files to the eventual final commit; root owns server/runtime and whole-candidate acceptance."
+}
