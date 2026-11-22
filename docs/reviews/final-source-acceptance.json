@@ -2965,13 +2965,13 @@
       "baseline_fingerprint": "sha256:923abb2d93a91eef7342540ec9e40c248f881f7b8d60a8580e09167d80f53310",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of correlation_to_cause; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: correlation_to_cause inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of correlation_to_cause; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: correlation_to_cause inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry29, printedp328; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 142."
@@ -2979,12 +2979,14 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: correlation_to_cause",
         "tools/vv/source_ledger.yml: correlation_to_cause",
-        "docs/reviews/record-dispositions.json: correlation_to_cause"
+        "docs/reviews/record-dispositions.json: correlation_to_cause",
+        "docs/reviews/2026-11-21-second-half-source-review.md: correlation_to_cause",
+        "docs/reviews/integration-provenance-review.md: correlation_to_cause"
       ],
       "examples": [
         "correlation_to_cause/book"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Defeasible correlation-to-cause interpretation with the explanatory-theory default as a declared non-coincidence policy, not empirical causal proof."
     },
     {
       "record": "credible_source",
@@ -3077,13 +3079,13 @@
       "baseline_fingerprint": "sha256:7e92ca04be746c6594975eff0e38ec54d1be6835a438004068078a26b1f9d566",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of established_rule; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: established_rule inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of established_rule; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: established_rule inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry55.1, printedp343; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 147."
@@ -3091,7 +3093,9 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: established_rule",
         "tools/vv/source_ledger.yml: established_rule",
-        "docs/reviews/record-dispositions.json: established_rule"
+        "docs/reviews/record-dispositions.json: established_rule",
+        "docs/reviews/2026-11-21-second-half-source-review.md: established_rule",
+        "docs/reviews/integration-provenance-review.md: established_rule"
       ],
       "examples": [
         "established_rule/book",
@@ -3102,7 +3106,7 @@
         "established_rule/independent-rule_exception_or_excuse-wrong-conclusion",
         "established_rule/independent-rule_exception_or_excuse-wrong-rule"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Inherited rule/conclusion application with scoped conflict and excuse exceptions; separate actor/action record and original-source scope remain distinct."
     },
     {
       "record": "ethotic1",
@@ -3112,13 +3116,13 @@
       "baseline_fingerprint": "sha256:32b5c08cadb5923c9f4f86398cb7153047fd23566a038a7ac560ec6c59da26c7",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ethotic1; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: ethotic1 inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ethotic1; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: ethotic1 inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry41, printedp336; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
@@ -3126,12 +3130,14 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: ethotic1",
         "tools/vv/source_ledger.yml: ethotic1",
-        "docs/reviews/record-dispositions.json: ethotic1"
+        "docs/reviews/record-dispositions.json: ethotic1",
+        "docs/reviews/2026-11-21-second-half-source-review.md: ethotic1",
+        "docs/reviews/integration-provenance-review.md: ethotic1"
       ],
       "examples": [
         "ethotic1/book"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Defeasible support for the proposition is the inherited evidential policy; not literal numeric or graded plausibility calibration."
     },
     {
       "record": "ethotic2",
@@ -3141,13 +3147,13 @@
       "baseline_fingerprint": "sha256:35fe18b45c6d100e0566cff9b0f4f830419390631721da7ef13a3696057768fe",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ethotic2; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: ethotic2 inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger and docs/reviews/closure-supplemental-independent-acceptance.md: ethotic2. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ethotic2; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: ethotic2 inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger and docs/reviews/closure-supplemental-independent-acceptance.md: ethotic2. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry41, printedp336; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152."
@@ -3155,14 +3161,17 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: ethotic2",
         "tools/vv/source_ledger.yml: ethotic2",
-        "docs/reviews/record-dispositions.json: ethotic2"
+        "docs/reviews/record-dispositions.json: ethotic2",
+        "docs/reviews/2026-11-21-second-half-source-review.md: ethotic2",
+        "docs/reviews/closure-supplemental-independent-acceptance.md: ethotic2",
+        "docs/reviews/integration-provenance-review.md: ethotic2"
       ],
       "examples": [
         "ethotic2/book",
         "ethotic2/closure-reduced-not-false",
         "ethotic2/closure-same-proposition-independent-evidence"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. The current correction lowers the assertion's plausibility instead of asserting the contradictory proposition; inherited context and weight-policy qualifications remain."
     },
     {
       "record": "expert_opinion",
@@ -3172,13 +3181,13 @@
       "baseline_fingerprint": "sha256:c14ea49c7d8360f9493c3ce40bfa25df0d2470e846493b70aa46128259d00a12",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of expert_opinion; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: expert_opinion inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of expert_opinion; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: expert_opinion inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry2, printedp310; inherited citations remain separately scoped provenance",
         "Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225."
@@ -3186,14 +3195,16 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: expert_opinion",
         "tools/vv/source_ledger.yml: expert_opinion",
-        "docs/reviews/record-dispositions.json: expert_opinion"
+        "docs/reviews/record-dispositions.json: expert_opinion",
+        "docs/reviews/first-half-adjudication.json: expert_opinion",
+        "docs/reviews/integration-provenance-review.md: expert_opinion"
       ],
       "examples": [
         "expert_opinion/adverse-credibility-questioned",
         "expert_opinion/book",
         "expert_opinion/credibility-questioned-and-shown"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Printed p.310 and the book's Carneades configuration on pp.374–375; six critical questions including the credibility default."
     },
     {
       "record": "ignorance",
@@ -3203,13 +3214,13 @@
       "baseline_fingerprint": "sha256:acecbeced8b4b8f592f26e10aff30d2b46b6a8348268cb194928a27bc6ebf45a",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ignorance; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: ignorance inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ignorance; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: ignorance inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry26, printedp327; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150"
@@ -3217,7 +3228,9 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: ignorance",
         "tools/vv/source_ledger.yml: ignorance",
-        "docs/reviews/record-dispositions.json: ignorance"
+        "docs/reviews/record-dispositions.json: ignorance",
+        "docs/reviews/first-half-adjudication.json: ignorance",
+        "docs/reviews/integration-provenance-review.md: ignorance"
       ],
       "examples": [
         "ignorance",
@@ -3225,7 +3238,7 @@
         "ignorance/conclusion-is-alternative_cognitive-premise",
         "ignorance/undercut-and-no-alternative"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Explicit would-be-known and not-known premises; application burden/probandum allocation remains distinct from proof-standard strength."
     },
     {
       "record": "negative_consequences",
@@ -3235,13 +3248,13 @@
       "baseline_fingerprint": "sha256:9e1886f9a4387f0b6cf9a4743fa506b6e8d0948ac4a4be38be8ded4622ee1c5f",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of negative_consequences; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of negative_consequences; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry33.2, printedp332; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156."
@@ -3249,7 +3262,9 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: negative_consequences",
         "tools/vv/source_ledger.yml: negative_consequences",
-        "docs/reviews/record-dispositions.json: negative_consequences"
+        "docs/reviews/record-dispositions.json: negative_consequences",
+        "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences",
+        "docs/reviews/integration-provenance-review.md: negative_consequences"
       ],
       "examples": [
         "negative_consequences/book",
@@ -3258,7 +3273,7 @@
         "negative_consequences/independent-wrong-action-questioned",
         "negative_consequences/independent-wrong-outcome-questioned"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Action/outcome-specific likelihood adequacy and opposition through an explicit issue; no global equivalence of deontic forms."
     },
     {
       "record": "position_to_know",
@@ -3296,13 +3311,13 @@
       "baseline_fingerprint": "sha256:655c2072e1f45a85723fb030ae6af957668e512b72899ba0965d00fb24c8aaf8",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of positive_consequences; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: positive_consequences inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of positive_consequences; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: positive_consequences inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry33.1, printedp332; inherited citations remain separately scoped provenance",
         "Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156."
@@ -3310,7 +3325,9 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: positive_consequences",
         "tools/vv/source_ledger.yml: positive_consequences",
-        "docs/reviews/record-dispositions.json: positive_consequences"
+        "docs/reviews/record-dispositions.json: positive_consequences",
+        "docs/reviews/2026-11-21-second-half-source-review.md: positive_consequences",
+        "docs/reviews/integration-provenance-review.md: positive_consequences"
       ],
       "examples": [
         "positive_consequences/book",
@@ -3319,7 +3336,7 @@
         "positive_consequences/independent-wrong-action-questioned",
         "positive_consequences/independent-wrong-outcome-questioned"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Action/outcome-specific likelihood adequacy is a challengeable default; no fixed probability threshold is claimed."
     },
     {
       "record": "practical_reasoning1",
@@ -3603,13 +3620,13 @@
       "baseline_fingerprint": "sha256:4caef9a012fd2ec98b3f0ad6f8afa163dfa60f82b4874f71bdfc2104c8a1db11",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of slippery_slope_base_case; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_base_case inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of slippery_slope_base_case; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_base_case inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry49, printedp339; inherited citations remain separately scoped provenance",
         "Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95."
@@ -3617,12 +3634,14 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: slippery_slope_base_case",
         "tools/vv/source_ledger.yml: slippery_slope_base_case",
-        "docs/reviews/record-dispositions.json: slippery_slope_base_case"
+        "docs/reviews/record-dispositions.json: slippery_slope_base_case",
+        "docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_base_case",
+        "docs/reviews/integration-provenance-review.md: slippery_slope_base_case"
       ],
       "examples": [
         "slippery_slope_base_case/book"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. An inherited component deriving adverse consequences; not the complete compendium normative argument, supplied separately."
     },
     {
       "record": "slippery_slope_inductive_step",
@@ -3632,13 +3651,13 @@
       "baseline_fingerprint": "sha256:3d60b3ef3951daf556a52431779f89b3ac20fefa0072d6a96b31b04b84cce739",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of slippery_slope_inductive_step; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_inductive_step inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of slippery_slope_inductive_step; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_inductive_step inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry49, printedp339; inherited citations remain separately scoped provenance",
         "Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95."
@@ -3646,12 +3665,14 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: slippery_slope_inductive_step",
         "tools/vv/source_ledger.yml: slippery_slope_inductive_step",
-        "docs/reviews/record-dispositions.json: slippery_slope_inductive_step"
+        "docs/reviews/record-dispositions.json: slippery_slope_inductive_step",
+        "docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_inductive_step",
+        "docs/reviews/integration-provenance-review.md: slippery_slope_inductive_step"
       ],
       "examples": [
         "slippery_slope_inductive_step/book"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. An inherited component propagating horrible costs along supplied links; not an automatic search for missing links or probability calculation."
     },
     {
       "record": "sunk_costs",
@@ -3718,13 +3739,13 @@
       "baseline_fingerprint": "sha256:3dea3b196ed5011b7ea3366551b9a917e8190729e0a4af55759207ddb97c77f0",
       "fingerprint_changed_from_baseline": false,
       "recommended_review": {
-        "by": "Claude (implementer), against the compendium at the owner's direction (D20)",
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
         "date": "2026-11-21",
         "decision": "approved",
         "independent_of_author": true,
-        "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified."
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of witness_testimony; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: witness_testimony inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger and docs/reviews/closure-supplemental-independent-acceptance.md: witness_testimony. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
       },
-      "independence_basis": "docs/reviews/d20-approvals.md explicitly records that Claude compared this inherited record and its existing changes made by other reviewers against the compendium under the owner's D20 direction. The only D20 fingerprinted source-contract change, sunk_costs, is independently accepted separately in this round. Unavailable cited originals remain unverified, not silently certified.",
+      "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of witness_testimony; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: witness_testimony inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger and docs/reviews/closure-supplemental-independent-acceptance.md: witness_testimony. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md.",
       "source_locators": [
         "Walton/Reed/Macagno2008, entry3, printedp310; inherited citations remain separately scoped provenance",
         "Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008."
@@ -3732,7 +3753,10 @@
       "evidence": [
         "docs/reviews/d20-approvals.md: witness_testimony",
         "tools/vv/source_ledger.yml: witness_testimony",
-        "docs/reviews/record-dispositions.json: witness_testimony"
+        "docs/reviews/record-dispositions.json: witness_testimony",
+        "docs/reviews/first-half-adjudication.json: witness_testimony",
+        "docs/reviews/closure-supplemental-independent-acceptance.md: witness_testimony",
+        "docs/reviews/integration-provenance-review.md: witness_testimony"
       ],
       "examples": [
         "witness_testimony/book",
@@ -3741,7 +3765,7 @@
         "witness_testimony/closure-other-witness-bias",
         "witness_testimony/domain-shared-with-position_to_know"
       ],
-      "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Domain-based access and sincerity are declared interpretations; current bias targets the same witness account; repeated testimony contexts remain application-scoped."
     },
     {
       "record": "part_in_whole_physical",
@@ -4435,6 +4459,26 @@
         "established_rule_actor/book"
       ],
       "decision_scope": "Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record."
+    }
+  ],
+  "metadata_revisions": [
+    {
+      "reviewed_commit": "d9a25857277140a5d3f10aaf1dfa4ade0f15b91f",
+      "file": "docs/reviews/integration-provenance-review.md",
+      "records": [
+        "expert_opinion",
+        "witness_testimony",
+        "ignorance",
+        "correlation_to_cause",
+        "positive_consequences",
+        "negative_consequences",
+        "ethotic1",
+        "ethotic2",
+        "slippery_slope_base_case",
+        "slippery_slope_inductive_step",
+        "established_rule"
+      ],
+      "scope": "Retained interpretations; corrected non-author provenance attribution. Prior source-review hashes retain their historical meaning."
     }
   ]
 }

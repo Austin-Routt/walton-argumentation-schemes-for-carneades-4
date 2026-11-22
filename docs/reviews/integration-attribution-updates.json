@@ -1,0 +1,337 @@
+{
+  "schema": "walton-integration-attribution-updates/v1",
+  "reviewed_commit": "d9a25857277140a5d3f10aaf1dfa4ade0f15b91f",
+  "reviewer_authorship_disclosure": "This reviewer did not author the library records, D20 decisions, commit6647eae or the parent's proposed metadata integration. The review traces and retains prior source acceptance rather than reperforming all primary comparisons.",
+  "approved_update_count": 11,
+  "source_formula_changes_authorized": false,
+  "semantic_fingerprints_must_remain_unchanged": true,
+  "updates": [
+    {
+      "record": "expert_opinion",
+      "fingerprint": "sha256:c14ea49c7d8360f9493c3ce40bfa25df0d2470e846493b70aa46128259d00a12",
+      "entry": "2",
+      "retained_scope": "Printed p.310 and the book's Carneades configuration on pp.374\u2013375; six critical questions including the credibility default.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of expert_opinion; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: expert_opinion inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Entry 2 (p. 310) with its six questions, as the book's own Carneades model of the scheme sorts them (pp. 374-375): CQ1 and CQ6 defaults, CQ2 and CQ3 premises, CQ4 and CQ5 exceptions. Approved against compendium entry 2 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, Appeal to Expert Opinion, The Pennsylvania University Press, University Park, Albany, 1997, p.211-225.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Obtain and compare the separately cited original formulation and questions; reconcile any differences explicitly before promoting this inherited record. Evidence: docs/reviews/record-dispositions.json: expert_opinion Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: expert_opinion.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: expert_opinion",
+        "tools/vv/source_ledger.yml: expert_opinion",
+        "docs/reviews/record-dispositions.json: expert_opinion",
+        "docs/reviews/first-half-adjudication.json: expert_opinion",
+        "docs/reviews/integration-provenance-review.md: expert_opinion"
+      ],
+      "examples": [
+        "expert_opinion/adverse-credibility-questioned",
+        "expert_opinion/book",
+        "expert_opinion/credibility-questioned-and-shown"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Printed p.310 and the book's Carneades configuration on pp.374\u2013375; six critical questions including the credibility default."
+    },
+    {
+      "record": "witness_testimony",
+      "fingerprint": "sha256:3dea3b196ed5011b7ea3366551b9a917e8190729e0a4af55759207ddb97c77f0",
+      "entry": "3",
+      "retained_scope": "Domain-based access and sincerity are declared interpretations; current bias targets the same witness account; repeated testimony contexts remain application-scoped.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of witness_testimony; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: witness_testimony inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger and docs/reviews/closure-supplemental-independent-acceptance.md: witness_testimony. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Entry 3 (p. 310). The position-to-know premise is stated for a domain containing the proposition, shared with entry 1; the truth-telling premise is the witness's belief together with the assertion. CQ1 default, CQ2-CQ5 exceptions; the bias exception is scoped to the witness's account (closure correction). Approved against compendium entry 3 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, Henry Prakken, Chris Reed, Argumentation Schemes and Generalisations in Reasoning about Evidence, Proceedings of the 9th International Conference on Artificial Intelligence and Law, Edinburgh, 2003. New York: ACM Press 2003, pp. 35. Douglas Walton, Witness Testimony Evidence, Cambridge University Press, 2008.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: The compendium correction is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md; the unavailable separately cited original remains held. This correction does not certify the original record as fully source-checked. Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: witness_testimony.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: witness_testimony",
+        "tools/vv/source_ledger.yml: witness_testimony",
+        "docs/reviews/record-dispositions.json: witness_testimony",
+        "docs/reviews/first-half-adjudication.json: witness_testimony",
+        "docs/reviews/closure-supplemental-independent-acceptance.md: witness_testimony",
+        "docs/reviews/integration-provenance-review.md: witness_testimony"
+      ],
+      "examples": [
+        "witness_testimony/book",
+        "witness_testimony/closure-account-specific-bias",
+        "witness_testimony/closure-generic-bias-is-not-all-accounts",
+        "witness_testimony/closure-other-witness-bias",
+        "witness_testimony/domain-shared-with-position_to_know"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Domain-based access and sincerity are declared interpretations; current bias targets the same witness account; repeated testimony contexts remain application-scoped."
+    },
+    {
+      "record": "ignorance",
+      "fingerprint": "sha256:acecbeced8b4b8f592f26e10aff30d2b46b6a8348268cb194928a27bc6ebf45a",
+      "entry": "26",
+      "retained_scope": "Explicit would-be-known and not-known premises; application burden/probandum allocation remains distinct from proof-standard strength.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ignorance; it does not claim a new complete passage-by-passage source review. docs/reviews/first-half-adjudication.json: ignorance inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Entry 26 (p. 327). CQ1 (how far the search for evidence has gone) is the exception that the statement has not been sufficiently investigated; CQ2 and CQ3, on the burden and the standard of proof, are answered by how the application builds the graph (D16; the dialogue adapter gives a finite alternative). Approved against compendium entry 26 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 150) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1995 source and specify application-supplied dialogue burden/probandum independently of the issue proof standard; add examples for the chosen burden contract. Evidence: docs/reviews/record-dispositions.json: ignorance Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: ignorance.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: ignorance",
+        "tools/vv/source_ledger.yml: ignorance",
+        "docs/reviews/record-dispositions.json: ignorance",
+        "docs/reviews/first-half-adjudication.json: ignorance",
+        "docs/reviews/integration-provenance-review.md: ignorance"
+      ],
+      "examples": [
+        "ignorance",
+        "ignorance/book",
+        "ignorance/conclusion-is-alternative_cognitive-premise",
+        "ignorance/undercut-and-no-alternative"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Explicit would-be-known and not-known premises; application burden/probandum allocation remains distinct from proof-standard strength."
+    },
+    {
+      "record": "correlation_to_cause",
+      "fingerprint": "sha256:923abb2d93a91eef7342540ec9e40c248f881f7b8d60a8580e09167d80f53310",
+      "entry": "29",
+      "retained_scope": "Defeasible correlation-to-cause interpretation with the explanatory-theory default as a declared non-coincidence policy, not empirical causal proof.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of correlation_to_cause; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: correlation_to_cause inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Premise, default and exception follow p. 328 and CQ1-3 on p. 329. CQ2, whether the correlation is more than a coincidence, is the default that a theory explains how the first event causes the second: questioning it removes the argument unless the theory is supported. Approved against compendium entry 29 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 142.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1995 source; retain an explicit explanatory-theory policy and require causal evidence, with a case distinguishing correlation alone from a justified causal application. Evidence: docs/reviews/record-dispositions.json: correlation_to_cause Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: correlation_to_cause.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: correlation_to_cause",
+        "tools/vv/source_ledger.yml: correlation_to_cause",
+        "docs/reviews/record-dispositions.json: correlation_to_cause",
+        "docs/reviews/2026-11-21-second-half-source-review.md: correlation_to_cause",
+        "docs/reviews/integration-provenance-review.md: correlation_to_cause"
+      ],
+      "examples": [
+        "correlation_to_cause/book"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Defeasible correlation-to-cause interpretation with the explanatory-theory default as a declared non-coincidence policy, not empirical causal proof."
+    },
+    {
+      "record": "positive_consequences",
+      "fingerprint": "sha256:655c2072e1f45a85723fb030ae6af957668e512b72899ba0965d00fb24c8aaf8",
+      "entry": "33.1",
+      "retained_scope": "Action/outcome-specific likelihood adequacy is a challengeable default; no fixed probability threshold is claimed.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of positive_consequences; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: positive_consequences inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Entry 33.1 (p. 332): the premise split into the consequence and its being good; CQ1 the likelihood-adequacy default, CQ2 the consequence premise, CQ3 the rebuttal by an argument against performing the action (p. 333). Approved against compendium entry 33.1 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported adequacy hook without imposing a fixed numerical threshold; compare the original cited 1995 form before original-source approval. Evidence: docs/reviews/record-dispositions.json: positive_consequences Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: positive_consequences.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: positive_consequences",
+        "tools/vv/source_ledger.yml: positive_consequences",
+        "docs/reviews/record-dispositions.json: positive_consequences",
+        "docs/reviews/2026-11-21-second-half-source-review.md: positive_consequences",
+        "docs/reviews/integration-provenance-review.md: positive_consequences"
+      ],
+      "examples": [
+        "positive_consequences/book",
+        "positive_consequences/independent-likelihood-backed",
+        "positive_consequences/independent-likelihood-questioned",
+        "positive_consequences/independent-wrong-action-questioned",
+        "positive_consequences/independent-wrong-outcome-questioned"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Action/outcome-specific likelihood adequacy is a challengeable default; no fixed probability threshold is claimed."
+    },
+    {
+      "record": "negative_consequences",
+      "fingerprint": "sha256:9e1886f9a4387f0b6cf9a4743fa506b6e8d0948ac4a4be38be8ded4622ee1c5f",
+      "entry": "33.2",
+      "retained_scope": "Action/outcome-specific likelihood adequacy and opposition through an explicit issue; no global equivalence of deontic forms.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of negative_consequences; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Entry 33.2 (p. 332): the premise split into the consequence and its being bad; CQ1 the likelihood-adequacy default shared with 33.1 and 33.3, CQ2 the consequence premise, CQ3 the rebuttal by an argument for performing the action (p. 333). Approved against compendium entry 33.2 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, pp. 155-156.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Retain the compendium-supported adequacy hook and scoped inherited adaptation; compare the original cited 1995 form before original-source approval. Evidence: docs/reviews/record-dispositions.json: negative_consequences Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: negative_consequences.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: negative_consequences",
+        "tools/vv/source_ledger.yml: negative_consequences",
+        "docs/reviews/record-dispositions.json: negative_consequences",
+        "docs/reviews/2026-11-21-second-half-source-review.md: negative_consequences",
+        "docs/reviews/integration-provenance-review.md: negative_consequences"
+      ],
+      "examples": [
+        "negative_consequences/book",
+        "negative_consequences/independent-likelihood-backed",
+        "negative_consequences/independent-likelihood-questioned",
+        "negative_consequences/independent-wrong-action-questioned",
+        "negative_consequences/independent-wrong-outcome-questioned"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Action/outcome-specific likelihood adequacy and opposition through an explicit issue; no global equivalence of deontic forms."
+    },
+    {
+      "record": "ethotic1",
+      "fingerprint": "sha256:32b5c08cadb5923c9f4f86398cb7153047fd23566a038a7ac560ec6c59da26c7",
+      "entry": "41",
+      "retained_scope": "Defeasible support for the proposition is the inherited evidential policy; not literal numeric or graded plausibility calibration.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ethotic1; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: ethotic1 inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "The positive branch of entry 41 (p. 336). \"Should be accepted as more plausible\" is read as a defeasible argument for the statement, weighed in its issue under the proof standard (CQ3, standard), as for 1 and 2. CQ1 premise, CQ2 default. The qualitative form is ethotic_positive_compendium. Approved against compendium entry 41 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1995 source and decide explicitly whether bare-proposition support is the accepted strength policy; otherwise add a graded-plausibility variant and examples. Evidence: docs/reviews/record-dispositions.json: ethotic1 Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: ethotic1.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: ethotic1",
+        "tools/vv/source_ledger.yml: ethotic1",
+        "docs/reviews/record-dispositions.json: ethotic1",
+        "docs/reviews/2026-11-21-second-half-source-review.md: ethotic1",
+        "docs/reviews/integration-provenance-review.md: ethotic1"
+      ],
+      "examples": [
+        "ethotic1/book"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Defeasible support for the proposition is the inherited evidential policy; not literal numeric or graded plausibility calibration."
+    },
+    {
+      "record": "ethotic2",
+      "fingerprint": "sha256:35fe18b45c6d100e0566cff9b0f4f830419390631721da7ef13a3696057768fe",
+      "entry": "41",
+      "retained_scope": "The current correction lowers the assertion's plausibility instead of asserting the contradictory proposition; inherited context and weight-policy qualifications remain.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of ethotic2; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: ethotic2 inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger and docs/reviews/closure-supplemental-independent-acceptance.md: ethotic2. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "The negative branch of entry 41 (p. 336), as corrected in the closure review: the conclusion lowers the plausibility of the assertion and does not assert its negation. CQ1 premise, CQ2 default, CQ3 standard. Approved against compendium entry 41 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 152.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: The compendium correction is independently accepted in docs/reviews/closure-supplemental-independent-acceptance.md; the unavailable separately cited original remains held. This correction does not certify the original record as fully source-checked. Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: ethotic2.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: ethotic2",
+        "tools/vv/source_ledger.yml: ethotic2",
+        "docs/reviews/record-dispositions.json: ethotic2",
+        "docs/reviews/2026-11-21-second-half-source-review.md: ethotic2",
+        "docs/reviews/closure-supplemental-independent-acceptance.md: ethotic2",
+        "docs/reviews/integration-provenance-review.md: ethotic2"
+      ],
+      "examples": [
+        "ethotic2/book",
+        "ethotic2/closure-reduced-not-false",
+        "ethotic2/closure-same-proposition-independent-evidence"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. The current correction lowers the assertion's plausibility instead of asserting the contradictory proposition; inherited context and weight-policy qualifications remain."
+    },
+    {
+      "record": "slippery_slope_base_case",
+      "fingerprint": "sha256:4caef9a012fd2ec98b3f0ad6f8afa163dfa60f82b4874f71bdfc2104c8a1db11",
+      "entry": "49",
+      "retained_scope": "An inherited component deriving adverse consequences; not the complete compendium normative argument, supplied separately.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of slippery_slope_base_case; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_base_case inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Declared as a component of entry 49 (pp. 339-340), with slippery_slope_inductive_step: the steps chain from the act through causes to an outcome with horrible costs, and this record concludes that the act has negative consequences; the step to \"should not be brought about\" is the work of slippery_slope_compendium, which states the whole printed pattern. CQ1-3 attack the links, which are premises. Approved against compendium entry 49 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1999 pages; retain the base component explicitly and provide the full entry 49 formulation if complete compendium coverage is claimed. Evidence: docs/reviews/record-dispositions.json: slippery_slope_base_case Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: slippery_slope_base_case.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: slippery_slope_base_case",
+        "tools/vv/source_ledger.yml: slippery_slope_base_case",
+        "docs/reviews/record-dispositions.json: slippery_slope_base_case",
+        "docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_base_case",
+        "docs/reviews/integration-provenance-review.md: slippery_slope_base_case"
+      ],
+      "examples": [
+        "slippery_slope_base_case/book"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. An inherited component deriving adverse consequences; not the complete compendium normative argument, supplied separately."
+    },
+    {
+      "record": "slippery_slope_inductive_step",
+      "fingerprint": "sha256:3d60b3ef3951daf556a52431779f89b3ac20fefa0072d6a96b31b04b84cce739",
+      "entry": "49",
+      "retained_scope": "An inherited component propagating horrible costs along supplied links; not an automatic search for missing links or probability calculation.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of slippery_slope_inductive_step; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_inductive_step inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Declared as a component of entry 49 (pp. 339-340), with slippery_slope_base_case: each step carries the horrible costs back one link of the sequence. CQ1-3 attack the links, which are premises. The whole printed pattern is slippery_slope_compendium. Approved against compendium entry 49 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, Slippery Slope Arguments, Vale Press, Newport News, 1999, pp. 93, 95.) was not compared; that comparison is recorded when the work is at hand and is not a condition of approval. Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Compare the cited 1999 pages; retain the inductive component explicitly and provide the full entry 49 formulation if complete compendium coverage is claimed. Evidence: docs/reviews/record-dispositions.json: slippery_slope_inductive_step Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: slippery_slope_inductive_step.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: slippery_slope_inductive_step",
+        "tools/vv/source_ledger.yml: slippery_slope_inductive_step",
+        "docs/reviews/record-dispositions.json: slippery_slope_inductive_step",
+        "docs/reviews/2026-11-21-second-half-source-review.md: slippery_slope_inductive_step",
+        "docs/reviews/integration-provenance-review.md: slippery_slope_inductive_step"
+      ],
+      "examples": [
+        "slippery_slope_inductive_step/book"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. An inherited component propagating horrible costs along supplied links; not an automatic search for missing links or probability calculation."
+    },
+    {
+      "record": "established_rule",
+      "fingerprint": "sha256:7e92ca04be746c6594975eff0e38ec54d1be6835a438004068078a26b1f9d566",
+      "entry": "55.1",
+      "retained_scope": "Inherited rule/conclusion application with scoped conflict and excuse exceptions; separate actor/action record and original-source scope remain distinct.",
+      "review": {
+        "by": "ChatGPT independent integration provenance reviewer (retained source acceptance)",
+        "date": "2026-11-21",
+        "decision": "approved",
+        "independent_of_author": true,
+        "independence_basis": "This non-author provenance review retains the previously accepted compendium interpretation of established_rule; it does not claim a new complete passage-by-passage source review. docs/reviews/2026-11-21-second-half-source-review.md: established_rule inspected tree 49ad425cbf7afeebcbd9a07ee479d60681ca33ea after Claude's earlier edits: compendium citations in 481bc40, expert_opinion credibility in 2bc28ee, and witness_testimony argument order in e8c00ab as applicable. The review's qualifications and subsequent source/contract corrections remain as declared in the current ledger. Claude's D20 scope adjudication is not counted as independent review of Claude's own earlier edits. The owner's D20 decision governs which original-source comparisons are required; no unavailable original is silently certified. See docs/reviews/integration-provenance-review.md."
+      },
+      "ledger_review_note": "Carneades' rule-application form of entry 55.1 (p. 343): a rule R with conclusion C, applicable, valid by default, defeated by a conflicting or overriding rule (CQ2) or an exception or excuse (CQ3), both scoped to R and C. CQ1 is the premise that R has conclusion C. The actor-and-action form of the print is established_rule_actor. Declared wording difference: the inherited template of applicable/1 says \"Argument\", not \"Rule\" (D5). Approved against compendium entry 55.1 under decision D20, taken by the owner on 2026-11-21: the compendium is the source of record. The older work the record cites (Douglas Walton, A Pragmatic Theory of Fallacy, The University of Alabama Press, Tuscaloosa and London, 1995, p. 147.) was not compared at approval; it was compared later the same day, when the owner supplied it (see the row's note). Historical D20 adjudicator: Claude. That decision is not an independent review of his own earlier changes; the separate compendium reviews and current non-author provenance retention supply the evidence. See docs/reviews/integration-provenance-review.md. See docs/reviews/d20-approvals.md. Earlier hold: Retain the repaired scoped book questions; compare the original 1995 source and distinguish the inherited rule/conclusion form from the compendium actor/action form with explicit coverage claims. Evidence: docs/reviews/record-dispositions.json: established_rule Current acceptance: Retain existing acceptance within the declared interpretation and historical evidence; this pass audits attribution/integrity and does not claim a new complete semantic review of this record. See docs/reviews/final-source-acceptance.json: established_rule.",
+      "evidence": [
+        "docs/reviews/d20-approvals.md: established_rule",
+        "tools/vv/source_ledger.yml: established_rule",
+        "docs/reviews/record-dispositions.json: established_rule",
+        "docs/reviews/2026-11-21-second-half-source-review.md: established_rule",
+        "docs/reviews/integration-provenance-review.md: established_rule"
+      ],
+      "examples": [
+        "established_rule/book",
+        "established_rule/independent-conflicting_or_overriding_rule-same-application",
+        "established_rule/independent-conflicting_or_overriding_rule-wrong-conclusion",
+        "established_rule/independent-conflicting_or_overriding_rule-wrong-rule",
+        "established_rule/independent-rule_exception_or_excuse-same-application",
+        "established_rule/independent-rule_exception_or_excuse-wrong-conclusion",
+        "established_rule/independent-rule_exception_or_excuse-wrong-rule"
+      ],
+      "acceptance_kind": "retained_prior_acceptance",
+      "decision_scope": "Retain the accepted interpretation and examples after checking the non-author evidence chain and correcting attribution. No new full semantic source review or source/formula change is claimed. Inherited rule/conclusion application with scoped conflict and excuse exceptions; separate actor/action record and original-source scope remain distinct."
+    }
+  ],
+  "files_to_sync": [
+    "tools/vv/source_ledger.yml: review and review.note only",
+    "docs/reviews/independent-approvals.json: review and evidence only",
+    "docs/reviews/final-source-acceptance.json: recommended_review, independence_basis, evidence and decision_scope for the eleven; preserve acceptance_kind/fingerprint/examples and original review provenance",
+    "docs/reviews/d20-approvals.md: replace contradictory first sentence with explicit composite attribution",
+    "docs/reviews/integration-provenance-review.md: copy this review and retain its independent conclusions"
+  ],
+  "integration_constraints": [
+    "Retain all149 records and all semantic fingerprints unchanged.",
+    "Retain historical review reports and their original stage qualifications; do not retroactively rewrite them as unqualified approvals.",
+    "Do not relabel these as eleven fresh primary-source reviews; they are eleven attribution updates within retained acceptance.",
+    "Add a dated attribution_updates note to the current acceptance register instead of replacing its historical reviewed_base_commit and raw-source hashes.",
+    "Run the source approval checker and compare all149 fingerprints before/after. Obtain a non-author check of the integrated metadata; no new full book review is required by this finding."
+  ]
+}

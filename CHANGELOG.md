@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-21 — post-integration readiness review (engine 4.3.1+walton.8)
+
+See `docs/reviews/post-integration-readiness-review.md` and `docs/validation-entry.md`.
+
+* Independently accept PR22's legacy server-profile gate, then close two previously untested HTTP wrapper failures: discarded inference errors in the form route and missing authored-argument validation in the raw route. Both routes share validation and context-aware inference, stop before labelling/export on failure, and return explicit non-success HTTP statuses. Valid parsed results are preserved. Add actual-handler tests, live before/after probes and separate non-author replay evidence; do not expand the offline acceptance into a hosting claim.
+* Correct the gate's timing description: multipart input is parsed before the profile check, so refusal is before conversion/inference, not before reading the upload. Document the native ground-formula identifier requirement at the restricted AIF evaluation boundary.
+* Correct eleven live D20 attributions in the source ledger, approval registry and current acceptance register. Preserve all 149 semantic fingerprints, example lists, formulas and source-stage decisions. Independently check the integrated metadata against the exact historical evidence map; retain the original source limitations.
+* Add a bounded Kialo context refresher using immutable Git objects and the live 149-record ledger/registry. Preserve the twelve machine proposals and source-only packets as unadjudicated development material, remove obsolete hold wording and unused arity glosses, and reject eleven deliberate mismatch controls. No human gold or runtime benchmark is created.
+* Put independent review and exact-commit gates before tagging. Start protocol/reference preparation with Kialo as the first application corpus alongside formal CAES/CHR work; keep the six-unit training exercise and 12/12/36 feasibility budget distinct from sealed validation and statistical sufficiency. The registered suite remains 10,428; native HTTP tests and preparation controls are reported separately.
+
 ## 2026-11-21 — integration of the independent baseline review (engine 4.3.1+walton.7)
 
 See `docs/reviews/final-baseline-integration.md`.

@@ -1,0 +1,83 @@
+{
+  "schema": "walton-documentation-cross-review/v1",
+  "verified_at_utc": "2026-11-22T05:49:37.682048+00:00",
+  "reviewer": "ChatGPT integration_provenance; non-author of these six current documentation revisions",
+  "repository_head_at_review": "42b6c6059d3feb5ca01338497d860951c254ea7b",
+  "reviewed_state": "Current working-tree documents. This receipt accepts the exact file hashes below; it is not the forthcoming whole-candidate runtime acceptance.",
+  "decision": "accepted",
+  "blocking_findings": [],
+  "resolved_findings": [
+    {
+      "id": "DOC-01",
+      "file": "PLAN.md",
+      "original_text": "Distinguish completed local acceptance, access-blocked remote publication and complete-library source holds.",
+      "reason": "The present review has not established a new publication access block; current source holds are zero. The old sentence could imply both remain current blockers.",
+      "integrated_text": "Distinguish completed local acceptance, any separately authorized remote publication, and the remaining validation work and explicit scope limitations.",
+      "resolution": "Parent integrated the precise correction; this reviewer confirmed it in the current file."
+    }
+  ],
+  "checks": {
+    "accepted_provenance_receipt_still_matches_all_seven_bound_files": true,
+    "accepted_server_receipt_still_matches_all_four_bound_files": true,
+    "all_six_documents_identify_current_engine_as_walton_8": true,
+    "actual_version_files_identify_walton_8": true,
+    "plan_requires_independent_review_and_exact_commit_gates_before_tagging": true,
+    "release_notes_require_review_and_gates_before_tagging": true,
+    "readiness_report_explicitly_separates_public_ci_from_local_corrections": true,
+    "source_acceptance_is_scoped_not_new_full_source_comparison": true,
+    "eleven_attribution_updates_not_misreported_as_new_semantic_changes": true,
+    "historical_versions_and_counts_are_clearly_historical": true,
+    "future_frozen_candidate_acceptance_and_remote_actions_not_claimed_complete": true,
+    "http_documented_statuses_and_scope_match_server_report_and_receipt": true,
+    "kialo_drafts_and_source_only_exercise_not_mislabelled_human_gold": true,
+    "stable_1_0_0_retains_separate_validation_requirements": true,
+    "old_unverified_remote_block_and_source_holds_tail_sentence_removed": true,
+    "replacement_tail_sentence_present": true,
+    "registered_inventory_is_exactly_10428_distinct_names": true,
+    "server_receipt_eight_independent_requests_all_passed": true,
+    "server_report_matrix_counts_match_saved_evidence": true
+  },
+  "accepted_file_sha256": {
+    "docs/reviews/post-integration-readiness-review.md": "7b945f8f5ab4d13d18437cc20172f4b99d64ab5950854e6d9f0af69a3742f7f1",
+    "PLAN.md": "b964f88af33ca772b11510bf1fae018701aea389fe67efc45d783b6297461004",
+    "docs/releases/framework-0.4.1.md": "0c65e791ad6c2af342efd8781b96c951af913fd0e204f74d5449485042f7256c",
+    "docs/import-profiles.md": "f5d63f7568b46db8e0a0a3e879cb52286ea3ad6ad44dba69d66560bd79a5f4ac",
+    "README.md": "7db6dacc89b0da5d9492b969b6861daaa76d913539bab1c40b5f37554c030d23",
+    "CHANGELOG.md": "20516cdcf4edf9da9efed3be829c46e3ac605f042174c3c1f9529b5144e3efbe"
+  },
+  "provenance_receipt_file_hash_matches": {
+    "tools/vv/source_ledger.yml": true,
+    "docs/reviews/independent-approvals.json": true,
+    "docs/reviews/final-source-acceptance.json": true,
+    "docs/reviews/d20-approvals.md": true,
+    "docs/reviews/integration-provenance-review.md": true,
+    "docs/reviews/integration-attribution-updates.json": true,
+    "walton.yml": true
+  },
+  "server_receipt_file_hash_matches": {
+    "third_party/carneades-4/src/web/evaluation.go": true,
+    "third_party/carneades-4/src/web/evaluation_test.go": true,
+    "third_party/carneades-4/src/web/web.go": true,
+    "third_party/carneades-4/src/web/profile.go": true
+  },
+  "evidence_cross_checked": [
+    "docs/reviews/integration-attribution-cross-review.json",
+    "docs/reviews/server-boundary-review.md",
+    "docs/reviews/server-boundary-non-author-acceptance.json",
+    "../reviews/server/http-comparison.json",
+    "../evidence/previous-archive-verification.json",
+    "../evidence/pr22.json",
+    "../evidence/integration-checks.json",
+    "../evidence/master-checks.json",
+    "tools/vv/expected_checks.txt",
+    "third_party/VERSION",
+    "third_party/carneades-4/src/common/globals.go"
+  ],
+  "scope": {
+    "performed": "Read the six current documents and the current changes; compared provenance and server claims with their acceptance receipts, actual bound file hashes and saved evidence; checked inventory and versions; verified the sole concrete wording correction.",
+    "not_performed": "No repository edits, new source interpretation, full source-text comparison, runtime rerun, fresh GitHub retrieval, Kialo annotation, or frozen-candidate gate execution.",
+    "publication": "No remote push, tag, release or outside correspondence is asserted or authorized by this review.",
+    "final_acceptance_dependency": "Freeze the eventual candidate commit, complete the required clean two-toolchain gates and bind final evidence to that commit. This documentation receipt does not substitute for those results.",
+    "convergence": "Source interpretations remain accepted within their declared scopes. Validation preparation can proceed without another broad source-opinion round; no completed empirical validation or stable-release status is inferred."
+  }
+}

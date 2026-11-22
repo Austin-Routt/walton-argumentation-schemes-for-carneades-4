@@ -1,5 +1,12 @@
 # Integration of the independent baseline review
 
+Historical report for PR22 / engine walton.7. Its current status is superseded
+by [the post-integration review](post-integration-readiness-review.md): the
+upload gate runs before conversion, not before multipart parsing; two further
+HTTP evaluation defects and the remaining live D20 attribution wording are
+corrected in walton.8. The text below preserves the integrator's original
+record and is not a claim that the later corrections were already present.
+
 2026-11-21. Integrator: Claude, the implementer of PR20 and PR21, whose work
 the review examined. This report records what was checked before the
 reviewer's four commits were merged, the one gap found in them, and its fix.

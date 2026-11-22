@@ -1,16 +1,24 @@
-# Framework baseline preview: library 0.4.1 / engine 4.3.1+walton.7
+# Framework baseline preview: library 0.4.1 / engine 4.3.1+walton.8
 
-Engine walton.7 is the reviewed walton.6 with one integration fix: the web
-service applies the same import profile as `check` and `eval`
-(`docs/reviews/final-baseline-integration.md`). The review archive's
-acceptance evidence is for walton.6 at `da1dac5`; this repository's CI is the
-evidence for the integrated commit.
+Engine walton.7 added the web import profile at public PR22 `d9a2585`.
+Engine walton.8 completes a subsequent independent review of the actual
+routes: both now validate authored arguments, propagate inference failures
+and request cancellation, and return non-success HTTP statuses without
+exporting a failed graph. Eleven live D20 reviewer attributions are also
+corrected without changing a library formula or semantic fingerprint.
+The latest review archive contains separate acceptance evidence for this
+exact candidate; the previous walton.6 archive and public walton.7 CI remain
+historical evidence. See `../reviews/post-integration-readiness-review.md`.
 
 This candidate follows PR21 `98a2335d2c9909cf597ae85a9f359f20d092ae6c` and
 incorporates the independent pre-benchmark closure review. Publish only the
 exact commit identified by the clean two-toolchain acceptance evidence in the
 review archive. This document does not assert that a remote tag, pull request
 or GitHub release has been created.
+
+Independently review the changes and finish those exact-commit gates before
+tagging this preview. A full commit hash is sufficient for starting the
+protocol and pilot-preparation work; a remote tag is not a prerequisite.
 
 ## Why this revision is needed
 
@@ -41,6 +49,13 @@ figure/text discrepancy left the chosen action unchanged was incorrect.
   converters. Correct the identified CAF defaults, AGXML topology and LKIF
   exception-link faults. Restrict Dung TGF to unlabelled attacks and repair its
   test fixture/equality weaknesses.
+* Align both CAES HTTP routes with authored-argument validation and typed
+  inference failures, including request cancellation. Add actual-handler
+  tests and independently reviewed live-server controls. This does not
+  certify hosting, the Dung route or output-stream failure recovery.
+* Rebase Kialo pilot context from immutable Git objects and the live source
+  registry. Preserve original drafts, source-only packets and zero-human-gold
+  status; use Kialo as the first application pilot alongside formal references.
 
 ## Compatibility and source scope
 
@@ -52,10 +67,17 @@ do not globally rename `possible/1`, `side_effects/2` or case-difference
 predicates that still have valid uses in other records.
 
 Inputs previously accepted through silent field loss can now be rejected.
-Legacy CAF/AGXML/LKIF CLI use needs `-experimental-import`. AIF import is the
+Legacy CAF/AGXML/LKIF CLI and server use needs `-experimental-import`. AIF import is the
 specific projection in `../import-profiles.md`, not a generic format-fidelity
 claim. AATS models whose joint actions disagree about effects for the same
 state pair must be corrected before generating a graph.
+
+The HTTP routes now return non-2xx errors for invalid or failed evaluations;
+the old form route sometimes returned an error page or failed graph as HTTP
+200, and the raw route previously evaluated invalid authored arguments. This
+is an intentional compatibility correction. Restricted AIF I-node IDs must
+also satisfy native ground-formula validation; arbitrary numeric identifiers
+need a future explicit mapping, as documented in the import profile.
 
 The compendium remains the source of record under D20. The newly supplied
 originals have been compared for the relevant passages; inaccessible older

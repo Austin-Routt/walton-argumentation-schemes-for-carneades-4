@@ -1,0 +1,221 @@
+{
+  "schema": "validation-entry-protocol-cross-review/v1",
+  "review_date": "2026-11-22",
+  "reviewer": "ChatGPT validation_entry child agent",
+  "review_scope": "Independent check of root-authored protocol integration against this agent's prior proposal/manual; not a new independent assessment of the method authored by this agent.",
+  "reviewed_repository_head": "42b6c6059d3feb5ca01338497d860951c254ea7b",
+  "inputs_are_current_worktree_files": true,
+  "frozen_candidate_commit": null,
+  "verdict": "accepted_after_documentation_clarifications",
+  "semantic_or_validation_scope_blockers": [],
+  "checks": [
+    {
+      "id": "P01",
+      "claim": "Preparation and readiness are distinct from completed validation.",
+      "result": "pass",
+      "evidence": "validation-entry.md status, P0/P1, P5; PLAN.md section D."
+    },
+    {
+      "id": "P02",
+      "claim": "The sixty-dossier planning budget is not a power calculation and excludes the exposed six-unit exercise.",
+      "result": "pass",
+      "evidence": "validation-entry.md P1 and P3: 60 new dossiers, 12/12/36, six occurrences/five child claims/one family."
+    },
+    {
+      "id": "P03",
+      "claim": "Initial human annotation excludes model proposals and peer answers; full declared taxonomy is distinguished from the fourteen-record model shortlist.",
+      "result": "pass",
+      "evidence": "validation-entry.md Human annotation calibration; MANUAL_ADDENDUM.md."
+    },
+    {
+      "id": "P04",
+      "claim": "Normalized graph command path matches the supplied artifact layout.",
+      "result": "pass",
+      "evidence": "/path/to/historical/kialo/data/graph.json; actual previous/package/prior-review/kialo/data/graph.json exists."
+    },
+    {
+      "id": "P05",
+      "claim": "The refresher binds to an explicit immutable commit and its actual versions; proposal leaves experiment pin undecided until final acceptance.",
+      "result": "pass",
+      "evidence": "--ref and --expect-commit; immutable Git-object reads; clean dedicated checkout with HEAD matching FULL_ACCEPTED_COMMIT required for the worktree source gate; proposal experiment_commit remains null."
+    },
+    {
+      "id": "P06",
+      "claim": "Formal correctness, graph preservation, human meaning fidelity and capacity use distinct references/claims.",
+      "result": "pass",
+      "evidence": "Objectives table, P2 tracks and P4."
+    },
+    {
+      "id": "P07",
+      "claim": "No benchmark campaign, engine execution by the refresher or human-gold annotation is represented as complete.",
+      "result": "pass",
+      "evidence": "Status, P1 and P5 explicitly limit completed preparation."
+    },
+    {
+      "id": "P08",
+      "claim": "Historical artifacts remain historical and current source acceptance does not approve corpus interpretations.",
+      "result": "pass",
+      "evidence": "P0 source-stage scope, P1 current derivative, retained proposal disclosures."
+    },
+    {
+      "id": "P09",
+      "claim": "Copied script/report/proposal match the independent originals exactly.",
+      "result": "pass",
+      "evidence": [
+        {
+          "source": "pilot/refresh_pilot_context.py",
+          "copy": "repo/tools/validation/refresh_kialo_context.py",
+          "byte_identical": true
+        },
+        {
+          "source": "reviews/validation/VALIDATION_ENTRY_REVIEW.md",
+          "copy": "repo/docs/reviews/validation-entry-independent-review.md",
+          "byte_identical": true
+        },
+        {
+          "source": "reviews/validation/PILOT_OUTLINE.json",
+          "copy": "repo/docs/validation-pilot-proposal.json",
+          "byte_identical": true
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "documentation_clarification",
+      "location": "docs/validation-entry.md P1 reproduction commands",
+      "finding": "The source-approval command reads the working tree whereas the context refresher reads the explicit immutable commit. Without a same-pin clean-checkout instruction, a reader could combine evidence from different snapshots.",
+      "requested_resolution": "State that the source gate must run from a clean checkout of the same FULL_ACCEPTED_COMMIT, or explicitly link its already recorded exact-commit clean gate. The refresher may still operate from a dirty checkout because it reads Git objects.",
+      "changes_meaning_or_gate": "No new gate; documents existing exact-pin requirement.",
+      "status": "resolved",
+      "resolution": "P1 now explicitly requires a clean dedicated checkout at the same FULL_ACCEPTED_COMMIT, distinguishes worktree and Git-object reads, and binds the recorded source-gate pass to that exact commit."
+    },
+    {
+      "id": "F2",
+      "severity": "documentation_clarification",
+      "location": "Copied docs/reviews/validation-entry-independent-review.md and docs/validation-pilot-proposal.json package-relative pointers",
+      "finding": "The unchanged evidence copies retain ../../pilot and local evidence-relative paths from their original package locations. Those references are provenance, not portable standalone repository paths.",
+      "requested_resolution": "Add a short note in the adopted protocol identifying those copies as unchanged package evidence and point standalone users to tools/validation/refresh_kialo_context.py plus supplied external historical data. Preserve original evidence hashes.",
+      "changes_meaning_or_gate": "No semantic change; navigation/provenance clarification.",
+      "status": "resolved",
+      "resolution": "P1 now labels copied report/proposal pointers as unchanged package evidence, explains that some do not resolve in standalone checkouts, points to archive directory-map/reproduction documents, and explains the intentionally null experiment pin."
+    }
+  ],
+  "files": [
+    {
+      "path_relative_to_integration_review": "repo/docs/validation-entry.md",
+      "bytes": 13124,
+      "sha256": "b6b4210ff259addc97bcaebf2a413b748b2d4523b664cafa7425f0d7e77d0577"
+    },
+    {
+      "path_relative_to_integration_review": "repo/PLAN.md",
+      "bytes": 26893,
+      "sha256": "b964f88af33ca772b11510bf1fae018701aea389fe67efc45d783b6297461004"
+    },
+    {
+      "path_relative_to_integration_review": "repo/docs/validation-pilot-proposal.json",
+      "bytes": 10905,
+      "sha256": "c24d17af8233e7c72acd7660201c5cd9e240797e5ff43d5efad794e1d1dbe2e1"
+    },
+    {
+      "path_relative_to_integration_review": "repo/docs/reviews/validation-entry-independent-review.md",
+      "bytes": 24923,
+      "sha256": "e1158a1daa91d9b791f98ba166bc4ab34dda7b1037e691fec6e047c59d8cc10f"
+    },
+    {
+      "path_relative_to_integration_review": "repo/tools/validation/refresh_kialo_context.py",
+      "bytes": 28030,
+      "sha256": "1ab9a9c6c8f06b76124aea464f4820a913e37b2df6e131d3ca484bb54589a557"
+    },
+    {
+      "path_relative_to_integration_review": "pilot/README.md",
+      "bytes": 5326,
+      "sha256": "5477538b076d4b4e1bc1b656035df97634a766e104e1afda7a4a42b1718a05c5"
+    },
+    {
+      "path_relative_to_integration_review": "pilot/MANUAL_ADDENDUM.md",
+      "bytes": 4557,
+      "sha256": "83dbad2da8a0ccbeb946f596fd41cdf4468b8eef5a23d20fbfeb4abf31dc72d7"
+    },
+    {
+      "path_relative_to_integration_review": "reviews/validation/PILOT_OUTLINE.json",
+      "bytes": 10905,
+      "sha256": "c24d17af8233e7c72acd7660201c5cd9e240797e5ff43d5efad794e1d1dbe2e1"
+    },
+    {
+      "path_relative_to_integration_review": "reviews/validation/VALIDATION_ENTRY_REVIEW.md",
+      "bytes": 24923,
+      "sha256": "e1158a1daa91d9b791f98ba166bc4ab34dda7b1037e691fec6e047c59d8cc10f"
+    }
+  ],
+  "actions_performed": [
+    "Read root-authored protocol and PLAN.md section D",
+    "Compared copied artifact bytes and hashes",
+    "Checked declared graph artifact existence",
+    "Checked null experiment pin and preserved planning allocation",
+    "Read the two added P1 clarifications and corrected PLAN.md conclusion",
+    "Rechecked byte identity of copied script/report/proposal",
+    "Refreshed final file hashes and resolved both findings"
+  ],
+  "actions_not_performed": [
+    "Repository edits",
+    "Engine or benchmark runs",
+    "Human annotations",
+    "Source re-adjudication",
+    "Final candidate acceptance"
+  ],
+  "initial_files": [
+    {
+      "path_relative_to_integration_review": "repo/docs/validation-entry.md",
+      "bytes": 12281,
+      "sha256": "692012097e9857ddb2d50a9c5084c625a09cd2f567b822f088842c0ff5c2cc0f"
+    },
+    {
+      "path_relative_to_integration_review": "repo/PLAN.md",
+      "bytes": 26850,
+      "sha256": "69a3fa01823702321591217cdd3ec7b5f773ff426683d52e117b251ef4c3cda7"
+    },
+    {
+      "path_relative_to_integration_review": "repo/docs/validation-pilot-proposal.json",
+      "bytes": 10905,
+      "sha256": "c24d17af8233e7c72acd7660201c5cd9e240797e5ff43d5efad794e1d1dbe2e1"
+    },
+    {
+      "path_relative_to_integration_review": "repo/docs/reviews/validation-entry-independent-review.md",
+      "bytes": 24923,
+      "sha256": "e1158a1daa91d9b791f98ba166bc4ab34dda7b1037e691fec6e047c59d8cc10f"
+    },
+    {
+      "path_relative_to_integration_review": "repo/tools/validation/refresh_kialo_context.py",
+      "bytes": 28030,
+      "sha256": "1ab9a9c6c8f06b76124aea464f4820a913e37b2df6e131d3ca484bb54589a557"
+    },
+    {
+      "path_relative_to_integration_review": "pilot/README.md",
+      "bytes": 5326,
+      "sha256": "5477538b076d4b4e1bc1b656035df97634a766e104e1afda7a4a42b1718a05c5"
+    },
+    {
+      "path_relative_to_integration_review": "pilot/MANUAL_ADDENDUM.md",
+      "bytes": 4557,
+      "sha256": "83dbad2da8a0ccbeb946f596fd41cdf4468b8eef5a23d20fbfeb4abf31dc72d7"
+    },
+    {
+      "path_relative_to_integration_review": "reviews/validation/PILOT_OUTLINE.json",
+      "bytes": 10905,
+      "sha256": "c24d17af8233e7c72acd7660201c5cd9e240797e5ff43d5efad794e1d1dbe2e1"
+    },
+    {
+      "path_relative_to_integration_review": "reviews/validation/VALIDATION_ENTRY_REVIEW.md",
+      "bytes": 24923,
+      "sha256": "e1158a1daa91d9b791f98ba166bc4ab34dda7b1037e691fec6e047c59d8cc10f"
+    }
+  ],
+  "unresolved_findings": [],
+  "final_plan_sentence_review": {
+    "result": "pass",
+    "finding": "The closing instruction now distinguishes completed local acceptance, separately authorized remote publication, and remaining validation/scope limitations. It no longer implies unresolved complete-library source holds or a current publication access failure."
+  },
+  "receipt_scope": "Acceptance of the current protocol documentation bytes and resolved integration clarifications; final candidate commit, exact runtime acceptance, archive map and final pin-bound derivative remain owned by the parent integration reviewer."
+}

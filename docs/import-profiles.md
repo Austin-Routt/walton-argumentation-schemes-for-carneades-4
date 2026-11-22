@@ -4,7 +4,7 @@ The primary library graph format is native Carneades YAML. Other formats do
 not identify executable Walton schemes merely by using the same scheme name.
 Successful parsing and structural validation are separate from preserving the
 meaning of a source graph. These boundaries are part of library 0.4.1 / engine
-4.3.1+walton.7 and the next validation effort must test each claimed conversion
+4.3.1+walton.8 and the next validation effort must test each claimed conversion
 separately.
 
 | Input | Admission and interpretation | Acceptance scope |
@@ -26,9 +26,9 @@ and explicit negation or an issue according to the intended argument; changing
 an external scheme name to `linked` does not supply that interpretation.
 
 The importer does not replace `validation.Validate`, context checks or
-inference. API callers must follow the sequence in `contracts.md`. The CLI
-performs those checks. Native YAML round trips preserve the declared theory
-and case state under the existing contract.
+inference. Go API callers must follow the sequence in `contracts.md`. The CLI
+and both CAES HTTP evaluation routes perform those checks. Native YAML round
+trips preserve the declared theory and case state under the existing contract.
 
 ## Restricted AIF projection
 
@@ -40,6 +40,13 @@ admitted. Edges connect I to RA/CA or RA/CA to I. An RA has one or more I
 premises and exactly one I conclusion. A CA connects exactly two distinct I
 nodes, one incoming and one outgoing; an I node cannot participate in several
 CA issues in this profile.
+
+The current converter uses I-node identifiers as native statement keys. Those
+keys must also pass native validation as ground atomic formulas: `p` can be
+used, while a numeric identifier such as `"1"` is refused at evaluation. A
+general external identifier requires an explicit, reversible mapping with
+collision and provenance checks. This mapping is future adapter work, not
+something this converter supplies automatically.
 
 The conversion applies these explicit project policies:
 
@@ -63,8 +70,10 @@ define its source semantics and loss accounting before relaxing these checks.
 ## Experimental legacy conversion
 
 `carneades check` and `carneades eval` refuse CAF, AGXML and LKIF by default
-with unsupported outcome 2, and so does the web service (`carneades server`)
-for an upload in those formats. A deliberate experiment can opt in:
+with the typed `unsupported` outcome and CLI exit code 2. The web service
+(`carneades server`) enforces the same profile; from walton.8, the form route
+returns HTTP 422 for that refusal. CLI exit codes are not HTTP status codes.
+A deliberate experiment can opt in:
 
 ```sh
 carneades check -f caf -experimental-import legacy.xml
@@ -74,12 +83,32 @@ carneades server -experimental-import
 
 Before engine 4.3.1+walton.7 the web service called the legacy converters
 without the opt-in; `src/web/profile.go` now applies the same profile.
+The gate runs before conversion and inference. `FormValue` parses the
+multipart request first, so the gate is not a guarantee that upload bytes
+have not been read or spooled.
 
 The flag does not bypass admission or structural validation and does not
 certify fidelity. Legacy Go import APIs remain available as experimental
 converters. Their checked boundaries now reject the incompatible Kialo
 export shapes used in the review; that rejection is not a replacement Kialo
 adapter.
+
+### HTTP admission and inference outcomes
+
+From walton.8, `/carneades/eval` and `/carneades/eval-arg-graph` both validate
+authored arguments and check `InferContext(req.Context())` before labelling
+or exporting the graph. They return HTTP 400 for invalid input, 422 for
+unsupported input, inconsistent context or a reached engine limit, 408 for
+cancelled inference, and 500 for an unclassified/internal failure. Raw-API
+errors are JSON strings; form errors use the existing HTML template. Valid
+results retain their existing output formats. The change intentionally
+rejects invalid authored arguments that the old raw route evaluated.
+
+These tests cover admission and inference failure before result output.
+They do not certify production hosting, request-size protection, the Dung
+web route, arbitrary external Graphviz behavior or atomic recovery after
+an exporter has already written bytes. The supported product profile
+remains the offline CLI and Go API described in `contracts.md`.
 
 CAF defaults are read according to the 1.3 schema: absent statement weight is
 0.5, argument polarity is pro, and premise polarity is positive. The repaired
